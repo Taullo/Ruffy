@@ -356,9 +356,9 @@ class MediaGallery extends React.PureComponent {
     const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
 
     if (this.isStandaloneEligible() && width) {
-      style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+      //style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
     } else if (width) {
-      style.height = width / (16/9);
+      //style.height = width / (16/9);
     } else {
       return (<div className={computedClass} ref={this.handleRef}></div>);
     }
