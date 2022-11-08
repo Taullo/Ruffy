@@ -6,7 +6,7 @@ const messages = {
   'layout.current_is': 'Your current layout is:',
   'layout.desktop': 'Desktop',
   'layout.mobile': 'Mobile',
-  'navigation_bar.app_settings': 'App settings',
+  'navigation_bar.app_settings': 'Interface',
   'getting_started.onboarding': 'Show me around',
   'onboarding.page_one.federation': '{domain} is an \'instance\' of Mastodon. Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.',
   'onboarding.page_one.welcome': 'Welcome to {domain}!',
