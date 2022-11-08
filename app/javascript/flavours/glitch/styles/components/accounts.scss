@@ -500,7 +500,7 @@
 
   &__image {
     overflow: hidden;
-    height: 145px;
+    max-height: 800px; /*Taller profile images*/
     position: relative;
     background: darken($ui-base-color, 4%);
 
@@ -739,4 +739,8 @@
       }
     }
   }
+}
+
+img.parallax[src="https://aethy.com/headers/original/missing.png"] { /*Limits size of profiles with no banner. Extremely hacky*/
+    height:145px;
 }
