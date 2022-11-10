@@ -500,6 +500,7 @@
 
   &__image {
     overflow: hidden;
+    min-height:145px;
     max-height: 800px; /*Taller profile images*/
     position: relative;
     background: darken($ui-base-color, 4%);
