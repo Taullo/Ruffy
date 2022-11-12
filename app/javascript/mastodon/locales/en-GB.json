@@ -25,7 +25,7 @@
   "account.direct": "Direct message @{name}",
   "account.disable_notifications": "Stop notifying me when @{name} posts",
   "account.domain_blocked": "Domain blocked",
-  "account.edit_profile": "Edit profile",
+  "account.edit_profile": "Edit",
   "account.enable_notifications": "Notify me when @{name} posts",
   "account.endorse": "Feature on profile",
   "account.featured_tags.last_status_at": "Last post on {date}",

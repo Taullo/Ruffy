@@ -523,8 +523,9 @@
     .avatar {
       display: block;
       flex: 0 0 auto;
-      width: 94px;
+      width: 158px;
       margin-left: -2px;
+      max-width:30%;
 
       .account__avatar {
         background: darken($ui-base-color, 8%);
