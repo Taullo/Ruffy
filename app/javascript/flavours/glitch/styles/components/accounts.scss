@@ -525,7 +525,6 @@
       flex: 0 0 auto;
       width: 158px;
       margin-left: -2px;
-      max-width:30%;
 
       .account__avatar {
         background: darken($ui-base-color, 8%);
@@ -545,7 +544,8 @@
       align-items: center;
       gap: 8px;
       padding-top: 55px;
-      overflow: hidden;
+      flex-wrap: wrap;
+      justify-content: end;
 
       .icon-button {
         border: 1px solid lighten($ui-base-color, 12%);
