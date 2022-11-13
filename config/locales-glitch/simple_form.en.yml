@@ -17,10 +17,10 @@ en:
         setting_default_content_type_html: HTML
         setting_default_content_type_markdown: Markdown
         setting_default_content_type_plain: Plain text
-        setting_favourite_modal: Show confirmation dialog before favouriting (applies to Glitch flavour only)
+        setting_favourite_modal: Show confirmation dialog before favoriting
         setting_hide_followers_count: Hide your followers count
         setting_skin: Skin
-        setting_system_emoji_font: Use system's default font for emojis (applies to Glitch flavour only)
+        setting_system_emoji_font: Use system's default font for emojis
       notification_emails:
         trending_tag: New trending tag requires review
         trending_link: New trending link requires review
