@@ -561,7 +561,7 @@
 
       .icon-button {
         border: 1px solid lighten($ui-base-color, 12%);
-        border-radius: 4px;
+        border-radius: 100%;
         box-sizing: content-box;
         padding: 2px;
       }
