@@ -282,7 +282,6 @@ class ComposerOptions extends ImmutablePureComponent {
           onModalOpen={onModalOpen}
           value={privacy}
         />
-        {showContentTypeChoice && (
           <Dropdown
             disabled={disabled}
             icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
@@ -297,7 +296,6 @@ class ComposerOptions extends ImmutablePureComponent {
             title={formatMessage(messages.content_type)}
             value={contentType}
           />
-        )}
         {onToggleSpoiler && (
           <TextIconButton
             active={spoiler}
