@@ -592,7 +592,6 @@
   background: $simple-background-color;
   overflow: hidden;
   transform-origin: 50% 0;
-  position:fixed;
 }
 
 .privacy-dropdown__option {
@@ -654,7 +653,7 @@
 
 .language-dropdown {
   &__dropdown {
-    position: fixed;
+    position: absolute;
     background: $simple-background-color;
     box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
     border-radius: 4px;
