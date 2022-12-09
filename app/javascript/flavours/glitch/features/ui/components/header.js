@@ -13,6 +13,7 @@ import NotificationsCounterIcon from './notifications_counter_icon';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { NavLink } from 'react-router-dom';
 import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/utils/backend_links';
+import { openModal } from 'flavours/glitch/actions/modal';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -62,7 +63,15 @@ const Account = connect(state => ({
   </Permalink>
 ));
 
-export default @withRouter @injectIntl
+const mapDispatchToProps = (dispatch) => ({
+  openClosedRegistrationsModal() {
+    dispatch(openModal('CLOSED_REGISTRATIONS'));
+  },
+});
+
+export default @connect(null, mapDispatchToProps)
+@withRouter @injectIntl
+
 class Header extends React.PureComponent {
 
   static contextTypes = {
@@ -70,6 +79,7 @@ class Header extends React.PureComponent {
   };
 
   static propTypes = {
+    openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
   };
@@ -77,7 +87,7 @@ class Header extends React.PureComponent {
   render () {
     const { intl } = this.props;
     const { signedIn } = this.context.identity;
-    const { location } = this.props;
+    const { location, openClosedRegistrationsModal } = this.props;
     
     let menu        = [];
     menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
@@ -92,6 +102,7 @@ class Header extends React.PureComponent {
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes', href: '/mutes' });
     menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks', href: '/blocks' });
     menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks', href: '/domain_blocks' });
+    const { location, openClosedRegistrationsModal } = this.props;
 
     let content;
 
@@ -105,10 +116,26 @@ class Header extends React.PureComponent {
         </>
       );
     } else {
+      let signupButton;
+
+      if (registrationsOpen) {
+        signupButton = (
+          <a href='/auth/sign_up' className='button button-tertiary'>
+            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+          </a>
+        );
+      } else {
+        signupButton = (
+          <button className='button button-tertiary' onClick={openClosedRegistrationsModal}>
+            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+          </button>
+        );
+      }
+
       content = (
         <>
           <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
-          <a href={registrationsOpen ? '/auth/sign_up' : 'https://joinmastodon.org/servers'} className='button button-tertiary'><FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' /></a>
+          {signupButton}
         </>
       );
     }

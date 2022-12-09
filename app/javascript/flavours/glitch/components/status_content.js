@@ -1,11 +1,11 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
-import { autoPlayGif } from 'flavours/glitch/initial_state';
+import { autoPlayGif, languages as preloadedLanguages, translationEnabled } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
 const textMatchesTarget = (text, origin, host) => {
@@ -62,13 +62,56 @@ const isLinkMisleading = (link) => {
   return !(textMatchesTarget(text, origin, host) || textMatchesTarget(text.toLowerCase(), origin, host));
 };
 
-export default class StatusContent extends React.PureComponent {
+class TranslateButton extends React.PureComponent {
+
+  static propTypes = {
+    translation: ImmutablePropTypes.map,
+    onClick: PropTypes.func,
+  };
+
+  render () {
+    const { translation, onClick } = this.props;
+
+    if (translation) {
+      const language     = preloadedLanguages.find(lang => lang[0] === translation.get('detected_source_language'));
+      const languageName = language ? language[2] : translation.get('detected_source_language');
+      const provider     = translation.get('provider');
+
+      return (
+        <div className='translate-button'>
+          <div className='translate-button__meta'>
+            <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
+          </div>
+
+          <button className='link-button' onClick={onClick}>
+            <FormattedMessage id='status.show_original' defaultMessage='Show original' />
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <button className='status__content__read-more-button' onClick={onClick}>
+        <FormattedMessage id='status.translate' defaultMessage='Translate' />
+      </button>
+    );
+  }
+
+}
+
+export default @injectIntl
+class StatusContent extends React.PureComponent {
+
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
     collapsed: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
+    onTranslate: PropTypes.func,
     media: PropTypes.node,
     extraMedia: PropTypes.node,
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
@@ -77,8 +120,7 @@ export default class StatusContent extends React.PureComponent {
     onUpdate: PropTypes.func,
     tagLinks: PropTypes.bool,
     rewriteMentions: PropTypes.string,
-    collapsable: PropTypes.bool,
-    onCollapsedToggle: PropTypes.func,
+    intl: PropTypes.object,
   };
 
   static defaultProps = {
@@ -98,7 +140,6 @@ export default class StatusContent extends React.PureComponent {
       return;
     }
 
-    const { status, onCollapsedToggle } = this.props;
     const links = node.querySelectorAll('a');
 
     for (var i = 0; i < links.length; ++i) {
@@ -155,17 +196,6 @@ export default class StatusContent extends React.PureComponent {
           if (tagLinks && e instanceof TypeError) link.removeAttribute('href');
         }
       }
-    }
-    if (status.get('collapsed', null) === null && onCollapsedToggle) {
-      const { collapsable, onClick } = this.props;
-
-      const collapsed =
-          collapsable
-          && onClick
-          && node.clientHeight > MAX_HEIGHT
-          && status.get('spoiler_text').length === 0;
-
-      onCollapsedToggle(collapsed);
     }
   }
 
@@ -263,6 +293,10 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  handleTranslate = () => {
+    this.props.onTranslate();
+  }
+
   setContentsRef = (c) => {
     this.contentsNode = c;
   }
@@ -277,24 +311,22 @@ export default class StatusContent extends React.PureComponent {
       disabled,
       tagLinks,
       rewriteMentions,
+      intl,
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
-    const renderReadMore = this.props.onClick && status.get('collapsed');
+    const renderTranslate = translationEnabled && this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
 
-    const content = { __html: status.get('contentHtml') };
+    const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
-    const lang = status.get('language');
+    const lang = status.get('translation') ? intl.locale : status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': parseClick && !disabled,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
-      'status__content--collapsed': renderReadMore,
     });
-    
-    const readMoreButton = renderReadMore && (
-      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
-        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
-      </button>
+
+    const translateButton = renderTranslate && (
+      <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
     );
 
     if (status.get('spoiler_text').length > 0) {
@@ -372,12 +404,11 @@ export default class StatusContent extends React.PureComponent {
               onMouseLeave={this.handleMouseLeave}
               lang={lang}
             />
+            {!hidden && translateButton}
             {media}
           </div>
 
           {extraMedia}
-          {readMoreButton}
-
         </div>
       );
     } else if (parseClick) {
@@ -398,9 +429,9 @@ export default class StatusContent extends React.PureComponent {
             onMouseLeave={this.handleMouseLeave}
             lang={lang}
           />
+          {translateButton}
           {media}
           {extraMedia}
-          {readMoreButton}
         </div>
       );
     } else {
@@ -419,9 +450,9 @@ export default class StatusContent extends React.PureComponent {
             onMouseLeave={this.handleMouseLeave}
             lang={lang}
           />
+          {translateButton}
           {media}
           {extraMedia}
-          {readMoreButton}
         </div>
       );
     }
