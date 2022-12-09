@@ -1,4 +1,4 @@
-#  Mastodon Aethy Edition  #
+#  Mastodon Aethersuite  #
 
 Fork of Glitch-soc which is a fork of Tootsuite by Mastodon for use on Aethy.com
 
