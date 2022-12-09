@@ -54,7 +54,7 @@ class LocalSettingsNavigation extends React.PureComponent {
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
-          textIcon='CW'
+          icon='warning'
           title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem

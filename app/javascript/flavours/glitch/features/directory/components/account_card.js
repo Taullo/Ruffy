@@ -30,7 +30,7 @@ const messages = defineMessages({
   unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
   unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
-  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit' },
+  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   dismissSuggestion: { id: 'suggestions.dismiss', defaultMessage: 'Dismiss suggestion' },
 });
 

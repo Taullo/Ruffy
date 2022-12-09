@@ -77,6 +77,8 @@ export default class StatusContent extends React.PureComponent {
     onUpdate: PropTypes.func,
     tagLinks: PropTypes.bool,
     rewriteMentions: PropTypes.string,
+    collapsable: PropTypes.bool,
+    onCollapsedToggle: PropTypes.func,
   };
 
   static defaultProps = {
@@ -96,6 +98,7 @@ export default class StatusContent extends React.PureComponent {
       return;
     }
 
+    const { status, onCollapsedToggle } = this.props;
     const links = node.querySelectorAll('a');
 
     for (var i = 0; i < links.length; ++i) {
@@ -152,6 +155,17 @@ export default class StatusContent extends React.PureComponent {
           if (tagLinks && e instanceof TypeError) link.removeAttribute('href');
         }
       }
+    }
+    if (status.get('collapsed', null) === null && onCollapsedToggle) {
+      const { collapsable, onClick } = this.props;
+
+      const collapsed =
+          collapsable
+          && onClick
+          && node.clientHeight > MAX_HEIGHT
+          && status.get('spoiler_text').length === 0;
+
+      onCollapsedToggle(collapsed);
     }
   }
 
@@ -266,6 +280,7 @@ export default class StatusContent extends React.PureComponent {
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
+    const renderReadMore = this.props.onClick && status.get('collapsed');
 
     const content = { __html: status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -273,7 +288,14 @@ export default class StatusContent extends React.PureComponent {
     const classNames = classnames('status__content', {
       'status__content--with-action': parseClick && !disabled,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
+      'status__content--collapsed': renderReadMore,
     });
+    
+    const readMoreButton = renderReadMore && (
+      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
+        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
+      </button>
+    );
 
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
@@ -354,6 +376,7 @@ export default class StatusContent extends React.PureComponent {
           </div>
 
           {extraMedia}
+          {readMoreButton}
 
         </div>
       );
@@ -377,6 +400,7 @@ export default class StatusContent extends React.PureComponent {
           />
           {media}
           {extraMedia}
+          {readMoreButton}
         </div>
       );
     } else {
@@ -397,6 +421,7 @@ export default class StatusContent extends React.PureComponent {
           />
           {media}
           {extraMedia}
+          {readMoreButton}
         </div>
       );
     }

@@ -130,10 +130,6 @@ $ui-header-height: 55px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-
-  > .scrollable {
-    background: $ui-base-color;
-  }
 }
 
 .ui {
@@ -174,7 +170,7 @@ $ui-header-height: 55px;
   font-family: inherit;
   color: $highlight-text-color;
   cursor: pointer;
-  flex: 0 0 auto;
+  flex: 0 0 auto!important;padding-right:0!important;
   font-size: 16px;
   padding: 0 5px 0 0;
   z-index: 3;
@@ -356,12 +352,6 @@ $ui-header-height: 55px;
     min-width: 330px;
     max-width: 400px;
   }
-
-  > .scrollable {
-    background: $ui-base-color;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
 }
 
 .column-header__buttons {
@@ -385,6 +375,8 @@ $ui-header-height: 55px;
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
+  border-bottom: 4px solid;
+  transition: color .2s;
 
   &:hover {
     color: lighten($darker-text-color, 7%);
@@ -392,6 +384,7 @@ $ui-header-height: 55px;
 
   &.active {
     color: $primary-text-color;
+    border-color: $ui-highlight-color;
     background: lighten($ui-base-color, 8%);
 
     &:hover {
@@ -401,9 +394,9 @@ $ui-header-height: 55px;
   }
 
   // glitch - added focus ring for keyboard navigation
-  &:focus {
-    text-shadow: 0 0 4px darken($ui-highlight-color, 5%);
-  }
+  //&:focus {
+  //  text-shadow: 0 0 4px $primary-text-color;
+  //}
 
   &:disabled {
     color: $dark-text-color;
@@ -491,6 +484,8 @@ $ui-header-height: 55px;
 .column-header__collapsible-inner {
   background: lighten($ui-base-color, 8%);
   padding: 15px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .column-header__setting-btn {
@@ -958,10 +953,11 @@ $ui-header-height: 55px;
 
 .dismissable-banner {
   background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   align-items: center;
   gap: 30px;
+  border-bottom-left-radius:4px;
+  border-bottom-right-radius:4px;
 
   &__message {
     flex: 1 1 auto;

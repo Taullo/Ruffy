@@ -14,6 +14,14 @@ const messages = defineMessages({
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Only people I mention' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
+  local_only_long: {
+    defaultMessage: 'Do not post to other instances',
+    id: 'advanced_options.local-only.long',
+  },
+  local_only_short: {
+    defaultMessage: 'Local-only',
+    id: 'advanced_options.local-only.short',
+  },
 });
 
 export default @injectIntl

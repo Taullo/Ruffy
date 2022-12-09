@@ -54,8 +54,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
     openSettings: PropTypes.func,
   };
 
-  // Corresponds to (max-width: $no-gap-breakpoint + 285px - 1px) in SCSS
-  mediaQuery = 'matchMedia' in window && window.matchMedia('(max-width: 1174px)');
+  // Originally corresponds to (max-width: $no-gap-breakpoint + 285px - 1px) in SCSS. Now always true. Original is mediaQuery = 'matchMedia' in window && window.matchMedia('(min-width: 1174px)');
+  mediaQuery = 'matchMedia' in window && window.matchMedia('(min-width: 0)');
 
   state = {
     renderComposePanel: !(this.mediaQuery && this.mediaQuery.matches),
@@ -142,11 +142,11 @@ export default class ColumnsArea extends ImmutablePureComponent {
     if (singleColumn) {
       return (
         <div className='columns-area__panels'>
-          <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
-            <div className='columns-area__panels__pane__inner'>
-              {renderComposePanel && <ComposePanel />}
-            </div>
-          </div>
+
+
+
+
+
 
           <div className='columns-area__panels__main'>
             <div className='tabs-bar__wrapper'><div id='tabs-bar__portal' /></div>

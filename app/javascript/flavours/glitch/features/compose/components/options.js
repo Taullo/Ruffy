@@ -264,31 +264,35 @@ class ComposerOptions extends ImmutablePureComponent {
             title={formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
           />
         )}
-        <hr />
-        <PrivacyDropdownContainer disabled={disabled || isEditing} />
-
-          <DropdownContainer
-            disabled={disabled}
-            icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
-            items={[
-              contentTypeItems.plain,
-              contentTypeItems.html,
-              contentTypeItems.markdown,
-            ]}
-            onChange={onChangeContentType}
-            title={formatMessage(messages.content_type)}
-            value={contentType}
-          />
-
         {onToggleSpoiler && (
-          <TextIconButton
+          <IconButton
             active={spoiler}
             ariaControls='glitch.composer.spoiler.input'
-            label='CW'
+            icon='warning'
+            size={18}
+            style={{
+              height: null,
+              lineHeight: null,
+            }}
             onClick={onToggleSpoiler}
             title={formatMessage(messages.spoiler)}
           />
         )}
+        <hr />
+        <PrivacyDropdownContainer disabled={disabled || isEditing} />
+
+        <DropdownContainer
+          disabled={disabled}
+          icon='file-text'
+          items={[
+            contentTypeItems.markdown,
+            contentTypeItems.html,
+            contentTypeItems.plain,
+          ]}
+          onChange={onChangeContentType}
+          title={formatMessage(messages.content_type)}
+          value={contentType}
+        />
         <LanguageDropdown />
         <DropdownContainer
           disabled={disabled || isEditing}

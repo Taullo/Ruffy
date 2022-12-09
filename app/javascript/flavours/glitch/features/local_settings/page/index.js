@@ -8,17 +8,16 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
 import { preferenceLink } from 'flavours/glitch/utils/backend_links';
 import LocalSettingsPageItem from './item';
-import DeprecatedLocalSettingsPageItem from './deprecated_item';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({
   layout_auto: {  id: 'layout.auto', defaultMessage: 'Auto' },
   layout_auto_hint: {  id: 'layout.hint.auto', defaultMessage: 'Automatically chose layout based on “Enable advanced web interface” setting and screen size.' },
-  layout_desktop: { id: 'layout.desktop', defaultMessage: 'Desktop' },
-  layout_desktop_hint: { id: 'layout.hint.desktop', defaultMessage: 'Use multiple-column layout regardless of the “Enable advanced web interface” setting or screen size.' },
-  layout_mobile: { id: 'layout.single', defaultMessage: 'Mobile' },
-  layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use single-column layout regardless of the “Enable advanced web interface” setting or screen size.' },
+  layout_desktop: { id: 'layout.desktop', defaultMessage: 'Advanced Layout' },
+  layout_desktop_hint: { id: 'layout.hint.desktop', defaultMessage: 'Allows you to configure multiple columns to see as much information as you want (e.g. home, notifications, timeline, lists and hashtags).' },
+  layout_mobile: { id: 'layout.single', defaultMessage: 'Normal Layout' },
+  layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use the default single column layout. This lays out information in a less compact and more readable way.' },
   side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
   side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep its set privacy' },
   side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the toot being replied to' },
@@ -68,7 +67,7 @@ class LocalSettingsPage extends React.PureComponent {
           id='mastodon-settings--confirm_boost_missing_media_description'
           onChange={onChange}
         >
-          <FormattedMessage id='settings.confirm_boost_missing_media_description' defaultMessage='Show confirmation dialog before boosting toots lacking media descriptions' />
+          <FormattedMessage id='settings.confirm_boost_missing_media_description' defaultMessage='Show confirmation dialog before boosting posts lacking media descriptions' />
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -165,12 +164,12 @@ class LocalSettingsPage extends React.PureComponent {
             id='mastodon-settings--layout'
             options={[
               { value: 'auto', message: intl.formatMessage(messages.layout_auto), hint: intl.formatMessage(messages.layout_auto_hint) },
-              { value: 'multiple', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
               { value: 'single', message: intl.formatMessage(messages.layout_mobile), hint: intl.formatMessage(messages.layout_mobile_hint) },
+              { value: 'multiple', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
             ]}
             onChange={onChange}
           >
-            <FormattedMessage id='settings.layout' defaultMessage='Layout:' />
+            <FormattedMessage id='settings.layout' defaultMessage='Desktop Layout:' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
@@ -178,7 +177,7 @@ class LocalSettingsPage extends React.PureComponent {
             id='mastodon-settings--stretch'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Desktop mode only)' />
+            <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Advanced Layout only)' />
             <span className='hint'><FormattedMessage id='settings.wide_view_hint' defaultMessage='Stretches columns to better fill the available space.' /></span>
           </LocalSettingsPageItem>
         </section>
@@ -218,7 +217,7 @@ class LocalSettingsPage extends React.PureComponent {
           id='mastodon-settings--confirm_missing_media_description'
           onChange={onChange}
         >
-          <FormattedMessage id='settings.confirm_missing_media_description' defaultMessage='Show confirmation dialog before sending toots lacking media descriptions' />
+          <FormattedMessage id='settings.confirm_missing_media_description' defaultMessage='Show confirmation dialog before sending posts lacking media descriptions' />
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -283,14 +282,14 @@ class LocalSettingsPage extends React.PureComponent {
     ),
     ({ onChange, settings }) => (
       <div className='glitch local-settings__page collapsed'>
-        <h1><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapsed toots' /></h1>
+        <h1><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapse posts' /></h1>
         <LocalSettingsPageItem
           settings={settings}
           item={['collapsed', 'enabled']}
           id='mastodon-settings--collapsed-enabled'
           onChange={onChange}
         >
-          <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed toots' />
+          <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed posts' />
           <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
@@ -300,7 +299,7 @@ class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
           dependsOn={[['collapsed', 'enabled']]}
         >
-          <FormattedMessage id='settings.show_action_bar' defaultMessage='Show action buttons in collapsed toots' />
+          <FormattedMessage id='settings.show_action_bar' defaultMessage='Show action buttons in collapsed posts' />
         </LocalSettingsPageItem>
         <section>
           <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
@@ -331,7 +330,7 @@ class LocalSettingsPage extends React.PureComponent {
             dependsOn={[['collapsed', 'enabled']]}
             dependsOnNot={[['collapsed', 'auto', 'all']]}
           >
-            <FormattedMessage id='settings.auto_collapse_lengthy' defaultMessage='Lengthy toots' />
+            <FormattedMessage id='settings.auto_collapse_lengthy' defaultMessage='Lengthy posts' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
@@ -361,7 +360,7 @@ class LocalSettingsPage extends React.PureComponent {
             dependsOn={[['collapsed', 'enabled']]}
             dependsOnNot={[['collapsed', 'auto', 'all']]}
           >
-            <FormattedMessage id='settings.auto_collapse_media' defaultMessage='Toots with media' />
+            <FormattedMessage id='settings.auto_collapse_media' defaultMessage='Posts with media' />
           </LocalSettingsPageItem>
         </section>
         <section>
@@ -373,7 +372,7 @@ class LocalSettingsPage extends React.PureComponent {
             onChange={onChange}
             dependsOn={[['collapsed', 'enabled']]}
           >
-            <FormattedMessage id='settings.image_backgrounds_users' defaultMessage='Give collapsed toots an image background' />
+            <FormattedMessage id='settings.image_backgrounds_users' defaultMessage='Give collapsed posts an image background' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
