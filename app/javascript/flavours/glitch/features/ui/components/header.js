@@ -39,6 +39,20 @@ class Header extends React.PureComponent {
   render () {
     const { signedIn } = this.context.identity;
     const { location, openClosedRegistrationsModal } = this.props;
+    
+    let menu        = [];
+    menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
+    menu.push({ text: intl.formatMessage(messages.preferences), href: preferencesLink });
+    menu.push({ text: intl.formatMessage(messages.lists), to: '/lists', href: '/lists' });
+    menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned', href: '/pinned' });
+    menu.push(null);
+    menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests', href: '/follow_requests'});
+    menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites', href: '/favourites' });
+    menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks', href: '/bookmarks' });
+    menu.push(null);
+    menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes', href: '/mutes' });
+    menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks', href: '/blocks' });
+    menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks', href: '/domain_blocks' });
 
     let content;
 
