@@ -206,13 +206,15 @@
   }
 }
 
-.translate-button {
-  margin-top: 16px;
+.status__content__edited-label {
+  display: block;
+  cursor: default;
   font-size: 15px;
   line-height: 20px;
-  display: flex;
-  justify-content: space-between;
+  padding: 0;
+  padding-top: 8px;
   color: $dark-text-color;
+  font-weight: 500;
 }
 
 .status__content__spoiler-link {
@@ -309,6 +311,7 @@
   height: auto;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
+  background: $ui-base-color;
 
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.

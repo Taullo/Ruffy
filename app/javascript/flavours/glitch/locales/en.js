@@ -1,12 +1,12 @@
 import inherited from 'mastodon/locales/en.json';
 
 const messages = {
-  'getting_started.open_source_notice': 'Glitchsoc is free open source software forked from {Mastodon}. You can contribute or report issues on GitHub at {github}.',
+  'getting_started.open_source_notice': 'Aethersuite is free open source software forked from {Mastodon}. You can contribute or report issues on GitHub at {github}.',
   'layout.auto': 'Auto',
   'layout.current_is': 'Your current layout is:',
-  'layout.desktop': 'Desktop',
-  'layout.mobile': 'Mobile',
-  'navigation_bar.app_settings': 'App settings',
+  'layout.desktop': 'Advanced Layout',
+  'layout.mobile': 'Normal Layout',
+  'navigation_bar.app_settings': 'Display',
   'getting_started.onboarding': 'Show me around',
   'onboarding.page_one.federation': '{domain} is an \'instance\' of Mastodon. Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.',
   'onboarding.page_one.welcome': 'Welcome to {domain}!',

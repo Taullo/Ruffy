@@ -37,7 +37,7 @@
     top: 15px;
   }
 
-  .navigation-bar {
+  .drawer--account {
     flex: 0 1 48px;
   }
 
@@ -85,7 +85,7 @@
     flex: 0 0 auto;
     border: 0;
     background: transparent;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid $ui-base-color;
     margin: 10px 0;
   }
 
@@ -236,13 +236,143 @@
     display: none;
   }
 
-  .search-page .search {
+  /*.search-page .search {
     display: none;
-  }
+  }*/
 
-  .navigation-panel__legal {
+  /*.navigation-panel__legal {
     display: none;
+  }*/
+  
+  .layout-single-column .status {
+    margin-top:8px;
+    border-radius:4px;
+    border-bottom:0;
   }
+  .layout-single-column .ui__header {
+    display: flex;
+    width:1175px;
+    margin:0 auto;
+  }
+  .layout-single-column .ui__header__wrapper {
+    border-bottom:1px $ui-base-color solid;
+    position:fixed;
+    width:100%;
+    z-index:100;
+    background: #191b22;
+  }
+  .layout-single-column .columns-area__panels {
+    margin-top:60px;
+    height: calc(100% - 60px);
+    min-height: calc(100vh - 60px);
+    transition:color .2s;
+  }
+  .layout-single-column .ui__header__links .icon-button {
+    color:$secondary-text-color;
+  }
+  .layout-single-column .ui__header__links .icon-button:hover {
+    color:$primary-text-color;
+    background:transparent;
+  }
+  .layout-single-column .ui__header__left .column-link {
+    font-size:16px!important;
+    line-height:1!important;
+    font-weight:bold!important;
+  }
+  .layout-single-column .ui__header__links .column-link {
+    font-size:22px!important;
+    line-height:1!important;
+    padding:0!important;
+    padding-right:15px!important;
+  }
+  .layout-single-column .ui__header__links .button {
+    margin-right:15px!important;
+  }
+  .layout-single-column .detailed-status__action-bar {
+    border-bottom-right-radius:4px;
+    border-bottom-left-radius:4px;
+  }
+  
+  .layout-single-column .column-link {
+    font-size: 18px!important;
+  }
+  
+  .layout-single-column .column-header__buttons {
+    border-top-left-radius:4px;
+    overflow:hidden;
+  }
+  
+  .layout-single-column .notification__filter-bar button, .layout-single-column .column-back-button, .layout-single-column .explore__search-header, .layout-single-column .empty-column-indicator, .layout-single-column .column-header__button, .layout-single-column .tabs-bar__wrapper, .layout-single-column .column-header {
+    background:transparent;
+  }
+  
+  .layout-single-column .column-header__button.active {
+    background: lighten($ui-base-color, 8%);
+  }
+  
+  .layout-single-column .dismissable-banner {
+    border-radius:4px;
+    margin-top:8px;
+  }
+  
+  .layout-single-column .explore__search-header {
+    padding:0;
+    padding-top:15px;
+    padding-bottom:15px;
+  }
+  
+  .layout-single-column .account-timeline__header {
+    border-top-left-radius:4px;
+    border-top-right-radius:4px;
+    overflow:hidden;
+  }
+  
+  .layout-single-column .focusable {
+    margin-top:8px;
+    border-top-left-radius:4px;
+    border-top-right-radius:4px;
+    overflow:hidden;
+  }
+  
+  .layout-single-column #Blocked-domains, .layout-single-column #Blocked-users, .layout-single-column #Muted-users, .layout-single-column #Lists, .layout-single-column #Follow-requests, .layout-single-column #Pinned-posts{
+    padding-left:40px;
+  }
+  
+  .layout-single-column .column-back-button > span { /*Hide Back Text*/
+    display:none;
+  }
+  
+  .layout-single-column .about .link-footer {
+    display:block;
+  }
+  
+  .layout-single-column .columns-area__panels__pane--compositional {
+    display:none;
+  }
+  
+  .layout-single-column .tabs-bar__wrapper {
+    position:static;
+  }
+  
+  .layout-single-column .ui__header__left {
+    display:inline-flex;
+    align-items:center;
+  }
+  
+  .layout-single-column .ui__header__links .icon-button {
+    padding:8px;
+    box-sizing:content-box;
+  }
+  
+  .layout-single-column .ui__header__left .column-link i {
+    display:none!important;
+  }
+  
+  //.layout-single-column .tabs-bar__wrapper {
+  //  border-bottom-right-radius:4px;
+  //  border-bottom-left-radius:4px;
+  //  overflow:hidden;
+  //}
 }
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
@@ -320,7 +450,7 @@
 }
 
 .explore__search-header {
-  display: none;
+  display: flex;
 }
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {

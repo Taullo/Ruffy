@@ -6,6 +6,8 @@ import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
 import BundleColumnError from './bundle_column_error';
+import ComposeFormContainer from 'flavours/glitch/features/compose/containers/compose_form_container';
+import { mountCompose, unmountCompose } from 'flavours/glitch/actions/compose';
 import {
   Compose,
   Notifications,
@@ -142,11 +144,6 @@ export default class ColumnsArea extends ImmutablePureComponent {
     if (singleColumn) {
       return (
         <div className='columns-area__panels'>
-          <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
-            <div className='columns-area__panels__pane__inner'>
-              {renderComposePanel && <ComposePanel />}
-            </div>
-          </div>
 
           <div className='columns-area__panels__main'>
             <div className='tabs-bar__wrapper'><div id='tabs-bar__portal' /></div>

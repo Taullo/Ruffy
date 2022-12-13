@@ -15,7 +15,7 @@
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: $highlight-text-color;
+  color: $ui-highlight-color;
   border: 0;
   background: transparent;
   padding: 0;
@@ -37,10 +37,14 @@
   }
 }
 
+.primary {
+  min-width:88px;
+}
+
 .button {
   background-color: darken($ui-highlight-color, 3%);
   border: 10px none;
-  border-radius: 4px;
+  border-radius: 100px;
   box-sizing: border-box;
   color: $primary-text-color;
   cursor: pointer;
@@ -159,7 +163,7 @@
   padding: 0;
   color: $action-button-color;
   border: 0;
-  border-radius: 4px;
+  border-radius: 100%;
   background: transparent;
   cursor: pointer;
   transition: all 100ms ease-in;
@@ -1051,16 +1055,12 @@
     margin-top: 10px;
 
     h4 {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
-      padding: 10px;
       font-size: 12px;
       text-transform: uppercase;
+      color: $darker-text-color;
+      padding: 10px;
       font-weight: 500;
-
-      a {
-        color: $darker-text-color;
-        text-decoration: none;
-      }
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
     }
 
     @media screen and (max-height: 810px) {
@@ -1195,9 +1195,12 @@ button.icon-button.active i.fa-retweet {
   margin: 0;
   padding: 15px;
   box-sizing: border-box;
-  width: 100%;
   clear: both;
   text-decoration: none;
+  background: $ui-base-color;
+  margin:0 auto;
+  border-radius:100px;
+  margin-top:8px;
 
   &:hover {
     background: lighten($ui-base-color, 2%);
@@ -1762,3 +1765,43 @@ noscript {
 @import 'signed_out';
 @import 'privacy_policy';
 @import 'about';
+
+/* More Visible CWs */
+
+.status__content--with-spoiler > p {
+    position:relative;
+}
+
+.status__content--with-spoiler > p > .translate {
+    max-width:calc(100% - 120px);
+    width:100%;
+    display:inline-block;
+    font-weight: bold;
+    padding:8px;
+    border: darken($ui-highlight-color, 3%) 2px solid;
+    border-right:0px;
+    box-sizing:border-box;
+    border-top-left-radius:4px;
+    border-bottom-left-radius:4px;
+}
+
+.status__content__spoiler-link {
+    background:darken($ui-highlight-color, 3%)!important;
+    transition:background 0.2s;
+    color:white;
+    padding:8px;
+    border: darken($ui-highlight-color, 3%) 2px solid;
+    width:120px;
+    border-radius:0;
+    border-top-right-radius:20px;
+    border-bottom-right-radius:20px;
+    box-sizing:border-box;
+    margin-left:-5px;
+    position:absolute;
+    height:100%;
+}
+
+.status__content__spoiler-link:hover {
+    background: $ui-highlight-color!important;
+    border: $ui-highlight-color 2px solid;
+}

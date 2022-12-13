@@ -5,31 +5,12 @@ import { is } from 'immutable';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
+import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
 import { debounce } from 'lodash';
 import Blurhash from 'flavours/glitch/components/blurhash';
 
 const messages = defineMessages({
-  hidden: {
-    defaultMessage: 'Media hidden',
-    id: 'status.media_hidden',
-  },
-  sensitive: {
-    defaultMessage: 'Sensitive',
-    id: 'media_gallery.sensitive',
-  },
-  toggle: {
-    defaultMessage: 'Click to view',
-    id: 'status.sensitive_toggle',
-  },
-  toggle_visible: {
-    defaultMessage: '{number, plural, one {Hide image} other {Hide images}}',
-    id: 'media_gallery.toggle_visible',
-  },
-  warning: {
-    defaultMessage: 'Sensitive content',
-    id: 'status.sensitive_warning',
-  },
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
 });
 
 class Item extends React.PureComponent {
@@ -39,7 +20,6 @@ class Item extends React.PureComponent {
     standalone: PropTypes.bool,
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
-    letterbox: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
@@ -98,7 +78,7 @@ class Item extends React.PureComponent {
   }
 
   render () {
-    const { attachment, index, size, standalone, letterbox, displayWidth, visible } = this.props;
+    const { attachment, index, size, standalone, displayWidth, visible } = this.props;
 
     let width  = 50;
     let height = 100;
@@ -189,13 +169,12 @@ class Item extends React.PureComponent {
           rel='noopener noreferrer'
         >
           <img
-            className={letterbox ? 'letterbox' : null}
             src={previewUrl}
             srcSet={srcSet}
             sizes={sizes}
             alt={attachment.get('description')}
             title={attachment.get('description')}
-            style={{ objectPosition: letterbox ? null : `${x}% ${y}%` }}
+            style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
           />
         </a>
@@ -206,7 +185,7 @@ class Item extends React.PureComponent {
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
           <video
-            className={`media-gallery__item-gifv-thumbnail${letterbox ? ' letterbox' : ''}`}
+            className='media-gallery__item-gifv-thumbnail'
             aria-label={attachment.get('description')}
             title={attachment.get('description')}
             role='application'
@@ -226,7 +205,7 @@ class Item extends React.PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, letterbox })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -247,11 +226,9 @@ class MediaGallery extends React.PureComponent {
   static propTypes = {
     sensitive: PropTypes.bool,
     standalone: PropTypes.bool,
-    letterbox: PropTypes.bool,
-    fullwidth: PropTypes.bool,
-    hidden: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
     size: PropTypes.object,
+    height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     defaultWidth: PropTypes.number,
@@ -286,18 +263,11 @@ class MediaGallery extends React.PureComponent {
     }
   }
 
-  componentDidUpdate (prevProps) {
-    if (this.node) {
-      this.handleResize();
-    }
-  }
-
   handleResize = debounce(() => {
     if (this.node) {
       this._setDimensions();
     }
   }, 250, {
-    leading: true,
     trailing: true,
   });
 
@@ -313,8 +283,8 @@ class MediaGallery extends React.PureComponent {
     this.props.onOpenMedia(this.props.media, index);
   }
 
-  handleRef = (node) => {
-    this.node = node;
+  handleRef = c => {
+    this.node = c;
 
     if (this.node) {
       this._setDimensions();
@@ -323,29 +293,25 @@ class MediaGallery extends React.PureComponent {
 
   _setDimensions () {
     const width = this.node.offsetWidth;
- 
-    if (width && width != this.state.width) {
-      // offsetWidth triggers a layout, so only calculate when we need to
-      if (this.props.cacheWidth) {
-        this.props.cacheWidth(width);
-      }
 
-      this.setState({
-        width: width,
-      });
+    // offsetWidth triggers a layout, so only calculate when we need to
+    if (this.props.cacheWidth) {
+      this.props.cacheWidth(width);
     }
+
+    this.setState({
+      width: width,
+    });
   }
 
-  isStandaloneEligible() {
-    const { media, standalone } = this.props;
-    return standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+  isFullSizeEligible() {
+    const { media } = this.props;
+    return media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
   }
 
   render () {
-    const { media, intl, sensitive, letterbox, fullwidth, defaultWidth, autoplay } = this.props;
+    const { media, intl, sensitive, height, defaultWidth, standalone, autoplay } = this.props;
     const { visible } = this.state;
-    const size     = media.take(4).size;
-    const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     const width = this.state.width || defaultWidth;
 
@@ -353,20 +319,23 @@ class MediaGallery extends React.PureComponent {
 
     const style = {};
 
-    const computedClass = classNames('media-gallery', { 'full-width': fullwidth });
-
-    if (this.isStandaloneEligible() && width) {
-      style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+    if (this.isFullSizeEligible() && (standalone || !cropImages)) {
+      if (width) {
+        style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+      }
     } else if (width) {
       style.height = width / (16/9);
     } else {
-      return (<div className={computedClass} ref={this.handleRef}></div>);
+      style.height = height;
     }
 
-    if (this.isStandaloneEligible()) {
+    const size     = media.take(4).size;
+    const uncached = media.every(attachment => attachment.get('type') === 'unknown');
+
+    if (standalone && this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} size={size} letterbox={letterbox} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {
@@ -386,14 +355,9 @@ class MediaGallery extends React.PureComponent {
     }
 
     return (
-      <div className={computedClass} style={style} ref={this.handleRef}>
+      <div className='media-gallery' style={style} ref={this.handleRef}>
         <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>
           {spoilerButton}
-          {visible && sensitive && (
-            <span className='sensitive-marker'>
-              <FormattedMessage {...messages.sensitive} />
-            </span>
-          )}
         </div>
 
         {children}

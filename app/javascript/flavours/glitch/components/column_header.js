@@ -137,7 +137,7 @@ class ColumnHeader extends React.PureComponent {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
           <Icon id='chevron-left' className='column-back-button__icon' fixedWidth />
-          <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
+
         </button>
       );
     }
@@ -172,6 +172,7 @@ class ColumnHeader extends React.PureComponent {
     const component = (
       <div className={wrapperClassName}>
         <h1 className={buttonClassName}>
+        {!hasTitle && backButton}{hasTitle && backButton}
           {hasTitle && (
             <button onClick={this.handleTitleClick}>
               <Icon id={icon} fixedWidth className='column-header__icon' />
@@ -179,10 +180,7 @@ class ColumnHeader extends React.PureComponent {
             </button>
           )}
 
-          {!hasTitle && backButton}
-
           <div className='column-header__buttons'>
-            {hasTitle && backButton}
             {extraButton}
             {collapseButton}
           </div>

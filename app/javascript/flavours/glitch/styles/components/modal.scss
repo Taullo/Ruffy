@@ -1306,8 +1306,7 @@ img.modal-warning {
   width: 600px;
   background: $ui-base-color;
   border-radius: 8px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   position: relative;
   display: block;
   padding: 20px;

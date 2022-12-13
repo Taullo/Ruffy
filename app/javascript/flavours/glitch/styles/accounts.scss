@@ -19,7 +19,7 @@
   }
 
   &__img {
-    height: 130px;
+    max-height: 540px;overflow:hidden;
     position: relative;
     background: darken($ui-base-color, 12%);
     border-radius: 4px 4px 0 0;
@@ -388,4 +388,8 @@
   &__count small {
     color: $gold-star;
   }
+}
+
+.card__img > img[src="/headers/original/missing.png"] { /*Fix height on profiles with no banner. Kinda hacky*/
+    height:130px;
 }
