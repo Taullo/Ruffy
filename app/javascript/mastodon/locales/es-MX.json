@@ -130,7 +130,7 @@
   "compose_form.hashtag_warning": "Esta publicación no se mostrará bajo ningún hashtag porque no está listada. Sólo las publicaciones públicas se pueden buscar por hashtag.",
   "compose_form.lock_disclaimer": "Tu cuenta no está bloqueada. Todos pueden seguirte para ver tus toots solo para seguidores.",
   "compose_form.lock_disclaimer.lock": "bloqueado",
-  "compose_form.placeholder": "¿En qué estás pensando?",
+  "compose_form.placeholder": "¿En qué estás pensando? Recuerda usar el botón CW para contenido de índole sexual o que pueda afectar la sensibilidad de otros.",
   "compose_form.poll.add_option": "Añadir una opción",
   "compose_form.poll.duration": "Duración de la encuesta",
   "compose_form.poll.option_placeholder": "Elección {number}",

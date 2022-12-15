@@ -79,7 +79,7 @@ class Account < ApplicationRecord
   include AccountMerging
 
   MAX_DISPLAY_NAME_LENGTH = (ENV['MAX_DISPLAY_NAME_CHARS'] || 30).to_i
-  MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 500).to_i
+  MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 2000).to_i
   DEFAULT_FIELDS_SIZE = (ENV['MAX_PROFILE_FIELDS'] || 4).to_i
 
   enum protocol: [:ostatus, :activitypub]

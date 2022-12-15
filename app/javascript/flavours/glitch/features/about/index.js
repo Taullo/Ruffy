@@ -204,7 +204,7 @@ class About extends React.PureComponent {
           <LinkFooter />
 
           <div className='about__footer'>
-            <p><FormattedMessage id='about.fork_disclaimer' defaultMessage='Glitch-soc is free open source software forked from Mastodon.' /></p>
+            <p><FormattedMessage id='about.fork_disclaimer' defaultMessage='Aethersuite is free open source software forked from Glitch-soc and Mastodon.' /></p>
             <p><FormattedMessage id='about.disclaimer' defaultMessage='Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.' /></p>
           </div>
         </div>
