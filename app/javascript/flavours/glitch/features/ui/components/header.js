@@ -57,21 +57,18 @@ const messages = defineMessages({
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
   
-  home: { id: 'header.home', defaultMessage: 'Home' },
-  notifications: { id: 'header.notifications', defaultMessage: 'Notifications' },
-  explore: { id: 'header.title', defaultMessage: 'Explore' },
-  profile: { id: 'header.profile', defaultMessage: 'Profile' },
-  local: { id: 'header.local_timeline', defaultMessage: 'Local' },
-  federated: { id: 'header.federated_timeline', defaultMessage: 'Federated' },
-  direct: { id: 'header.direct', defaultMessage: 'Direct messages' },
-  favourites: { id: 'header.favourites', defaultMessage: 'Favourites' },
-  bookmarks: { id: 'header.bookmarks', defaultMessage: 'Bookmarks' },
-  lists: { id: 'header.lists', defaultMessage: 'Lists' },
-  preferences: { id: 'header.preferences', defaultMessage: 'Preferences' },
-  followsAndFollowers: { id: 'header.follows_and_followers', defaultMessage: 'Follows and followers' },
-  about: { id: 'header.about', defaultMessage: 'About' },
-  search: { id: 'header.search', defaultMessage: 'Search' },
-  app_settings: { id: 'header.app_settings', defaultMessage: 'Display' },
+  home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
+  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
+  explore: { id: 'explore.title', defaultMessage: 'Explore' },
+  profile: { id: 'tabs_bar.profile', defaultMessage: 'Profile' },
+  local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
+  federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Messages' },
+  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
+  about: { id: 'navigation_bar.about', defaultMessage: 'About' },
+  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
+  app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'Display' },
 });
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
@@ -133,7 +130,7 @@ class Header extends React.PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <Link to='/publish' className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
+          {location.pathname !== '/publish' && <Link icon='pen' to='/publish' className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
           <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />}/>
           <ColumnLink transparent to='/conversations' icon='envelope' />
           <Account />
