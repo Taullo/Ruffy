@@ -57,22 +57,22 @@ class NavigationPanel extends React.Component {
       <div className='navigation-panel'>
         {signedIn && (
           <React.Fragment>
-            <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
+            <span className='hideondesktop'><ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} /></span>
 
-            <FollowRequestsColumnLink />
+            <span className='hideondesktop'><FollowRequestsColumnLink /></span>
           </React.Fragment>
         )}
 
         {showTrends ? (
-          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
+          <span className='hideondesktop'><ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} /></span>
         ) : (
-          <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
+          <span className='hideondesktop'><ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} /></span>
         )}
 
         {signedIn && (
           <React.Fragment>
-            <Account />
-            <ColumnLink transparent to='/conversations' icon='envelope' text={intl.formatMessage(messages.direct)} />
+            <span className='hideondesktop'><Account /></span>
+            <span className='hideondesktop'><ColumnLink transparent to='/conversations' icon='envelope' text={intl.formatMessage(messages.direct)} /></span>
           </React.Fragment>
         )}
 
@@ -84,7 +84,7 @@ class NavigationPanel extends React.Component {
         )}
 
         <div className='navigation-panel__legal'>
-          <ColumnLink transparent to='/about' icon='info' text={intl.formatMessage(messages.about)} />
+          <span className='hideondesktop'><ColumnLink transparent to='/about' icon='info' text={intl.formatMessage(messages.about)} /></span>
         </div>
 
         {!signedIn && (
@@ -99,9 +99,9 @@ class NavigationPanel extends React.Component {
 
             <ListPanel />
 
-            <hr />
+            <hr className='hideondesktop' />
 
-            <ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
+            <span className='hideondesktop'><ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} /></span>
           </React.Fragment>
         )}
 

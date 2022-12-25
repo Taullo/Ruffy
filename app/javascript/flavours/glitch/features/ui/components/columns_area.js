@@ -144,7 +144,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
     if (singleColumn) {
       return (
         <div className='columns-area__panels'>
-
+          {renderComposePanel && <div className='compose_popup'><ComposeFormContainer singleColumn/></div>}
+          
           <div className='columns-area__panels__main'>
             <div className='tabs-bar__wrapper'><div id='tabs-bar__portal' /></div>
             <div className='columns-area columns-area--mobile'>{children}</div>

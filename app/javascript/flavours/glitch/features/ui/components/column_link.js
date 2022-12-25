@@ -43,7 +43,7 @@ const ColumnLink = ({ icon, text, to, onClick, href, method, badge, transparent,
 
 ColumnLink.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   to: PropTypes.string,
   onClick: PropTypes.func,
   href: PropTypes.string,

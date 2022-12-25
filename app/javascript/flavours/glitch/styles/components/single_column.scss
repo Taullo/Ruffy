@@ -258,7 +258,7 @@
     position:fixed;
     width:100%;
     z-index:100;
-    background: #191b22;
+    background: var(--ui-page-background);
   }
   .layout-single-column .columns-area__panels {
     margin-top:60px;
@@ -365,6 +365,45 @@
   
   .layout-single-column .ui__header__left .column-link i {
     display:none!important;
+  }
+  
+  .layout-single-column .account__header__fields {
+    margin:0;
+    border-radius:4px;
+    background: $ui-base-color;
+    border-color:var(--ui-page-background);
+    margin-top:56px;
+  }
+  
+  .layout-single-column .account__header__fields dl {
+    border-color:var(--ui-page-background);
+  }
+  
+  .layout-single-column .hideondesktop {
+    display:none;
+  }
+  
+  .compose_popup {
+    position:fixed;
+    height:100%;
+    width:100%;
+    left:0;
+    top:0;
+    background:rgba(0,0,0,.5);
+    z-index:1000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    display:none; /*Hidden by default*/
+  }
+  
+  .compose_popup .compose-form {
+    width:600px;
+    top:0;
+  }
+  
+  .compose_popup .autosuggest-textarea__textarea {
+    max-height:50vh;
   }
   
   //.layout-single-column .tabs-bar__wrapper {

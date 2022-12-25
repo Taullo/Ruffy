@@ -1,3 +1,12 @@
+:root {
+  --ui-page-background:#191b22;
+  --ui-base-color:#282c37;
+  --ui-base-lighter-color:#333845;
+  --ui-primary-color:#9baec8;
+  --ui-secondary-color:#d9e1e8;
+  --ui-highlight-color:#6364ff;
+}
+
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;

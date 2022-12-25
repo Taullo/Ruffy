@@ -371,19 +371,6 @@ class ComposeForm extends ImmutablePureComponent {
             autoFocus={false}
           />
         </div>
-        
-          <IconButton
-            active={spoiler}
-            ariaControls='glitch.composer.spoiler.input'
-            icon='warning'
-            size={18}
-            style={{
-              height: null,
-              lineHeight: null,
-            }}
-            onClick={onToggleSpoiler}
-            title={formatMessage(messages.spoiler)}
-          />
 
         <Publisher
           countText={countText}

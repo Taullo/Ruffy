@@ -69,6 +69,9 @@ const messages = defineMessages({
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'Display' },
+  
+  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
+  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
@@ -81,6 +84,15 @@ const Account = connect(state => ({
 const mapDispatchToProps = (dispatch) => ({
   openClosedRegistrationsModal() {
     dispatch(openModal('CLOSED_REGISTRATIONS'));
+  },
+  openSettings: () => dispatch(openModal('SETTINGS', {})),
+  onLogout () {
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.logoutMessage),
+      confirm: intl.formatMessage(messages.logoutConfirm),
+      closeWhenConfirm: false,
+      onConfirm: () => logOut(),
+    }));
   },
 });
 
@@ -97,6 +109,7 @@ class Header extends React.PureComponent {
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
     onLogout: PropTypes.func.isRequired,
+    openSettings: PropTypes.func.isRequired,
   };
   
   handleLogout = () => {
@@ -104,9 +117,8 @@ class Header extends React.PureComponent {
   }
 
   render () {
-    const { intl } = this.props;
+    const { intl, openSettings, location, openClosedRegistrationsModal } = this.props;
     const { signedIn } = this.context.identity;
-    const { location, openClosedRegistrationsModal } = this.props;
     
     let menu        = [];
     menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
@@ -131,8 +143,9 @@ class Header extends React.PureComponent {
       content = (
         <>
           {location.pathname !== '/publish' && <Link icon='pen' to='/publish' className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
-          <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />}/>
-          <ColumnLink transparent to='/conversations' icon='envelope' />
+          <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />} title={intl.formatMessage(messages.notifications)}/>
+          <ColumnLink transparent to='/conversations' icon='envelope' title={intl.formatMessage(messages.direct)} />
+          <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />
           <Account />
           <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='chevron-down' size={12} direction='right' />
         </>
