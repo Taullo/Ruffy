@@ -1,14 +1,16 @@
 //  Package imports.
 import React from 'react';
-import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl } from 'react-intl';
+import PropTypes from 'prop-types';
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Mastodon imports.
 import IconButton from './icon_button';
 import VisibilityIcon from './status_visibility_icon';
 import Icon from 'flavours/glitch/components/icon';
 import { languages } from 'flavours/glitch/initial_state';
+import RelativeTimestamp from './relative_timestamp';
 
 //  Messages for use with internationalization stuff.
 const messages = defineMessages({
@@ -21,6 +23,7 @@ const messages = defineMessages({
   video: { id: 'status.has_video', defaultMessage: 'Features attached videos' },
   audio: { id: 'status.has_audio', defaultMessage: 'Features attached audio files' },
   localOnly: { id: 'status.local_only', defaultMessage: 'Only visible from your instance' },
+  edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
 });
 
 const LanguageIcon = ({ language }) => {
@@ -43,6 +46,10 @@ LanguageIcon.propTypes = {
 export default @injectIntl
 class StatusIcons extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
@@ -51,7 +58,47 @@ class StatusIcons extends React.PureComponent {
     setCollapsed: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     settings: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.map,
+    onClick: PropTypes.func,
   };
+  
+  handleClick = e => {
+    if (e && (e.button !== 0 || e.ctrlKey || e.metaKey)) {
+      return;
+    }
+
+    if (e) {
+      e.preventDefault();
+    }
+
+    this.handleHotkeyOpen();
+  }
+  
+  handleHotkeyOpen = () => {
+    if (this.props.onClick) {
+      this.props.onClick();
+      return;
+    }
+
+    const { router } = this.context;
+    const status = this._properStatus();
+
+    if (!router) {
+      return;
+    }
+
+    router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+  }
+  
+  _properStatus () {
+    const { status } = this.props;
+
+    if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+      return status.get('reblog');
+    } else {
+      return status;
+    }
+  }
 
   //  Handles clicks on collapsed button
   handleCollapsedClick = (e) => {
@@ -138,6 +185,9 @@ class StatusIcons extends React.PureComponent {
             onClick={this.handleCollapsedClick}
           />
         )}
+         <a onClick={this.handleClick} href={`/@${status.getIn(['account', 'acct'])}\/${status.get('id')}`} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
+          <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { hour12: false, year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
+        </a>
       </div>
     );
   }
