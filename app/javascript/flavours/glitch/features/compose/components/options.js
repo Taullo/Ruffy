@@ -46,7 +46,7 @@ const messages = defineMessages({
     id: 'advanced_options.local-only.long',
   },
   local_only_short: {
-    defaultMessage: 'Local-only',
+    defaultMessage: 'Local only',
     id: 'advanced_options.local-only.short',
   },
   markdown: {
@@ -58,8 +58,8 @@ const messages = defineMessages({
     id: 'compose.content-type.plain',
   },
   spoiler: {
-    defaultMessage: 'Hide text behind warning',
-    id: 'compose_form.spoiler',
+    defaultMessage: 'Toggle content warning',
+    id: 'compose_form.spoiler.unmarked',
   },
   threaded_mode_long: {
     defaultMessage: 'Automatically opens a reply on posting',

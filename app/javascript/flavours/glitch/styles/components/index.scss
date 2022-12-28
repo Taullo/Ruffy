@@ -1806,7 +1806,7 @@ noscript {
 }
 
 .status__content--with-spoiler > p > .translate {
-    max-width:calc(100% - 120px);
+    max-width:calc(100% - 80px);
     width:100%;
     display:inline-block;
     font-weight: bold;
@@ -1814,8 +1814,9 @@ noscript {
     border: darken($ui-highlight-color, 3%) 2px solid;
     border-right:0px;
     box-sizing:border-box;
-    border-top-left-radius:4px;
-    border-bottom-left-radius:4px;
+    margin-left:-20px;
+    padding-left:20px;
+    background:darken($ui-highlight-color, 3%);
 }
 
 .status__content__spoiler-link {
@@ -1826,8 +1827,6 @@ noscript {
     border: darken($ui-highlight-color, 3%) 2px solid;
     width:120px;
     border-radius:0;
-    border-top-right-radius:20px;
-    border-bottom-right-radius:20px;
     box-sizing:border-box;
     margin-left:-5px;
     position:absolute;

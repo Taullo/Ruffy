@@ -179,10 +179,14 @@
   }
 
   .status__content__spoiler {
-    display: none;
+    display: block;
+    font-family:mastodon-flow-block;
+    line-height: 1.1;
 
     &.status__content__spoiler--visible {
+      font-family:inherit;
       display: block;
+      line-height: inherit;
     }
   }
 
@@ -579,14 +583,15 @@
   align-items: center;
   display: flex;
   gap: 18px;
-  margin-top: 16px;
+  margin-top: 16px!important;
+  padding:0 20px 0 20px;
 }
 
 .status__action-bar-button {
-  margin-right: 18px;
+
 
   &.icon-button--with-counter {
-    margin-right: 14px;
+
   }
 }
 

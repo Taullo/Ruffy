@@ -403,9 +403,7 @@ class StatusContent extends React.PureComponent {
 
       return (
         <div className={classNames} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p
-            style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
-          >
+          <p className="spoiler-text">
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={lang} />
             {' '}
             <button type='button' className='status__content__spoiler-link' onClick={this.handleSpoilerClick} aria-expanded={!hidden}>

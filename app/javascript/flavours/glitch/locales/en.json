@@ -34,7 +34,7 @@
   "compose.content-type.plain": "Plain text",
   "compose_form.poll.multiple_choices": "Allow multiple choices",
   "compose_form.poll.single_choice": "Allow one choice",
-  "compose_form.spoiler": "Hide text behind warning",
+  "compose_form.spoiler": "Hide content behind warning",
   "confirmation_modal.do_not_ask_again": "Do not ask for confirmation again",
   "confirmations.deprecated_settings.confirm": "Use Mastodon preferences",
   "confirmations.deprecated_settings.message": "Some of the glitch-soc device-specific {app_settings} you are using have been replaced by Mastodon {preferences} and will be overriden:",
