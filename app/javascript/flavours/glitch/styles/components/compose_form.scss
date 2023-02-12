@@ -33,10 +33,11 @@
   height: 0;
   transform-origin: bottom;
   opacity: 0.0;
+  margin-top: 11px;
+  margin-bottom: 11px;
 
   &.spoiler-input--visible {
     height: 36px;
-    margin-bottom: 11px;
     opacity: 1.0;
   }
 
@@ -54,9 +55,14 @@
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
+    font-weight:bold;
+    box-sizing:border-box;
+    border:transparent 4px solid;
+    transition:border-color 0.2s;
 
     &::placeholder {
       color: $dark-text-color;
+      font-weight:bold;
     }
 
     &:focus { outline: 0 }
