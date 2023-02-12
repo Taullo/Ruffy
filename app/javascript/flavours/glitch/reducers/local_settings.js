@@ -37,6 +37,7 @@ const initialState = ImmutableMap({
       reblogs          : false,
       replies          : false,
       media            : false,
+      height           : 400,
     }),
     backgrounds : ImmutableMap({
       user_backgrounds : false,
@@ -77,4 +78,4 @@ export default function localSettings(state = initialState, action) {
   default:
     return state;
   }
-};
+}

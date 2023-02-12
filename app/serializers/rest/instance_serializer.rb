@@ -45,6 +45,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     {
       urls: {
         streaming: Rails.configuration.x.streaming_api_base_url,
+        status: object.status_page_url,
       },
 
       accounts: {
@@ -55,6 +56,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         max_characters: StatusLengthValidator::MAX_CHARS,
         max_media_attachments: 4,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
+        supported_mime_types: HtmlAwareFormatter::STATUS_MIME_TYPES,
       },
 
       media_attachments: {
@@ -96,8 +98,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   def registrations_message
     if Setting.closed_registrations_message.present?
       markdown.render(Setting.closed_registrations_message)
-    else
-      nil
     end
   end
 

@@ -76,7 +76,7 @@ export default class ModalRoot extends React.PureComponent {
   };
 
   componentDidUpdate () {
-    if (!!this.props.type) {
+    if (this.props.type) {
       document.body.classList.add('with-modals--active');
       document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
     } else {
@@ -87,17 +87,17 @@ export default class ModalRoot extends React.PureComponent {
 
   setBackgroundColor = color => {
     this.setState({ backgroundColor: color });
-  }
+  };
 
   renderLoading = modalId => () => {
     return ['MEDIA', 'VIDEO', 'BOOST', 'FAVOURITE', 'DOODLE', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
-  }
+  };
 
   renderError = (props) => {
     const { onClose } = this.props;
 
     return <BundleModalError {...props} onClose={onClose} />;
-  }
+  };
 
   handleClose = (ignoreFocus = false) => {
     const { onClose } = this.props;
@@ -110,11 +110,14 @@ export default class ModalRoot extends React.PureComponent {
       // This would be much smoother with react-intl 3+ and `forwardRef`.
     }
     onClose(message, ignoreFocus);
-  }
+  };
 
   setModalRef = (c) => {
     this._modal = c;
-  }
+  };
+
+  // prevent closing of modal when clicking the overlay
+  noop = () => {};
 
   render () {
     const { type, props, ignoreFocus } = this.props;
@@ -122,7 +125,7 @@ export default class ModalRoot extends React.PureComponent {
     const visible = !!type;
 
     return (
-      <Base backgroundColor={backgroundColor} onClose={this.handleClose} noEsc={props ? props.noEsc : false} ignoreFocus={ignoreFocus}>
+      <Base backgroundColor={backgroundColor} onClose={props && props.noClose ? this.noop : this.handleClose} noEsc={props ? props.noEsc : false} ignoreFocus={ignoreFocus}>
         {visible && (
           <>
             <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>

@@ -23,7 +23,7 @@ function mapStateToProps (state) {
     showContentTypeChoice: state.getIn(['local_settings', 'show_content_type_choice']),
     contentType: state.getIn(['compose', 'content_type']),
   };
-};
+}
 
 const mapDispatchToProps = (dispatch) => ({
 
@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onDoodleOpen() {
-    dispatch(openModal('DOODLE', { noEsc: true }));
+    dispatch(openModal('DOODLE', { noEsc: true, noClose: true }));
   },
 });
 

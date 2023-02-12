@@ -42,6 +42,7 @@ import {
   FollowRequests,
   FavouritedStatuses,
   BookmarkedStatuses,
+  FollowedTags,
   ListTimeline,
   Blocks,
   DomainBlocks,
@@ -56,7 +57,7 @@ import {
   PrivacyPolicy,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
-import initialState, { me, owner, singleUserMode, showTrends } from '../../initial_state';
+import initialState, { me, owner, singleUserMode, showTrends, trendsAsLanding } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
@@ -161,7 +162,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     if (c) {
       this.node = c;
     }
-  }
+  };
 
   render () {
     const { children, mobile, navbarUnder } = this.props;
@@ -177,7 +178,7 @@ class SwitchingColumnsArea extends React.PureComponent {
       }
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
       redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
-    } else if (showTrends) {
+    } else if (showTrends && trendsAsLanding) {
       redirect = <Redirect from='/' to='/explore' exact />;
     } else {
       redirect = <Redirect from='/' to='/about' exact />;
@@ -230,6 +231,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
           <WrappedRoute path='/blocks' component={Blocks} content={children} />
           <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
+          <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
           <WrappedRoute path='/mutes' component={Mutes} content={children} />
           <WrappedRoute path='/lists' component={Lists} content={children} />
           <WrappedRoute path='/getting-started-misc' component={GettingStartedMisc} content={children} />
@@ -238,7 +240,7 @@ class SwitchingColumnsArea extends React.PureComponent {
         </WrappedSwitch>
       </ColumnsAreaContainer>
     );
-  };
+  }
 
 }
 
@@ -290,7 +292,7 @@ class UI extends React.Component {
       // but we set user-friendly message for other browsers, e.g. Edge.
       e.returnValue = intl.formatMessage(messages.beforeUnload);
     }
-  }
+  };
 
   handleDragEnter = (e) => {
     e.preventDefault();
@@ -306,7 +308,7 @@ class UI extends React.Component {
     if (e.dataTransfer && e.dataTransfer.types.includes('Files') && this.props.canUploadMore && this.context.identity.signedIn) {
       this.setState({ draggingOver: true });
     }
-  }
+  };
 
   handleDragOver = (e) => {
     if (this.dataTransferIsText(e.dataTransfer)) return false;
@@ -320,7 +322,7 @@ class UI extends React.Component {
     }
 
     return false;
-  }
+  };
 
   handleDrop = (e) => {
     if (this.dataTransferIsText(e.dataTransfer)) return;
@@ -333,7 +335,7 @@ class UI extends React.Component {
     if (e.dataTransfer && e.dataTransfer.files.length >= 1 && this.props.canUploadMore && this.context.identity.signedIn) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
-  }
+  };
 
   handleDragLeave = (e) => {
     e.preventDefault();
@@ -346,15 +348,15 @@ class UI extends React.Component {
     }
 
     this.setState({ draggingOver: false });
-  }
+  };
 
   dataTransferIsText = (dataTransfer) => {
     return (dataTransfer && Array.from(dataTransfer.types).filter((type) => type === 'text/plain').length === 1);
-  }
+  };
 
   closeUploadModal = () => {
     this.setState({ draggingOver: false });
-  }
+  };
 
   handleServiceWorkerPostMessage = ({ data }) => {
     if (data.type === 'navigate') {
@@ -362,7 +364,7 @@ class UI extends React.Component {
     } else {
       console.warn('Unknown message type:', data.type);
     }
-  }
+  };
 
   handleVisibilityChange = () => {
     const visibility = !document[this.visibilityHiddenProp];
@@ -370,7 +372,7 @@ class UI extends React.Component {
     if (visibility) {
       this.props.dispatch(submitMarkers({ immediate: true }));
     }
-  }
+  };
 
   handleLayoutChange = debounce(() => {
     this.props.dispatch(clearHeight()); // The cached heights are no longer accurate, invalidate
@@ -387,7 +389,7 @@ class UI extends React.Component {
     } else {
       this.handleLayoutChange();
     }
-  }
+  };
 
   componentDidMount () {
     const { signedIn } = this.context.identity;
@@ -405,7 +407,7 @@ class UI extends React.Component {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
-    this.favicon = new Favico({ animation:"none" });
+    this.favicon = new Favico({ animation:'none' });
 
     // On first launch, redirect to the follow recommendations page
     if (signedIn && this.props.firstLaunch) {
@@ -485,7 +487,7 @@ class UI extends React.Component {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   handleHotkeyNew = e => {
     e.preventDefault();
@@ -495,7 +497,7 @@ class UI extends React.Component {
     if (element) {
       element.focus();
     }
-  }
+  };
 
   handleHotkeySearch = e => {
     e.preventDefault();
@@ -505,17 +507,17 @@ class UI extends React.Component {
     if (element) {
       element.focus();
     }
-  }
+  };
 
   handleHotkeyForceNew = e => {
     this.handleHotkeyNew(e);
     this.props.dispatch(resetCompose());
-  }
+  };
 
   handleHotkeyToggleComposeSpoilers = e => {
     e.preventDefault();
     this.props.dispatch(changeComposeSpoilerness());
-  }
+  };
 
   handleHotkeyFocusColumn = e => {
     const index  = (e.key * 1) + 1; // First child is drawer, skip that
@@ -533,7 +535,7 @@ class UI extends React.Component {
         status.focus();
       }
     }
-  }
+  };
 
   handleHotkeyBack = () => {
     // if history is exhausted, or we would leave mastodon, just go to root.
@@ -542,11 +544,11 @@ class UI extends React.Component {
     } else {
       this.props.history.push('/');
     }
-  }
+  };
 
   setHotkeysRef = c => {
     this.hotkeys = c;
-  }
+  };
 
   handleHotkeyToggleHelp = () => {
     if (this.props.location.pathname === '/keyboard-shortcuts') {
@@ -554,55 +556,55 @@ class UI extends React.Component {
     } else {
       this.props.history.push('/keyboard-shortcuts');
     }
-  }
+  };
 
   handleHotkeyGoToHome = () => {
     this.props.history.push('/home');
-  }
+  };
 
   handleHotkeyGoToNotifications = () => {
     this.props.history.push('/notifications');
-  }
+  };
 
   handleHotkeyGoToLocal = () => {
     this.props.history.push('/public/local');
-  }
+  };
 
   handleHotkeyGoToFederated = () => {
     this.props.history.push('/public');
-  }
+  };
 
   handleHotkeyGoToDirect = () => {
     this.props.history.push('/conversations');
-  }
+  };
 
   handleHotkeyGoToStart = () => {
     this.props.history.push('/getting-started');
-  }
+  };
 
   handleHotkeyGoToFavourites = () => {
     this.props.history.push('/favourites');
-  }
+  };
 
   handleHotkeyGoToPinned = () => {
     this.props.history.push('/pinned');
-  }
+  };
 
   handleHotkeyGoToProfile = () => {
     this.props.history.push(`/@${this.props.username}`);
-  }
+  };
 
   handleHotkeyGoToBlocked = () => {
     this.props.history.push('/blocks');
-  }
+  };
 
   handleHotkeyGoToMuted = () => {
     this.props.history.push('/mutes');
-  }
+  };
 
   handleHotkeyGoToRequests = () => {
     this.props.history.push('/follow_requests');
-  }
+  };
 
   render () {
     const { draggingOver } = this.state;
@@ -659,7 +661,7 @@ class UI extends React.Component {
                 <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
                   @{moved.get('acct')}
                 </PermaLink>
-              )}}
+              ) }}
             />
           </div>)}
 

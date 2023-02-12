@@ -37,7 +37,6 @@
 .modal-root__modal {
   pointer-events: auto;
   display: flex;
-  z-index: 9999;
 }
 
 .media-modal__zoom-button {
@@ -1072,6 +1071,7 @@
   &__container {
     padding: 30px;
     pointer-events: all;
+    overflow-y: auto;
   }
 
   .status__content {

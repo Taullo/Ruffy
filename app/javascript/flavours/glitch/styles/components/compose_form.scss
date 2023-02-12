@@ -124,7 +124,7 @@
 
     &.active {
       border-color: $highlight-text-color;
-      background: $highlight-text-color;
+      background: $highlight-text-color url("data:image/svg+xml;utf8,<svg width='18' height='18' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4.5 8.5L8 12l6-6' stroke='white' stroke-width='1.5'/></svg>") center center no-repeat;
     }
   }
 }
@@ -592,7 +592,6 @@
 }
 
 .privacy-dropdown__dropdown {
-  position: absolute;
   border-radius: 4px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
   background: $simple-background-color;
@@ -659,7 +658,6 @@
 
 .language-dropdown {
   &__dropdown {
-    position: absolute;
     background: $simple-background-color;
     box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
     border-radius: 4px;

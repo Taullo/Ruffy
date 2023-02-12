@@ -75,6 +75,7 @@
  * @property {boolean} timeline_preview
  * @property {string} title
  * @property {boolean} trends
+ * @property {boolean} trends_as_landing_page
  * @property {boolean} unfollow_modal
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
@@ -134,12 +135,14 @@ export const singleUserMode = getMeta('single_user_mode');
 export const source_url = getMeta('source_url');
 export const timelinePreview = getMeta('timeline_preview');
 export const title = getMeta('title');
+export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const unfollowModal = getMeta('unfollow_modal');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
 export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
+export const statusPageUrl = getMeta('status_page_url');
 
 // Glitch-soc-specific settings
 export const maxChars = (initialState && initialState.max_toot_chars) || 100000;

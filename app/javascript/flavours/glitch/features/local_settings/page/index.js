@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 //  Our imports
-import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
+import { expandSpoilers } from 'flavours/glitch/initial_state';
 import { preferenceLink } from 'flavours/glitch/utils/backend_links';
 import LocalSettingsPageItem from './item';
 
@@ -59,7 +59,7 @@ class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.hicolor_privacy_icons' defaultMessage='High color privacy icons' />
-          <span className='hint'><FormattedMessage id='settings.hicolor_privacy_icons.hint' defaultMessage="Display privacy icons in bright and easily distinguishable colors" /></span>
+          <span className='hint'><FormattedMessage id='settings.hicolor_privacy_icons.hint' defaultMessage='Display privacy icons in bright and easily distinguishable colors' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -76,7 +76,7 @@ class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.tag_misleading_links' defaultMessage='Tag misleading links' />
-          <span className='hint'><FormattedMessage id='settings.tag_misleading_links.hint' defaultMessage="Add a visual indication with the link target host to every link not mentioning it explicitly" /></span>
+          <span className='hint'><FormattedMessage id='settings.tag_misleading_links.hint' defaultMessage='Add a visual indication with the link target host to every link not mentioning it explicitly' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -99,7 +99,7 @@ class LocalSettingsPage extends React.PureComponent {
             id='mastodon-settings--notifications-tab_badge'
             onChange={onChange}
           >
-            <FormattedMessage id='settings.notifications.tab_badge' defaultMessage="Unread notifications badge" />
+            <FormattedMessage id='settings.notifications.tab_badge' defaultMessage='Unread notifications badge' />
             <span className='hint'><FormattedMessage id='settings.notifications.tab_badge.hint' defaultMessage="Display a badge for unread notifications in the column icons when the notifications column isn't open" /></span>
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
@@ -109,7 +109,7 @@ class LocalSettingsPage extends React.PureComponent {
             onChange={onChange}
           >
             <FormattedMessage id='settings.notifications.favicon_badge' defaultMessage='Unread notifications favicon badge' />
-            <span className='hint'><FormattedMessage id='settings.notifications.favicon_badge.hint' defaultMessage="Add a badge for unread notifications to the favicon" /></span>
+            <span className='hint'><FormattedMessage id='settings.notifications.favicon_badge.hint' defaultMessage='Add a badge for unread notifications to the favicon' /></span>
           </LocalSettingsPageItem>
         </section>
 
@@ -278,6 +278,42 @@ class LocalSettingsPage extends React.PureComponent {
           <FormattedMessage id='settings.content_warnings_media_outside' defaultMessage='Display media attachments outside content warnings' />
           <span className='hint'><FormattedMessage id='settings.content_warnings_media_outside_hint' defaultMessage='Reproduce upstream Mastodon behavior by having the Content Warning toggle not affect media attachments' /></span>
         </LocalSettingsPageItem>
+
+        <section>
+          <h2><FormattedMessage id='settings.content_warnings_unfold_opts' defaultMessage='Auto-unfolding options' /></h2>
+          <DeprecatedLocalSettingsPageItem
+            id='mastodon-settings--content_warnings-auto_unfold'
+            value={expandSpoilers}
+          >
+            <FormattedMessage id='settings.enable_content_warnings_auto_unfold' defaultMessage='Automatically unfold content-warnings' />
+            <span className='hint'>
+              <FormattedMessage
+                id='settings.deprecated_setting'
+                defaultMessage="This setting is now controlled from Mastodon's {settings_page_link}"
+                values={{
+                  settings_page_link: (
+                    <a href={preferenceLink('user_setting_expand_spoilers')}>
+                      <FormattedMessage
+                        id='settings.shared_settings_link'
+                        defaultMessage='user preferences'
+                      />
+                    </a>
+                  ),
+                }}
+              />
+            </span>
+          </DeprecatedLocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['content_warnings', 'filter']}
+            id='mastodon-settings--content_warnings-auto_unfold'
+            onChange={onChange}
+            placeholder={intl.formatMessage(messages.regexp)}
+            disabled={!expandSpoilers}
+          >
+            <FormattedMessage id='settings.content_warnings_filter' defaultMessage='Content warnings to not automatically unfold:' />
+          </LocalSettingsPageItem>
+        </section>
       </div>
     ),
     ({ onChange, settings }) => (
@@ -361,6 +397,18 @@ class LocalSettingsPage extends React.PureComponent {
             dependsOnNot={[['collapsed', 'auto', 'all']]}
           >
             <FormattedMessage id='settings.auto_collapse_media' defaultMessage='Posts with media' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['collapsed', 'auto', 'height']}
+            id='mastodon-settings--collapsed-auto-height'
+            placeholder='400'
+            onChange={onChange}
+            dependsOn={[['collapsed', 'enabled']]}
+            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            inputProps={{ type: 'number', min: '200', max: '999' }}
+          >
+            <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a toot to be considered lengthy' />
           </LocalSettingsPageItem>
         </section>
         <section>

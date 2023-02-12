@@ -1,7 +1,6 @@
 //  Package imports.
 import PropTypes from 'prop-types';
 import React from 'react';
-import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import classNames from 'classnames';
 
@@ -10,14 +9,7 @@ import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
 import { withPassive } from 'flavours/glitch/utils/dom_helpers';
-import Motion from '../../ui/util/optional_motion';
 import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
-
-//  The spring to use with our motion.
-const springMotion = spring(1, {
-  damping: 35,
-  stiffness: 400,
-});
 
 //  The component.
 export default class ComposerOptionsDropdownContent extends React.PureComponent {
@@ -44,7 +36,6 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
   };
 
   state = {
-    mounted: false,
     value: this.props.openedViaKeyboard ? this.props.items[0].name : undefined,
   };
 
@@ -53,12 +44,12 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   //  Stores our node in `this.node`.
-  handleRef = (node) => {
+  setRef = (node) => {
     this.node = node;
-  }
+  };
 
   //  On mounting, we add our listeners.
   componentDidMount () {
@@ -69,7 +60,6 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     } else {
       this.node.firstChild.focus({ preventScroll: true });
     }
-    this.setState({ mounted: true });
   }
 
   //  On unmounting, we remove our listeners.
@@ -94,7 +84,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       onClose();
     }
     onChange(name);
-  }
+  };
 
   // Handle changes differently whether the dropdown is a list of options or actions
   handleChange = (name) => {
@@ -103,7 +93,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     } else {
       this.setState({ value: name });
     }
-  }
+  };
 
   handleKeyDown = (e) => {
     const index = Number(e.currentTarget.getAttribute('data-index'));
@@ -145,11 +135,11 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       e.preventDefault();
       e.stopPropagation();
     }
-  }
+  };
 
   setFocusRef = c => {
     this.focusedItem = c;
-  }
+  };
 
   renderItem = (item, i) => {
     const { name, icon, meta, text } = item;
@@ -187,11 +177,10 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
         {contents}
       </div>
     );
-  }
+  };
 
   //  Rendering.
   render () {
-    const { mounted } = this.state;
     const {
       items,
       onChange,
@@ -201,36 +190,9 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
     //  The result.
     return (
-      <Motion
-        defaultStyle={{
-          opacity: 0,
-          scaleX: 0.85,
-          scaleY: 0.75,
-        }}
-        style={{
-          opacity: springMotion,
-          scaleX: springMotion,
-          scaleY: springMotion,
-        }}
-      >
-        {({ opacity, scaleX, scaleY }) => (
-          // It should not be transformed when mounting because the resulting
-          // size will be used to determine the coordinate of the menu by
-          // react-overlays
-          <div
-            className='privacy-dropdown__dropdown'
-            ref={this.handleRef}
-            role='listbox'
-            style={{
-              ...style,
-              opacity: opacity,
-              transform: mounted ? `scale(${scaleX}, ${scaleY})` : null,
-            }}
-          >
-            {!!items && items.map((item, i) => this.renderItem(item, i))}
-          </div>
-        )}
-      </Motion>
+      <div style={{ ...style }} role='listbox' ref={this.setRef}>
+        {!!items && items.map((item, i) => this.renderItem(item, i))}
+      </div>
     );
   }
 
