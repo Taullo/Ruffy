@@ -1521,6 +1521,8 @@ button.icon-button.active i.fa-retweet {
       color: $primary-text-color;
       font-weight: 500;
       font-size: 14px;
+      font-family: "mastodon-font-sans-serif", sans-serif;
+      transition:background 0.2s;
     }
 
     &:hover,

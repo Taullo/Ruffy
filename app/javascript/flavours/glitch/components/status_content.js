@@ -273,28 +273,33 @@ class StatusContent extends React.PureComponent {
   };
 
   handleMouseUp = (e) => {
+    const [ startX, startY ] = this.startXY;
+    const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
     const { parseClick, disabled } = this.props;
+
+    let element = e.target;
+    while (element !== e.currentTarget) {
+      if (['button', 'video', 'a', 'label', 'canvas'].includes(element.localName) || element.getAttribute('role') === 'button' ) {
+        return;
+      }
+      element = element.parentNode;
+    }
+    if (deltaX + deltaY < 5) {
+      if ((this.props.status.get('spoiler_text').length > 0) && (!this.props.expanded)) {
+        this.props.onExpandedToggle();
+        return;
+      }
 
     if (disabled || !this.startXY) {
       return;
     }
 
-    const [ startX, startY ] = this.startXY;
-    const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
-
-    let element = e.target;
-    while (element !== e.currentTarget) {
-      if (['button', 'video', 'a', 'label', 'canvas'].includes(element.localName) || element.getAttribute('role') === 'button') {
-        return;
-      }
-      element = element.parentNode;
-    }
-
-    if (deltaX + deltaY < 5 && e.button === 0 && parseClick) {
+    if (e.button === 0 && parseClick) {
       parseClick(e);
     }
 
     this.startXY = null;
+   }
   };
 
   handleSpoilerClick = (e) => {
@@ -330,7 +335,6 @@ class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderTranslate = translationEnabled && this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
-    const renderReadMore = this.props.onClick && status.get('collapsed');
 
     const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -338,17 +342,10 @@ class StatusContent extends React.PureComponent {
     const classNames = classnames('status__content', {
       'status__content--with-action': parseClick && !disabled,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
-      'status__content--collapsed': renderReadMore,
     });
 
     const translateButton = renderTranslate && (
       <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
-    );
-    
-    const readMoreButton = renderReadMore && (
-      <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
-        <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
-      </button>
     );
 
     if (status.get('spoiler_text').length > 0) {
@@ -402,7 +399,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} tabIndex='0'>
           <p className="spoiler-text">
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={lang} />
             {' '}
@@ -413,7 +410,7 @@ class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
+          <div onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : 'status__content__spoiler--hidden'}`}>
             <div
               ref={this.setContentsRef}
               key={`contents-${tagLinks}`}
@@ -429,7 +426,6 @@ class StatusContent extends React.PureComponent {
           </div>
 
           {extraMedia}
-          {readMoreButton}
 
         </div>
       );
@@ -454,7 +450,6 @@ class StatusContent extends React.PureComponent {
           {translateButton}
           {media}
           {extraMedia}
-          {readMoreButton}
         </div>
       );
     } else {
@@ -476,7 +471,6 @@ class StatusContent extends React.PureComponent {
           {translateButton}
           {media}
           {extraMedia}
-          {readMoreButton}
         </div>
       );
     }

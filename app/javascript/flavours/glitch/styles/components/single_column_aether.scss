@@ -13,7 +13,7 @@
     border-bottom:1px $ui-base-color solid;
     position:fixed;
     width:100%;
-    z-index:100;
+    z-index:1;
     background: var(--ui-page-background);
   }
   .layout-single-column .columns-area__panels {
@@ -160,6 +160,14 @@
   
   .compose_popup .autosuggest-textarea__textarea {
     max-height:50vh;
+  }
+  
+  .status__content__spoiler--hidden {
+    cursor:pointer;
+    user-select: none;
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;  
   }
   
   //.layout-single-column .tabs-bar__wrapper {
