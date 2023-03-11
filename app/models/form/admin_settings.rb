@@ -93,13 +93,11 @@ class Form::AdminSettings
     define_method(key) do
       return instance_variable_get("@#{key}") if instance_variable_defined?("@#{key}")
 
-      stored_value = begin
-        if UPLOAD_KEYS.include?(key)
-          SiteUpload.where(var: key).first_or_initialize(var: key)
-        else
-          Setting.public_send(key)
-        end
-      end
+      stored_value = if UPLOAD_KEYS.include?(key)
+                       SiteUpload.where(var: key).first_or_initialize(var: key)
+                     else
+                       Setting.public_send(key)
+                     end
 
       instance_variable_set("@#{key}", stored_value)
     end
@@ -155,6 +153,7 @@ class Form::AdminSettings
   def validate_site_uploads
     UPLOAD_KEYS.each do |key|
       next unless instance_variable_defined?("@#{key}")
+
       upload = instance_variable_get("@#{key}")
       next if upload.valid?
 
