@@ -377,8 +377,8 @@
   }
 
   &.collapsed {
-    background-position: center;
-    background-size: cover;
+
+
     user-select: none;
 
     &.has-background::before {
@@ -398,15 +398,14 @@
     }
 
     .status__content {
-      height: 20px;
-      overflow: hidden;
+      max-height: 300px;
       text-overflow: ellipsis;
       padding-top: 0;
 
       &:after {
         content: "";
         position: absolute;
-        top: 0;
+        height:40px;
         bottom: 0;
         left: 0;
         right: 0;
@@ -416,6 +415,10 @@
       
       a:hover {
         text-decoration: none;
+      }
+      div {
+        max-height:240px;
+        overflow:hidden;
       }
     }
     &:focus > .status__content:after {
