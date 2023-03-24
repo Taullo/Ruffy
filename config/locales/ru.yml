@@ -1226,8 +1226,6 @@ ru:
       index:
         hint: Этот фильтр применяется для выбора отдельных постов, независимо от других критериев. Вы можете добавить больше записей в этот фильтр из веб-интерфейса.
         title: Отфильтрованные посты
-  footer:
-    trending_now: Актуально сейчас
   generic:
     all: Любой
     all_items_on_page_selected_html:
@@ -1506,7 +1504,6 @@ ru:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: неизвестной платформе
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone

@@ -4499,6 +4499,7 @@ a.status-card.compact:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   color: $secondary-text-color;
   font-size: 18px;
   font-weight: 500;
@@ -8235,11 +8236,13 @@ noscript {
   img {
     margin-top: 2em;
     margin-bottom: 2em;
+    max-width: 100%;
   }
 
   video {
     margin-top: 2em;
     margin-bottom: 2em;
+    max-width: 100%;
   }
 
   figure {
