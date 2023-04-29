@@ -12,7 +12,7 @@ es:
       defaults:
         setting_default_content_type: Formato predeterminado de tus toots
         setting_default_content_type_plain: Sin formato
-        setting_favourite_modal: Mostrar diálogo de confirmación antes de marcar como favorito (sólo aplica a la edición Glich)
+        setting_favourite_modal: Mostrar diálogo de confirmación antes de marcar como favorito
         setting_hide_followers_count: Ocultar tu conteo de seguidorxs
         setting_skin: Diseño
-        setting_system_emoji_font: Usar la fuente predeterminada del sistema para emojis (sólo aplica a la edición Glitch)
+        setting_system_emoji_font: Usar la fuente predeterminada del sistema para emojis

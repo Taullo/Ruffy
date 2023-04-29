@@ -1,0 +1,224 @@
+modal.scss:  flex-direction: column;
+modal.scss:  flex-direction: column;
+basics.scss:    &.layout-single-column {
+basics.scss:    &.layout-multiple-columns {
+basics.scss:.layout-single-column .app-holder {
+basics.scss:.layout-multiple-columns .app-holder {
+mastodon-light/diff.scss:// Change default background colors of columns
+mastodon-light/diff.scss:.column > .scrollable,
+mastodon-light/diff.scss:.column-inline-form,
+mastodon-light/diff.scss:.error-column,
+mastodon-light/diff.scss:.column > .scrollable.about {
+mastodon-light/diff.scss:.column-back-button,
+mastodon-light/diff.scss:.column-header {
+mastodon-light/diff.scss:.column-header__back-button,
+mastodon-light/diff.scss:.column-header__button,
+mastodon-light/diff.scss:.column-header__button.active,
+mastodon-light/diff.scss:.column-header__button.active {
+mastodon-light/diff.scss:.column-subheading {
+mastodon-light/diff.scss:  .column-link {
+mastodon-light/diff.scss:.column-header__collapsible-inner {
+mastodon-light/diff.scss:// Change the default color used for the text in an empty column or on the error column
+mastodon-light/diff.scss:.empty-column-indicator,
+mastodon-light/diff.scss:.error-column {
+components/signed_out.scss:    &__column {
+components/modal.scss:  flex-direction: column;
+components/modal.scss:  flex-direction: column;
+components/modal.scss:    flex-direction: column;
+components/modal.scss:    flex-direction: column;
+components/modal.scss:  flex-direction: column;
+components/modal.scss:.onboarding-modal__page-four__columns {
+components/modal.scss:  .column-header {
+components/modal.scss:  .onboarding-modal__page-four__columns .row {
+components/modal.scss:  .onboarding-modal__page-four__columns .column-header {
+components/modal.scss:  flex-direction: column;
+components/modal.scss:  flex-direction: column;
+components/modal.scss:    flex-direction: column;
+components/drawer.scss:  flex-direction: column;
+components/drawer.scss:  @include single-column('screen and (max-width: 630px)') {
+components/drawer.scss:  @include limited-single-column('screen and (max-width: 630px)') {
+components/drawer.scss:  @include single-column('screen and (max-width: 630px)') {
+components/drawer.scss:    :root & {  //  Overrides `.wide` for single-column view
+components/drawer.scss:  @include limited-single-column('screen and (max-width: #{$no-gap-breakpoint})') { margin-bottom: 0 }
+components/drawer.scss:  @include single-column('screen and (max-width: 630px)') { font-size: 16px }
+components/drawer.scss:  flex-direction: column;
+components/compose_form.scss:    @include single-column('screen and (max-width: 630px)') { font-size: 16px }
+components/compose_form.scss:      @include single-column('screen and (max-width: 630px)') {
+components/compose_form.scss:      @include limited-single-column('screen and (max-width: 600px)') {
+components/compose_form.scss:  column-gap: 5px;
+components/media.scss:  flex-direction: column;
+components/doodle.scss:    flex-direction: column;
+components/index.scss:  flex-direction: column;
+components/index.scss:  .layout-multiple-columns &.button--with-bell {
+components/index.scss:  flex-direction: column;
+components/index.scss:.column,
+components/index.scss:  .columns-area {
+components/index.scss:  .column,
+components/index.scss:  .columns-area > div {
+components/index.scss:    .column,
+components/index.scss:    @include multi-columns('screen and (min-width: 631px)') {
+components/index.scss:.column-link--transparent .icon-with-badge__badge {
+components/index.scss:    flex-direction: column;
+components/index.scss:.column-link__badge {
+components/index.scss:  @include limited-single-column('screen and (max-width: 600px)') {
+components/index.scss:    flex-direction: column;
+components/index.scss:.column-settings__row .radio-button {
+components/index.scss:@import 'columns';
+components/index.scss:@import 'single_column';
+components/status.scss:    flex-direction: column;
+components/status.scss:    flex-direction: column;
+components/status.scss:  flex-direction: column;
+components/explore.scss:  flex-direction: column;
+components/directory.scss:  &__column {
+components/columns.scss:.column__wrapper {
+components/columns.scss:.columns-area {
+components/columns.scss:      flex-direction: column;
+components/columns.scss:  .columns-area,
+components/columns.scss:  .column {
+components/columns.scss:.column {
+components/columns.scss:  flex-direction: column;
+components/columns.scss:  flex-direction: column;
+components/columns.scss:.column {
+components/columns.scss:.column-back-button {
+components/columns.scss:.column-header__back-button {
+components/columns.scss:.column-back-button__icon {
+components/columns.scss:.column-back-button--slim {
+components/columns.scss:.column-back-button--slim-button {
+components/columns.scss:.column-link {
+components/columns.scss:.column-link__icon {
+components/columns.scss:.column-subheading {
+components/columns.scss:.column-header__wrapper {
+components/columns.scss:.column-header {
+components/columns.scss:  & > .column-header__back-button {
+components/columns.scss:    .column-header__icon {
+components/columns.scss:.column {
+components/columns.scss:  flex-direction: column;
+components/columns.scss:  .wide .columns-area:not(.columns-area--mobile) & {
+components/columns.scss:.column-header__buttons {
+components/columns.scss:.column-header__links {
+components/columns.scss:.column-header__links .text-btn {
+components/columns.scss:.column-header__button {
+components/columns.scss:.column-header__notif-cleaning-buttons {
+components/columns.scss:    @extend .column-header__button;
+components/columns.scss:.layout-single-column .column-header__notif-cleaning-buttons {
+components/columns.scss:.column-header__collapsible-inner.nopad-drawer {
+components/columns.scss:.column-header__collapsible {
+components/columns.scss:.column-header__collapsible-inner {
+components/columns.scss:.column-header__setting-btn {
+components/columns.scss:.column-header__collapsible__extra + .column-header__setting-btn {
+components/columns.scss:.column-header__permission-btn {
+components/columns.scss:.column-header__setting-arrows {
+components/columns.scss:  .column-header__setting-btn {
+components/columns.scss:.column-header__title {
+components/columns.scss:.column-header__issue-btn {
+components/columns.scss:.column-header__icon {
+components/columns.scss:.column-settings__pillbar {
+components/columns.scss:.empty-column-indicator,
+components/columns.scss:.error-column {
+components/columns.scss:  flex-direction: column;
+components/columns.scss:.single-column.navbar-under {
+components/columns.scss:.auto-columns.navbar-under {
+components/columns.scss:.auto-columns.navbar-under .react-swipeable-view-container .columns-area,
+components/columns.scss:.single-column.navbar-under .react-swipeable-view-container .columns-area {
+components/columns.scss:.column-inline-form {
+components/columns.scss:.column-settings__outer {
+components/columns.scss:.column-settings__section {
+components/columns.scss:.column-settings__row--with-margin {
+components/columns.scss:.column-settings__hashtags {
+components/columns.scss:  .column-settings__row {
+components/columns.scss:  .column-select {
+components/columns.scss:.column-settings__row {
+components/columns.scss:  .text-btn:not(.column-header__permission-btn) {
+components/columns.scss:  flex-direction: column;
+components/columns.scss:.column-title {
+components/columns.scss:  flex-direction: column;
+components/columns.scss:.column-actions {
+components/columns.scss:.column-list {
+components/single_column.scss:  flex-direction: column;
+components/single_column.scss:    flex-direction: column;
+components/single_column.scss:  flex-direction: column;
+components/single_column.scss:.columns-area--mobile {
+components/single_column.scss:  flex-direction: column;
+components/single_column.scss:  .column,
+components/single_column.scss:  .react-swipeable-view-container .columns-area--mobile {
+components/single_column.scss:  .columns-area__panels__main {
+components/single_column.scss:  .columns-area__panels {
+components/single_column.scss:  .columns-area__panels__pane--navigational {
+components/single_column.scss:    .columns-area__panels__pane__inner {
+components/single_column.scss:    .column-link__icon {
+components/single_column.scss:  .column-header,
+components/single_column.scss:  .column-back-button,
+components/single_column.scss:  .error-column {
+components/single_column.scss:  .columns-area__panels__main {
+components/single_column.scss:  .columns-area__panels__pane--navigational {
+components/single_column.scss:    .columns-area__panels__pane__inner {
+components/single_column.scss:    .column-link span {
+components/single_column.scss:  .columns-area__panels__pane--compositional {
+components/accounts.scss:      .columns-area--mobile & {
+components/accounts.scss:    flex-direction: column;
+components/lists.scss:  flex-direction: column;
+components/lists.scss:  flex-direction: column;
+components/regeneration_indicator.scss:  flex-direction: column;
+components/about.scss:    &__column {
+components/about.scss:      &__column {
+components/about.scss:        flex-direction: column;
+components/about.scss:    .layout-multiple-columns & {
+components/about.scss:      &__column {
+components/about.scss:        flex-direction: column;
+components/announcements.scss:    flex-direction: column;
+components/announcements.scss:.layout-multiple-columns .announcements__mastodon {
+components/announcements.scss:.layout-multiple-columns .announcements__container {
+forms.scss:$no-columns-breakpoint: 600px;
+forms.scss:      columns: 2;
+forms.scss:    columns: unset;
+forms.scss:    &__column {
+forms.scss:    .fields-row__column.fields-group {
+forms.scss:    @media screen and (max-width: $no-columns-breakpoint) {
+forms.scss:      &__column {
+forms.scss:      .fields-row__column.fields-group,
+forms.scss:      .fields-row__column {
+rtl.scss:  .column-header > button {
+rtl.scss:  .column-link__icon,
+rtl.scss:  .column-header__icon {
+rtl.scss:  .columns-area {
+rtl.scss:  .column-header__buttons {
+rtl.scss:  .column-inline-form .icon-button {
+rtl.scss:  .column-header__links .text-btn {
+rtl.scss:  .column-header__back-button {
+rtl.scss:  .column-header__setting-arrows {
+rtl.scss:    .column-header__setting-btn {
+rtl.scss:  .column-back-button--slim-button {
+rtl.scss:    .column,
+rtl.scss:    .columns-area > div {
+rtl.scss:      .column,
+rtl.scss:  .columns-area--mobile .column,
+rtl.scss:  .columns-area--mobile .drawer {
+rtl.scss:  .column-back-button__icon {
+admin.scss:$no-columns-breakpoint: 600px;
+admin.scss:    @media screen and (max-width: $no-columns-breakpoint) {
+admin.scss:      @media screen and (max-width: $no-columns-breakpoint) {
+admin.scss:  @media screen and (max-width: $no-columns-breakpoint) {
+admin.scss:    @media screen and (max-width: $no-columns-breakpoint) {
+admin.scss:      @media screen and (max-width: $no-columns-breakpoint) {
+admin.scss:  @media screen and (max-width: $no-columns-breakpoint) {
+admin.scss:  flex-direction: column;
+admin.scss:  flex-direction: column;
+admin.scss:  grid-template-columns: minmax(0, 1fr) 300px;
+admin.scss:      grid-auto-columns: minmax(0, 1fr);
+admin.scss:      grid-auto-flow: column;
+admin.scss:    grid-template-columns: minmax(0, 1fr);
+admin.scss:    grid-auto-columns: minmax(0, 1fr);
+admin.scss:    grid-auto-flow: column;
+admin.scss:      flex-direction: column;
+_mixins.scss:@mixin single-column($media, $parent: '&') {
+_mixins.scss:  .auto-columns #{$parent} {
+_mixins.scss:  .single-column #{$parent} {
+_mixins.scss:@mixin limited-single-column($media, $parent: '&') {
+_mixins.scss:  .auto-columns #{$parent}, .single-column #{$parent} {
+_mixins.scss:@mixin multi-columns($media, $parent: '&') {
+_mixins.scss:  .auto-columns #{$parent} {
+_mixins.scss:  .multi-columns #{$parent} {
+dashboard.scss:  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+dashboard.scss:    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+dashboard.scss:    &--span-double-column {
+dashboard.scss:      grid-column: span 2;

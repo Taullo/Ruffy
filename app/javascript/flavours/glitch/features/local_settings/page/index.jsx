@@ -278,7 +278,6 @@ class LocalSettingsPage extends React.PureComponent {
           <FormattedMessage id='settings.content_warnings_media_outside' defaultMessage='Display media attachments outside content warnings' />
           <span className='hint'><FormattedMessage id='settings.content_warnings_media_outside_hint' defaultMessage='Reproduce upstream Mastodon behavior by having the Content Warning toggle not affect media attachments' /></span>
         </LocalSettingsPageItem>
-
       </div>
     ),
     ({ onChange, settings }) => (
