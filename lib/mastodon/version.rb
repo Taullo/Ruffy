@@ -20,8 +20,8 @@ module Mastodon
       ''
     end
 
-    def suffix
-      '+aethersuite'
+    def prefix
+      'Aethersuite '
     end
 
     def to_a
@@ -29,7 +29,7 @@ module Mastodon
     end
 
     def to_s
-      [to_a.join('.'), flags, suffix].join
+      [prefix, to_a.join('.'), flags].join
     end
 
     def repository

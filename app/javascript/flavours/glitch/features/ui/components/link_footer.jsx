@@ -55,7 +55,6 @@ class LinkFooter extends React.PureComponent {
     return (
       <div className='link-footer'>
         <p>
-          <strong>{domain}</strong>:
           {' '}
           <Link to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
           {statusPageUrl && (
@@ -77,21 +76,13 @@ class LinkFooter extends React.PureComponent {
             </>
           )}
           {DividingCircle}
-          <Link to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
-        </p>
-
-        <p>
-          <strong>Mastodon</strong>:
-          {' '}
-          <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
-          {DividingCircle}
-          <a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
+          <Link to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Site policies' /></Link>
           {DividingCircle}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
           {DividingCircle}
-          v{version}
+          {version}
         </p>
       </div>
     );
@@ -100,3 +91,4 @@ class LinkFooter extends React.PureComponent {
 }
 
 export default injectIntl(connect(null, mapDispatchToProps)(LinkFooter));
+

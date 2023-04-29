@@ -39,8 +39,8 @@ class MediaAttachment < ApplicationRecord
 
   MAX_DESCRIPTION_LENGTH = 1_500
 
-  IMAGE_LIMIT = (ENV['MAX_IMAGE_SIZE'] || 16.megabytes).to_i
-  VIDEO_LIMIT = (ENV['MAX_VIDEO_SIZE'] || 99.megabytes).to_i
+  IMAGE_LIMIT = (ENV['MAX_IMAGE_SIZE'] || 24.megabytes).to_i
+  VIDEO_LIMIT = (ENV['MAX_VIDEO_SIZE'] || 200.megabytes).to_i
 
   MAX_VIDEO_MATRIX_LIMIT = 8_294_400 # 3840x2160px
   MAX_VIDEO_FRAME_RATE   = 120
@@ -69,7 +69,7 @@ class MediaAttachment < ApplicationRecord
 
   IMAGE_STYLES = {
     original: {
-      pixels: 8_294_400, # 3840x2160px
+      pixels: 16_588_800, # 7680x4320px
       file_geometry_parser: FastGeometryParser,
     }.freeze,
 

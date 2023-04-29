@@ -20,7 +20,7 @@ class UserSettings
   setting :hide_followers_count, default: false
 
   namespace :web do
-    setting :crop_images, default: true
+    setting :crop_images, default: false
     setting :advanced_layout, default: false
     setting :trends, default: true
     setting :use_blurhash, default: true

@@ -4,8 +4,8 @@ module AccountHeader
   extend ActiveSupport::Concern
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  LIMIT = 2.megabytes
-  MAX_PIXELS = 750_000 # 1500x500px
+  LIMIT = 10.megabytes
+  MAX_PIXELS = 9_000_000 # 3000x3000px
 
   class_methods do
     def header_styles(file)
