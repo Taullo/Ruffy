@@ -34,7 +34,6 @@ const messages = defineMessages({
   spoiler: {defaultMessage: 'Hide text behind warning', id: 'compose_form.spoiler',},
 });
 
-export default @injectIntl
 class ComposeForm extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -413,3 +412,5 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
+
+export default injectIntl(ComposeForm);

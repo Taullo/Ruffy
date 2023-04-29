@@ -22,8 +22,6 @@ const mapStateToProps = state => ({
   conversationsMode: state.getIn(['settings', 'direct', 'conversations']),
 });
 
-export default @connect(mapStateToProps)
-@injectIntl
 class DirectTimeline extends React.PureComponent {
 
   static propTypes = {
@@ -110,8 +108,8 @@ class DirectTimeline extends React.PureComponent {
           trackScroll={!pinned}
           scrollKey={`direct_timeline-${columnId}`}
           timelineId='direct'
+          bindToDocument={!multiColumn}
           onLoadMore={this.handleLoadMore}
-
           emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
         />
       );
@@ -121,8 +119,8 @@ class DirectTimeline extends React.PureComponent {
           trackScroll={!pinned}
           scrollKey={`direct_timeline-${columnId}`}
           timelineId='direct'
+          bindToDocument={!multiColumn}
           onLoadMore={this.handleLoadMoreTimeline}
-
           emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
         />
       );
@@ -154,3 +152,5 @@ class DirectTimeline extends React.PureComponent {
   }
 
 }
+
+export default connect(mapStateToProps)(injectIntl(DirectTimeline));
