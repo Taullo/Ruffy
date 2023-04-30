@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-import { Link } from 'react-router-dom';
 import { timelinePreview, showTrends, me } from 'flavours/glitch/initial_state';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
-import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
-import { preferencesLink, relationshipsLink } from 'flavours/glitch/utils/backend_links';
 import NavigationPortal from 'flavours/glitch/components/navigation_portal';
 import { connect } from 'react-redux';
 
@@ -31,8 +28,6 @@ const messages = defineMessages({
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
 });
 
-export default @injectIntl
-
 class NavigationPanel extends React.Component {
 
   static contextTypes = {
@@ -41,6 +36,7 @@ class NavigationPanel extends React.Component {
   };
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     onOpenSettings: PropTypes.func,
   };
 
@@ -49,7 +45,7 @@ class NavigationPanel extends React.Component {
     const { signedIn, disabledAccountId } = this.context.identity;
     const Account = connect(state => ({
       account: state.getIn(['accounts', me]),
-      }))(({ account }) => (
+    }))(({ account }) => (
       <ColumnLink transparent to={`/@${account.get('acct')}`} icon='user-circle' text={intl.formatMessage(messages.profile)} />
     ));
 
@@ -111,3 +107,5 @@ class NavigationPanel extends React.Component {
   }
 
 }
+
+export default injectIntl(NavigationPanel);
