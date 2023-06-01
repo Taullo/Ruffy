@@ -276,7 +276,7 @@ class StatusContent extends React.PureComponent {
       element = element.parentNode;
     }
     if (deltaX + deltaY < 5) {
-      if (((status.get('spoiler_text').length > 0) || (status.get('sensitive'))) && (!this.props.expanded)) {
+      if (((this.props.status.get('spoiler_text').length > 0) || (this.props.status.get('sensitive'))) && (!this.props.expanded)) {
         this.props.onExpandedToggle();
         return;
       } else if (e.button === 0 && parseClick) {
