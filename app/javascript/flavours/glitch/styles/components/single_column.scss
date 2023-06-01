@@ -236,13 +236,13 @@
     display: none;
   }
 
-  /*.search-page .search {
+  .search-page .search {
     display: none;
-  }*/
+  }
 
-  /*.navigation-panel__legal {
+  .navigation-panel__legal {
     display: none;
-  }*/
+  }
 }
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
@@ -320,7 +320,7 @@
 }
 
 .explore__search-header {
-  display: flex;
+  display: none;
 }
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {

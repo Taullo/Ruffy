@@ -7,7 +7,7 @@ import api from 'flavours/glitch/api';
 import Skeleton from 'flavours/glitch/components/skeleton';
 
 const messages = defineMessages({
-  title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
+  title: { id: 'privacy_policy.title', defaultMessage: 'Site Policies' },
 });
 
 class PrivacyPolicy extends React.PureComponent {
@@ -39,7 +39,7 @@ class PrivacyPolicy extends React.PureComponent {
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
-            <h3><FormattedMessage id='privacy_policy.title' defaultMessage='Privacy Policy' /></h3>
+            <h3><FormattedMessage id='privacy_policy.title' defaultMessage='Site Policies' /></h3>
             <p><FormattedMessage id='privacy_policy.last_updated' defaultMessage='Last updated {date}' values={{ date: isLoading ? <Skeleton width='10ch' /> : <FormattedDate value={lastUpdated} year='numeric' month='short' day='2-digit' /> }} /></p>
           </div>
 

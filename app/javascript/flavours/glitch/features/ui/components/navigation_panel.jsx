@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-import { timelinePreview, showTrends, me } from 'flavours/glitch/initial_state';
+import { Link } from 'react-router-dom';
+import { timelinePreview, showTrends } from 'flavours/glitch/initial_state';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
+import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
+import { preferencesLink, relationshipsLink } from 'flavours/glitch/utils/backend_links';
 import NavigationPortal from 'flavours/glitch/components/navigation_portal';
-import { connect } from 'react-redux';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   explore: { id: 'explore.title', defaultMessage: 'Explore' },
-  profile: { id: 'tabs_bar.profile', defaultMessage: 'Profile' },
   local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
   federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
@@ -36,40 +37,27 @@ class NavigationPanel extends React.Component {
   };
 
   static propTypes = {
-    intl: PropTypes.object.isRequired,
     onOpenSettings: PropTypes.func,
   };
 
   render() {
     const { intl, onOpenSettings } = this.props;
     const { signedIn, disabledAccountId } = this.context.identity;
-    const Account = connect(state => ({
-      account: state.getIn(['accounts', me]),
-    }))(({ account }) => (
-      <ColumnLink transparent to={`/@${account.get('acct')}`} icon='user-circle' text={intl.formatMessage(messages.profile)} />
-    ));
 
     return (
       <div className='navigation-panel'>
         {signedIn && (
           <React.Fragment>
-            <span className='hideondesktop'><ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} /></span>
-
-            <span className='hideondesktop'><FollowRequestsColumnLink /></span>
+            <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
+            <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
+            <FollowRequestsColumnLink />
           </React.Fragment>
         )}
 
         {showTrends ? (
-          <span className='hideondesktop'><ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} /></span>
+          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
         ) : (
-          <span className='hideondesktop'><ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} /></span>
-        )}
-
-        {signedIn && (
-          <React.Fragment>
-            <span className='hideondesktop'><Account /></span>
-            <span className='hideondesktop'><ColumnLink transparent to='/conversations' icon='envelope' text={intl.formatMessage(messages.direct)} /></span>
-          </React.Fragment>
+          <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
         )}
 
         {(signedIn || timelinePreview) && (
@@ -78,10 +66,6 @@ class NavigationPanel extends React.Component {
             <ColumnLink transparent exact to='/public' icon='globe' text={intl.formatMessage(messages.federated)} />
           </>
         )}
-
-        <div className='navigation-panel__legal'>
-          <span className='hideondesktop'><ColumnLink transparent to='/about' icon='info' text={intl.formatMessage(messages.about)} /></span>
-        </div>
 
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
@@ -92,14 +76,24 @@ class NavigationPanel extends React.Component {
 
         {signedIn && (
           <React.Fragment>
+            <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
+            <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
+            <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
+            <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
 
             <ListPanel />
 
-            <hr className='hideondesktop' />
+            <hr />
 
-            <span className='hideondesktop'><ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} /></span>
+            {!!preferencesLink && <ColumnLink transparent href={preferencesLink} icon='cog' text={intl.formatMessage(messages.preferences)} />}
+            <ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
           </React.Fragment>
         )}
+
+        <div className='navigation-panel__legal'>
+          <hr />
+          <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
+        </div>
 
         <NavigationPortal />
       </div>

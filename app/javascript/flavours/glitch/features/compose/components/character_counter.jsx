@@ -13,7 +13,7 @@ export default class CharacterCounter extends React.PureComponent {
     if (diff < 1000) {
       return <span className='character-counter character-counter--over'>{diff}</span>;
     }
-
+    
     return <span className='character-counter'></span>;
   }
 

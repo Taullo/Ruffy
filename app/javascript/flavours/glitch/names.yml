@@ -2,7 +2,7 @@ en:
   flavours:
     glitch:
       description: Default, Light, and High Contrast themes.
-      name: Themes
+      name: Glitch
   skins:
     glitch:
       default: Default
@@ -10,7 +10,7 @@ cs:
   flavours:
     glitch:
       description: Výchozí rozhraní instancí GlitchSoc.
-      name: Themes
+      name: Glitch
   skins:
     glitch:
       default: Výchozí
@@ -25,7 +25,7 @@ es:
   flavours:
     glitch:
       description: El diseño predeterminado para las instancias con GlitchSoc.
-      name: Themes
+      name: Glitch
   skins:
     glitch:
       default: Predeterminado
@@ -34,7 +34,7 @@ ja:
   flavours:
     glitch:
       description: GlitchSocインスタンスのデフォルトフレーバーです。
-      name: Themes
+      name: Glitch
   skins:
     glitch:
       default: デフォルト

@@ -46,7 +46,7 @@ const messages = defineMessages({
     id: 'advanced_options.local-only.long',
   },
   local_only_short: {
-    defaultMessage: 'Local only',
+    defaultMessage: 'Local-only',
     id: 'advanced_options.local-only.short',
   },
   markdown: {
@@ -58,8 +58,8 @@ const messages = defineMessages({
     id: 'compose.content-type.plain',
   },
   spoiler: {
-    defaultMessage: 'Toggle content warning',
-    id: 'compose_form.spoiler.unmarked',
+    defaultMessage: 'Hide text behind warning',
+    id: 'compose_form.spoiler',
   },
   threaded_mode_long: {
     defaultMessage: 'Automatically opens a reply on posting',
@@ -268,35 +268,31 @@ class ComposerOptions extends ImmutablePureComponent {
             title={formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
           />
         )}
+        <hr />
+        <PrivacyDropdownContainer disabled={disabled || isEditing} />
+
+          <DropdownContainer
+            disabled={disabled}
+            icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
+            items={[
+              contentTypeItems.plain,
+              contentTypeItems.html,
+              contentTypeItems.markdown,
+            ]}
+            onChange={onChangeContentType}
+            title={formatMessage(messages.content_type)}
+            value={contentType}
+          />
+
         {onToggleSpoiler && (
-          <IconButton
+          <TextIconButton
             active={spoiler}
             ariaControls='glitch.composer.spoiler.input'
-            icon='warning'
-            size={18}
-            style={{
-              height: null,
-              lineHeight: null,
-            }}
+            label='CW'
             onClick={onToggleSpoiler}
             title={formatMessage(messages.spoiler)}
           />
         )}
-        <hr />
-        <PrivacyDropdownContainer disabled={disabled || isEditing} />
-
-        <DropdownContainer
-          disabled={disabled}
-          icon='file-text'
-          items={[
-            contentTypeItems.markdown,
-            contentTypeItems.html,
-            contentTypeItems.plain,
-          ]}
-          onChange={onChangeContentType}
-          title={formatMessage(messages.content_type)}
-          value={contentType}
-        />
         <LanguageDropdown />
         <DropdownContainer
           disabled={disabled || isEditing}
@@ -323,4 +319,5 @@ class ComposerOptions extends ImmutablePureComponent {
   }
 
 }
+
 export default injectIntl(ComposerOptions);

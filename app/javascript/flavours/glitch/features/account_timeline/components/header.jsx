@@ -142,6 +142,10 @@ export default class Header extends ImmutablePureComponent {
           hidden={hidden}
         />
 
+        <ActionBar
+          account={account}
+        />
+
         {!(hideTabs || hidden) && (
           <div className='account__section-headline'>
             <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Posts' /></NavLink>

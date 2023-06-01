@@ -126,8 +126,6 @@ class StatusContent extends React.PureComponent {
     rewriteMentions: PropTypes.string,
     languages: ImmutablePropTypes.map,
     intl: PropTypes.object,
-    collapsable: PropTypes.bool,
-    onCollapsedToggle: PropTypes.func,
   };
 
   static defaultProps = {
@@ -147,7 +145,6 @@ class StatusContent extends React.PureComponent {
       return;
     }
 
-    const { status, onCollapsedToggle } = this.props;
     const links = node.querySelectorAll('a');
 
     for (var i = 0; i < links.length; ++i) {
@@ -204,17 +201,6 @@ class StatusContent extends React.PureComponent {
           if (tagLinks && e instanceof TypeError) link.removeAttribute('href');
         }
       }
-    }
-    if (status.get('collapsed', null) === null && onCollapsedToggle) {
-      const { collapsable, onClick } = this.props;
-
-      const collapsed =
-          collapsable
-          && onClick
-          && node.clientHeight > MAX_HEIGHT
-          && status.get('spoiler_text').length === 0;
-
-      onCollapsedToggle(collapsed);
     }
   }
 
@@ -278,33 +264,28 @@ class StatusContent extends React.PureComponent {
   };
 
   handleMouseUp = (e) => {
-    const [ startX, startY ] = this.startXY;
-    const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
     const { parseClick, disabled } = this.props;
-
-    let element = e.target;
-    while (element !== e.currentTarget) {
-      if (['button', 'video', 'a', 'label', 'canvas'].includes(element.localName) || element.getAttribute('role') === 'button' ) {
-        return;
-      }
-      element = element.parentNode;
-    }
-    if (deltaX + deltaY < 5) {
-      if ((this.props.status.get('spoiler_text').length > 0) && (!this.props.expanded)) {
-        this.props.onExpandedToggle();
-        return;
-      }
 
     if (disabled || !this.startXY) {
       return;
     }
 
-    if (e.button === 0 && parseClick) {
+    const [ startX, startY ] = this.startXY;
+    const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
+
+    let element = e.target;
+    while (element !== e.currentTarget) {
+      if (['button', 'video', 'a', 'label', 'canvas'].includes(element.localName) || element.getAttribute('role') === 'button') {
+        return;
+      }
+      element = element.parentNode;
+    }
+
+    if (deltaX + deltaY < 5 && e.button === 0 && parseClick) {
       parseClick(e);
     }
 
     this.startXY = null;
-   }
   };
 
   handleSpoilerClick = (e) => {
@@ -419,7 +400,7 @@ class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : 'status__content__spoiler--hidden'}`}>
+          <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
             <div
               ref={this.setContentsRef}
               key={`contents-${tagLinks}`}
@@ -435,7 +416,6 @@ class StatusContent extends React.PureComponent {
           </div>
 
           {extraMedia}
-
         </div>
       );
     } else if (parseClick) {

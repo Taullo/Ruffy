@@ -10,8 +10,6 @@ import Icon from 'flavours/glitch/components/icon';
 import IconButton from 'flavours/glitch/components/icon_button';
 import Avatar from 'flavours/glitch/components/avatar';
 import Button from 'flavours/glitch/components/button';
-import { counterRenderer } from 'mastodon/components/common_counter';
-import ShortNumber from 'mastodon/components/short_number';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
@@ -25,7 +23,7 @@ const messages = defineMessages({
   cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
-  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit' },
   linkVerifiedOn: { id: 'account.link_verified_on', defaultMessage: 'Ownership of this link was checked on {date}' },
   account_locked: { id: 'account.locked_info', defaultMessage: 'This account privacy status is set to locked. The owner manually reviews who can follow them.' },
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
@@ -203,7 +201,7 @@ class Header extends ImmutablePureComponent {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
     } else if (profileLink) {
-      actionBtn = <IconButton className='logo-button' size={24} icon='pencil' title={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
+      actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
     }
 
     if (account.get('moved') && !account.getIn(['relationship', 'following'])) {
@@ -234,23 +232,23 @@ class Header extends ImmutablePureComponent {
       menu.push(null);
     }
 
-    if (account.get('id') !== me && (accountNote === null || accountNote === '')) {
+    if (accountNote === null || accountNote === '') {
       menu.push({ text: intl.formatMessage(messages.add_account_note, { name: account.get('username') }), action: this.props.onEditAccountNote });
     }
 
     if (account.get('id') === me) {
       if (profileLink) menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
       if (preferencesLink) menu.push({ text: intl.formatMessage(messages.preferences), href: preferencesLink });
-      menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned', href: '/pinned' });
+      menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
       menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
       menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
       menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags' });
       menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes', href: '/mutes' });
-      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks', href: '/blocks' });
-      menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks', href: '/domain_blocks' });
+      menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
+      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
+      menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     } else if (signedIn) {
       if (account.getIn(['relationship', 'following'])) {
         if (!account.getIn(['relationship', 'muting'])) {
@@ -361,7 +359,7 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
+              <span dangerouslySetInnerHTML={displayNameHtml} />
               <small>
                 <span>@{acct}</span> {lockedIcon}
               </small>
@@ -373,14 +371,9 @@ class Header extends ImmutablePureComponent {
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
+              {badge}
                 { fields.size > 0 && (
                   <div className='account__header__fields'>
-                  
-                 <dl>
-                    <dt><FormattedMessage id='account.joined_short' defaultMessage='Joined' /></dt>
-                    <dd>{intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'long', day: '2-digit' })}</dd>
-                  </dl>
-                  
                     {fields.map((pair, i) => (
                       <dl key={i}>
                         <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
@@ -394,30 +387,8 @@ class Header extends ImmutablePureComponent {
                 )}
 
                 {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
-                
-              <div className='account__header__extra__links'>
-                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
-                  <ShortNumber
-                    value={account.get('statuses_count')}
-                    renderer={counterRenderer('statuses')}
-                  />
-                </NavLink>
 
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/following`} title={intl.formatNumber(account.get('following_count'))}>
-                  <ShortNumber
-                    value={account.get('following_count')}
-                    renderer={counterRenderer('following')}
-                  />
-                </NavLink>
-
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
-                  <ShortNumber
-                    value={account.get('followers_count')}
-                    renderer={counterRenderer('followers')}
-                  />
-                </NavLink>
-              </div>
-                
+                <div className='account__header__joined'><FormattedMessage id='account.joined' defaultMessage='Joined {date}' values={{ date: intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' }) }} /></div>
               </div>
             </div>
           )}

@@ -200,13 +200,13 @@ class Status extends ImmutablePureComponent {
       updated = true;
     }
 
-   // if (nextProps.settings.getIn(['media', 'reveal_behind_cw']) !== prevState.revealBehindCW) {
-   //   update.revealBehindCW = nextProps.settings.getIn(['media', 'reveal_behind_cw']);
-   //   if (update.revealBehindCW) {
-   //     update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
-   //   }
-   //   updated = true;
-   // }
+    if (nextProps.settings.getIn(['media', 'reveal_behind_cw']) !== prevState.revealBehindCW) {
+      update.revealBehindCW = nextProps.settings.getIn(['media', 'reveal_behind_cw']);
+      if (update.revealBehindCW) {
+        update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
+      }
+      updated = true;
+    }
 
     return updated ? update : null;
   }

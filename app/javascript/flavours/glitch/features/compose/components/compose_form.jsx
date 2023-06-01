@@ -18,7 +18,6 @@ import TextareaIcons from './textarea_icons';
 import { maxChars } from 'flavours/glitch/initial_state';
 import CharacterCounter from './character_counter';
 import { length } from 'stringz';
-import IconButton from 'flavours/glitch/components/icon_button';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -31,7 +30,6 @@ const messages = defineMessages({
     defaultMessage: 'Send anyway',
   },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
-  spoiler: {defaultMessage: 'Hide text behind warning', id: 'compose_form.spoiler',},
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -80,7 +78,6 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeVisibility: PropTypes.func,
     onPaste: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
-    onToggleSpoiler: PropTypes.func,
   };
 
   static defaultProps = {
@@ -307,8 +304,6 @@ class ComposeForm extends ImmutablePureComponent {
       suggestions,
       spoilersAlwaysOn,
       isEditing,
-      onToggleSpoiler,
-      intl: { formatMessage },
     } = this.props;
 
     const countText = this.getFulltextForCharacterCounting();
@@ -377,25 +372,6 @@ class ComposeForm extends ImmutablePureComponent {
           <div className='character-counter__wrapper'>
             <CharacterCounter text={countText} max={maxChars} />
           </div>
-        </div>
-       
-        <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef}>
-          <AutosuggestInput
-            placeholder={intl.formatMessage(messages.spoiler_placeholder)}
-            value={spoilerText}
-            onChange={this.handleChangeSpoiler}
-            onKeyDown={this.handleKeyDown}
-            disabled={!spoiler}
-            ref={this.handleRefSpoilerText}
-            suggestions={this.props.suggestions}
-            onSuggestionsFetchRequested={onFetchSuggestions}
-            onSuggestionsClearRequested={onClearSuggestions}
-            onSuggestionSelected={this.onSpoilerSuggestionSelected}
-            searchTokens={[':']}
-            id='glitch.composer.spoiler.input'
-            className='spoiler-input__input'
-            autoFocus={false}
-          />
         </div>
 
         <Publisher

@@ -156,7 +156,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Glitch-soc is free open source software forked from Mastodon.",
+        "defaultMessage": "Aethersuite is free open source software forked from Glitch-soc and Mastodon.",
         "id": "about.fork_disclaimer"
       }
     ],
@@ -968,7 +968,7 @@
         "id": "settings.swipe_to_change_columns"
       },
       {
-        "defaultMessage": "Some of the glitch-soc device-specific {app_settings} you are using have been replaced by Mastodon {preferences} and will be overriden:",
+        "defaultMessage": "Some of the Aethersuite device-specific {app_settings} you are using have been replaced by Mastodon {preferences} and will be overriden:",
         "id": "confirmations.deprecated_settings.message"
       },
       {
@@ -1051,7 +1051,7 @@
         "id": "onboarding.page_six.almost_done"
       },
       {
-        "defaultMessage": "{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.",
+        "defaultMessage": "{domain} runs on Aethersuite. Aethersuite is a friendly {fork} of Glitch-soc and {Mastodon}. Aethersuite is fully compatible with all Mastodon apps and instances. Aethersuite is free open-source software. You can report bugs, request features, or contribute to the code on {github}.",
         "id": "onboarding.page_six.github"
       },
       {

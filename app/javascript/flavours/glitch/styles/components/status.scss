@@ -42,7 +42,7 @@
   }
 }
 
-.status__content--with-action > div {
+.status__content--with-action {
   cursor: pointer;
 }
 
@@ -107,14 +107,10 @@
   }
 
   .status__content__spoiler {
-    display: block;
-    font-family:mastodon-flow-block;
-    line-height: 1.1;
+    display: none;
 
     &.status__content__spoiler--visible {
-      font-family:inherit;
       display: block;
-      line-height: inherit;
     }
   }
 
@@ -138,15 +134,13 @@
   }
 }
 
-.status__content__edited-label {
-  display: block;
-  cursor: default;
+.translate-button {
+  margin-top: 16px;
   font-size: 15px;
   line-height: 20px;
-  padding: 0;
-  padding-top: 8px;
+  display: flex;
+  justify-content: space-between;
   color: $dark-text-color;
-  font-weight: 500;
 }
 
 .status__content__spoiler-link {
@@ -244,7 +238,6 @@
   height: auto;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
-  background: $ui-base-color;
 
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
@@ -311,8 +304,8 @@
   }
 
   &.collapsed {
-
-
+    background-position: center;
+    background-size: cover;
     user-select: none;
 
     &.has-background::before {
@@ -337,14 +330,15 @@
     }
 
     .status__content {
-      max-height: 300px;
+      height: 20px;
+      overflow: hidden;
       text-overflow: ellipsis;
       padding-top: 0;
 
       &::after {
         content: '';
         position: absolute;
-        height:40px;
+        top: 0;
         bottom: 0;
         inset-inline-start: 0;
         inset-inline-end: 0;
@@ -357,10 +351,6 @@
 
       a:hover {
         text-decoration: none;
-      }
-      div {
-        max-height:240px;
-        overflow:hidden;
       }
     }
 
@@ -531,13 +521,9 @@
 }
 
 .status__action-bar {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   display: flex;
-  gap: 18px;
-  margin-top: 16px!important;
-  padding:0 20px 0 20px;
+  margin-top: 8px;
 }
 
 .status__action-bar-button {

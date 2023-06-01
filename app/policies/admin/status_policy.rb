@@ -12,7 +12,7 @@ class Admin::StatusPolicy < ApplicationPolicy
   end
 
   def show?
-    role.can?(:manage_reports, :manage_users) && (record.public_visibility? || record.unlisted_visibility? || record.reported?)
+    role.can?(:manage_reports, :manage_users) && (record.public_visibility? || record.unlisted_visibility? || record.reported? || record.localPublic_visibility?)
   end
 
   def destroy?

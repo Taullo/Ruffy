@@ -13,7 +13,7 @@ const messages = defineMessages({
   general: {  id: 'settings.general', defaultMessage: 'General' },
   compose: {  id: 'settings.compose_box_opts', defaultMessage: 'Compose box' },
   content_warnings: { id: 'settings.content_warnings', defaultMessage: 'Content Warnings' },
-  collapsed: { id: 'settings.collapsed_statuses', defaultMessage: 'Collapsed posts' },
+  collapsed: { id: 'settings.collapsed_statuses', defaultMessage: 'Collapsed toots' },
   media: { id: 'settings.media', defaultMessage: 'Media' },
   preferences: { id: 'settings.preferences', defaultMessage: 'Preferences' },
   close: { id: 'settings.close', defaultMessage: 'Close' },
@@ -52,7 +52,7 @@ class LocalSettingsNavigation extends React.PureComponent {
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
-          icon='warning'
+          textIcon='CW'
           title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem

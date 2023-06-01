@@ -209,12 +209,6 @@
   &.active {
     border-bottom: 4px solid $ui-highlight-color;
   }
-  
-  &:hover,
-  &:focus,
-  &:active {
-    color:$primary-text-color;
-  }
 
   & > span {
     display: block;
@@ -361,7 +355,8 @@
 
 .notification__filter-bar,
 .account__section-headline {
-
+  background: darken($ui-base-color, 4%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
   flex-shrink: 0;
@@ -383,31 +378,30 @@
     text-align: center;
     text-decoration: none;
     position: relative;
-    border-bottom: 4px solid lighten($ui-base-color, 8%);
 
     &.active {
       color: $secondary-text-color;
-      border-color:$ui-highlight-color;
+
+      &::before,
+      &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        transform: translateX(-50%);
+        border-style: solid;
+        border-width: 0 10px 10px;
+        border-color: transparent transparent lighten($ui-base-color, 8%);
+      }
+
+      &::after {
+        bottom: -1px;
+        border-color: transparent transparent $ui-base-color;
+      }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 
   &.directory__section-headline {
@@ -427,10 +421,6 @@
       }
     }
   }
-}
-
-.account__section-headline {
-  margin-top:8px;
 }
 
 .account__moved-note {
@@ -534,7 +524,7 @@
     position: relative;
     background: lighten($ui-base-color, 4%);
     padding: 5px;
-    border-radius:0 0 4px 4px;
+    border-bottom: 1px solid lighten($ui-base-color, 12%);
 
     .avatar {
       display: block;
@@ -554,7 +544,8 @@
     align-items: flex-end;
     justify-content: space-between;
     padding: 7px 10px;
-    margin-top: -121px;
+    margin-top: -81px;
+    height: 150px;
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
 
@@ -781,10 +772,6 @@
   }
 }
 
-img.parallax[src*="/headers/original/missing.png"] { /*Limits size of profiles with no banner. Kinda hacky*/
-    height:145px;
-}
-
 .moved-account-banner,
 .follow-request-banner,
 .account-memorial-banner {
@@ -824,4 +811,8 @@ img.parallax[src*="/headers/original/missing.png"] { /*Limits size of profiles w
 
 .account-memorial-banner__message {
   margin-bottom: 0;
+}
+
+img.parallax[src*="/headers/original/missing.png"] { /*Limits size of profiles with no banner. Kinda hacky*/
+    height:145px;
 }

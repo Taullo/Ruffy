@@ -69,7 +69,7 @@ class MediaAttachment < ApplicationRecord
 
   IMAGE_STYLES = {
     original: {
-      pixels: 16_588_800, # 7680x4320px
+      pixels: 33_177_600, # 7680x4320px set in attachmentable.rb
       file_geometry_parser: FastGeometryParser,
     }.freeze,
 

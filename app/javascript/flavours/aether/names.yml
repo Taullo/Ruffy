@@ -1,0 +1,40 @@
+en:
+  flavours:
+    aether:
+      description: Default, Light, and High Contrast themes.
+      name: Beta
+  skins:
+    aether:
+      default: Default
+cs:
+  flavours:
+    aether:
+      description: Výchozí rozhraní instancí Aether.
+      name: Beta
+  skins:
+    aether:
+      default: Výchozí
+pl:
+  flavours:
+    aether:
+      description: Domyślny motyw instancji Aether.
+  skins:
+    aether:
+      default: Domyślny
+es:
+  flavours:
+    aether:
+      description: El diseño predeterminado para las instancias con Aether.
+      name: Beta
+  skins:
+    aether:
+      default: Predeterminado
+
+ja:
+  flavours:
+    aether:
+      description: Aetherインスタンスのデフォルトフレーバーです。
+      name: Beta
+  skins:
+    aether:
+      default: デフォルト

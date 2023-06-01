@@ -61,10 +61,10 @@ class Comment extends React.PureComponent {
 
         {isRemote && (
           <React.Fragment>
-            <p className='report-dialog-modal__lead'><FormattedMessage id='report.forward_hint' defaultMessage='The account is from another server. Send an anonymized copy of the report there as well? Please only select this option if you have verified that a rule on the other server has been broken.' /></p>
+            <p className='report-dialog-modal__lead'><FormattedMessage id='report.forward_hint' defaultMessage='The account is from another server. Send an anonymized copy of the report there as well?' /></p>
 
             <label className='report-dialog-modal__toggle'>
-              <Toggle unchecked={isSubmitting} enabled={forward} onChange={this.handleForwardChange} />
+              <Toggle checked={forward} disabled={isSubmitting} onChange={this.handleForwardChange} />
               <FormattedMessage id='report.forward' defaultMessage='Forward to {target}' values={{ target: domain }} />
             </label>
           </React.Fragment>

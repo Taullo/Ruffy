@@ -15,7 +15,7 @@
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: $ui-highlight-color;
+  color: $highlight-text-color;
   border: 0;
   background: transparent;
   padding: 0;
@@ -37,14 +37,10 @@
   }
 }
 
-.primary {
-  min-width:88px;
-}
-
 .button {
   background-color: darken($ui-highlight-color, 3%);
   border: 10px none;
-  border-radius: 100px;
+  border-radius: 4px;
   box-sizing: border-box;
   color: $primary-text-color;
   cursor: pointer;
@@ -187,7 +183,7 @@
   padding: 0;
   color: $action-button-color;
   border: 0;
-  border-radius: 100%;
+  border-radius: 4px;
   background: transparent;
   cursor: pointer;
   transition: all 100ms ease-in;
@@ -1270,12 +1266,9 @@ button.icon-button.active i.fa-retweet {
   margin: 0;
   padding: 15px;
   box-sizing: border-box;
+  width: 100%;
   clear: both;
   text-decoration: none;
-  background: $ui-base-color;
-  margin:0 auto;
-  border-radius:100px;
-  margin-top:8px;
 
   &:hover {
     background: lighten($ui-base-color, 2%);
@@ -1334,7 +1327,6 @@ button.icon-button.active i.fa-retweet {
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
-
   display: flex;
 
   .wrappy {
@@ -1521,8 +1513,6 @@ button.icon-button.active i.fa-retweet {
       color: $primary-text-color;
       font-weight: 500;
       font-size: 14px;
-      font-family: "mastodon-font-sans-serif", sans-serif;
-      transition:background 0.2s;
     }
 
     &:hover,

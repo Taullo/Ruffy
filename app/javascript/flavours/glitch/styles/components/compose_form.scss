@@ -32,13 +32,12 @@
 .spoiler-input {
   height: 0;
   transform-origin: bottom;
-  opacity: 0.0;
-  margin-top: 11px;
-  margin-bottom: 11px;
+  opacity: 0;
 
   &.spoiler-input--visible {
     height: 36px;
-    opacity: 1.0;
+    margin-bottom: 11px;
+    opacity: 1;
   }
 
   input {
@@ -55,14 +54,9 @@
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
-    font-weight:bold;
-    box-sizing:border-box;
-    border:transparent 4px solid;
-    transition:border-color 0.2s;
 
     &::placeholder {
       color: $dark-text-color;
-      font-weight:bold;
     }
 
     &:focus {
@@ -139,7 +133,7 @@
   border-radius: 4px;
   padding: 10px;
   background: $ui-primary-color;
-  min-height: 23px;max-height:20vh;
+  min-height: 23px;
   overflow-y: auto;
   flex: 0 2 auto;
 }

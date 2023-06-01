@@ -91,4 +91,3 @@ class LinkFooter extends React.PureComponent {
 }
 
 export default injectIntl(connect(null, mapDispatchToProps)(LinkFooter));
-

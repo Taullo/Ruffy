@@ -6,7 +6,7 @@ import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_cont
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from 'flavours/glitch/initial_state';
-
+import RelativeTimestamp from './relative_timestamp';
 import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
 import classNames from 'classnames';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/glitch/permissions';
@@ -329,10 +329,10 @@ class StatusActionBar extends ImmutablePureComponent {
           />
         </div>
 
-
-
-
-
+        <div className='status__action-bar-spacer' />
+        <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
+          <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { hour12: false, year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
+        </a>
       </div>
     );
   }

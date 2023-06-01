@@ -29,7 +29,7 @@ const initialState = ImmutableMap({
     shared_state : false,
   }),
   collapsed : ImmutableMap({
-    enabled     : false,
+    enabled     : true,
     auto        : ImmutableMap({
       all              : false,
       notifications    : true,
@@ -43,7 +43,7 @@ const initialState = ImmutableMap({
       user_backgrounds : false,
       preview_images   : false,
     }),
-    show_action_bar : false,
+    show_action_bar : true,
   }),
   media     : ImmutableMap({
     letterbox        : true,
@@ -53,7 +53,7 @@ const initialState = ImmutableMap({
     pop_in_position  : 'right',
   }),
   notifications : ImmutableMap({
-    favicon_badge : true,
+    favicon_badge : false,
     tab_badge     : true,
   }),
   status_icons : ImmutableMap({
