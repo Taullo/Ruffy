@@ -194,8 +194,7 @@
   
 }
 
-@media screen and (min-width: 890px/*$no-gap-breakpoint*/
-) {
+@media screen and (min-width: 890px) {  /*$no-gap-breakpoint*/
   .layout-single-column .about {
     padding: 0!important;
   }
@@ -292,13 +291,13 @@
   .layout-single-column .right_column .scrollable {
     width:auto;
   }
-  .explore__tags-header div a, .explore__suggested-header div a {
+  .navbutton {
     text-decoration:none;
     display:block;
     width: 110px;
     margin:0 auto;
   }
-  .explore__tags-header div a div, .explore__suggested-header div a div {
+  .navbutton div, .navbutton div {
     text-align:center;
     text-decoration:none;
     color:var(--ui-font-secondary-color);
@@ -312,7 +311,7 @@
     border:2px var(--ui-font-secondary-color) solid;
     margin-top:20px;
   }
-  .explore__tags-header div a div:hover, .explore__suggested-header div a div:hover {
+  .navbutton div:hover {
     background: var(--ui-highlight-color);
     border-color:var(--ui-highlight-color);
     color:var(--ui-font-color);

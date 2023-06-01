@@ -178,7 +178,7 @@ class HomeTimeline extends React.PureComponent {
           <div className='explore__tags-header'>
             <Tags openInRoute />
             <div className='right-column-show-more'>
-              <NavLink exact to='/explore/tags'>
+              <NavLink className='navbutton' exact to='/explore/tags'>
                 <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
               </NavLink>
             </div>
@@ -189,7 +189,7 @@ class HomeTimeline extends React.PureComponent {
           <div className='explore__suggested-header'>
             <Suggestions openInRoute />
             <div className='right-column-show-more'>
-              <NavLink exact to='/explore/suggestions'>
+              <NavLink className='navbutton' exact to='/explore/suggestions'>
                 <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
               </NavLink>
             </div>
