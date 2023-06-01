@@ -1,38 +1,56 @@
 /* More Visible CWs */
 
 .status__content--with-spoiler > p {
-    position:relative;
-}
+  position: relative;
 
-.status__content--with-spoiler > p > .translate {
-    max-width:calc(100% - 80px);
-    width:100%;
-    display:inline-block;
+  .translate {
+    max-width: calc(100% - 80px);
+    width: 100%;
+    display: inline-block;
     font-weight: bold;
-    padding:8px;
+    padding: 8px;
     border: darken($ui-highlight-color, 3%) 2px solid;
-    border-right:0px;
-    box-sizing:border-box;
-    margin-left:-20px;
-    padding-left:20px;
-    background:darken($ui-highlight-color, 3%);
+    border-right: 0;
+    box-sizing: border-box;
+    margin-left: -20px;
+    padding-left: 20px;
+    background: darken($ui-highlight-color, 3%);
+  }
 }
 
 .status__content__spoiler-link {
-    background:darken($ui-highlight-color, 3%)!important;
-    transition:background 0.2s;
-    color:white;
-    padding:8px;
-    border: darken($ui-highlight-color, 3%) 2px solid;
-    width:120px;
-    border-radius:0;
-    box-sizing:border-box;
-    margin-left:-5px;
-    position:absolute;
-    height:100%;
+  background: darken($ui-highlight-color, 3%) !important;
+  transition: background 0.2s;
+  color: white;
+  padding: 8px;
+  border: darken($ui-highlight-color, 3%) 2px solid;
+  width: 120px;
+  border-radius: 0;
+  box-sizing: border-box;
+  margin-left: -5px;
+  position: absolute;
+  height: 100%;
+
+  &:hover {
+    background: $ui-highlight-color !important;
+    border: $ui-highlight-color 2px solid;
+  }
 }
 
-.status__content__spoiler-link:hover {
-    background: $ui-highlight-color!important;
-    border: $ui-highlight-color 2px solid;
+.muted {
+  .status__content--with-spoiler > p > .translate {
+    border: var(--ui-body-secondary-color) 2px solid;
+    background: var(--ui-body-secondary-color);
+    color: var(--ui-font-off-color);
+  }
+
+  .status__content__spoiler-link {
+    background: var(--ui-body-secondary-color) !important;
+    border: var(--ui-body-secondary-color) 2px solid;
+
+    &:hover {
+      background: $ui-highlight-color !important;
+      border: $ui-highlight-color 2px solid;
+    }
+  }
 }

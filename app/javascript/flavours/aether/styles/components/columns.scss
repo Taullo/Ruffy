@@ -169,8 +169,8 @@ $ui-header-height: 55px;
   font-family: inherit;
   color: $highlight-text-color;
   cursor: pointer;
-  flex: 0 0 auto!important;
-  padding:0!important;
+  flex: 0 0 auto !important;
+  padding: 0 !important;
   font-size: 16px;
   padding-inline-end: 5px;
   z-index: 3;
@@ -181,7 +181,7 @@ $ui-header-height: 55px;
 
   &:last-child {
     padding: 0;
-    padding-inline-end: 15px;;
+    padding-inline-end: 15px;
   }
 }
 
@@ -381,7 +381,7 @@ $ui-header-height: 55px;
   font-size: 16px;
   padding: 0 15px;
   border-bottom: 4px solid;
-  transition: color .2s;
+  transition: color 0.2s;
 
   &:hover {
     color: lighten($darker-text-color, 7%);
@@ -415,39 +415,36 @@ $ui-header-height: 55px;
   justify-content: space-around;
 
   button {
-  background: lighten($ui-base-color, 4%);
-  border: 0;
-  color: $darker-text-color;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0 15px;
-  border-bottom: 4px solid;
-  transition: color .2s;
-
-  &:hover {
-    color: lighten($darker-text-color, 7%);
-  }
-
-  &.active {
-    color: $primary-text-color;
-    border-color: $ui-highlight-color;
-    background: lighten($ui-base-color, 8%);
+    border: 0;
+    color: $darker-text-color;
+    cursor: pointer;
+    border-bottom: 4px solid;
+    transition: color 0.2s;
 
     &:hover {
-      color: $primary-text-color;
-      background: lighten($ui-base-color, 8%);
+      color: lighten($darker-text-color, 7%);
     }
-  }
 
-  //  glitch - added focus ring for keyboard navigation
-  // &:focus {
-  //   text-shadow: 0 0 4px $primary-text-color;
-  // }
+    &.active {
+      color: $primary-text-color;
+      border-color: $ui-highlight-color;
+      background: lighten($ui-base-color, 8%);
 
-  &:disabled {
-    color: $dark-text-color;
-    cursor: default;
-  }
+      &:hover {
+        color: $primary-text-color;
+        background: lighten($ui-base-color, 8%);
+      }
+    }
+
+    //  glitch - added focus ring for keyboard navigation
+    // &:focus {
+    //   text-shadow: 0 0 4px $primary-text-color;
+    // }
+
+    &:disabled {
+      color: $dark-text-color;
+      cursor: default;
+    }
 
     background: transparent;
     text-align: center;
@@ -997,8 +994,8 @@ $ui-header-height: 55px;
   display: flex;
   align-items: center;
   gap: 30px;
-  border-bottom-left-radius:4px;
-  border-bottom-right-radius:4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 
   &__message {
     flex: 1 1 auto;
@@ -1015,5 +1012,21 @@ $ui-header-height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.right_column {
+  .explore__links {
+    max-height: 335px;
+    overflow: hidden;
+  }
+
+  .explore__suggestions {
+    max-height: 1045px;
+    overflow: hidden;
+  }
+
+  .account-card {
+    margin-top: 20px;
   }
 }
