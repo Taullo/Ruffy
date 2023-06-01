@@ -276,10 +276,10 @@ class StatusContent extends React.PureComponent {
       element = element.parentNode;
     }
     if (deltaX + deltaY < 5) {
-      if ((this.props.status.get('spoiler_text').length > 0) && (!this.props.expanded)) {
+      if (((status.get('spoiler_text').length > 0) || (status.get('sensitive'))) && (!this.props.expanded)) {
         this.props.onExpandedToggle();
         return;
-    } else if (e.button === 0 && parseClick) {
+      } else if (e.button === 0 && parseClick) {
         parseClick(e);
       }
 
@@ -342,7 +342,7 @@ class StatusContent extends React.PureComponent {
     if ((status.get('spoiler_text').length > 0) || (status.get('sensitive'))) {
       let mentionsPlaceholder = '';
       if (status.get('spoiler_text').length === 0) {
-          spoilerContent = { __html: 'Unspecified sensitive content' };
+        spoilerContent = { __html: 'Unspecified sensitive content' };
       }
 
       const mentionLinks = status.get('mentions').map(item => (

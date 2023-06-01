@@ -39,14 +39,14 @@
 
 .muted {
   .status__content--with-spoiler > p > .translate {
-    border: var(--ui-body-secondary-color) 2px solid;
-    background: var(--ui-body-secondary-color);
+    border: var(--ui-body-color) 2px solid;
+    background: var(--ui-body-color);
     color: var(--ui-font-off-color);
   }
 
   .status__content__spoiler-link {
     background: var(--ui-body-secondary-color) !important;
-    border: var(--ui-body-secondary-color) 2px solid;
+    border: var(--ui-body-color) 2px solid;
 
     &:hover {
       background: $ui-highlight-color !important;
