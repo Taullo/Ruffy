@@ -4,11 +4,13 @@
     border-radius:var(--ui-border-radius);
     border-bottom:0;
   }
+
   .layout-single-column .ui__header {
     display: flex;
     max-width:1175px;
     margin:0 auto;
   }
+
   .layout-single-column .ui__header__wrapper {
     border-bottom:1px $ui-base-color solid;
     position:fixed;
@@ -16,24 +18,29 @@
     z-index:2;
     background: var(--ui-page-background);
   }
+
   .layout-single-column .columns-area__panels {
     margin-top:60px;
     height: calc(100% - 60px);
     min-height: calc(100vh - 60px);
     transition:color .2s;
   }
+
   .layout-single-column .ui__header__links .icon-button {
     color:$secondary-text-color;
   }
+
   .layout-single-column .ui__header__links .icon-button:hover {
     color:$primary-text-color;
     background:transparent;
   }
+
   .layout-single-column .ui__header__left .column-link {
     font-size:16px!important;
     line-height:1!important;
     font-weight:bold!important;
   }
+
   .layout-single-column .ui__header__links .column-link {
     font-size:22px!important;
     line-height:1!important;
@@ -41,12 +48,15 @@
     padding-right:15px!important;
     overflow:visible;
   }
+
   .layout-single-column .ui__header__links .icon-with-badge__badge {
     margin-top:5px;
   }
+
   .layout-single-column .ui__header__links .button {
     margin-right:15px!important;
   }
+
   .layout-single-column .detailed-status__action-bar {
     border-bottom-right-radius:var(--ui-border-radius);
     border-bottom-left-radius:var(--ui-border-radius);
@@ -133,12 +143,11 @@
     width:100%;
     left:0;
     top:0;
-    background:rgba(0,0,0,.5);
+    background:rgba(0,0,0,50%);
     z-index:1000;
-    display:flex;
     justify-content:center;
     align-items:center;
-    display:none; /*Hidden by default*/
+    display:none; /* Hidden by default */
   }
   
   .compose_popup .compose-form {
@@ -164,7 +173,7 @@
   //    overflow:hidden;
   //  }
 
-  .layout-single-column .column-back-button > span { /*Hide Back Text*/
+  .layout-single-column .column-back-button > span { /* Hide Back Text */
     display:none;
   }
 
@@ -194,10 +203,11 @@
   
 }
 
-@media screen and (min-width: 890px) {  /*$no-gap-breakpoint*/
+@media screen and (min-width: 890px) {  /* $no-gap-breakpoint */
   .layout-single-column .about {
     padding: 0!important;
   }
+
   .layout-single-column .account-scroll {
     max-width: 1175px;
     width: auto;
@@ -208,6 +218,7 @@
     column-gap: 25px;
     align-content: start;
   }
+
   .layout-single-column .scrollable,
   .layout-single-column .home-scroll {
     width: 700px;
@@ -237,9 +248,11 @@
     max-width: 700px;
     width: 100%;
   }
+
   .layout-single-column .columns-area__panels__main {
     max-width: max-content;
   }
+
   .layout-single-colum .tabs-bar__wrapper {
     max-width: 700px!important;
   }
@@ -249,20 +262,25 @@
   .layout-single-column .column {
     max-width: 1175px;
   }
+
   .layout-single-column .account-timeline__right-column {
     max-width: 450px;
   }
+
   .layout-single-column .columns-area__panels__main {
     padding: 0;
   }
+
   .layout-single-column .account-timeline__right-column {
     width: 100%;
     position: absolute;
     right: 0;
   }
+
   .layout-single-column .account-scroll {
     width: 1175px;
   }
+
   .layout-single-column .account-scroll .scrollable-list {
     margin-top: -25px;
   }
@@ -277,26 +295,25 @@
     margin-top:25px;
     padding:20px;
   }
-  
-  .right_column *:nth-child(2) {
-    margin-top:5px;
-  }
 
-  .layout-single-column [data-column=home], .layout-single-column [data-column=local], .layout-single-column [data-column=federated], .layout-single-column [data-column=lists], .layout-single-column .column_explore {
+  .layout-single-column [data-column="home"], .layout-single-column [data-column="local"], .layout-single-column [data-column="federated"], .layout-single-column [data-column="lists"], .layout-single-column .column_explore {
     display: flex;
     flex-direction: row-reverse;
     row-gap: 25px;
     column-gap: 25px;
   }
+
   .layout-single-column .right_column .scrollable {
     width:auto;
   }
+
   .navbutton {
     text-decoration:none;
     display:block;
     width: 110px;
     margin:0 auto;
   }
+
   .navbutton div, .navbutton div {
     text-align:center;
     text-decoration:none;
@@ -311,18 +328,19 @@
     border:2px var(--ui-font-secondary-color) solid;
     margin-top:20px;
   }
+
   .navbutton div:hover {
     background: var(--ui-highlight-color);
     border-color:var(--ui-highlight-color);
     color:var(--ui-font-color);
   }
+
   .right-column {
     display:none;
   }
 }
 
 @media screen and (min-width: 1175px) {
-
   .layout-single-column .account-gallery__item {
     width: 228px;
     height: 228px;
@@ -350,4 +368,8 @@
   min-height: 10%;
   display: flex;
   align-content: center;
+}
+
+.right_column .account-card {
+  margin-top:20px;
 }
