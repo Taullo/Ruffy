@@ -243,9 +243,8 @@
 .account__fields {
   max-width: 100vw;
   padding: 0;
-  margin: 15px -15px -15px;
   border: 0;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 20px;
   margin:0;
   border-radius:var(--ui-border-radius);
@@ -260,12 +259,9 @@
   dt,
   dd {
     box-sizing: border-box;
-    padding: 14px;
+    padding: 14px 8px;
     text-align: center;
-    max-height: 48px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    word-break: break-word;
   }
 
   dt {
@@ -389,6 +385,6 @@
   }
 }
 
-.card__img > img[src="/headers/original/missing.png"] { /*Fix height on profiles with no banner. Kinda hacky*/
+.card__img > img[src="/headers/original/missing.png"] { /* Fix height on profiles with no banner. Kinda hacky */
     height:130px;
 }
