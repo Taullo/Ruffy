@@ -198,13 +198,13 @@ class Status extends ImmutablePureComponent {
       updated = true;
     }
 
-   // if (nextProps.settings.getIn(['media', 'reveal_behind_cw']) !== prevState.revealBehindCW) {
-   //   update.revealBehindCW = nextProps.settings.getIn(['media', 'reveal_behind_cw']);
-   //   if (update.revealBehindCW) {
-   //     update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
-   //   }
-   //   updated = true;
-   // }
+    // if (nextProps.settings.getIn(['media', 'reveal_behind_cw']) !== prevState.revealBehindCW) {
+    //   update.revealBehindCW = nextProps.settings.getIn(['media', 'reveal_behind_cw']);
+    //   if (update.revealBehindCW) {
+    //     update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
+    //   }
+    //   updated = true;
+    // }
 
     return updated ? update : null;
   }
@@ -362,12 +362,7 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleToggleMediaVisibility = () => {
-    this.setState({ showMedia: !this.state.showMedia });
-    this.setExpansion(!this.state.isExpanded);
-  };
-
-  handleExpandedToggle = () => {
+  handleToggleVisibility = () => {
     this.setState({ showMedia: !this.state.showMedia });
     this.setExpansion(!this.state.isExpanded);
   };
@@ -446,6 +441,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyCollapse = e => {
+    e.preventDefault();
     if (!this.props.settings.getIn(['collapsed', 'enabled']))
       return;
 
@@ -453,7 +449,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyToggleSensitive = () => {
-    this.handleToggleMediaVisibility();
+    this.handleToggleVisibility();
   };
 
   handleUnfilterClick = e => {
@@ -510,7 +506,7 @@ class Status extends ImmutablePureComponent {
       ...other
     } = this.props;
     const { isCollapsed } = this.state;
-    let background = null;
+    // let background = null;
     let attachments = null;
 
     //  Depending on user settings, some media are considered as parts of the
@@ -543,7 +539,7 @@ class Status extends ImmutablePureComponent {
       openProfile: this.handleHotkeyOpenProfile,
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
-      toggleSpoiler: this.handleExpandedToggle,
+      toggleSpoiler: this.handleToggleVisibility,
       bookmark: this.handleHotkeyBookmark,
       toggleCollapse: this.handleHotkeyCollapse,
       toggleSensitive: this.handleHotkeyToggleSensitive,
@@ -624,7 +620,7 @@ class Status extends ImmutablePureComponent {
                 sensitive={status.get('sensitive')}
                 blurhash={attachment.get('blurhash')}
                 visible={this.state.showMedia}
-                onToggleVisibility={this.handleToggleMediaVisibility}
+                onToggleVisibility={this.handleToggleVisibility}
               />
             )}
           </Bundle>,
@@ -652,7 +648,7 @@ class Status extends ImmutablePureComponent {
               cacheWidth={this.props.cacheMediaWidth}
               deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
               visible={this.state.showMedia}
-              onToggleVisibility={this.handleToggleMediaVisibility}
+              onToggleVisibility={this.handleToggleVisibility}
             />)}
           </Bundle>,
         );
@@ -672,7 +668,7 @@ class Status extends ImmutablePureComponent {
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
                 visible={this.state.showMedia}
-                onToggleVisibility={this.handleToggleMediaVisibility}
+                onToggleVisibility={this.handleToggleVisibility}
               />
             )}
           </Bundle>,
@@ -780,7 +776,7 @@ class Status extends ImmutablePureComponent {
             extraMedia={extraMedia}
             mediaIcons={contentMediaIcons}
             expanded={isExpanded}
-            onExpandedToggle={this.handleExpandedToggle}
+            onExpandedToggle={this.handleToggleVisibility}
             onTranslate={this.handleTranslate}
             parseClick={parseClick}
             disabled={!router}

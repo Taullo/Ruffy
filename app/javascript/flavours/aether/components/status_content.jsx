@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import Permalink from './permalink';
+// import Permalink from './permalink';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import Icon from 'flavours/aether/components/icon';
@@ -345,16 +345,16 @@ class StatusContent extends React.PureComponent {
         spoilerContent = { __html: 'Unspecified sensitive content' };
       }
 
-      const mentionLinks = status.get('mentions').map(item => (
-        <Permalink
-          to={`/@${item.get('acct')}`}
-          href={item.get('url')}
-          key={item.get('id')}
-          className='mention'
-        >
-          @<span>{item.get('username')}</span>
-        </Permalink>
-      )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
+      //  const mentionLinks = status.get('mentions').map(item => (
+      //    <Permalink
+      //      to={`/@${item.get('acct')}`}
+      //      href={item.get('url')}
+      //      key={item.get('id')}
+      //      className='mention'
+      //    >
+      //      @<span>{item.get('username')}</span>
+      //    </Permalink>
+      //  )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
       let toggleText = null;
       if (hidden) {
@@ -388,9 +388,9 @@ class StatusContent extends React.PureComponent {
         );
       }
 
-      if (hidden) {
-        mentionsPlaceholder = <div>{mentionLinks}</div>;
-      }
+      //  if (hidden) {
+      //    mentionsPlaceholder = <div>{mentionLinks}</div>;
+      //  }
 
       return (
         <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
@@ -404,7 +404,7 @@ class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div className={`status__content__spoiler spoiler_hidden ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
+          <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : 'status__content__spoiler--hidden'}`}>
             <div
               ref={this.setContentsRef}
               key={`contents-${tagLinks}`}
