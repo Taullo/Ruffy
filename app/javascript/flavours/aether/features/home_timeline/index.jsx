@@ -8,7 +8,7 @@ import ColumnHeader from 'flavours/aether/components/column_header';
 import { addColumn, removeColumn, moveColumn } from 'flavours/aether/actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/aether/actions/announcements';
 import AnnouncementsContainer from 'flavours/aether/features/getting_started/containers/announcements_container';
 import classNames from 'classnames';
@@ -16,11 +16,8 @@ import IconWithBadge from 'flavours/aether/components/icon_with_badge';
 import NotSignedInIndicator from 'flavours/aether/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
 
-import { NavLink, Switch, Route } from 'react-router-dom';
-import { showTrends } from 'flavours/aether/initial_state';
 
 import Tags from 'flavours/aether/features/explore/tags';
-import Statuses from 'flavours/aether/features/explore/statuses';
 import Suggestions from 'flavours/aether/features/explore/suggestions';
 
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
@@ -165,49 +162,53 @@ class HomeTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <div className='right_column'>
-        
-          <div className='explore__search-header'>
-            <SearchContainer openInRoute />
+
+          <div className='fixed_wrapper'>
+
+            <div className='explore__search-header'>
+              <SearchContainer openInRoute />
+            </div>
+
+            {!multiColumn && signedIn && (
+              <ListPanel />
+            )}
+
+            {!multiColumn && (
+              <div className='explore__tags-header'>
+                <Tags openInRoute />
+                <div className='right-column-show-more'>
+                  <NavLink className='navbutton' exact to='/explore/tags'>
+                    <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
+                  </NavLink>
+                </div>
+              </div>
+            )}
+
+            {!multiColumn && signedIn && (
+              <div className='explore__suggested-header'>
+                <Suggestions openInRoute />
+                <div className='right-column-show-more'>
+                  <NavLink className='navbutton' exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
+                  </NavLink>
+                </div>
+              </div>
+            )}
           </div>
 
-          {!multiColumn && signedIn && (
-            <ListPanel />
-          )}
-
-          {!multiColumn && (
-          <div className='explore__tags-header'>
-            <Tags openInRoute />
-            <div className='right-column-show-more'>
-              <NavLink className='navbutton' exact to='/explore/tags'>
-                <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-              </NavLink>
-            </div>
-          </div>
-          )}
-        
-        {!multiColumn && signedIn && (
-          <div className='explore__suggested-header'>
-            <Suggestions openInRoute />
-            <div className='right-column-show-more'>
-              <NavLink className='navbutton' exact to='/explore/suggestions'>
-                <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-              </NavLink>
-            </div>
-          </div>
-        )}
         </div>
 
         {signedIn ? (
-        <div className='scrollable home-scroll'>
-          <StatusListContainer
-            trackScroll={!pinned}
-            scrollKey={`home_timeline-${columnId}`}
-            onLoadMore={this.handleLoadMore}
-            timelineId='home'
-            emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
-            bindToDocument={!multiColumn}
-            regex={this.props.regex}
-          />
+          <div className='scrollable home-scroll'>
+            <StatusListContainer
+              trackScroll={!pinned}
+              scrollKey={`home_timeline-${columnId}`}
+              onLoadMore={this.handleLoadMore}
+              timelineId='home'
+              emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
+              bindToDocument={!multiColumn}
+              regex={this.props.regex}
+            />
           </div>
         ) : <NotSignedInIndicator />}
 

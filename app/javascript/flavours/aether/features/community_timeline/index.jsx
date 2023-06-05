@@ -14,7 +14,6 @@ import { domain } from 'flavours/aether/initial_state';
 import DismissableBanner from 'flavours/aether/components/dismissable_banner';
 
 import { NavLink, Switch, Route } from 'react-router-dom';
-import { showTrends } from 'flavours/aether/initial_state';
 
 import Tags from 'flavours/aether/features/explore/tags';
 import Statuses from 'flavours/aether/features/explore/statuses';
@@ -146,76 +145,78 @@ class CommunityTimeline extends React.PureComponent {
         >
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
-        
+
         <div className='right_column'>
-          <div className='explore__search-header'>
-            <SearchContainer openInRoute />
-          </div>
-        
-          <div className='explore__tags-header'>
-            <Tags openInRoute />
-            <div className='right-column-show-more'>
-              <NavLink className='navbutton' exact to='/explore/tags'>
-                <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-              </NavLink>
+          <div className='fixed_wrapper'>
+            <div className='explore__search-header'>
+              <SearchContainer openInRoute />
             </div>
-          </div>
-        
-        {!multiColumn &&signedIn && (
-          <div className='explore__suggested-header'>
-            <Suggestions openInRoute />
-            <div className='right-column-show-more'>
-              <NavLink className='navbutton' exact to='/explore/suggestions'>
-                <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-              </NavLink>
+
+            <div className='explore__tags-header'>
+              <Tags openInRoute />
+              <div className='right-column-show-more'>
+                <NavLink className='navbutton' exact to='/explore/tags'>
+                  <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
+                </NavLink>
+              </div>
             </div>
+
+            {!multiColumn &&signedIn && (
+              <div className='explore__suggested-header'>
+                <Suggestions openInRoute />
+                <div className='right-column-show-more'>
+                  <NavLink className='navbutton' exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
+                  </NavLink>
+                </div>
+              </div>
+            )}
           </div>
-        )}
         </div>
 
         <div className='scrollable community-scroll'>
-        
-            <>
-              <div className='account__section-headline'>
-                <NavLink exact to='/explore/local'>
-                  <FormattedMessage tagName='div' id='explore.local' defaultMessage='Local' />
-                </NavLink>
-                <NavLink exact to='/explore/federated'>
-                  <FormattedMessage tagName='div' id='explore.federated' defaultMessage='Fediverse' />
-                </NavLink>
-                <NavLink exact to='/explore/posts'>
-                  <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
-                </NavLink>
-                {multiColumn && signedIn && (
-                  <NavLink exact to='/explore/suggestions'>
-                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='For you' />
-                  </NavLink>
-                )}
-              </div>
 
-              <Switch>
-                <Route path='/explore/tags' component={Tags} />
-                <Route path='/explore/suggestions' component={Suggestions} />
-                <Route exact path='/explore/posts'>
-                  <Statuses multiColumn={multiColumn} />
-                </Route>
-              </Switch>
-              
-        <DismissableBanner id='community_timeline'>
-          <FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} />
-        </DismissableBanner>
+          <>
+            <div className='account__section-headline'>
+              <NavLink exact to='/explore/local'>
+                <FormattedMessage tagName='div' id='explore.local' defaultMessage='Local' />
+              </NavLink>
+              <NavLink exact to='/explore/federated'>
+                <FormattedMessage tagName='div' id='explore.federated' defaultMessage='Fediverse' />
+              </NavLink>
+              <NavLink exact to='/explore/posts'>
+                <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
+              </NavLink>
+              {multiColumn && signedIn && (
+                <NavLink exact to='/explore/suggestions'>
+                  <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='For you' />
+                </NavLink>
+              )}
+            </div>
 
-            </>
-        
-        <StatusListContainer
-          trackScroll={!pinned}
-          scrollKey={`community_timeline-${columnId}`}
-          timelineId={`community${onlyMedia ? ':media' : ''}`}
-          onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
-          bindToDocument={!multiColumn}
-          regex={this.props.regex}
-        />
+            <Switch>
+              <Route path='/explore/tags' component={Tags} />
+              <Route path='/explore/suggestions' component={Suggestions} />
+              <Route exact path='/explore/posts'>
+                <Statuses multiColumn={multiColumn} />
+              </Route>
+            </Switch>
+
+            <DismissableBanner id='community_timeline'>
+              <FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} />
+            </DismissableBanner>
+
+          </>
+
+          <StatusListContainer
+            trackScroll={!pinned}
+            scrollKey={`community_timeline-${columnId}`}
+            timelineId={`community${onlyMedia ? ':media' : ''}`}
+            onLoadMore={this.handleLoadMore}
+            emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+            bindToDocument={!multiColumn}
+            regex={this.props.regex}
+          />
         </div>
 
         <Helmet>

@@ -193,8 +193,8 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      row-gap: 25px;
-      column-gap: 25px;
+      row-gap: 15px;
+      column-gap: 15px;
       align-content: start;
     }
 
@@ -245,7 +245,7 @@
     }
 
     .account-timeline__right-column {
-      max-width: 450px;
+      max-width: 460px;
     }
 
     .columns-area__panels__main {
@@ -260,14 +260,36 @@
 
     .account-scroll {
       width: 1175px;
-    }
 
-    .account-scroll .scrollable-list {
-      margin-top: -25px;
+      .scrollable-list {
+        margin-top: -5px;
+      }
     }
 
     .right_column {
       width: 450px;
+
+      .fixed_wrapper {
+        position: fixed;
+        width: 450px;
+        margin-top: -55px;
+      }
+
+      .explore__tags-header {
+        margin-top: 0;
+      }
+
+      .scrollable {
+        width: auto;
+      }
+
+      .account-card {
+        padding-bottom: 15px;
+      }
+
+      .account-card__actions {
+        display: none;
+      }
     }
 
     [data-column='home'],
@@ -277,12 +299,8 @@
     .column_explore {
       display: flex;
       flex-direction: row-reverse;
-      row-gap: 25px;
-      column-gap: 25px;
-    }
-
-    .right_column .scrollable {
-      width: auto;
+      row-gap: 15px;
+      column-gap: 15px;
     }
   }
 
@@ -291,8 +309,12 @@
   .explore__tags-header {
     background-color: var(--ui-body-secondary-color);
     border-radius: var(--ui-border-radius);
-    margin-top: 25px;
-    padding: 20px;
+    margin-top: 15px;
+    padding: 15px;
+  }
+
+  .explore__suggested-header {
+    padding-top: 0;
   }
 
   .navbutton {
@@ -348,8 +370,8 @@
     .about {
       display: flex;
       flex-direction: row;
-      row-gap: 25px;
-      column-gap: 25px;
+      row-gap: 15px;
+      column-gap: 15px;
       width: 100%;
     }
   }

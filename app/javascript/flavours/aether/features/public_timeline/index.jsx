@@ -13,7 +13,6 @@ import { Helmet } from 'react-helmet';
 import DismissableBanner from 'flavours/aether/components/dismissable_banner';
 
 import { NavLink, Switch, Route } from 'react-router-dom';
-import { showTrends } from 'flavours/aether/initial_state';
 
 import Tags from 'flavours/aether/features/explore/tags';
 import Statuses from 'flavours/aether/features/explore/statuses';
@@ -152,74 +151,76 @@ class PublicTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <div className='right_column'>
-          <div className='explore__search-header'>
-            <SearchContainer openInRoute />
-          </div>
-        
-          <div className='explore__tags-header'>
-            <Tags openInRoute />
-            <div className='right-column-show-more'>
-              <NavLink className='navbutton' exact to='/explore/tags'>
-                <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-              </NavLink>
+          <div className='fixed_wrapper'>
+            <div className='explore__search-header'>
+              <SearchContainer openInRoute />
             </div>
-          </div>
-        
-        {!multiColumn &&signedIn && (
-          <div className='explore__suggested-header'>
-            <Suggestions openInRoute />
-            <div className='right-column-show-more'>
-              <NavLink className='navbutton' exact to='/explore/suggestions'>
-                <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-              </NavLink>
+
+            <div className='explore__tags-header'>
+              <Tags openInRoute />
+              <div className='right-column-show-more'>
+                <NavLink className='navbutton' exact to='/explore/tags'>
+                  <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
+                </NavLink>
+              </div>
             </div>
+
+            {!multiColumn &&signedIn && (
+              <div className='explore__suggested-header'>
+                <Suggestions openInRoute />
+                <div className='right-column-show-more'>
+                  <NavLink className='navbutton' exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
+                  </NavLink>
+                </div>
+              </div>
+            )}
           </div>
-        )}
         </div>
 
         <div className='scrollable public-scroll'>
-        
-            <>
-              <div className='account__section-headline'>
-                <NavLink exact to='/explore/local'>
-                  <FormattedMessage tagName='div' id='explore.local' defaultMessage='Local Timeline' />
-                </NavLink>
-                <NavLink exact to='/explore/federated'>
-                  <FormattedMessage tagName='div' id='explore.federated' defaultMessage='Federated Timeline' />
-                </NavLink>
-                <NavLink exact to='/explore/posts'>
-                  <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Popular Posts' />
-                </NavLink>
-                {multiColumn && signedIn && (
-                  <NavLink exact to='/explore/suggestions'>
-                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='Suggested' />
-                  </NavLink>
-                )}
-              </div>
 
-              <Switch>
-                <Route path='/explore/tags' component={Tags} />
-                <Route path='/explore/suggestions' component={Suggestions} />
-                <Route exact path='/explore/posts'>
-                  <Statuses multiColumn={multiColumn} />
-                </Route>
-              </Switch>
-              
-        <DismissableBanner id='public_timeline'>
-          <FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on this and other servers of the decentralized network that this server knows about.' />
-        </DismissableBanner>
+          <>
+            <div className='account__section-headline'>
+              <NavLink exact to='/explore/local'>
+                <FormattedMessage tagName='div' id='explore.local' defaultMessage='Local Timeline' />
+              </NavLink>
+              <NavLink exact to='/explore/federated'>
+                <FormattedMessage tagName='div' id='explore.federated' defaultMessage='Federated Timeline' />
+              </NavLink>
+              <NavLink exact to='/explore/posts'>
+                <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Popular Posts' />
+              </NavLink>
+              {multiColumn && signedIn && (
+                <NavLink exact to='/explore/suggestions'>
+                  <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='Suggested' />
+                </NavLink>
+              )}
+            </div>
 
-            </>
+            <Switch>
+              <Route path='/explore/tags' component={Tags} />
+              <Route path='/explore/suggestions' component={Suggestions} />
+              <Route exact path='/explore/posts'>
+                <Statuses multiColumn={multiColumn} />
+              </Route>
+            </Switch>
 
-        <StatusListContainer
-          timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}
-          onLoadMore={this.handleLoadMore}
-          trackScroll={!pinned}
-          scrollKey={`public_timeline-${columnId}`}
-          emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
-          bindToDocument={!multiColumn}
-          regex={this.props.regex}
-        />
+            <DismissableBanner id='public_timeline'>
+              <FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on this and other servers of the decentralized network that this server knows about.' />
+            </DismissableBanner>
+
+          </>
+
+          <StatusListContainer
+            timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}
+            onLoadMore={this.handleLoadMore}
+            trackScroll={!pinned}
+            scrollKey={`public_timeline-${columnId}`}
+            emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
+            bindToDocument={!multiColumn}
+            regex={this.props.regex}
+          />
         </div>
 
         <Helmet>
