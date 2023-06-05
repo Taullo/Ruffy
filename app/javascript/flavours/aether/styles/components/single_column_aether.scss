@@ -284,11 +284,19 @@
       }
 
       .account-card {
-        padding-bottom: 15px;
+        padding-bottom: 5px;
       }
 
       .account-card__actions {
         display: none;
+      }
+
+      .account-card__header {
+        height:10px;
+
+        img {
+          display:none;
+        }
       }
     }
 
