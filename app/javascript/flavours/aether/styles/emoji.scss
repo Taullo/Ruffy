@@ -1,3 +1,110 @@
+.emojione {
+  font-size: inherit;
+  vertical-align: middle;
+  object-fit: contain;
+  margin: -0.2ex 0.15em 0.2ex;
+  width: 22px;
+  height: 22px;
+
+  img {
+    width: auto;
+  }
+}
+
+.emoji-picker-dropdown__menu {
+  background: var(--ui-body-color);
+  box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
+  border-radius: 4px;
+  margin-top: 5px;
+  z-index: 2;
+  position: absolute;
+
+  .emoji-mart-scroll {
+    transition: opacity 200ms ease;
+  }
+
+  &.selecting .emoji-mart-scroll {
+    opacity: 0.5;
+  }
+}
+
+.emoji-picker-dropdown__modifiers {
+  position: absolute;
+  top: 60px;
+  inset-inline-end: 11px;
+  cursor: pointer;
+}
+
+.emoji-picker-dropdown__modifiers__menu {
+  position: absolute;
+  z-index: 4;
+  top: -4px;
+  inset-inline-start: -8px;
+  background: var(--ui-body-secondary-color);
+  border-radius: 4px;
+  box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
+  overflow: hidden;
+
+  button {
+    display: block;
+    cursor: pointer;
+    border: 0;
+    padding: 4px 8px;
+    background: transparent;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: var(--ui-font-color);
+    }
+  }
+
+  .emoji-mart-emoji {
+    height: 44px;
+  }
+}
+
+.emoji-mart-emoji {
+  span {
+    background-repeat: no-repeat;
+  }
+}
+
+.emoji-button {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  padding-inline-start: 2px;
+  padding-inline-end: 5px;
+  outline: 0;
+  cursor: pointer;
+
+  &:active,
+  &:focus {
+    outline: 0 !important;
+  }
+
+  img {
+    filter: grayscale(100%);
+    opacity: 0.8;
+    display: block;
+    margin: 0;
+    width: 22px;
+    height: 22px;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    img {
+      opacity: 1;
+      filter: none;
+    }
+  }
+}
+
+/* Emoji Picker */
+
 .emoji-mart {
   &,
   * {
@@ -15,13 +122,13 @@
 }
 
 .emoji-mart-bar {
-  border: 0 solid darken($ui-secondary-color, 8%);
+  border: 0 solid var(--ui-body-secondary-color);
 
   &:first-child {
     border-bottom-width: 1px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background: $ui-secondary-color;
+    background: var(--ui-body-secondary-color);
   }
 
   &:last-child {
@@ -36,7 +143,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 6px;
-  color: $lighter-text-color;
+  color: var(--ui-font-color);
   line-height: 0;
 }
 
@@ -50,17 +157,18 @@
   cursor: pointer;
   background: transparent;
   border: 0;
+  color: var(--ui-font-color);
 
   &:hover {
-    color: darken($lighter-text-color, 4%);
+    color: var(--ui-font-secondary-color);
   }
 }
 
 .emoji-mart-anchor-selected {
-  color: $highlight-text-color;
+  color: var(--ui-highlight-color);
 
   &:hover {
-    color: darken($highlight-text-color, 4%);
+    color: var(--ui-highlight-color);
   }
 
   .emoji-mart-anchor-bar {
@@ -74,7 +182,7 @@
   inset-inline-start: 0;
   width: 100%;
   height: 3px;
-  background-color: darken($ui-highlight-color, 3%);
+  background-color: var(--ui-highlight-color);
 }
 
 .emoji-mart-anchors {
@@ -92,10 +200,10 @@
 
 .emoji-mart-scroll {
   overflow-y: scroll;
-  height: 270px;
+  height: 340px;
   max-height: 35vh;
   padding: 0 6px 6px;
-  background: $simple-background-color;
+  background: var(--ui-body-color);
   will-change: transform;
 
   &::-webkit-scrollbar-track:hover,
@@ -107,7 +215,7 @@
 .emoji-mart-search {
   padding: 10px;
   padding-inline-end: 45px;
-  background: $simple-background-color;
+  background: var(--ui-body-color);
   position: relative;
 
   input {
@@ -118,9 +226,9 @@
     font-family: inherit;
     display: block;
     width: 100%;
-    background: rgba($ui-secondary-color, 0.3);
-    color: $inverted-text-color;
-    border: 1px solid $ui-secondary-color;
+    background: var(--ui-page-background);
+    color: var(--ui-font-secondary-color);
+    border: 1px solid var(--ui-page-background);
     border-radius: 4px;
 
     &::-moz-focus-inner {
@@ -155,11 +263,14 @@
   &:disabled {
     cursor: default;
     pointer-events: none;
-    opacity: 0.3;
+
+    svg {
+      fill: var(--ui-font-secondary-color);
+    }
   }
 
   svg {
-    fill: $action-button-color;
+    fill: var(--ui-font-color);
   }
 }
 
@@ -180,7 +291,7 @@
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba($ui-secondary-color, 0.7);
+    background-color: var(--ui-body-secondary-color);
     border-radius: 100%;
   }
 }
@@ -191,13 +302,15 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  color: var(--ui-font-color);
+  font-size: 0.9rem;
 
   span {
     display: block;
     width: 100%;
     font-weight: 500;
     padding: 5px 6px;
-    background: $simple-background-color;
+    background: var(--ui-body-color);
   }
 }
 
@@ -234,14 +347,14 @@
   font-size: 0;
 
   span {
-    width: 22px;
-    height: 22px;
+    width: 40px;
+    height: 40px;
   }
 }
 
 .emoji-mart-no-results {
   font-size: 14px;
-  color: $light-text-color;
+  color: var(--ui-font-color);
   text-align: center;
   padding: 5px 6px;
   padding-top: 70px;

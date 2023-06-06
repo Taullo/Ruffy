@@ -32,20 +32,18 @@
 .spoiler-input {
   height: 0;
   transform-origin: bottom;
-  opacity: 0.0;
+  opacity: 0;
   margin-top: 11px;
   margin-bottom: 11px;
 
   &.spoiler-input--visible {
     height: 36px;
-    opacity: 1.0;
+    opacity: 1;
   }
 
   input {
     display: block;
-    box-sizing: border-box;
     margin: 0;
-    border: 0;
     border-radius: 4px;
     padding: 10px;
     width: 100%;
@@ -55,14 +53,14 @@
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
-    font-weight:bold;
-    box-sizing:border-box;
-    border:transparent 4px solid;
-    transition:border-color 0.2s;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: transparent 4px solid;
+    transition: border-color 0.2s;
 
     &::placeholder {
       color: $dark-text-color;
-      font-weight:bold;
+      font-weight: bold;
     }
 
     &:focus {
@@ -139,7 +137,8 @@
   border-radius: 4px;
   padding: 10px;
   background: $ui-primary-color;
-  min-height: 23px;max-height:20vh;
+  min-height: 23px;
+  max-height: 20vh;
   overflow-y: auto;
   flex: 0 2 auto;
 }
@@ -199,8 +198,8 @@
   }
 
   .emojione {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     margin: -5px 0 0;
   }
 }
@@ -690,35 +689,36 @@
 
 .compose-form__bottom-buttons .icon-button {
   background: var(--ui-highlight-color);
-  color:white;
-  padding:0.5rem;
-  font-size:1.2rem!important;
-  width:auto!important;
-  line-height:normal!important;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1.2rem !important;
+  width: auto !important;
+  line-height: normal !important;
 }
 
 .compose-form__bottom-buttons {
-  display:flex;
-  column-gap:10px;
-  justify-content:flex-end;
-  margin-top:20px;
+  display: flex;
+  column-gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 
 .compose-form__publish button {
-  font-size:1.1rem;
-  padding: 0.5rem 0.8rem!important;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.8rem !important;
 }
 
 @media screen and (max-width: $no-gap-breakpoint) {
   .compose-form__bottom-buttons .icon-button {
-     font-size:1.6rem!important;
+    font-size: 1.6rem !important;
   }
-  .compose-form__bottom-buttons {
-    column-gap:10vw;
-  }
-  .compose-form__publish button {
-    font-size:1.3rem;
-    padding: 0.78rem 2rem !important;
 
+  .compose-form__bottom-buttons {
+    column-gap: 10vw;
+  }
+
+  .compose-form__publish button {
+    font-size: 1.3rem;
+    padding: 0.78rem 2rem !important;
   }
 }

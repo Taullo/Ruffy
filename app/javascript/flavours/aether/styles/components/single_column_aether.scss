@@ -292,10 +292,10 @@
       }
 
       .account-card__header {
-        height:10px;
+        height: 10px;
 
         img {
-          display:none;
+          display: none;
         }
       }
     }
@@ -328,7 +328,7 @@
   .navbutton {
     text-decoration: none;
     display: block;
-    width: 110px;
+    width: 80px;
     margin: 0 auto;
   }
 
@@ -338,8 +338,8 @@
     text-decoration: none;
     color: var(--ui-font-secondary-color);
     background: var(--ui-body-secondary-color);
-    font-size: 1rem;
-    padding: 0.6rem;
+    font-size: 0.9rem;
+    padding: 0.3rem;
     font-weight: 800;
     margin: 0 auto;
     border-radius: 100px;
