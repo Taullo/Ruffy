@@ -65,8 +65,8 @@
     width: 20px;
     height: 20px;
     margin: -3px 0 0;
-    transition:transform .2s, filter .2s;
-    
+    transition: transform 0.2s, filter 0.2s;
+
     &:hover {
       transform: scale(2);
       filter: drop-shadow(0 0 3px var(--ui-shadow-color));
@@ -114,11 +114,11 @@
 
   .status__content__spoiler {
     display: block;
-    font-family:mastodon-flow-block, serif;
+    font-family: mastodon-flow-block, serif;
     line-height: 1.1;
 
     &.status__content__spoiler--visible {
-      font-family:inherit;
+      font-family: inherit;
       display: block;
       line-height: inherit;
     }
@@ -145,7 +145,7 @@
 }
 
 .spoiler_hidden {
-  user-select:none;
+  user-select: none;
 }
 
 .status__content__edited-label {
@@ -349,7 +349,7 @@
       &::after {
         content: '';
         position: absolute;
-        height:40px;
+        height: 40px;
         bottom: 0;
         inset-inline-start: 0;
         inset-inline-end: 0;
@@ -365,8 +365,8 @@
       }
 
       div {
-        max-height:240px;
-        overflow:hidden;
+        max-height: 240px;
+        overflow: hidden;
       }
     }
 
@@ -426,6 +426,7 @@
 .status__info__account .status__display-name {
   display: block;
   max-width: 100%;
+  margin-top: -2px;
 }
 
 .status__info {
@@ -448,7 +449,7 @@
   align-items: center;
   height: 1em;
   color: $action-button-color;
-  font-size:0.9rem;
+  font-size: 0.9rem;
 
   .status__media-icon,
   .status__visibility-icon,
@@ -457,9 +458,9 @@
     padding-inline-start: 2px;
     padding-inline-end: 2px;
   }
-  
+
   .status__collapse-button {
-    margin-right:4px;
+    margin-right: 4px;
   }
 
   .status__collapse-button.active > .fa-angle-double-up {
@@ -530,6 +531,12 @@
   font-size: 14px;
   position: relative;
 
+  .status__display-name .emojione {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+  }
+
   .status__display-name strong {
     color: $dark-text-color;
   }
@@ -546,8 +553,8 @@
   align-items: center;
   display: flex;
   gap: 18px;
-  margin-top: 16px!important;
-  padding:0 20px;
+  margin-top: 16px !important;
+  padding: 0 20px;
 }
 
 .status__action-bar-button {
@@ -608,10 +615,10 @@
   }
 
   .status__content__spoiler {
-    cursor:pointer;
+    cursor: pointer;
 
     &.status__content__spoiler--visible {
-      cursor:initial;
+      cursor: initial;
     }
   }
 }
@@ -619,8 +626,8 @@
 .detailed-status__meta {
   margin-top: 15px;
   color: $dark-text-color;
-  font-size: .9rem;
-  line-height: .9rem;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
 }
 
 .detailed-status__action-bar {

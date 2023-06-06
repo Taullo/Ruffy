@@ -19,7 +19,8 @@
   }
 
   &__img {
-    max-height: 540px;overflow:hidden;
+    max-height: 540px;
+    overflow: hidden;
     position: relative;
     background: darken($ui-base-color, 12%);
     border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
@@ -75,6 +76,7 @@
     .display-name {
       margin-inline-start: 15px;
       text-align: start;
+      padding-top: 2px;
 
       i[data-hidden] {
         display: none;
@@ -246,9 +248,9 @@
   border: 0;
   font-size: 0.95rem;
   line-height: 20px;
-  margin:0;
-  border-radius:var(--ui-border-radius);
-  overflow:hidden;
+  margin: 0;
+  border-radius: var(--ui-border-radius);
+  overflow: hidden;
   background: var(--ui-body-color);
 
   dl {
@@ -385,6 +387,7 @@
   }
 }
 
-.card__img > img[src="/headers/original/missing.png"] { /* Fix height on profiles with no banner. Kinda hacky */
-    height:130px;
+.card__img > img[src='/headers/original/missing.png'] {
+  /* Fix height on profiles with no banner. Kinda hacky */
+  height: 130px;
 }
