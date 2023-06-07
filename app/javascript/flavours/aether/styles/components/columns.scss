@@ -1016,19 +1016,41 @@ $ui-header-height: 55px;
 }
 
 .right_column {
-  .explore__links {
-    max-height: 335px;
-    overflow: hidden;
+  .account-card:nth-child(n+4) {
+    display:none;
   }
 
-  .explore__suggestions {
-    max-height: 462px;
-    overflow: hidden;
+  .trends__item:nth-child(n+6) {
+    display:none;
   }
 
   .account-card {
     margin-top: 15px;
   }
+}
+
+@media screen and (max-height: 60rem) {
+.right_column {
+  .explore__suggested-header {
+    display:none;
+  }
+
+  .trends__item:nth-child(n+4) {
+    display:none;
+  }
+}
+}
+
+@media screen and (max-height: 70rem) {
+.right_column {
+  .account-card:nth-child(n+4) {
+    display:none;
+  }
+
+  .trends__item:nth-child(n+4) {
+    display:none;
+  }
+}
 }
 
 .ui__header__left {
