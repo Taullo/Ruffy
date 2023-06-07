@@ -38,7 +38,7 @@
 }
 
 .primary {
-  min-width:88px;
+  min-width: 88px;
 }
 
 .button {
@@ -732,10 +732,10 @@ body > [data-popper-placement] {
   a,
   button {
     padding: 8px 14px;
-    background:var(--ui-body-color);
-    
+    background: var(--ui-body-color);
+
     &:hover {
-       background:var(--ui-hightlight-color);
+      background: var(--ui-hightlight-color);
     }
   }
 }
@@ -982,8 +982,8 @@ body > [data-popper-placement] {
 }
 
 .scrollable-list--flex {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .scrollable.fullscreen {
@@ -1275,15 +1275,14 @@ button.icon-button.active i.fa-retweet {
   font-size: inherit;
   text-align: center;
   line-height: inherit;
-  margin: 0;
   padding: 15px;
   box-sizing: border-box;
   clear: both;
   text-decoration: none;
   background: $ui-base-color;
-  margin:0 auto;
-  border-radius:100px;
-  margin-top:8px;
+  margin: 0 auto;
+  border-radius: 100px;
+  margin-top: 8px;
 
   &:hover {
     background: lighten($ui-base-color, 2%);
@@ -1342,7 +1341,6 @@ button.icon-button.active i.fa-retweet {
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
-
   display: flex;
 
   .wrappy {
@@ -1529,8 +1527,8 @@ button.icon-button.active i.fa-retweet {
       color: $primary-text-color;
       font-weight: 500;
       font-size: 14px;
-      font-family: "mastodon-font-sans-serif", sans-serif;
-      transition:background 0.2s;
+      font-family: mastodon-font-sans-serif, sans-serif;
+      transition: background 0.2s;
     }
 
     &:hover,
@@ -1830,5 +1828,33 @@ noscript {
 
   100% {
     opacity: 1;
+  }
+}
+
+.navbutton {
+  text-decoration: none;
+  display: block;
+  width: 80px;
+  margin: 0 auto;
+
+  > div {
+    text-align: center;
+    text-decoration: none;
+    color: var(--ui-font-secondary-color);
+    background: var(--ui-body-secondary-color);
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    font-weight: 800;
+    margin: 0 auto;
+    border-radius: 100px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    border: 2px var(--ui-font-secondary-color) solid;
+    margin-top: 20px;
+
+    &:hover {
+      background: var(--ui-highlight-color);
+      border-color: var(--ui-highlight-color);
+      color: var(--ui-font-color);
+    }
   }
 }

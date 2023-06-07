@@ -27,44 +27,9 @@
       transition: color 0.2s;
     }
 
-    .ui__header__links .icon-button {
-      color: $secondary-text-color;
-    }
-
-    .ui__header__links .icon-button:hover {
-      color: $primary-text-color;
-      background: transparent;
-    }
-
-    .ui__header__left .column-link {
-      font-size: 16px !important;
-      line-height: 1 !important;
-      font-weight: bold !important;
-    }
-
-    .ui__header__links .column-link {
-      font-size: 22px !important;
-      line-height: 1 !important;
-      padding: 0 !important;
-      padding-right: 15px !important;
-      overflow: visible;
-    }
-
-    .ui__header__links .icon-with-badge__badge {
-      margin-top: 5px;
-    }
-
-    .ui__header__links .button {
-      margin-right: 15px !important;
-    }
-
     .detailed-status__action-bar {
       border-bottom-right-radius: var(--ui-border-radius);
       border-bottom-left-radius: var(--ui-border-radius);
-    }
-
-    .column-link {
-      font-size: 18px !important;
     }
 
     .column-header__buttons {
@@ -129,20 +94,6 @@
 
     .tabs-bar__wrapper {
       position: static;
-    }
-
-    .ui__header__left {
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .ui__header__links .icon-button {
-      padding: 8px;
-      box-sizing: content-box;
-    }
-
-    .ui__header__left .column-link i {
-      display: none !important;
     }
 
     .hideondesktop {
@@ -238,7 +189,7 @@
   }
 }
 
-@media screen and (min-width: 1175px) {
+@media screen and (min-width: $widescreen-breakpoint) {
   .layout-single-column {
     .column {
       max-width: 1175px;
@@ -275,28 +226,8 @@
         margin-top: -55px;
       }
 
-      .explore__tags-header {
-        margin-top: 0;
-      }
-
       .scrollable {
         width: auto;
-      }
-
-      .account-card {
-        padding-bottom: 5px;
-      }
-
-      .account-card__actions {
-        display: none;
-      }
-
-      .account-card__header {
-        height: 10px;
-
-        img {
-          display: none;
-        }
       }
     }
 
@@ -325,62 +256,16 @@
     padding-top: 0;
   }
 
-  .navbutton {
-    text-decoration: none;
-    display: block;
-    width: 80px;
-    margin: 0 auto;
-  }
-
-  .navbutton div,
-  .navbutton div {
-    text-align: center;
-    text-decoration: none;
-    color: var(--ui-font-secondary-color);
-    background: var(--ui-body-secondary-color);
-    font-size: 0.9rem;
-    padding: 0.3rem;
-    font-weight: 800;
-    margin: 0 auto;
-    border-radius: 100px;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-    border: 2px var(--ui-font-secondary-color) solid;
-    margin-top: 20px;
-  }
-
-  .navbutton div:hover {
-    background: var(--ui-highlight-color);
-    border-color: var(--ui-highlight-color);
-    color: var(--ui-font-color);
-  }
-
   .right-column {
     display: none;
   }
 }
 
-@media screen and (min-width: 1175px) {
+@media screen and (min-width: $widescreen-breakpoint) {
   .layout-single-column {
     .account-gallery__item {
       width: 228px;
       height: 228px;
-    }
-
-    .about__left-column {
-      max-width: 700px;
-      display: block;
-    }
-
-    .about__right-column {
-      max-width: 450px;
-    }
-
-    .about {
-      display: flex;
-      flex-direction: row;
-      row-gap: 15px;
-      column-gap: 15px;
-      width: 100%;
     }
   }
 }

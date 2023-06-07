@@ -1030,3 +1030,85 @@ $ui-header-height: 55px;
     margin-top: 15px;
   }
 }
+
+.ui__header__left {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ui__header__links .icon-button {
+  padding: 8px;
+  box-sizing: content-box;
+}
+
+.ui__header__left .column-link i {
+  display: none !important;
+}
+
+.ui__header__left .column-link {
+  font-size: 16px !important;
+  line-height: 1 !important;
+  font-weight: bold !important;
+}
+
+.ui__header__links {
+  .icon-button {
+    color: $secondary-text-color;
+
+    &:hover {
+      color: $primary-text-color;
+      background: transparent;
+    }
+  }
+
+  .column-link {
+    font-size: 22px !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    padding-right: 15px !important;
+    overflow: visible;
+  }
+
+  .icon-with-badge__badge {
+    margin-top: 5px;
+  }
+
+  .button {
+    margin-right: 15px !important;
+  }
+}
+
+.right_column {
+  .explore__tags-header {
+    margin-top: 0;
+  }
+
+  .account-card {
+    padding-bottom: 5px;
+  }
+
+  .account-card__actions {
+    display: none;
+  }
+
+  .account-card__header {
+    height: 10px;
+
+    img {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: $widescreen-breakpoint) {
+  .right_column {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $no-gap-breakpoint) {
+  .column-link,
+  .ui__header__links .icon-button {
+    display: none;
+  }
+}

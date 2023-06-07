@@ -232,17 +232,16 @@
     display: none;
   }
 
-  /*.search-page .search {
+  /* .search-page .search {
     display: none;
-  }*/
+  } */
 
-  /*.navigation-panel__legal {
+  /* .navigation-panel__legal {
     display: none;
-  }*/
+  } */
 }
 
- @media screen and (max-width: $no-gap-breakpoint - 1px) {
-
+@media screen and (max-width: $no-gap-breakpoint - 1px) {
   .columns-area__panels__main {
     width: 100%;
   }
@@ -267,9 +266,11 @@
   .columns-area__panels__main {
     width: 100%;
   }
-  
-  .column-link {
-    display:none;
+
+  .ui__header__links {
+    .column-link {
+      display: none;
+    }
   }
 }
 
