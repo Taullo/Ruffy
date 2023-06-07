@@ -428,7 +428,7 @@ class Status extends ImmutablePureComponent {
       } else {
         this.props.dispatch(hideStatus(status.get('id')));
       }
-    } else if ((this.props.status.get('spoiler_text')) || (this.props.status.get('spoiler_text').length > 0)){
+    } else if ((this.props.status.get('spoiler_text')) || (this.props.status.get('sensitive'))){
       this.setExpansion(!this.state.isExpanded);
       this.setState({ showMedia: !this.state.showMedia });
     }
