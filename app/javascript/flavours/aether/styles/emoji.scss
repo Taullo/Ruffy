@@ -284,7 +284,6 @@
   }
 
   &:hover::before {
-    z-index: 0;
     content: '';
     position: absolute;
     top: 0;
@@ -293,6 +292,7 @@
     height: 100%;
     background-color: var(--ui-body-secondary-color);
     border-radius: 100%;
+    z-index:-1;
   }
 }
 
