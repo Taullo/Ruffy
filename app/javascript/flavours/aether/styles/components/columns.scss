@@ -1027,6 +1027,10 @@ $ui-header-height: 55px;
   .account-card {
     margin-top: 15px;
   }
+
+  .account-card:first-child {
+    margin-top: 0;
+  }
 }
 
 @media screen and (max-height: 60rem) {
