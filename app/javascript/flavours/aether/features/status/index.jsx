@@ -402,12 +402,9 @@ class Status extends ImmutablePureComponent {
   };
 
   handleToggleAll = () => {
-    const { status, ancestorsIds, descendantsIds, settings } = this.props;
+    const { status, ancestorsIds, descendantsIds } = this.props;
     const statusIds = [status.get('id')].concat(ancestorsIds.toJS(), descendantsIds.toJS());
     let { isExpanded } = this.state;
-
-    if (settings.getIn(['content_warnings', 'shared_state']))
-      isExpanded = !status.get('hidden');
 
     if (!isExpanded) {
       this.props.dispatch(revealStatus(statusIds));
@@ -420,15 +417,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleToggleHidden = () => {
-    const { status } = this.props;
-
-    if (this.props.settings.getIn(['content_warnings', 'shared_state'])) {
-      if (status.get('hidden')) {
-        this.props.dispatch(revealStatus(status.get('id')));
-      } else {
-        this.props.dispatch(hideStatus(status.get('id')));
-      }
-    } else if ((this.props.status.get('spoiler_text')) || (this.props.status.get('sensitive'))){
+    if ((this.props.status.get('spoiler_text')) || (this.props.status.get('sensitive'))) {
       this.setExpansion(!this.state.isExpanded);
       this.setState({ showMedia: !this.state.showMedia });
     }

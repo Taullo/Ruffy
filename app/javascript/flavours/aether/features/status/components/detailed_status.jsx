@@ -44,7 +44,7 @@ class DetailedStatus extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
-    onToggleVisibility: PropTypes.func,
+    onToggleMediaVisibility: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
 
@@ -172,7 +172,7 @@ class DetailedStatus extends ImmutablePureComponent {
             visible={this.props.showMedia}
             blurhash={attachment.get('blurhash')}
             height={150}
-            onToggleVisibility={this.props.onToggleVisibility}
+            onToggleVisibility={this.props.onToggleMediaVisibility}
           />,
         );
         mediaIcons.push('music');
@@ -194,7 +194,7 @@ class DetailedStatus extends ImmutablePureComponent {
             onOpenVideo={this.handleOpenVideo}
             autoplay
             visible={this.props.showMedia}
-            onToggleVisibility={this.props.onToggleVisibility}
+            onToggleVisibility={this.props.onToggleMediaVisibility}
           />,
         );
         mediaIcons.push('video-camera');
@@ -210,7 +210,7 @@ class DetailedStatus extends ImmutablePureComponent {
             hidden={!expanded}
             onOpenMedia={this.props.onOpenMedia}
             visible={this.props.showMedia}
-            onToggleVisibility={this.props.onToggleVisibility}
+            onToggleVisibility={this.props.onToggleMediaVisibility}
           />,
         );
         mediaIcons.push('picture-o');
@@ -331,3 +331,4 @@ class DetailedStatus extends ImmutablePureComponent {
 }
 
 export default injectIntl(DetailedStatus);
+
