@@ -258,21 +258,6 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleToggleMediaVisibility = () => {
-    this.setState({ showMedia: !this.state.showMedia });
-    const { status } = this.props;
-
-    if (this.props.settings.getIn(['content_warnings', 'shared_state'])) {
-      if (status.get('hidden')) {
-        this.props.dispatch(revealStatus(status.get('id')));
-      } else {
-        this.props.dispatch(hideStatus(status.get('id')));
-      }
-    } else if (this.props.status.get('spoiler_text')) {
-      this.setExpansion(!this.state.isExpanded);
-    }
-  };
-
   handleModalFavourite = (status) => {
     this.props.dispatch(favourite(status));
   };
@@ -474,7 +459,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyToggleSensitive = () => {
-    this.handleToggleMediaVisibility();
+    this.handleToggleHidden();
   };
 
   handleHotkeyMoveUp = () => {
@@ -688,7 +673,7 @@ class Status extends ImmutablePureComponent {
                   onTranslate={this.handleTranslate}
                   domain={domain}
                   showMedia={this.state.showMedia}
-                  onToggleMediaVisibility={this.handleToggleMediaVisibility}
+                  onToggleMediaVisibility={this.handleToggleHidden}
                   pictureInPicture={pictureInPicture}
                 />
 

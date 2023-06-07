@@ -44,7 +44,7 @@ class DetailedStatus extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
-    onToggleMediaVisibility: PropTypes.func,
+    onToggleVisibility: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
 
@@ -122,7 +122,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
-    const { expanded, onToggleHidden, settings, pictureInPicture, intl } = this.props;
+    const { expanded, onToggleHidden, settings, pictureInPicture } = this.props;
     const outerStyle = { boxSizing: 'border-box' };
     const { compact } = this.props;
 
@@ -142,7 +142,6 @@ class DetailedStatus extends ImmutablePureComponent {
     let contentMedia = [];
     let contentMediaIcons = [];
     let extraMedia = [];
-    let extraMediaIcons = [];
     let media = contentMedia;
     let mediaIcons = contentMediaIcons;
 
@@ -173,7 +172,7 @@ class DetailedStatus extends ImmutablePureComponent {
             visible={this.props.showMedia}
             blurhash={attachment.get('blurhash')}
             height={150}
-            onToggleVisibility={this.props.onToggleMediaVisibility}
+            onToggleVisibility={this.props.onToggleVisibility}
           />,
         );
         mediaIcons.push('music');
@@ -195,7 +194,7 @@ class DetailedStatus extends ImmutablePureComponent {
             onOpenVideo={this.handleOpenVideo}
             autoplay
             visible={this.props.showMedia}
-            onToggleVisibility={this.props.onToggleMediaVisibility}
+            onToggleVisibility={this.props.onToggleVisibility}
           />,
         );
         mediaIcons.push('video-camera');
@@ -211,7 +210,7 @@ class DetailedStatus extends ImmutablePureComponent {
             hidden={!expanded}
             onOpenMedia={this.props.onOpenMedia}
             visible={this.props.showMedia}
-            onToggleVisibility={this.props.onToggleMediaVisibility}
+            onToggleVisibility={this.props.onToggleVisibility}
           />,
         );
         mediaIcons.push('picture-o');
