@@ -243,21 +243,6 @@ class Status extends ImmutablePureComponent {
     return updated ? update : null;
   }
 
-  handleToggleHidden = () => {
-    this.setState({ showMedia: !this.state.showMedia });
-    const { status } = this.props;
-
-    if (this.props.settings.getIn(['content_warnings', 'shared_state'])) {
-      if (status.get('hidden')) {
-        this.props.dispatch(revealStatus(status.get('id')));
-      } else {
-        this.props.dispatch(hideStatus(status.get('id')));
-      }
-    } else if (this.props.status.get('spoiler_text')) {
-      this.setExpansion(!this.state.isExpanded);
-    }
-  };
-
   handleModalFavourite = (status) => {
     this.props.dispatch(favourite(status));
   };
@@ -432,6 +417,21 @@ class Status extends ImmutablePureComponent {
 
     this.setState({ isExpanded: !isExpanded, threadExpanded: !isExpanded });
     this.setState({ showMedia: !this.state.showMedia });
+  };
+
+  handleToggleHidden = () => {
+    const { status } = this.props;
+
+    if (this.props.settings.getIn(['content_warnings', 'shared_state'])) {
+      if (status.get('hidden')) {
+        this.props.dispatch(revealStatus(status.get('id')));
+      } else {
+        this.props.dispatch(hideStatus(status.get('id')));
+      }
+    } else if ((this.props.status.get('spoiler_text')) || (this.props.status.get('spoiler_text').length > 0)){
+      this.setExpansion(!this.state.isExpanded);
+      this.setState({ showMedia: !this.state.showMedia });
+    }
   };
 
   handleTranslate = status => {
