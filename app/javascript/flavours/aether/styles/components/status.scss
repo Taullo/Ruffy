@@ -121,6 +121,14 @@
       font-family: inherit;
       display: block;
       line-height: inherit;
+
+      a {
+        pointer-events:auto;
+      }
+    }
+
+    a {
+      pointer-events:none;
     }
   }
 
