@@ -15,6 +15,7 @@ import classNames from 'classnames';
 import IconWithBadge from 'flavours/aether/components/icon_with_badge';
 import NotSignedInIndicator from 'flavours/aether/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
+import ComposeFormContainer from 'flavours/aether/features/compose/containers/compose_form_container';
 
 
 import Tags from 'flavours/aether/features/explore/tags';
@@ -200,6 +201,7 @@ class HomeTimeline extends React.PureComponent {
 
         {signedIn ? (
           <div className='scrollable home-scroll'>
+            <ComposeFormContainer />
             <StatusListContainer
               trackScroll={!pinned}
               scrollKey={`home_timeline-${columnId}`}

@@ -1,5 +1,17 @@
 .compose-form {
-  padding: 10px;
+  padding-bottom: 20px;
+
+  .autosuggest-textarea__textarea {
+    border-radius: var(--ui-border-radius) !important;
+    padding-bottom: 10px !important;
+  }
+
+  .compose-form__autosuggest-wrapper {
+    border: 14px solid var(--ui-body-secondary-color);
+    border-width: 8px 8px 0;
+    border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
+    background: var(--ui-body-secondary-color);
+  }
 
   .emoji-picker-dropdown {
     position: absolute;
@@ -224,9 +236,9 @@
       width: 100%;
       min-height: 100px;
       outline: 0;
-      color: $inverted-text-color;
-      background: $simple-background-color;
-      font-size: 14px;
+      color: var(--ui-font-color);
+      background: var(--ui-body-color);
+      font-size: 1rem;
       font-family: inherit;
       resize: none;
       scrollbar-color: initial;
@@ -475,15 +487,15 @@
 }
 
 .compose-form__modifiers {
-  color: $inverted-text-color;
+  color: var(--ui-font-color);
   font-family: inherit;
   font-size: 14px;
-  background: $simple-background-color;
+  background: var(--ui-body-secondary-color);
 }
 
 .compose-form__buttons-wrapper {
   padding: 10px;
-  background: darken($simple-background-color, 8%);
+  background: var(--ui-body-secondary-color);
   border-radius: 0 0 4px 4px;
   height: 27px;
   display: flex;
@@ -720,5 +732,12 @@
   .compose-form__publish button {
     font-size: 1.3rem;
     padding: 0.78rem 2rem !important;
+  }
+}
+
+.home-scroll {
+  .compose-form {
+    margin-bottom: 20px;
+    border-bottom: 1px var(--ui-body-color) solid;
   }
 }
