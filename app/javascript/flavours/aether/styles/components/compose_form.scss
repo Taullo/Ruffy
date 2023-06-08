@@ -60,8 +60,8 @@
     padding: 10px;
     width: 100%;
     outline: 0;
-    color: $inverted-text-color;
-    background: $simple-background-color;
+    color: var(--ui-font-color);
+    background: var(--ui-body-color);
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
@@ -71,7 +71,7 @@
     transition: border-color 0.2s;
 
     &::placeholder {
-      color: $dark-text-color;
+      color: var(--ui-font-secondary-color);
       font-weight: bold;
     }
 
@@ -148,7 +148,7 @@
   margin: 0 0 10px;
   border-radius: 4px;
   padding: 10px;
-  background: $ui-primary-color;
+  background: var(--ui-body-dim-color);
   min-height: 23px;
   max-height: 20vh;
   overflow-y: auto;
@@ -160,7 +160,7 @@
   overflow: hidden;
 
   & > .account.small {
-    color: $inverted-text-color;
+    color: var(--ui-font-secondary-color);
   }
 }
 
@@ -177,7 +177,7 @@
   font-weight: 400;
   overflow: hidden;
   padding-top: 5px;
-  color: $inverted-text-color;
+  color: var(--ui-font-secondary-color);
   white-space: pre-wrap;
 
   p,
@@ -191,7 +191,7 @@
   }
 
   a {
-    color: $lighter-text-color;
+    color: var(--ui-font-color);
     text-decoration: none;
 
     &:hover {
@@ -406,7 +406,7 @@
 
   .icon-button {
     flex: 0 1 auto;
-    color: $secondary-text-color;
+    color: var(--ui-font-off-color);
     font-size: 14px;
     font-weight: 500;
     padding: 10px;
@@ -415,7 +415,7 @@
     &:hover,
     &:focus,
     &:active {
-      color: lighten($secondary-text-color, 7%);
+      color: var(--ui-font-color);
     }
   }
 
@@ -703,7 +703,7 @@
 
 .compose-form__bottom-buttons .icon-button {
   background: var(--ui-highlight-color);
-  color: white;
+  color: var(--ui-font-color);
   padding: 0.5rem;
   font-size: 1.2rem !important;
   width: auto !important;
