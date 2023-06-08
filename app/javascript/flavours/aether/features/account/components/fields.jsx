@@ -19,7 +19,7 @@ const dateFormatOptions = {
   minute: '2-digit',
 };
 
-class Header extends ImmutablePureComponent {
+class Fields extends ImmutablePureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
@@ -46,29 +46,29 @@ class Header extends ImmutablePureComponent {
 
     return (
       <div className={classNames('account__fields__block', { inactive: !!account.get('moved') })}>
-      {!(suspended || hidden) && (
-                  <div className='account__fields'>
-                  
-                 <dl>
-                    <dt><FormattedMessage id='account.joined_short' defaultMessage='Joined' /></dt>
-                    <dd>{intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'long', day: '2-digit' })}</dd>
-                  </dl>
-                  
-                    {fields.map((pair, i) => (
-                      <dl key={i}>
-                        <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
+        {!(suspended || hidden) && (
+          <div className='account__fields'>
 
-                        <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
-                          {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} className='translate' />
-                        </dd>
-                      </dl>
-                    ))}
-                  </div>
-                )}
+            <dl>
+              <dt><FormattedMessage id='account.joined_short' defaultMessage='Joined' /></dt>
+              <dd>{intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'long', day: '2-digit' })}</dd>
+            </dl>
+
+            {fields.map((pair, i) => (
+              <dl key={i}>
+                <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
+
+                <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
+                  {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} className='translate' />
+                </dd>
+              </dl>
+            ))}
+          </div>
+        )}
       </div>
     );
   }
 
 }
 
-export default injectIntl(Header);
+export default injectIntl(Fields);

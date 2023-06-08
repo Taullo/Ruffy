@@ -1,27 +1,28 @@
 :root {
   /* Background colors */
-  --ui-page-background:#191b22;
-  --ui-base-color:#282c37;
-  --ui-base-lighter-color:#333845;
-  --ui-primary-color:#9baec8;
-  --ui-secondary-color:#d9e1e8;
-  --ui-highlight-color:#6364ff;
-  --ui-shadow-color:#202020;
+  --ui-page-background: #191b22;
+  --ui-base-color: #282c37;
+  --ui-base-lighter-color: #333845;
+  --ui-primary-color: #9baec8;
+  --ui-secondary-color: #d9e1e8;
+  --ui-highlight-color: #6364ff;
+  --ui-shadow-color: #202020;
   --ui-body-color: #313543;
-  --ui-body-secondary-color:#1f222b;
-  
+  --ui-body-secondary-color: #1f222b;
+  --ui-body-dim-color: #282c37;
+
   /* Font Colors */
-  --ui-font-color:#ffffff;
-  --ui-font-secondary-color:#999999;
-  --ui-font-off-color:#d9e1e8;
-  --ui-inverted-font-color:#282c37;
-  
+  --ui-font-color: #ffffff;
+  --ui-font-secondary-color: #999999;
+  --ui-font-off-color: #d9e1e8;
+  --ui-inverted-font-color: #282c37;
+
   /* Specialty Elements */
-  --ui-dropdown-shadow:rgba(0, 0, 0, 40%);
-  
+  --ui-dropdown-shadow: rgba(0, 0, 0, 40%);
+
   /* Element Sizes */
-  --ui-avatar-status-size:62px;
-  --ui-border-radius:6px;
+  --ui-avatar-status-size: 62px;
+  --ui-border-radius: 6px;
 }
 
 /* SCSS Vars */

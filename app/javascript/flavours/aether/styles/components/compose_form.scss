@@ -237,7 +237,8 @@
       min-height: 100px;
       outline: 0;
       color: var(--ui-font-color);
-      background: var(--ui-body-color);
+      background: var(--ui-body-dim-color);
+      transition: background 0.2s;
       font-size: 1rem;
       font-family: inherit;
       resize: none;
@@ -253,6 +254,7 @@
 
       &:focus {
         outline: 0;
+        background: var(--ui-body-color);
       }
 
       @include single-column('screen and (max-width: 630px)') {
