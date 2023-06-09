@@ -21,12 +21,12 @@ $fluid-breakpoint: $maximum-width + 20px;
 .rules-list {
   font-size: 15px;
   line-height: 22px;
-  color: $primary-text-color;
+  color: var(--ui-font-color);
   counter-reset: list-counter;
 
   li {
     position: relative;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--ui-body-color);
     padding: 1em 1.75em;
     padding-inline-start: 3em;
     font-weight: 500;
@@ -38,8 +38,8 @@ $fluid-breakpoint: $maximum-width + 20px;
       inset-inline-start: 0;
       top: 50%;
       transform: translateY(-50%);
-      background: $highlight-text-color;
-      color: $ui-base-color;
+      background: var(--ui-highlight-color);
+      color: var(--ui-body-color);
       border-radius: 50%;
       width: 4ch;
       height: 4ch;
@@ -97,7 +97,7 @@ $fluid-breakpoint: $maximum-width + 20px;
   font-size: 0.8rem;
 
   p {
-    color: $dark-text-color;
+    color: var(--ui-font-secondary-color);
     margin-bottom: 20px;
 
     strong {
@@ -105,7 +105,7 @@ $fluid-breakpoint: $maximum-width + 20px;
     }
 
     a {
-      color: $dark-text-color;
+      color: var(--ui-font-secondary-color);
       text-decoration: underline;
 
       &:hover,
@@ -125,7 +125,7 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__footer {
-    color: $dark-text-color;
+    color: var(--ui-font-secondary-color);
     text-align: center;
     font-size: 0.8rem;
     line-height: 22px;
@@ -139,7 +139,7 @@ $fluid-breakpoint: $maximum-width + 20px;
       width: 100%;
       height: auto;
       aspect-ratio: 1.9;
-      background: lighten($ui-base-color, 4%);
+      background: var(--ui-body-color);
       border-radius: 8px;
       margin-bottom: 30px;
     }
@@ -159,12 +159,12 @@ $fluid-breakpoint: $maximum-width + 20px;
     p {
       font-size: 1rem;
       font-weight: 400;
-      color: $darker-text-color;
+      color: var(--ui-font-secondary-color);
     }
   }
 
   &__meta {
-    background: lighten($ui-base-color, 4%);
+    background: var(--ui-body-dim-color);
     border-radius: 4px;
     display: flex;
     margin-bottom: 30px;
@@ -180,7 +180,7 @@ $fluid-breakpoint: $maximum-width + 20px;
       width: 0;
       border: 0;
       border-style: solid;
-      border-color: lighten($ui-base-color, 8%);
+      border-color: var(--ui-body-color);
       border-left-width: 1px;
       min-height: calc(100% - 60px);
       flex: 0 0 auto;
@@ -189,7 +189,7 @@ $fluid-breakpoint: $maximum-width + 20px;
     h4 {
       font-size: 15px;
       text-transform: uppercase;
-      color: $darker-text-color;
+      color: var(--ui-font-color);
       font-weight: 500;
       margin-bottom: 20px;
     }
@@ -240,7 +240,7 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__mail {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
     text-decoration: none;
     font-weight: 500;
 
@@ -310,10 +310,10 @@ $fluid-breakpoint: $maximum-width + 20px;
       border-bottom: 1px solid var(--ui-body-color);
       padding: 10px;
       font-size: 1rem;
-      color: $darker-text-color;
+      color: var(--ui-font-secondary-color);
 
       &:nth-child(2n) {
-        background: darken($ui-base-color, 2%);
+        background: var(--ui-body-dim-color);
       }
 
       &:last-child {
@@ -329,7 +329,7 @@ $fluid-breakpoint: $maximum-width + 20px;
       }
 
       h6 {
-        color: $secondary-text-color;
+        color: var(--ui-font-secondary-color);
         font-size: inherit;
         white-space: nowrap;
         overflow: hidden;
