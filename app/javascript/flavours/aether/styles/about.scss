@@ -39,7 +39,7 @@ $fluid-breakpoint: $maximum-width + 20px;
       top: 50%;
       transform: translateY(-50%);
       background: var(--ui-highlight-color);
-      color: var(--ui-body-color);
+      color: var(--ui-body-secondary-color);
       border-radius: 50%;
       width: 4ch;
       height: 4ch;
