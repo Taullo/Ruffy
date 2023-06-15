@@ -20,9 +20,11 @@
   }
 
   &__note {
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     color: $ui-secondary-color;
   }
 
@@ -31,6 +33,7 @@
     padding: 0;
 
     & > .account__avatar-wrapper {
+      margin: 0;
       margin-inline-end: 8px;
     }
 
@@ -279,7 +282,7 @@
 
 .notification__message {
   margin-inline-start: 42px;
-  padding-top:8px;
+  padding-top: 8px;
   padding-inline-start: 26px;
   cursor: default;
   color: $darker-text-color;

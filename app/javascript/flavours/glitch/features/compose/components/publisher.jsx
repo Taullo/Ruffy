@@ -1,19 +1,17 @@
-//  Package imports.
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { length } from 'stringz';
+
+import classNames from 'classnames';
+
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  Components.
-import Button from 'flavours/glitch/components/button';
-import Icon from 'flavours/glitch/components/icon';
+import { length } from 'stringz';
 
-//  Utils.
+import Button from 'flavours/glitch/components/button';
+import { Icon } from 'flavours/glitch/components/icon';
 import { maxChars } from 'flavours/glitch/initial_state';
 
-//  Messages.
 const messages = defineMessages({
   publish: {
     defaultMessage: 'Publish',
@@ -24,6 +22,10 @@ const messages = defineMessages({
     id: 'compose_form.publish_loud',
   },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
+  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
+  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
 class Publisher extends ImmutablePureComponent {
@@ -68,6 +70,13 @@ class Publisher extends ImmutablePureComponent {
       publishText = privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
+    const privacyNames = {
+      public: messages.public,
+      unlisted: messages.unlisted,
+      private: messages.private,
+      direct: messages.direct,
+    };
+
     return (
       <div className={computedClass}>
         {sideArm && !isEditing && sideArm !== 'none' ? (
@@ -78,7 +87,7 @@ class Publisher extends ImmutablePureComponent {
               onClick={onSecondarySubmit}
               style={{ padding: null }}
               text={<Icon id={privacyIcons[sideArm]} />}
-              title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${sideArm}.short` })}`}
+              title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
             />
           </div>
         ) : null}
@@ -86,7 +95,7 @@ class Publisher extends ImmutablePureComponent {
           <Button
             className='primary'
             text={publishText}
-            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${privacy}.short` })}`}
+            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
             onClick={this.handleSubmit}
             disabled={disabled}
           />
