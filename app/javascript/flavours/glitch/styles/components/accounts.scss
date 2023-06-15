@@ -199,7 +199,6 @@
 
 .account__action-bar__tab {
   text-decoration: none;
-  overflow: hidden;
   flex: 0 1 100%;
   border-inline-start: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 0;
@@ -509,8 +508,8 @@
 
   &__image {
     overflow: hidden;
-    min-height:145px;
-    max-height: 800px; /*Taller profile images*/
+    min-height: 145px;
+    max-height: 800px; /* Taller profile images */
     position: relative;
     background: darken($ui-base-color, 4%);
 
@@ -553,11 +552,11 @@
     margin-inline-start: -2px; // aligns the pfp with content below
 
     .account-role {
-      margin: 0 2px;
       padding: 4px 0;
       box-sizing: border-box;
       min-width: 90px;
       text-align: center;
+      width: 100%;
     }
 
     &__buttons {
@@ -816,6 +815,7 @@
   margin-bottom: 0;
 }
 
-img.parallax[src*="/headers/original/missing.png"] { /*Limits size of profiles with no banner. Kinda hacky*/
-    height:145px;
+img.parallax[src*='/headers/original/missing.png'] {
+  /* Limits size of profiles with no banner. Kinda hacky */
+  height: 145px;
 }

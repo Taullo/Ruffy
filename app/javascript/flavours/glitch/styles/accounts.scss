@@ -16,7 +16,8 @@
   }
 
   &__img {
-    max-height: 540px;overflow:hidden;
+    max-height: 540px;
+    overflow: hidden;
     position: relative;
     background: darken($ui-base-color, 12%);
 
@@ -251,10 +252,7 @@
     box-sizing: border-box;
     padding: 14px;
     text-align: center;
-    max-height: 48px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    word-break: break-all;
   }
 
   dt {
@@ -378,6 +376,7 @@
   }
 }
 
-.card__img > img[src="/headers/original/missing.png"] { /*Fix height on profiles with no banner. Kinda hacky*/
-    height:130px;
+.card__img > img[src='/headers/original/missing.png'] {
+  /* Fix height on profiles with no banner. Kinda hacky */
+  height: 130px;
 }
