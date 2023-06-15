@@ -1,16 +1,21 @@
-import React, { Fragment } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Avatar from 'flavours/aether/components/avatar';
-import DisplayName from 'flavours/aether/components/display_name';
-import Permalink from 'flavours/aether/components/permalink';
-import IconButton from 'flavours/aether/components/icon_button';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import NotificationOverlayContainer from '../containers/overlay_container';
-import { HotKeys } from 'react-hotkeys';
-import Icon from 'flavours/aether/components/icon';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { HotKeys } from 'react-hotkeys';
+
+import { Avatar } from 'flavours/aether/components/avatar';
+import { DisplayName } from 'flavours/aether/components/display_name';
+import { Icon } from 'flavours/aether/components/icon';
+import { IconButton } from 'flavours/aether/components/icon_button';
+import Permalink from 'flavours/aether/components/permalink';
+
+import NotificationOverlayContainer from '../containers/overlay_container';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
@@ -74,10 +79,10 @@ class FollowRequest extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <Fragment>
+        <>
           {account.get('display_name')}
           {account.get('username')}
-        </Fragment>
+        </>
       );
     }
 

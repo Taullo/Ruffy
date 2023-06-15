@@ -1,8 +1,11 @@
 //  Package imports
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 
 //  Our imports
 import { expandSpoilers } from 'flavours/aether/initial_state';
@@ -31,9 +34,13 @@ const messages = defineMessages({
   cw_visibility_obscured: { id: 'settings.cw_visibility_obscured', defaultMessage:  'Obscured' },
   cw_visibility_hidden: { id: 'settings.cw_visibility_hidden', defaultMessage:  'Hidden' },
   cw_visibility_shown: { id: 'settings.cw_visibility_shown', defaultMessage:  'Shown' },
+  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
+  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
-class LocalSettingsPage extends React.PureComponent {
+class LocalSettingsPage extends PureComponent {
 
   static propTypes = {
     index    : PropTypes.number,
@@ -235,10 +242,10 @@ class LocalSettingsPage extends React.PureComponent {
           id='mastodon-settings--side_arm'
           options={[
             { value: 'none', message: intl.formatMessage(messages.side_arm_none) },
-            { value: 'direct', message: intl.formatMessage({ id: 'privacy.direct.short' }) },
-            { value: 'private', message: intl.formatMessage({ id: 'privacy.private.short' }) },
-            { value: 'unlisted', message: intl.formatMessage({ id: 'privacy.unlisted.short' }) },
-            { value: 'public', message: intl.formatMessage({ id: 'privacy.public.short' }) },
+            { value: 'direct', message: intl.formatMessage(messages.direct) },
+            { value: 'private', message: intl.formatMessage(messages.private) },
+            { value: 'unlisted', message: intl.formatMessage(messages.unlisted) },
+            { value: 'public', message: intl.formatMessage(messages.public) },
           ]}
           onChange={onChange}
         >
@@ -261,7 +268,7 @@ class LocalSettingsPage extends React.PureComponent {
     ),
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page content_warnings'>
-        <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content warnings' /></h1>
+        <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h1>
         <LocalSettingsPageItem
           settings={settings}
           item={['content_warnings', 'cw_visibility']}

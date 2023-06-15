@@ -1,17 +1,13 @@
-import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/aether/selectors';
-import Avatar from 'flavours/aether/components/avatar';
-import DisplayName from 'flavours/aether/components/display_name';
-import Permalink from 'flavours/aether/components/permalink';
-import IconButton from 'flavours/aether/components/icon_button';
-import Button from 'flavours/aether/components/button';
+
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import { autoPlayGif, me, unfollowModal } from 'flavours/aether/initial_state';
-import ShortNumber from 'flavours/aether/components/short_number';
+
+import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import {
   followAccount,
   unfollowAccount,
@@ -19,7 +15,14 @@ import {
   unmuteAccount,
 } from 'flavours/aether/actions/accounts';
 import { openModal } from 'flavours/aether/actions/modal';
-import classNames from 'classnames';
+import { Avatar } from 'flavours/aether/components/avatar';
+import Button from 'flavours/aether/components/button';
+import { DisplayName } from 'flavours/aether/components/display_name';
+import { IconButton } from 'flavours/aether/components/icon_button';
+import Permalink from 'flavours/aether/components/permalink';
+import ShortNumber from 'flavours/aether/components/short_number';
+import { autoPlayGif, me, unfollowModal } from 'flavours/aether/initial_state';
+import { makeGetAccount } from 'flavours/aether/selectors';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -49,27 +52,32 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (account.getIn(['relationship', 'following'])) {
       if (unfollowModal) {
         dispatch(
-          openModal('CONFIRM', {
-            message: (
-              <FormattedMessage
-                id='confirmations.unfollow.message'
-                defaultMessage='Are you sure you want to unfollow {name}?'
-                values={{ name: <strong>@{account.get('acct')}</strong> }}
-              />
-            ),
-            confirm: intl.formatMessage(messages.unfollowConfirm),
-            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-          }),
+          openModal({
+            modalType: 'CONFIRM',
+            modalProps: {
+              message: (
+                <FormattedMessage
+                  id='confirmations.unfollow.message'
+                  defaultMessage='Are you sure you want to unfollow {name}?'
+                  values={{ name: <strong>@{account.get('acct')}</strong> }}
+                />
+              ),
+              confirm: intl.formatMessage(messages.unfollowConfirm),
+              onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+            } }),
         );
       } else {
         dispatch(unfollowAccount(account.get('id')));
       }
     } else if (account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
-        dispatch(openModal('CONFIRM', {
-          message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-          confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
-          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+            confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
+            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+          },
         }));
       } else {
         dispatch(unfollowAccount(account.get('id')));

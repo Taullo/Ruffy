@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
 import Dropdown from './dropdown';
 
 const messages = defineMessages({
@@ -11,7 +12,7 @@ const messages = defineMessages({
   unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of explore features' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Only people I mention' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
   local_only_long: {
@@ -24,7 +25,7 @@ const messages = defineMessages({
   },
 });
 
-class PrivacyDropdown extends React.PureComponent {
+class PrivacyDropdown extends PureComponent {
 
   static propTypes = {
     isUserTouching: PropTypes.func,

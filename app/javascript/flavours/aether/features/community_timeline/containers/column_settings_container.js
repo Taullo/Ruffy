@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
-import ColumnSettings from '../components/column_settings';
+
 import { changeColumnParams } from 'flavours/aether/actions/columns';
 import { changeSetting } from 'flavours/aether/actions/settings';
+
+import ColumnSettings from '../components/column_settings';
 
 const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;

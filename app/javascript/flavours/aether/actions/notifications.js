@@ -1,5 +1,15 @@
+import { IntlMessageFormat } from 'intl-messageformat';
+import { defineMessages } from 'react-intl';
+
+import { List as ImmutableList } from 'immutable';
+
+import { compareId } from 'flavours/aether/compare_id';
+import { usePendingItems as preferPendingItems } from 'flavours/aether/initial_state';
+import { unescapeHTML } from 'flavours/aether/utils/html';
+import { requestNotificationPermission } from 'flavours/aether/utils/notifications';
+
 import api, { getLinks } from '../api';
-import IntlMessageFormat from 'intl-messageformat';
+
 import { fetchFollowRequests, fetchRelationships } from './accounts';
 import {
   importFetchedAccount,
@@ -9,12 +19,9 @@ import {
 } from './importer';
 import { submitMarkers } from './markers';
 import { saveSettings } from './settings';
-import { defineMessages } from 'react-intl';
-import { List as ImmutableList } from 'immutable';
-import { unescapeHTML } from 'flavours/aether/utils/html';
-import { usePendingItems as preferPendingItems } from 'flavours/aether/initial_state';
-import compareId from 'flavours/aether/compare_id';
-import { requestNotificationPermission } from 'flavours/aether/utils/notifications';
+
+
+
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';

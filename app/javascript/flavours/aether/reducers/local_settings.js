@@ -2,13 +2,12 @@
 import { Map as ImmutableMap } from 'immutable';
 
 //  Our imports.
-import { STORE_HYDRATE } from 'flavours/aether/actions/store';
 import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/aether/actions/local_settings';
+import { STORE_HYDRATE } from 'flavours/aether/actions/store';
 
 const initialState = ImmutableMap({
   layout    : 'auto',
   stretch   : true,
-  navbar_under : false,
   side_arm  : 'none',
   side_arm_reply_mode : 'keep',
   show_reply_count : true,

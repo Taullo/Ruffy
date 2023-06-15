@@ -1,10 +1,39 @@
-import Immutable from 'immutable';
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
+
+import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+
+import { HotKeys } from 'react-hotkeys';
+
+import { initBlockModal } from 'flavours/aether/actions/blocks';
+import { initBoostModal } from 'flavours/aether/actions/boosts';
+import {
+  replyCompose,
+  mentionCompose,
+  directCompose,
+} from 'flavours/aether/actions/compose';
+import {
+  favourite,
+  unfavourite,
+  bookmark,
+  unbookmark,
+  reblog,
+  unreblog,
+  pin,
+  unpin,
+} from 'flavours/aether/actions/interactions';
+import { changeLocalSetting } from 'flavours/aether/actions/local_settings';
+import { openModal } from 'flavours/aether/actions/modal';
+import { initMuteModal } from 'flavours/aether/actions/mutes';
+import { initReport } from 'flavours/aether/actions/reports';
 import {
   fetchStatus,
   muteStatus,
@@ -16,54 +45,31 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from 'flavours/aether/actions/statuses';
+import { Icon } from 'flavours/aether/components/icon';
 import LoadingIndicator from 'flavours/aether/components/loading_indicator';
-import DetailedStatus from './components/detailed_status';
-import ActionBar from './components/action_bar';
-import Column from 'flavours/aether/features/ui/components/column';
-import {
-  favourite,
-  unfavourite,
-  bookmark,
-  unbookmark,
-  reblog,
-  unreblog,
-  pin,
-  unpin,
-} from 'flavours/aether/actions/interactions';
-import {
-  replyCompose,
-  mentionCompose,
-  directCompose,
-} from 'flavours/aether/actions/compose';
-import { changeLocalSetting } from 'flavours/aether/actions/local_settings';
-import { initMuteModal } from 'flavours/aether/actions/mutes';
-import { initBlockModal } from 'flavours/aether/actions/blocks';
-import { initReport } from 'flavours/aether/actions/reports';
-import { initBoostModal } from 'flavours/aether/actions/boosts';
-import { makeGetStatus, makeGetPictureInPicture } from 'flavours/aether/selectors';
-import ScrollContainer from 'flavours/aether/containers/scroll_container';
-import ColumnHeader from '../../components/column_header';
-import StatusContainer from 'flavours/aether/containers/status_container';
-import { openModal } from 'flavours/aether/actions/modal';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { HotKeys } from 'react-hotkeys';
-import { boostModal, favouriteModal, deleteModal } from 'flavours/aether/initial_state';
-import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
-import { autoUnfoldCW } from 'flavours/aether/utils/content_warning';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/aether/components/status';
-import Icon from 'flavours/aether/components/icon';
-import { Helmet } from 'react-helmet';
+import ScrollContainer from 'flavours/aether/containers/scroll_container';
+import StatusContainer from 'flavours/aether/containers/status_container';
 import BundleColumnError from 'flavours/aether/features/ui/components/bundle_column_error';
+import Column from 'flavours/aether/features/ui/components/column';
+import { boostModal, favouriteModal, deleteModal } from 'flavours/aether/initial_state';
+import { makeGetStatus, makeGetPictureInPicture } from 'flavours/aether/selectors';
+import { autoUnfoldCW } from 'flavours/aether/utils/content_warning';
+
+import ColumnHeader from '../../components/column_header';
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
+
+import ActionBar from './components/action_bar';
+import DetailedStatus from './components/detailed_status';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? You will lose all replies, boosts and favourites to it.' },
+  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
-  statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {{attachmentCount} attachments}}' },
+  statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
@@ -155,8 +161,9 @@ const makeMapStateToProps = () => {
 };
 
 const truncate = (str, num) => {
-  if (str.length > num) {
-    return str.slice(0, num) + '…';
+  const arr = Array.from(str);
+  if (arr.length > num) {
+    return arr.slice(0, num).join('') + '…';
   } else {
     return str;
   }
@@ -258,14 +265,23 @@ class Status extends ImmutablePureComponent {
         if ((e && e.shiftKey) || !favouriteModal) {
           this.handleModalFavourite(status);
         } else {
-          dispatch(openModal('FAVOURITE', { status, onFavourite: this.handleModalFavourite }));
+          dispatch(openModal({
+            modalType: 'FAVOURITE',
+            modalProps: {
+              status,
+              onFavourite: this.handleModalFavourite,
+            },
+          }));
         }
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'favourite',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'favourite',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
@@ -284,20 +300,26 @@ class Status extends ImmutablePureComponent {
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal('CONFIRM', {
-          message: intl.formatMessage(messages.replyMessage),
-          confirm: intl.formatMessage(messages.replyConfirm),
-          onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_before_clearing_draft'], false)),
-          onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: intl.formatMessage(messages.replyMessage),
+            confirm: intl.formatMessage(messages.replyConfirm),
+            onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_before_clearing_draft'], false)),
+            onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+          },
         }));
       } else {
         dispatch(replyCompose(status, this.context.router.history));
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'reply',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'reply',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
@@ -325,10 +347,13 @@ class Status extends ImmutablePureComponent {
         dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
       }
     } else {
-      dispatch(openModal('INTERACTION', {
-        type: 'reblog',
-        accountId: status.getIn(['account', 'id']),
-        url: status.get('url'),
+      dispatch(openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          type: 'reblog',
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('url'),
+        },
       }));
     }
   };
@@ -347,10 +372,13 @@ class Status extends ImmutablePureComponent {
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
     } else {
-      dispatch(openModal('CONFIRM', {
-        message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-        confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-        onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+      dispatch(openModal({
+        modalType: 'CONFIRM',
+        modalProps: {
+          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
+          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
+          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+        },
       }));
     }
   };
@@ -367,12 +395,18 @@ class Status extends ImmutablePureComponent {
     this.props.dispatch(mentionCompose(account, router));
   };
 
-  handleOpenMedia = (media, index) => {
-    this.props.dispatch(openModal('MEDIA', { statusId: this.props.status.get('id'), media, index }));
+  handleOpenMedia = (media, index, lang) => {
+    this.props.dispatch(openModal({
+      modalType: 'MEDIA',
+      modalProps: { statusId: this.props.status.get('id'), media, index, lang },
+    }));
   };
 
-  handleOpenVideo = (media, options) => {
-    this.props.dispatch(openModal('VIDEO', { statusId: this.props.status.get('id'), media, options }));
+  handleOpenVideo = (media, lang, options) => {
+    this.props.dispatch(openModal({
+      modalType: 'VIDEO',
+      modalProps: { statusId: this.props.status.get('id'), media, lang, options },
+    }));
   };
 
   handleHotkeyOpenMedia = e => {
@@ -427,7 +461,7 @@ class Status extends ImmutablePureComponent {
     const { dispatch } = this.props;
 
     if (status.get('translation')) {
-      dispatch(undoStatusTranslation(status.get('id')));
+      dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
     } else {
       dispatch(translateStatus(status.get('id')));
     }
@@ -444,7 +478,10 @@ class Status extends ImmutablePureComponent {
   };
 
   handleEmbed = (status) => {
-    this.props.dispatch(openModal('EMBED', { url: status.get('url') }));
+    this.props.dispatch(openModal({
+      modalType: 'EMBED',
+      modalProps: { url: status.get('url') },
+    }));
   };
 
   handleHotkeyToggleSensitive = () => {
@@ -482,9 +519,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyOpenProfile = () => {
-    let state = { ...this.context.router.history.location.state };
-    state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
+    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
   };
 
   handleMoveUp = id => {
@@ -539,8 +574,10 @@ class Status extends ImmutablePureComponent {
     this.column.scrollTop();
   };
 
-  renderChildren (list) {
-    return list.map(id => (
+  renderChildren (list, ancestors) {
+    const { params: { statusId } } = this.props;
+
+    return list.map((id, i) => (
       <StatusContainer
         key={id}
         id={id}
@@ -548,6 +585,9 @@ class Status extends ImmutablePureComponent {
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
         contextType='thread'
+        previousId={i > 0 && list.get(i - 1)}
+        nextId={list.get(i + 1) || (ancestors && statusId)}
+        rootId={statusId}
       />
     ));
   }
@@ -608,7 +648,7 @@ class Status extends ImmutablePureComponent {
     const isExpanded = settings.getIn(['content_warnings', 'shared_state']) ? !status.get('hidden') : this.state.isExpanded;
 
     if (ancestorsIds && ancestorsIds.size > 0) {
-      ancestors = <>{this.renderChildren(ancestorsIds)}</>;
+      ancestors = <>{this.renderChildren(ancestorsIds, true)}</>;
     }
 
     if (descendantsIds && descendantsIds.size > 0) {

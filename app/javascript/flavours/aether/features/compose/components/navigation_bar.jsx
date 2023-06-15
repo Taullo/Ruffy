@@ -1,12 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ActionBar from './action_bar';
-import Avatar from 'flavours/aether/components/avatar';
-import Permalink from 'flavours/aether/components/permalink';
+
 import { FormattedMessage } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Avatar } from 'flavours/aether/components/avatar';
+import Permalink from 'flavours/aether/components/permalink';
 import { profileLink } from 'flavours/aether/utils/backend_links';
+
+import ActionBar from './action_bar';
 
 export default class NavigationBar extends ImmutablePureComponent {
 

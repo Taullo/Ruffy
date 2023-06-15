@@ -1,25 +1,28 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import AutosuggestInput from '../../../components/autosuggest_input';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { length } from 'stringz';
+
+import { maxChars } from 'flavours/aether/initial_state';
+import { isMobile } from 'flavours/aether/is_mobile';
+
+import AutosuggestInput from '../../../components/autosuggest_input';
+import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
+import OptionsContainer from '../containers/options_container';
 import PollFormContainer from '../containers/poll_form_container';
+import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
-import { isMobile } from 'flavours/aether/is_mobile';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import { countableText } from '../util/counter';
-import OptionsContainer from '../containers/options_container';
+
+import CharacterCounter from './character_counter';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
-import { maxChars } from 'flavours/aether/initial_state';
-import CharacterCounter from './character_counter';
-import { length } from 'stringz';
-import IconButton from 'flavours/aether/components/icon_button';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -32,7 +35,6 @@ const messages = defineMessages({
     defaultMessage: 'Send anyway',
   },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
-  spoiler: {defaultMessage: 'Hide text behind warning', id: 'compose_form.spoiler',},
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -46,6 +48,7 @@ class ComposeForm extends ImmutablePureComponent {
     text: PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
+    privacy: PropTypes.string,
     spoilerText: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
     caretPosition: PropTypes.number,
@@ -72,16 +75,13 @@ class ComposeForm extends ImmutablePureComponent {
     layout: PropTypes.string,
     media: ImmutablePropTypes.list,
     sideArm: PropTypes.string,
+    sensitive: PropTypes.bool,
     spoilersAlwaysOn: PropTypes.bool,
     mediaDescriptionConfirmation: PropTypes.bool,
     preselectOnReply: PropTypes.bool,
     onChangeSpoilerness: PropTypes.func,
     onChangeVisibility: PropTypes.func,
-    onPaste: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
-    onToggleSpoiler: PropTypes.func,
-    
-    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -168,11 +168,11 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   //  Selects a suggestion from the autofill.
-  onSuggestionSelected = (tokenStart, token, value) => {
+  handleSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value, ['text']);
   };
 
-  onSpoilerSuggestionSelected = (tokenStart, token, value) => {
+  handleSpoilerSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value, ['spoiler_text']);
   };
 
@@ -181,7 +181,7 @@ class ComposeForm extends ImmutablePureComponent {
       this.handleSubmit();
     }
 
-    if (e.keyCode == 13 && e.altKey) {
+    if (e.keyCode === 13 && e.altKey) {
       this.handleSecondarySubmit();
     }
   };
@@ -285,9 +285,7 @@ class ComposeForm extends ImmutablePureComponent {
     const {
       handleEmojiPick,
       handleSecondarySubmit,
-      handleSelect,
       handleSubmit,
-      handleRefTextarea,
     } = this;
     const {
       advancedOptions,
@@ -295,10 +293,11 @@ class ComposeForm extends ImmutablePureComponent {
       isSubmitting,
       layout,
       onChangeSpoilerness,
-      onChangeVisibility,
       onClearSuggestions,
       onFetchSuggestions,
       onPaste,
+      privacy,
+      sensitive,
       showSearch,
       sideArm,
       spoiler,
@@ -306,10 +305,6 @@ class ComposeForm extends ImmutablePureComponent {
       suggestions,
       spoilersAlwaysOn,
       isEditing,
-      onToggleSpoiler,
-      intl: { formatMessage },
-      
-      disabled,
     } = this.props;
 
     const countText = this.getFulltextForCharacterCounting();
@@ -328,10 +323,10 @@ class ComposeForm extends ImmutablePureComponent {
             onKeyDown={this.handleKeyDown}
             disabled={!spoiler}
             ref={this.handleRefSpoilerText}
-            suggestions={this.props.suggestions}
+            suggestions={suggestions}
             onSuggestionsFetchRequested={onFetchSuggestions}
             onSuggestionsClearRequested={onClearSuggestions}
-            onSuggestionSelected={this.onSpoilerSuggestionSelected}
+            onSuggestionSelected={this.handleSpoilerSuggestionSelected}
             searchTokens={[':']}
             id='glitch.composer.spoiler.input'
             className='spoiler-input__input'
@@ -348,11 +343,11 @@ class ComposeForm extends ImmutablePureComponent {
           value={this.props.text}
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
-          suggestions={this.props.suggestions}
+          suggestions={suggestions}
           onFocus={this.handleFocus}
           onSuggestionsFetchRequested={onFetchSuggestions}
           onSuggestionsClearRequested={onClearSuggestions}
-          onSuggestionSelected={this.onSuggestionSelected}
+          onSuggestionSelected={this.handleSuggestionSelected}
           onPaste={onPaste}
           autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
           lang={this.props.lang}
@@ -372,25 +367,23 @@ class ComposeForm extends ImmutablePureComponent {
             onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
             onUpload={onPaste}
             isEditing={isEditing}
-            spoiler={spoilersAlwaysOn ? (spoilerText.length > 0) : spoiler}
+            sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
+            spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
           />
           <div className='character-counter__wrapper'>
             <CharacterCounter text={countText} max={maxChars} />
           </div>
         </div>
 
-        <div className='compose-form__bottom-buttons'>
-          <PrivacyDropdownContainer disabled={disabled || isEditing} />
-
-          <Publisher
-            countText={countText}
-            disabled={!this.canSubmit()}
-            isEditing={isEditing}
-            onSecondarySubmit={handleSecondarySubmit}
-            onSubmit={handleSubmit}
-            sideArm={sideArm}
-          />
-        </div>
+        <Publisher
+          countText={countText}
+          disabled={!this.canSubmit()}
+          isEditing={isEditing}
+          onSecondarySubmit={handleSecondarySubmit}
+          onSubmit={handleSubmit}
+          privacy={privacy}
+          sideArm={sideArm}
+        />
       </div>
     );
   }
@@ -398,3 +391,4 @@ class ComposeForm extends ImmutablePureComponent {
 }
 
 export default injectIntl(ComposeForm);
+

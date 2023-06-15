@@ -1,20 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { expandHomeTimeline } from 'flavours/aether/actions/timelines';
 import PropTypes from 'prop-types';
-import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
+import { Link, NavLink } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+
+import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/aether/actions/announcements';
+import { expandHomeTimeline } from 'flavours/aether/actions/timelines';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
 import { addColumn, removeColumn, moveColumn } from 'flavours/aether/actions/columns';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { Link, NavLink } from 'react-router-dom';
-import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/aether/actions/announcements';
 import AnnouncementsContainer from 'flavours/aether/features/getting_started/containers/announcements_container';
-import classNames from 'classnames';
-import IconWithBadge from 'flavours/aether/components/icon_with_badge';
-import NotSignedInIndicator from 'flavours/aether/components/not_signed_in_indicator';
-import { Helmet } from 'react-helmet';
+import { IconWithBadge } from 'flavours/aether/components/icon_with_badge';
+import { NotSignedInIndicator } from 'flavours/aether/components/not_signed_in_indicator';
 import ComposeFormContainer from 'flavours/aether/features/compose/containers/compose_form_container';
 
 
@@ -24,6 +27,7 @@ import Suggestions from 'flavours/aether/features/explore/suggestions';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
 
 import ListPanel from 'flavours/aether/features/ui/components/list_panel';
+import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -40,7 +44,7 @@ const mapStateToProps = state => ({
   regex: state.getIn(['settings', 'home', 'regex', 'body']),
 });
 
-class HomeTimeline extends React.PureComponent {
+class HomeTimeline extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,

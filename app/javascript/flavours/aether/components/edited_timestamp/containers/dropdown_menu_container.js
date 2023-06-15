@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { openDropdownMenu, closeDropdownMenu } from 'flavours/aether/actions/dropdown_menu';
 import { fetchHistory } from 'flavours/aether/actions/history';
 import DropdownMenu from 'flavours/aether/components/dropdown_menu';

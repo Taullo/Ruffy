@@ -1,13 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { fetchStatus } from 'flavours/aether/actions/statuses';
-import { fetchFilters, createFilter, createFilterStatus } from 'flavours/aether/actions/filters';
 import PropTypes from 'prop-types';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import IconButton from 'flavours/aether/components/icon_button';
-import SelectFilter from 'flavours/aether/features/filters/select_filter';
+import { connect } from 'react-redux';
+
+import { fetchFilters, createFilter, createFilterStatus } from 'flavours/aether/actions/filters';
+import { fetchStatus } from 'flavours/aether/actions/statuses';
+import { IconButton } from 'flavours/aether/components/icon_button';
 import AddedToFilter from 'flavours/aether/features/filters/added_to_filter';
+import SelectFilter from 'flavours/aether/features/filters/select_filter';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

@@ -1,8 +1,8 @@
-import React from 'react';
-import Avatar from 'flavours/aether/components/avatar';
-import DisplayName from 'flavours/aether/components/display_name';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Avatar } from 'flavours/aether/components/avatar';
+import { DisplayName } from 'flavours/aether/components/display_name';
 
 export default class AutosuggestAccount extends ImmutablePureComponent {
 

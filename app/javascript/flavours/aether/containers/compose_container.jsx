@@ -1,18 +1,13 @@
-import React from 'react';
+import { PureComponent } from 'react';
+
 import { Provider } from 'react-redux';
-import PropTypes from 'prop-types';
-import configureStore from 'flavours/aether/store/configureStore';
+
+import { fetchCustomEmojis } from 'flavours/aether/actions/custom_emojis';
 import { hydrateStore } from 'flavours/aether/actions/store';
-import { IntlProvider, addLocaleData } from 'react-intl';
-import { getLocale } from 'mastodon/locales';
 import Compose from 'flavours/aether/features/standalone/compose';
 import initialState from 'flavours/aether/initial_state';
-import { fetchCustomEmojis } from 'flavours/aether/actions/custom_emojis';
-
-const { localeData, messages } = getLocale();
-addLocaleData(localeData);
-
-const store = configureStore();
+import { IntlProvider } from 'flavours/aether/locales';
+import { store } from 'flavours/aether/store';
 
 if (initialState) {
   store.dispatch(hydrateStore(initialState));
@@ -20,17 +15,11 @@ if (initialState) {
 
 store.dispatch(fetchCustomEmojis());
 
-export default class TimelineContainer extends React.PureComponent {
-
-  static propTypes = {
-    locale: PropTypes.string.isRequired,
-  };
+export default class ComposeContainer extends PureComponent {
 
   render () {
-    const { locale } = this.props;
-
     return (
-      <IntlProvider locale={locale} messages={messages}>
+      <IntlProvider>
         <Provider store={store}>
           <Compose />
         </Provider>

@@ -1315,6 +1315,15 @@ a.sparkline {
     &:last-child {
       border-bottom: 0;
     }
+
+    &.negative {
+      color: $error-value-color;
+      font-weight: 700;
+
+      .dimension__item__value {
+        color: $error-value-color;
+      }
+    }
   }
 }
 
@@ -1377,7 +1386,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (max-width: 930px) {
+  @media screen and (width <= 930px) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -1663,7 +1672,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (width <= 800px) {
     border: 0;
 
     &__item {

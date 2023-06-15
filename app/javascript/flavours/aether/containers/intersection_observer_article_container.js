@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import IntersectionObserverArticle from 'flavours/aether/components/intersection_observer_article';
+
 import { setHeight } from 'flavours/aether/actions/height_cache';
+import IntersectionObserverArticle from 'flavours/aether/components/intersection_observer_article';
 
 const makeMapStateToProps = (state, props) => ({
   cachedHeight: state.getIn(['height_cache', props.saveHeightKey, props.id]),

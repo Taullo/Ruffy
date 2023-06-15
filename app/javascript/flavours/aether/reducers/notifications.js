@@ -1,3 +1,15 @@
+import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
+
+import {
+  ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS,
+  FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
+  FOLLOW_REQUEST_REJECT_SUCCESS,
+} from 'flavours/aether/actions/accounts';
+import { DOMAIN_BLOCK_SUCCESS } from 'flavours/aether/actions/domain_blocks';
+import {
+  MARKERS_FETCH_SUCCESS,
+} from 'flavours/aether/actions/markers';
 import {
   NOTIFICATIONS_MOUNT,
   NOTIFICATIONS_UNMOUNT,
@@ -20,19 +32,9 @@ import {
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
 } from 'flavours/aether/actions/notifications';
-import {
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS,
-  FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
-  FOLLOW_REQUEST_REJECT_SUCCESS,
-} from 'flavours/aether/actions/accounts';
-import {
-  MARKERS_FETCH_SUCCESS,
-} from 'flavours/aether/actions/markers';
-import { DOMAIN_BLOCK_SUCCESS } from 'flavours/aether/actions/domain_blocks';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from 'flavours/aether/actions/timelines';
-import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
-import compareId from '../compare_id';
+
+import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({
   pendingItems: ImmutableList(),

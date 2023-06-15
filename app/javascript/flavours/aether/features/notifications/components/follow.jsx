@@ -1,17 +1,22 @@
 //  Package imports.
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { HotKeys } from 'react-hotkeys';
+
 import classNames from 'classnames';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { HotKeys } from 'react-hotkeys';
+
+
 // Our imports.
+import { Icon } from 'flavours/aether/components/icon';
 import Permalink from 'flavours/aether/components/permalink';
 import AccountContainer from 'flavours/aether/containers/account_container';
+
 import NotificationOverlayContainer from '../containers/overlay_container';
-import Icon from 'flavours/aether/components/icon';
 
 export default class NotificationFollow extends ImmutablePureComponent {
 

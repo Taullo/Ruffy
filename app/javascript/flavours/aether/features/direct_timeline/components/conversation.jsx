@@ -1,18 +1,22 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import StatusContent from 'flavours/aether/components/status_content';
-import AttachmentList from 'flavours/aether/components/attachment_list';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
-import AvatarComposite from 'flavours/aether/components/avatar_composite';
-import Permalink from 'flavours/aether/components/permalink';
-import IconButton from 'flavours/aether/components/icon_button';
-import RelativeTimestamp from 'flavours/aether/components/relative_timestamp';
+
 import { HotKeys } from 'react-hotkeys';
+
+import AttachmentList from 'flavours/aether/components/attachment_list';
+import AvatarComposite from 'flavours/aether/components/avatar_composite';
+import { IconButton } from 'flavours/aether/components/icon_button';
+import Permalink from 'flavours/aether/components/permalink';
+import { RelativeTimestamp } from 'flavours/aether/components/relative_timestamp';
+import StatusContent from 'flavours/aether/components/status_content';
+import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import { autoPlayGif } from 'flavours/aether/initial_state';
-import classNames from 'classnames';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -59,9 +63,7 @@ class Conversation extends ImmutablePureComponent {
         }
         destination = `/statuses/${lastStatus.get('id')}`;
       }
-      let state = { ...router.history.location.state };
-      state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-      router.history.push(destination, state);
+      router.history.push(destination);
       e.preventDefault();
     }
   };

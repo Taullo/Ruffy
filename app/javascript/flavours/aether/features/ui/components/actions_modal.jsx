@@ -1,13 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Avatar } from 'flavours/aether/components/avatar';
+import { DisplayName } from 'flavours/aether/components/display_name';
+import { IconButton } from 'flavours/aether/components/icon_button';
+import { RelativeTimestamp } from 'flavours/aether/components/relative_timestamp';
 import StatusContent from 'flavours/aether/components/status_content';
-import Avatar from 'flavours/aether/components/avatar';
-import RelativeTimestamp from 'flavours/aether/components/relative_timestamp';
-import DisplayName from 'flavours/aether/components/display_name';
-import classNames from 'classnames';
-import IconButton from 'flavours/aether/components/icon_button';
 
 export default class ActionsModal extends ImmutablePureComponent {
 
@@ -35,13 +37,13 @@ export default class ActionsModal extends ImmutablePureComponent {
 
     if (!contents) {
       contents = (
-        <React.Fragment>
+        <>
           {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex={-1} inverted />}
           <div>
             <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
             <div>{meta}</div>
           </div>
-        </React.Fragment>
+        </>
       );
     }
 

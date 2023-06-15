@@ -1,18 +1,22 @@
-import React from 'react';
-import Logo from 'flavours/aether/components/logo';
-import { Link, withRouter } from 'react-router-dom';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { registrationsOpen, me } from 'flavours/aether/initial_state';
-import Avatar from 'flavours/aether/components/avatar';
-import Permalink from 'flavours/aether/components/permalink';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Link, withRouter } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import ColumnLink from 'flavours/aether/features/ui/components/column_link';
-import { openModal } from 'flavours/aether/actions/modal';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import { preferencesLink, profileLink } from 'flavours/aether/utils/backend_links';
 import { logOut } from 'flavours/aether/utils/log_out';
+
+import { openModal } from 'flavours/aether/actions/modal';
+import { Avatar } from 'flavours/aether/components/avatar';
+import { WordmarkLogo, SymbolLogo } from 'flavours/aether/components/logo';
+import Permalink from 'flavours/aether/components/permalink';
+import { registrationsOpen, me } from 'flavours/aether/initial_state';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -77,22 +81,32 @@ const Account = connect(state => ({
   </Permalink>
 ));
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
-  openClosedRegistrationsModal() {
-    dispatch(openModal('CLOSED_REGISTRATIONS'));
-  },
-  onLogout () {
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.logoutMessage),
-      confirm: intl.formatMessage(messages.logoutConfirm),
-      closeWhenConfirm: false,
-      onConfirm: () => logOut(),
-    }));
-  },
-  openSettings: () => dispatch(openModal('SETTINGS', {})),
+const mapStateToProps = (state) => ({
+  signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
 });
 
-class Header extends React.PureComponent {
+const mapDispatchToProps = (dispatch, { intl }) => ({
+  openClosedRegistrationsModal() {
+    dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
+  },
+  onLogout () {
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.logoutMessage),
+        confirm: intl.formatMessage(messages.logoutConfirm),
+        closeWhenConfirm: false,
+        onConfirm: () => logOut(),
+      },
+    }));
+  },
+  openSettings: () => dispatch(openModal({
+    modalType: 'SETTINGS',
+    modalProps: {},
+  })),
+});
+
+class Header extends PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
@@ -104,6 +118,7 @@ class Header extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     onLogout: PropTypes.func.isRequired,
     openSettings: PropTypes.func.isRequired,
+    signupUrl: PropTypes.string.isRequired,
   };
 
   handleLogout = () => {
@@ -111,8 +126,8 @@ class Header extends React.PureComponent {
   };
 
   render () {
-    const { intl, openSettings, location, openClosedRegistrationsModal } = this.props;
     const { signedIn } = this.context.identity;
+    const { location, openClosedRegistrationsModal, signupUrl, intl, openSettings } = this.props;
 
     let menu        = [];
     menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
@@ -149,13 +164,13 @@ class Header extends React.PureComponent {
 
       if (registrationsOpen) {
         signupButton = (
-          <a href='/auth/sign_up' className='button button-tertiary'>
+          <a href={signupUrl} className='button'>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </a>
         );
       } else {
         signupButton = (
-          <button className='button button-tertiary' onClick={openClosedRegistrationsModal}>
+          <button className='button' onClick={openClosedRegistrationsModal}>
             <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
           </button>
         );
@@ -163,8 +178,8 @@ class Header extends React.PureComponent {
 
       content = (
         <>
-          <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
           {signupButton}
+          <a href='/auth/sign_in' className='button button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
         </>
       );
     }
@@ -173,7 +188,10 @@ class Header extends React.PureComponent {
       <div className='ui__header__wrapper'>
         <div className='ui__header'>
           <div className='ui__header__left'>
-            <Link to='/' className='ui__header__logo'><Logo /></Link>
+            <Link to='/' className='ui__header__logo'>
+              <WordmarkLogo />
+              <SymbolLogo />
+            </Link>
             <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/explore/local' icon='hashtag' text={intl.formatMessage(messages.explore)} />
             <ColumnLink transparent to='/about' icon='info' text={intl.formatMessage(messages.about)} />
@@ -189,4 +207,4 @@ class Header extends React.PureComponent {
 
 }
 
-export default withRouter(injectIntl(connect(null, mapDispatchToProps)(Header)));
+export default injectIntl(withRouter(connect(mapStateToProps, mapDispatchToProps)(Header)));

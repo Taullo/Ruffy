@@ -1,10 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeListEditorTitle, submitListEditor } from 'flavours/aether/actions/lists';
-import IconButton from 'flavours/aether/components/icon_button';
 import Button from 'flavours/aether/components/button';
+import { PureComponent } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import { connect } from 'react-redux';
+
+import { changeListEditorTitle, submitListEditor } from 'flavours/aether/actions/lists';
+import { IconButton } from 'flavours/aether/components/icon_button';
 
 const messages = defineMessages({
   label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },
@@ -21,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
   onSubmit: () => dispatch(submitListEditor(true)),
 });
 
-class NewListForm extends React.PureComponent {
+class NewListForm extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,

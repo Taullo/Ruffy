@@ -1,14 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { timelinePreview, showTrends, me } from 'flavours/aether/initial_state';
-import ColumnLink from 'flavours/aether/features/ui/components/column_link';
+
+import NavigationPortal from 'flavours/aether/components/navigation_portal';
+import { timelinePreview, showTrends } from 'flavours/aether/initial_state';
+import { preferencesLink } from 'flavours/aether/utils/backend_links';
+
+import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
 import SignInBanner from './sign_in_banner';
-import NavigationPortal from 'flavours/aether/components/navigation_portal';
-import { connect } from 'react-redux';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -17,7 +20,7 @@ const messages = defineMessages({
   profile: { id: 'tabs_bar.profile', defaultMessage: 'Profile' },
   local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
   federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
@@ -28,7 +31,7 @@ const messages = defineMessages({
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
 });
 
-class NavigationPanel extends React.Component {
+class NavigationPanel extends Component {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -52,11 +55,11 @@ class NavigationPanel extends React.Component {
     return (
       <div className='navigation-panel'>
         {signedIn && (
-          <React.Fragment>
+          <>
             <span className='hideondesktop'><ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} /></span>
 
             <span className='hideondesktop'><FollowRequestsColumnLink /></span>
-          </React.Fragment>
+          </>
         )}
 
         {showTrends ? (
@@ -91,14 +94,15 @@ class NavigationPanel extends React.Component {
         )}
 
         {signedIn && (
-          <React.Fragment>
+
+          <>
 
             <ListPanel />
 
             <hr className='hideondesktop' />
 
             <span className='hideondesktop'><ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} /></span>
-          </React.Fragment>
+          </>
         )}
 
         <NavigationPortal />

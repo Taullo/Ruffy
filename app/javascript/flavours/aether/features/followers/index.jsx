@@ -1,27 +1,31 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { FormattedMessage } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import { debounce } from 'lodash';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+
 import {
   lookupAccount,
   fetchAccount,
   fetchFollowers,
   expandFollowers,
 } from 'flavours/aether/actions/accounts';
-import { FormattedMessage } from 'react-intl';
+import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import ScrollableList from 'flavours/aether/components/scrollable_list';
+import { TimelineHint } from 'flavours/aether/components/timeline_hint';
 import AccountContainer from 'flavours/aether/containers/account_container';
-import Column from 'flavours/aether/features/ui/components/column';
 import ProfileColumnHeader from 'flavours/aether/features/account/components/profile_column_header';
 import HeaderContainer from 'flavours/aether/features/account_timeline/containers/header_container';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ScrollableList from 'flavours/aether/components/scrollable_list';
-import TimelineHint from 'flavours/aether/components/timeline_hint';
-import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
-import { getAccountHidden } from 'flavours/aether/selectors';
-import { normalizeForLookup } from 'flavours/aether/reducers/accounts_map';
 import BundleColumnError from 'flavours/aether/features/ui/components/bundle_column_error';
+import Column from 'flavours/aether/features/ui/components/column';
+import { normalizeForLookup } from 'flavours/aether/reducers/accounts_map';
+import { getAccountHidden } from 'flavours/aether/selectors';
+
+import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);

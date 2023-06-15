@@ -43,30 +43,25 @@
   font-weight: 500;
 }
 
-.media-gallery__gifv__label {
-  display: block;
+.media-gallery__item__badges {
   position: absolute;
-  color: $primary-text-color;
-  background: rgba($base-overlay-background, 0.5);
   bottom: 6px;
   inset-inline-start: 6px;
-  padding: 2px 6px;
-  border-radius: 2px;
-  font-size: 11px;
-  font-weight: 600;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.9;
-  transition: opacity 0.1s ease;
-  line-height: 18px;
+  display: flex;
+  gap: 2px;
 }
 
-.media-gallery__gifv {
-  &:hover {
-    .media-gallery__gifv__label {
-      opacity: 1;
-    }
-  }
+.media-gallery__gifv__label {
+  display: block;
+  color: $white;
+  background: rgba($black, 0.65);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 1;
+  pointer-events: none;
+  line-height: 18px;
 }
 
 .media-gallery {
@@ -93,15 +88,16 @@
   border-radius: 4px;
   overflow: hidden;
 
-  .full-width & {
-    border-radius: 0;
+  &--tall {
+    grid-row: span 2;
   }
 
-  &.standalone {
-    .media-gallery__item-gifv-thumbnail {
-      transform: none;
-      top: 0;
-    }
+  &--wide {
+    grid-column: span 2;
+  }
+
+  .full-width & {
+    border-radius: 0;
   }
 
   &.letterbox {
@@ -158,8 +154,6 @@
   cursor: zoom-in;
   height: 100%;
   width: 100%;
-  position: relative;
-  z-index: 1;
   object-fit: contain;
   user-select: none;
 
@@ -242,7 +236,7 @@
   background: transparent;
   box-sizing: border-box;
   border: 0;
-  color: rgba($primary-text-color, 0.7);
+  color: rgba($white, 0.7);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -257,7 +251,7 @@
   &:hover,
   &:focus,
   &:active {
-    color: $primary-text-color;
+    color: $white;
   }
 }
 
@@ -384,7 +378,7 @@
   background: darken($ui-base-color, 8%);
   border-radius: 4px;
   padding-bottom: 44px;
-  direction: ltr;
+  width: 100%;
 
   &.editable {
     border-radius: 0;
@@ -451,8 +445,9 @@
   max-width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
-  direction: ltr;
   color: $white;
+  display: flex;
+  align-items: center;
 
   &.editable {
     border-radius: 0;
@@ -495,14 +490,12 @@
   &.inline {
     video {
       object-fit: contain;
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
     }
   }
 
   &__controls {
     position: absolute;
+    direction: ltr;
     z-index: 2;
     bottom: 0;
     inset-inline-start: 0;

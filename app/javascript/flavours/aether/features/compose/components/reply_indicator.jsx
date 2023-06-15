@@ -1,15 +1,15 @@
 //  Package imports.
 import PropTypes from 'prop-types';
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Components.
-import AccountContainer from 'flavours/aether/containers/account_container';
-import IconButton from 'flavours/aether/components/icon_button';
 import AttachmentList from 'flavours/aether/components/attachment_list';
-
+import { IconButton } from 'flavours/aether/components/icon_button';
+import AccountContainer from 'flavours/aether/containers/account_container';
 //  Messages.
 const messages = defineMessages({
   cancel: {

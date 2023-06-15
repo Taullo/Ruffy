@@ -1,5 +1,6 @@
-import { STORE_HYDRATE } from 'flavours/aether/actions/store';
 import { Map as ImmutableMap } from 'immutable';
+
+import { STORE_HYDRATE } from 'flavours/aether/actions/store';
 
 const initialState = ImmutableMap({
   accept_content_types: [],

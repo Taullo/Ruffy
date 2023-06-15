@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { PureComponent } from 'react';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+
+import Toggle from 'react-toggle';
+
 import { addColumn, removeColumn, moveColumn } from 'flavours/aether/actions/columns';
 import { fetchList, deleteList, updateList } from 'flavours/aether/actions/lists';
 import { openModal } from 'flavours/aether/actions/modal';
@@ -11,11 +17,11 @@ import { connectListStream } from 'flavours/aether/actions/streaming';
 import { expandListTimeline } from 'flavours/aether/actions/timelines';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
-import Icon from 'flavours/aether/components/icon';
+import { Icon } from 'flavours/aether/components/icon';
 import LoadingIndicator from 'flavours/aether/components/loading_indicator';
-import RadioButton from 'flavours/aether/components/radio_button';
-import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
+import { RadioButton } from 'flavours/aether/components/radio_button';
 import BundleColumnError from 'flavours/aether/features/ui/components/bundle_column_error';
+import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
 
 import ListPanel from 'flavours/aether/features/ui/components/list_panel';
 
@@ -34,7 +40,7 @@ const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `list:${props.params.id}`, 'unread']) > 0,
 });
 
-class ListTimeline extends React.PureComponent {
+class ListTimeline extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -80,7 +86,7 @@ class ListTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectListStream(id));
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     const { dispatch } = this.props;
     const { id } = nextProps.params;
 
@@ -114,32 +120,44 @@ class ListTimeline extends React.PureComponent {
   };
 
   handleEditClick = () => {
-    this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id }));
+    this.props.dispatch(openModal({
+      modalType: 'LIST_EDITOR',
+      modalProps: { listId: this.props.params.id },
+    }));
   };
 
   handleDeleteClick = () => {
     const { dispatch, columnId, intl } = this.props;
     const { id } = this.props.params;
 
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.deleteMessage),
-      confirm: intl.formatMessage(messages.deleteConfirm),
-      onConfirm: () => {
-        dispatch(deleteList(id));
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.deleteMessage),
+        confirm: intl.formatMessage(messages.deleteConfirm),
+        onConfirm: () => {
+          dispatch(deleteList(id));
 
-        if (columnId) {
-          dispatch(removeColumn(columnId));
-        } else {
-          this.context.router.history.push('/lists');
-        }
+          if (columnId) {
+            dispatch(removeColumn(columnId));
+          } else {
+            this.context.router.history.push('/lists');
+          }
+        },
       },
     }));
   };
 
   handleRepliesPolicyChange = ({ target }) => {
-    const { dispatch, list } = this.props;
+    const { dispatch } = this.props;
     const { id } = this.props.params;
-    this.props.dispatch(updateList(id, undefined, false, target.value));
+    dispatch(updateList(id, undefined, false, undefined, target.value));
+  };
+
+  onExclusiveToggle = ({ target }) => {
+    const { dispatch } = this.props;
+    const { id } = this.props.params;
+    dispatch(updateList(id, undefined, false, target.checked, undefined));
   };
 
   render () {
@@ -148,6 +166,7 @@ class ListTimeline extends React.PureComponent {
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
     const replies_policy = list ? list.get('replies_policy') : undefined;
+    const isExclusive = list ? list.get('exclusive') : undefined;
 
     if (typeof list === 'undefined') {
       return (
@@ -176,13 +195,20 @@ class ListTimeline extends React.PureComponent {
           multiColumn={multiColumn}
         >
           <div className='column-settings__row column-header__links'>
-            <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
+            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleEditClick}>
               <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
 
-            <button className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
+            <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
+          </div>
+
+          <div className='setting-toggle'>
+            <Toggle id={`list-${id}-exclusive`} defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
+            <label htmlFor={`list-${id}-exclusive`} className='setting-toggle__label'>
+              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
+            </label>
           </div>
 
           { replies_policy !== undefined && (
@@ -219,7 +245,7 @@ class ListTimeline extends React.PureComponent {
           scrollKey={`list_timeline-${columnId}`}
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet.' />}
+          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
           bindToDocument={!multiColumn}
         />
         </div>

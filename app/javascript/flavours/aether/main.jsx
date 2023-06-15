@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { setupBrowserNotifications } from 'flavours/aether/actions/notifications';
-import Mastodon, { store } from 'flavours/aether/containers/mastodon';
-import { me } from 'flavours/aether/initial_state';
-import ready from 'flavours/aether/ready';
+import { createRoot } from 'react-dom/client';
 
-const perf = require('flavours/aether/performance');
+import { setupBrowserNotifications } from 'flavours/aether/actions/notifications';
+import Mastodon from 'flavours/aether/containers/mastodon';
+import { me } from 'flavours/aether/initial_state';
+import * as perf from 'flavours/aether/performance';
+import ready from 'flavours/aether/ready';
+import { store } from 'flavours/aether/store';
 
 /**
  * @returns {Promise<void>}
@@ -17,7 +17,8 @@ function main() {
     const mountNode = document.getElementById('mastodon');
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
-    ReactDOM.render(<Mastodon {...props} />, mountNode);
+    const root = createRoot(mountNode);
+    root.render(<Mastodon {...props} />);
     store.dispatch(setupBrowserNotifications());
 
     if (process.env.NODE_ENV === 'production' && me && 'serviceWorker' in navigator) {

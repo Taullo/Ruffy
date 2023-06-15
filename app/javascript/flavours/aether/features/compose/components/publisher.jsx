@@ -1,19 +1,17 @@
-//  Package imports.
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+
 import { defineMessages, injectIntl } from 'react-intl';
-import { length } from 'stringz';
+
+import classNames from 'classnames';
+
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  Components.
-import Button from 'flavours/aether/components/button';
-import Icon from 'flavours/aether/components/icon';
+import { length } from 'stringz';
 
-//  Utils.
+import Button from 'flavours/aether/components/button';
+import { Icon } from 'flavours/aether/components/icon';
 import { maxChars } from 'flavours/aether/initial_state';
 
-//  Messages.
 const messages = defineMessages({
   publish: {
     defaultMessage: 'Publish',
@@ -24,6 +22,10 @@ const messages = defineMessages({
     id: 'compose_form.publish_loud',
   },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Save changes' },
+  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
+  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
 class Publisher extends ImmutablePureComponent {
@@ -34,8 +36,8 @@ class Publisher extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     onSecondarySubmit: PropTypes.func,
     onSubmit: PropTypes.func,
-    privacy: PropTypes.oneOf(['direct', 'private', 'unlisted', 'localPublic', 'public']),
-    sideArm: PropTypes.oneOf(['none', 'direct', 'private', 'unlisted', 'localPublic', 'public']),
+    privacy: PropTypes.oneOf(['direct', 'private', 'unlisted', 'public']),
+    sideArm: PropTypes.oneOf(['none', 'direct', 'private', 'unlisted', 'public']),
     isEditing: PropTypes.bool,
   };
 
@@ -52,7 +54,7 @@ class Publisher extends ImmutablePureComponent {
       over: diff < 0,
     });
 
-    const privacyIcons = { direct: 'envelope', private: 'lock', public: 'globe', local_public: 'home', unlisted: 'unlock' };
+    const privacyIcons = { direct: 'envelope', private: 'lock', public: 'globe', unlisted: 'unlock' };
 
     let publishText;
     if (isEditing) {
@@ -68,6 +70,13 @@ class Publisher extends ImmutablePureComponent {
       publishText = privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
+    const privacyNames = {
+      public: messages.public,
+      unlisted: messages.unlisted,
+      private: messages.private,
+      direct: messages.direct,
+    };
+
     return (
       <div className={computedClass}>
         {sideArm && !isEditing && sideArm !== 'none' ? (
@@ -78,7 +87,7 @@ class Publisher extends ImmutablePureComponent {
               onClick={onSecondarySubmit}
               style={{ padding: null }}
               text={<Icon id={privacyIcons[sideArm]} />}
-              title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${sideArm}.short` })}`}
+              title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[sideArm])}`}
             />
           </div>
         ) : null}
@@ -86,7 +95,7 @@ class Publisher extends ImmutablePureComponent {
           <Button
             className='primary'
             text={publishText}
-            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${privacy}.short` })}`}
+            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
             onClick={this.handleSubmit}
             disabled={disabled}
           />
@@ -98,3 +107,4 @@ class Publisher extends ImmutablePureComponent {
 }
 
 export default injectIntl(Publisher);
+

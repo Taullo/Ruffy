@@ -1,6 +1,7 @@
-import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from 'flavours/aether/actions/importer';
-import { ACCOUNT_REVEAL } from 'flavours/aether/actions/accounts';
 import { Map as ImmutableMap, fromJS } from 'immutable';
+
+import { ACCOUNT_REVEAL } from 'flavours/aether/actions/accounts';
+import { ACCOUNT_IMPORT, ACCOUNTS_IMPORT } from 'flavours/aether/actions/importer';
 
 const initialState = ImmutableMap();
 

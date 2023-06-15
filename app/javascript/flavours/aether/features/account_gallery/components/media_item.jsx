@@ -1,11 +1,15 @@
-import Blurhash from 'flavours/aether/components/blurhash';
-import classNames from 'classnames';
-import Icon from 'flavours/aether/components/icon';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/aether/initial_state';
 import PropTypes from 'prop-types';
-import React from 'react';
+
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Blurhash } from 'flavours/aether/components/blurhash';
+import { Icon } from 'flavours/aether/components/icon';
+import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/aether/initial_state';
+
+
 
 export default class MediaItem extends ImmutablePureComponent {
 

@@ -1,3 +1,10 @@
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+
+import {
+  COMPOSE_MENTION,
+  COMPOSE_REPLY,
+  COMPOSE_DIRECT,
+} from 'flavours/aether/actions/compose';
 import {
   SEARCH_CHANGE,
   SEARCH_CLEAR,
@@ -7,12 +14,6 @@ import {
   SEARCH_SHOW,
   SEARCH_EXPAND_SUCCESS,
 } from 'flavours/aether/actions/search';
-import {
-  COMPOSE_MENTION,
-  COMPOSE_REPLY,
-  COMPOSE_DIRECT,
-} from 'flavours/aether/actions/compose';
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
   value: '',

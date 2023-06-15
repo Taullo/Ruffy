@@ -1,18 +1,23 @@
-import React from 'react';
-import Icon from 'flavours/aether/components/icon';
-import Button from 'flavours/aether/components/button';
-import IconButton from 'flavours/aether/components/icon_button';
+import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
 import { requestBrowserPermission } from 'flavours/aether/actions/notifications';
 import { changeSetting } from 'flavours/aether/actions/settings';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Button from 'flavours/aether/components/button';
+import { Icon } from 'flavours/aether/components/icon';
+import { IconButton } from 'flavours/aether/components/icon_button';
+
+
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-class NotificationsPermissionBanner extends React.PureComponent {
+class NotificationsPermissionBanner extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

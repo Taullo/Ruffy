@@ -1,10 +1,20 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/aether/load_polyfills';
-import ready from 'flavours/aether/ready';
-import loadKeyboardExtensions from 'flavours/aether/load_keyboard_extensions';
-import axios from 'axios';
-import { throttle } from 'lodash';
+import { createRoot }  from 'react-dom/client';
+
+import { IntlMessageFormat } from 'intl-messageformat';
 import { defineMessages } from 'react-intl';
+
+import { delegate }  from '@rails/ujs';
+import axios from 'axios';
+import { createBrowserHistory }  from 'history';
+import { throttle } from 'lodash';
+
+import { timeAgoString }  from 'flavours/aether/components/relative_timestamp';
+import emojify  from 'flavours/aether/features/emoji/emoji';
+import loadKeyboardExtensions from 'flavours/aether/load_keyboard_extensions';
+import { loadLocale, getLocale } from 'flavours/aether/locales';
+import { loadPolyfills } from 'flavours/aether/polyfills';
+import ready from 'flavours/aether/ready';
 
 const messages = defineMessages({
   usernameTaken: { id: 'username.taken', defaultMessage: 'That username is taken. Try another' },
@@ -13,15 +23,7 @@ const messages = defineMessages({
 });
 
 function main() {
-  const IntlMessageFormat = require('intl-messageformat').default;
-  const { timeAgoString } = require('flavours/aether/components/relative_timestamp');
-  const { delegate } = require('@rails/ujs');
-  const emojify = require('flavours/aether/features/emoji/emoji').default;
-  const { getLocale } = require('locales');
-  const { localeData } = getLocale();
-  const React = require('react');
-  const ReactDOM = require('react-dom');
-  const { createBrowserHistory } = require('history');
+  const { messages: localeData } = getLocale();
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
@@ -130,7 +132,8 @@ function main() {
 
           const content = document.createElement('div');
 
-          ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
+          const root = createRoot(content);
+          root.render(<MediaContainer locale={locale} components={reactComponents} />);
           document.body.appendChild(content);
           scrollToDetailedStatus();
         })
@@ -234,6 +237,7 @@ function main() {
 }
 
 loadPolyfills()
+  .then(loadLocale)
   .then(main)
   .then(loadKeyboardExtensions)
   .catch(error => {

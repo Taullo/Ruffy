@@ -1,6 +1,5 @@
-import {
-  NOTIFICATIONS_UPDATE,
-} from '../actions/notifications';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+
 import {
   FOLLOWERS_FETCH_REQUEST,
   FOLLOWERS_FETCH_SUCCESS,
@@ -24,10 +23,6 @@ import {
   FOLLOW_REQUEST_REJECT_SUCCESS,
 } from 'flavours/aether/actions/accounts';
 import {
-  REBLOGS_FETCH_SUCCESS,
-  FAVOURITES_FETCH_SUCCESS,
-} from 'flavours/aether/actions/interactions';
-import {
   BLOCKS_FETCH_REQUEST,
   BLOCKS_FETCH_SUCCESS,
   BLOCKS_FETCH_FAIL,
@@ -35,14 +30,6 @@ import {
   BLOCKS_EXPAND_SUCCESS,
   BLOCKS_EXPAND_FAIL,
 } from 'flavours/aether/actions/blocks';
-import {
-  MUTES_FETCH_REQUEST,
-  MUTES_FETCH_SUCCESS,
-  MUTES_FETCH_FAIL,
-  MUTES_EXPAND_REQUEST,
-  MUTES_EXPAND_SUCCESS,
-  MUTES_EXPAND_FAIL,
-} from 'flavours/aether/actions/mutes';
 import {
   DIRECTORY_FETCH_REQUEST,
   DIRECTORY_FETCH_SUCCESS,
@@ -56,7 +43,23 @@ import {
   FEATURED_TAGS_FETCH_SUCCESS,
   FEATURED_TAGS_FETCH_FAIL,
 } from 'flavours/aether/actions/featured_tags';
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+import {
+  REBLOGS_FETCH_SUCCESS,
+  FAVOURITES_FETCH_SUCCESS,
+} from 'flavours/aether/actions/interactions';
+import {
+  MUTES_FETCH_REQUEST,
+  MUTES_FETCH_SUCCESS,
+  MUTES_FETCH_FAIL,
+  MUTES_EXPAND_REQUEST,
+  MUTES_EXPAND_SUCCESS,
+  MUTES_EXPAND_FAIL,
+} from 'flavours/aether/actions/mutes';
+
+import {
+  NOTIFICATIONS_UPDATE,
+} from '../actions/notifications';
+
 
 const initialListState = ImmutableMap({
   next: null,

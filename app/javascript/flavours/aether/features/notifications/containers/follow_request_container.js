@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/aether/selectors';
-import FollowRequest from '../components/follow_request';
+
 import { authorizeFollowRequest, rejectFollowRequest } from 'flavours/aether/actions/accounts';
+
+import FollowRequest from '../components/follow_request';
 
 const mapDispatchToProps = (dispatch, { account }) => ({
   onAuthorize () {

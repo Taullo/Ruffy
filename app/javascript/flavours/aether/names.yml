@@ -1,40 +1,40 @@
 en:
   flavours:
-    aether:
+    glitch:
       description: Default, Light, and High Contrast themes.
       name: Beta
   skins:
-    aether:
+    glitch:
       default: Default
 cs:
   flavours:
-    aether:
+    glitch:
       description: Výchozí rozhraní instancí Aether.
       name: Beta
   skins:
-    aether:
+    glitch:
       default: Výchozí
 pl:
   flavours:
-    aether:
+    glitch:
       description: Domyślny motyw instancji Aether.
   skins:
-    aether:
+    glitch:
       default: Domyślny
 es:
   flavours:
-    aether:
+    glitch:
       description: El diseño predeterminado para las instancias con Aether.
       name: Beta
   skins:
-    aether:
+    glitch:
       default: Predeterminado
 
 ja:
   flavours:
-    aether:
+    glitch:
       description: Aetherインスタンスのデフォルトフレーバーです。
       name: Beta
   skins:
-    aether:
+    glitch:
       default: デフォルト

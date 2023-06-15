@@ -1,16 +1,19 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Button from 'flavours/aether/components/button';
-import StatusContent from 'flavours/aether/components/status_content';
-import Avatar from 'flavours/aether/components/avatar';
-import RelativeTimestamp from 'flavours/aether/components/relative_timestamp';
-import DisplayName from 'flavours/aether/components/display_name';
-import AttachmentList from 'flavours/aether/components/attachment_list';
-import Icon from 'flavours/aether/components/icon';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import AttachmentList from 'flavours/aether/components/attachment_list';
+import { Avatar } from 'flavours/aether/components/avatar';
+import Button from 'flavours/aether/components/button';
+import { DisplayName } from 'flavours/aether/components/display_name';
+import { Icon } from 'flavours/aether/components/icon';
+import { RelativeTimestamp } from 'flavours/aether/components/relative_timestamp';
+import StatusContent from 'flavours/aether/components/status_content';
 import VisibilityIcon from 'flavours/aether/components/status_visibility_icon';
 
 const messages = defineMessages({
@@ -43,9 +46,7 @@ class FavouriteModal extends ImmutablePureComponent {
     if (e.button === 0) {
       e.preventDefault();
       this.props.onClose();
-      let state = { ...this.context.router.history.location.state };
-      state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-      this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
+      this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
     }
   };
 

@@ -1,6 +1,9 @@
 import { injectIntl } from 'react-intl';
+
 import { connect } from 'react-redux';
+
 import { NotificationStack } from 'react-notification';
+
 import { dismissAlert } from 'flavours/aether/actions/alerts';
 import { getAlerts } from 'flavours/aether/selectors';
 

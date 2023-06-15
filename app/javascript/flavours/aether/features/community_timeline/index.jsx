@@ -1,17 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
+import { PureComponent } from 'react';
+
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
+import { connect } from 'react-redux';
+
+import { addColumn, removeColumn, moveColumn } from 'flavours/aether/actions/columns';
+import { connectCommunityStream } from 'flavours/aether/actions/streaming';
+import { expandCommunityTimeline } from 'flavours/aether/actions/timelines';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
-import { expandCommunityTimeline } from 'flavours/aether/actions/timelines';
-import { addColumn, removeColumn, moveColumn } from 'flavours/aether/actions/columns';
-import ColumnSettingsContainer from './containers/column_settings_container';
-import { connectCommunityStream } from 'flavours/aether/actions/streaming';
-import { Helmet } from 'react-helmet';
-import { domain } from 'flavours/aether/initial_state';
 import DismissableBanner from 'flavours/aether/components/dismissable_banner';
+import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
+import { domain } from 'flavours/aether/initial_state';
+
+import ColumnSettingsContainer from './containers/column_settings_container';
 
 import { NavLink, Switch, Route } from 'react-router-dom';
 
@@ -40,7 +45,7 @@ const mapStateToProps = (state, { columnId }) => {
   };
 };
 
-class CommunityTimeline extends React.PureComponent {
+class CommunityTimeline extends PureComponent {
 
   static defaultProps = {
     onlyMedia: false,

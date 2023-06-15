@@ -1,21 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { submitReport } from 'flavours/aether/actions/reports';
-import { expandAccountTimeline } from 'flavours/aether/actions/timelines';
-import { fetchServer } from 'flavours/aether/actions/server';
-import { fetchRelationships } from 'flavours/aether/actions/accounts';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { makeGetAccount } from 'flavours/aether/selectors';
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+
 import { OrderedSet } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import IconButton from 'flavours/aether/components/icon_button';
+import { connect } from 'react-redux';
+
+import { fetchRelationships } from 'flavours/aether/actions/accounts';
+import { submitReport } from 'flavours/aether/actions/reports';
+import { fetchServer } from 'flavours/aether/actions/server';
+import { expandAccountTimeline } from 'flavours/aether/actions/timelines';
+import { IconButton } from 'flavours/aether/components/icon_button';
 import Category from 'flavours/aether/features/report/category';
-import Statuses from 'flavours/aether/features/report/statuses';
-import Rules from 'flavours/aether/features/report/rules';
 import Comment from 'flavours/aether/features/report/comment';
+import Rules from 'flavours/aether/features/report/rules';
+import Statuses from 'flavours/aether/features/report/statuses';
 import Thanks from 'flavours/aether/features/report/thanks';
+import { makeGetAccount } from 'flavours/aether/selectors';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

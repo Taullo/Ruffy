@@ -1,8 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/aether/selectors';
 import { injectIntl } from 'react-intl';
+
+import { connect } from 'react-redux';
+
 import { removeFromListEditor, addToListEditor } from 'flavours/aether/actions/lists';
+import { makeGetAccount } from 'flavours/aether/selectors';
+
 import Account from '../components/account';
 
 const makeMapStateToProps = () => {

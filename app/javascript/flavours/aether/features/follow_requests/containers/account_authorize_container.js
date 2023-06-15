@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/aether/selectors';
-import AccountAuthorize from '../components/account_authorize';
+
 import { authorizeFollowRequest, rejectFollowRequest } from 'flavours/aether/actions/accounts';
+import { makeGetAccount } from 'flavours/aether/selectors';
+
+import AccountAuthorize from '../components/account_authorize';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

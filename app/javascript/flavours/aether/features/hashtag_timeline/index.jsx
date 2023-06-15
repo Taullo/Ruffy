@@ -1,20 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
-import Column from 'flavours/aether/components/column';
-import ColumnHeader from 'flavours/aether/components/column_header';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ColumnSettingsContainer from './containers/column_settings_container';
-import { expandHashtagTimeline, clearTimeline } from 'flavours/aether/actions/timelines';
-import { addColumn, removeColumn, moveColumn } from 'flavours/aether/actions/columns';
-import { connectHashtagStream } from 'flavours/aether/actions/streaming';
+import { PureComponent } from 'react';
+
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
-import { isEqual } from 'lodash';
-import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/aether/actions/tags';
-import Icon from 'flavours/aether/components/icon';
+
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { isEqual } from 'lodash';
+
+import { addColumn, removeColumn, moveColumn } from 'flavours/aether/actions/columns';
+import { connectHashtagStream } from 'flavours/aether/actions/streaming';
+import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/aether/actions/tags';
+import { expandHashtagTimeline, clearTimeline } from 'flavours/aether/actions/timelines';
+import Column from 'flavours/aether/components/column';
+import ColumnHeader from 'flavours/aether/components/column_header';
+import { Icon } from 'flavours/aether/components/icon';
+import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
+
+import ColumnSettingsContainer from './containers/column_settings_container';
+
 
 const messages = defineMessages({
   followHashtag: { id: 'hashtag.follow', defaultMessage: 'Follow hashtag' },
@@ -26,7 +33,7 @@ const mapStateToProps = (state, props) => ({
   tag: state.getIn(['tags', props.params.id]),
 });
 
-class HashtagTimeline extends React.PureComponent {
+class HashtagTimeline extends PureComponent {
 
   disconnects = [];
 

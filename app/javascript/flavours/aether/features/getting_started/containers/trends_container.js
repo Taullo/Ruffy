@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+
 import { fetchTrendingHashtags } from 'flavours/aether/actions/trends';
+
 import Trends from '../components/trends';
 
 const mapStateToProps = state => ({

@@ -1,12 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Permalink from 'flavours/aether/components/permalink';
-import Avatar from 'flavours/aether/components/avatar';
-import DisplayName from 'flavours/aether/components/display_name';
-import IconButton from 'flavours/aether/components/icon_button';
+
 import { defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { Avatar } from 'flavours/aether/components/avatar';
+import { DisplayName } from 'flavours/aether/components/display_name';
+import { IconButton } from 'flavours/aether/components/icon_button';
+import Permalink from 'flavours/aether/components/permalink';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },

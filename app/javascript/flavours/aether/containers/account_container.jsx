@@ -1,8 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { makeGetAccount } from 'flavours/aether/selectors';
-import Account from 'flavours/aether/components/account';
+
+import { connect } from 'react-redux';
+
 import {
   followAccount,
   unfollowAccount,
@@ -13,7 +12,9 @@ import {
 } from 'flavours/aether/actions/accounts';
 import { openModal } from 'flavours/aether/actions/modal';
 import { initMuteModal } from 'flavours/aether/actions/mutes';
+import Account from 'flavours/aether/components/account';
 import { unfollowModal } from 'flavours/aether/initial_state';
+import { makeGetAccount } from 'flavours/aether/selectors';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
@@ -34,10 +35,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
-        dispatch(openModal('CONFIRM', {
-          message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-          confirm: intl.formatMessage(messages.unfollowConfirm),
-          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+        dispatch(openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+            confirm: intl.formatMessage(messages.unfollowConfirm),
+            onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+          },
         }));
       } else {
         dispatch(unfollowAccount(account.get('id')));

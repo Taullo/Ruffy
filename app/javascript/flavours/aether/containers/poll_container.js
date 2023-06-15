@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
+
 import { debounce } from 'lodash';
 
-import Poll from 'flavours/aether/components/poll';
 import { fetchPoll, vote } from 'flavours/aether/actions/polls';
+import Poll from 'flavours/aether/components/poll';
 
 const mapDispatchToProps = (dispatch, { pollId }) => ({
   refresh: debounce(

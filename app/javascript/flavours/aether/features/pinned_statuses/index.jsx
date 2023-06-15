@@ -1,14 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { defineMessages, injectIntl } from 'react-intl';
+
+import { Helmet } from 'react-helmet';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import { connect } from 'react-redux';
+
 import { fetchPinnedStatuses } from 'flavours/aether/actions/pin_statuses';
-import Column from 'flavours/aether/features/ui/components/column';
 import ColumnBackButtonSlim from 'flavours/aether/components/column_back_button_slim';
 import StatusList from 'flavours/aether/components/status_list';
-import { defineMessages, injectIntl } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { Helmet } from 'react-helmet';
+import Column from 'flavours/aether/features/ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.pins', defaultMessage: 'Pinned post' },
@@ -29,7 +32,7 @@ class PinnedStatuses extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.dispatch(fetchPinnedStatuses());
   }
 

@@ -1,9 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { domain } from 'flavours/aether/initial_state';
+import { connect } from 'react-redux';
+
 import { fetchServer } from 'flavours/aether/actions/server';
+import { domain } from 'flavours/aether/initial_state';
 
 const mapStateToProps = state => ({
   message: state.getIn(['server', 'server', 'registrations', 'message']),

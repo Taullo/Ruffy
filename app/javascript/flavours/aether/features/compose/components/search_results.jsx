@@ -1,14 +1,16 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import { ImmutableHashtag as Hashtag } from 'flavours/aether/components/hashtag';
+import { Icon } from 'flavours/aether/components/icon';
+import { LoadMore } from 'flavours/aether/components/load_more';
 import AccountContainer from 'flavours/aether/containers/account_container';
 import StatusContainer from 'flavours/aether/containers/status_container';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import { ImmutableHashtag as Hashtag } from 'flavours/aether/components/hashtag';
-import Icon from 'flavours/aether/components/icon';
 import { searchEnabled } from 'flavours/aether/initial_state';
-import LoadMore from 'flavours/aether/components/load_more';
 
 const messages = defineMessages({
   dismissSuggestion: { id: 'suggestions.dismiss', defaultMessage: 'Dismiss suggestion' },
@@ -127,7 +129,7 @@ class SearchResults extends ImmutablePureComponent {
       <div className='drawer--results'>
         <header className='search-results__header'>
           <Icon id='search' fixedWidth />
-          <FormattedMessage id='search_results.total' defaultMessage='{count, number} {count, plural, one {result} other {results}}' values={{ count }} />
+          <FormattedMessage id='search_results.total' defaultMessage='{count, plural, one {# result} other {# results}}' values={{ count }} />
         </header>
 
         {accounts}

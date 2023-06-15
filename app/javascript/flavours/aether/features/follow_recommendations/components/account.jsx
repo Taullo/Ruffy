@@ -1,15 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+
+import { injectIntl, defineMessages } from 'react-intl';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/aether/selectors';
-import Avatar from 'flavours/aether/components/avatar';
-import DisplayName from 'flavours/aether/components/display_name';
-import Permalink from 'flavours/aether/components/permalink';
-import IconButton from 'flavours/aether/components/icon_button';
-import { injectIntl, defineMessages } from 'react-intl';
+
 import { followAccount, unfollowAccount } from 'flavours/aether/actions/accounts';
+import { Avatar } from 'flavours/aether/components/avatar';
+import { DisplayName } from 'flavours/aether/components/display_name';
+import { IconButton } from 'flavours/aether/components/icon_button';
+import Permalink from 'flavours/aether/components/permalink';
+import { makeGetAccount } from 'flavours/aether/selectors';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
