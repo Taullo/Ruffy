@@ -10,7 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
-import { Blurhash } from 'mastodon/components/blurhash';
+import { Blurhash } from 'flavours/aether/components/blurhash';
 
 import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
 
