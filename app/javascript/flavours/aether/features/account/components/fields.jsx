@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import classNames from 'classnames';
-import Icon from 'flavours/aether/components/icon';
+import { Icon } from 'flavours/aether/components/icon';
 
 const messages = defineMessages({
   linkVerifiedOn: { id: 'account.link_verified_on', defaultMessage: 'Ownership of this link was checked on {date}' },

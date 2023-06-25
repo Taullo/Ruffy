@@ -10,7 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 //  Mastodon imports.
 import { Icon } from 'flavours/aether/components/icon';
 import { languages } from 'flavours/aether/initial_state';
-import RelativeTimestamp from './relative_timestamp';
+import { RelativeTimestamp } from './relative_timestamp';
 
 import { IconButton } from './icon_button';
 import VisibilityIcon from './status_visibility_icon';
