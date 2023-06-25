@@ -1,8 +1,15 @@
 #  Aethersuite  #
 
-Fork of Glitch-soc which is a fork of Tootsuite by Mastodon for use on Aethy.com
+Fork of [Glitch-soc](https://glitch-soc.github.io/docs/) which is a fork of [Tootsuite by Mastodon](https://github.com/mastodon/mastodon)
 
-So here's the deal: we all work on this code, and anyone who uses that does so absolutely at their own risk. can you dig it?
+Anyone who uses this is doing so at their own risk! There will be bugs and other possible issues with the code!
 
-- You can view documentation for this project at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/).
-- And contributing guidelines are available [here](CONTRIBUTING.md) and [here](https://glitch-soc.github.io/docs/contributing/).
+Current features unique from Glitch:
+- Blog length posts (100k character limit)
+- 20 poll options
+- Larger profile headers
+- Larger filesize limits
+- 15 profile fields
+- 100 character limit username
+
+- You can view documentation for Glitch-soc at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/) and the documentation for Mastodon at [docs.joinmastodon.org](https://docs.joinmastodon.org/)
