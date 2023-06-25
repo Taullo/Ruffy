@@ -20,6 +20,7 @@ import { preferencesLink, profileLink, accountAdminLink } from 'flavours/aether/
 
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
+import { Icon } from 'flavours/aether/components/icon';
 import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({

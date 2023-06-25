@@ -10,8 +10,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
-import { Blurhash } from 'flavours/aether/components/blurhash';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/aether/initial_state';
+import { Blurhash } from 'mastodon/components/blurhash';
+
+import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
 
 import { IconButton } from './icon_button';
 
@@ -23,6 +24,7 @@ class Item extends PureComponent {
 
   static propTypes = {
     attachment: ImmutablePropTypes.map.isRequired,
+    lang: PropTypes.string,
     standalone: PropTypes.bool,
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
@@ -46,14 +48,14 @@ class Item extends PureComponent {
     if (this.hoverToPlay()) {
       e.target.play();
     }
-  }
+  };
 
   handleMouseLeave = (e) => {
     if (this.hoverToPlay()) {
       e.target.pause();
       e.target.currentTime = 0;
     }
-  }
+  };
 
   getAutoPlay() {
     return this.props.autoplay || autoPlayGif;
@@ -77,45 +79,30 @@ class Item extends PureComponent {
     }
 
     e.stopPropagation();
-  }
+  };
 
   handleImageLoad = () => {
     this.setState({ loaded: true });
-  }
+  };
 
   render () {
-    const { attachment, index, size, standalone, displayWidth, visible } = this.props;
+    const { attachment, lang, index, size, standalone, displayWidth, visible } = this.props;
 
     let badges = [], thumbnail;
 
     let width  = 50;
-    let height = '100%';
-    let top    = 'auto';
-    let left   = 'auto';
-    let bottom = 'auto';
-    let right  = 'auto';
+    let height = 100;
 
     if (size === 1) {
       width = 100;
     }
-    else if (size === 2) {
-      width = 50;
-      height = '400px';
+
+    if (size === 4 || (size === 3 && index > 0)) {
+      height = 50;
     }
-    else if (size >= 3) {
-      height = '200px';
-      if ((size >= 6) && (size < 12)) {
-        width = 33;
-      } else if (size >= 12) {
-        width = 25;
-      }
 
     if (attachment.get('description')?.length > 0) {
       badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
-    }
-    
-    if (((size % 2) !== 0) && (size > 2) && (index === 0)) {
-        width = 100;
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
@@ -361,3 +348,4 @@ class MediaGallery extends PureComponent {
 }
 
 export default injectIntl(MediaGallery);
+

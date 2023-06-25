@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks } from 'flavours/aether/actions/server';
 import Column from 'flavours/aether/components/column';
-import { Icon } from 'flavours/aether/components/icon';
 import { ServerHeroImage } from 'flavours/aether/components/server_hero_image';
 import { Skeleton } from 'flavours/aether/components/skeleton';
 import Account from 'flavours/aether/containers/account_container';

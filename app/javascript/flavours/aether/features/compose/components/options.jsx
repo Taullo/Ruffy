@@ -16,9 +16,6 @@ import { pollLimits } from 'flavours/aether/initial_state';
 
 import DropdownContainer from '../containers/dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
-
-import TextIconButton from './text_icon_button';
 
 
 
@@ -130,7 +127,6 @@ class ComposerOptions extends ImmutablePureComponent {
     advancedOptions: ImmutablePropTypes.map,
     disabled: PropTypes.bool,
     allowMedia: PropTypes.bool,
-    allowPoll: PropTypes.bool,
     hasPoll: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onChangeAdvancedOption: PropTypes.func,
@@ -194,7 +190,6 @@ class ComposerOptions extends ImmutablePureComponent {
       contentType,
       disabled,
       allowMedia,
-      allowPoll,
       hasPoll,
       onChangeAdvancedOption,
       onChangeContentType,
@@ -202,7 +197,6 @@ class ComposerOptions extends ImmutablePureComponent {
       onToggleSpoiler,
       resetFileKey,
       spoiler,
-      showContentTypeChoice,
       isEditing,
       intl: { formatMessage },
     } = this.props;

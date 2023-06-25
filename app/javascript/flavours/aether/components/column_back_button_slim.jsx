@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
 import { Icon } from 'flavours/aether/components/icon';
 
 export default class ColumnBackButtonSlim extends PureComponent {

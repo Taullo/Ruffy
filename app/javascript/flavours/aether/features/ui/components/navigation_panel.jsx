@@ -3,21 +3,21 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import NavigationPortal from 'flavours/aether/components/navigation_portal';
-import { timelinePreview, showTrends } from 'flavours/aether/initial_state';
-import { preferencesLink } from 'flavours/aether/utils/backend_links';
+import NavigationPortal from 'flavours/glitch/components/navigation_portal';
+import { timelinePreview, showTrends } from 'flavours/glitch/initial_state';
+import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
+import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   explore: { id: 'explore.title', defaultMessage: 'Explore' },
-  profile: { id: 'tabs_bar.profile', defaultMessage: 'Profile' },
   local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
   federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
@@ -46,33 +46,21 @@ class NavigationPanel extends Component {
   render() {
     const { intl, onOpenSettings } = this.props;
     const { signedIn, disabledAccountId } = this.context.identity;
-    const Account = connect(state => ({
-      account: state.getIn(['accounts', me]),
-    }))(({ account }) => (
-      <ColumnLink transparent to={`/@${account.get('acct')}`} icon='user-circle' text={intl.formatMessage(messages.profile)} />
-    ));
 
     return (
       <div className='navigation-panel'>
         {signedIn && (
           <>
-            <span className='hideondesktop'><ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} /></span>
-
-            <span className='hideondesktop'><FollowRequestsColumnLink /></span>
+            <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
+            <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
+            <FollowRequestsColumnLink />
           </>
         )}
 
         {showTrends ? (
-          <span className='hideondesktop'><ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} /></span>
+          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
         ) : (
-          <span className='hideondesktop'><ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} /></span>
-        )}
-
-        {signedIn && (
-          <React.Fragment>
-            <span className='hideondesktop'><Account /></span>
-            <span className='hideondesktop'><ColumnLink transparent to='/conversations' icon='envelope' text={intl.formatMessage(messages.direct)} /></span>
-          </React.Fragment>
+          <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
         )}
 
         {(signedIn || timelinePreview) && (
@@ -82,10 +70,6 @@ class NavigationPanel extends Component {
           </>
         )}
 
-        <div className='navigation-panel__legal'>
-          <span className='hideondesktop'><ColumnLink transparent to='/about' icon='info' text={intl.formatMessage(messages.about)} /></span>
-        </div>
-
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
             <hr />
@@ -94,16 +78,25 @@ class NavigationPanel extends Component {
         )}
 
         {signedIn && (
-
           <>
+            <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
+            <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
+            <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
+            <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
 
             <ListPanel />
 
-            <hr className='hideondesktop' />
+            <hr />
 
-            <span className='hideondesktop'><ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} /></span>
+            {!!preferencesLink && <ColumnLink transparent href={preferencesLink} icon='cog' text={intl.formatMessage(messages.preferences)} />}
+            <ColumnLink transparent onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
           </>
         )}
+
+        <div className='navigation-panel__legal'>
+          <hr />
+          <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
+        </div>
 
         <NavigationPortal />
       </div>
@@ -113,3 +106,4 @@ class NavigationPanel extends Component {
 }
 
 export default injectIntl(NavigationPanel);
+

@@ -1,10 +1,9 @@
 import React from 'react';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
-import { NavLink, Switch, Route } from 'react-router-dom';
 import Search from 'flavours/aether/features/compose/containers/search_container';
 import SearchResults from './results';
 import { Helmet } from 'react-helmet';
@@ -42,7 +41,6 @@ class SearchPage extends React.PureComponent {
 
   render() {
     const { intl, multiColumn, isSearching } = this.props;
-    const { signedIn } = this.context.identity;
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>

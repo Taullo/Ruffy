@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 
-import { FormattedMessage } from 'react-intl';
-
 import { Icon } from 'flavours/aether/components/icon';
 
 

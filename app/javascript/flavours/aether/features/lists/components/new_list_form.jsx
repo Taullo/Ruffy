@@ -7,7 +7,6 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { changeListEditorTitle, submitListEditor } from 'flavours/aether/actions/lists';
-import { IconButton } from 'flavours/aether/components/icon_button';
 
 const messages = defineMessages({
   label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },
