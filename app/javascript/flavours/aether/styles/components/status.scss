@@ -123,12 +123,12 @@
       line-height: inherit;
 
       a {
-        pointer-events:auto;
+        pointer-events: auto;
       }
     }
 
     a {
-      pointer-events:none;
+      pointer-events: none;
     }
   }
 
@@ -354,6 +354,7 @@
       max-height: 300px;
       text-overflow: ellipsis;
       padding-top: 0;
+      overflow: hidden;
 
       &::after {
         content: '';
