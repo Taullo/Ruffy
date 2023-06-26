@@ -343,7 +343,7 @@ class StatusContent extends PureComponent {
     if ((status.get('spoiler_text').length > 0) || (status.get('sensitive'))) {
       let mentionsPlaceholder = '';
       if (status.get('spoiler_text').length === 0) {
-        spoilerContent = { __html: 'Unspecified sensitive content' };
+        spoilerContent = { __html: 'Unlabeled sensitive content' };
       }
 
       //  const mentionLinks = status.get('mentions').map(item => (
@@ -395,15 +395,11 @@ class StatusContent extends PureComponent {
 
       return (
         <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p
-            style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
-          >
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
             {' '}
             <button type='button' className='status__content__spoiler-link' onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
               {toggleText}
             </button>
-          </p>
 
           {mentionsPlaceholder}
 

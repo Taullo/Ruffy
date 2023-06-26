@@ -91,16 +91,32 @@ class Item extends PureComponent {
     let badges = [], thumbnail;
 
     let width  = 50;
-    let height = 100;
+    let height = '100%';
+    let top    = 'auto';
+    let left   = 'auto';
+    let bottom = 'auto';
+    let right  = 'auto';
 
     if (size === 1) {
       width = 100;
     }
-
-    if (size === 4 || (size === 3 && index > 0)) {
-      height = 50;
+    else if (size === 2) {
+      width = 50;
+      height = '400px';
     }
-
+    else if (size >= 3) {
+      height = '200px';
+      if ((size >= 6) && (size < 12)) {
+        width = 33;
+      } else if (size >= 12) {
+        width = 25;
+      }
+    }
+    
+    if (((size % 2) !== 0) && (size > 2) && (index === 0)) {
+        width = 100;
+    }
+    
     if (attachment.get('description')?.length > 0) {
       badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
     }
@@ -109,7 +125,7 @@ class Item extends PureComponent {
 
     if (attachment.get('type') === 'unknown') {
       return (
-        <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+        <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `calc(${width}% - 4px)`, height: `${height}` }}>
           <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
             <Blurhash
               hash={attachment.get('blurhash')}
@@ -183,7 +199,7 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `calc(${width}% - 4px)`, height: `${height}` }}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -213,7 +229,7 @@ class MediaGallery extends PureComponent {
     media: ImmutablePropTypes.list.isRequired,
     lang: PropTypes.string,
     size: PropTypes.object,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     defaultWidth: PropTypes.number,
@@ -302,20 +318,15 @@ class MediaGallery extends PureComponent {
     let children, spoilerButton;
 
     const style = {};
-
-    if (this.isFullSizeEligible() && (standalone || !cropImages)) {
-      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
-    } else {
-      style.aspectRatio = '16 / 9';
-    }
-
-    const size     = media.take(4).size;
+    style.height = 'auto';
+    const size     = media.take(20).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (standalone && this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(20).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
+
     }
 
     if (uncached) {

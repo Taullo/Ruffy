@@ -23,6 +23,7 @@ import { countableText } from '../util/counter';
 import CharacterCounter from './character_counter';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
+import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -82,6 +83,7 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeSpoilerness: PropTypes.func,
     onChangeVisibility: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -305,6 +307,7 @@ class ComposeForm extends ImmutablePureComponent {
       suggestions,
       spoilersAlwaysOn,
       isEditing,
+      disabled,
     } = this.props;
 
     const countText = this.getFulltextForCharacterCounting();
@@ -375,6 +378,9 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
         </div>
 
+      <div className='compose-form__bottom-buttons'>
+        <PrivacyDropdownContainer disabled={disabled || isEditing} />
+
         <Publisher
           countText={countText}
           disabled={!this.canSubmit()}
@@ -384,6 +390,7 @@ class ComposeForm extends ImmutablePureComponent {
           privacy={privacy}
           sideArm={sideArm}
         />
+      </div>
       </div>
     );
   }
