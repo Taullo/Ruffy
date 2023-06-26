@@ -318,7 +318,15 @@ class MediaGallery extends PureComponent {
     let children, spoilerButton;
 
     const style = {};
-    style.height = 'auto';
+
+    if (this.isFullSizeEligible() && (standalone || !cropImages)) {
+      if (width) {
+        style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+      }
+    } 
+      style.height = 'auto';
+    }
+
     const size     = media.take(20).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
