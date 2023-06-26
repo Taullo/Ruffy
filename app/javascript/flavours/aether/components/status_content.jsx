@@ -395,11 +395,13 @@ class StatusContent extends PureComponent {
 
       return (
         <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+          <p>
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
             {' '}
             <button type='button' className='status__content__spoiler-link' onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
               {toggleText}
             </button>
+          </p>
 
           {mentionsPlaceholder}
 
