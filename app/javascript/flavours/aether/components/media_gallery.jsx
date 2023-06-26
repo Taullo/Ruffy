@@ -323,7 +323,7 @@ class MediaGallery extends PureComponent {
       if (width) {
         style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
       }
-    } 
+    } else {
       style.height = 'auto';
     }
 
