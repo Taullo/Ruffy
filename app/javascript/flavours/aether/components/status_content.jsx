@@ -394,14 +394,15 @@ class StatusContent extends PureComponent {
       //  }
 
       return (
-        <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p>
+      <>
+          <div className='spoiler_content'>
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
             {' '}
             <button type='button' className='status__content__spoiler-link' onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
               {toggleText}
             </button>
-          </p>
+          </div>
+        <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
 
           {mentionsPlaceholder}
 
@@ -423,6 +424,7 @@ class StatusContent extends PureComponent {
           {extraMedia}
 
         </div>
+        </>
       );
     } else if (parseClick) {
       return (
