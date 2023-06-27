@@ -2,10 +2,11 @@
 
 .spoiler_content {
   position: relative;
-  margin-top:15px;
+  margin-top: 15px;
 
   .translate {
     max-width: calc(100% - 80px);
+    font-size: 1rem;
     width: 100%;
     display: inline-block;
     font-weight: bold;
