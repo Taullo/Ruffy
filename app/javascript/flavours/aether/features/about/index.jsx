@@ -152,7 +152,7 @@ class About extends PureComponent {
           </Section>
          </div>
          <div className='about__right-column'>
-          <h2>{intl.formatMessage(messages.rules)}</h2>
+          <Section title={intl.formatMessage(messages.rules)}>
             {!isLoading && (server.get('rules').isEmpty() ? ('') : (
               <ol className='rules-list'>
                 {server.get('rules').map(rule => (
@@ -165,7 +165,7 @@ class About extends PureComponent {
           </Section>
 
             {((domainBlocks.get('isLoading') === false) && (domainBlocks.get('isAvailable') === true)) &&
-          <h2>{intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}</h2>
+          <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
               <>
                 <p><FormattedMessage id='about.domain_blocks.preamble' defaultMessage='Our site generally allows you to view content from and interact with users from any other server on the fediverse. These are the exceptions that have been made on our server.' /></p>
 
