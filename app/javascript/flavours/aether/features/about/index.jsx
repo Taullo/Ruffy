@@ -68,10 +68,7 @@ class Section extends PureComponent {
     const { title, children } = this.props;
 
     return (
-      <div className={classNames('about__section')}>
-        <div className='about__section__title' role='button' tabIndex={0} >{title}</div>
-        <div className='about__section__body'>{children}</div>
-      </div>
+      <>{children}</>
     );
   }
 
@@ -148,16 +145,12 @@ class About extends PureComponent {
                 className='prose'
                 dangerouslySetInnerHTML={{ __html: extendedDescription.get('content') }}
               />
-            ) : (
-              <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
-            ))}
+            ) : (''))}
           </Section>
          </div>
          <div className='about__right-column'>
           <Section title={intl.formatMessage(messages.rules)}>
-            {!isLoading && (server.get('rules').isEmpty() ? (
-              <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
-            ) : (
+            {!isLoading && (server.get('rules').isEmpty() ? ('') : (
               <ol className='rules-list'>
                 {server.get('rules').map(rule => (
                   <li key={rule.get('id')}>
