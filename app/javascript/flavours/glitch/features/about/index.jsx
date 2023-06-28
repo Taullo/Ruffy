@@ -70,7 +70,15 @@ class Section extends PureComponent {
     const { collapsed } = this.state;
 
     return (
-      <>{children}</>
+      <div className={classNames('about__section', { active: !collapsed })}>
+        <div className='about__section__title' role='button' tabIndex={0} onClick={this.handleClick}>
+          <Icon id={collapsed ? 'chevron-right' : 'chevron-down'} fixedWidth /> {title}
+        </div>
+
+        {!collapsed && (
+          <div className='about__section__body'>{children}</div>
+        )}
+      </div>
     );
   }
 

@@ -68,7 +68,10 @@ class Section extends PureComponent {
     const { title, children } = this.props;
 
     return (
-      <>{children}</>
+      <div className={classNames('about__section')}>
+        <div className='about__section__title' role='button' tabIndex={0} >{title}</div>
+        <div className='about__section__body'>{children}</div>
+      </div>
     );
   }
 
@@ -149,7 +152,7 @@ class About extends PureComponent {
           </Section>
          </div>
          <div className='about__right-column'>
-          <Section title={intl.formatMessage(messages.rules)}>
+          <h2>{intl.formatMessage(messages.rules)}</h2>
             {!isLoading && (server.get('rules').isEmpty() ? ('') : (
               <ol className='rules-list'>
                 {server.get('rules').map(rule => (
@@ -162,7 +165,7 @@ class About extends PureComponent {
           </Section>
 
             {((domainBlocks.get('isLoading') === false) && (domainBlocks.get('isAvailable') === true)) &&
-          <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
+          <h2>{intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}</h2>
               <>
                 <p><FormattedMessage id='about.domain_blocks.preamble' defaultMessage='Our site generally allows you to view content from and interact with users from any other server on the fediverse. These are the exceptions that have been made on our server.' /></p>
 
