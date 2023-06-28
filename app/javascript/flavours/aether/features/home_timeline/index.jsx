@@ -73,7 +73,7 @@ const mapStateToProps = state => ({
   hasAnnouncements: !state.getIn(['announcements', 'items']).isEmpty(),
   unreadAnnouncements: state.getIn(['announcements', 'items']).count(item => !item.get('read')),
   showAnnouncements: state.getIn(['announcements', 'show']),
-  tooSlow: PropTypes.bool,
+  tooSlow: homeTooSlow(state),
   regex: state.getIn(['settings', 'home', 'regex', 'body']),
 });
 

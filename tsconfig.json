@@ -14,6 +14,8 @@
       "locales": ["app/javascript/locales"],
       "styles/*": ["app/javascript/styles/*"],
       "packs/public-path": ["app/javascript/packs/public-path"],
+      "flavours/aether": ["app/javascript/flavours/aether"],
+      "flavours/aether/*": ["app/javascript/flavours/aether/*"],
       "flavours/glitch": ["app/javascript/flavours/glitch"],
       "flavours/glitch/*": ["app/javascript/flavours/glitch/*"],
       "mastodon": ["app/javascript/mastodon"],
@@ -25,5 +27,6 @@
     "app/javascript/packs",
     "app/javascript/types",
     "app/javascript/flavours/glitch"
+    "app/javascript/flavours/aether"
   ]
 }

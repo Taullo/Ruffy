@@ -44,7 +44,7 @@ export type EmojiCompressed = [
 /*
  * `emoji_compressed.js` uses `babel-plugin-preval`, which makes it difficult to convert to TypeScript.
  * As a temporary solution, we are allowing a default export here to apply the TypeScript type `EmojiCompressed` to the JS file export.
- * - {@link app/javascript/flavours/glitch/features/emoji/emoji_compressed.js}
+ * - {@link app/javascript/flavours/aether/features/emoji/emoji_compressed.js}
  */
 declare const emojiCompressed: EmojiCompressed;
 

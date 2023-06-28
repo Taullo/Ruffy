@@ -93,7 +93,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
   dispatchServer() {
     dispatch(fetchServer());
-  }
+  },
   onLogout () {
     dispatch(openModal({
       modalType: 'CONFIRM',

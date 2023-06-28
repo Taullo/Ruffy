@@ -10,8 +10,6 @@ import AutosuggestAccountContainer from 'flavours/aether/features/compose/contai
 import AutosuggestEmoji from './autosuggest_emoji';
 import { AutosuggestHashtag } from './autosuggest_hashtag';
 
-
-
 const textAtCursorMatchesToken = (str, caretPosition, searchTokens) => {
   let word;
 
