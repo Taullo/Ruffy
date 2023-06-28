@@ -46,7 +46,7 @@ import {
   undoStatusTranslation,
 } from 'flavours/aether/actions/statuses';
 import { Icon } from 'flavours/aether/components/icon';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/aether/components/status';
 import ScrollContainer from 'flavours/aether/containers/scroll_container';
 import StatusContainer from 'flavours/aether/containers/status_container';

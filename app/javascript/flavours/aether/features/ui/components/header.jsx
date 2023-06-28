@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import { Link, withRouter } from 'react-router-dom';
 
@@ -12,8 +12,10 @@ import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_cont
 import { preferencesLink, profileLink } from 'flavours/aether/utils/backend_links';
 import { logOut } from 'flavours/aether/utils/log_out';
 
+import { fetchServer } from 'flavours/glitch/actions/server';
 import { openModal } from 'flavours/aether/actions/modal';
 import { Avatar } from 'flavours/aether/components/avatar';
+import { Icon } from 'flavours/glitch/components/icon';
 import { WordmarkLogo, SymbolLogo } from 'flavours/aether/components/logo';
 import Permalink from 'flavours/aether/components/permalink';
 import { registrationsOpen, me } from 'flavours/aether/initial_state';
@@ -89,6 +91,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   openClosedRegistrationsModal() {
     dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
   },
+  dispatchServer() {
+    dispatch(fetchServer());
+  }
   onLogout () {
     dispatch(openModal({
       modalType: 'CONFIRM',
@@ -119,6 +124,8 @@ class Header extends PureComponent {
     onLogout: PropTypes.func.isRequired,
     openSettings: PropTypes.func.isRequired,
     signupUrl: PropTypes.string.isRequired,
+    dispatchServer: PropTypes.func,
+    intl: PropTypes.object.isRequired,
   };
 
   handleLogout = () => {

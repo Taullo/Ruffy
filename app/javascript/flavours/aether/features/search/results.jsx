@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { expandSearch } from 'flavours/aether/actions/search';
 import { ImmutableHashtag as Hashtag } from 'flavours/aether/components/hashtag';
 import { LoadMore } from 'flavours/aether/components/load_more';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import Account from 'flavours/aether/containers/account_container';
 import Status from 'flavours/aether/containers/status_container';
 

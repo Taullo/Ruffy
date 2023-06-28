@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import Button from 'flavours/aether/components/button';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import StatusCheckBox from 'flavours/aether/features/report/containers/status_check_box_container';
 
 

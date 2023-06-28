@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { fetchReblogs } from 'flavours/aether/actions/interactions';
 import ColumnHeader from 'flavours/aether/components/column_header';
 import { Icon } from 'flavours/aether/components/icon';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import ScrollableList from 'flavours/aether/components/scrollable_list';
 import AccountContainer from 'flavours/aether/containers/account_container';
 import Column from 'flavours/aether/features/ui/components/column';

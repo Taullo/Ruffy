@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { fetchTrendingHashtags } from 'flavours/aether/actions/trends';
 import { ImmutableHashtag as Hashtag } from 'flavours/aether/components/hashtag';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 
 
 

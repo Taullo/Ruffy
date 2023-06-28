@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import Overlay from 'react-overlays/Overlay';
 
-import { CircularProgress } from 'flavours/aether/components/loading_indicator';
+import { CircularProgress } from "./circular_progress";
 
 import { IconButton } from './icon_button';
 

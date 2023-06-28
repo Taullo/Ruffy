@@ -12,7 +12,7 @@ import { debounce } from 'lodash';
 
 import { fetchMutes, expandMutes } from 'flavours/aether/actions/mutes';
 import ColumnBackButtonSlim from 'flavours/aether/components/column_back_button_slim';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import ScrollableList from 'flavours/aether/components/scrollable_list';
 import AccountContainer from 'flavours/aether/containers/account_container';
 import Column from 'flavours/aether/features/ui/components/column';

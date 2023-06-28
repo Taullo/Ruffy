@@ -14,7 +14,7 @@ import { fetchDirectory, expandDirectory } from 'flavours/aether/actions/directo
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
 import { LoadMore } from 'flavours/aether/components/load_more';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import { RadioButton } from 'flavours/aether/components/radio_button';
 import ScrollContainer from 'flavours/aether/containers/scroll_container';
 

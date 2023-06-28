@@ -12,6 +12,7 @@ const messages = defineMessages({
   openReport: { id: 'report_notification.open', defaultMessage: 'Open report' },
   other: { id: 'report_notification.categories.other', defaultMessage: 'Other' },
   spam: { id: 'report_notification.categories.spam', defaultMessage: 'Spam' },
+  legal: { id: 'report_notification.categories.legal', defaultMessage: 'Legal' },
   violation: { id: 'report_notification.categories.violation', defaultMessage: 'Rule violation' },
 });
 

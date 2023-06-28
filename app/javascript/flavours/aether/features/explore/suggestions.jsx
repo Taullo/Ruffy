@@ -7,7 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { fetchSuggestions, dismissSuggestion } from 'flavours/aether/actions/suggestions';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import AccountCard from 'flavours/aether/features/directory/components/account_card';
 
 const mapStateToProps = state => ({

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { ImmutableHashtag as Hashtag } from 'flavours/aether/components/hashtag';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import { connect } from 'react-redux';
 import { fetchTrendingHashtags } from 'flavours/aether/actions/trends';
 import { FormattedMessage } from 'react-intl';

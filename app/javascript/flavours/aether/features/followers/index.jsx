@@ -14,7 +14,7 @@ import {
   fetchFollowers,
   expandFollowers,
 } from 'flavours/aether/actions/accounts';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import ScrollableList from 'flavours/aether/components/scrollable_list';
 import { TimelineHint } from 'flavours/aether/components/timeline_hint';
 import AccountContainer from 'flavours/aether/containers/account_container';

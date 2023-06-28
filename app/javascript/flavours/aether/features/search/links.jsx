@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import { fetchTrendingLinks } from 'flavours/aether/actions/trends';
 import DismissableBanner from 'flavours/aether/components/dismissable_banner';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 
 import Story from './components/story';
 

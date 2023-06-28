@@ -10,7 +10,7 @@ import { lookupAccount, fetchAccount } from 'flavours/aether/actions/accounts';
 import { openModal } from 'flavours/aether/actions/modal';
 import { expandAccountMediaTimeline } from 'flavours/aether/actions/timelines';
 import { LoadMore } from 'flavours/aether/components/load_more';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import ScrollContainer from 'flavours/aether/containers/scroll_container';
 import MediaColumnHeader from 'flavours/aether/features/account/components/media_column_header';
 import BundleColumnError from 'flavours/aether/features/ui/components/bundle_column_error';

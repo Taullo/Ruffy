@@ -18,7 +18,7 @@ import { expandListTimeline } from 'flavours/aether/actions/timelines';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
 import { Icon } from 'flavours/aether/components/icon';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import { RadioButton } from 'flavours/aether/components/radio_button';
 import BundleColumnError from 'flavours/aether/features/ui/components/bundle_column_error';
 import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';

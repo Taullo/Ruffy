@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { fetchLists } from 'flavours/aether/actions/lists';
-import LoadingIndicator from 'flavours/aether/components/loading_indicator';
+import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import ScrollableList from 'flavours/aether/components/scrollable_list';
 import Column from 'flavours/aether/features/ui/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
