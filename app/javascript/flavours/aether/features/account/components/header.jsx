@@ -10,8 +10,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Avatar } from 'flavours/aether/components/avatar';
 import Button from 'flavours/aether/components/button';
-import { counterRenderer } from 'mastodon/components/common_counter';
-import ShortNumber from 'mastodon/components/short_number';
+import { counterRenderer } from 'flavours/aether/components/common_counter';
+import ShortNumber from 'flavours/aether/components/short_number';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'flavours/aether/initial_state';
@@ -63,6 +63,7 @@ const messages = defineMessages({
   add_account_note: { id: 'account.add_account_note', defaultMessage: 'Add note for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  followers: { id: 'account.followers', defaultMessage: 'Followers' },
 });
 
 const titleFromAccount = account => {
@@ -387,12 +388,21 @@ class Header extends ImmutablePureComponent {
                   />
                 </NavLink>
 
+                {(account.get('followers_count') >= 0) && (
                 <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
                   <ShortNumber
                     value={account.get('followers_count')}
                     renderer={counterRenderer('followers')}
                   />
+                </NavLink>)}
+                {(account.get('followers_count') === -1) && (
+                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`}>
+                  <FormattedMessage 
+                    id='account.followers'
+                    defaultMessage='Followers'
+                  />
                 </NavLink>
+                )}
               </div>
                 
               </div>
