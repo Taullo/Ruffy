@@ -292,11 +292,12 @@ $fluid-breakpoint: $maximum-width + 20px;
     }
 
     &__body {
-      border: 1px solid var(--ui-body-color);
       border-top: 0;
       padding: 20px;
       font-size: 1rem;
       background: var(--ui-body-secondary-color);
+      border-bottom-left-radius:var(--ui-border-radius);
+      border-bottom-right-radius:var(--ui-border-radius);
     }
   }
 

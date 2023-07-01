@@ -132,7 +132,6 @@ class About extends PureComponent {
             </div>
           </div>
 
-          <Section open title={intl.formatMessage(messages.title)}>
             {extendedDescription.get('isLoading') ? (
               <>
                 <Skeleton width='100%' />
@@ -149,7 +148,6 @@ class About extends PureComponent {
                 dangerouslySetInnerHTML={{ __html: extendedDescription.get('content') }}
               />
             ) : (''))}
-          </Section>
          </div>
          <div className='about__right-column'>
           <Section title={intl.formatMessage(messages.rules)}>
