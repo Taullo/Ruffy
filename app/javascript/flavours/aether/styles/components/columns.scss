@@ -980,7 +980,6 @@ $ui-header-height: 55px;
 
 .dismissable-banner {
   position: relative;
-  margin: 10px;
   margin-bottom: 5px;
   border-radius: 8px;
   border: 1px solid var(--ui-highlight-color);
@@ -1076,7 +1075,7 @@ $ui-header-height: 55px;
   }
 }
 
-@media screen and (max-height: 60rem) {
+@media screen and (height <= 60rem) {
 .right_column {
   .explore__suggested-header {
     display:none;
@@ -1088,7 +1087,7 @@ $ui-header-height: 55px;
 }
 }
 
-@media screen and (max-height: 70rem) {
+@media screen and (height <= 70rem) {
 .right_column {
   .account-card:nth-child(n+4) {
     display:none;
