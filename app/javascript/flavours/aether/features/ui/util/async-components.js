@@ -22,6 +22,10 @@ export function CommunityTimeline () {
   return import(/* webpackChunkName: "flavours/aether/async/community_timeline" */'flavours/aether/features/community_timeline');
 }
 
+export function Firehose () {
+  return import(/* webpackChunkName: "flavours/glitch/async/firehose" */'../../firehose');
+}
+
 export function HashtagTimeline () {
   return import(/* webpackChunkName: "flavours/aether/async/hashtag_timeline" */'flavours/aether/features/hashtag_timeline');
 }
