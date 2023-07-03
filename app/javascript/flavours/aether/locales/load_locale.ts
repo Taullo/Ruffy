@@ -26,7 +26,7 @@ export async function loadLocale() {
 
     const localeData = await import(
       /* webpackMode: "lazy" */
-      /* webpackChunkName: "locales/glitch/[request]" */
+      /* webpackChunkName: "locales/aether/[request]" */
       /* webpackInclude: /\.json$/ */
       /* webpackPreload: true */
       `flavours/aether/locales/${locale}.json`
