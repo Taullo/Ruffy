@@ -6,13 +6,13 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-import { addColumn } from 'flavours/glitch/actions/columns';
-import { changeSetting } from 'flavours/glitch/actions/settings';
-import { connectPublicStream, connectCommunityStream } from 'flavours/glitch/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
-import DismissableBanner from 'flavours/glitch/components/dismissable_banner';
-import initialState, { domain } from 'flavours/glitch/initial_state';
-import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
+import { addColumn } from 'flavours/aether/actions/columns';
+import { changeSetting } from 'flavours/aether/actions/settings';
+import { connectPublicStream, connectCommunityStream } from 'flavours/aether/actions/streaming';
+import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/aether/actions/timelines';
+import DismissableBanner from 'flavours/aether/components/dismissable_banner';
+import initialState, { domain } from 'flavours/aether/initial_state';
+import { useAppDispatch, useAppSelector } from 'flavours/aether/store';
 
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
@@ -102,7 +102,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         break;
       }
     },
-    [dispatch, onlyMedia, feedType],
+    [dispatch, onlyMedia, allowLocalOnly, feedType],
   );
 
   const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
@@ -132,7 +132,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     }
 
     return () => disconnect?.();
-  }, [dispatch, signedIn, feedType, onlyMedia]);
+  }, [dispatch, signedIn, feedType, onlyMedia, allowLocalOnly]);
 
   const prependBanner = feedType === 'community' ? (
     <DismissableBanner id='community_timeline'>
@@ -193,7 +193,7 @@ const Firehose = ({ feedType, multiColumn }) => {
 
         <StatusListContainer
           prepend={prependBanner}
-          timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
+          timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`}
           onLoadMore={handleLoadMore}
           trackScroll
           scrollKey='firehose'
@@ -216,3 +216,4 @@ Firehose.propTypes = {
 };
 
 export default Firehose;
+
