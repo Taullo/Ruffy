@@ -151,7 +151,9 @@ class About extends PureComponent {
          </div>
          <div className='about__right-column'>
           <Section title={intl.formatMessage(messages.rules)}>
-            {!isLoading && (server.get('rules', []).isEmpty() ? ('') : (
+            {!isLoading && (server.get('rules', []).isEmpty() ? (
+              <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
+            ) : (
               <ol className='rules-list'>
                 {server.get('rules').map(rule => (
                   <li key={rule.get('id')}>
@@ -162,10 +164,16 @@ class About extends PureComponent {
             ))}
           </Section>
 
-            {((domainBlocks.get('isLoading') === false) && (domainBlocks.get('isAvailable') === true)) &&
           <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
+            {domainBlocks.get('isLoading') ? (
               <>
-                <p><FormattedMessage id='about.domain_blocks.preamble' defaultMessage='Our site generally allows you to view content from and interact with users from any other server on the fediverse. These are the exceptions that have been made on our server.' /></p>
+                <Skeleton width='100%' />
+                <br />
+                <Skeleton width='70%' />
+              </>
+            ) : (domainBlocks.get('isAvailable') ? (
+              <>
+                <p><FormattedMessage id='about.domain_blocks.preamble' defaultMessage='Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.' /></p>
 
                 <div className='about__domain-blocks'>
                   {domainBlocks.get('items').map(block => (
@@ -180,8 +188,10 @@ class About extends PureComponent {
                   ))}
                 </div>
               </>
+            ) : (
+              <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
+            ))}
           </Section>
-            }
 
           <LinkFooter />
 
