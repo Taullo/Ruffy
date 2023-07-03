@@ -83,7 +83,7 @@ class LinkFooter extends PureComponent {
             </>
           )}
           {DividingCircle}
-          <Link to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Site policies' /></Link>
+          <Link to='/policies'><FormattedMessage id='footer.privacy_policy' defaultMessage='Site policies' /></Link>
           {DividingCircle}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {DividingCircle}
