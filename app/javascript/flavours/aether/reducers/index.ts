@@ -1,3 +1,5 @@
+import { Record as ImmutableRecord } from 'immutable';
+
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
