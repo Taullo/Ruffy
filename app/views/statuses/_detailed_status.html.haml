@@ -64,7 +64,7 @@
       %span.detailed-status__reblogs>= friendly_number_to_human status.replies_count
       = ' '
     ·
-    - if status.public_visibility? || status.unlisted_visibility? || status.localPublic_visibility?
+    - if status.public_visibility? || status.unlisted_visibility?
       %span.detailed-status__link
         = fa_icon('retweet')
         %span.detailed-status__reblogs>= friendly_number_to_human status.reblogs_count
