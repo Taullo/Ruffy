@@ -151,7 +151,7 @@ class About extends PureComponent {
          </div>
          <div className='about__right-column'>
           <Section title={intl.formatMessage(messages.rules)}>
-            {!isLoading && (server.get('rules', []).isEmpty() ? (
+            {!isLoading && (server.get('rules', []).isEmpty() ? ('') : (
               <ol className='rules-list'>
                 {server.get('rules').map(rule => (
                   <li key={rule.get('id')}>
@@ -200,5 +200,6 @@ class About extends PureComponent {
   }
 
 }
+
 
 export default connect(mapStateToProps)(injectIntl(About));
