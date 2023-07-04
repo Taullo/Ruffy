@@ -254,7 +254,7 @@
   "explore.trending_links": "News",
   "explore.local": "Local Timeline",
   "explore.federated": "Federated Timeline",
-  "explore.trending_statuses": "Popular Posts",
+  "explore.trending_statuses": "Popular",
   "explore.trending_tags": "Hashtags",
   "filter_modal.added.context_mismatch_explanation": "This filter category does not apply to the context in which you have accessed this post. If you want the post to be filtered in this context too, you will have to edit the filter.",
   "filter_modal.added.context_mismatch_title": "Context mismatch!",

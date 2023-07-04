@@ -23,7 +23,7 @@ import PermaLink from 'flavours/aether/components/permalink';
 import PictureInPicture from 'flavours/aether/features/picture_in_picture';
 import { layoutFromWindow } from 'flavours/aether/is_mobile';
 
-import initialState, { me, owner, singleUserMode, showTrends, timelinePreview, trendsAsLanding } from '../../initial_state';
+import initialState, { me, owner, singleUserMode, timelinePreview, trendsAsLanding } from '../../initial_state';
 
 import BundleColumnError from './components/bundle_column_error';
 import Header from './components/header';
@@ -200,9 +200,9 @@ class SwitchingColumnsArea extends PureComponent {
           <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
           <Redirect from='/timelines/public' to='/public' exact />
           <Redirect from='/timelines/public/local' to='/public/local' exact />
-          <WrappedRoute path='/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
-          <WrappedRoute path='/public/local' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
-          <WrappedRoute path='/public/remote' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
+          <WrappedRoute path='/explore/all' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
+          <WrappedRoute path={['/explore/local', '/explore']} exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
+          <WrappedRoute path='/explore/remote' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
           <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />

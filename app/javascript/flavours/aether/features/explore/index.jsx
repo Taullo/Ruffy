@@ -11,11 +11,14 @@ import { connect } from 'react-redux';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
 import Search from 'flavours/aether/features/compose/containers/search_container';
-import Tags from './tags';
+
 import Statuses from './statuses';
 import Suggestions from './suggestions';
+import Tags from './tags';
+
+
 const messages = defineMessages({
-  title: { id: 'explore.title', defaultMessage: 'Popular' },
+  title: { id: 'explore.title', defaultMessage: 'Explore' },
   more: { id: 'status.more', defaultMessage: 'More' },
 });
 
@@ -85,17 +88,24 @@ class Explore extends PureComponent {
             </div>
           </div>
 
-          <div className='scrollable scrollable--flex'>
+          <div className='scrollable scrollable--flex community-scroll'>
             <div className='account__section-headline'>
               <NavLink exact to='/explore/local'>
-                <FormattedMessage tagName='div' id='explore.local' defaultMessage='Local Timeline' />
+                <FormattedMessage tagName='div' id='firehose.local' defaultMessage='Local' />
               </NavLink>
+
               <NavLink exact to='/explore/federated'>
-                <FormattedMessage tagName='div' id='explore.federated' defaultMessage='Federated Timeline' />
+                <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Remote' />
               </NavLink>
+
+              <NavLink exact to='/explore/all'>
+                <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+              </NavLink>
+
               <NavLink exact to='/explore/posts'>
-                <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Popular Posts' />
+                <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Popular' />
               </NavLink>
+ 
               {multiColumn && signedIn && (
                 <NavLink exact to='/explore/suggestions'>
                   <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='Suggested' />

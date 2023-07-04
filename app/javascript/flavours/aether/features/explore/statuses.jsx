@@ -11,10 +11,10 @@ import { debounce } from 'lodash';
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/aether/actions/trends';
 import DismissableBanner from 'flavours/aether/components/dismissable_banner';
 import StatusList from 'flavours/aether/components/status_list';
-import { getStatusList } from 'flavours/glitch/selectors';
+import { getStatusList } from 'flavours/aether/selectors';
 
 const mapStateToProps = state => ({
-  statusIds: state.getIn(['status_lists', 'trending', 'items']),
+  statusIds: getStatusList(state, 'trending'),
   isLoading: state.getIn(['status_lists', 'trending', 'isLoading'], true),
   hasMore: !!state.getIn(['status_lists', 'trending', 'next']),
 });
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 class Statuses extends PureComponent {
 
   static propTypes = {
-    statusIds: getStatusList(state, 'trending'),
+    statusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     multiColumn: PropTypes.bool,

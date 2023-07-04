@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { fetchTrendingHashtags } from 'flavours/aether/actions/trends';
+import DismissableBanner from 'flavours/aether/components/dismissable_banner';
 import { ImmutableHashtag as Hashtag } from 'flavours/aether/components/hashtag';
 import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 
@@ -33,12 +34,19 @@ class Tags extends PureComponent {
   render () {
     const { isLoading, hashtags } = this.props;
 
+    const banner = (
+      <DismissableBanner id='explore/tags'>
+        <FormattedMessage id='dismissable_banner.explore_tags' defaultMessage='These are hashtags that are gaining traction on the social web today. Hashtags that are used by more different people are ranked higher.' />
+      </DismissableBanner>
+    );
+
     if (!isLoading && hashtags.isEmpty()) {
       return (
         <div className='explore__links scrollable scrollable--flex'>
+          {banner}
 
           <div className='empty-column-indicator'>
-            <FormattedMessage id='empty_column.explore_tags' defaultMessage='There are no trending hashtags yet. Check back later!' />
+            <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />
           </div>
         </div>
       );
@@ -46,6 +54,7 @@ class Tags extends PureComponent {
 
     return (
       <div className='explore__links'>
+        {banner}
 
         {isLoading ? (<LoadingIndicator />) : hashtags.map(hashtag => (
           <Hashtag key={hashtag.get('name')} hashtag={hashtag} />

@@ -12,6 +12,9 @@ import { connectPublicStream, connectCommunityStream } from 'flavours/aether/act
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/aether/actions/timelines';
 import DismissableBanner from 'flavours/aether/components/dismissable_banner';
 import SettingText from 'flavours/aether/components/setting_text';
+import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
+import Suggestions from 'flavours/aether/features/explore/suggestions';
+import Tags from 'flavours/aether/features/explore/tags';
 import initialState, { domain } from 'flavours/aether/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/aether/store';
 
@@ -20,8 +23,9 @@ import ColumnHeader from '../../components/column_header';
 import SettingToggle from '../notifications/components/setting_toggle';
 import StatusListContainer from '../ui/containers/status_list_container';
 
+
 const messages = defineMessages({
-  title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
+  title: { id: 'explore.title', defaultMessage: 'Explore' },
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
 });
 
@@ -186,19 +190,51 @@ const Firehose = ({ feedType, multiColumn }) => {
       >
         <ColumnSettings />
       </ColumnHeader>
+      <div className='column_explore'>
+        <div className='right_column'>
+          <div className='fixed_wrapper'>
+            <div className='explore__search-header'>
+              <SearchContainer openInRoute />
+            </div>
+
+            <div className='explore__tags-header'>
+              <Tags openInRoute />
+              <div className='right-column-show-more'>
+                <NavLink className='navbutton' exact to='/explore/tags'>
+                  <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
+                </NavLink>
+              </div>
+            </div>
+
+            {!multiColumn &&signedIn && (
+              <div className='explore__suggested-header'>
+                <Suggestions openInRoute />
+                <div className='right-column-show-more'>
+                  <NavLink className='navbutton' exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
+                  </NavLink>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
 
       <div className='scrollable scrollable--flex'>
         <div className='account__section-headline'>
-          <NavLink exact to='/public/local'>
+          <NavLink exact to='/explore/local'>
             <FormattedMessage tagName='div' id='firehose.local' defaultMessage='Local' />
           </NavLink>
 
-          <NavLink exact to='/public/remote'>
+          <NavLink exact to='/explore/remote'>
             <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Remote' />
           </NavLink>
 
-          <NavLink exact to='/public'>
+          <NavLink exact to='/explore/all'>
             <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+          </NavLink>
+          
+          <NavLink exact to='/explore/posts'>
+            <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Popular' />
           </NavLink>
         </div>
 
@@ -212,6 +248,7 @@ const Firehose = ({ feedType, multiColumn }) => {
           bindToDocument={!multiColumn}
           regex={regex}
         />
+      </div>
       </div>
 
       <Helmet>
