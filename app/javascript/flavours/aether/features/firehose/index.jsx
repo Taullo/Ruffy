@@ -107,7 +107,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     (maxId) => {
       switch(feedType) {
       case 'community':
-        dispatch(expandCommunityTimeline({ onlyMedia }));
+        dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
         break;
       case 'public':
         dispatch(expandPublicTimeline({ maxId, onlyMedia, allowLocalOnly }));
