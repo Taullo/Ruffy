@@ -54,7 +54,7 @@ class Explore extends PureComponent {
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <div className='column_explore'>
           <ColumnHeader
-            icon='hashtag'
+            icon='globe'
             title={intl.formatMessage(messages.title)}
             onClick={this.handleHeaderClick}
             multiColumn={multiColumn}
