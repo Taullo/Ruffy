@@ -1,4 +1,4 @@
-#  Aethersuite  #
+#  Aerodon  #
 
 Fork of [Glitch-soc](https://glitch-soc.github.io/docs/) which is a fork of [Tootsuite by Mastodon](https://github.com/mastodon/mastodon)
 
