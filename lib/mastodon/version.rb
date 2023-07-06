@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def prefix
-      'Aethersuite '
+      'Aerodon '
     end
 
     def to_a

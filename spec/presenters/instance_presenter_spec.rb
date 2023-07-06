@@ -108,8 +108,8 @@ describe InstancePresenter do
         end
       end
 
-      it 'defaults to the core aethersuite repo URL' do
-        expect(instance_presenter.source_url).to eq('https://github.com/Taullo/aethersuite')
+      it 'defaults to the core aerodon repo URL' do
+        expect(instance_presenter.source_url).to eq('https://github.com/Taullo/Aerodon')
       end
     end
   end

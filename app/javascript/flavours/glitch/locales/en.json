@@ -1,5 +1,5 @@
 {
-  "about.fork_disclaimer": "Aethersuite is free open source software forked from Glitch-soc and Mastodon.",
+  "about.fork_disclaimer": "Aerodon is free open source software forked from Glitch-soc and Mastodon.",
   "account.add_account_note": "Add note for @{name}",
   "account.disclaimer_full": "Information below may reflect the user's profile incompletely.",
   "account.follows": "Follows",
@@ -96,7 +96,7 @@
   "onboarding.page_six.almost_done": "Almost done...",
   "onboarding.page_six.appetoot": "Bon Appetoot!",
   "onboarding.page_six.apps_available": "There are {apps} available for iOS, Android and other platforms.",
-  "onboarding.page_six.github": "{domain} runs on Aethersuite. Aethersuite is a {fork} of Glitch-soc and {Mastodon}, and is compatible with any Mastodon instance or app. Aethersuite is entirely free and open-source. You can report bugs, request features, or contribute to the code on {github}.",
+  "onboarding.page_six.github": "{domain} runs on Aerodon. Aerodon is a {fork} of Glitch-soc and {Mastodon}, and is compatible with any Mastodon instance or app. Aerodon is entirely free and open-source. You can report bugs, request features, or contribute to the code on {github}.",
   "onboarding.page_six.guidelines": "community guidelines",
   "onboarding.page_six.read_guidelines": "Please read {domain}'s {guidelines}!",
   "onboarding.page_six.various_app": "mobile apps",

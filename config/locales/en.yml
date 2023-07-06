@@ -4,7 +4,7 @@ en:
     about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralization! Own your data!'
     contact_missing: Not set
     contact_unavailable: N/A
-    hosted_on: Aethersuite hosted on %{domain}
+    hosted_on: Aerodon hosted on %{domain}
     title: About
   accounts:
     follow: Follow

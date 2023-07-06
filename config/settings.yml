@@ -2,7 +2,7 @@
 # important settings can be changed from the admin interface.
 
 defaults: &defaults
-  site_title: 'Aethersuite'
+  site_title: 'Aerodon'
   site_short_description: ''
   site_description: ''
   site_extended_description: ''
@@ -54,4 +54,3 @@ test:
 
 production:
   <<: *defaults
-
