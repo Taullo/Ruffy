@@ -743,3 +743,10 @@
     border-bottom: 1px var(--ui-body-color) solid;
   }
 }
+
+.compose-modal {
+  .compose-form {
+    max-width: 700px;
+    width: calc(100vw - 20px);
+  }
+}

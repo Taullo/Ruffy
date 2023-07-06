@@ -19,6 +19,7 @@ import {
   InteractionModal,
   SubscribedLanguagesModal,
   ClosedRegistrationsModal,
+  ComposeModal,
 } from 'flavours/aether/features/ui/util/async-components';
 import { getScrollbarWidth } from 'flavours/aether/utils/scrollbar';
 
@@ -64,6 +65,7 @@ export const MODAL_COMPONENTS = {
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
+  'COMPOSE': ComposeModal,
 };
 
 export default class ModalRoot extends PureComponent {

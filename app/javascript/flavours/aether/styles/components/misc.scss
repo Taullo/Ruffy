@@ -355,7 +355,7 @@
 }
 
 body > [data-popper-placement] {
-  z-index: 3;
+  z-index: 10000;
 }
 
 .invisible {

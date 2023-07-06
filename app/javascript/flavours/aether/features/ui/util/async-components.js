@@ -23,7 +23,7 @@ export function CommunityTimeline () {
 }
 
 export function Firehose () {
-  return import(/* webpackChunkName: "flavours/glitch/async/firehose" */'../../firehose');
+  return import(/* webpackChunkName: "flavours/aether/async/firehose" */'../../firehose');
 }
 
 export function HashtagTimeline () {
@@ -136,6 +136,10 @@ export function ReportModal () {
 
 export function SettingsModal () {
   return import(/* webpackChunkName: "flavours/aether/async/settings_modal" */'flavours/aether/features/local_settings');
+}
+
+export function ComposeModal () {
+  return import(/* webpackChunkName: "flavours/aether/async/compose_modal" */'flavours/aether/features/compose_modal');
 }
 
 export function MediaGallery () {

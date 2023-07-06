@@ -15,7 +15,6 @@ import { logOut } from 'flavours/aether/utils/log_out';
 import { fetchServer } from 'flavours/glitch/actions/server';
 import { openModal } from 'flavours/aether/actions/modal';
 import { Avatar } from 'flavours/aether/components/avatar';
-import { Icon } from 'flavours/glitch/components/icon';
 import { WordmarkLogo, SymbolLogo } from 'flavours/aether/components/logo';
 import Permalink from 'flavours/aether/components/permalink';
 import { registrationsOpen, me } from 'flavours/aether/initial_state';
@@ -109,6 +108,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     modalType: 'SETTINGS',
     modalProps: {},
   })),
+  openCompose: () => dispatch(openModal({
+    modalType: 'COMPOSE',
+    modalProps: {},
+  })),
 });
 
 class Header extends PureComponent {
@@ -123,9 +126,9 @@ class Header extends PureComponent {
     intl: PropTypes.object.isRequired,
     onLogout: PropTypes.func.isRequired,
     openSettings: PropTypes.func.isRequired,
+    openCompose: PropTypes.func.isRequired,
     signupUrl: PropTypes.string.isRequired,
     dispatchServer: PropTypes.func,
-    intl: PropTypes.object.isRequired,
   };
 
   handleLogout = () => {
@@ -134,7 +137,7 @@ class Header extends PureComponent {
 
   render () {
     const { signedIn } = this.context.identity;
-    const { location, openClosedRegistrationsModal, signupUrl, intl, openSettings } = this.props;
+    const { location, openClosedRegistrationsModal, signupUrl, intl, openSettings, openCompose } = this.props;
 
     let menu        = [];
     menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
@@ -158,7 +161,7 @@ class Header extends PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <Link icon='pen' to='/publish' className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /></Link>}
+          {location.pathname !== '/publish' && <a onClick={openCompose} className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /><i class="fa fa-pencil-square-o fa-fw"></i></a>}
           <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />} title={intl.formatMessage(messages.notifications)} />
           <ColumnLink transparent to='/conversations' icon='envelope' title={intl.formatMessage(messages.direct)} />
           <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />
