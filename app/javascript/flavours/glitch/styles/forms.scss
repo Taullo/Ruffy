@@ -110,8 +110,9 @@ code {
         margin: 0 4px;
         margin-top: -2px;
       }
+
       .glitch_only {
-        display:none;
+        display: none;
       }
     }
   }
@@ -515,8 +516,8 @@ code {
     width: 100%;
     border: 0;
     border-radius: 100px;
-    background: darken($ui-highlight-color, 2%);
-    color: $primary-text-color;
+    background: $ui-button-background-color;
+    color: $ui-button-color;
     font-size: 18px;
     line-height: inherit;
     height: auto;
@@ -538,7 +539,7 @@ code {
     &:active,
     &:focus,
     &:hover {
-      background-color: $ui-highlight-color;
+      background-color: $ui-button-focus-background-color;
     }
 
     &:disabled:hover {
@@ -546,15 +547,12 @@ code {
     }
 
     &.negative {
-      background: $error-value-color;
+      background: $ui-button-destructive-background-color;
 
-      &:hover {
-        background-color: lighten($error-value-color, 5%);
-      }
-
+      &:hover,
       &:active,
       &:focus {
-        background-color: darken($error-value-color, 5%);
+        background-color: $ui-button-destructive-focus-background-color;
       }
     }
   }
