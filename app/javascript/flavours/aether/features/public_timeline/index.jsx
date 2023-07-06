@@ -4,6 +4,7 @@ import { PureComponent } from 'react';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
+import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -13,17 +14,16 @@ import { expandPublicTimeline } from 'flavours/aether/actions/timelines';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
 import DismissableBanner from 'flavours/aether/components/dismissable_banner';
+import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
+import Statuses from 'flavours/aether/features/explore/statuses';
+import Suggestions from 'flavours/aether/features/explore/suggestions';
+import Tags from 'flavours/aether/features/explore/tags';
 import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
+import { domain } from 'flavours/glitch/initial_state';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
 
-import { NavLink, Switch, Route } from 'react-router-dom';
 
-import Tags from 'flavours/aether/features/explore/tags';
-import Statuses from 'flavours/aether/features/explore/statuses';
-import Suggestions from 'flavours/aether/features/explore/suggestions';
-
-import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
@@ -185,8 +185,7 @@ class PublicTimeline extends PureComponent {
 
         <div className='scrollable public-scroll'>
 
-          <>
-            <div className='account__section-headline'>
+          <div className='account__section-headline'>
               <NavLink exact to='/explore/local'>
                 <FormattedMessage tagName='div' id='explore.local' defaultMessage='Local Timeline' />
               </NavLink>
@@ -211,10 +210,8 @@ class PublicTimeline extends PureComponent {
               </Route>
             </Switch>
 
-          </>
-
           <StatusListContainer
-            prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on this and other servers of the decentralized network that this server knows about.' /></DismissableBanner>}
+            prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
             timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}
             onLoadMore={this.handleLoadMore}
             trackScroll={!pinned}

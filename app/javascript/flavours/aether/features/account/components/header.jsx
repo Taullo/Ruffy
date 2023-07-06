@@ -4,6 +4,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
+import { NavLink } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -11,17 +12,16 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { Avatar } from 'flavours/aether/components/avatar';
 import Button from 'flavours/aether/components/button';
 import { counterRenderer } from 'flavours/aether/components/common_counter';
+import { Icon } from 'flavours/aether/components/icon';
 import ShortNumber from 'flavours/aether/components/short_number';
-import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'flavours/aether/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/aether/permissions';
 import { preferencesLink, profileLink, accountAdminLink } from 'flavours/aether/utils/backend_links';
 
+import { IconButton } from '../../../components/icon_button';
 import AccountNoteContainer from '../containers/account_note_container';
 import FollowRequestNoteContainer from '../containers/follow_request_note_container';
-import { Icon } from 'flavours/aether/components/icon';
-import { IconButton } from '../../../components/icon_button';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -413,6 +413,7 @@ class Header extends ImmutablePureComponent {
         <Helmet>
           <title>{titleFromAccount(account)}</title>
           <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
+          <link rel='canonical' href={account.get('url')} />
         </Helmet>
       </div>
     );

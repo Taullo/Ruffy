@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
+
 import classnames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -160,7 +161,7 @@ class StatusContent extends PureComponent {
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
-        link.setAttribute('title', mention.get('acct'));
+        link.setAttribute('title', `@${mention.get('acct')}`);
         if (rewriteMentions !== 'no') {
           while (link.firstChild) link.removeChild(link.firstChild);
           link.appendChild(document.createTextNode('@'));
