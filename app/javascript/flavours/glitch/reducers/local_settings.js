@@ -31,12 +31,12 @@ const initialState = ImmutableMap({
     enabled     : true,
     auto        : ImmutableMap({
       all              : false,
-      notifications    : true,
+      notifications    : false,
       lengthy          : true,
       reblogs          : false,
       replies          : false,
       media            : false,
-      height           : 400,
+      height           : 1200,
     }),
     backgrounds : ImmutableMap({
       user_backgrounds : false,
@@ -52,7 +52,7 @@ const initialState = ImmutableMap({
     pop_in_position  : 'right',
   }),
   notifications : ImmutableMap({
-    favicon_badge : false,
+    favicon_badge : true,
     tab_badge     : true,
   }),
   status_icons : ImmutableMap({
