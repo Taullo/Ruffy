@@ -70,10 +70,11 @@ const fetchServerTranslationLanguagesFail = error => ({
 });
 
 export const fetchExtendedDescription = () => (dispatch, getState) => {
-  dispatch(fetchExtendedDescriptionRequest());
   if (getState().getIn(['server', 'extendedDescription', 'isLoading'])) {
     return;
   }
+
+  dispatch(fetchExtendedDescriptionRequest());
 
   api(getState)
     .get('/api/v1/instance/extended_description')
