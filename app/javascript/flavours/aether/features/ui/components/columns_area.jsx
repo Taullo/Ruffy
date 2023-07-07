@@ -9,7 +9,6 @@ import { supportsPassiveEvents } from 'detect-passive-events';
 import { scrollRight } from 'flavours/aether/scroll';
 
 import BundleContainer from '../containers/bundle_container';
-import ComposeFormContainer from 'flavours/aether/features/compose/containers/compose_form_container';
 import {
   Compose,
   Notifications,
@@ -26,9 +25,7 @@ import {
 
 import BundleColumnError from './bundle_column_error';
 import ColumnLoading from './column_loading';
-import ComposePanel from './compose_panel';
 import DrawerLoading from './drawer_loading';
-import NavigationPanel from './navigation_panel';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -55,7 +52,6 @@ export default class ColumnsArea extends ImmutablePureComponent {
     columns: ImmutablePropTypes.list.isRequired,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
-    openSettings: PropTypes.func,
   };
 
   // Corresponds to (max-width: $no-gap-breakpoint + 285px - 1px) in SCSS
@@ -140,14 +136,11 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   render () {
-    const { columns, children, singleColumn, openSettings } = this.props;
-    const { renderComposePanel } = this.state;
+    const { columns, children, singleColumn } = this.props;
 
     if (singleColumn) {
       return (
         <div className='columns-area__panels'>
-          {renderComposePanel && <div className='compose_popup'><ComposeFormContainer singleColumn/></div>}
-          
           <div className='columns-area__panels__main'>
             <div className='tabs-bar__wrapper'><div id='tabs-bar__portal' /></div>
             <div className='columns-area columns-area--mobile'>{children}</div>
