@@ -94,7 +94,7 @@ class Explore extends PureComponent {
                 <FormattedMessage tagName='div' id='firehose.local' defaultMessage='Local' />
               </NavLink>
 
-              <NavLink exact to='/explore/federated'>
+              <NavLink exact to='/explore/remote'>
                 <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Remote' />
               </NavLink>
 
