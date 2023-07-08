@@ -105,11 +105,7 @@
   }
 
   &.button-secondary {
-    font-size: 16px;
-    line-height: 36px;
-    height: auto;
     color: $darker-text-color;
-    text-transform: none;
     background: transparent;
     padding: 6px 17px;
     border: 1px solid lighten($ui-base-color, 12%);
@@ -117,7 +113,6 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($ui-primary-color, 4%);
       background: lighten($ui-base-color, 4%);
       border-color: lighten($ui-base-color, 16%);
       color: lighten($darker-text-color, 4%);
