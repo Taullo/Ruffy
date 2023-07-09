@@ -15,30 +15,12 @@
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
-        = f.input :display_name, wrapper: :with_block_label, input_html: { maxlength: Account::MAX_DISPLAY_NAME_LENGTH, data: { default: @account.username } }
-
-      .fields-group
-        = f.input :note, wrapper: :with_block_label, input_html: { maxlength: Account::MAX_NOTE_LENGTH }
-
-    .fields-row__column.fields-group.fields-row__column-6
-      .input.with_block_label
-        %label= t('simple_form.labels.defaults.fields')
-        %span.hint= t('simple_form.hints.account.fields')
-
-        = f.simple_fields_for :fields do |fields_f|
-          .row
-            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
-            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
-
-  .fields-row
-    .fields-row__column.fields-row__column-6
-      .fields-group
         = f.input :avatar, wrapper: :with_block_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
 
     - if @account.avatar.present?
       .fields-row__column.fields-row__column-6
         .fields-group
-          = image_tag @account.avatar.url, class: 'fields-group__thumbnail', width: 90, height: 90
+          = image_tag @account.avatar.url, class: 'fields-group__thumbnail', width: 150, height: 150
           = link_to settings_profile_picture_path('avatar'), data: { method: :delete }, class: 'link-button link-button--destructive' do
             = fa_icon 'trash fw'
             = t('generic.delete')
@@ -55,6 +37,21 @@
           = link_to settings_profile_picture_path('header'), data: { method: :delete }, class: 'link-button link-button--destructive' do
             = fa_icon 'trash fw'
             = t('generic.delete')
+
+  .fields-group
+    = f.input :display_name, wrapper: :with_block_label, input_html: { maxlength: Account::MAX_DISPLAY_NAME_LENGTH, data: { default: @account.username } }
+
+  .fields-group
+    = f.input :note, wrapper: :with_block_label, input_html: { maxlength: Account::MAX_NOTE_LENGTH }
+
+  .input.with_block_label
+    %label= t('simple_form.labels.defaults.fields')
+    %span.hint= t('simple_form.hints.account.fields')
+
+    = f.simple_fields_for :fields do |fields_f|
+      .row
+        = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
+        = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
 
   %h4= t('edit_profile.safety_and_privacy')
 

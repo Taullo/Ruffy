@@ -30,6 +30,10 @@ code {
   }
 }
 
+textarea#account_note {
+  min-height: 15rem;
+}
+
 .simple_form {
   &.hidden {
     display: none;
@@ -110,8 +114,9 @@ code {
         margin: 0 4px;
         margin-top: -2px;
       }
+
       .glitch_only {
-        display:none;
+        display: none;
       }
     }
   }
@@ -1217,4 +1222,12 @@ code {
     border-color: $highlight-text-color;
     background: $highlight-text-color;
   }
+}
+
+.account_fields_name {
+  width: 30% !important;
+}
+
+.account_fields_value {
+  width: 70% !important;
 }
