@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import { fetchServer } from 'flavours/aether/actions/server';
 import { ServerHeroImage } from 'flavours/aether/components/server_hero_image';
-import ShortNumber from 'flavours/aether/components/short_number';
+import { ShortNumber } from 'flavours/aether/components/short_number';
 import { Skeleton } from 'flavours/aether/components/skeleton';
 import Account from 'flavours/aether/containers/account_container';
 import { domain } from 'flavours/aether/initial_state';

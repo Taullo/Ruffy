@@ -10,7 +10,7 @@ import { addColumn } from 'flavours/aether/actions/columns';
 import { changeSetting } from 'flavours/aether/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/aether/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/aether/actions/timelines';
-import DismissableBanner from 'flavours/aether/components/dismissable_banner';
+import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import SettingText from 'flavours/aether/components/setting_text';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
 import Suggestions from 'flavours/aether/features/explore/suggestions';

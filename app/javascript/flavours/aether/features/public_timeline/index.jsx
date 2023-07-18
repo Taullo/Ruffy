@@ -13,7 +13,7 @@ import { connectPublicStream } from 'flavours/aether/actions/streaming';
 import { expandPublicTimeline } from 'flavours/aether/actions/timelines';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
-import DismissableBanner from 'flavours/aether/components/dismissable_banner';
+import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
 import Statuses from 'flavours/aether/features/explore/statuses';
 import Suggestions from 'flavours/aether/features/explore/suggestions';

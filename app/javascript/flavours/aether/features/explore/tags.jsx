@@ -7,7 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { fetchTrendingHashtags } from 'flavours/aether/actions/trends';
-import DismissableBanner from 'flavours/aether/components/dismissable_banner';
+import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import { ImmutableHashtag as Hashtag } from 'flavours/aether/components/hashtag';
 import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 

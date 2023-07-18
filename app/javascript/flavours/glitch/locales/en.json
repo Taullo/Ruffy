@@ -145,7 +145,6 @@
   "settings.image_backgrounds_media_hint": "If the post has any media attachment, use the first one as a background",
   "settings.image_backgrounds_users": "Give collapsed toots an image background",
   "settings.inline_preview_cards": "Inline preview cards for external links",
-  "settings.layout": "Layout:",
   "settings.layout_opts": "Layout options",
   "settings.media": "Media",
   "settings.media_fullwidth": "Full-width media previews",

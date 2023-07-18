@@ -12,7 +12,7 @@ import { connectCommunityStream } from 'flavours/aether/actions/streaming';
 import { expandCommunityTimeline } from 'flavours/aether/actions/timelines';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
-import DismissableBanner from 'flavours/aether/components/dismissable_banner';
+import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
 import { domain } from 'flavours/aether/initial_state';
 

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { Blurhash } from 'flavours/aether/components/blurhash';
 import { accountsCountRenderer } from 'flavours/aether/components/hashtag';
-import ShortNumber from 'flavours/aether/components/short_number';
+import { ShortNumber } from 'flavours/aether/components/short_number';
 import { Skeleton } from 'flavours/aether/components/skeleton';
 
 

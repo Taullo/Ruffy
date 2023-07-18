@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/aether/actions/trends';
-import DismissableBanner from 'flavours/aether/components/dismissable_banner';
+import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import StatusList from 'flavours/aether/components/status_list';
 import { getStatusList } from 'flavours/aether/selectors';
 

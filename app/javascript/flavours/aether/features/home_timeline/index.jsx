@@ -23,7 +23,7 @@ import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ExplorePrompt } from './components/explore_prompt';
-import ColumnSettingsContainer from './containers/column_settings_container';
+import { ColumnSettings } from './components/column_settings';
 
 import Tags from 'flavours/aether/features/explore/tags';
 import Suggestions from 'flavours/aether/features/explore/suggestions';
@@ -201,7 +201,7 @@ class HomeTimeline extends PureComponent {
           extraButton={announcementsButton}
           appendContent={hasAnnouncements && showAnnouncements && <AnnouncementsContainer />}
         >
-          <ColumnSettingsContainer />
+          <ColumnSettings />
         </ColumnHeader>
 
         <div className='right_column'>
