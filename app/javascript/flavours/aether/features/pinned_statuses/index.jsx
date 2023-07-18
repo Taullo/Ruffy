@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { getStatusList } from 'flavours/glitch/selectors';
+import { getStatusList } from 'flavours/aether/selectors';
 
 import { fetchPinnedStatuses } from '../../actions/pin_statuses';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';

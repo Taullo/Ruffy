@@ -11,7 +11,7 @@ export type Search = string;
 /*
  * The 'skins' property does not exist in the application data.
  * This could be a potential area of refactoring or error handling.
- * The non-existence of 'skins' property is evident at [this location]{@link app/javascript/flavours/glitch/features/emoji/emoji_compressed.js:121}.
+ * The non-existence of 'skins' property is evident at [this location]{@link app/javascript/flavours/aether/features/emoji/emoji_compressed.js:121}.
  */
 export type Skins = null;
 

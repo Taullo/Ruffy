@@ -15,7 +15,7 @@ import { fetchFavouritedStatuses, expandFavouritedStatuses } from 'flavours/aeth
 import ColumnHeader from 'flavours/aether/components/column_header';
 import StatusList from 'flavours/aether/components/status_list';
 import Column from 'flavours/aether/features/ui/components/column';
-import { getStatusList } from 'flavours/glitch/selectors';
+import { getStatusList } from 'flavours/aether/selectors';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favourites' },

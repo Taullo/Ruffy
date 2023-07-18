@@ -19,7 +19,7 @@ import Statuses from 'flavours/aether/features/explore/statuses';
 import Suggestions from 'flavours/aether/features/explore/suggestions';
 import Tags from 'flavours/aether/features/explore/tags';
 import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
-import { domain } from 'flavours/glitch/initial_state';
+import { domain } from 'flavours/aether/initial_state';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
 

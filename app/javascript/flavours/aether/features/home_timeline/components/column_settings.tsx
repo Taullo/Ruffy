@@ -7,8 +7,8 @@ import { useCallback } from 'react';
 
 import { FormattedMessage, defineMessages, useIntl } from 'react-intl';
 
-import SettingText from 'flavours/glitch/components/setting_text';
-import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
+import SettingText from 'flavours/aether/components/setting_text';
+import { useAppSelector, useAppDispatch } from 'flavours/aether/store';
 
 import { changeSetting } from '../../../actions/settings';
 import SettingToggle from '../../notifications/components/setting_toggle';

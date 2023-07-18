@@ -3,9 +3,9 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import NavigationPortal from 'flavours/glitch/components/navigation_portal';
-import { timelinePreview, showTrends } from 'flavours/glitch/initial_state';
-import { preferencesLink } from 'flavours/glitch/utils/backend_links';
+import NavigationPortal from 'flavours/aether/components/navigation_portal';
+import { timelinePreview, showTrends } from 'flavours/aether/initial_state';
+import { preferencesLink } from 'flavours/aether/utils/backend_links';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
