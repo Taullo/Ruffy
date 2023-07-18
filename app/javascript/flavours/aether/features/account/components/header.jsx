@@ -11,9 +11,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Avatar } from 'flavours/aether/components/avatar';
 import Button from 'flavours/aether/components/button';
-import { counterRenderer } from 'flavours/aether/components/common_counter';
+import { FollowersCounter, FollowingCounter, StatusesCounter } from 'flavours/aether/components/counters';
 import { Icon } from 'flavours/aether/components/icon';
-import ShortNumber from 'flavours/aether/components/short_number';
+import { ShortNumber } from 'flavours/aether/components/short_number';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'flavours/aether/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/aether/permissions';
@@ -374,7 +374,7 @@ class Header extends ImmutablePureComponent {
                 <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
                   <ShortNumber
                     value={account.get('statuses_count')}
-                    renderer={counterRenderer('statuses')}
+                    renderer={StatusesCounter}
                   />
                 </NavLink>
                 
@@ -384,7 +384,7 @@ class Header extends ImmutablePureComponent {
                 <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/following`} title={intl.formatNumber(account.get('following_count'))}>
                   <ShortNumber
                     value={account.get('following_count')}
-                    renderer={counterRenderer('following')}
+                    renderer={FollowingCounter}
                   />
                 </NavLink>
 
@@ -392,7 +392,7 @@ class Header extends ImmutablePureComponent {
                 <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
                   <ShortNumber
                     value={account.get('followers_count')}
-                    renderer={counterRenderer('followers')}
+                    renderer={FollowersCounter}
                   />
                 </NavLink>)}
                 {(account.get('followers_count') === -1) && (
