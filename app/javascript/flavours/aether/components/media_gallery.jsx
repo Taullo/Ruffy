@@ -12,7 +12,7 @@ import { debounce } from 'lodash';
 
 import { Blurhash } from 'flavours/aether/components/blurhash';
 
-import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
+import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 
 import { IconButton } from './icon_button';
 
@@ -107,13 +107,50 @@ class Item extends PureComponent {
     else if (size >= 3) {
       height = '200px';
       if ((size >= 6) && (size < 12)) {
-        width = 33;
+        width = 33.33;
+        if (((size + 1) % 3) === 0) {
+          if (index === 0) {
+            width = 66.66
+          }
+        }
+        if (((size + 2) % 3) === 0) {
+          if (index === 0) {
+            width = 66.66
+          }
+          if (index === 3) {
+            width = 66.66
+          }
+        }
       } else if (size >= 12) {
         width = 25;
+        if (((size + 1) % 4) === 0) {
+          if (index === 0) {
+            width = 50
+          }
+        }
+        if (((size + 2) % 4) === 0) {
+          if (index === 0) {
+            width = 50
+          }
+          if (index === 6) {
+            width = 50
+          }
+        }
+        if (((size + 3) % 4) === 0) {
+          if (index === 0) {
+            width = 50
+          }
+          if (index === 4) {
+            width = 50
+          }
+          if (index === 8) {
+            width = 50
+          }
+        }
       }
     }
     
-    if (((size % 2) !== 0) && (size > 2) && (index === 0)) {
+    if (((size % 2) !== 0) && (size > 2) && (size < 6) && (index === 0)) {
         width = 100;
     }
     
@@ -199,7 +236,7 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `calc(${width}% - 4px)`, height: `${height}` }}>
+      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}` }}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -319,7 +356,7 @@ class MediaGallery extends PureComponent {
 
     const style = {};
 
-    if (this.isFullSizeEligible() && (standalone || !cropImages)) {
+    if (this.isFullSizeEligible() && (standalone)) {
       style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
     } else {
       style.height = 'auto';

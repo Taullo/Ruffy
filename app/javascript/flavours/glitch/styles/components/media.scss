@@ -56,7 +56,7 @@
   color: $white;
   background: rgba($black, 0.65);
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 11px;
   font-weight: 700;
   z-index: 1;
@@ -67,26 +67,25 @@
 .media-gallery {
   box-sizing: border-box;
   margin-top: 8px;
-  overflow: hidden;
-  border-radius: 4px;
+  border-radius: 8px;
   position: relative;
   width: 100%;
   min-height: 64px;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
-  gap: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding: 2px;
 
   @include fullwidth-gallery;
 }
 
 .media-gallery__item {
-  border: 0;
   box-sizing: border-box;
   display: block;
   position: relative;
-  border-radius: 4px;
   overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 8px;
 
   &--tall {
     grid-row: span 2;
