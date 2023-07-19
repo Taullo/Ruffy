@@ -12,7 +12,7 @@ import { debounce } from 'lodash';
 
 import { Blurhash } from 'mastodon/components/blurhash';
 
-import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
+import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 
 import { IconButton } from './icon_button';
 
@@ -303,7 +303,7 @@ class MediaGallery extends PureComponent {
 
     const style = {};
 
-    if (this.isFullSizeEligible() && (standalone || !cropImages)) {
+    if (this.isFullSizeEligible() && (standalone)) {
       style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
     } else {
       style.aspectRatio = '16 / 9';
