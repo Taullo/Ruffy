@@ -355,8 +355,10 @@ class MediaGallery extends PureComponent {
     let children, spoilerButton;
 
     const style = {};
+    
+    const cropImages = false;
 
-    if (this.isFullSizeEligible() && (standalone)) {
+    if (this.isFullSizeEligible() && (standalone || !cropImages)) {
       style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
     } else {
       style.height = 'auto';
