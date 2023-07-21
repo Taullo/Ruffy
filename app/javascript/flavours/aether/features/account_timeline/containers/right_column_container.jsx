@@ -1,18 +1,17 @@
-import { connect } from 'react-redux';
-import { makeGetAccount, getAccountHidden } from 'flavours/aether/selectors';
-import RightColumn from '../components/right_column';
 import { injectIntl } from 'react-intl';
 
-const makeMapStateToProps = () => {
-  const getAccount = makeGetAccount();
+import { connect } from 'react-redux';
 
-  const mapStateToProps = (state, { accountId }) => ({
-    account: getAccount(state, accountId),
-    domain: state.getIn(['meta', 'domain']),
-    hidden: getAccountHidden(state, accountId),
-  });
+import { makeGetAccount, getAccountHidden } from 'flavours/aether/selectors';
 
-  return mapStateToProps;
-};
+import RightColumn from '../components/right_column';
 
-export default injectIntl(connect(makeMapStateToProps)(RightColumn));
+const getAccount = makeGetAccount();
+
+const mapStateToProps = (state, { accountId }) => ({
+  account: getAccount(state, accountId),
+  domain: state.getIn(['meta', 'domain']),
+  hidden: getAccountHidden(state, accountId),
+});
+
+export default injectIntl(connect(mapStateToProps)(RightColumn));
