@@ -193,13 +193,9 @@ class AccountTimeline extends ImmutablePureComponent {
           <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
         <StatusList
           alwaysPrepend
-          append={remoteMessage}
           scrollKey='account_pinned'
           statusIds={featuredStatusIds}
           isLoading={isLoading}
-          hasMore={!forceEmptyState && hasMore}
-          onLoadMore={this.handleLoadMore}
-          emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           timelineId='account_pinned'
         />
