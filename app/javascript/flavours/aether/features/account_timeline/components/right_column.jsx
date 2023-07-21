@@ -1,8 +1,11 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Fields from 'flavours/aether/features/account/components/fields';
+import React from 'react';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+import Fields from 'flavours/aether/features/account/components/fields';
+
 
 export default class RightColumn extends ImmutablePureComponent {
 
@@ -33,7 +36,6 @@ export default class RightColumn extends ImmutablePureComponent {
     }
 
     return (
-      <div className='account-timeline__right-column'>
         
         <Fields 
           account={account}
@@ -41,7 +43,6 @@ export default class RightColumn extends ImmutablePureComponent {
           hidden={hidden}
         />
 
-      </div>
     );
   }
 

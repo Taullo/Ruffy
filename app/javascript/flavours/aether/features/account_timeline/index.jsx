@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import { FormattedMessage } from 'react-intl';
 
 import { List as ImmutableList } from 'immutable';
@@ -22,13 +23,6 @@ import Column from '../ui/components/column';
 import LimitedAccountHint from './components/limited_account_hint';
 import HeaderContainer from './containers/header_container';
 import RightColumnContainer from './containers/right_column_container';
-
-
-
-
-
-
-
 
 const emptyList = ImmutableList();
 
@@ -192,10 +186,24 @@ class AccountTimeline extends ImmutablePureComponent {
 
     return (
       <Column ref={this.setRef} name='account'>
-       <div className="scrollable account-scroll">
+       <div className='scrollable account-scroll'>
         <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
         <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
-        <RightColumnContainer accountId={this.props.accountId} tagged={this.props.params.tagged} />
+        <div className='account-timeline__right-column'>
+          <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
+        <StatusList
+          alwaysPrepend
+          append={remoteMessage}
+          scrollKey='account_pinned'
+          statusIds={featuredStatusIds}
+          isLoading={isLoading}
+          hasMore={!forceEmptyState && hasMore}
+          onLoadMore={this.handleLoadMore}
+          emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
+          timelineId='account_pinned'
+        />
+        </div>
 
         <StatusList
           alwaysPrepend

@@ -272,19 +272,6 @@
   align-content: center;
 }
 
-.compose_popup {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(0, 0, 0, 50%);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-  display: none; /* Hidden by default */
-}
-
 .compose_popup .compose-form {
   width: 600px;
   top: 0;
@@ -292,4 +279,18 @@
 
 .compose_popup .autosuggest-textarea__textarea {
   max-height: 50vh;
+}
+
+.account-timeline__right-column {
+  .status__info {
+    display: none;
+  }
+
+  .scrollable-list {
+    width: 100% !important;
+  }
+
+  .status__content {
+    margin: 0;
+  }
 }
