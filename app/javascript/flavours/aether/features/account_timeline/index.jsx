@@ -206,7 +206,6 @@ class AccountTimeline extends ImmutablePureComponent {
           append={remoteMessage}
           scrollKey='account_timeline'
           statusIds={forceEmptyState ? emptyList : statusIds}
-          featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={!forceEmptyState && hasMore}
           onLoadMore={this.handleLoadMore}
