@@ -64,6 +64,7 @@ import {
   SearchPage,
   FollowRecommendations,
   About,
+  Federation,
   PrivacyPolicy,
 } from './util/async-components';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
@@ -194,7 +195,8 @@ class SwitchingColumnsArea extends PureComponent {
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
-          <WrappedRoute path={['/about', '/about/servers']} component={About} content={children} />
+          <WrappedRoute path='/about' component={About} content={children} />
+          <WrappedRoute path='/federation' component={Federation} content={children} />
           <WrappedRoute path={['/policies', '/privacy-policy']} component={PrivacyPolicy} content={children} />
 
           <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />

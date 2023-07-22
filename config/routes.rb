@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     /followed_tags
     /statuses/(*any)
     /deck/(*any)
+    /federation
   ).freeze
 
   root 'home#index'
@@ -180,6 +181,8 @@ Rails.application.routes.draw do
   get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
   get '/about',      to: 'about#show'
   get '/about/more', to: redirect('/about')
+
+  get '/federation', to: 'federation#show'
 
   get '/policies', to: 'privacy#show', as: :privacy_policy
   get '/privacy-policy', to: redirect('/policies')

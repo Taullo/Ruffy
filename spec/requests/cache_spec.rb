@@ -26,7 +26,8 @@ module TestEndpoints
     /explore
     /public
     /about
-    /privacy-policy
+    /federation
+    /policies
     /directory
     /@alice
     /@alice/110224538612341312
@@ -97,6 +98,7 @@ module TestEndpoints
     /
     /explore
     /about
+    /federation
     /api/v1/trends/statuses
   ).freeze
 

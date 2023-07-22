@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/aether/actions/modal';
-import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'flavours/aether/initial_state';
+import { version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'flavours/aether/initial_state';
 import { PERMISSION_INVITE_USERS } from 'flavours/aether/permissions';
 import { logOut } from 'flavours/aether/utils/log_out';
 
@@ -86,6 +86,8 @@ class LinkFooter extends PureComponent {
           <Link to='/policies'><FormattedMessage id='footer.privacy_policy' defaultMessage='Site policies' /></Link>
           {DividingCircle}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
+          {DividingCircle}
+          <Link to='/federation'><FormattedMessage id='footer.federation' defaultMessage='Federation info' /></Link>
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
           {DividingCircle}

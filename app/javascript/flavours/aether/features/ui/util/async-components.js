@@ -210,6 +210,10 @@ export function About () {
   return import(/*webpackChunkName: "features/aether/async/about" */'flavours/aether/features/about');
 }
 
+export function Federation () {
+  return import(/*webpackChunkName: "features/aether/async/federation" */'flavours/aether/features/federation');
+}
+
 export function PrivacyPolicy () {
   return import(/*webpackChunkName: "features/aether/async/privacy_policy" */'flavours/aether/features/privacy_policy');
 }
