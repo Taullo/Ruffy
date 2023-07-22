@@ -170,6 +170,8 @@ class AccountTimeline extends ImmutablePureComponent {
     }
 
     let emptyMessage;
+    
+    let featuredPostsTitle;
 
     const forceEmptyState = suspended || hidden;
 
@@ -182,6 +184,10 @@ class AccountTimeline extends ImmutablePureComponent {
     } else {
       emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts found' />;
     }
+    
+    if (!featuredStatusIds.isEmpty()) {
+      featuredPostsTitle = <h4><FormattedMessage id='account.featured_posts.title' defaultMessage='Featured posts' /></h4>
+    }
 
     const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
 
@@ -192,7 +198,7 @@ class AccountTimeline extends ImmutablePureComponent {
         <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
         <div className='account-timeline__right-column'>
           <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
-          <h4><FormattedMessage id='account.featured_posts.title' defaultMessage='Featured posts' /></h4>
+          {featuredPostsTitle}
           <StatusList
             alwaysPrepend
             scrollKey='account_pinned'
