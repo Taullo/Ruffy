@@ -977,7 +977,9 @@
       .emojione {
         width: 22px;
         height: 22px;
-        transition: transform 0.2s, filter 0.2s;
+        transition:
+          transform 0.2s,
+          filter 0.2s;
 
         &:hover {
           transform: scale(2);
@@ -1052,7 +1054,9 @@
     }
 
     .emojione {
-      transition: transform 0.2s, filter 0.2s;
+      transition:
+        transform 0.2s,
+        filter 0.2s;
 
       &:hover {
         transform: scale(2);
@@ -1217,4 +1221,26 @@ img.parallax[src*='/headers/original/missing.png'] {
 .account__header .icon-button:focus {
   color: var(--ui-body-color);
   background-color: var(--ui-highlight-color);
+}
+
+.account-timeline__right-column {
+  h4 {
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    padding: 10px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    a {
+      color: $darker-text-color;
+      text-decoration: none;
+    }
+  }
+}
+
+.account-timeline__right-column .trends__item {
+  border-bottom: 0;
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
 }

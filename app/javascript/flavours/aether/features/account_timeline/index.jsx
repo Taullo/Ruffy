@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { lookupAccount, fetchAccount } from 'flavours/aether/actions/accounts';
 import { TimelineHint } from 'flavours/aether/components/timeline_hint';
 import ProfileColumnHeader from 'flavours/aether/features/account/components/profile_column_header';
+import FeaturedTags from 'flavours/aether/features/account/containers/featured_tags_container';
 import BundleColumnError from 'flavours/aether/features/ui/components/bundle_column_error';
 import { normalizeForLookup } from 'flavours/aether/reducers/accounts_map';
 import { getAccountHidden } from 'flavours/aether/selectors';
@@ -191,14 +192,16 @@ class AccountTimeline extends ImmutablePureComponent {
         <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
         <div className='account-timeline__right-column'>
           <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
-        <StatusList
-          alwaysPrepend
-          scrollKey='account_pinned'
-          statusIds={featuredStatusIds}
-          isLoading={isLoading}
-          bindToDocument={!multiColumn}
-          timelineId='account_pinned'
-        />
+          <h4><FormattedMessage id='account.featured_posts.title' defaultMessage='Featured posts' /></h4>
+          <StatusList
+            alwaysPrepend
+            scrollKey='account_pinned'
+            statusIds={featuredStatusIds}
+            isLoading={isLoading}
+            bindToDocument={!multiColumn}
+            timelineId='account_pinned'
+          />
+          <FeaturedTags accountId={accountId} tagged={this.props.params.tagged} />
         </div>
 
         <StatusList
