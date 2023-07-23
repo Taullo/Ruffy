@@ -126,7 +126,6 @@ class ComposerOptions extends ImmutablePureComponent {
     acceptContentTypes: PropTypes.string,
     advancedOptions: ImmutablePropTypes.map,
     disabled: PropTypes.bool,
-    allowMedia: PropTypes.bool,
     hasPoll: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onChangeAdvancedOption: PropTypes.func,
@@ -188,7 +187,6 @@ class ComposerOptions extends ImmutablePureComponent {
       advancedOptions,
       contentType,
       disabled,
-      allowMedia,
       hasPoll,
       onChangeAdvancedOption,
       onChangeContentType,
@@ -223,7 +221,7 @@ class ComposerOptions extends ImmutablePureComponent {
       <div className='compose-form__buttons'>
         <input
           accept={acceptContentTypes}
-          disabled={disabled || !allowMedia}
+          disabled={disabled}
           key={resetFileKey}
           onChange={this.handleChangeFiles}
           ref={this.handleRefFileElement}
@@ -232,7 +230,7 @@ class ComposerOptions extends ImmutablePureComponent {
           style={{ display: 'none' }}
         />
         <DropdownContainer
-          disabled={disabled || !allowMedia}
+          disabled={disabled}
           icon='paperclip'
           items={[
             {
