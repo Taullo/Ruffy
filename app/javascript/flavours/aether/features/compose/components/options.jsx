@@ -138,7 +138,6 @@ class ComposerOptions extends ImmutablePureComponent {
     contentType: PropTypes.string,
     resetFileKey: PropTypes.number,
     spoiler: PropTypes.bool,
-    showContentTypeChoice: PropTypes.bool,
     isEditing: PropTypes.bool,
   };
 

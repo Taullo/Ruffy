@@ -130,7 +130,6 @@ class ComposerOptions extends ImmutablePureComponent {
     advancedOptions: ImmutablePropTypes.map,
     disabled: PropTypes.bool,
     allowMedia: PropTypes.bool,
-    allowPoll: PropTypes.bool,
     hasPoll: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     onChangeAdvancedOption: PropTypes.func,
@@ -142,7 +141,6 @@ class ComposerOptions extends ImmutablePureComponent {
     contentType: PropTypes.string,
     resetFileKey: PropTypes.number,
     spoiler: PropTypes.bool,
-    showContentTypeChoice: PropTypes.bool,
     isEditing: PropTypes.bool,
   };
 
@@ -194,7 +192,6 @@ class ComposerOptions extends ImmutablePureComponent {
       contentType,
       disabled,
       allowMedia,
-      allowPoll,
       hasPoll,
       onChangeAdvancedOption,
       onChangeContentType,
@@ -202,7 +199,6 @@ class ComposerOptions extends ImmutablePureComponent {
       onToggleSpoiler,
       resetFileKey,
       spoiler,
-      showContentTypeChoice,
       isEditing,
       intl: { formatMessage },
     } = this.props;
@@ -259,7 +255,6 @@ class ComposerOptions extends ImmutablePureComponent {
         {!!pollLimits && (
           <IconButton
             active={hasPoll}
-            disabled={disabled || !allowPoll}
             icon='tasks'
             inverted
             onClick={onTogglePoll}
