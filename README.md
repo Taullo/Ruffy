@@ -6,6 +6,7 @@ Anyone who uses this is doing so at their own risk! There will be bugs and other
 
 Current features unique from Glitch in the Glitch Flavour:
 - Blog length posts (100k character limit)
+- 20 media uploads (including from other instances)
 - 20 poll options
 - Larger profile headers
 - Larger filesize limits
@@ -17,7 +18,6 @@ Aether flavour (work in progress) features:
 - Redesigned layout to allow for better readability and denser content
 - Header-based navigation
 - Two column content layout to allow for denser timelines, userpages, etc.
-- 20 media uploads (including from other instances)
 - Redesigned Explore page that merges the timelines and explore features
 - Larger compose field in the simple layout
 - Wider statuses column
