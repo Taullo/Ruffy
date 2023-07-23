@@ -46,10 +46,8 @@
 }
 
 .spoiler-input {
-  height: 0;
   transform-origin: bottom;
   opacity: 0;
-  margin-top: -4px;
   width: 0%;
   pointer-events: none;
 
@@ -64,18 +62,19 @@
     display: block;
     margin: 0;
     border-radius: 4px;
-    padding: 10px;
+    padding: 0.5rem;
     width: 100%;
     outline: 0;
     color: var(--ui-font-color);
     background: var(--ui-body-color);
-    font-size: 14px;
+    font-size: 1rem;
     font-family: inherit;
     resize: vertical;
     font-weight: bold;
     box-sizing: border-box;
     border: transparent 4px solid;
     transition: border-color 0.2s;
+    height: 2.5rem;
 
     &::placeholder {
       color: var(--ui-font-secondary-color);
@@ -545,23 +544,31 @@
   margin-inline-end: 4px;
 }
 
-.privacy-dropdown.active {
-  .privacy-dropdown__value {
-    background: $simple-background-color;
-    border-radius: 4px 4px 0 0;
-    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
+.privacy-dropdown.bottom {
+  height: 2.5rem;
+}
+
+.privacy-dropdown {
+  &.active {
+    background: transparent;
 
     .icon-button {
-      transition: none;
-    }
+      border-radius: 8px 8px 0 0;
+      background-color: var(--ui-font-color);
+      color: var(--ui-highlight-color);
 
-    &.active {
-      background: $ui-highlight-color;
-
-      .icon-button {
-        color: $primary-text-color;
+      &:hover {
+        background-color: var(--ui-highlight-color);
+        color: var(--ui-font-color);
       }
     }
+  }
+}
+
+.privacy-dropdown.active {
+  .privacy-dropdown__value {
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
   }
 
   &.top .privacy-dropdown__value {
@@ -634,8 +641,10 @@
     overflow: hidden;
 
     button {
-      padding: 7px 10px;
+      font-size: 1.2rem;
+      padding: 0.5rem 1.2rem;
       text-align: center;
+      height: 2.5rem;
     }
 
     & > .side_arm {
@@ -716,19 +725,20 @@
   width: auto !important;
   line-height: normal !important;
   margin-right: 10px;
+  height: 2.5rem;
+
+  &:hover {
+    background: lighten($ui-highlight-color, 4%);
+    color: var(--ui-font-color);
+  }
 }
 
 .spoiler_button .icon-button {
-  height: 39px;
-
   &.active {
-    height: 47px;
     border-radius: 8px 0 0 8px;
-    margin-top: -4px;
     margin-right: -2px !important;
     z-index: 1;
     position: relative;
-    width: 30px;
   }
 }
 
@@ -745,34 +755,4 @@
   justify-content: flex-end;
   margin-top: 20px;
   min-height: 48px;
-}
-
-.compose-form__publish button {
-  font-size: 1.1rem;
-  padding: 0.5rem 0.8rem !important;
-}
-
-@media screen and (max-width: $no-gap-breakpoint) {
-  .compose-form__bottom-buttons .icon-button {
-    font-size: 1.6rem !important;
-  }
-
-  .compose-form__publish button {
-    font-size: 1.3rem;
-    padding: 0.78rem 2rem !important;
-  }
-}
-
-.home-scroll {
-  .compose-form {
-    margin-bottom: 20px;
-    border-bottom: 1px var(--ui-body-color) solid;
-  }
-}
-
-.compose-modal {
-  .compose-form {
-    max-width: 700px;
-    width: calc(100vw - 20px);
-  }
 }
