@@ -59,10 +59,6 @@ const messages = defineMessages({
     defaultMessage: 'Plain text',
     id: 'compose.content-type.plain',
   },
-  spoiler: {
-    defaultMessage: 'Toggle content warning',
-    id: 'compose_form.spoiler.unmarked',
-  },
   threaded_mode_long: {
     defaultMessage: 'Automatically opens a reply on posting',
     id: 'advanced_options.threaded_mode.long',
@@ -132,11 +128,9 @@ class ComposerOptions extends ImmutablePureComponent {
     onChangeContentType: PropTypes.func,
     onTogglePoll: PropTypes.func,
     onDoodleOpen: PropTypes.func,
-    onToggleSpoiler: PropTypes.func,
     onUpload: PropTypes.func,
     contentType: PropTypes.string,
     resetFileKey: PropTypes.number,
-    spoiler: PropTypes.bool,
     isEditing: PropTypes.bool,
   };
 
@@ -191,9 +185,7 @@ class ComposerOptions extends ImmutablePureComponent {
       onChangeAdvancedOption,
       onChangeContentType,
       onTogglePoll,
-      onToggleSpoiler,
       resetFileKey,
-      spoiler,
       isEditing,
       intl: { formatMessage },
     } = this.props;
@@ -259,20 +251,6 @@ class ComposerOptions extends ImmutablePureComponent {
               lineHeight: null,
             }}
             title={formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
-          />
-        )}
-        {onToggleSpoiler && (
-          <IconButton
-            active={spoiler}
-            ariaControls='glitch.composer.spoiler.input'
-            icon='warning'
-            size={18}
-            style={{
-              height: null,
-              lineHeight: null,
-            }}
-            onClick={onToggleSpoiler}
-            title={formatMessage(messages.spoiler)}
           />
         )}
         <hr />

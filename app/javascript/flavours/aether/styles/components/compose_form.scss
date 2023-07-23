@@ -38,19 +38,26 @@
 }
 
 .no-reduce-motion .spoiler-input {
-  transition: height 0.4s ease, opacity 0.4s ease;
+  transition:
+    height 0.4s ease,
+    opacity 0.4s ease,
+    width 0.4s ease,
+    margin-right 0.4s ease;
 }
 
 .spoiler-input {
   height: 0;
   transform-origin: bottom;
   opacity: 0;
-  margin-top: 11px;
-  margin-bottom: 11px;
+  margin-top: -4px;
+  width: 0%;
+  pointer-events: none;
 
   &.spoiler-input--visible {
-    height: 36px;
     opacity: 1;
+    width: 100%;
+    margin-right: 10px;
+    pointer-events: auto;
   }
 
   input {
@@ -708,13 +715,36 @@
   font-size: 1.2rem !important;
   width: auto !important;
   line-height: normal !important;
+  margin-right: 10px;
+}
+
+.spoiler_button .icon-button {
+  height: 39px;
+
+  &.active {
+    height: 47px;
+    border-radius: 8px 0 0 8px;
+    margin-top: -4px;
+    margin-right: -2px !important;
+    z-index: 1;
+    position: relative;
+    width: 30px;
+  }
+}
+
+.no-reduce-motion .spoiler_button .icon-button {
+  transition:
+    height 0.4s ease,
+    width 0.4s ease,
+    margin 0.4s ease,
+    border-radius 0.4s ease;
 }
 
 .compose-form__bottom-buttons {
   display: flex;
-  column-gap: 10px;
   justify-content: flex-end;
   margin-top: 20px;
+  min-height: 48px;
 }
 
 .compose-form__publish button {
@@ -725,10 +755,6 @@
 @media screen and (max-width: $no-gap-breakpoint) {
   .compose-form__bottom-buttons .icon-button {
     font-size: 1.6rem !important;
-  }
-
-  .compose-form__bottom-buttons {
-    column-gap: 10vw;
   }
 
   .compose-form__publish button {

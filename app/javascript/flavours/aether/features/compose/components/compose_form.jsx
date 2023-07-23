@@ -7,6 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
+import { IconButton } from 'flavours/aether/components/icon_button';
 import { maxChars } from 'flavours/aether/initial_state';
 import { isMobile } from 'flavours/aether/is_mobile';
 
@@ -15,6 +16,7 @@ import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import OptionsContainer from '../containers/options_container';
 import PollFormContainer from '../containers/poll_form_container';
+import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
@@ -23,7 +25,7 @@ import { countableText } from '../util/counter';
 import CharacterCounter from './character_counter';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
+
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -36,6 +38,10 @@ const messages = defineMessages({
     defaultMessage: 'Send anyway',
   },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
+  spoiler: {
+    defaultMessage: 'Toggle content warning',
+    id: 'compose_form.spoiler.unmarked',
+  },
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -318,27 +324,6 @@ class ComposeForm extends ImmutablePureComponent {
 
         <ReplyIndicatorContainer />
 
-        <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
-          <AutosuggestInput
-            placeholder={intl.formatMessage(messages.spoiler_placeholder)}
-            value={spoilerText}
-            onChange={this.handleChangeSpoiler}
-            onKeyDown={this.handleKeyDown}
-            disabled={!spoiler}
-            ref={this.handleRefSpoilerText}
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={onFetchSuggestions}
-            onSuggestionsClearRequested={onClearSuggestions}
-            onSuggestionSelected={this.handleSpoilerSuggestionSelected}
-            searchTokens={[':']}
-            id='glitch.composer.spoiler.input'
-            className='spoiler-input__input'
-            lang={this.props.lang}
-            autoFocus={false}
-            spellCheck
-          />
-        </div>
-
         <AutosuggestTextarea
           ref={this.setAutosuggestTextarea}
           placeholder={intl.formatMessage(messages.placeholder)}
@@ -367,7 +352,6 @@ class ComposeForm extends ImmutablePureComponent {
           <OptionsContainer
             advancedOptions={advancedOptions}
             disabled={isSubmitting}
-            onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
             onUpload={onPaste}
             isEditing={isEditing}
             sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
@@ -379,6 +363,43 @@ class ComposeForm extends ImmutablePureComponent {
         </div>
 
       <div className='compose-form__bottom-buttons'>
+      
+      <span className='spoiler_button'>
+          <IconButton
+            active={spoiler}
+            ariaControls='glitch.composer.spoiler.input'
+            icon='warning'
+            size={18}
+            style={{
+              height: null,
+              lineHeight: null,
+            }}
+            onClick={onChangeSpoilerness}
+            title={intl.formatMessage(messages.spoiler)}
+          />
+       </span>
+      
+        <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
+          <AutosuggestInput
+            placeholder={intl.formatMessage(messages.spoiler_placeholder)}
+            value={spoilerText}
+            onChange={this.handleChangeSpoiler}
+            onKeyDown={this.handleKeyDown}
+            disabled={!spoiler}
+            ref={this.handleRefSpoilerText}
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={onFetchSuggestions}
+            onSuggestionsClearRequested={onClearSuggestions}
+            onSuggestionSelected={this.handleSpoilerSuggestionSelected}
+            searchTokens={[':']}
+            id='glitch.composer.spoiler.input'
+            className='spoiler-input__input'
+            lang={this.props.lang}
+            autoFocus={false}
+            spellCheck
+          />
+        </div>
+      
         <PrivacyDropdownContainer disabled={disabled || isEditing} />
 
         <Publisher
