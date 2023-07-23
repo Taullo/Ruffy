@@ -75,7 +75,6 @@ class ComposeForm extends ImmutablePureComponent {
     layout: PropTypes.string,
     media: ImmutablePropTypes.list,
     sideArm: PropTypes.string,
-    sensitive: PropTypes.bool,
     spoilersAlwaysOn: PropTypes.bool,
     mediaDescriptionConfirmation: PropTypes.bool,
     preselectOnReply: PropTypes.bool,
@@ -297,7 +296,6 @@ class ComposeForm extends ImmutablePureComponent {
       onFetchSuggestions,
       onPaste,
       privacy,
-      sensitive,
       showSearch,
       sideArm,
       spoiler,
@@ -367,7 +365,6 @@ class ComposeForm extends ImmutablePureComponent {
             onToggleSpoiler={spoilersAlwaysOn ? null : onChangeSpoilerness}
             onUpload={onPaste}
             isEditing={isEditing}
-            sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
             spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
           />
           <div className='character-counter__wrapper'>

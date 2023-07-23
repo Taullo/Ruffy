@@ -212,7 +212,7 @@ export function submitCompose(routerHistory) {
         in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
         media_ids: media.map(item => item.get('id')),
         media_attributes,
-        sensitive: getState().getIn(['compose', 'sensitive']) || (spoilerText.length > 0 && media.size !== 0),
+        sensitive: (spoilerText.length > 0 && media.size !== 0),
         spoiler_text: spoilerText,
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
@@ -298,7 +298,7 @@ export function doodleSet(options) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
-    const uploadLimit = 4;
+    const uploadLimit = 20;
     const media  = getState().getIn(['compose', 'media_attachments']);
     const pending  = getState().getIn(['compose', 'pending_media_attachments']);
     const progress = new Array(files.length).fill(0);
@@ -309,15 +309,10 @@ export function uploadCompose(files) {
       return;
     }
 
-    if (getState().getIn(['compose', 'poll'])) {
-      dispatch(showAlert(undefined, messages.uploadErrorPoll));
-      return;
-    }
-
     dispatch(uploadComposeRequest());
 
     for (const [i, file] of Array.from(files).entries()) {
-      if (media.size + i > 3) break;
+      if (media.size + i > 19) break;
 
       const data = new FormData();
       data.append('file', file);
@@ -815,3 +810,4 @@ export function changePollSettings(expiresIn, isMultiple) {
     isMultiple,
   };
 }
+
