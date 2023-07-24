@@ -57,6 +57,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         max_media_attachments: 20,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
         supported_mime_types: HtmlAwareFormatter::STATUS_MIME_TYPES,
+        local_only: true,
       },
 
       media_attachments: {
@@ -87,14 +88,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       approval_required: Setting.registrations_mode == 'approved',
       message: registrations_enabled? ? nil : registrations_message,
       url: ENV.fetch('SSO_ACCOUNT_SIGN_UP', nil),
-    }
-  end
-
-  def api_extensions
-    {
-      aero: {
-        local_only: true,
-      },
     }
   end
 

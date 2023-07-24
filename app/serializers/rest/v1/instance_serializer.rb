@@ -80,6 +80,7 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
         max_media_attachments: 20,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
         supported_mime_types: HtmlAwareFormatter::STATUS_MIME_TYPES,
+        local_only: true,
       },
 
       media_attachments: {
