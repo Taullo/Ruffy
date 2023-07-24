@@ -240,6 +240,25 @@ RSpec.describe Status do
         end
       end
     end
+
+    describe 'on a status that is marked local-only' do
+      before do
+        subject.text = 'A local-only toot'
+        subject.local_only = true
+      end
+
+      context 'when the status originates from this instance' do
+        before do
+          subject.account = local_account
+        end
+
+        it 'is marked local-only' do
+          subject.save!
+
+          expect(subject).to be_local_only
+        end
+      end
+    end
   end
 
   describe '.mutes_map' do

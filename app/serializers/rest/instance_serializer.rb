@@ -90,6 +90,14 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     }
   end
 
+  def api_extensions
+    {
+      aero: {
+        local_only: true,
+      },
+    }
+  end
+
   private
 
   def registrations_enabled?
@@ -103,5 +111,4 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   def markdown
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_images: true)
   end
-
 end

@@ -179,10 +179,6 @@ export function submitCompose(routerHistory) {
       return;
     }
 
-    if (getState().getIn(['compose', 'advanced_options', 'do_not_federate'])) {
-      status = status + ' 🏠';
-    }
-
     dispatch(submitComposeRequest());
 
     // If we're editing a post with media attachments, those have not
@@ -219,6 +215,7 @@ export function submitCompose(routerHistory) {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        local_only: getState().getIn(['compose', 'advanced_options', 'do_not_federate']),
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -226,8 +223,7 @@ export function submitCompose(routerHistory) {
     }).then(function (response) {
       if (routerHistory
           && (routerHistory.location.pathname === '/publish' || routerHistory.location.pathname === '/statuses/new')
-          && window.history.state
-          && !getState().getIn(['compose', 'advanced_options', 'threaded_mode'])) {
+          && window.history.state) {
         routerHistory.goBack();
       }
 
