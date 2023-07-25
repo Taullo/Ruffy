@@ -35,7 +35,7 @@ interface PopModalOption {
 }
 const popModal = (
   state: State,
-  { modalType, ignoreFocus }: PopModalOption
+  { modalType, ignoreFocus }: PopModalOption,
 ): State => {
   if (
     modalType === undefined ||
