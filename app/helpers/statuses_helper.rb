@@ -53,7 +53,7 @@ module StatusesHelper
   def status_description(status)
     components = [[media_summary(status), status_text_summary(status)].compact_blank.join(' · ')]
 
-    if status.spoiler_text.blank?
+    if status.spoiler_text.blank? || Setting.preview_sensitive_media
       components << status.text
       components << poll_summary(status)
     end

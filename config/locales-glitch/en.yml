@@ -28,6 +28,9 @@ en:
       trending_status_cw:
         desc_html: When trending posts are enabled, allow posts with Content Warnings to be eligible. Changes to this setting are not retroactive.
         title: Allow posts with Content Warnings to trend
+      preview_sensitive_media:
+        desc_html: External previews of links will show the full preview even when they contain a Content Warning.
+        title: Link previews for posts with Content Warnings
   appearance:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc

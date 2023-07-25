@@ -28,6 +28,9 @@ es:
       trending_status_cw:
         desc_html: Cuando las publicaciones en tendencia están habilitadas, permitir que la que contienen Advertencias de Contenido sean elegibles. Los cambios en esta configuración no son retroactivos.
         title: Permitir que publicaciones con advertencias de contenido sean tendencia
+      preview_sensitive_media:
+        desc_html: Enlaces externos mostraran contenido sensitivo en su totalidad aún cuando este marcado como tal
+        title: Ver contenido sensitivo en fuentes externas
   appearance:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc
