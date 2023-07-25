@@ -355,6 +355,9 @@ const startServer = async () => {
         req.accountId = result.rows[0].account_id;
         req.chosenLanguages = result.rows[0].chosen_languages;
         req.deviceId = result.rows[0].device_id;
+        if (req.cachedFilters) {
+          log.warn('Cached filters were already set');
+        }
 
         resolve();
       });
@@ -687,7 +690,7 @@ const startServer = async () => {
         }
 
         if (!unpackedPayload.filtered && !req.cachedFilters) {
-          queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
+          queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word, filter.account_id AS account_id FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
         }
 
         Promise.all(queries).then(values => {
@@ -701,10 +704,15 @@ const startServer = async () => {
             const filterRows = values[accountDomain ? 2 : 1].rows;
 
             req.cachedFilters = filterRows.reduce((cache, row) => {
+              if (req.accountId !== row.account_id) {
+                log.warn(`Account filter mismatch: ${req.accountId} VS ${row.account_id}`);
+              }
+
               if (cache[row.id]) {
                 cache[row.id].keywords.push([row.keyword, row.whole_word]);
               } else {
                 cache[row.id] = {
+                  accountId: row.account_id,
                   keywords: [[row.keyword, row.whole_word]],
                   expires_at: row.expires_at,
                   repr: {
@@ -748,6 +756,10 @@ const startServer = async () => {
             const now = new Date();
             payload.filtered = [];
             Object.values(req.cachedFilters).forEach((cachedFilter) => {
+              if (cachedFilter.accountId && cachedFilter.accountId !== req.accountId) {
+                log.warn(`Using mismatched filter: ${req.accountId} VS ${cachedFilter.accountId}`);
+              }
+
               if ((cachedFilter.expires_at === null || cachedFilter.expires_at > now)) {
                 const keyword_matches = searchIndex.match(cachedFilter.regexp);
                 if (keyword_matches) {
