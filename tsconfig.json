@@ -28,5 +28,6 @@
     "app/javascript/types",
     "app/javascript/flavours/glitch",
     "app/javascript/flavours/aether"
+    "app/javascript/core"
   ]
 }
