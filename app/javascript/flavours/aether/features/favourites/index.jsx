@@ -18,7 +18,7 @@ import Column from 'flavours/aether/features/ui/components/column';
 
 
 const messages = defineMessages({
-  heading: { id: 'column.favourited_by', defaultMessage: 'Favourited by' },
+  heading: { id: 'column.favourited_by', defaultMessage: 'Favorited by' },
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },
 });
 

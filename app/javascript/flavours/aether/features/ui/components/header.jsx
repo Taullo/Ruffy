@@ -6,18 +6,20 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import ColumnLink from 'flavours/aether/features/ui/components/column_link';
-import NotificationsCounterIcon from './notifications_counter_icon';
-import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
-import { preferencesLink, profileLink } from 'flavours/aether/utils/backend_links';
-import { logOut } from 'flavours/aether/utils/log_out';
 
-import { fetchServer } from 'flavours/aether/actions/server';
+
 import { openModal } from 'flavours/aether/actions/modal';
+import { fetchServer } from 'flavours/aether/actions/server';
 import { Avatar } from 'flavours/aether/components/avatar';
 import { WordmarkLogo, SymbolLogo } from 'flavours/aether/components/logo';
 import Permalink from 'flavours/aether/components/permalink';
+import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
+import ColumnLink from 'flavours/aether/features/ui/components/column_link';
 import { registrationsOpen, me } from 'flavours/aether/initial_state';
+import { preferencesLink, profileLink } from 'flavours/aether/utils/backend_links';
+import { logOut } from 'flavours/aether/utils/log_out';
+
+import NotificationsCounterIcon from './notifications_counter_icon';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -43,7 +45,7 @@ const messages = defineMessages({
   disableNotifications: { id: 'account.disable_notifications', defaultMessage: 'Stop notifying me when @{name} posts' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Manage lists' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
@@ -161,7 +163,7 @@ class Header extends PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <a onClick={openCompose} className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /><i className="fa fa-pencil-square-o fa-fw"></i></a>}
+          {location.pathname !== '/publish' && <button onClick={openCompose} className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /><i className='fa fa-pencil-square-o fa-fw' /></button>}
           <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />} title={intl.formatMessage(messages.notifications)} />
           <ColumnLink transparent to='/conversations' icon='envelope' title={intl.formatMessage(messages.direct)} />
           <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />

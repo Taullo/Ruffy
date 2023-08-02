@@ -55,12 +55,17 @@
   display: block;
   padding: 15px 20px;
   color: inherit;
-  background: var(--ui-body-secondary-color);;
+  background: var(--ui-body-secondary-color);
+  border: 0;
   border-bottom: 1px var(--ui-body-color) solid;
   cursor: pointer;
   text-decoration: none;
   outline: none;
   transition: background 0.3s;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: start;
+  font-size: inherit;
 
   .text-icon-button {
     color: inherit;
@@ -79,22 +84,25 @@
   &.close {
     background: var(--ui-highlight-color);
     color: var(--ui-font-color);
-    max-width:20px;
     border: transparent;
-    position:absolute;
-    right:0;
-    border-bottom-left-radius:8px;
-    z-index:10;
+    position: absolute;
+    right: 0;
+    border-bottom-left-radius: 8px;
+    z-index: 10;
+    width: 60px;
 
     &:hover {
-      color:var(--ui-highlight-color);
-      background:var(--ui-body-color);
+      color: var(--ui-highlight-color);
+      background: var(--ui-body-color);
+      border: var(--ui-highlight-color);
     }
   }
+
   &.local_prefs {
-    position:absolute;
-    bottom:0;
-    border:transparent;
+    position: absolute;
+    bottom: 0;
+    border: transparent;
+    max-width: 212px; /* FIXME: Will break on different layouts */
   }
 }
 

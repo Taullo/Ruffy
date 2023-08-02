@@ -16,7 +16,7 @@ import { Icon } from 'flavours/glitch/components/icon';
 import { registrationsOpen } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
-  loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },
+  loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server' },
 });
 
 const mapStateToProps = (state, { accountId }) => ({
@@ -352,8 +352,8 @@ class InteractionModal extends React.PureComponent {
 
         <IntlLoginForm resourceUrl={url} />
 
-        <p className='hint'><FormattedMessage id='interaction_modal.sign_in_hint' defaultMessage="Tip: That's the website where you signed up. If you don't remember, look for the welcome e-mail in your inbox. You can also enter your full username! (e.g. @Mastodon@mastodon.social)" /></p>
-        <p><FormattedMessage id='interaction_modal.no_account_yet' defaultMessage='Not on Mastodon?' /> {signupButton}</p>
+        <p className='hint'><FormattedMessage id='interaction_modal.sign_in_hint' defaultMessage="Tip: That's the website where you signed up. If you don't remember, look for the welcome e-mail in your inbox. You can also enter your full username! (e.g. @user@example.com)" /></p>
+        <p><FormattedMessage id='interaction_modal.no_account_yet' defaultMessage='Not on the Fediverse?' /> {signupButton}</p>
       </div>
     );
   }

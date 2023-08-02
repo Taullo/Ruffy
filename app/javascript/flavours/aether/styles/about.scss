@@ -194,7 +194,7 @@ $fluid-breakpoint: $maximum-width + 20px;
       margin-bottom: 20px;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (width <= 600px) {
       display: block;
 
       h4 {
@@ -296,8 +296,8 @@ $fluid-breakpoint: $maximum-width + 20px;
       padding: 20px;
       font-size: 1rem;
       background: var(--ui-body-secondary-color);
-      border-bottom-left-radius:var(--ui-border-radius);
-      border-bottom-right-radius:var(--ui-border-radius);
+      border-bottom-left-radius: var(--ui-border-radius);
+      border-bottom-right-radius: var(--ui-border-radius);
     }
   }
 

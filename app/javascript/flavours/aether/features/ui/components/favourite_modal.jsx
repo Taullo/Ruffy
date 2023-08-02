@@ -17,7 +17,7 @@ import StatusContent from 'flavours/aether/components/status_content';
 import VisibilityIcon from 'flavours/aether/components/status_visibility_icon';
 
 const messages = defineMessages({
-  favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
+  favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
 });
 
 class FavouriteModal extends ImmutablePureComponent {

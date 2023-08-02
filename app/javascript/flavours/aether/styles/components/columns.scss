@@ -498,7 +498,9 @@ $ui-header-height: 55px;
   overflow: hidden;
   overflow-y: auto;
   color: $darker-text-color;
-  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  transition:
+    max-height 150ms ease-in-out,
+    opacity 300ms linear;
   opacity: 1;
   z-index: 1;
   position: relative;
@@ -1058,12 +1060,12 @@ $ui-header-height: 55px;
 }
 
 .right_column {
-  .account-card:nth-child(n+4) {
-    display:none;
+  .account-card:nth-child(n + 4) {
+    display: none;
   }
 
-  .trends__item:nth-child(n+6) {
-    display:none;
+  .trends__item:nth-child(n + 6) {
+    display: none;
   }
 
   .account-card {
@@ -1076,27 +1078,27 @@ $ui-header-height: 55px;
 }
 
 @media screen and (height <= 60rem) {
-.right_column {
-  .explore__suggested-header {
-    display:none;
-  }
+  .right_column {
+    .explore__suggested-header {
+      display: none;
+    }
 
-  .trends__item:nth-child(n+4) {
-    display:none;
+    .trends__item:nth-child(n + 4) {
+      display: none;
+    }
   }
-}
 }
 
 @media screen and (height <= 70rem) {
-.right_column {
-  .account-card:nth-child(n+4) {
-    display:none;
-  }
+  .right_column {
+    .account-card:nth-child(n + 4) {
+      display: none;
+    }
 
-  .trends__item:nth-child(n+4) {
-    display:none;
+    .trends__item:nth-child(n + 4) {
+      display: none;
+    }
   }
-}
 }
 
 .ui__header__left {
@@ -1111,11 +1113,10 @@ $ui-header-height: 55px;
 
 .ui__header__links {
   .button {
-
     i {
       font-size: 1.4rem;
       margin-left: 6px;
-      vertical-align:middle;
+      vertical-align: middle;
     }
   }
 }

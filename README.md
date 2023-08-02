@@ -1,10 +1,11 @@
-#  Aerodon  #
+# Aerodon
 
 Fork of [Glitch-soc](https://glitch-soc.github.io/docs/) which is a fork of [Tootsuite by Mastodon](https://github.com/mastodon/mastodon)
 
 Anyone who uses this is doing so at their own risk! There will be bugs and other possible issues with the code!
 
 Current features unique from Glitch in the Glitch Flavour:
+
 - Blog length posts (100k character limit)
 - 20 media uploads (including from other instances)
 - 20 poll options
@@ -15,6 +16,7 @@ Current features unique from Glitch in the Glitch Flavour:
 - Mixed poll and media uploads
 
 Aether flavour (work in progress) features:
+
 - Redesigned layout to allow for better readability and denser content
 - Header-based navigation
 - Two column content layout to allow for denser timelines, userpages, etc.

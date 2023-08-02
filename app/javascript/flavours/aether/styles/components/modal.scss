@@ -1,8 +1,19 @@
 @keyframes bounce {
-  0% { transform: scale(1.1) }
-  35% { transform: scale(.98) }
-  65% { transform: scale(1.01) }
-  100% { transform: scale(1) }
+  0% {
+    transform: scale(1.1);
+  }
+
+  35% {
+    transform: scale(0.98);
+  }
+
+  65% {
+    transform: scale(1.01);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .modal-container--preloader {
@@ -41,7 +52,7 @@
   pointer-events: none;
   user-select: none;
   transition: top 0.5s;
-  animation: bounce .7s;
+  animation: bounce 0.7s;
 }
 
 .modal-root__modal {

@@ -172,8 +172,6 @@ class SwitchingColumnsArea extends PureComponent {
 
     let redirect;
 
-    redirect = <Redirect from='/explore' to='/explore/local' exact />;
-
     if (signedIn) {
       if (mobile) {
         redirect = <Redirect from='/' to='/home' exact />;
@@ -691,3 +689,4 @@ class UI extends Component {
 }
 
 export default connect(mapStateToProps)(injectIntl(withRouter(UI)));
+

@@ -18,7 +18,7 @@ import Column from 'flavours/aether/features/ui/components/column';
 import { getStatusList } from 'flavours/aether/selectors';
 
 const messages = defineMessages({
-  heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
+  heading: { id: 'column.favourites', defaultMessage: 'Favorites' },
 });
 
 const mapStateToProps = state => ({

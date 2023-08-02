@@ -25,7 +25,9 @@
   text-transform: uppercase;
   cursor: pointer;
   background: var(--ui-body-secondary-color);
-  transition: background 0.2s, border 0.2s;
+  transition:
+    background 0.2s,
+    border 0.2s;
   color: var(--ui-font-color);
   padding: 8px;
   border: var(--ui-body-secondary-color) 2px solid;
