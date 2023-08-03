@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def prefix
-      'Aerodon '
+      'Ruffy '
     end
 
     def to_a
@@ -33,7 +33,7 @@ module Mastodon
     end
 
     def repository
-      ENV.fetch('GITHUB_REPOSITORY', 'Taullo/mastodon')
+      ENV.fetch('GITHUB_REPOSITORY', 'Taullo/Ruffy')
     end
 
     def source_base_url

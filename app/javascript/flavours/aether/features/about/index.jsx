@@ -127,9 +127,6 @@ class About extends PureComponent {
 
           <LinkFooter />
 
-          <div className='about__footer'>
-            <p><FormattedMessage id='about.fork_disclaimer' defaultMessage='Aethersuite is free open source software forked from Glitch-soc and Mastodon.' /></p>
-          </div>
          </div>
         </div>
 

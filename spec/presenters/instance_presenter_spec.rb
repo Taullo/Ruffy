@@ -108,8 +108,8 @@ describe InstancePresenter do
         end
       end
 
-      it 'defaults to the core aerodon repo URL' do
-        expect(instance_presenter.source_url).to eq('https://github.com/Taullo/Aerodon')
+      it 'defaults to the core ruffy repo URL' do
+        expect(instance_presenter.source_url).to eq('https://github.com/Taullo/Ruffy')
       end
     end
   end
