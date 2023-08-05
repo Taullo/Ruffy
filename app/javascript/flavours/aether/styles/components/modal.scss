@@ -247,7 +247,7 @@
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
 
     &:hover,
     &:focus,
@@ -628,7 +628,7 @@
   }
 
   .status__content a {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
   }
 
   .status__content,
@@ -795,7 +795,7 @@
   overflow-x: hidden;
 
   .status__content a {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
   }
 
   @media screen and (width <= 480px) {
@@ -962,7 +962,7 @@
         &:focus {
           &,
           button {
-            background: $ui-highlight-color;
+            background: var(--ui-highlight-color);
             color: $primary-text-color;
           }
         }
@@ -1108,7 +1108,7 @@
     }
 
     a {
-      color: $highlight-text-color;
+      color: var(--ui-highlight-color);
     }
 
     hr {
@@ -1341,7 +1341,7 @@ img.modal-warning {
   }
 
   &__icon {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
     margin: 0 5px;
   }
 

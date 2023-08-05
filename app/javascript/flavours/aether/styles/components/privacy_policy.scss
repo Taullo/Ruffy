@@ -157,7 +157,7 @@
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
     text-decoration: underline;
 
     &:focus,

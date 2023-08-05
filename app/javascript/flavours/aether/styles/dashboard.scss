@@ -94,7 +94,7 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: $ui-highlight-color;
+      background-color: var(--ui-highlight-color);
       transition: all 200ms ease-out;
     }
 

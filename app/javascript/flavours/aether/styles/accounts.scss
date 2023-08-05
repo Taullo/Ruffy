@@ -208,14 +208,13 @@
 .simple_form .not_recommended,
 .simple_form .glitch_only {
   display: inline-block;
-  padding: 4px 6px;
+  padding: 6px;
   cursor: default;
   border-radius: var(--ui-border-radius);
   font-size: 0.9rem;
   font-weight: 500;
   color: $ui-secondary-color;
   background-color: var(--user-role-background, rgba($ui-secondary-color, 0.1));
-  border: 1px solid var(--user-role-border, rgba($ui-secondary-color, 0.5));
 
   &.moderator {
     color: $success-green;
@@ -280,7 +279,7 @@
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
     text-decoration: none;
 
     &:hover,
@@ -633,7 +632,7 @@
   }
 
   abbr {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
   }
 }
 
@@ -688,7 +687,7 @@
   position: relative;
 
   .fa {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
   }
 
   > span {
@@ -781,7 +780,7 @@
 
     &.active {
       color: $secondary-text-color;
-      border-color: $ui-highlight-color;
+      border-color: var(--ui-highlight-color);
     }
   }
 
@@ -959,11 +958,20 @@
       }
 
       .icon-button {
-        border: 2px solid var(--ui-highlight-color);
+        border: 4px solid var(--ui-highlight-color);
+        background-color: var(--ui-body-color);
         color: var(--ui-highlight-color);
         border-radius: 100%;
         box-sizing: content-box;
-        padding: 2px;
+        padding: 4px;
+        transition-property: background-color, border, color;
+
+        &:hover,
+        &:focus {
+          color: var(--ui-font-color);
+          background-color: var(--ui-highlight-color);
+          border: 4px solid var(--ui-font-color);
+        }
       }
     }
 
@@ -1217,23 +1225,19 @@ img.parallax[src*='/headers/original/missing.png'] {
   margin-bottom: 0;
 }
 
-.account__header .icon-button:hover,
-.account__header .icon-button:focus {
-  color: var(--ui-body-color);
-  background-color: var(--ui-highlight-color);
-}
-
 .account-timeline__right-column {
   h4 {
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 3px solid var(--ui-highlight-color);
     padding: 10px 0;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: bold;
 
     a {
-      color: $darker-text-color;
       text-decoration: none;
+    }
+
+    span {
+      color: var(--ui-highlight-color);
     }
   }
 }

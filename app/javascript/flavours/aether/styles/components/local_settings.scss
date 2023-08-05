@@ -90,11 +90,13 @@
     border-bottom-left-radius: 8px;
     z-index: 10;
     width: 60px;
+    border-left: 4px solid transparent;
+    border-bottom: 4px solid transparent;
 
     &:hover {
       color: var(--ui-highlight-color);
       background: var(--ui-body-color);
-      border: var(--ui-highlight-color);
+      border-color: var(--ui-highlight-color);
     }
   }
 

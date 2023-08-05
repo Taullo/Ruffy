@@ -59,7 +59,7 @@
         &:focus,
         &:active,
         &.selected {
-          background: $ui-highlight-color;
+          background: var(--ui-highlight-color);
           color: $primary-text-color;
 
           .icon-button {
@@ -91,6 +91,9 @@
   padding-inline-end: 30px;
   line-height: 18px;
   font-size: 16px;
+  border-radius: 0;
+  border-bottom: 2px solid;
+  background: transparent;
 
   &::placeholder {
     color: lighten($darker-text-color, 4%);
@@ -104,10 +107,6 @@
   &:focus,
   &:active {
     outline: 0 !important;
-  }
-
-  &:focus {
-    background: lighten($ui-base-color, 4%);
   }
 }
 
@@ -155,7 +154,6 @@
   .fa-times-circle {
     top: 17px;
     transform: rotate(0deg);
-    color: $action-button-color;
     cursor: pointer;
 
     &.active {
@@ -163,7 +161,7 @@
     }
 
     &:hover {
-      color: lighten($action-button-color, 7%);
+      color: var(--ui-font-color);
     }
   }
 }

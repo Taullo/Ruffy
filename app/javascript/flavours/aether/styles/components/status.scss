@@ -135,7 +135,7 @@
   }
 
   a.unhandled-link {
-    color: $highlight-text-color;
+    color: var(--ui-highlight-color);
 
     .link-origin-tag {
       color: $gold-star;
@@ -274,7 +274,7 @@
       color: $inverted-text-color;
 
       a {
-        color: $highlight-text-color;
+        color: var(--ui-highlight-color);
       }
     }
   }
@@ -529,6 +529,23 @@
 
   &.icon-button--with-counter {
     margin-inline-end: 14px;
+  }
+}
+
+.status__action-bar {
+  .icon-button {
+    background-color: transparent;
+  }
+
+  .icon-button {
+    color: transparent;
+    -webkit-text-stroke: var(--ui-highlight-color) 2px;
+    transition: 0.2s color;
+
+    &:hover,
+    &:focus {
+      color: var(--ui-highlight-color);
+    }
   }
 }
 
@@ -1032,7 +1049,8 @@ a.status-card.compact:hover {
     .status__content,
     .status__action-bar {
       margin-inline-start: 46px + 10px;
-      width: calc(100% - (46px + 10px));
+
+      /* width: calc(100% - (46px + 10px)); */
     }
   }
 
@@ -1046,7 +1064,7 @@ a.status-card.compact:hover {
     width: 0;
     position: absolute;
     top: 0;
-    inset-inline-start: 14px + ((48px - 2px) * 0.5);
+    inset-inline-start: 14px + ((62px - 2px) * 0.5);
 
     &--full {
       top: 0;
@@ -1057,7 +1075,7 @@ a.status-card.compact:hover {
         display: block;
         position: absolute;
         top: 10px - 4px;
-        height: 48px + 4px + 4px;
+        height: 62px + 4px + 4px;
         width: 2px;
         background: $ui-base-color;
         inset-inline-start: -2px;
@@ -1065,8 +1083,8 @@ a.status-card.compact:hover {
     }
 
     &--first {
-      top: 10px + 48px + 4px;
-      height: calc(100% - (10px + 48px + 4px));
+      top: 10px + 62px + 4px;
+      height: calc(100% - (10px + 62px + 4px));
 
       &::before {
         display: none;

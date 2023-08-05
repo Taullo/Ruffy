@@ -290,7 +290,7 @@
       }
 
       &.active {
-        color: $highlight-text-color;
+        color: var(--ui-highlight-color);
 
         &:hover,
         &:focus,
