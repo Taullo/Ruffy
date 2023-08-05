@@ -28,4 +28,8 @@ Aether flavour (work in progress) features:
 - Dark theme applied to more elements
 - Local timeline as the homepage for logged out users
 
+Settings
+- Exposes setting for "Link previews for posts with Content Warnings"
+- Adds an option for marking outgoing media as sensitive
+
 - You can view documentation for Glitch-soc at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/) and the documentation for Mastodon at [docs.joinmastodon.org](https://docs.joinmastodon.org/)
