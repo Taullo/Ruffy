@@ -41,7 +41,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def summary
-    object.spoiler_text.presence || (instance_options[:allow_local_only] ? nil : Setting.outgoing_spoilers.presence) || (instance_options[:allow_local_only] ? nil : Setting.outgoing_sensitive?)
+    object.spoiler_text.presence || (instance_options[:allow_local_only] ? nil : Setting.outgoing_spoilers.presence) || (instance_options[:allow_local_only] ? nil : Setting.outgoing_sensitive)
   end
 
   def direct_message
@@ -117,7 +117,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def sensitive
-    object.account.sensitized? || object.sensitive || (!instance_options[:allow_local_only] && Setting.outgoing_spoilers.present?) || (!instance_options[:allow_local_only] && Setting.outgoing_sensitive?)
+    object.account.sensitized? || object.sensitive || (!instance_options[:allow_local_only] && Setting.outgoing_spoilers.present?) || (!instance_options[:allow_local_only] && Setting.outgoing_sensitive)
   end
 
   def virtual_attachments
