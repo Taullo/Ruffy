@@ -21,6 +21,9 @@
 
   .fields-group
     = f.input :preview_sensitive_media, as: :boolean, wrapper: :with_label, label: t('admin.settings.preview_sensitive_media.title'), hint: t('admin.settings.preview_sensitive_media.desc_html')
+    
+  .fields-group
+    = f.input :outgoing_sensitive, as: :boolean, wrapper: :with_label, label: t('admin.settings.outgoing_sensitive.title'), hint: t('admin.settings.outgoing_sensitive.desc_html')
 
   .fields-group
     = f.input :outgoing_spoilers, wrapper: :with_label, label: t('admin.settings.outgoing_spoilers.title'), hint: t('admin.settings.outgoing_spoilers.desc_html'), glitch_only: true

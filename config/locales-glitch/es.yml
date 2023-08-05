@@ -31,6 +31,9 @@ es:
       preview_sensitive_media:
         desc_html: Enlaces externos mostraran contenido sensitivo en su totalidad aún cuando este marcado como tal
         title: Ver contenido sensitivo en fuentes externas
+      outgoing_sensitive:
+        desc_html: Obliga a todos los medios salientes a otros servidores a marcarse como sensitivo. Útil para servidores enfocados en contenido sensible.
+        title: Contenido sensitivo para publicaciones salientes
   appearance:
     localization:
       glitch_guide_link: https://crowdin.com/project/glitch-soc
