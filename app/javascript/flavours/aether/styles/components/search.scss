@@ -258,12 +258,12 @@
       width: 50px;
 
       path:first-child {
-        fill: rgba($highlight-text-color, 0.25) !important;
-        fill-opacity: 1 !important;
+        fill: var(--ui-highlight-color) !important;
+        fill-opacity: 0.25 !important;
       }
 
       path:last-child {
-        stroke: lighten($highlight-text-color, 6%) !important;
+        stroke: var(--ui-highlight-color) !important;
         fill: none !important;
       }
     }
@@ -307,11 +307,11 @@
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
+          fill: var(--ui-highlight-color) !important;
         }
 
         path:last-child {
-          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
+          stroke: var(--ui-highlight-color) !important;
         }
       }
     }
