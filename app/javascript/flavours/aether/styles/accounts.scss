@@ -928,7 +928,7 @@
     align-items: flex-end;
     justify-content: space-between;
     padding: 7px 10px;
-    margin-top: -121px;
+    margin-top: -115px;
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
 
@@ -951,6 +951,7 @@
       .button {
         flex-shrink: 1;
         white-space: nowrap;
+        padding: 12px 18px;
 
         @media screen and (max-width: $no-gap-breakpoint) {
           min-width: 0;
