@@ -393,7 +393,7 @@ body > [data-popper-placement] {
 }
 
 .icon-button.bookmark-icon.active {
-  color: $red-bookmark;
+  color: var(--ui-highlight-color);
 }
 
 .no-reduce-motion .icon-button.star-icon {
