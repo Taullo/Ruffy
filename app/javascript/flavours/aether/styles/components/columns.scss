@@ -1166,6 +1166,8 @@ $ui-header-height: 55px;
 
   .icon-with-badge__badge {
     margin-top: 5px;
+    -webkit-text-stroke: 0;
+    color: var(--ui-font-color);
   }
 
   .button {
