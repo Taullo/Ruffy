@@ -184,7 +184,8 @@
   &__footer {
     padding-top: 6px;
     padding-bottom: 5px;
-    color: $dark-text-color;
+    color: var(--ui-font-secondary-color);
+    font-family: $font-sans-serif, sans-serif;
   }
 
   &__link {
@@ -226,7 +227,6 @@
     padding: 10px;
     display: flex;
     align-items: center;
-    font-family: $font-sans-serif, sans-serif;
 
     button,
     select {
