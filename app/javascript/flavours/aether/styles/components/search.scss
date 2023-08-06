@@ -270,24 +270,24 @@
 
     &--requires-review {
       .trends__item__name {
-        color: $gold-star;
+        color: var(--ui-highlight-color);
 
         a {
-          color: $gold-star;
+          color: var(--ui-highlight-color);
         }
       }
 
       .trends__item__current {
-        color: $gold-star;
+        color: var(--ui-highlight-color);
       }
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba($gold-star, 0.25) !important;
+          fill: var(--ui-highlight-color) !important;
         }
 
         path:last-child {
-          stroke: lighten($gold-star, 6%) !important;
+          stroke: var(--ui-highlight-color) !important;
         }
       }
     }

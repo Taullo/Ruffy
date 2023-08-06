@@ -9,6 +9,7 @@
   align-items: stretch;
   overflow: hidden;
   position: relative;
+  -webkit-text-stroke: 0;
 }
 
 .link-button {
@@ -382,12 +383,12 @@ body > [data-popper-placement] {
   position: absolute;
 
   .fa.star-icon {
-    color: $gold-star;
+    color: var(--ui-highlight-color);
   }
 }
 
 .icon-button.star-icon.active {
-  color: $gold-star;
+  color: var(--ui-highlight-color);
 }
 
 .icon-button.bookmark-icon.active {
@@ -1165,6 +1166,7 @@ body > [data-popper-placement] {
   font-weight: 500;
   padding: 4px 8px;
   margin: -6px 10px;
+  -webkit-text-stroke: 0;
 }
 
 .keyboard-shortcuts {

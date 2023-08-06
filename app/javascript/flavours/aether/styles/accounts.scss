@@ -365,7 +365,7 @@
 }
 
 .batch-table__row--attention {
-  color: $gold-star;
+  color: var(--ui-highlight-color);
 }
 
 .batch-table__row--attention .pending-account__header,
@@ -374,7 +374,7 @@
   &,
   a,
   strong {
-    color: $gold-star;
+    color: var(--ui-highlight-color);
   }
 }
 
@@ -382,7 +382,7 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: $gold-star;
+    color: var(--ui-highlight-color);
   }
 }
 

@@ -304,16 +304,16 @@
       }
 
       &.star-icon.active {
-        color: $gold-star;
+        color: var(--ui-highlight-color);
 
         &:hover,
         &:focus,
         &:active {
-          background: rgba($gold-star, 0.15);
+          background: var(--ui-highlight-color);
         }
 
         &:focus {
-          background: rgba($gold-star, 0.3);
+          background: var(--ui-highlight-color);
         }
       }
 

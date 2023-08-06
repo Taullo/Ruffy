@@ -658,9 +658,9 @@ textarea#account_note {
   }
 
   &.warning {
-    border: 1px solid rgba($gold-star, 0.5);
-    background: rgba($gold-star, 0.25);
-    color: $gold-star;
+    border: 1px solid var(--ui-highlight-color);
+    background: var(--ui-highlight-color);
+    color: var(--ui-highlight-color);
   }
 
   &.alert {
