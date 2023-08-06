@@ -393,7 +393,7 @@ body > [data-popper-placement] {
 }
 
 .icon-button.bookmark-icon.active {
-  color: var(--ui-highlight-color);
+  color: $red-bookmark;
 }
 
 .no-reduce-motion .icon-button.star-icon {
@@ -564,13 +564,13 @@ body > [data-popper-placement] {
 }
 
 .dropdown-menu__separator {
-  border-bottom: 4px solid var(--ui-highlight-color);
+  border-bottom: 2px solid var(--ui-font-color);
   margin: 5px 7px 6px;
   height: 0;
 }
 
 .dropdown-menu {
-  background: var(--ui-body-color);
+  background: var(--ui-highlight-color);
   border-radius: 20px;
   box-shadow: 2px 4px 15px var(--ui-dropdown-shadow);
   z-index: 9999;
@@ -693,7 +693,8 @@ body > [data-popper-placement] {
     &:focus,
     &:hover,
     &:active {
-      background: var(--ui-highlight-color);
+      background: var(--ui-font-color);
+      color: var(--ui-highlight-color);
       outline: 0;
     }
   }
