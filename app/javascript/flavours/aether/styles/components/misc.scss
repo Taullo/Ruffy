@@ -571,10 +571,9 @@ body > [data-popper-placement] {
 
 .dropdown-menu {
   background: var(--ui-highlight-color);
-  border-radius: 20px;
+  border-radius: 8px;
   box-shadow: 2px 4px 15px var(--ui-dropdown-shadow);
   z-index: 9999;
-  border: 4px solid var(--ui-highlight-color);
   overflow: hidden;
 
   &__text-button {
@@ -668,6 +667,8 @@ body > [data-popper-placement] {
   font-weight: 500;
   display: block;
   color: var(--ui-font-color);
+  transition-property: color, background-color;
+  transition-duration: 0.2s;
 
   &--dangerous {
     color: $error-value-color;
