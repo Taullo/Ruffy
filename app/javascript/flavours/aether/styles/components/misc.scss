@@ -667,8 +667,6 @@ body > [data-popper-placement] {
   font-weight: 500;
   display: block;
   color: var(--ui-font-color);
-  transition-property: color, background-color;
-  transition-duration: 0.2s;
 
   &--dangerous {
     color: $error-value-color;
@@ -690,6 +688,8 @@ body > [data-popper-placement] {
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: inherit;
+    transition-property: color, background-color;
+    transition-duration: 0.2s;
 
     &:focus,
     &:hover,
