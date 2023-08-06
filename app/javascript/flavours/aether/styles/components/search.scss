@@ -215,7 +215,7 @@
 
     &__name {
       flex: 1 1 auto;
-      color: $dark-text-color;
+      color: var(--ui-font-secondary-color);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -225,7 +225,7 @@
       }
 
       a {
-        color: $darker-text-color;
+        color: var(--ui-highlight-color);
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
