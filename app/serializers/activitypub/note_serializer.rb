@@ -117,7 +117,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def sensitive
-    object.account.sensitized? || object.sensitive || (!instance_options[:allow_local_only] && Setting.outgoing_spoilers.present?) || Setting.outgoing_sensitive || object.account.user&.setting_default_privacy
+    object.account.sensitized? || object.sensitive || (!instance_options[:allow_local_only] && Setting.outgoing_spoilers.present?) || Setting.outgoing_sensitive || object.account.user&.setting_default_sensitive
   end
 
   def virtual_attachments
