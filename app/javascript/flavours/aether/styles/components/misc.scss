@@ -669,7 +669,7 @@ body > [data-popper-placement] {
   color: var(--ui-font-color);
 
   &--dangerous {
-    color: $error-value-color;
+    color: var(--ui-font-color);
   }
 
   a,
@@ -1823,7 +1823,6 @@ noscript {
     text-align: center;
     text-decoration: none;
     color: var(--ui-highlight-color);
-    background: var(--ui-body-secondary-color);
     font-size: 0.9rem;
     padding: 0.3rem;
     font-weight: 800;
