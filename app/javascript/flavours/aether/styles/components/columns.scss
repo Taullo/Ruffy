@@ -219,41 +219,15 @@ $ui-header-height: 55px;
 }
 
 .column-link {
-  background: lighten($ui-base-color, 8%);
-  color: $primary-text-color;
   display: block;
   font-size: 16px;
   padding: 15px;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  transition-property: --webkit-text-stroke, color;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: lighten($ui-base-color, 11%);
-  }
 
   &:focus {
     outline: 0;
-  }
-
-  &--transparent {
-    background: transparent;
-    color: $ui-secondary-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: transparent;
-      -webkit-text-stroke: var(--ui-font-color) 1.8px !important;
-    }
-
-    &.active {
-      color: var(--ui-highlight-color) !important;
-      -webkit-text-stroke: 0 !important;
-    }
   }
 
   &--logo {
@@ -1169,10 +1143,16 @@ $ui-header-height: 55px;
     span {
       color: var(--ui-font-color);
       opacity: 0.8;
+      transition: opacity 0.2s;
 
       &:hover {
         opacity: 1;
       }
+    }
+
+    &.active {
+      color: var(--ui-highlight-color);
+      -webkit-text-stroke: 0 transparent;
     }
   }
 
