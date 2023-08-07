@@ -544,7 +544,7 @@
 
     &:hover,
     &:focus {
-      color: var(--ui-highlight-color);
+      -webkit-text-stroke: var(--ui-font-color) 2px;
     }
   }
 }

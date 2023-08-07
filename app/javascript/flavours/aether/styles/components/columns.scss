@@ -1159,8 +1159,7 @@ $ui-header-height: 55px;
       0.2s -webkit-text-stroke;
 
     &:hover {
-      color: var(--ui-highlight-color);
-      -webkit-text-stroke: 2px transparent;
+      -webkit-text-stroke: 2px var(--ui-highlight-color);
     }
   }
 
