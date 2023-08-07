@@ -1132,7 +1132,7 @@ $ui-header-height: 55px;
       0.2s color,
       0.2s -webkit-text-stroke;
 
-    i {
+    > i {
       -webkit-text-stroke: 1.8px var(--ui-highlight-color);
 
       &:hover {
@@ -1140,7 +1140,7 @@ $ui-header-height: 55px;
       }
     }
 
-    span {
+    > span {
       color: var(--ui-font-color);
       opacity: 0.8;
       transition: opacity 0.2s;
