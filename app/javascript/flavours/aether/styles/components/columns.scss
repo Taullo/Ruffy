@@ -247,8 +247,7 @@ $ui-header-height: 55px;
     &:focus,
     &:active {
       background: transparent;
-      -webkit-text-stroke: var(--ui-font-color) !important;
-      color: 0 !important;
+      -webkit-text-stroke: var(--ui-font-color) 1.8px !important;
     }
   }
 
