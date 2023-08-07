@@ -540,7 +540,9 @@
   .icon-button {
     color: transparent;
     -webkit-text-stroke: var(--ui-highlight-color) 2px;
-    transition: 0.2s color;
+    transition:
+      0.2s color,
+      0.2s -webkit-text-stroke;
 
     &:hover,
     &:focus {
