@@ -227,6 +227,7 @@ $ui-header-height: 55px;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
+  transition-property: --webkit-text-stroke, color;
 
   &:hover,
   &:focus,
@@ -246,10 +247,6 @@ $ui-header-height: 55px;
     &:focus,
     &:active {
       background: transparent;
-      color: $primary-text-color;
-    }
-
-    &.active {
       color: var(--ui-highlight-color) !important;
       -webkit-text-stroke: 0 !important;
     }
