@@ -249,6 +249,11 @@ $ui-header-height: 55px;
       background: transparent;
       -webkit-text-stroke: var(--ui-font-color) 1.8px !important;
     }
+
+    &.active {
+      color: var(--ui-highlight-color) !important;
+      -webkit-text-stroke: 0 !important;
+    }
   }
 
   &--logo {
