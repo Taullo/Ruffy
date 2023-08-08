@@ -544,8 +544,7 @@
       0.2s color,
       0.2s -webkit-text-stroke;
 
-    &:hover,
-    &:focus {
+    &:hover {
       -webkit-text-stroke: var(--ui-font-color) 2px;
     }
   }

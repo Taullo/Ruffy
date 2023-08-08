@@ -1156,6 +1156,10 @@ $ui-header-height: 55px;
     &.active {
       color: var(--ui-highlight-color);
       -webkit-text-stroke: 0 transparent;
+
+      i {
+        -webkit-text-stroke: 0 transparent;
+      }
     }
   }
 
