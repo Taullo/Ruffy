@@ -52,7 +52,7 @@ en:
         phrase: Will be matched regardless of casing in text or content warning of a post
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
         setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
-        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
+        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using the site
         setting_default_sensitive: Alerts other servers that your media may contain sensitive content. Useful when frequently interacting with servers that have stricter rules about content moderation.
         setting_display_media_default: Hide media marked as sensitive
         setting_display_media_hide_all: Always hide media
@@ -82,14 +82,14 @@ en:
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations.
         closed_registrations_message: Displayed when sign-ups are closed
         content_cache_retention_period: All posts and boosts from other servers will be deleted after the specified number of days. Some posts may not be recoverable. All related bookmarks, favourites and boosts will also be lost and impossible to undo.
-        custom_css: You can apply custom styles on the web version of Mastodon.
+        custom_css: You can apply custom styles on the web version of Ruffy.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
         site_contact_email: How people can reach you for legal or support inquiries.
-        site_contact_username: How people can reach you on Mastodon.
+        site_contact_username: How people can reach you on the site.
         site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
         site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
         site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
@@ -97,6 +97,9 @@ en:
         status_page_url: URL of a page where people can see the status of this server during an outage
         theme: Theme that logged out visitors and new users see.
         thumbnail: A roughly 2:1 image displayed alongside your server information.
+        wordmark: 'The logo for your site. Needs to be legible at around 40px in height.'
+        wordmark_dark: "[Optional] The logo for the dark theme of your site. If this isn't set, it will use the regular wordmark."
+        icon: 'The icon that appears in various places around the site (including the favicon). Should be a square.'
         timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
         trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
         trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
@@ -104,7 +107,7 @@ en:
       form_challenge:
         current_password: You are entering a secure area
       imports:
-        data: CSV file exported from another Mastodon server
+        data: CSV file exported from another Ruffy or Mastodon-compatible server
       invite_request:
         text: This will help us review your application
       ip_block:
@@ -259,6 +262,9 @@ en:
         status_page_url: Status page URL
         theme: Default theme
         thumbnail: Server thumbnail
+        wordmark: Server wordmark
+        wordmark_dark: 'Server wordmark (dark theme)'
+        icon: 'Server icon'
         timeline_preview: Allow unauthenticated access to public timelines
         trendable_by_default: Allow trends without prior review
         trends: Enable trends
