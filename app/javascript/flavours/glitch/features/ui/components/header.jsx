@@ -5,15 +5,18 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import { Link, withRouter } from 'react-router-dom';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { Wordmark } from 'flavours/aether/components/wordmark';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { fetchServer } from 'flavours/glitch/actions/server';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { Icon } from 'flavours/glitch/components/icon';
-import { WordmarkLogo, SymbolLogo } from 'flavours/glitch/components/logo';
 import Permalink from 'flavours/glitch/components/permalink';
 import { registrationsOpen, me } from 'flavours/glitch/initial_state';
+
+
 
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
@@ -28,6 +31,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state) => ({
+  server: state.getIn(['server', 'server']),
   signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
 });
 
@@ -47,6 +51,7 @@ class Header extends PureComponent {
   };
 
   static propTypes = {
+    server: ImmutablePropTypes.map,
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
     signupUrl: PropTypes.string.isRequired,
@@ -61,7 +66,7 @@ class Header extends PureComponent {
 
   render () {
     const { signedIn } = this.context.identity;
-    const { location, openClosedRegistrationsModal, signupUrl, intl } = this.props;
+    const { server, location, openClosedRegistrationsModal, signupUrl, intl } = this.props;
 
     let content;
 
@@ -101,8 +106,8 @@ class Header extends PureComponent {
     return (
       <div className='ui__header'>
         <Link to='/' className='ui__header__logo'>
-          <WordmarkLogo />
-          <SymbolLogo />
+          <Wordmark src={server.getIn(['wordmark', 'url'])} className='wordmark' />
+          <Wordmark src={server.getIn(['wordmark_dark', 'url'])} className='wordmark_dark' />
         </Link>
 
         <div className='ui__header__links'>
