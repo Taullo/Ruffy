@@ -31,5 +31,7 @@ Aether flavour (work in progress) features:
 Settings
 - Exposes setting for "Link previews for posts with Content Warnings"
 - Adds an option for marking outgoing media as sensitive
+- Custom wordmark (logo) for both light and dark themes
+- WIP: Custom icon used for favicon, app icons, etc.
 
 - You can view documentation for Glitch-soc at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/) and the documentation for Mastodon at [docs.joinmastodon.org](https://docs.joinmastodon.org/)
