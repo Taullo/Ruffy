@@ -688,11 +688,14 @@
         font-weight: 500;
         padding: 10px;
         border-radius: 4px;
+        border: 2px transparent solid;
+        transition-property: border-color, background, color;
+        transition-duration: 0.2s;
 
         &:focus,
         &:active,
         &:hover {
-          border: 2px var(--ui-highlight-color) solid;
+          border-color: var(--ui-highlight-color);
         }
 
         &__common-name {
