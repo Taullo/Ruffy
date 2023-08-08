@@ -24,6 +24,36 @@
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
+      = f.input :wordmark, as: :file, wrapper: :with_block_label
+    .fields-row__column.fields-row__column-6.fields-group
+      - if @admin_settings.wordmark.persisted?
+        = image_tag @admin_settings.wordmark.file.url, class: 'fields-group__thumbnail'
+        = link_to admin_site_upload_path(@admin_settings.wordmark), data: { method: :delete }, class: 'link-button link-button--destructive' do
+          = fa_icon 'trash fw'
+          = t('admin.site_uploads.delete')
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :wordmark_dark, as: :file, wrapper: :with_block_label
+    .fields-row__column.fields-row__column-6.fields-group
+      - if @admin_settings.wordmark_dark.persisted?
+        = image_tag @admin_settings.wordmark_dark.file.url, class: 'fields-group__thumbnail'
+        = link_to admin_site_upload_path(@admin_settings.wordmark_dark), data: { method: :delete }, class: 'link-button link-button--destructive' do
+          = fa_icon 'trash fw'
+          = t('admin.site_uploads.delete')
+          
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :icon, as: :file, wrapper: :with_block_label
+    .fields-row__column.fields-row__column-6.fields-group
+      - if @admin_settings.icon.persisted?
+        = image_tag @admin_settings.icon.file.url, class: 'fields-group__thumbnail'
+        = link_to admin_site_upload_path(@admin_settings.icon), data: { method: :delete }, class: 'link-button link-button--destructive' do
+          = fa_icon 'trash fw'
+          = t('admin.site_uploads.delete')
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
       = f.input :thumbnail, as: :file, wrapper: :with_block_label
     .fields-row__column.fields-row__column-6.fields-group
       - if @admin_settings.thumbnail.persisted?

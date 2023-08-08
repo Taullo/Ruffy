@@ -5,14 +5,15 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import { Link, withRouter } from 'react-router-dom';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 
 import { openModal } from 'flavours/aether/actions/modal';
 import { fetchServer } from 'flavours/aether/actions/server';
 import { Avatar } from 'flavours/aether/components/avatar';
-import { WordmarkLogo, SymbolLogo } from 'flavours/aether/components/logo';
 import Permalink from 'flavours/aether/components/permalink';
+import { Wordmark } from 'flavours/aether/components/wordmark';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import ColumnLink from 'flavours/aether/features/ui/components/column_link';
 import { registrationsOpen, me } from 'flavours/aether/initial_state';
@@ -20,6 +21,7 @@ import { preferencesLink, profileLink } from 'flavours/aether/utils/backend_link
 import { logOut } from 'flavours/aether/utils/log_out';
 
 import NotificationsCounterIcon from './notifications_counter_icon';
+
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -85,6 +87,7 @@ const Account = connect(state => ({
 ));
 
 const mapStateToProps = (state) => ({
+  server: state.getIn(['server', 'server']),
   signupUrl: state.getIn(['server', 'server', 'registrations', 'url'], null) || '/auth/sign_up',
 });
 
@@ -123,6 +126,7 @@ class Header extends PureComponent {
   };
 
   static propTypes = {
+    server: ImmutablePropTypes.map,
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
     intl: PropTypes.object.isRequired,
@@ -139,7 +143,7 @@ class Header extends PureComponent {
 
   render () {
     const { signedIn } = this.context.identity;
-    const { location, openClosedRegistrationsModal, signupUrl, intl, openSettings, openCompose } = this.props;
+    const { server, location, openClosedRegistrationsModal, signupUrl, intl, openSettings, openCompose } = this.props;
 
     let menu        = [];
     menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
@@ -201,8 +205,8 @@ class Header extends PureComponent {
         <div className='ui__header'>
           <div className='ui__header__left'>
             <Link to='/' className='ui__header__logo'>
-              <WordmarkLogo />
-              <SymbolLogo />
+              <Wordmark blurhash={server.getIn(['wordmark', 'blurhash'])} src={server.getIn(['wordmark', 'url'])} srcSet={server.getIn(['wordmark'])} className='wordmark' />
+              <Wordmark blurhash={server.getIn(['wordmark_dark', 'blurhash'])} src={server.getIn(['wordmark_dark', 'url'])} srcSet={server.getIn(['wordmark_dark'])} className='wordmark_dark' />
             </Link>
             <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/explore/local' icon='hashtag' text={intl.formatMessage(messages.explore)} />

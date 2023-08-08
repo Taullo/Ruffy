@@ -22,7 +22,7 @@ class SiteUpload < ApplicationRecord
   STYLES = {
     thumbnail: {
       '@1x': {
-        format: 'png',
+        format: 'webp',
         geometry: '1200x630#',
         file_geometry_parser: FastGeometryParser,
         blurhash: {
@@ -32,9 +32,39 @@ class SiteUpload < ApplicationRecord
       },
 
       '@2x': {
-        format: 'png',
+        format: 'webp',
         geometry: '2400x1260#',
         file_geometry_parser: FastGeometryParser,
+      }.freeze,
+    }.freeze,
+
+    wordmark: {
+      format: 'png',
+      geometry: '1500x500#',
+      file_geometry_parser: FastGeometryParser,
+      blurhash: {
+        x_comp: 4,
+        y_comp: 4,
+      }.freeze,
+    }.freeze,
+
+    wordmark_dark: {
+      format: 'png',
+      geometry: '1500x500#',
+      file_geometry_parser: FastGeometryParser,
+      blurhash: {
+        x_comp: 4,
+        y_comp: 4,
+      }.freeze,
+    }.freeze,
+
+    icon: {
+      format: 'png',
+      geometry: '500x500#',
+      file_geometry_parser: FastGeometryParser,
+      blurhash: {
+        x_comp: 4,
+        y_comp: 4,
       }.freeze,
     }.freeze,
 

@@ -4,7 +4,7 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :uri, :title, :short_description, :description, :email,
-             :version, :urls, :stats, :thumbnail, :max_toot_chars, :poll_limits,
+             :version, :urls, :stats, :thumbnail, :wordmark, :wordmark_dark, :icon, :max_toot_chars, :poll_limits,
              :languages, :registrations, :approval_required, :invites_enabled,
              :configuration
 
@@ -34,6 +34,32 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
 
   def thumbnail
     instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url(:'@1x')) : full_pack_url('media/images/preview.png')
+  end
+
+  def wordmark
+    instance_presenter.wordmark ? full_asset_url(instance_presenter.wordmark.file.url) : full_pack_url('media/images/wordmark.png')
+  end
+
+  def wordmark_dark
+    if object.wordmark_dark
+      {
+        url: full_asset_url(object.wordmark_dark.file.url),
+        blurhash: object.wordmark_dark.blurhash,
+      }
+    elsif object.wordmark
+      {
+        url: full_asset_url(object.wordmark.file.url),
+        blurhash: object.wordmark.blurhash,
+      }
+    else
+      {
+        url: full_pack_url('media/images/wordmark_dark.png'),
+      }
+    end
+  end
+
+  def icon
+    instance_presenter.wordmark ? full_asset_url(instance_presenter.icon.file.url) : full_pack_url('media/images/preview.png')
   end
 
   def max_toot_chars
