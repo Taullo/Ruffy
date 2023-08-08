@@ -1103,10 +1103,6 @@ $ui-header-height: 55px;
       opacity: 1;
     }
 
-    &:focus {
-      outline: 0;
-    }
-
     &--logo {
       background: transparent;
       padding: 10px;
@@ -1120,6 +1116,7 @@ $ui-header-height: 55px;
 
     &.active {
       color: var(--ui-highlight-color);
+      opacity: 1;
     }
   }
 }
