@@ -218,30 +218,6 @@ $ui-header-height: 55px;
   top: -48px;
 }
 
-.column-link {
-  display: block;
-  font-size: 16px;
-  padding: 15px;
-  text-decoration: none;
-  overflow: hidden;
-  white-space: nowrap;
-
-  &:focus {
-    outline: 0;
-  }
-
-  &--logo {
-    background: transparent;
-    padding: 10px;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: transparent;
-    }
-  }
-}
-
 .column-link__icon {
   display: inline-block;
   margin-inline-end: 5px;
@@ -1111,6 +1087,39 @@ $ui-header-height: 55px;
   font-weight: bold;
 }
 
+.ui__header__left {
+  .column-link {
+    display: block;
+    font-size: 16px;
+    padding: 15px;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--ui-font-color);
+    opacity: 0.8;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &--logo {
+      background: transparent;
+      padding: 10px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: transparent;
+      }
+    }
+  }
+}
+
 .ui__header__links {
   .icon-button {
     color: var(--ui-highlight-color);
@@ -1132,21 +1141,11 @@ $ui-header-height: 55px;
       0.2s color,
       0.2s -webkit-text-stroke;
 
-    > i {
+    i {
       -webkit-text-stroke: 1.8px var(--ui-highlight-color);
 
       &:hover {
         -webkit-text-stroke: 1.8px var(--ui-font-color);
-      }
-    }
-
-    > span {
-      color: var(--ui-font-color);
-      opacity: 0.8;
-      transition: opacity 0.2s;
-
-      &:hover {
-        opacity: 1;
       }
     }
 
