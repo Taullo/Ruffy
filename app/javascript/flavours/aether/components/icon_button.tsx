@@ -35,7 +35,7 @@ interface States {
 }
 export class IconButton extends React.PureComponent<Props, States> {
   static defaultProps = {
-    size: 18,
+    size: 22,
     active: false,
     disabled: false,
     animate: false,
