@@ -3,6 +3,12 @@ import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
+import { Link, withRouter } from 'react-router-dom';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+
+import { Wordmark } from 'flavours/aether/components/wordmark';
 import NavigationPortal from 'flavours/glitch/components/navigation_portal';
 import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';
 import { transientSingleColumn } from 'flavours/glitch/is_mobile';
@@ -14,6 +20,7 @@ import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
+
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -32,6 +39,10 @@ const messages = defineMessages({
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
 });
 
+const mapStateToProps = (state) => ({
+  server: state.getIn(['server', 'server']),
+});
+
 class NavigationPanel extends Component {
 
   static contextTypes = {
@@ -42,6 +53,7 @@ class NavigationPanel extends Component {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     onOpenSettings: PropTypes.func,
+    server: ImmutablePropTypes.map,
   };
 
   isFirehoseActive = (match, location) => {
@@ -49,19 +61,24 @@ class NavigationPanel extends Component {
   };
 
   render() {
-    const { intl, onOpenSettings } = this.props;
+    const { intl, onOpenSettings, server } = this.props;
     const { signedIn, disabledAccountId } = this.context.identity;
 
     return (
       <div className='navigation-panel'>
-        {transientSingleColumn && (
-          <div className='navigation-panel__logo'>
+        <div className='navigation-panel__logo'>
+          <Link to='/' className='column-link column-link--logo'>
+            <Wordmark src={server.getIn(['wordmark', 'url'])} className='wordmark' />
+            <Wordmark src={server.getIn(['wordmark_dark', 'url'])} className='wordmark_dark' />
+          </Link>
+
+          {transientSingleColumn && (
             <a href={`/deck${location.pathname}`} className='button button--block'>
               {intl.formatMessage(messages.advancedInterface)}
             </a>
-            <hr />
-          </div>
-        )}
+          )}
+          <hr />
+        </div>
 
         {signedIn && (
           <>
@@ -116,4 +133,4 @@ class NavigationPanel extends Component {
 
 }
 
-export default injectIntl(NavigationPanel);
+export default injectIntl(withRouter(connect(mapStateToProps)(NavigationPanel)));

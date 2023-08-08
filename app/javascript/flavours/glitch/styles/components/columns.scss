@@ -1038,3 +1038,19 @@ $ui-header-height: 55px;
     }
   }
 }
+
+.wordmark_dark {
+  img {
+    display: inline-block;
+    height: 40px !important;
+    width: auto !important;
+  }
+}
+
+.wordmark {
+  img {
+    display: none;
+    height: 40px !important;
+    width: auto !important;
+  }
+}

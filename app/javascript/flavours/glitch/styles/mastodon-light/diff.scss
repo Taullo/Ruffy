@@ -732,3 +732,15 @@ html {
     filter: contrast(75%) brightness(75%) !important;
   }
 }
+
+.wordmark_dark {
+  img {
+    display: none !important;
+  }
+}
+
+.wordmark {
+  img {
+    display: inline-block;
+  }
+}

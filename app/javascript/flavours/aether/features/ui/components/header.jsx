@@ -205,8 +205,8 @@ class Header extends PureComponent {
         <div className='ui__header'>
           <div className='ui__header__left'>
             <Link to='/' className='ui__header__logo'>
-              <Wordmark blurhash={server.getIn(['wordmark', 'blurhash'])} src={server.getIn(['wordmark', 'url'])} srcSet={server.getIn(['wordmark'])} className='wordmark' />
-              <Wordmark blurhash={server.getIn(['wordmark_dark', 'blurhash'])} src={server.getIn(['wordmark_dark', 'url'])} srcSet={server.getIn(['wordmark_dark'])} className='wordmark_dark' />
+              <Wordmark src={server.getIn(['wordmark', 'url'])} className='wordmark' />
+              <Wordmark src={server.getIn(['wordmark_dark', 'url'])} className='wordmark_dark' />
             </Link>
             <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/explore/local' icon='hashtag' text={intl.formatMessage(messages.explore)} />
