@@ -558,8 +558,8 @@
   max-width: 90vw;
   width: 480px;
   height: 80vh;
-  background: lighten($ui-secondary-color, 8%);
-  color: $inverted-text-color;
+  background: var(--ui-body-color);
+  color: var(--ui-font-color);
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -568,7 +568,7 @@
 
   &__container {
     box-sizing: border-box;
-    border-top: 1px solid $ui-secondary-color;
+    border-top: 1px solid var(--ui-highlight-color);
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -768,7 +768,7 @@
 
 .report-modal__container {
   display: flex;
-  border-top: 1px solid $ui-secondary-color;
+  border-top: 1px solid var(--ui-highlight-color);
 
   @media screen and (width <= 480px) {
     flex-wrap: wrap;
@@ -820,7 +820,7 @@
 
 .report-modal__comment {
   padding: 20px;
-  border-inline-end: 1px solid $ui-secondary-color;
+  border-inline-end: 1px solid var(--ui-highlight-color);
   max-width: 320px;
 
   p {
@@ -834,26 +834,25 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    color: $inverted-text-color;
-    background: $white;
+    color: var(--ui-font-color);
+    background: var(--ui-body-color);
     padding: 10px;
     font-family: inherit;
     font-size: 14px;
     resize: none;
     outline: 0;
     border-radius: 4px;
-    border: 1px solid $ui-secondary-color;
     min-height: 100px;
     max-height: 50vh;
     margin-bottom: 10px;
 
     &:focus {
-      border: 1px solid darken($ui-secondary-color, 8%);
+      border: 1px solid var(--ui-highlight-color);
     }
 
     &__wrapper {
       background: $white;
-      border: 1px solid $ui-secondary-color;
+      border: 1px solid var(--ui-highlight-color);
       margin-bottom: 10px;
       border-radius: 4px;
 
@@ -868,7 +867,7 @@
       }
 
       &__modifiers {
-        color: $inverted-text-color;
+        color: var(--ui-font-color);
         font-family: inherit;
         font-size: 14px;
         background: $white;
@@ -884,7 +883,7 @@
 
   .setting-text-label {
     display: block;
-    color: $inverted-text-color;
+    color: var(--ui-font-color);
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -895,7 +894,7 @@
     margin-bottom: 24px;
 
     &__label {
-      color: $inverted-text-color;
+      color: var(--ui-font-color);
       font-size: 14px;
     }
   }
@@ -944,7 +943,7 @@
 
     li:not(:empty) {
       a {
-        color: $inverted-text-color;
+        color: var(--ui-font-color);
         display: flex;
         padding: 12px 16px;
         font-size: 15px;
@@ -963,7 +962,7 @@
           &,
           button {
             background: var(--ui-highlight-color);
-            color: $primary-text-color;
+            color: var(--ui-font-color);
           }
         }
 
