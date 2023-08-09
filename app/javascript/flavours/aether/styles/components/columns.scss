@@ -328,8 +328,12 @@ $ui-header-height: 55px;
   }
 }
 
-.columns-area--mobile .column {
+.columns-area--mobile {
   overflow: visible;
+
+  .column {
+    overflow: visible;
+  }
 }
 
 .column-header__buttons {
