@@ -328,6 +328,10 @@ $ui-header-height: 55px;
   }
 }
 
+.columns-area--mobile .column {
+  overflow: visible;
+}
+
 .column-header__buttons {
   height: 48px;
   display: flex;
@@ -1029,30 +1033,6 @@ $ui-header-height: 55px;
 
   .account-card:first-child {
     margin-top: 0;
-  }
-}
-
-@media screen and (height <= 60rem) {
-  .right_column {
-    .explore__suggested-header {
-      display: none;
-    }
-
-    .trends__item:nth-child(n + 4) {
-      display: none;
-    }
-  }
-}
-
-@media screen and (height <= 70rem) {
-  .right_column {
-    .account-card:nth-child(n + 4) {
-      display: none;
-    }
-
-    .trends__item:nth-child(n + 4) {
-      display: none;
-    }
   }
 }
 
