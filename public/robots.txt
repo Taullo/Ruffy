@@ -3,3 +3,6 @@
 User-agent: *
 Disallow: /media_proxy/
 Disallow: /interact/
+
+User-agent: ChatGPT-User
+Disallow: /
