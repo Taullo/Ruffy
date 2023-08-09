@@ -239,7 +239,7 @@ $ui-header-height: 55px;
   z-index: 1;
 
   &.active {
-    box-shadow: 0 1px 0 rgba($highlight-text-color, 0.3);
+    box-shadow: 0 1px 0 rgba(var(--ui-highlight-color), 0.3);
 
     &::before {
       display: block;
@@ -304,7 +304,6 @@ $ui-header-height: 55px;
   &.active {
     .column-header__icon {
       color: rgb(var(--ui-highlight-color));
-      text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
     }
   }
 
@@ -587,7 +586,7 @@ $ui-header-height: 55px;
     }
 
     &.active {
-      background-color: darken($ui-highlight-color, 2%);
+      background-color: rgb(var(--ui-highlight-color));
 
       &:hover,
       &:focus {
