@@ -291,7 +291,7 @@
       }
 
       &.active {
-        color: var(--ui-highlight-color);
+        color: rgb(var(--ui-highlight-color));
 
         &:hover,
         &:focus,
@@ -305,16 +305,16 @@
       }
 
       &.star-icon.active {
-        color: var(--ui-highlight-color);
+        color: rgb(var(--ui-highlight-color));
 
         &:hover,
         &:focus,
         &:active {
-          background: var(--ui-highlight-color);
+          background: rgb(var(--ui-highlight-color));
         }
 
         &:focus {
-          background: var(--ui-highlight-color);
+          background: rgb(var(--ui-highlight-color));
         }
       }
 

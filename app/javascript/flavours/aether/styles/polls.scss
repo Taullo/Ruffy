@@ -21,7 +21,7 @@
     min-width: 1%;
 
     &.leading {
-      background: var(--ui-highlight-color);
+      background: rgb(var(--ui-highlight-color));
     }
   }
 
@@ -93,7 +93,7 @@
       padding: 6px 10px;
 
       &:focus {
-        border-color: var(--ui-highlight-color);
+        border-color: rgb(var(--ui-highlight-color));
       }
     }
 
@@ -234,7 +234,7 @@
       flex: 1 1 50%;
 
       &:focus {
-        border-color: var(--ui-highlight-color);
+        border-color: rgb(var(--ui-highlight-color));
       }
     }
   }

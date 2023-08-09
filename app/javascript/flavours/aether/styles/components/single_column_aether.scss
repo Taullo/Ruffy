@@ -114,10 +114,10 @@
     .column-back-button__icon {
       background: transparent;
       padding: 0.6rem !important;
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
       border-radius: 100px;
       transition: background 0.2s;
-      border: 4px solid var(--ui-highlight-color);
+      border: 4px solid rgb(var(--ui-highlight-color));
       vertical-align: middle;
       text-decoration: none;
       width: 1.2rem;
@@ -125,7 +125,7 @@
       transition-property: color, background-color, border;
 
       &:hover {
-        background: var(--ui-highlight-color);
+        background: rgb(var(--ui-highlight-color));
         color: var(--ui-font-color);
         text-decoration: none;
         border-color: white;

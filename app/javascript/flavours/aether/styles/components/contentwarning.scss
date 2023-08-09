@@ -50,8 +50,8 @@
   }
 
   &:hover {
-    background: var(--ui-highlight-color);
-    border: var(--ui-highlight-color) 2px solid;
+    background: rgb(var(--ui-highlight-color));
+    border: rgb(var(--ui-highlight-color)) 2px solid;
     text-decoration: none;
   }
 }
@@ -68,8 +68,8 @@
     border: var(--ui-body-color) 2px solid;
 
     &:hover {
-      background: var(--ui-highlight-color);
-      border: var(--ui-highlight-color) 2px solid;
+      background: rgb(var(--ui-highlight-color));
+      border: rgb(var(--ui-highlight-color)) 2px solid;
     }
   }
 }

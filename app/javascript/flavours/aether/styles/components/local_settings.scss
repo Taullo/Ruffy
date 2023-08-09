@@ -77,12 +77,12 @@
   }
 
   &.active {
-    background: var(--ui-highlight-color);
+    background: rgb(var(--ui-highlight-color));
     color: var(--ui-font-color);
   }
 
   &.close {
-    background: var(--ui-highlight-color);
+    background: rgb(var(--ui-highlight-color));
     color: var(--ui-font-color);
     border: transparent;
     position: absolute;
@@ -94,9 +94,9 @@
     border-bottom: 4px solid transparent;
 
     &:hover {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
       background: var(--ui-body-color);
-      border-color: var(--ui-highlight-color);
+      border-color: rgb(var(--ui-highlight-color));
     }
   }
 

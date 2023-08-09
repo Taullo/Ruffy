@@ -135,10 +135,10 @@
   }
 
   a.unhandled-link {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
 
     .link-origin-tag {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
       font-size: 0.8em;
     }
   }
@@ -274,7 +274,7 @@
       color: $inverted-text-color;
 
       a {
-        color: var(--ui-highlight-color);
+        color: rgb(var(--ui-highlight-color));
       }
     }
   }
@@ -539,7 +539,7 @@
 
   .icon-button {
     color: transparent;
-    -webkit-text-stroke: var(--ui-highlight-color) 2px;
+    -webkit-text-stroke: rgb(var(--ui-highlight-color)) 2px;
     transition:
       0.2s color,
       0.2s -webkit-text-stroke;

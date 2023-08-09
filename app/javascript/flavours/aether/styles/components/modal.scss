@@ -247,7 +247,7 @@
   }
 
   a {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
 
     &:hover,
     &:focus,
@@ -568,7 +568,7 @@
 
   &__container {
     box-sizing: border-box;
-    border-top: 1px solid var(--ui-highlight-color);
+    border-top: 1px solid rgb(var(--ui-highlight-color));
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -603,7 +603,7 @@
 
     a {
       text-decoration: none;
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
       font-weight: 500;
 
       &:hover {
@@ -628,7 +628,7 @@
   }
 
   .status__content a {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
   }
 
   .status__content,
@@ -646,7 +646,7 @@
   }
 
   .dialog-option .poll__input {
-    border-color: var(--ui-highlight-color);
+    border-color: rgb(var(--ui-highlight-color));
     color: var(--ui-font-color);
     display: inline-flex;
     align-items: center;
@@ -665,8 +665,8 @@
     }
 
     &.active {
-      border-color: var(--ui-highlight-color);
-      background: var(--ui-highlight-color);
+      border-color: rgb(var(--ui-highlight-color));
+      background: rgb(var(--ui-highlight-color));
     }
   }
 
@@ -767,7 +767,7 @@
 
 .report-modal__container {
   display: flex;
-  border-top: 1px solid var(--ui-highlight-color);
+  border-top: 1px solid rgb(var(--ui-highlight-color));
 
   @media screen and (width <= 480px) {
     flex-wrap: wrap;
@@ -794,7 +794,7 @@
   overflow-x: hidden;
 
   .status__content a {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
   }
 
   @media screen and (width <= 480px) {
@@ -959,7 +959,7 @@
         &:focus {
           &,
           button {
-            background: var(--ui-highlight-color);
+            background: rgb(var(--ui-highlight-color));
             color: var(--ui-font-color);
           }
         }
@@ -1105,7 +1105,7 @@
     }
 
     a {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
     }
 
     hr {
@@ -1338,7 +1338,7 @@ img.modal-warning {
   }
 
   &__icon {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
     margin: 0 5px;
   }
 

@@ -162,7 +162,7 @@ $ui-header-height: 55px;
   width: 100%;
   background: lighten($ui-base-color, 4%);
   border-radius: 4px 4px 0 0;
-  color: var(--ui-highlight-color);
+  color: rgb(var(--ui-highlight-color));
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
@@ -181,7 +181,7 @@ $ui-header-height: 55px;
   background: lighten($ui-base-color, 4%);
   border: 0;
   font-family: inherit;
-  color: var(--ui-highlight-color);
+  color: rgb(var(--ui-highlight-color));
   cursor: pointer;
   flex: 0 0 auto !important;
   padding: 0 !important;
@@ -255,8 +255,8 @@ $ui-header-height: 55px;
       z-index: 1;
       background: radial-gradient(
         ellipse,
-        rgba($ui-highlight-color, 0.23) 0%,
-        rgba($ui-highlight-color, 0) 60%
+        rgba(var(--ui-highlight-color), 0.23) 0%,
+        rgba(var(--ui-highlight-color), 0) 60%
       );
     }
   }
@@ -290,20 +290,20 @@ $ui-header-height: 55px;
     overflow: hidden;
     white-space: nowrap;
     flex: 1;
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
     font-weight: bold;
     font-size: 3rem;
   }
 
   & > .column-header__back-button {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
     -webkit-text-stroke: 0;
     font-size: 1.2rem;
   }
 
   &.active {
     .column-header__icon {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
       text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
     }
   }
@@ -359,7 +359,7 @@ $ui-header-height: 55px;
 
   &.active {
     color: $primary-text-color;
-    border-color: var(--ui-highlight-color);
+    border-color: rgb(var(--ui-highlight-color));
     background: lighten($ui-base-color, 8%);
 
     &:hover {
@@ -397,7 +397,7 @@ $ui-header-height: 55px;
 
     &.active {
       color: $primary-text-color;
-      border-color: var(--ui-highlight-color);
+      border-color: rgb(var(--ui-highlight-color));
       background: lighten($ui-base-color, 8%);
 
       &:hover {
@@ -591,7 +591,7 @@ $ui-header-height: 55px;
 
       &:hover,
       &:focus {
-        background-color: var(--ui-highlight-color);
+        background-color: rgb(var(--ui-highlight-color));
       }
     }
   }
@@ -628,7 +628,7 @@ $ui-header-height: 55px;
   }
 
   a {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
     text-decoration: none;
 
     &:hover {
@@ -940,7 +940,7 @@ $ui-header-height: 55px;
   position: relative;
   margin-bottom: 5px;
   border-radius: 8px;
-  border: 1px solid var(--ui-highlight-color);
+  border: 1px solid rgb(var(--ui-highlight-color));
   background: var(--ui-body-dim-color);
   padding-inline-end: 45px;
   overflow: hidden;
@@ -974,7 +974,7 @@ $ui-header-height: 55px;
     }
 
     h1 {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
       font-size: 22px;
       line-height: 33px;
       font-weight: 700;
@@ -1010,7 +1010,7 @@ $ui-header-height: 55px;
     padding: 10px;
 
     .icon-button {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
     }
   }
 }
@@ -1134,7 +1134,7 @@ $ui-header-height: 55px;
     }
 
     &.active {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
       opacity: 1;
     }
   }
@@ -1142,7 +1142,7 @@ $ui-header-height: 55px;
 
 .ui__header__links {
   .icon-button {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
 
     &:hover {
       color: $primary-text-color;
@@ -1162,7 +1162,7 @@ $ui-header-height: 55px;
       0.2s -webkit-text-stroke;
 
     .fa {
-      -webkit-text-stroke: 1.8px var(--ui-highlight-color);
+      -webkit-text-stroke: 1.8px rgb(var(--ui-highlight-color));
 
       &:hover {
         -webkit-text-stroke: 1.8px var(--ui-font-color);
@@ -1170,7 +1170,7 @@ $ui-header-height: 55px;
     }
 
     &.active {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
       -webkit-text-stroke: 0 transparent;
 
       i {

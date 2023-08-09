@@ -36,7 +36,7 @@
     }
 
     &.unhandled-link {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
     }
   }
 }
@@ -92,7 +92,7 @@
       top: 19px;
       inset-inline-end: 19px;
       display: block;
-      background: var(--ui-highlight-color);
+      background: rgb(var(--ui-highlight-color));
       border-radius: 50%;
       width: 0.625rem;
       height: 0.625rem;

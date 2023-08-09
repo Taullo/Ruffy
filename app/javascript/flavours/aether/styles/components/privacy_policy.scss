@@ -157,7 +157,7 @@
   }
 
   a {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
     text-decoration: underline;
 
     &:focus,

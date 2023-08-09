@@ -222,7 +222,7 @@ button {
   }
 
   a {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
 
     &:hover,
     &:focus,

@@ -14,12 +14,12 @@ html {
   }
 
   &.button-tertiary {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
   }
 }
 
 .simple_form .button.button-tertiary {
-  color: var(--ui-highlight-color);
+  color: rgb(var(--ui-highlight-color));
 }
 
 .status-card__actions button,
@@ -56,7 +56,7 @@ html {
 }
 
 .rules-list li::before {
-  background: var(--ui-highlight-color);
+  background: rgb(var(--ui-highlight-color));
 }
 
 .directory__card__img {
@@ -91,12 +91,12 @@ html {
 }
 
 .column-header__button.active {
-  color: var(--ui-highlight-color);
+  color: rgb(var(--ui-highlight-color));
 
   &:hover,
   &:active,
   &:focus {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
     background: $white;
   }
 }
@@ -457,7 +457,7 @@ html {
 }
 
 .flash-message.warning {
-  color: var(--ui-highlight-color);
+  color: rgb(var(--ui-highlight-color));
 }
 
 .boost-modal__action-bar,
@@ -632,19 +632,19 @@ html {
   }
 
   .recommended {
-    border-color: var(--ui-highlight-color);
-    color: var(--ui-highlight-color);
+    border-color: rgb(var(--ui-highlight-color));
+    color: rgb(var(--ui-highlight-color));
     background-color: rgba($ui-highlight-color, 0.1);
   }
 }
 
 .compose-form .compose-form__warning {
-  border-color: var(--ui-highlight-color);
+  border-color: rgb(var(--ui-highlight-color));
   background-color: rgba($ui-highlight-color, 0.1);
 
   &,
   a {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
   }
 }
 
@@ -656,7 +656,7 @@ html {
 .status__content,
 .reply-indicator__content {
   a {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
   }
 }
 
@@ -733,7 +733,7 @@ html {
   }
 
   &.active {
-    background: var(--ui-highlight-color);
+    background: rgb(var(--ui-highlight-color));
     color: $white;
   }
 

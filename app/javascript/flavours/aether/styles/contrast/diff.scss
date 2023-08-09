@@ -43,7 +43,7 @@
 }
 
 .status__content a {
-  color: var(--ui-highlight-color);
+  color: rgb(var(--ui-highlight-color));
 }
 
 .nothing-here {
@@ -60,11 +60,11 @@
 }
 
 .text-icon-button.active {
-  color: var(--ui-highlight-color);
+  color: rgb(var(--ui-highlight-color));
 }
 
 .language-dropdown__dropdown__results__item.active {
-  background: var(--ui-highlight-color);
+  background: rgb(var(--ui-highlight-color));
   font-weight: 500;
 }
 

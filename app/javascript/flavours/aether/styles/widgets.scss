@@ -228,7 +228,7 @@
     }
 
     &.active > a {
-      background: var(--ui-highlight-color);
+      background: rgb(var(--ui-highlight-color));
       cursor: default;
     }
 
@@ -273,7 +273,7 @@
     }
 
     &.active .avatar-stack .account__avatar {
-      border-color: var(--ui-highlight-color);
+      border-color: rgb(var(--ui-highlight-color));
     }
   }
 }
@@ -358,7 +358,7 @@
     font-size: 16px;
 
     &.active {
-      color: var(--ui-highlight-color);
+      color: rgb(var(--ui-highlight-color));
     }
 
     &.passive {
@@ -391,7 +391,7 @@
   a {
     text-decoration: none;
     font-weight: 500;
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
 
     &:hover,
     &:focus,

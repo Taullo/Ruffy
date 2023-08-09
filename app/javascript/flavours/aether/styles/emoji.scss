@@ -165,10 +165,10 @@
 }
 
 .emoji-mart-anchor-selected {
-  color: var(--ui-highlight-color);
+  color: rgb(var(--ui-highlight-color));
 
   &:hover {
-    color: var(--ui-highlight-color);
+    color: rgb(var(--ui-highlight-color));
   }
 
   .emoji-mart-anchor-bar {
@@ -182,7 +182,7 @@
   inset-inline-start: 0;
   width: 100%;
   height: 3px;
-  background-color: var(--ui-highlight-color);
+  background-color: rgb(var(--ui-highlight-color));
 }
 
 .emoji-mart-anchors {
