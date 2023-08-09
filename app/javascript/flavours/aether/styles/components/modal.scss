@@ -820,7 +820,6 @@
 
 .report-modal__comment {
   padding: 20px;
-  border-inline-end: 1px solid var(--ui-highlight-color);
   max-width: 320px;
 
   p {
@@ -835,7 +834,7 @@
     width: 100%;
     margin: 0;
     color: var(--ui-font-color);
-    background: var(--ui-body-color);
+    background: var(--ui-body-dim-color);
     padding: 10px;
     font-family: inherit;
     font-size: 14px;
@@ -845,14 +844,14 @@
     min-height: 100px;
     max-height: 50vh;
     margin-bottom: 10px;
+    transition-property: background;
+    transition-duration: 0.2s;
 
     &:focus {
-      border: 1px solid var(--ui-highlight-color);
+      background: var(--ui-body-color);
     }
 
     &__wrapper {
-      background: $white;
-      border: 1px solid var(--ui-highlight-color);
       margin-bottom: 10px;
       border-radius: 4px;
 

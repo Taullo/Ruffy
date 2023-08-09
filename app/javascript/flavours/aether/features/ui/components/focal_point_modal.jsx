@@ -351,7 +351,7 @@ class FocalPointModal extends ImmutablePureComponent {
             <div className='setting-text__wrapper'>
               <Textarea
                 id='upload-modal__description'
-                className='setting-text light'
+                className='setting-text'
                 value={detecting ? '…' : description}
                 lang={lang}
                 onChange={this.handleChange}
