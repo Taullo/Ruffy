@@ -68,7 +68,7 @@ $ui-header-height: 55px;
 
   &__logo {
     display: inline-flex;
-    padding: 15px;
+    padding-right: 15px;
 
     .logo {
       height: $ui-header-height - 30px;
@@ -1089,30 +1089,30 @@ $ui-header-height: 55px;
 
 .wordmark {
   img {
-    display:inline-block;
-    height:40px!important;
-    width:auto!important;
+    display: inherit;
+    height: 46px !important;
+    width: auto !important;
   }
 }
 
 .wordmark_dark {
   img {
-    display:none;
-    height:40px!important;
-    width:auto!important;
+    display: none;
+    height: 46px !important;
+    width: auto !important;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .wordmark {
     img {
-      display:none!important;
+      display: none !important;
     }
   }
 
   .wordmark_dark {
     img {
-      display:inline-block;
+      display: inherit;
     }
   }
 }
