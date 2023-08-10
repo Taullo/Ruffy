@@ -393,7 +393,7 @@ body > [data-popper-placement] {
 }
 
 .icon-button.bookmark-icon.active {
-  color: $red-bookmark;
+  color: rgb(var(--ui-highlight-color));
 }
 
 .no-reduce-motion .icon-button.star-icon {
@@ -1252,7 +1252,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .reduce-motion button.icon-button.disabled i.fa-retweet {
-  color: darken($action-button-color, 13%);
+  color: rgb(var(--ui-highlight-color));
 }
 
 .load-more {
