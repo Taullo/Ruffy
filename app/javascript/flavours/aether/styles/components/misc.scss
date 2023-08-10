@@ -1231,7 +1231,9 @@ body > [data-popper-placement] {
 button.icon-button i.fa-retweet {
   mask-position: 0 0;
   height: 18px;
-  transition: mask-position 0.9s steps(10);
+  transition:
+    mask-position 0.9s steps(10),
+    background 0.2s;
   transition-duration: 0s;
   vertical-align: middle;
   width: 22px;
