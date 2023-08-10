@@ -1229,12 +1229,13 @@ body > [data-popper-placement] {
 }
 
 button.icon-button i.fa-retweet {
-  background-position: 0 0;
-  height: 19px;
-  transition: background-position 0.9s steps(10);
+  mask-position: 0 0;
+  height: 18px;
+  transition: mask-position 0.9s steps(10);
   transition-duration: 0s;
   vertical-align: middle;
   width: 22px;
+  transform: scale(1.3, 1.3);
 
   &::before {
     display: none !important;
@@ -1243,7 +1244,7 @@ button.icon-button i.fa-retweet {
 
 button.icon-button.active i.fa-retweet {
   transition-duration: 0.9s;
-  background-position: 0 100%;
+  mask-position: 0 100%;
 }
 
 .reduce-motion button.icon-button i.fa-retweet,
