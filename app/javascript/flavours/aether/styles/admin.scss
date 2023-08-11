@@ -1223,7 +1223,7 @@ a.name-tag,
     }
 
     path:last-child {
-      stroke: lighten(rgb(var(--ui-highlight-color)), 6%) !important;
+      stroke: rgb(var(--ui-highlight-color)) !important;
       fill: none !important;
     }
   }
