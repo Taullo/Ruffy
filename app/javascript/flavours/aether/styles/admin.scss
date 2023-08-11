@@ -240,7 +240,7 @@ $content-width: 840px;
           &.selected {
             font-weight: 700;
             color: rgb(var(--ui-highlight-color));
-            background: rgb(var(--ui-highlight-color));
+            border-bottom: 2px solid rgb(var(--ui-highlight-color));
           }
         }
       }
