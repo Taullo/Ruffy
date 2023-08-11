@@ -1148,7 +1148,7 @@ a.name-tag,
       @for $i from 0 through 10 {
         &--#{10 * $i} {
           background-color: rgba(
-            rgb(var(--ui-highlight-color)),
+            var(--ui-highlight-color),
             1 * (math.div(max(1, $i), 10))
           );
         }
