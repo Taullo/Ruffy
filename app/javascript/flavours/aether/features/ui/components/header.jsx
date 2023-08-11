@@ -169,7 +169,7 @@ class Header extends PureComponent {
         <>
           {location.pathname !== '/publish' && <button onClick={openCompose} className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /><i className='fa fa-pencil-square-o fa-fw' /></button>}
           <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />} title={intl.formatMessage(messages.notifications)} />
-          <ColumnLink transparent to='/conversations' icon='envelope' title={intl.formatMessage(messages.direct)} />
+          <ColumnLink transparent to='/conversations' icon='comments' title={intl.formatMessage(messages.direct)} />
           <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />
           <Account />
           <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='chevron-down' size={12} direction='right' />
