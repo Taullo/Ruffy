@@ -81,8 +81,8 @@
     display: flex;
     align-items: baseline;
     border-radius: 4px;
-    background: darken($ui-highlight-color, 2%);
-    color: $primary-text-color;
+    background: rgb(var(--ui-highlight-color));
+    color: var(--ui-font-color);
     transition: all 100ms ease-in;
     font-size: 14px;
     padding: 0 16px;
@@ -99,12 +99,12 @@
     }
 
     &.positive {
-      background: lighten($ui-base-color, 4%);
+      background: var(--ui-base-color);
       color: $valid-value-color;
     }
 
     &.negative {
-      background: lighten($ui-base-color, 4%);
+      background: var(--ui-base-color);
       color: $error-value-color;
     }
 
