@@ -136,7 +136,7 @@ class DirectTimeline extends PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
-          icon='envelope'
+          icon='comments'
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
