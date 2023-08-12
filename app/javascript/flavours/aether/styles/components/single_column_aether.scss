@@ -227,16 +227,10 @@
         top: 55px;
         max-height: calc(100vh - 55px);
         position: fixed;
-        overflow: hidden;
+        overflow-y: auto;
 
         > div:last-child {
           padding-bottom: 20px;
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-          overflow-y: scroll;
         }
       }
 
