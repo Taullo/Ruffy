@@ -52,11 +52,6 @@
         color: rgb(var(--ui-highlight-color));
       }
 
-      > span {
-        color: var(--ui-font-off-color);
-        font-weight: 100;
-      }
-
       &:hover {
         background: rgb(var(--ui-highlight-color));
 
@@ -78,6 +73,11 @@
   .trends__item__name {
     float: left;
     color: inherit;
+
+    > span {
+      color: var(--ui-font-off-color);
+      font-weight: 100;
+    }
   }
 
   .trends__item__sparkline {
