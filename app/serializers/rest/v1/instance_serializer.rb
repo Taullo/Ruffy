@@ -44,12 +44,10 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
     if object.wordmark_dark
       {
         url: full_asset_url(object.wordmark_dark.file.url),
-        blurhash: object.wordmark_dark.blurhash,
       }
     elsif object.wordmark
       {
         url: full_asset_url(object.wordmark.file.url),
-        blurhash: object.wordmark.blurhash,
       }
     else
       {
