@@ -228,6 +228,10 @@
         max-height: calc(100vh - 55px);
         position: fixed;
         overflow: scroll;
+
+        > div:last-child {
+          padding-bottom: 20px;
+        }
       }
 
       .scrollable {

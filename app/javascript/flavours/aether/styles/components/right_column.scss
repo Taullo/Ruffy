@@ -6,5 +6,25 @@
   .list-panel {
     margin-top: 0;
     margin-bottom: 15px;
+    padding: 15px;
+
+    a {
+      color: rgb(var(--ui-highlight-color));
+      text-decoration: none;
+      padding: 15px;
+      display: block;
+    }
+  }
+
+  .explore__tags-header,
+  .list-panel {
+    background-color: var(--ui-body-dim-color);
+    margin-bottom: 0.5rem;
+    border-radius: var(--ui-border-radius);
+    color: rgb(var(--ui-highlight-color));
+    text-decoration: none;
+    overflow: hidden;
+    padding-bottom: 10px;
+    font-size: 1rem;
   }
 }
