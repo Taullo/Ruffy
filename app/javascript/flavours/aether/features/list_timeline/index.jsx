@@ -20,8 +20,12 @@ import ColumnHeader from 'flavours/aether/components/column_header';
 import { Icon } from 'flavours/aether/components/icon';
 import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import { RadioButton } from 'flavours/aether/components/radio_button';
+import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
 import BundleColumnError from 'flavours/aether/features/ui/components/bundle_column_error';
+import ListPanel from 'flavours/aether/features/ui/components/list_panel';
 import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
+
+
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -222,6 +226,19 @@ class ListTimeline extends PureComponent {
 
           <hr />
         </ColumnHeader>
+
+        <div className='right_column'>
+          <div className='fixed_wrapper'>
+
+            <div className='explore__search-header'>
+              <SearchContainer openInRoute />
+            </div>
+
+            {!multiColumn && (
+              <ListPanel />
+            )}
+          </div>
+        </div>
 
         <div className='scrollable list-scroll'>
         <StatusListContainer
