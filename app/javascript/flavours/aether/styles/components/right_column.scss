@@ -18,32 +18,6 @@
         color: var(--ui-font-color);
       }
     }
-
-    .hashname {
-      font-weight: 700;
-      max-width: 300px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: rgb(var(--ui-highlight-color));
-    }
-
-    .permalink {
-      width: 100%;
-    }
-
-    .trends__item__name {
-      float: left;
-
-      span {
-        color: rgb(var(--ui-highlight-color));
-        font-weight: 100;
-      }
-    }
-
-    .trends__item__sparkline {
-      float: right;
-      transform: scale(1.3);
-    }
   }
 
   .explore__tags-header,
@@ -57,5 +31,31 @@
     overflow: hidden;
     padding: 15px;
     font-size: 1rem;
+  }
+
+  .hashname {
+    font-weight: 700;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(var(--ui-highlight-color));
+  }
+
+  .permalink {
+    width: 100%;
+  }
+
+  .trends__item__name {
+    float: left;
+
+    span {
+      color: rgb(var(--ui-highlight-color));
+      font-weight: 100;
+    }
+  }
+
+  .trends__item__sparkline {
+    float: right;
+    transform: scale(1.3);
   }
 }
