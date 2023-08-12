@@ -36,31 +36,31 @@
 
   .trends__item {
     padding: 0;
-  }
 
-  .permalink {
-    width: 100%;
-    color: rgb(var(--ui-highlight-color));
-    padding: 15px;
+    .permalink {
+      width: 100%;
+      color: rgb(var(--ui-highlight-color));
+      padding: 15px;
 
-    .hashname {
-      font-weight: bold;
-      max-width: 300px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &:hover {
-      color: var(--ui-font-color);
-      background: rgb(var(--ui-highlight-color));
-      border-radius: var(--ui-border-radius);
-
-      .trends__item__sparkline path:first-child {
-        fill: rgb(var(--ui-font-color)) !important;
+      .hashname {
+        font-weight: bold;
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .trends__item__sparkline path:last-child {
-        stroke: rgb(var(--ui-font-color)) !important;
+      &:hover {
+        color: var(--ui-font-color);
+        background: rgb(var(--ui-highlight-color));
+        border-radius: var(--ui-border-radius);
+
+        .trends__item__sparkline path:first-child {
+          fill: rgb(var(--ui-font-color)) !important;
+        }
+
+        .trends__item__sparkline path:last-child {
+          stroke: rgb(var(--ui-font-color)) !important;
+        }
       }
     }
   }
