@@ -81,7 +81,7 @@ const Hashtag = ({ name, href, to, people, uses, history, className, description
         </div>
 
         {description ? (
-          <span>{description}</span>
+          <span class='desc'>{description}</span>
         ) : (
           typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />
         )}

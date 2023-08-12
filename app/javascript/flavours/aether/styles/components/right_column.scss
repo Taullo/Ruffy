@@ -12,11 +12,10 @@
       padding: 15px;
       display: block;
       border-radius: var(--ui-border-radius);
-      color: rgb(var(--ui-highlight-color));
+      color: rgb(var(--ui-font-color));
 
       &:hover {
         background: rgb(var(--ui-highlight-color));
-        color: var(--ui-font-color);
       }
     }
   }
@@ -39,8 +38,12 @@
 
     .permalink {
       width: 100%;
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-font-color);
       padding: 15px;
+      border-radius: var(--ui-border-radius);
+      transition:
+        background 0.2s,
+        color 0.2s;
 
       .hashname {
         font-weight: bold;
@@ -49,17 +52,20 @@
         text-overflow: ellipsis;
       }
 
+      .desc {
+        color: var(--ui-font-off-color);
+        font-weight: 100;
+      }
+
       &:hover {
-        color: var(--ui-font-color);
         background: rgb(var(--ui-highlight-color));
-        border-radius: var(--ui-border-radius);
 
         .trends__item__sparkline path:first-child {
-          fill: rgb(var(--ui-font-color)) !important;
+          fill: var(--ui-font-color) !important;
         }
 
         .trends__item__sparkline path:last-child {
-          stroke: rgb(var(--ui-font-color)) !important;
+          stroke: var(--ui-font-color) !important;
         }
       }
     }
@@ -68,10 +74,6 @@
   .trends__item__name {
     float: left;
     color: inherit;
-
-    span {
-      font-weight: 100;
-    }
   }
 
   .trends__item__sparkline {
