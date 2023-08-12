@@ -26,7 +26,6 @@
     background-color: var(--ui-body-secondary-color);
     margin-bottom: 0.5rem;
     border-radius: var(--ui-border-radius);
-    color: rgb(var(--ui-highlight-color));
     text-decoration: none;
     overflow: hidden;
     font-size: 1rem;
@@ -50,15 +49,20 @@
         max-width: 300px;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: rgb(var(--ui-highlight-color));
       }
 
-      .desc {
+      > span {
         color: var(--ui-font-off-color);
         font-weight: 100;
       }
 
       &:hover {
         background: rgb(var(--ui-highlight-color));
+
+        .hashname {
+          color: rgb(var(--ui-font-color));
+        }
 
         .trends__item__sparkline path:first-child {
           fill: var(--ui-font-color) !important;
