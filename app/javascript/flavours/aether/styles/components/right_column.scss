@@ -30,13 +30,13 @@
     color: rgb(var(--ui-highlight-color));
     text-decoration: none;
     overflow: hidden;
-    padding: 15px;
     font-size: 1rem;
   }
 
   .permalink {
     width: 100%;
     color: rgb(var(--ui-highlight-color));
+    padding: 15px;
 
     .hashname {
       font-weight: bold;
@@ -49,6 +49,14 @@
       color: var(--ui-font-color);
       background: rgb(var(--ui-highlight-color));
       border-radius: var(--ui-border-radius);
+
+      .trends__item__sparkline path:first-child {
+        fill: rgb(var(--ui-font-color)) !important;
+      }
+
+      .trends__item__sparkline path:last-child {
+        stroke: rgb(var(--ui-font-color)) !important;
+      }
     }
   }
 
