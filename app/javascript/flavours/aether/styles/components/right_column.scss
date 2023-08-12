@@ -12,6 +12,12 @@
       text-decoration: none;
       padding: 15px;
       display: block;
+      border-radius: var(--ui-border-radius);
+
+      &:hover {
+        background: rgb(var(--ui-highlight-color));
+        color: var(--ui-font-color);
+      }
     }
   }
 

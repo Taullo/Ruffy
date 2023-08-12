@@ -74,33 +74,35 @@ ImmutableHashtag.propTypes = {
 // @ts-expect-error
 const Hashtag = ({ name, href, to, people, uses, history, className, description, withGraph }) => (
   <div className={classNames('trends__item', className)}>
-    <div className='trends__item__name'>
-      <Permalink href={href} to={to}>
-        {name ? <>#<span>{name}</span></> : <Skeleton width={50} />}
-      </Permalink>
+    <Permalink href={href} to={to}>
+      <div className='trends__item__name'>
+        <div class='hashname'>
+          {name ? <>#<span>{name}</span></> : <Skeleton width={50} />}
+        </div>
 
-      {description ? (
-        <span>{description}</span>
-      ) : (
-        typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />
+        {description ? (
+          <span>{description}</span>
+        ) : (
+          typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />
+        )}
+      </div>
+
+      {typeof uses !== 'undefined' && (
+        <div className='trends__item__current'>
+          <ShortNumber value={uses} />
+        </div>
       )}
-    </div>
 
-    {typeof uses !== 'undefined' && (
-      <div className='trends__item__current'>
-        <ShortNumber value={uses} />
-      </div>
-    )}
-
-    {withGraph && (
-      <div className='trends__item__sparkline'>
-        <SilentErrorBoundary>
-          <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)}>
-            <SparklinesCurve style={{ fill: 'none' }} />
-          </Sparklines>
-        </SilentErrorBoundary>
-      </div>
-    )}
+      {withGraph && (
+        <div className='trends__item__sparkline'>
+          <SilentErrorBoundary>
+            <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)}>
+              <SparklinesCurve style={{ fill: 'none' }} />
+            </Sparklines>
+          </SilentErrorBoundary>
+        </div>
+      )}
+    </Permalink>
   </div>
 );
 
