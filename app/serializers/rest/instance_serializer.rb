@@ -50,12 +50,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     if object.wordmark_dark
       {
         url: full_asset_url(object.wordmark_dark.file.url),
-        blurhash: object.wordmark_dark.blurhash,
       }
     elsif object.wordmark
       {
         url: full_asset_url(object.wordmark.file.url),
-        blurhash: object.wordmark.blurhash,
       }
     else
       {
@@ -68,7 +66,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     if object.icon
       {
         url: full_asset_url(object.icon.file.url),
-        blurhash: object.icon.blurhash,
       }
     else
       {
