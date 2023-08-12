@@ -224,7 +224,10 @@
 
       .fixed_wrapper {
         width: 450px;
-        margin-top: -55px;
+        top: 55px;
+        max-height: calc(100vh - 55px);
+        position: fixed;
+        overflow: scroll;
       }
 
       .scrollable {
