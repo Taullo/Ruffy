@@ -18,7 +18,7 @@
   .explore__tags-header,
   .list-panel,
   .explore__suggested-header {
-    background-color: var(--ui-body-dim-color);
+    background-color: var(--ui-body-secondary-color);
     margin-bottom: 0.5rem;
     border-radius: var(--ui-border-radius);
     color: rgb(var(--ui-highlight-color));
@@ -26,9 +26,5 @@
     overflow: hidden;
     padding: 15px;
     font-size: 1rem;
-  }
-
-  .explore__suggested-header {
-    background-color: var(--ui-body-secondary-color);
   }
 }
