@@ -37,7 +37,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     if object.wordmark
       {
         url: full_asset_url(object.wordmark.file.url),
-        blurhash: object.wordmark.blurhash,
       }
     else
       {
