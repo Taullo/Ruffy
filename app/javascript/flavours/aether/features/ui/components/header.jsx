@@ -49,6 +49,7 @@ const messages = defineMessages({
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Manage lists' },
+  followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed Tags' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
@@ -152,6 +153,7 @@ class Header extends PureComponent {
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests', href: '/follow_requests' });
     menu.push({ text: intl.formatMessage(messages.lists), to: '/lists', href: '/lists' });
+    menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags', href: '/followed_tags' });
     menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites', href: '/favourites' });
     menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks', href: '/bookmarks' });
     menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned', href: '/pinned' });
