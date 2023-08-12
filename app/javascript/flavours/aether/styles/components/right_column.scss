@@ -34,17 +34,16 @@
     font-size: 1rem;
   }
 
-  .hashname {
-    font-weight: bold;
-    max-width: 300px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: rgb(var(--ui-highlight-color));
-  }
-
   .permalink {
     width: 100%;
     color: rgb(var(--ui-highlight-color));
+
+    .hashname {
+      font-weight: bold;
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     &:hover {
       color: var(--ui-font-color);
@@ -55,6 +54,7 @@
 
   .trends__item__name {
     float: left;
+    color: inherit;
 
     span {
       font-weight: 100;
