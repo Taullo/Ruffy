@@ -40,3 +40,5 @@ API Changes
 - Add toggleable local_only parameter to post options
 
 - You can view documentation for Glitch-soc at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/) and the documentation for Mastodon at [docs.joinmastodon.org](https://docs.joinmastodon.org/)
+
+Follow [our fediverse account](https://aethy.com/@Ruffy) for the latest updates!
