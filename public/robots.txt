@@ -6,3 +6,6 @@ Disallow: /interact/
 
 User-agent: ChatGPT-User
 Disallow: /
+
+User-agent: GPTBot
+Disallow: /
