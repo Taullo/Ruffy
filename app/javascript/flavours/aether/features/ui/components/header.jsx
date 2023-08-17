@@ -16,9 +16,9 @@ import Permalink from 'flavours/aether/components/permalink';
 import { Wordmark } from 'flavours/aether/components/wordmark';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import ColumnLink from 'flavours/aether/features/ui/components/column_link';
-import { registrationsOpen, me } from 'flavours/aether/initial_state';
 import { preferencesLink, profileLink } from 'flavours/aether/utils/backend_links';
 import { logOut } from 'flavours/aether/utils/log_out';
+import { registrationsOpen, me, sso_redirect } from 'flavours/glitch/initial_state';
 
 import NotificationsCounterIcon from './notifications_counter_icon';
 
@@ -178,28 +178,34 @@ class Header extends PureComponent {
         </>
       );
     }  else {
-      let signupButton;
-
-      if (registrationsOpen) {
-        signupButton = (
-          <a href={signupUrl} className='button'>
-            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
-          </a>
-        );
+      if (sso_redirect) {
+        content = (
+            <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
+        )
       } else {
-        signupButton = (
-          <button className='button' onClick={openClosedRegistrationsModal}>
-            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
-          </button>
+        let signupButton;
+
+        if (registrationsOpen) {
+          signupButton = (
+            <a href={signupUrl} className='button'>
+              <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+            </a>
+          );
+        } else {
+          signupButton = (
+            <button className='button' onClick={openClosedRegistrationsModal}>
+              <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+            </button>
+          );
+        }
+
+        content = (
+          <>
+            {signupButton}
+            <a href='/auth/sign_in' className='button button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
+          </>
         );
       }
-
-      content = (
-        <>
-          {signupButton}
-          <a href='/auth/sign_in' className='button button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
-        </>
-      );
     }
 
     return (

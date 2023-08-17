@@ -13,10 +13,10 @@ import { openModal, closeModal } from 'flavours/aether/actions/modal';
 import api from 'flavours/aether/api';
 import Button from 'flavours/aether/components/button';
 import { Icon } from 'flavours/aether/components/icon';
-import { registrationsOpen } from 'flavours/aether/initial_state';
+import { registrationsOpen, sso_redirect } from 'flavours/aether/initial_state';
 
 const messages = defineMessages({
-  loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },
+  loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server' },
 });
 
 const mapStateToProps = (state, { accountId }) => ({
@@ -250,6 +250,9 @@ class LoginForm extends React.PureComponent {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
+            autocomplete='off'
+            autocapitalize='off'
+            spellcheck='false'
           />
 
           <Button onClick={this.handleSubmit} disabled={isSubmitting}><FormattedMessage id='interaction_modal.login.action' defaultMessage='Take me home' /></Button>
@@ -308,28 +311,34 @@ class InteractionModal extends React.PureComponent {
     case 'reply':
       icon = <Icon id='reply' />;
       title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on the fediverse, you can respond to this post.' />;
       break;
     case 'reblog':
       icon = <Icon id='retweet' />;
       title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on the fediverse, you can boost this post to share it with your own followers.' />;
       break;
     case 'favourite':
       icon = <Icon id='star' />;
       title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favorite {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.' />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on the fediverse, you can favorite this post to let the author know you appreciate it and save it for later.' />;
       break;
     case 'follow':
       icon = <Icon id='user-plus' />;
       title = <FormattedMessage id='interaction_modal.title.follow' defaultMessage='Follow {name}' values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on the fediverse, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
       break;
     }
 
     let signupButton;
 
-    if (registrationsOpen) {
+    if (sso_redirect) {
+      signupButton = (
+        <a href={sso_redirect} data-method='post' className='link-button'>
+          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+        </a>
+      );
+    } else if (registrationsOpen) {
       signupButton = (
         <a href='/auth/sign_up' className='link-button'>
           <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
@@ -352,8 +361,8 @@ class InteractionModal extends React.PureComponent {
 
         <IntlLoginForm resourceUrl={url} />
 
-        <p className='hint'><FormattedMessage id='interaction_modal.sign_in_hint' defaultMessage="Tip: That's the website where you signed up. If you don't remember, look for the welcome e-mail in your inbox. You can also enter your full username! (e.g. @Mastodon@mastodon.social)" /></p>
-        <p><FormattedMessage id='interaction_modal.no_account_yet' defaultMessage='Not on Mastodon?' /> {signupButton}</p>
+        <p className='hint'><FormattedMessage id='interaction_modal.sign_in_hint' defaultMessage="Tip: That's the website where you signed up. If you don't remember, look for the welcome e-mail in your inbox. You can also enter your full username! (e.g. @user@example.com)" /></p>
+        <p><FormattedMessage id='interaction_modal.no_account_yet' defaultMessage='Not on the fediverse?' /> {signupButton}</p>
       </div>
     );
   }
@@ -361,3 +370,4 @@ class InteractionModal extends React.PureComponent {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InteractionModal);
+
