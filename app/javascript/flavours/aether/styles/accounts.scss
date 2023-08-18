@@ -1248,4 +1248,11 @@ img.parallax[src*='/headers/original/missing.png'] {
   float: left;
   width: 50%;
   box-sizing: border-box;
+
+  a {
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
 }
