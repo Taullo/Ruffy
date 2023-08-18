@@ -201,6 +201,7 @@ class HashtagTimeline extends PureComponent {
           {columnId && <ColumnSettingsContainer columnId={columnId} />}
         </ColumnHeader>
 
+        <div className='scrollable hashtag-scroll'>
         <StatusListContainer
           prepend={pinned ? null : <HashtagHeader tag={tag} disabled={!signedIn} onClick={this.handleFollow} />}
           alwaysPrepend
@@ -211,6 +212,7 @@ class HashtagTimeline extends PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
           bindToDocument={!multiColumn}
         />
+        </div>
 
         <Helmet>
           <title>#{id}</title>
