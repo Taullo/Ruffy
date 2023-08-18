@@ -1,373 +1,225 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { PureComponent } from 'react';
 
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { throttle, escapeRegExp } from 'lodash';
+import { isEqual } from 'lodash';
 
-import { openModal, closeModal } from 'flavours/aether/actions/modal';
-import api from 'flavours/aether/api';
-import Button from 'flavours/aether/components/button';
-import { Icon } from 'flavours/aether/components/icon';
-import { registrationsOpen, sso_redirect } from 'flavours/aether/initial_state';
+import { addColumn, removeColumn, moveColumn } from 'flavours/aether/actions/columns';
+import { connectHashtagStream } from 'flavours/aether/actions/streaming';
+import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/aether/actions/tags';
+import { expandHashtagTimeline, clearTimeline } from 'flavours/aether/actions/timelines';
+import Column from 'flavours/aether/components/column';
+import ColumnHeader from 'flavours/aether/components/column_header';
+import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
 
-const messages = defineMessages({
-  loginPrompt: { id: 'interaction_modal.login.prompt', defaultMessage: 'Domain of your home server, e.g. mastodon.social' },
+import { HashtagHeader } from './components/hashtag_header';
+import ColumnSettingsContainer from './containers/column_settings_container';
+
+const mapStateToProps = (state, props) => ({
+  hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}${props.params.local ? ':local' : ''}`, 'unread']) > 0,
+  tag: state.getIn(['tags', props.params.id]),
 });
 
-const mapStateToProps = (state, { accountId }) => ({
-  displayNameHtml: state.getIn(['accounts', accountId, 'display_name_html']),
-});
+class HashtagTimeline extends PureComponent {
 
-const mapDispatchToProps = (dispatch) => ({
-  onSignupClick() {
-    dispatch(closeModal());
-    dispatch(openModal('CLOSED_REGISTRATIONS'));
-  },
-});
+  disconnects = [];
 
-const PERSISTENCE_KEY = 'flavours/glitch_home';
-
-const isValidDomain = value => {
-  const url = new URL('https:///path');
-  url.hostname = value;
-  return url.hostname === value;
-};
-
-const valueToDomain = value => {
-  // If the user starts typing an URL
-  if (/^https?:\/\//.test(value)) {
-    try {
-      const url = new URL(value);
-
-      // Consider that if there is a path, the URL is more meaningful than a bare domain
-      if (url.pathname.length > 1) {
-        return '';
-      }
-
-      return url.host;
-    } catch {
-      return undefined;
-    }
-  // If the user writes their full handle including username
-  } else if (value.includes('@')) {
-    if (value.replace(/^@/, '').split('@').length > 2) {
-      return undefined;
-    }
-    return '';
-  }
-
-  return value;
-};
-
-const addInputToOptions = (value, options) => {
-  value = value.trim();
-
-  if (value.includes('.') && isValidDomain(value)) {
-    return [value].concat(options.filter((x) => x !== value));
-  }
-
-  return options;
-};
-
-class LoginForm extends React.PureComponent {
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
-    resourceUrl: PropTypes.string,
-    intl: PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
+    columnId: PropTypes.string,
+    dispatch: PropTypes.func.isRequired,
+    hasUnread: PropTypes.bool,
+    tag: ImmutablePropTypes.map,
+    multiColumn: PropTypes.bool,
   };
 
-  state = {
-    value: localStorage ? (localStorage.getItem(PERSISTENCE_KEY) || '') : '',
-    expanded: false,
-    selectedOption: -1,
-    isLoading: false,
-    isSubmitting: false,
-    error: false,
-    options: [],
-    networkOptions: [],
+  handlePin = () => {
+    const { columnId, dispatch } = this.props;
+
+    if (columnId) {
+      dispatch(removeColumn(columnId));
+    } else {
+      dispatch(addColumn('HASHTAG', { id: this.props.params.id }));
+    }
   };
 
-  setRef = c => {
-    this.input = c;
+  title = () => {
+    const { id } = this.props.params;
+    const title  = [id];
+
+    if (this.additionalFor('any')) {
+      title.push(' ', <FormattedMessage key='any' id='hashtag.column_header.tag_mode.any'  values={{ additional: this.additionalFor('any') }} defaultMessage='or {additional}' />);
+    }
+
+    if (this.additionalFor('all')) {
+      title.push(' ', <FormattedMessage key='all' id='hashtag.column_header.tag_mode.all'  values={{ additional: this.additionalFor('all') }} defaultMessage='and {additional}' />);
+    }
+
+    if (this.additionalFor('none')) {
+      title.push(' ', <FormattedMessage key='none' id='hashtag.column_header.tag_mode.none' values={{ additional: this.additionalFor('none') }} defaultMessage='without {additional}' />);
+    }
+
+    return title;
   };
 
-  handleChange = ({ target }) => {
-    this.setState(state => ({ value: target.value, isLoading: true, error: false, options: addInputToOptions(target.value, state.networkOptions) }), () => this._loadOptions());
+  additionalFor = (mode) => {
+    const { tags } = this.props.params;
+
+    if (tags && (tags[mode] || []).length > 0) {
+      return tags[mode].map(tag => tag.value).join('/');
+    } else {
+      return '';
+    }
   };
 
-  handleMessage = (event) => {
-    const { resourceUrl } = this.props;
+  handleMove = (dir) => {
+    const { columnId, dispatch } = this.props;
+    dispatch(moveColumn(columnId, dir));
+  };
 
-    if (event.origin !== window.origin || event.source !== this.iframeRef.contentWindow) {
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  };
+
+  _subscribe (dispatch, id, tags = {}, local) {
+    const { signedIn } = this.context.identity;
+
+    if (!signedIn) {
       return;
     }
 
-    if (event.data?.type === 'fetchInteractionURL-failure') {
-      this.setState({ isSubmitting: false, error: true });
-    } else if (event.data?.type === 'fetchInteractionURL-success') {
-      if (/^https?:\/\//.test(event.data.template)) {
-        if (localStorage) {
-          localStorage.setItem(PERSISTENCE_KEY, event.data.uri_or_domain);
-        }
+    let any  = (tags.any || []).map(tag => tag.value);
+    let all  = (tags.all || []).map(tag => tag.value);
+    let none = (tags.none || []).map(tag => tag.value);
 
-        window.location.href = event.data.template.replace('{uri}', encodeURIComponent(resourceUrl));
-      } else {
-        this.setState({ isSubmitting: false, error: true });
-      }
-    }
-  };
+    [id, ...any].map(tag => {
+      this.disconnects.push(dispatch(connectHashtagStream(id, tag, local, status => {
+        let tags = status.tags.map(tag => tag.name);
+
+        return all.filter(tag => tags.includes(tag)).length === all.length &&
+               none.filter(tag => tags.includes(tag)).length === 0;
+      })));
+    });
+  }
+
+  _unsubscribe () {
+    this.disconnects.map(disconnect => disconnect());
+    this.disconnects = [];
+  }
+
+  _unload () {
+    const { dispatch } = this.props;
+    const { id, local } = this.props.params;
+
+    this._unsubscribe();
+    dispatch(clearTimeline(`hashtag:${id}${local ? ':local' : ''}`));
+  }
+
+  _load() {
+    const { dispatch } = this.props;
+    const { id, tags, local } = this.props.params;
+
+    this._subscribe(dispatch, id, tags, local);
+    dispatch(expandHashtagTimeline(id, { tags, local }));
+    dispatch(fetchHashtag(id));
+  }
 
   componentDidMount () {
-    window.addEventListener('message', this.handleMessage);
+    this._load();
+  }
+
+  componentDidUpdate (prevProps) {
+    const { params } = this.props;
+    const { id, tags, local } = prevProps.params;
+
+    if (id !== params.id || !isEqual(tags, params.tags) || !isEqual(local, params.local)) {
+      this._unload();
+      this._load();
+    }
   }
 
   componentWillUnmount () {
-    window.removeEventListener('message', this.handleMessage);
+    this._unsubscribe();
   }
 
-  handleSubmit = () => {
-    const { value } = this.state;
-
-    this.setState({ isSubmitting: true });
-
-    this.iframeRef.contentWindow.postMessage({
-      type: 'fetchInteractionURL',
-      uri_or_domain: value.trim(),
-    }, window.origin);
+  setRef = c => {
+    this.column = c;
   };
 
-  setIFrameRef = (iframe) => {
-    this.iframeRef = iframe;
-  }
+  handleLoadMore = maxId => {
+    const { dispatch, params } = this.props;
+    const { id, tags, local }  = params;
 
-  handleFocus = () => {
-    this.setState({ expanded: true });
+    dispatch(expandHashtagTimeline(id, { maxId, tags, local }));
   };
 
-  handleBlur = () => {
-    this.setState({ expanded: false });
-  };
+  handleFollow = () => {
+    const { dispatch, params, tag } = this.props;
+    const { id } = params;
+    const { signedIn } = this.context.identity;
 
-  handleKeyDown = (e) => {
-    const { options, selectedOption } = this.state;
-
-    switch(e.key) {
-    case 'ArrowDown':
-      e.preventDefault();
-
-      if (options.length > 0) {
-        this.setState({ selectedOption: Math.min(selectedOption + 1, options.length - 1) });
-      }
-
-      break;
-    case 'ArrowUp':
-      e.preventDefault();
-
-      if (options.length > 0) {
-        this.setState({ selectedOption: Math.max(selectedOption - 1, -1) });
-      }
-
-      break;
-    case 'Enter':
-      e.preventDefault();
-
-      if (selectedOption === -1) {
-        this.handleSubmit();
-      } else if (options.length > 0) {
-        this.setState({ value: options[selectedOption], error: false }, () => this.handleSubmit());
-      }
-
-      break;
-    }
-  };
-
-  handleOptionClick = e => {
-    const index  = Number(e.currentTarget.getAttribute('data-index'));
-    const option = this.state.options[index];
-
-    e.preventDefault();
-    this.setState({ selectedOption: index, value: option, error: false }, () => this.handleSubmit());
-  };
-
-  _loadOptions = throttle(() => {
-    const { value } = this.state;
-
-    const domain = valueToDomain(value.trim());
-
-    if (typeof domain === 'undefined') {
-      this.setState({ options: [], networkOptions: [], isLoading: false, error: true });
+    if (!signedIn) {
       return;
     }
 
-    if (domain.length === 0) {
-      this.setState({ options: [], networkOptions: [], isLoading: false });
-      return;
+    if (tag.get('following')) {
+      dispatch(unfollowHashtag(id));
+    } else {
+      dispatch(followHashtag(id));
     }
-
-    api().get('/api/v1/peers/search', { params: { q: domain } }).then(({ data }) => {
-      if (!data) {
-        data = [];
-      }
-
-      this.setState((state) => ({ networkOptions: data, options: addInputToOptions(state.value, data), isLoading: false }));
-    }).catch(() => {
-      this.setState({ isLoading: false });
-    });
-  }, 200, { leading: true, trailing: true });
+  };
 
   render () {
-    const { intl } = this.props;
-    const { value, expanded, options, selectedOption, error, isSubmitting } = this.state;
-    const domain = (valueToDomain(value) || '').trim();
-    const domainRegExp = new RegExp(`(${escapeRegExp(domain)})`, 'gi');
-    const hasPopOut = domain.length > 0 && options.length > 0;
+    const { hasUnread, columnId, multiColumn, tag } = this.props;
+    const { id, local } = this.props.params;
+    const pinned = !!columnId;
+    const { signedIn } = this.context.identity;
 
     return (
-      <div className={classNames('interaction-modal__login', { focused: expanded, expanded: hasPopOut, invalid: error })}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
+        <ColumnHeader
+          icon='hashtag'
+          active={hasUnread}
+          title={this.title()}
+          onPin={this.handlePin}
+          onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
+          pinned={pinned}
+          multiColumn={multiColumn}
+          showBackButton
+        >
+          {columnId && <ColumnSettingsContainer columnId={columnId} />}
+        </ColumnHeader>
 
-        <iframe
-          ref={this.setIFrameRef}
-          style={{display: 'none'}}
-          src='/remote_interaction_helper'
-          sandbox='allow-scripts allow-same-origin'
-          title='remote interaction helper'
+        <StatusListContainer
+          prepend={pinned ? null : <HashtagHeader tag={tag} disabled={!signedIn} onClick={this.handleFollow} />}
+          alwaysPrepend
+          trackScroll={!pinned}
+          scrollKey={`hashtag_timeline-${columnId}`}
+          timelineId={`hashtag:${id}${local ? ':local' : ''}`}
+          onLoadMore={this.handleLoadMore}
+          emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
+          bindToDocument={!multiColumn}
         />
 
-        <div className='interaction-modal__login__input'>
-          <input
-            ref={this.setRef}
-            type='text'
-            value={value}
-            placeholder={intl.formatMessage(messages.loginPrompt)}
-            aria-label={intl.formatMessage(messages.loginPrompt)}
-            autoFocus
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            onKeyDown={this.handleKeyDown}
-            autocomplete='off'
-            autocapitalize='off'
-            spellcheck='false'
-          />
-
-          <Button onClick={this.handleSubmit} disabled={isSubmitting}><FormattedMessage id='interaction_modal.login.action' defaultMessage='Take me home' /></Button>
-        </div>
-
-        {hasPopOut && (
-          <div className='search__popout'>
-            <div className='search__popout__menu'>
-              {options.map((option, i) => (
-                <button key={option} onMouseDown={this.handleOptionClick} data-index={i} className={classNames('search__popout__menu__item', { selected: selectedOption === i })}>
-                  {option.split(domainRegExp).map((part, i) => (
-                    part.toLowerCase() === domain.toLowerCase() ? (
-                      <mark key={i}>
-                        {part}
-                      </mark>
-                    ) : (
-                      <span key={i}>
-                        {part}
-                      </span>
-                    )
-                  ))}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+        <Helmet>
+          <title>#{id}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
+      </Column>
     );
   }
 
 }
 
-const IntlLoginForm = injectIntl(LoginForm);
-
-class InteractionModal extends React.PureComponent {
-
-  static propTypes = {
-    displayNameHtml: PropTypes.string,
-    url: PropTypes.string,
-    type: PropTypes.oneOf(['reply', 'reblog', 'favourite', 'follow']),
-    onSignupClick: PropTypes.func.isRequired,
-  };
-
-  handleSignupClick = () => {
-    this.props.onSignupClick();
-  };
-
-  render () {
-    const { url, type, displayNameHtml } = this.props;
-
-    const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
-
-    let title, actionDescription, icon;
-
-    switch(type) {
-    case 'reply':
-      icon = <Icon id='reply' />;
-      title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
-      break;
-    case 'reblog':
-      icon = <Icon id='retweet' />;
-      title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
-      break;
-    case 'favourite':
-      icon = <Icon id='star' />;
-      title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favorite {name}'s post" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.' />;
-      break;
-    case 'follow':
-      icon = <Icon id='user-plus' />;
-      title = <FormattedMessage id='interaction_modal.title.follow' defaultMessage='Follow {name}' values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
-      break;
-    }
-
-    let signupButton;
-
-    if (sso_redirect) {
-      signupButton = (
-        <a href={sso_redirect} data-method='post' className='link-button'>
-          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
-        </a>
-      );
-    } else if (registrationsOpen) {
-      signupButton = (
-        <a href='/auth/sign_up' className='link-button'>
-          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
-        </a>
-      );
-    } else {
-      signupButton = (
-        <button className='link-button' onClick={this.handleSignupClick}>
-          <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
-        </button>
-      );
-    }
-
-    return (
-      <div className='modal-root__modal interaction-modal'>
-        <div className='interaction-modal__lead'>
-          <h3><span className='interaction-modal__icon'>{icon}</span> {title}</h3>
-          <p>{actionDescription} <strong><FormattedMessage id='interaction_modal.sign_in' defaultMessage='You are not logged in to this server. Where is your account hosted?' /></strong></p>
-        </div>
-
-        <IntlLoginForm resourceUrl={url} />
-
-        <p className='hint'><FormattedMessage id='interaction_modal.sign_in_hint' defaultMessage="Tip: That's the website where you signed up. If you don't remember, look for the welcome e-mail in your inbox. You can also enter your full username! (e.g. @Mastodon@mastodon.social)" /></p>
-        <p><FormattedMessage id='interaction_modal.no_account_yet' defaultMessage='Not on Mastodon?' /> {signupButton}</p>
-      </div>
-    );
-  }
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InteractionModal);
-
+export default connect(mapStateToProps)(HashtagTimeline);
