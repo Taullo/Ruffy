@@ -48,17 +48,6 @@ class Section extends PureComponent {
     onOpen: PropTypes.func,
   };
 
-  state = {
-    collapsed: !this.props.open,
-  };
-
-  handleClick = () => {
-    const { onOpen } = this.props;
-    const { collapsed } = this.state;
-
-    this.setState({ collapsed: !collapsed }, () => onOpen && onOpen());
-  };
-
   render () {
     const { title, children } = this.props;
 
@@ -97,7 +86,8 @@ class Federation extends PureComponent {
   };
 
   render () {
-    const { multiColumn, intl, domainBlocks } = this.props;
+    const { multiColumn, intl, server, domainBlocks } = this.props;
+    const isLoading = server.get('isLoading');
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
