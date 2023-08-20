@@ -4,7 +4,7 @@ Fork of [Glitch-soc](https://glitch-soc.github.io/docs/)
 
 Anyone who uses this is doing so at their own risk! There will be bugs and other possible issues with the code!
 
-Current features unique from Glitch-soc in the Glitch Flavour:
+Current user features unique from Glitch-soc:
 
 - Blog length posts (100k character limit)
 - 20 media uploads (including from other instances)
@@ -28,7 +28,7 @@ Aether flavour (work in progress) features:
 - Dark theme applied to more elements
 - Local timeline as the homepage for logged out users
 
-Settings
+Admin settings features:
 
 - Exposes setting for "Link previews for posts with Content Warnings"
 - Adds an option for marking outgoing media as sensitive
