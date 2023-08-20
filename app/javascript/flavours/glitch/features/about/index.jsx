@@ -119,7 +119,8 @@ class About extends PureComponent {
         <div className='scrollable about'>
           <div className='about__header'>
             <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
-            <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('domain')}</h1>
+            <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('title')}</h1>
+            <p>{isLoading ? <Skeleton width='10ch' /> : server.get('description')}</p>
           </div>
 
           <div className='about__meta'>
