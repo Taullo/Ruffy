@@ -42,17 +42,11 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
 
   def wordmark_dark
     if object.wordmark_dark
-      {
-        url: full_asset_url(object.wordmark_dark.file.url),
-      }
+      full_asset_url(object.wordmark_dark.file.url)
     elsif object.wordmark
-      {
-        url: full_asset_url(object.wordmark.file.url),
-      }
+      full_asset_url(object.wordmark.file.url)
     else
-      {
-        url: full_pack_url('media/images/wordmark_dark.png'),
-      }
+      full_pack_url('media/images/wordmark_dark.png')
     end
   end
 
