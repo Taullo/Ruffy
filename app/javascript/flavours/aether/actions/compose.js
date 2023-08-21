@@ -11,7 +11,7 @@ import { recoverHashtags } from 'flavours/aether/utils/hashtag';
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
-import { openModal } from './modal';
+import { openModal, closeModal } from './modal';
 import { updateTimeline } from './timelines';
 
 /** @type {AbortController | undefined} */
@@ -89,14 +89,6 @@ const messages = defineMessages({
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
 });
 
-/*Change this to use modal*/
-
-export const ensureComposeIsVisible = (getState, routerHistory) => {
-  if (!getState().getIn(['compose', 'mounted'])) {
-    routerHistory.push('/publish');
-  }
-};
-
 export function setComposeToStatus(status, text, spoiler_text, content_type) {
   return{
     type: COMPOSE_SET_STATUS,
@@ -120,7 +112,7 @@ export function cycleElefriendCompose() {
   };
 }
 
-export function replyCompose(status, routerHistory) {
+export function replyCompose(status) {
   return (dispatch, getState) => {
     const prependCWRe = getState().getIn(['local_settings', 'prepend_cw_re']);
     dispatch({
@@ -129,7 +121,10 @@ export function replyCompose(status, routerHistory) {
       prependCWRe: prependCWRe,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    dispatch(openModal({
+      modalType: 'COMPOSE',
+      modalProps: { },
+    }));
   };
 }
 
@@ -145,29 +140,35 @@ export function resetCompose() {
   };
 }
 
-export function mentionCompose(account, routerHistory) {
-  return (dispatch, getState) => {
+export function mentionCompose(account) {
+  return (dispatch) => {
     dispatch({
       type: COMPOSE_MENTION,
       account: account,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    dispatch(openModal({
+      modalType: 'COMPOSE',
+      modalProps: { },
+    }));
   };
 }
 
-export function directCompose(account, routerHistory) {
-  return (dispatch, getState) => {
+export function directCompose(account) {
+  return (dispatch) => {
     dispatch({
       type: COMPOSE_DIRECT,
       account: account,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    dispatch(openModal({
+      modalType: 'COMPOSE',
+      modalProps: { },
+    }));
   };
 }
 
-export function submitCompose(routerHistory) {
+export function submitCompose() {
   return function (dispatch, getState) {
     let status     = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
@@ -221,14 +222,10 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
-      if (routerHistory
-          && (routerHistory.location.pathname === '/publish' || routerHistory.location.pathname === '/statuses/new')
-          && window.history.state) {
-        routerHistory.goBack();
-      }
 
       dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
+      dispatch(handleClose());
 
       //  If the response has no data then we can't do anything else.
       if (!response.data) {
@@ -806,6 +803,15 @@ export function changePollSettings(expiresIn, isMultiple) {
     type: COMPOSE_POLL_SETTINGS_CHANGE,
     expiresIn,
     isMultiple,
+  };
+}
+
+export function handleClose() {
+  return (dispatch) => {
+    dispatch(closeModal({
+      modalType: 'COMPOSE',
+      ignoreFocus: false,
+    }));
   };
 }
 

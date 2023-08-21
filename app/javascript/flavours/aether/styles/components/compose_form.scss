@@ -1,5 +1,6 @@
 .compose-form {
   padding-bottom: 20px;
+  width: 100%;
 
   .autosuggest-textarea__textarea {
     border-radius: var(--ui-border-radius) !important;
@@ -751,8 +752,8 @@
   min-height: 48px;
 }
 
-.compose-form {
-  width: 100%;
+.compose-modal {
+  width: 700px;
 }
 
 .autosuggest-textarea__textarea {
@@ -764,6 +765,7 @@
 }
 
 @media screen and (max-width: $no-gap-breakpoint) {
+  .compose-modal,
   .compose-form {
     width: 100vw;
   }
