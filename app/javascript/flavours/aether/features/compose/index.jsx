@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import spring from 'react-motion/lib/spring';
 
-import { mountCompose, unmountCompose, cycleElefriendCompose } from 'flavours/aether/actions/compose';
+import { mountCompose, unmountCompose } from 'flavours/aether/actions/compose';
 import Column from 'flavours/aether/components/column';
 import { mascot } from 'flavours/aether/initial_state';
 
@@ -27,15 +27,10 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, ownProps) => ({
-  elefriend: state.getIn(['compose', 'elefriend']),
   showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onClickElefriend () {
-    dispatch(cycleElefriendCompose());
-  },
-
   onMount () {
     dispatch(mountCompose());
   },
@@ -50,8 +45,6 @@ class Compose extends PureComponent {
   static propTypes = {
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
-    elefriend: PropTypes.number,
-    onClickElefriend: PropTypes.func,
     onMount: PropTypes.func,
     onUnmount: PropTypes.func,
     intl: PropTypes.object.isRequired,
@@ -67,13 +60,11 @@ class Compose extends PureComponent {
 
   render () {
     const {
-      elefriend,
       intl,
       multiColumn,
-      onClickElefriend,
       showSearch,
     } = this.props;
-    const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
+    const computedClass = classNames('drawer');
 
     if (multiColumn) {
       return (
@@ -88,8 +79,8 @@ class Compose extends PureComponent {
 
               <ComposeFormContainer />
 
-              <div className='drawer__inner__mastodon'>
-                {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}
+              <div className='drawer__inner__mascot'>
+                {mascot ? <img alt='' draggable='false' src={mascot} /> : ''}
               </div>
             </div>
 
