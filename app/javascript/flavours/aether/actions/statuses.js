@@ -1,8 +1,10 @@
 import api from '../api';
 
-import { ensureComposeIsVisible, setComposeToStatus } from './compose';
+import { setComposeToStatus } from './compose';
 import { importFetchedStatus, importFetchedStatuses } from './importer';
+import { openModal } from './modal';
 import { deleteFromTimelines } from './timelines';
+
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
@@ -94,7 +96,7 @@ export function redraft(status, raw_text, content_type) {
   };
 }
 
-export const editStatus = (id, routerHistory) => (dispatch, getState) => {
+export const editStatus = (id) => (dispatch, getState) => {
   let status = getState().getIn(['statuses', id]);
 
   if (status.get('poll')) {
@@ -105,7 +107,7 @@ export const editStatus = (id, routerHistory) => (dispatch, getState) => {
 
   api(getState).get(`/api/v1/statuses/${id}/source`).then(response => {
     dispatch(fetchStatusSourceSuccess());
-    ensureComposeIsVisible(getState, routerHistory);
+    dispatch(openModal({modalType: 'COMPOSE', modalProps: { }, }));
     dispatch(setComposeToStatus(status, response.data.text, response.data.spoiler_text, response.data.content_type));
   }).catch(error => {
     dispatch(fetchStatusSourceFail(error));
@@ -125,7 +127,7 @@ export const fetchStatusSourceFail = error => ({
   error,
 });
 
-export function deleteStatus(id, routerHistory, withRedraft = false) {
+export function deleteStatus(id, withRedraft = false) {
   return (dispatch, getState) => {
     let status = getState().getIn(['statuses', id]);
 
@@ -142,7 +144,8 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
       if (withRedraft) {
         dispatch(redraft(status, response.data.text, response.data.content_type));
 
-        ensureComposeIsVisible(getState, routerHistory);
+        dispatch(openModal({modalType: 'COMPOSE', modalProps: { },
+    }));
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
