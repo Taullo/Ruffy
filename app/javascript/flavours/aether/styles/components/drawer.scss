@@ -249,37 +249,3 @@
   height: 100%;
   background: rgba($base-overlay-background, 0.5);
 }
-
-@for $i from 0 through 3 {
-  .mbstobon-#{$i} .drawer__inner__mastodon {
-    @if $i == 3 {
-      background:
-        url('~flavours/aether/images/wave-drawer.png')
-          no-repeat
-          bottom /
-          100%
-          auto,
-        lighten($ui-base-color, 13%);
-    } @else {
-      background:
-        url('~flavours/aether/images/wave-drawer-glitched.png')
-          no-repeat
-          bottom /
-          100%
-          auto,
-        lighten($ui-base-color, 13%);
-    }
-
-    & > .mastodon {
-      background: url('~flavours/aether/images/mbstobon-ui-#{$i}.png')
-        no-repeat
-        left
-        bottom /
-        contain;
-
-      @if $i != 3 {
-        filter: contrast(50%) brightness(50%);
-      }
-    }
-  }
-}
