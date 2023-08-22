@@ -307,7 +307,9 @@ class MediaAttachment < ApplicationRecord
     end
 
     def file_processors(instance)
-      if VIDEO_MIME_TYPES.include?(instance.file_content_type)
+      if instance.file_content_type == 'image/webp'
+        [:webp_transcoder, :blurhash_transcoder]
+      elsif VIDEO_MIME_TYPES.include?(instance.file_content_type)
         [:transcoder, :blurhash_transcoder, :type_corrector]
       elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
         [:image_extractor, :transcoder, :type_corrector]

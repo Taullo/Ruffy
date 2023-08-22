@@ -21,6 +21,7 @@ RUN apt-get update && \
         git \
         libicu-dev \
         libidn11-dev \
+        libwebp6 \
         libpq-dev \
         libjemalloc-dev \
         zlib1g-dev \
