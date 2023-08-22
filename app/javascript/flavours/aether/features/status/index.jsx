@@ -367,7 +367,7 @@ class Status extends ImmutablePureComponent {
         modalProps: {
           message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
           confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+          onConfirm: () => dispatch(deleteStatus(status.get('id'), withRedraft)),
         },
       }));
     }

@@ -144,8 +144,7 @@ export function deleteStatus(id, withRedraft = false) {
       if (withRedraft) {
         dispatch(redraft(status, response.data.text, response.data.content_type));
 
-        dispatch(openModal({modalType: 'COMPOSE', modalProps: { },
-    }));
+        dispatch(openModal({modalType: 'COMPOSE', modalProps: { },}));
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
