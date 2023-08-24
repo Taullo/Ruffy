@@ -1,3 +1,7 @@
+.home-scroll .compose-form {
+  display: none;
+}
+
 .column__wrapper {
   display: flex;
   flex: 1 1 auto;
@@ -60,7 +64,6 @@ $ui-header-height: 55px;
   display: none;
   box-sizing: border-box;
   height: $ui-header-height;
-  position: sticky;
   top: 0;
   z-index: 3;
   justify-content: space-between;
@@ -104,7 +107,6 @@ $ui-header-height: 55px;
 
 .tabs-bar__wrapper {
   background: darken($ui-base-color, 8%);
-  position: sticky;
   top: $ui-header-height;
   padding-top: 0;
 

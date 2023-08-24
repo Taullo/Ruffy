@@ -241,6 +241,25 @@
 }
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  .ui__header__links button {
+    position: fixed;
+    bottom: 15px;
+    right: 0;
+    box-shadow: 1px 1px 4px var(--ui-shadow-color);
+    height: 60px;
+    border-radius: 100%;
+    width: 60px;
+    box-sizing: border-box;
+
+    i {
+      margin-left: 0 !important;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
   .columns-area__panels__main {
     width: 100%;
   }

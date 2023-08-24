@@ -1,4 +1,8 @@
 @media screen and (min-width: $no-gap-breakpoint) {
+  .home-scroll .compose-form {
+    display: block;
+  }
+
   .layout-single-column {
     .status {
       margin-top: 8px;
