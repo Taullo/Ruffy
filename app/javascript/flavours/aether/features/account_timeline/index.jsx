@@ -53,7 +53,7 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
 
   return {
     accountId,
-    acctName: state.getIn(['accounts', accountId, 'username']),
+    acctName: state.getIn(['accounts', accountId, 'acct']),
     remote: !!(state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username'])),
     remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
@@ -230,12 +230,7 @@ class AccountTimeline extends ImmutablePureComponent {
     
     if (attachments.size > 0) {
       mediaTitle = <h4><FormattedMessage id='account.media' defaultMessage='Media' /></h4>
-      if (!remote) {
-        mediaLink =  <NavLink className='navbutton' exact to={`/@${acctName}/media`}><FormattedMessage tagName='div' id='status.more' defaultMessage='More' /></NavLink>
-      }
-      else {
-        mediaLink =  <NavLink className='navbutton' exact to={`/@${acctName}@${remoteUrl}/media`}><FormattedMessage tagName='div' id='status.more' defaultMessage='More' /></NavLink>
-      }
+      mediaLink =  <NavLink className='navbutton' exact to={`/@${acctName}/media`}><FormattedMessage tagName='div' id='status.more' defaultMessage='More' /></NavLink>
     }
 
     const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
