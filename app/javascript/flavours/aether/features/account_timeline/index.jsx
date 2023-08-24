@@ -249,8 +249,8 @@ class AccountTimeline extends ImmutablePureComponent {
               ) : (
               <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} />
             ))}
-            {mediaLink}
           </div>
+          {mediaLink}
           {featuredPostsTitle}
           <StatusList
             alwaysPrepend
