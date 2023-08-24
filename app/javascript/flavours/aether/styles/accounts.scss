@@ -1256,3 +1256,38 @@ img.parallax[src*='/headers/original/missing.png'] {
     align-items: flex-end;
   }
 }
+
+.account-mini-gallery__container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+
+  .account-gallery__item {
+    flex: auto;
+    width: 148px;
+    height: 148px;
+
+    &:nth-child(n + 9) {
+      display: none;
+    }
+  }
+}
+
+.layout-single-column {
+  @media screen and (min-width: $widescreen-breakpoint) {
+    .account-mini-gallery__container {
+      .account-gallery__item {
+        &:first-child,
+        &:nth-child(2) {
+          height: 220px;
+          width: 220px;
+        }
+      }
+    }
+
+    .account-gallery__container .account-gallery__item {
+      width: 228px;
+      height: 228px;
+    }
+  }
+}

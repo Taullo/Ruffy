@@ -19,7 +19,6 @@ import ScrollableList from 'flavours/aether/components/scrollable_list';
 import { TimelineHint } from 'flavours/aether/components/timeline_hint';
 import AccountContainer from 'flavours/aether/containers/account_container';
 import ProfileColumnHeader from 'flavours/aether/features/account/components/profile_column_header';
-import HeaderContainer from 'flavours/aether/features/account_timeline/containers/header_container';
 import BundleColumnError from 'flavours/aether/features/ui/components/bundle_column_error';
 import Column from 'flavours/aether/features/ui/components/column';
 import { normalizeForLookup } from 'flavours/aether/reducers/accounts_map';
@@ -159,8 +158,6 @@ class Followers extends ImmutablePureComponent {
           hasMore={!forceEmptyState && hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
-          prepend={<HeaderContainer accountId={this.props.accountId} hideTabs />}
-          alwaysPrepend
           append={remoteMessage}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}

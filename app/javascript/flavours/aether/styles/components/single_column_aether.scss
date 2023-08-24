@@ -262,15 +262,6 @@
   }
 }
 
-@media screen and (min-width: $widescreen-breakpoint) {
-  .layout-single-column {
-    .account-gallery__item {
-      width: 228px;
-      height: 228px;
-    }
-  }
-}
-
 .scrollable-list--flex {
   min-height: 10%;
   display: flex;
