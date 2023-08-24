@@ -53,17 +53,6 @@
         = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
         = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
 
-  %h4= t('edit_profile.safety_and_privacy')
-
-  .fields-group
-    = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable'), recommended: true
-
-  .fields-group
-    = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
-
-  .fields-group
-    = f.input :hide_collections, as: :boolean, wrapper: :with_label, label: t('simple_form.labels.defaults.setting_hide_network'), hint: t('simple_form.hints.defaults.setting_hide_network')
-
   %h4= t('edit_profile.other')
 
   .fields-group
