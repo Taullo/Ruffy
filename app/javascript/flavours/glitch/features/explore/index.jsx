@@ -13,7 +13,6 @@ import ColumnHeader from 'flavours/glitch/components/column_header';
 import Search from 'flavours/glitch/features/compose/containers/search_container';
 import { trendsEnabled } from 'flavours/glitch/initial_state';
 
-import Links from './links';
 import SearchResults from './results';
 import Statuses from './statuses';
 import Suggestions from './suggestions';
@@ -88,15 +87,10 @@ class Explore extends PureComponent {
                     <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='People' />
                   </NavLink>
                 )}
-
-                <NavLink exact to='/explore/links'>
-                  <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
-                </NavLink>
               </div>
 
               <Switch>
                 <Route path='/explore/tags' component={Tags} />
-                <Route path='/explore/links' component={Links} />
                 <Route path='/explore/suggestions' component={Suggestions} />
                 <Route exact path={['/explore', '/explore/posts', '/search']}>
                   <Statuses multiColumn={multiColumn} />
