@@ -26,7 +26,7 @@
     padding: 20px;
     border-radius: 0 0 4px 4px;
     font-size: 15px;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     line-height: 20px;
     word-wrap: break-word;
     font-weight: 400;
@@ -54,11 +54,11 @@
       font-family: inherit;
       font-size: inherit;
       line-height: inherit;
-      color: lighten($darker-text-color, 10%);
+      color: var(--ui-font-dimmest-color);
     }
 
     a {
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       text-decoration: none;
 
       &:hover {
@@ -81,7 +81,7 @@
     text-transform: uppercase;
     font-weight: 700;
     font-size: 13px;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
   }
 
   .account {
@@ -104,7 +104,7 @@
 
 .trends-widget {
   h4 {
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
   }
 }
 
@@ -113,7 +113,7 @@
   border-radius: 4px;
   border: 2px dashed var(--ui-font-dimmer-color);
   text-align: center;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   margin-bottom: 10px;
 }
 
@@ -123,7 +123,7 @@
   border-radius: 4px;
   background: $ui-base-color;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-  color: $secondary-text-color;
+  color: var(--ui-font-secondary-color);
   font-weight: 400;
   margin-bottom: 10px;
 
@@ -166,7 +166,7 @@
 
     .fa {
       margin-inline-end: 5px;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
     }
   }
 
@@ -193,7 +193,7 @@
   background: $base-shadow-color;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   font-size: 14px;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   margin-bottom: 10px;
 }
 
@@ -241,13 +241,13 @@
       flex: 1 1 auto;
       font-size: 18px;
       font-weight: 700;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
       .fa {
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
       }
 
       small {
@@ -255,7 +255,7 @@
         font-weight: 400;
         font-size: 15px;
         margin-top: 8px;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
       }
     }
 
@@ -263,7 +263,7 @@
       &,
       .fa,
       small {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
       }
     }
 
@@ -293,7 +293,7 @@
   thead th {
     text-align: center;
     text-transform: uppercase;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     font-weight: 700;
     padding: 10px;
 
@@ -317,11 +317,11 @@
     text-align: center;
     font-size: 15px;
     font-weight: 500;
-    color: $primary-text-color;
+    color: var(--ui-font-color);
 
     small {
       display: block;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       font-weight: 400;
       font-size: 14px;
     }
@@ -330,7 +330,7 @@
   tbody td.accounts-table__extra {
     width: 120px;
     text-align: end;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     padding-inline-end: 16px;
 
     a {
@@ -362,11 +362,13 @@
     }
 
     &.passive {
-      color: $passive-text-color;
+      /* TODO: Figure out what this is for. Used to use yellow var color */
+      color: rgb(var(--ui-highlight-color));
     }
 
     &.active.passive {
-      color: $active-passive-text-color;
+      /* TODO: Figure out what this is for. Used to use green var color */
+      color: rgb(var(--ui-highlight-color));
     }
   }
 

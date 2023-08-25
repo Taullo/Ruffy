@@ -17,11 +17,11 @@
 
     &__text {
       padding: 15px;
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
 
       strong {
         font-weight: 700;
-        color: $primary-text-color;
+        color: var(--ui-font-color);
       }
     }
   }

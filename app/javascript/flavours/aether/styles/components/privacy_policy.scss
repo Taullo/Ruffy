@@ -12,7 +12,7 @@
 }
 
 .prose {
-  color: var(--ui-font-off-color);
+  color: var(--ui-font-secondary-color);
   font-size: 1rem;
   line-height: 1.5rem;
 
@@ -94,7 +94,7 @@
   ul > li::before {
     content: '';
     position: absolute;
-    background-color: $darker-text-color;
+    background-color: var(--ui-font-dimmest-color);
     border-radius: 50%;
     width: 0.375em;
     height: 0.375em;
@@ -145,7 +145,7 @@
   h6,
   strong,
   b {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
     font-weight: 700;
   }
 

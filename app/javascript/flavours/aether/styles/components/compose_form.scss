@@ -31,7 +31,7 @@
   font-family: $font-sans-serif, sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: $lighter-text-color;
+  color: var(--ui-font-brighter-color);
 
   &.character-counter--over {
     color: $warning-red;
@@ -92,7 +92,7 @@
 }
 
 .compose-form__warning {
-  color: $inverted-text-color;
+  color: var(--ui-inverted-font-color);
   margin-bottom: 15px;
   background: $ui-primary-color;
   box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
@@ -102,7 +102,7 @@
   font-weight: 400;
 
   a {
-    color: $lighter-text-color;
+    color: var(--ui-font-brighter-color);
     font-weight: 500;
     text-decoration: underline;
 
@@ -290,7 +290,7 @@
     margin-inline-start: 2px;
     width: 24px;
     height: 24px;
-    color: $lighter-text-color;
+    color: var(--ui-font-brighter-color);
     font-size: 18px;
     line-height: 24px;
     text-align: center;
@@ -313,7 +313,7 @@
   box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
   background: $ui-secondary-color;
   border-radius: 0 0 4px 4px;
-  color: $inverted-text-color;
+  color: var(--ui-inverted-font-color);
   font-size: 14px;
   padding: 6px;
 }
@@ -371,7 +371,7 @@
   & > .account.small {
     .display-name {
       & > span {
-        color: $lighter-text-color;
+        color: var(--ui-font-brighter-color);
       }
     }
   }
@@ -413,7 +413,7 @@
 
   .icon-button {
     flex: 0 1 auto;
-    color: var(--ui-font-off-color);
+    color: var(--ui-font-secondary-color);
     font-size: 14px;
     font-weight: 500;
     padding: 10px;
@@ -457,7 +457,7 @@
 .upload-progress {
   display: flex;
   padding: 10px;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   overflow: hidden;
 
   .fa {
@@ -594,12 +594,12 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  color: $inverted-text-color;
+  color: var(--ui-inverted-font-color);
   cursor: pointer;
 
   .privacy-dropdown__option__content {
     flex: 1 1 auto;
-    color: $lighter-text-color;
+    color: var(--ui-font-brighter-color);
 
     &:not(:first-child) {
       margin-inline-start: 10px;
@@ -607,7 +607,7 @@
 
     strong {
       display: block;
-      color: $inverted-text-color;
+      color: var(--ui-inverted-font-color);
       font-weight: 500;
     }
   }
@@ -615,13 +615,13 @@
   &:hover,
   &.active {
     background: rgb(var(--ui-highlight-color));
-    color: $primary-text-color;
+    color: var(--ui-font-color);
 
     .privacy-dropdown__option__content {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
 
       strong {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
       }
     }
   }
@@ -700,7 +700,7 @@
         }
 
         &__common-name {
-          color: var(--ui-font-off-color);
+          color: var(--ui-font-secondary-color);
         }
 
         &.active {

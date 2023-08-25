@@ -12,7 +12,7 @@ body {
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
-  color: $primary-text-color;
+  color: var(--ui-font-color);
   text-rendering: optimizelegibility;
   font-feature-settings: 'kern';
   text-size-adjust: none;
@@ -129,7 +129,7 @@ body {
   &.error {
     position: absolute;
     text-align: center;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     background: $ui-base-color;
     width: 100%;
     height: 100%;

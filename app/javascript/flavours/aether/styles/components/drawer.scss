@@ -66,7 +66,7 @@
     padding: 15px 5px 13px;
     height: 48px;
     flex: 1 1 auto;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -105,7 +105,7 @@
 
 .navigation-bar {
   padding: 10px;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   display: flex;
   align-items: center;
 
@@ -116,7 +116,7 @@
 
   .acct {
     display: block;
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -162,13 +162,13 @@
   & > .hashtag {
     display: block;
     padding: 10px;
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     text-decoration: none;
 
     &:hover,
     &:active,
     &:focus {
-      color: lighten($secondary-text-color, 4%);
+      color: var(--ui-font-secondary-color);
       text-decoration: underline;
     }
   }

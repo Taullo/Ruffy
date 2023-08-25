@@ -25,7 +25,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       text-decoration: none;
       outline: 0;
       padding: 12px 16px;
@@ -89,7 +89,7 @@
 
   .name {
     flex: 1 1 auto;
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     width: calc(100% - 90px);
 
     .username {

@@ -79,7 +79,7 @@
 .error-modal,
 .embed-modal {
   background: $ui-secondary-color;
-  color: $inverted-text-color;
+  color: var(--ui-inverted-font-color);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -165,7 +165,7 @@
 
   .onboarding-modal__nav,
   .error-modal__nav {
-    color: $lighter-text-color;
+    color: var(--ui-font-brighter-color);
     border: 0;
     font-size: 14px;
     font-weight: 500;
@@ -179,18 +179,18 @@
     &:hover,
     &:focus,
     &:active {
-      color: darken($lighter-text-color, 4%);
+      color: var(--ui-font-brighter-color);
       background-color: darken($ui-secondary-color, 16%);
     }
 
     &.onboarding-modal__done,
     &.onboarding-modal__next {
-      color: $inverted-text-color;
+      color: var(--ui-inverted-font-color);
 
       &:hover,
       &:focus,
       &:active {
-        color: lighten($inverted-text-color, 4%);
+        color: var(--ui-inverted-font-color);
       }
     }
   }
@@ -242,7 +242,7 @@
   h1 {
     font-size: 18px;
     font-weight: 500;
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
     margin-bottom: 20px;
   }
 
@@ -252,7 +252,7 @@
     &:hover,
     &:focus,
     &:active {
-      color: lighten($highlight-text-color, 4%);
+      color: rgb(var(--ui-highlight-color));
     }
   }
 
@@ -262,7 +262,7 @@
 
   p {
     font-size: 16px;
-    color: $lighter-text-color;
+    color: var(--ui-font-brighter-color);
     margin-top: 10px;
     margin-bottom: 10px;
 
@@ -273,7 +273,7 @@
     strong {
       font-weight: 500;
       background: $ui-base-color;
-      color: $secondary-text-color;
+      color: rgb(var(--ui-highlight-color));
       border-radius: 4px;
       font-size: 14px;
       padding: 3px 6px;
@@ -326,7 +326,7 @@
 
   &__label {
     font-weight: 500;
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
     margin-bottom: 5px;
     text-transform: uppercase;
     font-size: 12px;
@@ -334,7 +334,7 @@
 
   &__case {
     background: $ui-base-color;
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     font-weight: 500;
     padding: 10px;
     border-radius: 4px;
@@ -351,7 +351,7 @@
 
   .figure {
     background: darken($ui-base-color, 8%);
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     margin-bottom: 20px;
     border-radius: 4px;
     padding: 10px;
@@ -399,7 +399,7 @@
   }
 
   .column-header {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
   }
 }
 
@@ -476,7 +476,7 @@
   }
 
   .status__content__spoiler-link {
-    color: lighten($secondary-text-color, 8%);
+    color: var(--ui-font-secondary-color);
   }
 }
 
@@ -521,7 +521,7 @@
   & > div {
     flex: 1 1 auto;
     text-align: end;
-    color: $lighter-text-color;
+    color: var(--ui-font-brighter-color);
     padding-inline-end: 10px;
   }
 
@@ -680,7 +680,7 @@
 
     & > .poll__option__text {
       font-size: 13px;
-      color: var(--ui-font-off-color);
+      color: var(--ui-font-secondary-color);
 
       strong {
         font-size: 17px;
@@ -705,7 +705,7 @@
     display: block;
     box-sizing: border-box;
     width: 100%;
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
     background: $simple-background-color;
     padding: 10px;
     font-family: inherit;
@@ -738,15 +738,15 @@
   }
 
   .button.button-secondary {
-    border-color: $inverted-text-color;
-    color: $inverted-text-color;
+    border-color: var(--ui-inverted-font-color);
+    color: var(--ui-inverted-font-color);
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      border-color: lighten($inverted-text-color, 15%);
-      color: lighten($inverted-text-color, 15%);
+      border-color: var(--ui-inverted-font-color);
+      color: var(--ui-inverted-font-color);
     }
   }
 
@@ -987,14 +987,14 @@
 .mute-modal__cancel-button,
 .block-modal__cancel-button {
   background-color: transparent;
-  color: $lighter-text-color;
+  color: var(--ui-font-brighter-color);
   font-size: 14px;
   font-weight: 500;
 
   &:hover,
   &:focus,
   &:active {
-    color: darken($lighter-text-color, 4%);
+    color: var(--ui-font-brighter-color);
     background-color: transparent;
   }
 }
@@ -1032,7 +1032,7 @@
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
     display: inline-block;
     width: auto;
     outline: 0;
@@ -1065,7 +1065,7 @@
     align-items: center;
 
     &__label {
-      color: $inverted-text-color;
+      color: var(--ui-inverted-font-color);
       margin: 0;
       margin-inline-start: 8px;
     }
@@ -1094,7 +1094,7 @@
   }
 
   .status__content {
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
     font-size: 19px;
     line-height: 24px;
 
@@ -1152,7 +1152,7 @@
       padding: 10px;
       font-family: mastodon-font-monospace, monospace;
       background: $ui-base-color;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       font-size: 14px;
       margin: 0;
       margin-bottom: 15px;
@@ -1240,7 +1240,7 @@
     }
 
     strong {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       font-size: 14px;
       font-weight: 500;
       display: block;
@@ -1277,7 +1277,7 @@
   }
 
   .account__display-name strong {
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
   }
 
   .status__content__spoiler {
@@ -1371,7 +1371,7 @@ img.modal-warning {
       }
 
       p {
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
         margin-bottom: 20px;
       }
 
@@ -1406,8 +1406,8 @@ img.modal-warning {
     display: block;
     font-family: inherit;
     background: darken($ui-base-color, 8%);
-    border: 1px solid $highlight-text-color;
-    color: $darker-text-color;
+    border: 1px solid rgb(var(--ui-highlight-color));
+    color: var(--ui-font-dimmest-color);
     border-radius: 4px;
     padding: 6px 9px;
     line-height: 22px;

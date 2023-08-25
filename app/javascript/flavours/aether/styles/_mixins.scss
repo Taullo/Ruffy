@@ -59,7 +59,7 @@
   box-shadow: none;
   font-family: inherit;
   background: $ui-base-color;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   border-radius: 4px;
   font-size: 14px;
   margin: 0;
@@ -71,12 +71,12 @@
   padding: 10px 14px;
   padding-bottom: 14px;
   margin-top: 10px;
-  color: $light-text-color;
+  color: var(--ui-font-bright-color);
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
 
   h4 {
     text-transform: uppercase;
-    color: $light-text-color;
+    color: var(--ui-font-bright-color);
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -92,6 +92,6 @@
 
   em {
     font-weight: 500;
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
   }
 }

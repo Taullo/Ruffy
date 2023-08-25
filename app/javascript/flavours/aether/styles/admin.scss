@@ -46,7 +46,7 @@ $content-width: 840px;
 
       &__icon {
         display: block;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
         text-decoration: none;
         flex: 0 0 auto;
         font-size: 18px;
@@ -107,7 +107,7 @@ $content-width: 840px;
       a {
         display: block;
         padding: 15px;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
         text-decoration: none;
         transition: all 200ms linear;
         transition-property: color, background-color;
@@ -121,7 +121,7 @@ $content-width: 840px;
         }
 
         &:hover {
-          color: $primary-text-color;
+          color: var(--ui-font-color);
           background-color: darken($ui-base-color, 5%);
           transition: all 100ms linear;
           transition-property: color, background-color;
@@ -144,7 +144,7 @@ $content-width: 840px;
       }
 
       .simple-navigation-active-leaf a {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
         background-color: rgb(var(--ui-highlight-color));
         border-bottom: 0;
         border-radius: 0;
@@ -225,7 +225,7 @@ $content-width: 840px;
           align-items: center;
           padding: 7px 10px;
           border-radius: 4px;
-          color: $darker-text-color;
+          color: var(--ui-font-dimmest-color);
           text-decoration: none;
           font-weight: 500;
           gap: 5px;
@@ -255,7 +255,7 @@ $content-width: 840px;
         font-size: 12px;
         display: block;
         font-weight: 500;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
         line-height: 18px;
       }
 
@@ -266,14 +266,14 @@ $content-width: 840px;
     }
 
     h2 {
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       font-size: 24px;
       line-height: 36px;
       font-weight: 700;
     }
 
     h3 {
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       font-size: 20px;
       line-height: 28px;
       font-weight: 400;
@@ -284,7 +284,7 @@ $content-width: 840px;
       text-transform: uppercase;
       font-size: 13px;
       font-weight: 700;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       padding-bottom: 8px;
       margin-bottom: 8px;
       border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -292,13 +292,13 @@ $content-width: 840px;
 
     h6 {
       font-size: 16px;
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       line-height: 28px;
       font-weight: 500;
     }
 
     .fields-group h6 {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       font-weight: 500;
     }
 
@@ -314,7 +314,7 @@ $content-width: 840px;
     .directory__tag h4 {
       font-size: 18px;
       font-weight: 700;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       text-transform: none;
       padding-bottom: 0;
       margin-bottom: 0;
@@ -324,11 +324,11 @@ $content-width: 840px;
     & > p {
       font-size: 14px;
       line-height: 21px;
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       margin-bottom: 20px;
 
       strong {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
         font-weight: 500;
 
         @each $lang in $cjk-langs {
@@ -417,7 +417,7 @@ hr.spacer {
 body,
 .admin-wrapper .content {
   .muted-hint {
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
 
     a {
       color: rgb(var(--ui-highlight-color));
@@ -507,7 +507,7 @@ body,
 
     a {
       display: inline-block;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       text-decoration: none;
       text-transform: uppercase;
       font-size: 12px;
@@ -515,7 +515,7 @@ body,
       border-bottom: 2px solid $ui-base-color;
 
       &:hover {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
         border-bottom: 2px solid lighten($ui-base-color, 5%);
       }
 
@@ -564,7 +564,7 @@ body,
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -690,7 +690,7 @@ body,
   border-bottom: 1px solid darken($ui-base-color, 8%);
   position: relative;
   text-decoration: none;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   font-size: 14px;
 
   &:first-child {
@@ -733,7 +733,7 @@ body,
   a,
   .username,
   .target {
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     text-decoration: none;
     font-weight: 500;
   }
@@ -752,7 +752,7 @@ a.name-tag,
 a.inline-name-tag,
 .inline-name-tag {
   text-decoration: none;
-  color: $secondary-text-color;
+  color: var(--ui-font-secondary-color);
 
   .username {
     font-weight: 500;
@@ -818,7 +818,7 @@ a.name-tag,
     font-weight: 500;
 
     a {
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
     }
   }
 
@@ -855,7 +855,7 @@ a.name-tag,
     &__stats {
       flex: 0 0 auto;
       font-weight: 500;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       text-transform: uppercase;
       text-align: end;
 
@@ -866,7 +866,7 @@ a.name-tag,
         &:focus,
         &:hover,
         &:active {
-          color: lighten($darker-text-color, 8%);
+          color: var(--ui-font-dimmest-color);
         }
       }
 
@@ -892,7 +892,7 @@ a.name-tag,
         flex: 0 0 auto;
         box-sizing: border-box;
         width: 150px;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
 
         &,
         .username {
@@ -919,7 +919,7 @@ a.name-tag,
         width: 100%;
         padding: 15px;
         text-decoration: none;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
       }
     }
   }
@@ -980,7 +980,7 @@ a.name-tag,
   .account__header__content {
     box-sizing: border-box;
     padding: 20px;
-    color: $primary-text-color;
+    color: var(--ui-font-color);
   }
 }
 
@@ -1017,7 +1017,7 @@ a.name-tag,
       font-weight: 500;
       font-size: 18px;
       line-height: 1.5;
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       text-decoration: none;
       margin-bottom: 10px;
 
@@ -1030,7 +1030,7 @@ a.name-tag,
       &:hover,
       &:focus,
       &:active {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
       }
     }
 
@@ -1111,7 +1111,7 @@ a.name-tag,
 
   &__table {
     &__number {
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       padding: 10px;
     }
 
@@ -1133,7 +1133,7 @@ a.name-tag,
 
     &__label {
       font-weight: 700;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
     }
 
     &__box {
@@ -1141,7 +1141,7 @@ a.name-tag,
       background: rgb(var(--ui-highlight-color));
       padding: 10px;
       font-weight: 500;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       width: 52px;
       margin: 1px;
 
@@ -1179,14 +1179,14 @@ a.name-tag,
       margin-inline-end: 10px;
       font-weight: 500;
       font-size: 28px;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
     }
 
     &__change {
       display: block;
       font-weight: 500;
       font-size: 18px;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       margin-bottom: -3px;
 
       &.positive {
@@ -1203,7 +1203,7 @@ a.name-tag,
     padding: 0 20px;
     padding-bottom: 10px;
     text-transform: uppercase;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     font-weight: 500;
   }
 
@@ -1279,7 +1279,7 @@ a.sparkline {
 
     &__value {
       text-align: end;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       padding: 11px 10px;
     }
 
@@ -1425,14 +1425,14 @@ a.sparkline {
     }
 
     .display-name {
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       padding-bottom: 15px;
       font-size: 15px;
       line-height: 20px;
 
       bdi {
         display: block;
-        color: $primary-text-color;
+        color: var(--ui-font-color);
         font-weight: 700;
       }
     }
@@ -1462,7 +1462,7 @@ a.sparkline {
     }
 
     a {
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       text-decoration: none;
       unicode-bidi: isolate;
 
@@ -1513,14 +1513,14 @@ a.sparkline {
     &__item {
       padding: 15px 0;
       text-align: center;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       font-weight: 600;
       font-size: 15px;
       line-height: 21px;
 
       small {
         display: block;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
         font-weight: 400;
         font-size: 13px;
         line-height: 18px;
@@ -1564,13 +1564,13 @@ a.sparkline {
     }
 
     &__header {
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       font-size: 15px;
       line-height: 20px;
       margin-bottom: 4px;
 
       .username {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
         font-weight: 500;
         margin-inline-end: 5px;
 
@@ -1597,7 +1597,7 @@ a.sparkline {
       line-height: 20px;
       word-wrap: break-word;
       font-weight: 400;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
 
       p {
         margin-bottom: 20px;
@@ -1704,7 +1704,7 @@ a.sparkline {
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 400;
-  color: $primary-text-color;
+  color: var(--ui-font-color);
   box-sizing: border-box;
   min-height: 100%;
 
@@ -1734,14 +1734,14 @@ a.sparkline {
     list-style: disc;
     padding-inline-start: 15px;
     margin-bottom: 20px;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
 
     &:last-child {
       margin-bottom: 0;
     }
 
     &__text {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
     }
   }
 
@@ -1762,7 +1762,7 @@ a.sparkline {
       }
 
       &__meta {
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
       }
 
       a {
@@ -1865,7 +1865,7 @@ a.sparkline {
   &__entry {
     h5 {
       font-weight: 500;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       line-height: 25px;
       margin-bottom: 16px;
     }

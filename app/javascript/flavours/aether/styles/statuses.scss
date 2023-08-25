@@ -77,13 +77,13 @@
   flex: 0 auto;
   font-size: 14px;
   background: darken($ui-highlight-color, 2%);
-  color: $primary-text-color;
+  color: var(--ui-font-color);
   text-transform: none;
   line-height: 1.2;
   height: auto;
   vertical-align: middle;
   margin-inline-end: 5px;
-  fill: $primary-text-color;
+  fill: var(--ui-font-color);
 
   @media screen and (max-width: $no-gap-breakpoint) {
     display: none;

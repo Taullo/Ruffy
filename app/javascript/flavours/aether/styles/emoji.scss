@@ -114,7 +114,7 @@
 
   font-size: 13px;
   display: inline-block;
-  color: $inverted-text-color;
+  color: var(--ui-inverted-font-color);
 
   .emoji-mart-emoji {
     padding: 6px;

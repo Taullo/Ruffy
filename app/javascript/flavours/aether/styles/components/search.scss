@@ -37,7 +37,7 @@
         border: 0;
         font: inherit;
         background: transparent;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
         padding: 10px;
         cursor: pointer;
         border-radius: 4px;
@@ -60,17 +60,17 @@
         &:active,
         &.selected {
           background: rgb(var(--ui-highlight-color));
-          color: $primary-text-color;
+          color: var(--ui-font-color);
 
           .icon-button {
-            color: $primary-text-color;
+            color: var(--ui-font-color);
           }
         }
 
         mark {
           background: transparent;
           font-weight: 700;
-          color: $primary-text-color;
+          color: var(--ui-font-color);
         }
       }
     }
@@ -96,7 +96,7 @@
   background: transparent;
 
   &::placeholder {
-    color: lighten($darker-text-color, 4%);
+    color: var(--ui-font-dimmest-color);
   }
 
   &::-moz-focus-inner {
@@ -132,7 +132,7 @@
     font-size: 18px;
     width: 18px;
     height: 18px;
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     cursor: default;
     pointer-events: none;
 
@@ -182,7 +182,7 @@
 
 .search-results__info {
   padding: 20px;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   text-align: center;
 }
 
@@ -251,7 +251,7 @@
       font-size: 24px;
       font-weight: 500;
       text-align: end;
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       text-decoration: none;
     }
 

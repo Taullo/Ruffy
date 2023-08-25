@@ -1,5 +1,5 @@
 .error-boundary {
-  color: $primary-text-color;
+  color: var(--ui-font-color);
   font-size: 15px;
   line-height: 20px;
 
@@ -11,7 +11,7 @@
   }
 
   a {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
     text-decoration: underline;
   }
 

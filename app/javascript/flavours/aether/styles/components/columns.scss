@@ -354,7 +354,7 @@ $ui-header-height: 55px;
 .column-header__button {
   background: lighten($ui-base-color, 4%);
   border: 0;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
@@ -362,23 +362,23 @@ $ui-header-height: 55px;
   transition: color 0.2s;
 
   &:hover {
-    color: lighten($darker-text-color, 7%);
+    color: var(--ui-font-dimmest-color);
   }
 
   &.active {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
     border-color: rgb(var(--ui-highlight-color));
     background: lighten($ui-base-color, 8%);
 
     &:hover {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       background: lighten($ui-base-color, 8%);
     }
   }
 
   //  glitch - added focus ring for keyboard navigation
   // &:focus {
-  //   text-shadow: 0 0 4px $primary-text-color;
+  //   text-shadow: 0 0 4px var(--ui-font-color);
   // }
 
   &:disabled {
@@ -394,29 +394,29 @@ $ui-header-height: 55px;
 
   button {
     border: 0;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     cursor: pointer;
     border-bottom: 4px solid;
     transition: color 0.2s;
 
     &:hover {
-      color: lighten($darker-text-color, 7%);
+      color: var(--ui-font-dimmest-color);
     }
 
     &.active {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       border-color: rgb(var(--ui-highlight-color));
       background: lighten($ui-base-color, 8%);
 
       &:hover {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
         background: lighten($ui-base-color, 8%);
       }
     }
 
     //  glitch - added focus ring for keyboard navigation
     // &:focus {
-    //   text-shadow: 0 0 4px $primary-text-color;
+    //   text-shadow: 0 0 4px var(--ui-font-color);
     // }
 
     &:disabled {
@@ -461,7 +461,7 @@ $ui-header-height: 55px;
   max-height: 100rem;
   overflow: hidden;
   overflow-y: auto;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   transition:
     max-height 150ms ease-in-out,
     opacity 300ms linear;
@@ -507,7 +507,7 @@ $ui-header-height: 55px;
 .column-header__setting-btn {
   &:hover,
   &:focus {
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     text-decoration: underline;
   }
 }
@@ -607,7 +607,7 @@ $ui-header-height: 55px;
 
 .limited-account-hint {
   p {
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 20px;
@@ -670,7 +670,7 @@ $ui-header-height: 55px;
 
   &__message {
     text-align: center;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     font-size: 15px;
     line-height: 22px;
 
@@ -679,7 +679,7 @@ $ui-header-height: 55px;
       line-height: 33px;
       font-weight: 700;
       margin-bottom: 15px;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
     }
 
     p {
@@ -729,7 +729,7 @@ $ui-header-height: 55px;
 }
 
 .column-settings__section {
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   cursor: default;
   display: block;
   font-weight: 500;
@@ -750,7 +750,7 @@ $ui-header-height: 55px;
       @include search-input;
 
       &::placeholder {
-        color: lighten($darker-text-color, 4%);
+        color: var(--ui-font-dimmest-color);
       }
 
       &::-moz-focus-inner {
@@ -792,7 +792,7 @@ $ui-header-height: 55px;
         &:active,
         &:focus {
           background: lighten($ui-base-color, 12%);
-          color: lighten($darker-text-color, 4%);
+          color: var(--ui-font-dimmest-color);
         }
       }
     }
@@ -800,7 +800,7 @@ $ui-header-height: 55px;
     &__multi-value__label,
     &__input,
     &__input-container {
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
     }
 
     &__clear-indicator,
@@ -832,7 +832,7 @@ $ui-header-height: 55px;
     }
 
     &__option {
-      color: $inverted-text-color;
+      color: var(--ui-inverted-font-color);
       border-radius: 4px;
       font-size: 14px;
 
@@ -873,7 +873,7 @@ $ui-header-height: 55px;
   }
 
   p {
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     margin-bottom: 15px;
     text-align: center;
   }
@@ -900,7 +900,7 @@ $ui-header-height: 55px;
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
   }
 }
 
@@ -940,7 +940,7 @@ $ui-header-height: 55px;
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
   }
 }
 
@@ -971,7 +971,7 @@ $ui-header-height: 55px;
     font-size: 0.9rem;
     line-height: 1.6rem;
     font-weight: 500;
-    color: $primary-text-color;
+    color: var(--ui-font-color);
 
     p {
       margin-bottom: 15px;
@@ -1129,7 +1129,7 @@ $ui-header-height: 55px;
     color: rgb(var(--ui-highlight-color));
 
     &:hover {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       background: transparent;
     }
   }

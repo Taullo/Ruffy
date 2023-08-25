@@ -36,7 +36,7 @@
 .story {
   display: flex;
   align-items: center;
-  color: $primary-text-color;
+  color: var(--ui-font-color);
   text-decoration: none;
   padding: 15px 0;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
@@ -56,7 +56,7 @@
     flex: 1 1 auto;
 
     &__publisher {
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       margin-bottom: 4px;
     }
 
@@ -68,7 +68,7 @@
     }
 
     &__shared {
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
     }
   }
 

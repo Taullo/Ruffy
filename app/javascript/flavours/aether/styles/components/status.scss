@@ -87,7 +87,7 @@
   }
 
   a {
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     text-decoration: none;
     unicode-bidi: isolate;
 
@@ -255,18 +255,18 @@
 
   &.light {
     .status__relative-time {
-      color: $lighter-text-color;
+      color: var(--ui-font-brighter-color);
     }
 
     .status__display-name {
-      color: $inverted-text-color;
+      color: var(--ui-inverted-font-color);
     }
 
     .display-name {
-      color: $light-text-color;
+      color: var(--ui-font-bright-color);
 
       strong {
-        color: $inverted-text-color;
+        color: var(--ui-inverted-font-color);
       }
     }
 
@@ -462,7 +462,7 @@
   padding: 0 10px;
 
   .detailed-status__display-name {
-    color: lighten($inverted-text-color, 16%);
+    color: var(--ui-inverted-font-color);
 
     span {
       display: inline;
@@ -652,7 +652,7 @@
 .status__display-name,
 .account__display-name {
   strong {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
   }
 }
 
@@ -683,7 +683,7 @@ a.status__display-name,
 }
 
 .detailed-status__display-name {
-  color: $secondary-text-color;
+  color: var(--ui-font-secondary-color);
   display: block;
   line-height: 24px;
   margin-bottom: 15px;
@@ -698,7 +698,7 @@ a.status__display-name,
 
   strong {
     font-size: 16px;
-    color: $primary-text-color;
+    color: var(--ui-font-color);
   }
 }
 
@@ -772,7 +772,7 @@ a.status__display-name,
     button,
     a {
       display: inline;
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
       background: transparent;
       border: 0;
       padding: 0 8px;
@@ -783,7 +783,7 @@ a.status__display-name,
       &:hover,
       &:active,
       &:focus {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
       }
     }
 
@@ -832,7 +832,7 @@ a.status-card {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -847,7 +847,7 @@ a.status-card {
 }
 
 .status-card__description {
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -1040,7 +1040,7 @@ a.status-card.compact:hover {
       inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-inline-start: 4px solid $highlight-text-color;
+      border-inline-start: 4px solid rgb(var(--ui-highlight-color));
       pointer-events: none;
     }
   }
@@ -1133,7 +1133,7 @@ a.status-card.compact:hover {
     }
 
     .display-name {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       text-decoration: none;
 
       strong,
@@ -1144,7 +1144,7 @@ a.status-card.compact:hover {
       }
 
       span {
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
       }
     }
   }
@@ -1167,7 +1167,7 @@ a.status-card.compact:hover {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   aspect-ratio: 16 / 9;
 
   i {

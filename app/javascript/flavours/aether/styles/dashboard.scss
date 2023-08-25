@@ -37,7 +37,7 @@
     text-align: center;
     font-weight: 500;
     font-size: 24px;
-    color: $primary-text-color;
+    color: var(--ui-font-color);
     margin-bottom: 20px;
     line-height: 30px;
   }
@@ -48,7 +48,7 @@
 
   &__label {
     font-size: 14px;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     text-align: center;
     font-weight: 500;
   }

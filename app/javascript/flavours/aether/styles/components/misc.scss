@@ -86,7 +86,7 @@
   }
 
   &.button-alternative {
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
     background: $ui-primary-color;
 
     &:active,
@@ -107,7 +107,7 @@
   }
 
   &.button-secondary {
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     background: transparent;
     padding: 6px 17px;
     border: 1px solid lighten($ui-base-color, 12%);
@@ -117,7 +117,7 @@
     &:hover {
       background: lighten($ui-base-color, 4%);
       border-color: lighten($ui-base-color, 16%);
-      color: lighten($darker-text-color, 4%);
+      color: var(--ui-font-dimmest-color);
       text-decoration: none;
     }
 
@@ -153,7 +153,7 @@
       &:focus,
       &:hover {
         background: $valid-value-color;
-        color: $primary-text-color;
+        color: var(--ui-font-color);
       }
     }
 
@@ -165,7 +165,7 @@
       &:focus,
       &:hover {
         background: $error-value-color;
-        color: $primary-text-color;
+        color: var(--ui-font-color);
       }
     }
   }
@@ -236,21 +236,21 @@
   }
 
   &.inverted {
-    color: $lighter-text-color;
+    color: var(--ui-font-brighter-color);
 
     &:hover,
     &:active,
     &:focus {
-      color: darken($lighter-text-color, 7%);
-      background-color: rgba($lighter-text-color, 0.15);
+      color: var(--ui-font-brighter-color);
+      background-color: rgba($ui-base-lighter-color, 0.15);
     }
 
     &:focus {
-      background-color: rgba($lighter-text-color, 0.3);
+      background-color: rgba($ui-base-lighter-color, 0.3);
     }
 
     &.disabled {
-      color: lighten($lighter-text-color, 7%);
+      color: var(--ui-font-brighter-color);
       background-color: transparent;
     }
 
@@ -258,7 +258,7 @@
       color: rgb(var(--ui-highlight-color));
 
       &.disabled {
-        color: lighten($highlight-text-color, 13%);
+        color: rgb(var(--ui-highlight-color));
       }
     }
   }
@@ -266,7 +266,7 @@
   &.overlayed {
     box-sizing: content-box;
     background: rgba($base-overlay-background, 0.6);
-    color: rgba($primary-text-color, 0.7);
+    color: rgb(var(--ui-font-color));
     border-radius: var(--ui-border-radius);
     padding: 2px;
 
@@ -302,7 +302,7 @@
 }
 
 .text-icon-button {
-  color: $lighter-text-color;
+  color: var(--ui-font-brighter-color);
   border: 0;
   border-radius: var(--ui-border-radius);
   background: transparent;
@@ -315,18 +315,19 @@
   &:hover,
   &:active,
   &:focus {
-    color: darken($lighter-text-color, 7%);
-    background-color: rgba($lighter-text-color, 0.15);
+    color: var(--ui-font-brighter-color);
+    background-color: rgba($ui-base-lighter-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
 
   &:focus {
-    background-color: rgba($lighter-text-color, 0.3);
+    background-color: rgba($ui-base-lighter-color, 0.3);
   }
 
   &.disabled {
-    color: lighten($lighter-text-color, 20%);
+    /* TODO: Color used to be 20% brighter */
+    color: var(--ui-font-brighter-color);
     background-color: transparent;
     cursor: default;
   }
@@ -411,7 +412,7 @@ body > [data-popper-placement] {
   text-decoration: none;
 
   &:hover {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
     text-decoration: underline;
   }
 }
@@ -773,7 +774,7 @@ body > [data-popper-placement] {
     box-sizing: border-box;
     text-decoration: none;
     background: var(--ui-secondary-color);
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -784,7 +785,7 @@ body > [data-popper-placement] {
 
     &:hover {
       background: rgb(var(--ui-highlight-color));
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
     }
   }
 }
@@ -860,7 +861,7 @@ body > [data-popper-placement] {
   flex: 1 1 auto;
   padding: 15px 10px;
   padding-bottom: 13px;
-  color: $primary-text-color;
+  color: var(--ui-font-color);
   text-decoration: none;
   text-align: center;
   font-size: 14px;
@@ -913,7 +914,7 @@ body > [data-popper-placement] {
     font-size: 10px;
     font-weight: 500;
     line-height: 14px;
-    color: $primary-text-color;
+    color: var(--ui-font-color);
   }
 
   &__issue-badge {
@@ -1103,7 +1104,7 @@ body > [data-popper-placement] {
   flex: 1 0 auto;
 
   p {
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
   }
 
   a {
@@ -1124,7 +1125,7 @@ body > [data-popper-placement] {
       font-weight: 500;
 
       a {
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
         text-decoration: none;
       }
     }
@@ -1150,7 +1151,7 @@ body > [data-popper-placement] {
       padding: 10px;
 
       &__current {
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
       }
     }
   }
@@ -1189,7 +1190,7 @@ body > [data-popper-placement] {
 }
 
 .setting-text {
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   background: transparent;
   border: 0;
   border-bottom: 2px solid $ui-primary-color;
@@ -1203,7 +1204,7 @@ body > [data-popper-placement] {
 
   &:focus,
   &:active {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
     border-bottom-color: rgb(var(--ui-highlight-color));
   }
 
@@ -1212,12 +1213,12 @@ body > [data-popper-placement] {
   }
 
   &.light {
-    color: $inverted-text-color;
+    color: var(--ui-inverted-font-color);
     border-bottom: 2px solid lighten($ui-base-color, 27%);
 
     &:focus,
     &:active {
-      color: $inverted-text-color;
+      color: var(--ui-inverted-font-color);
       border-bottom-color: rgb(var(--ui-highlight-color));
     }
   }
@@ -1280,7 +1281,7 @@ button.icon-button.active i.fa-retweet {
 
 .timeline-hint {
   text-align: center;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   padding: 15px;
   box-sizing: border-box;
   width: 100%;
@@ -1298,7 +1299,7 @@ button.icon-button.active i.fa-retweet {
     &:focus,
     &:active {
       text-decoration: underline;
-      color: lighten($highlight-text-color, 4%);
+      color: rgb(var(--ui-highlight-color));
     }
   }
 }
@@ -1347,7 +1348,7 @@ button.icon-button.active i.fa-retweet {
     width: 30px;
     height: 30px;
     font-size: 20px;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     text-shadow: 0 0 5px black;
     display: flex;
     justify-content: center;
@@ -1514,7 +1515,7 @@ button.icon-button.active i.fa-retweet {
       justify-content: center;
       gap: 8px;
       flex-direction: column;
-      color: $primary-text-color;
+      color: var(--ui-font-color);
       font-weight: 500;
       font-size: 14px;
       font-family: mastodon-font-sans-serif, sans-serif;
@@ -1534,7 +1535,7 @@ button.icon-button.active i.fa-retweet {
 
 .setting-toggle__label,
 .setting-meta__label {
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   display: inline-block;
   margin-bottom: 14px;
   margin-inline-start: 8px;
@@ -1627,7 +1628,7 @@ button.icon-button.active i.fa-retweet {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: $secondary-text-color;
+  color: var(--ui-font-secondary-color);
   font-size: 18px;
   font-weight: 500;
   border: 2px dashed $ui-base-lighter-color;
@@ -1707,12 +1708,12 @@ button.icon-button.active i.fa-retweet {
 
     &__relative-time {
       font-size: 15px;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       padding-inline-start: 15px;
     }
 
     &__names {
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       font-size: 15px;
       white-space: nowrap;
       overflow: hidden;
@@ -1722,7 +1723,7 @@ button.icon-button.active i.fa-retweet {
       flex-grow: 1;
 
       a {
-        color: $primary-text-color;
+        color: var(--ui-font-color);
         text-decoration: none;
 
         &:hover,
@@ -1750,7 +1751,7 @@ button.icon-button.active i.fa-retweet {
     }
 
     .conversation__content__relative-time {
-      color: $primary-text-color;
+      color: var(--ui-font-color);
     }
   }
 }
@@ -1779,7 +1780,7 @@ noscript {
   div {
     font-size: 14px;
     margin: 30px auto;
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     max-width: 400px;
 
     a {

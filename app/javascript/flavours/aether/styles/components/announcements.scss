@@ -18,7 +18,7 @@
   }
 
   a {
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     text-decoration: none;
 
     &:hover {
@@ -101,7 +101,7 @@
 
   &__pagination {
     padding: 15px;
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     position: absolute;
     bottom: 3px;
     inset-inline-end: 0;
@@ -163,7 +163,7 @@
       font-weight: 500;
       text-align: center;
       margin-inline-start: 6px;
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
     }
 
     &:hover,
@@ -174,7 +174,7 @@
       transition-property: background-color, color;
 
       &__count {
-        color: lighten($darker-text-color, 4%);
+        color: var(--ui-font-dimmest-color);
       }
     }
 
@@ -188,7 +188,7 @@
       );
 
       .reactions-bar__item__count {
-        color: lighten($highlight-text-color, 8%);
+        color: rgb(var(--ui-highlight-color));
       }
     }
   }
@@ -202,7 +202,7 @@
   }
 
   .emoji-button {
-    color: $darker-text-color;
+    color: var(--ui-font-dimmest-color);
     margin: 0;
     font-size: 16px;
     width: auto;
@@ -219,7 +219,7 @@
     &:active,
     &:focus {
       opacity: 1;
-      color: lighten($darker-text-color, 4%);
+      color: var(--ui-font-dimmest-color);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
     }

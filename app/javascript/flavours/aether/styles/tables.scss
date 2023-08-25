@@ -74,11 +74,11 @@
       padding: 11px 10px;
       background: transparent;
       border: 1px solid lighten($ui-base-color, 8%);
-      color: $secondary-text-color;
+      color: var(--ui-font-secondary-color);
     }
 
     & > tbody > tr > th {
-      color: $darker-text-color;
+      color: var(--ui-font-dimmest-color);
       font-weight: 600;
     }
   }
@@ -127,11 +127,11 @@ a.table-action-link {
   display: inline-block;
   margin-inline-end: 5px;
   padding: 0 10px;
-  color: $darker-text-color;
+  color: var(--ui-font-dimmest-color);
   font-weight: 500;
 
   &:hover {
-    color: $primary-text-color;
+    color: var(--ui-font-color);
   }
 
   i.fa {
@@ -200,7 +200,7 @@ a.table-action-link {
     justify-content: center;
     border: 1px solid darken($ui-base-color, 8%);
     border-top: 0;
-    color: $secondary-text-color;
+    color: var(--ui-font-secondary-color);
     display: none;
 
     &.active {
@@ -316,7 +316,7 @@ a.table-action-link {
       &__extra {
         flex: 0 0 auto;
         text-align: end;
-        color: $darker-text-color;
+        color: var(--ui-font-dimmest-color);
         font-weight: 500;
       }
     }
