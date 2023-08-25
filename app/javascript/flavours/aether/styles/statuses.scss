@@ -169,7 +169,7 @@
     }
 
     .status__relative-time {
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
       float: right;
       font-size: 14px;
       width: auto;

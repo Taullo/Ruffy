@@ -18,7 +18,7 @@
 
     h4 {
       text-transform: uppercase;
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
       font-weight: 500;
       padding: 0 10px;
       margin-bottom: 10px;
@@ -26,7 +26,7 @@
 
     &__menu {
       &__message {
-        color: $dark-text-color;
+        color: var(--ui-font-dimmer-color);
         padding: 0 10px;
       }
 
@@ -167,7 +167,7 @@
 }
 
 .search-results__header {
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   background: lighten($ui-base-color, 2%);
   padding: 15px;
   font-weight: 500;
@@ -188,7 +188,7 @@
 
 .trends {
   &__header {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
     background: lighten($ui-base-color, 2%);
     font-weight: 500;
     padding: 15px;

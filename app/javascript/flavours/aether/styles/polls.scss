@@ -150,16 +150,16 @@
     }
 
     &.disabled {
-      border-color: $dark-text-color;
+      border-color: var(--ui-font-dimmer-color);
 
       &.active {
-        background: $dark-text-color;
+        background: var(--ui-font-dimmer-color);
       }
 
       &:active,
       &:focus,
       &:hover {
-        border-color: $dark-text-color;
+        border-color: var(--ui-font-dimmer-color);
         border-width: 1px;
       }
     }
@@ -194,7 +194,7 @@
     padding: 0;
     margin: 0;
     border: 0;
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
     text-decoration: underline;
     font-size: inherit;
 
@@ -285,7 +285,7 @@
 }
 
 .muted .poll {
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
 
   &__chart {
     background: rgba(darken($ui-primary-color, 14%), 0.7);

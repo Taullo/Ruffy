@@ -450,7 +450,7 @@ body,
   }
 
   .neutral-hint {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
     font-weight: 500;
   }
 
@@ -727,7 +727,7 @@ body,
   }
 
   &__timestamp {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
   }
 
   a,
@@ -828,7 +828,7 @@ a.name-tag,
   }
 
   time {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
   }
 }
 
@@ -907,7 +907,7 @@ a.name-tag,
         max-width: calc(100% - 300px);
 
         &__icon {
-          color: $dark-text-color;
+          color: var(--ui-font-dimmer-color);
           margin-inline-end: 4px;
           font-weight: 500;
         }
@@ -1036,7 +1036,7 @@ a.name-tag,
 
     &__meta {
       padding: 0 15px;
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
 
       a {
         color: inherit;
@@ -1088,7 +1088,7 @@ a.name-tag,
     }
 
     .permissions-list__item__icon {
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
     }
   }
 }
@@ -1657,7 +1657,7 @@ a.sparkline {
     &__description {
       padding: 15px;
       font-size: 14px;
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
     }
   }
 

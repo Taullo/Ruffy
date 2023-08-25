@@ -232,11 +232,11 @@ button {
   }
 
   &__footer {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
     font-size: 13px;
 
     a {
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
     }
   }
 
@@ -244,7 +244,7 @@ button {
     display: inline;
     border: 0;
     background: transparent;
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
     font: inherit;
     padding: 0;
     margin: 0;

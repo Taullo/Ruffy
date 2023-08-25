@@ -413,7 +413,7 @@ textarea#account_note {
   .input.static .label_input__wrapper {
     font-size: 16px;
     padding: 10px;
-    border: 1px solid $dark-text-color;
+    border: 1px solid var(--ui-font-dimmer-color);
     border-radius: 4px;
   }
 
@@ -610,7 +610,7 @@ textarea#account_note {
       padding: 10px;
       padding-bottom: 9px;
       font-size: 16px;
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
       font-family: inherit;
       pointer-events: none;
       cursor: default;

@@ -227,7 +227,7 @@ $ui-header-height: 55px;
 
 .column-subheading {
   background: $ui-base-color;
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   padding: 8px 20px;
   font-size: 12px;
   font-weight: 500;
@@ -382,7 +382,7 @@ $ui-header-height: 55px;
   // }
 
   &:disabled {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
     cursor: default;
   }
 }
@@ -420,7 +420,7 @@ $ui-header-height: 55px;
     // }
 
     &:disabled {
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
       cursor: default;
     }
 
@@ -616,7 +616,7 @@ $ui-header-height: 55px;
 
 .empty-column-indicator,
 .follow_requests-unlocked_explanation {
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   background: $ui-base-color;
   text-align: center;
   padding: 20px;
@@ -773,7 +773,7 @@ $ui-header-height: 55px;
     }
 
     &__placeholder {
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
       padding-inline-start: 2px;
       font-size: 12px;
     }
@@ -807,12 +807,12 @@ $ui-header-height: 55px;
     &__dropdown-indicator {
       cursor: pointer;
       transition: none;
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
 
       &:hover,
       &:active,
       &:focus {
-        color: lighten($dark-text-color, 4%);
+        color: var(--ui-font-dimmer-color);
       }
     }
 

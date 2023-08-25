@@ -95,7 +95,7 @@
       text-decoration: underline;
 
       .fa {
-        color: lighten($dark-text-color, 7%);
+        color: var(--ui-font-dimmer-color);
       }
     }
 
@@ -110,7 +110,7 @@
     }
 
     .fa {
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
     }
   }
 
@@ -155,7 +155,7 @@
   line-height: 20px;
   padding: 0;
   padding-top: 8px;
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   font-weight: 500;
 }
 
@@ -168,7 +168,7 @@
 }
 
 .status__wrapper--filtered {
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   border: 0;
   font-size: inherit;
   text-align: center;
@@ -249,8 +249,8 @@
   }
 
   &.status-direct {
-    background: mix($ui-base-color, $ui-highlight-color, 95%);
-    border-bottom-color: lighten($ui-base-color, 12%);
+    background: var(--ui-base-color);
+    border-bottom-color: var(--ui-body-dim-color);
   }
 
   &.light {
@@ -271,7 +271,7 @@
     }
 
     .status__content {
-      color: $inverted-text-color;
+      color: var(--ui-font-color);
 
       a {
         color: rgb(var(--ui-highlight-color));
@@ -373,7 +373,7 @@
 
 .status__relative-time {
   display: inline-block;
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   font-size: 0.9rem;
   text-align: end;
   white-space: nowrap;
@@ -382,7 +382,7 @@
 }
 
 .status__display-name {
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   overflow: hidden;
 }
 
@@ -494,7 +494,7 @@
   margin-top: -2px;
   margin-bottom: 8px;
   margin-inline-start: 58px;
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   font-size: 14px;
   position: relative;
 
@@ -505,7 +505,7 @@
   }
 
   .status__display-name strong {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
   }
 
   > span {
@@ -612,7 +612,7 @@
 
 .detailed-status__meta {
   margin-top: 15px;
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   font-size: 0.9rem;
   line-height: 0.9rem;
 }
@@ -719,11 +719,11 @@ a.status__display-name,
   .status__content p,
   .status__content a,
   .status__content__text {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
   }
 
   .status__display-name strong {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
   }
 
   .status__avatar {
@@ -744,7 +744,7 @@ a.status__display-name,
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: var(--ui-border-radius);
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
@@ -959,7 +959,7 @@ a.status-card.compact:hover {
 
   &__icon {
     flex: 0 0 auto;
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
     padding: 8px 18px;
     cursor: default;
     border-inline-end: 1px solid lighten($ui-base-color, 8%);
@@ -989,7 +989,7 @@ a.status-card.compact:hover {
 
     a {
       text-decoration: none;
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
       font-weight: 500;
 
       &:hover {
@@ -1008,7 +1008,7 @@ a.status-card.compact:hover {
     }
 
     .fa {
-      color: $dark-text-color;
+      color: var(--ui-font-dimmer-color);
     }
   }
 }

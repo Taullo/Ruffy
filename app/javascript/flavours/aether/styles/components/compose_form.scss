@@ -252,7 +252,7 @@
       scrollbar-color: initial;
 
       &::placeholder {
-        color: $dark-text-color;
+        color: var(--ui-font-dimmer-color);
       }
 
       &::-webkit-scrollbar {

@@ -796,7 +796,7 @@ body > [data-popper-placement] {
 .static-content {
   padding: 10px;
   padding-top: 20px;
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
 
   h1 {
     font-size: 16px;
@@ -1107,7 +1107,7 @@ body > [data-popper-placement] {
   }
 
   a {
-    color: $dark-text-color;
+    color: var(--ui-font-dimmer-color);
   }
 
   &__trends {
@@ -1255,7 +1255,7 @@ button.icon-button.active i.fa-retweet {
 
 .load-more {
   display: block;
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   border: 0;
   font-size: inherit;
   text-align: center;
@@ -1375,7 +1375,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .loading-indicator {
-  color: $dark-text-color;
+  color: var(--ui-font-dimmer-color);
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
