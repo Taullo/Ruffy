@@ -66,10 +66,9 @@ RSpec.describe AdminMailer do
 
   describe '.new_trends' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
-    let(:links) { [] }
     let(:statuses) { [] }
     let(:tags) { [] }
-    let(:mail) { described_class.with(recipient: recipient).new_trends(links, tags, statuses) }
+    let(:mail) { described_class.with(recipient: recipient).new_trends(tags, statuses) }
 
     before do
       recipient.user.update(locale: :en)

@@ -35,8 +35,7 @@ class AdminMailer < ApplicationMailer
     end
   end
 
-  def new_trends(links, tags, statuses)
-    @links                  = links
+  def new_trends(tags, statuses)
     @tags                   = tags
     @statuses               = statuses
 

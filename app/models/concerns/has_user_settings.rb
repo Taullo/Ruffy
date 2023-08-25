@@ -143,10 +143,6 @@ module HasUserSettings
     settings['notification_emails.trends']
   end
 
-  def allows_trending_links_review_emails?
-    settings['notification_emails.link_trends']
-  end
-
   def allows_trending_statuses_review_emails?
     settings['notification_emails.status_trends']
   end

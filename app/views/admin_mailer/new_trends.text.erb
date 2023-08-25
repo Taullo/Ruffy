@@ -2,9 +2,6 @@
 
 <%= raw t('admin_mailer.new_trends.body') %>
 
-<% unless @links.empty? %>
-<%= render 'new_trending_links' %>
-<% end %>
 <% unless @tags.empty? %>
 <%= render 'new_trending_tags' unless @tags.empty? %>
 <% end %>

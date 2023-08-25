@@ -5,10 +5,6 @@ module Trends
     'trends_'
   end
 
-  def self.links
-    @links ||= Trends::Links.new
-  end
-
   def self.tags
     @tags ||= Trends::Tags.new
   end
@@ -18,27 +14,25 @@ module Trends
   end
 
   def self.register!(status)
-    [links, tags, statuses].each { |trend_type| trend_type.register(status) }
+    [tags, statuses].each { |trend_type| trend_type.register(status) }
   end
 
   def self.refresh!
-    [links, tags, statuses].each(&:refresh)
+    [tags, statuses].each(&:refresh)
   end
 
   def self.request_review!
     return if skip_review? || !enabled?
 
-    links_requiring_review    = links.request_review
     tags_requiring_review     = tags.request_review
     statuses_requiring_review = statuses.request_review
 
     User.those_who_can(:manage_taxonomies).includes(:account).find_each do |user|
-      links    = user.allows_trending_links_review_emails? ? links_requiring_review : []
       tags     = user.allows_trending_tags_review_emails? ? tags_requiring_review : []
       statuses = user.allows_trending_statuses_review_emails? ? statuses_requiring_review : []
-      next if links.empty? && tags.empty? && statuses.empty?
+      next if tags.empty? && statuses.empty?
 
-      AdminMailer.with(recipient: user.account).new_trends(links, tags, statuses).deliver_later! if user.allows_trends_review_emails?
+      AdminMailer.with(recipient: user.account).new_trends(tags, statuses).deliver_later! if user.allows_trends_review_emails?
     end
   end
 
