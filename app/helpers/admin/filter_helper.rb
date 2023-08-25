@@ -6,8 +6,6 @@ module Admin::FilterHelper
     CustomEmojiFilter::KEYS,
     ReportFilter::KEYS,
     Trends::TagFilter::KEYS,
-    Trends::PreviewCardProviderFilter::KEYS,
-    Trends::PreviewCardFilter::KEYS,
     Trends::StatusFilter::KEYS,
     InstanceFilter::KEYS,
     InviteFilter::KEYS,
