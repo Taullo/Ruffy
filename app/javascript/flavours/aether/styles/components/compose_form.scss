@@ -532,7 +532,7 @@
     border-width: 0 0 0 1px;
     border-style: none none none solid;
     border-color: transparent transparent transparent
-      darken($simple-background-color, 24%);
+      rgb(var(--ui-highlight-color));
     padding: 0;
     width: 0;
     height: 27px;

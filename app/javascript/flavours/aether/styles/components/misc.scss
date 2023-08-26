@@ -179,13 +179,14 @@
 .icon-button {
   display: inline-block;
   padding: 0;
-  color: $action-button-color;
+  color: rgb(var(--ui-highlight-color));
   border: 0;
   background: transparent;
   cursor: pointer;
   transition: all 100ms ease-in;
   transition-property: background-color, color;
   text-decoration: none;
+  border-radius: 100%;
 
   a {
     color: inherit;
@@ -297,7 +298,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: var(--ui-font-brighter-color);
+    color: var(--ui-font-color);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
