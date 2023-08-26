@@ -50,7 +50,7 @@
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
-#  indexable                     :boolean          default(FALSE), not null
+#  indexable                     :boolean          default(TRUE), not null
 #
 
 class Account < ApplicationRecord

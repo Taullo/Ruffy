@@ -8,7 +8,7 @@ class AddIndexableToAccounts < ActiveRecord::Migration[7.0]
   disable_ddl_transaction!
 
   def up
-    safety_assured { add_column_with_default :accounts, :indexable, :boolean, default: false, allow_null: false }
+    safety_assured { add_column_with_default :accounts, :indexable, :boolean, default: true, allow_null: false }
   end
 
   def down

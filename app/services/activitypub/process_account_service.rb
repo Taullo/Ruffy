@@ -114,8 +114,8 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
     @account.fields                  = property_values || {}
     @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
-    @account.discoverable            = @json['discoverable'] || false
-    @account.indexable               = @json['indexable'] || false
+    @account.discoverable            = @json['discoverable'] || true
+    @account.indexable               = @json['indexable'] || true
     @account.memorial                = @json['memorial'] || false
   end
 
