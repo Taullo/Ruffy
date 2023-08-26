@@ -181,7 +181,6 @@
   padding: 0;
   color: $action-button-color;
   border: 0;
-  border-radius: 100%;
   background: transparent;
   cursor: pointer;
   transition: all 100ms ease-in;
@@ -197,13 +196,8 @@
   &:active,
   &:focus {
     color: lighten($action-button-color, 7%);
-    background-color: rgba($action-button-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
-  }
-
-  &:focus {
-    background-color: rgba($action-button-color, 0.3);
   }
 
   &.disabled {
@@ -221,7 +215,6 @@
   }
 
   &.copied {
-    background: $valid-value-color;
     transition: none;
   }
 
@@ -236,17 +229,12 @@
   }
 
   &.inverted {
-    color: var(--ui-font-brighter-color);
+    color: rgb(var(--ui-highlight-color));
 
     &:hover,
     &:active,
     &:focus {
-      color: var(--ui-font-brighter-color);
-      background-color: rgba($ui-base-lighter-color, 0.15);
-    }
-
-    &:focus {
-      background-color: rgba($ui-base-lighter-color, 0.3);
+      color: var(--ui-font-color);
     }
 
     &.disabled {
@@ -265,14 +253,8 @@
 
   &.overlayed {
     box-sizing: content-box;
-    background: rgba($base-overlay-background, 0.6);
     color: rgb(var(--ui-font-color));
-    border-radius: var(--ui-border-radius);
     padding: 2px;
-
-    &:hover {
-      background: rgba($base-overlay-background, 0.9);
-    }
   }
 
   &--with-counter {
@@ -302,7 +284,7 @@
 }
 
 .text-icon-button {
-  color: var(--ui-font-brighter-color);
+  color: rgb(var(--ui-highlight-color));
   border: 0;
   border-radius: var(--ui-border-radius);
   background: transparent;
@@ -316,13 +298,8 @@
   &:active,
   &:focus {
     color: var(--ui-font-brighter-color);
-    background-color: rgba($ui-base-lighter-color, 0.15);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
-  }
-
-  &:focus {
-    background-color: rgba($ui-base-lighter-color, 0.3);
   }
 
   &.disabled {
