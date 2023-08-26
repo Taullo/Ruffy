@@ -127,6 +127,7 @@ class StatusContent extends PureComponent {
     onUpdate: PropTypes.func,
     tagLinks: PropTypes.bool,
     rewriteMentions: PropTypes.string,
+    cwSettings: PropTypes.string,
     languages: ImmutablePropTypes.map,
     intl: PropTypes.object,
   };
@@ -322,10 +323,11 @@ class StatusContent extends PureComponent {
       disabled,
       tagLinks,
       rewriteMentions,
+      cwSettings,
       intl,
     } = this.props;
 
-    const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
+    const hidden = this.props.onExpandedToggle ? (!this.props.expanded || (cwSettings === 'visible')) : this.state.hidden;
     const contentLocale = intl.locale.replace(/[_-].*/, '');
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
     const renderTranslate = this.props.onTranslate && this.context.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
@@ -399,7 +401,7 @@ class StatusContent extends PureComponent {
           <div className='spoiler_content'>
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
             {' '}
-            <button type='button' className='status__content__spoiler-link' onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
+            <button type='button' className={`status__content__spoiler-link status__content__spoiler__link--` + cwSettings} onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
               {toggleText}
             </button>
           </div>
@@ -407,7 +409,7 @@ class StatusContent extends PureComponent {
 
           {mentionsPlaceholder}
 
-          <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : 'status__content__spoiler--hidden'}`}>
+          <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : 'status__content__spoiler--' + cwSettings}`}>
             <div
               ref={this.setContentsRef}
               key={`contents-${tagLinks}`}

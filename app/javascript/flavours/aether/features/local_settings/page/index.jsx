@@ -8,8 +8,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 
 //  Our imports
-import { expandSpoilers } from 'flavours/aether/initial_state';
-import { preferenceLink } from 'flavours/aether/utils/backend_links';
+// import { expandSpoilers } from 'flavours/aether/initial_state';
+// import { preferenceLink } from 'flavours/aether/utils/backend_links';
 import LocalSettingsPageItem from './item';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -33,7 +33,7 @@ const messages = defineMessages({
   pop_in_right: { id: 'settings.pop_in_right', defaultMessage:  'Right' },
   cw_visibility_obscured: { id: 'settings.cw_visibility_obscured', defaultMessage:  'Obscured' },
   cw_visibility_hidden: { id: 'settings.cw_visibility_hidden', defaultMessage:  'Hidden' },
-  cw_visibility_shown: { id: 'settings.cw_visibility_shown', defaultMessage:  'Shown' },
+  cw_visibility_shown: { id: 'settings.cw_visibility_shown', defaultMessage:  'Visible' },
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
@@ -276,7 +276,7 @@ class LocalSettingsPage extends PureComponent {
           options={[
             { value: 'obscured', message: intl.formatMessage(messages.cw_visibility_obscured) },
             { value: 'hidden', message: intl.formatMessage(messages.cw_visibility_hidden) },
-            { value: 'shown', message: intl.formatMessage(messages.cw_visibility_shown) },
+            { value: 'visible', message: intl.formatMessage(messages.cw_visibility_shown) },
           ]}
           onChange={onChange}
         >

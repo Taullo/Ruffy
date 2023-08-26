@@ -74,8 +74,17 @@
   }
 }
 
-.status__content__spoiler--hidden {
+.status__content__spoiler--obscured {
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.status__content__spoiler__link--visible {
+  color: transparent;
+  pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;

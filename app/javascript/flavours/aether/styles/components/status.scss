@@ -115,10 +115,6 @@
   }
 
   .status__content__spoiler {
-    display: block;
-    font-family: mastodon-flow-block, serif;
-    line-height: 1.1;
-
     &.status__content__spoiler--visible {
       font-family: inherit;
       display: block;
@@ -132,6 +128,16 @@
     a {
       pointer-events: none;
     }
+  }
+
+  .status__content__spoiler--obscured {
+    display: block;
+    font-family: mastodon-flow-block, serif;
+    line-height: 1.1;
+  }
+
+  .status__content__spoiler--hidden {
+    display: none;
   }
 
   a.unhandled-link {
