@@ -36,7 +36,7 @@
     }
 
     &.unhandled-link {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
   }
 }
@@ -92,7 +92,7 @@
       top: 19px;
       inset-inline-end: 19px;
       display: block;
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       border-radius: 50%;
       width: 0.625rem;
       height: 0.625rem;
@@ -188,7 +188,7 @@
       );
 
       .reactions-bar__item__count {
-        color: rgb(var(--ui-highlight-color));
+        color: var(--ui-highlight-color);
       }
     }
   }

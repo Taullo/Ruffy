@@ -279,7 +279,7 @@
   }
 
   a {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     text-decoration: none;
 
     &:hover,
@@ -365,7 +365,7 @@
 }
 
 .batch-table__row--attention {
-  color: rgb(var(--ui-highlight-color));
+  color: var(--ui-highlight-color);
 }
 
 .batch-table__row--attention .pending-account__header,
@@ -374,7 +374,7 @@
   &,
   a,
   strong {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
   }
 }
 
@@ -382,7 +382,7 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
   }
 }
 
@@ -632,7 +632,7 @@
   }
 
   abbr {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
   }
 }
 
@@ -687,7 +687,7 @@
   position: relative;
 
   .fa {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
   }
 
   > span {
@@ -780,7 +780,7 @@
 
     &.active {
       color: var(--ui-font-secondary-color);
-      border-color: rgb(var(--ui-highlight-color));
+      border-color: var(--ui-highlight-color);
     }
   }
 
@@ -959,9 +959,9 @@
       }
 
       .icon-button {
-        border: 4px solid rgb(var(--ui-highlight-color));
+        border: 4px solid var(--ui-highlight-color);
         background-color: var(--ui-body-color);
-        color: rgb(var(--ui-highlight-color));
+        color: var(--ui-highlight-color);
         border-radius: 100%;
         box-sizing: content-box;
         padding: 4px;
@@ -970,7 +970,7 @@
         &:hover,
         &:focus {
           color: var(--ui-font-color);
-          background-color: rgb(var(--ui-highlight-color));
+          background-color: var(--ui-highlight-color);
           border: 4px solid var(--ui-font-color);
         }
       }
@@ -1135,7 +1135,7 @@
         &:active,
         &:focus {
           color: var(--ui-body-color) !important;
-          background-color: rgb(var(--ui-highlight-color)) !important;
+          background-color: var(--ui-highlight-color) !important;
         }
 
         &[disabled] {
@@ -1228,7 +1228,7 @@ img.parallax[src*='/headers/original/missing.png'] {
 
 .account-timeline__right-column {
   h4 {
-    border-bottom: 1px solid rgb(var(--ui-highlight-color));
+    border-bottom: 1px solid var(--ui-highlight-color);
     padding: 10px 0;
     font-size: 1rem;
     font-weight: bold;
@@ -1238,7 +1238,7 @@ img.parallax[src*='/headers/original/missing.png'] {
     }
 
     span {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
   }
 }

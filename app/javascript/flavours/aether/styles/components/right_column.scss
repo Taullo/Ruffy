@@ -15,7 +15,7 @@
       color: rgb(var(--ui-font-color));
 
       &:hover {
-        background: rgb(var(--ui-highlight-color));
+        background: var(--ui-highlight-color);
       }
     }
   }
@@ -49,11 +49,11 @@
         max-width: 300px;
         overflow: hidden;
         text-overflow: ellipsis;
-        color: rgb(var(--ui-highlight-color));
+        color: var(--ui-highlight-color);
       }
 
       &:hover {
-        background: rgb(var(--ui-highlight-color));
+        background: var(--ui-highlight-color);
 
         .hashname {
           color: rgb(var(--ui-font-color));

@@ -55,31 +55,6 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.general' defaultMessage='General' /></h1>
         <LocalSettingsPageItem
           settings={settings}
-          item={['show_reply_count']}
-          id='mastodon-settings--reply-count'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.show_reply_counter' defaultMessage='Display an estimate of the reply count' />
-        </LocalSettingsPageItem>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['hicolor_privacy_icons']}
-          id='mastodon-settings--hicolor_privacy_icons'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.hicolor_privacy_icons' defaultMessage='High color privacy icons' />
-          <span className='hint'><FormattedMessage id='settings.hicolor_privacy_icons.hint' defaultMessage='Display privacy icons in bright and easily distinguishable colors' /></span>
-        </LocalSettingsPageItem>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['confirm_boost_missing_media_description']}
-          id='mastodon-settings--confirm_boost_missing_media_description'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.confirm_boost_missing_media_description' defaultMessage='Show confirmation dialog before boosting posts lacking media descriptions' />
-        </LocalSettingsPageItem>
-        <LocalSettingsPageItem
-          settings={settings}
           item={['tag_misleading_links']}
           id='mastodon-settings--tag_misleading_links'
           onChange={onChange}
@@ -100,71 +75,11 @@ class LocalSettingsPage extends PureComponent {
         >
           <FormattedMessage id='settings.rewrite_mentions' defaultMessage='Rewrite mentions in displayed statuses' />
         </LocalSettingsPageItem>
-        <section>
-          <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['notifications', 'tab_badge']}
-            id='mastodon-settings--notifications-tab_badge'
-            onChange={onChange}
-          >
-            <FormattedMessage id='settings.notifications.tab_badge' defaultMessage='Unread notifications badge' />
-            <span className='hint'><FormattedMessage id='settings.notifications.tab_badge.hint' defaultMessage="Display a badge for unread notifications in the column icons when the notifications column isn't open" /></span>
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['notifications', 'favicon_badge']}
-            id='mastodon-settings--notifications-favicon_badge'
-            onChange={onChange}
-          >
-            <FormattedMessage id='settings.notifications.favicon_badge' defaultMessage='Unread notifications favicon badge' />
-            <span className='hint'><FormattedMessage id='settings.notifications.favicon_badge.hint' defaultMessage='Add a badge for unread notifications to the favicon' /></span>
-          </LocalSettingsPageItem>
-        </section>
-
-        <section>
-          <h2><FormattedMessage id='settings.status_icons' defaultMessage='Post icons' /></h2>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['status_icons', 'language']}
-            id='mastodon-settings--status-icons-language'
-            onChange={onChange}
-          >
-            <FormattedMessage id='settings.status_icons_language' defaultMessage='Language indicator' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['status_icons', 'reply']}
-            id='mastodon-settings--status-icons-reply'
-            onChange={onChange}
-          >
-            <FormattedMessage id='settings.status_icons_reply' defaultMessage='Reply indicator' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['status_icons', 'local_only']}
-            id='mastodon-settings--status-icons-local_only'
-            onChange={onChange}
-          >
-            <FormattedMessage id='settings.status_icons_local_only' defaultMessage='Local-only indicator' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['status_icons', 'media']}
-            id='mastodon-settings--status-icons-media'
-            onChange={onChange}
-          >
-            <FormattedMessage id='settings.status_icons_media' defaultMessage='Media and poll indicators' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['status_icons', 'visibility']}
-            id='mastodon-settings--status-icons-visibility'
-            onChange={onChange}
-          >
-            <FormattedMessage id='settings.status_icons_visibility' defaultMessage='Post privacy indicator' />
-          </LocalSettingsPageItem>
-        </section>
+      </div>
+    ),
+    ({ intl, onChange, settings }) => (
+      <div className='glitch local-settings__page layout'>
+        <h1><FormattedMessage id='settings.layout' defaultMessage='Layout' /></h1>
         <section>
           <h2><FormattedMessage id='settings.layout_opts' defaultMessage='Layout options' /></h2>
           <LocalSettingsPageItem
@@ -177,9 +92,7 @@ class LocalSettingsPage extends PureComponent {
               { value: 'multiple', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
             ]}
             onChange={onChange}
-          >
-            <FormattedMessage id='settings.layout' defaultMessage='Desktop Layout:' />
-          </LocalSettingsPageItem>
+           />
           <LocalSettingsPageItem
             settings={settings}
             item={['stretch']}
@@ -188,6 +101,31 @@ class LocalSettingsPage extends PureComponent {
           >
             <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Advanced Layout only)' />
             <span className='hint'><FormattedMessage id='settings.wide_view_hint' defaultMessage='Stretches columns to better fill the available space.' /></span>
+          </LocalSettingsPageItem>
+        </section>
+        <h2><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapse posts' /></h2>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['collapsed', 'enabled']}
+          id='mastodon-settings--collapsed-enabled'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed posts' />
+          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
+        </LocalSettingsPageItem>
+        <section>
+          <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['collapsed', 'auto', 'height']}
+            id='mastodon-settings--collapsed-auto-height'
+            placeholder='1200'
+            onChange={onChange}
+            dependsOn={[['collapsed', 'enabled']]}
+            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            inputProps={{ type: 'number', min: '400', max: '2000' }}
+          >
+            <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a post to be considered lengthy' />
           </LocalSettingsPageItem>
         </section>
       </div>
@@ -285,35 +223,6 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
       </div>
     ),
-    ({ onChange, settings }) => (
-      <div className='glitch local-settings__page collapsed'>
-        <h1><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapse posts' /></h1>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['collapsed', 'enabled']}
-          id='mastodon-settings--collapsed-enabled'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed posts' />
-          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
-        </LocalSettingsPageItem>
-        <section>
-          <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'height']}
-            id='mastodon-settings--collapsed-auto-height'
-            placeholder='1200'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-            inputProps={{ type: 'number', min: '400', max: '2000' }}
-          >
-            <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a post to be considered lengthy' />
-          </LocalSettingsPageItem>
-        </section>
-      </div>
-    ),
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page media'>
         <h1><FormattedMessage id='settings.media' defaultMessage='Media' /></h1>
@@ -346,6 +255,92 @@ class LocalSettingsPage extends PureComponent {
         >
           <FormattedMessage id='settings.pop_in_position' defaultMessage='Pop-in player position:' />
         </LocalSettingsPageItem>
+      </div>
+    ),
+    ({ onChange, settings }) => (
+      <div className='glitch local-settings__page accessibility'>
+        <h1><FormattedMessage id='settings.accessibility' defaultMessage='Accessibility' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['hicolor_privacy_icons']}
+          id='mastodon-settings--hicolor_privacy_icons'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.hicolor_privacy_icons' defaultMessage='High color privacy icons' />
+          <span className='hint'><FormattedMessage id='settings.hicolor_privacy_icons.hint' defaultMessage='Display privacy icons in bright and easily distinguishable colors' /></span>
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['confirm_boost_missing_media_description']}
+          id='mastodon-settings--confirm_boost_missing_media_description'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.confirm_boost_missing_media_description' defaultMessage='Show confirmation dialog before boosting posts lacking media descriptions' />
+        </LocalSettingsPageItem>
+        <section>
+          <h2><FormattedMessage id='settings.notifications_opts' defaultMessage='Notifications options' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['notifications', 'tab_badge']}
+            id='mastodon-settings--notifications-tab_badge'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.notifications.tab_badge' defaultMessage='Unread notifications badge' />
+            <span className='hint'><FormattedMessage id='settings.notifications.tab_badge.hint' defaultMessage="Display a badge for unread notifications in the column icons when the notifications column isn't open" /></span>
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['notifications', 'favicon_badge']}
+            id='mastodon-settings--notifications-favicon_badge'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.notifications.favicon_badge' defaultMessage='Unread notifications favicon badge' />
+            <span className='hint'><FormattedMessage id='settings.notifications.favicon_badge.hint' defaultMessage='Add a badge for unread notifications to the favicon' /></span>
+          </LocalSettingsPageItem>
+        </section>
+        <section>
+          <h2><FormattedMessage id='settings.status_icons' defaultMessage='Post icons' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'language']}
+            id='mastodon-settings--status-icons-language'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_language' defaultMessage='Language indicator' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'reply']}
+            id='mastodon-settings--status-icons-reply'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_reply' defaultMessage='Reply indicator' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'local_only']}
+            id='mastodon-settings--status-icons-local_only'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_local_only' defaultMessage='Local-only indicator' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'media']}
+            id='mastodon-settings--status-icons-media'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_media' defaultMessage='Media and poll indicators' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'visibility']}
+            id='mastodon-settings--status-icons-visibility'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_visibility' defaultMessage='Post privacy indicator' />
+          </LocalSettingsPageItem>
+        </section>
       </div>
     ),
   ];

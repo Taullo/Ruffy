@@ -141,10 +141,10 @@
   }
 
   a.unhandled-link {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
 
     .link-origin-tag {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
       font-size: 0.8em;
     }
   }
@@ -280,7 +280,7 @@
       color: var(--ui-font-color);
 
       a {
-        color: rgb(var(--ui-highlight-color));
+        color: var(--ui-highlight-color);
       }
     }
   }
@@ -546,7 +546,7 @@
 
   .icon-button {
     color: transparent;
-    -webkit-text-stroke: rgb(var(--ui-highlight-color)) 2px;
+    -webkit-text-stroke: var(--ui-highlight-color) 2px;
     transition:
       0.2s color,
       0.2s -webkit-text-stroke;
@@ -1046,7 +1046,7 @@ a.status-card.compact:hover {
       inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-inline-start: 4px solid rgb(var(--ui-highlight-color));
+      border-inline-start: 4px solid var(--ui-highlight-color);
       pointer-events: none;
     }
   }

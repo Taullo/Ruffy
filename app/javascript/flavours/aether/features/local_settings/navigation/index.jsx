@@ -12,11 +12,13 @@ import LocalSettingsNavigationItem from './item';
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({
-  general: {  id: 'settings.general', defaultMessage: 'General' },
+  general: {  id: 'settings.general', defaultMessage: 'Appearance' },
+  layout: {  id: 'settings.layout', defaultMessage: 'Layout' },
   compose: {  id: 'settings.compose_box_opts', defaultMessage: 'Compose box' },
   content_warnings: { id: 'settings.content_warnings', defaultMessage: 'Content Warnings' },
   collapsed: { id: 'settings.collapsed_statuses', defaultMessage: 'Collapsed posts' },
   media: { id: 'settings.media', defaultMessage: 'Media' },
+  accessibility: { id: 'settings.accessibility', defaultMessage: 'Accessibility' },
   preferences: { id: 'settings.preferences', defaultMessage: 'Preferences' },
   close: { id: 'settings.close', defaultMessage: 'Close' },
 });
@@ -51,29 +53,29 @@ class LocalSettingsNavigation extends PureComponent {
           active={index === 0}
           index={0}
           onNavigate={onNavigate}
-          icon='cogs'
+          icon='paint-brush'
           title={intl.formatMessage(messages.general)}
         />
         <LocalSettingsNavigationItem
           active={index === 1}
           index={1}
           onNavigate={onNavigate}
-          icon='pencil'
-          title={intl.formatMessage(messages.compose)}
+          icon='window-restore'
+          title={intl.formatMessage(messages.layout)}
         />
         <LocalSettingsNavigationItem
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
-          icon='warning'
-          title={intl.formatMessage(messages.content_warnings)}
+          icon='pencil'
+          title={intl.formatMessage(messages.compose)}
         />
         <LocalSettingsNavigationItem
           active={index === 3}
           index={3}
           onNavigate={onNavigate}
-          icon='angle-double-up'
-          title={intl.formatMessage(messages.collapsed)}
+          icon='warning'
+          title={intl.formatMessage(messages.content_warnings)}
         />
         <LocalSettingsNavigationItem
           active={index === 4}
@@ -81,6 +83,13 @@ class LocalSettingsNavigation extends PureComponent {
           onNavigate={onNavigate}
           icon='image'
           title={intl.formatMessage(messages.media)}
+        />
+        <LocalSettingsNavigationItem
+          active={index === 5}
+          index={5}
+          onNavigate={onNavigate}
+          icon='universal-access'
+          title={intl.formatMessage(messages.accessibility)}
         />
       </nav>
     );

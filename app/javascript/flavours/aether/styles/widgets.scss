@@ -228,7 +228,7 @@
     }
 
     &.active > a {
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       cursor: default;
     }
 
@@ -273,7 +273,7 @@
     }
 
     &.active .avatar-stack .account__avatar {
-      border-color: rgb(var(--ui-highlight-color));
+      border-color: var(--ui-highlight-color);
     }
   }
 }
@@ -358,17 +358,17 @@
     font-size: 16px;
 
     &.active {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
 
     &.passive {
       /* TODO: Figure out what this is for. Used to use yellow var color */
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
 
     &.active.passive {
       /* TODO: Figure out what this is for. Used to use green var color */
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
   }
 
@@ -393,7 +393,7 @@
   a {
     text-decoration: none;
     font-weight: 500;
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
 
     &:hover,
     &:focus,

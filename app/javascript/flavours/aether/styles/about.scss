@@ -38,7 +38,7 @@ $fluid-breakpoint: $maximum-width + 20px;
       inset-inline-start: 0;
       top: 50%;
       transform: translateY(-50%);
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       color: var(--ui-body-secondary-color);
       border-radius: 50%;
       width: 4ch;

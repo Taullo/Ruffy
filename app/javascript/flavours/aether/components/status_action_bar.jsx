@@ -76,7 +76,6 @@ class StatusActionBar extends ImmutablePureComponent {
     onInteractionModal: PropTypes.func,
     withDismiss: PropTypes.bool,
     withCounters: PropTypes.bool,
-    showReplyCount: PropTypes.bool,
     scrollKey: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
@@ -85,7 +84,6 @@ class StatusActionBar extends ImmutablePureComponent {
   // evaluate to false. See react-immutable-pure-component for usage.
   updateOnProps = [
     'status',
-    'showReplyCount',
     'withCounters',
     'withDismiss',
   ];
@@ -197,7 +195,7 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   render () {
-    const { status, intl, withDismiss, withCounters, showReplyCount, scrollKey } = this.props;
+    const { status, intl, withDismiss, withCounters, scrollKey } = this.props;
     const { permissions, signedIn } = this.context.identity;
 
     const mutingConversation = status.get('muted');
@@ -312,7 +310,7 @@ class StatusActionBar extends ImmutablePureComponent {
           title={replyTitle}
           icon={replyIcon}
           onClick={this.handleReplyClick}
-          counter={showReplyCount ? status.get('replies_count') : undefined}
+          counter={status.get('replies_count')}
           obfuscateCount
         />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />

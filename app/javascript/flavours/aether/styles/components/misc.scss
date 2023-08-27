@@ -10,14 +10,14 @@
   overflow: hidden;
   position: relative;
   -webkit-text-stroke: 0;
-  color: rgb(var(--ui-highlight-color));
+  color: var(--ui-highlight-color);
 }
 
 .link-button {
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: rgb(var(--ui-highlight-color));
+  color: var(--ui-highlight-color);
   border: 0;
   background: transparent;
   padding: 0;
@@ -44,7 +44,7 @@
 }
 
 .button {
-  background-color: rgb(var(--ui-highlight-color));
+  background-color: var(--ui-highlight-color);
   border: 10px none;
   border-radius: 100px;
   box-sizing: border-box;
@@ -68,7 +68,7 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: rgb(var(--ui-highlight-color));
+    background-color: var(--ui-highlight-color);
   }
 
   &--destructive {
@@ -129,13 +129,13 @@
   &.button-tertiary {
     background: transparent;
     padding: 6px 17px;
-    color: rgb(var(--ui-highlight-color));
-    border: 3px solid rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
+    border: 3px solid var(--ui-highlight-color);
 
     &:active,
     &:focus,
     &:hover {
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       color: var(--ui-font-color);
       border-width: 3px;
       padding: 7px 18px;
@@ -179,7 +179,7 @@
 .icon-button {
   display: inline-block;
   padding: 0;
-  color: rgb(var(--ui-highlight-color));
+  color: var(--ui-highlight-color);
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -208,7 +208,7 @@
   }
 
   &.active {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
   }
 
   &.copyable {
@@ -230,7 +230,7 @@
   }
 
   &.inverted {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
 
     &:hover,
     &:active,
@@ -244,10 +244,10 @@
     }
 
     &.active {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
 
       &.disabled {
-        color: rgb(var(--ui-highlight-color));
+        color: var(--ui-highlight-color);
       }
     }
   }
@@ -285,7 +285,7 @@
 }
 
 .text-icon-button {
-  color: rgb(var(--ui-highlight-color));
+  color: var(--ui-highlight-color);
   border: 0;
   border-radius: var(--ui-border-radius);
   background: transparent;
@@ -311,7 +311,7 @@
   }
 
   &.active {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
   }
 
   &::-moz-focus-inner {
@@ -358,16 +358,16 @@ body > [data-popper-placement] {
   position: absolute;
 
   .fa.star-icon {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
   }
 }
 
 .icon-button.star-icon.active {
-  color: rgb(var(--ui-highlight-color));
+  color: var(--ui-highlight-color);
 }
 
 .icon-button.bookmark-icon.active {
-  color: rgb(var(--ui-highlight-color));
+  color: var(--ui-highlight-color);
 }
 
 .no-reduce-motion .icon-button.star-icon {
@@ -544,7 +544,7 @@ body > [data-popper-placement] {
 }
 
 .dropdown-menu {
-  background: rgb(var(--ui-highlight-color));
+  background: var(--ui-highlight-color);
   border-radius: 8px;
   box-shadow: 2px 4px 15px var(--ui-dropdown-shadow);
   z-index: 9999;
@@ -602,7 +602,7 @@ body > [data-popper-placement] {
     display: block;
     width: 14px;
     height: 5px;
-    background-color: rgb(var(--ui-highlight-color));
+    background-color: var(--ui-highlight-color);
     mask-image: url("data:image/svg+xml;utf8,<svg width='14' height='5' xmlns='http://www.w3.org/2000/svg'><path d='M7 0L0 5h14L7 0z' fill='white'/></svg>");
   }
 
@@ -669,7 +669,7 @@ body > [data-popper-placement] {
     &:hover,
     &:active {
       background: var(--ui-font-color);
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
       outline: 0;
     }
   }
@@ -762,7 +762,7 @@ body > [data-popper-placement] {
     }
 
     &:hover {
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       color: var(--ui-font-secondary-color);
     }
   }
@@ -863,8 +863,8 @@ body > [data-popper-placement] {
   }
 
   &.active {
-    border-bottom: 2px solid rgb(var(--ui-highlight-color));
-    color: rgb(var(--ui-highlight-color));
+    border-bottom: 2px solid var(--ui-highlight-color);
+    color: var(--ui-highlight-color);
   }
 
   span {
@@ -885,7 +885,7 @@ body > [data-popper-placement] {
     position: absolute;
     inset-inline-start: 9px;
     top: -13px;
-    background: rgb(var(--ui-highlight-color));
+    background: var(--ui-highlight-color);
     border: 2px solid lighten($ui-base-color, 8%);
     padding: 1px 6px;
     border-radius: var(--ui-border-radius);
@@ -1003,7 +1003,7 @@ body > [data-popper-placement] {
 
 .react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled)
   .react-toggle-track {
-  background-color: rgb(var(--ui-highlight-color));
+  background-color: var(--ui-highlight-color);
 }
 
 .react-toggle-track-check {
@@ -1059,7 +1059,7 @@ body > [data-popper-placement] {
 
 .react-toggle--checked .react-toggle-thumb {
   inset-inline-start: 27px;
-  border-color: rgb(var(--ui-highlight-color));
+  border-color: var(--ui-highlight-color);
 }
 
 .getting-started__wrapper,
@@ -1183,7 +1183,7 @@ body > [data-popper-placement] {
   &:focus,
   &:active {
     color: var(--ui-font-color);
-    border-bottom-color: rgb(var(--ui-highlight-color));
+    border-bottom-color: var(--ui-highlight-color);
   }
 
   @include limited-single-column('screen and (max-width: 600px)') {
@@ -1197,7 +1197,7 @@ body > [data-popper-placement] {
     &:focus,
     &:active {
       color: var(--ui-inverted-font-color);
-      border-bottom-color: rgb(var(--ui-highlight-color));
+      border-bottom-color: var(--ui-highlight-color);
     }
   }
 }
@@ -1229,7 +1229,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .reduce-motion button.icon-button.disabled i.fa-retweet {
-  color: rgb(var(--ui-highlight-color));
+  color: var(--ui-highlight-color);
 }
 
 .load-more {
@@ -1270,14 +1270,14 @@ button.icon-button.active i.fa-retweet {
   }
 
   a {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
       text-decoration: underline;
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
   }
 }
@@ -1337,7 +1337,7 @@ button.icon-button.active i.fa-retweet {
     outline: 0 !important;
 
     .ckbox {
-      box-shadow: 0 0 1px 1px rgb(var(--ui-highlight-color));
+      box-shadow: 0 0 1px 1px var(--ui-highlight-color);
     }
   }
 }
@@ -1619,7 +1619,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .loading-bar {
-  background-color: rgb(var(--ui-highlight-color));
+  background-color: var(--ui-highlight-color);
   height: 3px;
   position: fixed;
   top: 0;
@@ -1636,7 +1636,7 @@ button.icon-button.active i.fa-retweet {
   display: block;
   inset-inline-end: -0.25em;
   top: -0.25em;
-  background-color: rgb(var(--ui-highlight-color));
+  background-color: var(--ui-highlight-color);
   border-radius: 50%;
   font-size: 75%;
   width: 1em;
@@ -1664,7 +1664,7 @@ button.icon-button.active i.fa-retweet {
 
   &__unread {
     display: inline-block;
-    background: rgb(var(--ui-highlight-color));
+    background: var(--ui-highlight-color);
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
@@ -1762,7 +1762,7 @@ noscript {
     max-width: 400px;
 
     a {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
       text-decoration: underline;
 
       &:hover {
@@ -1799,7 +1799,7 @@ noscript {
   > div {
     text-align: center;
     text-decoration: none;
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     font-size: 0.9rem;
     padding: 0.3rem;
     font-weight: 800;
@@ -1813,8 +1813,8 @@ noscript {
     margin-top: 20px;
 
     &:hover {
-      background: rgb(var(--ui-highlight-color));
-      border-color: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
+      border-color: var(--ui-highlight-color);
       color: var(--ui-font-color);
     }
   }

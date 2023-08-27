@@ -31,7 +31,7 @@
   }
 
   a {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     text-decoration: underline;
 
     &:hover {
@@ -229,7 +229,7 @@ a.table-action-link {
       background: transparent;
       border: 0;
       font: inherit;
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
       border-radius: 4px;
       font-weight: 700;
       padding: 8px;

@@ -812,7 +812,6 @@ class Status extends ImmutablePureComponent {
             <StatusActionBar
               status={status}
               account={status.get('account')}
-              showReplyCount={settings.get('show_reply_count')}
               onFilter={matchedFilters ? this.handleFilterClick : null}
               {...other}
             />

@@ -145,7 +145,7 @@ $content-width: 840px;
 
       .simple-navigation-active-leaf a {
         color: var(--ui-font-color);
-        background-color: rgb(var(--ui-highlight-color));
+        background-color: var(--ui-highlight-color);
         border-bottom: 0;
         border-radius: 0;
       }
@@ -239,8 +239,8 @@ $content-width: 840px;
 
           &.selected {
             font-weight: 700;
-            color: rgb(var(--ui-highlight-color));
-            border-bottom: 2px solid rgb(var(--ui-highlight-color));
+            color: var(--ui-highlight-color);
+            border-bottom: 2px solid var(--ui-highlight-color);
           }
         }
       }
@@ -401,7 +401,7 @@ $content-width: 840px;
       }
 
       ul .simple-navigation-active-leaf a {
-        border-bottom-color: rgb(var(--ui-highlight-color));
+        border-bottom-color: var(--ui-highlight-color);
       }
     }
   }
@@ -420,7 +420,7 @@ body,
     color: var(--ui-font-dimmest-color);
 
     a {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
   }
 
@@ -455,7 +455,7 @@ body,
   }
 
   .warning-hint {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     font-weight: 500;
   }
 }
@@ -520,8 +520,8 @@ body,
       }
 
       &.selected {
-        color: rgb(var(--ui-highlight-color));
-        border-bottom: 2px solid rgb(var(--ui-highlight-color));
+        color: var(--ui-highlight-color);
+        border-bottom: 2px solid var(--ui-highlight-color);
       }
     }
   }
@@ -656,7 +656,7 @@ body,
   font-size: 14px;
 
   a {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     text-decoration: none;
 
     &:hover {
@@ -794,7 +794,7 @@ a.name-tag,
 
 .speech-bubble {
   margin-bottom: 20px;
-  border-inline-start: 4px solid rgb(var(--ui-highlight-color));
+  border-inline-start: 4px solid var(--ui-highlight-color);
 
   &.positive {
     border-left-color: $success-green;
@@ -805,7 +805,7 @@ a.name-tag,
   }
 
   &.warning {
-    border-left-color: rgb(var(--ui-highlight-color));
+    border-left-color: var(--ui-highlight-color);
   }
 
   &__bubble {
@@ -965,7 +965,7 @@ a.name-tag,
     border: 0;
 
     a {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
 
     dl:first-child .verified {
@@ -1138,7 +1138,7 @@ a.name-tag,
 
     &__box {
       box-sizing: border-box;
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       padding: 10px;
       font-weight: 500;
       color: var(--ui-font-color);
@@ -1218,12 +1218,12 @@ a.name-tag,
     }
 
     path:first-child {
-      fill: rgba(var(--ui-highlight-color), 0.25) !important;
-      fill-opacity: 1 !important;
+      fill: var(--ui-highlight-color) !important;
+      fill-opacity: 0.25 !important;
     }
 
     path:last-child {
-      stroke: rgb(var(--ui-highlight-color)) !important;
+      stroke: var(--ui-highlight-color) !important;
       fill: none !important;
     }
   }
@@ -1288,7 +1288,7 @@ a.sparkline {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       margin-inline-end: 10px;
 
       @for $i from 0 through 10 {
@@ -1610,7 +1610,7 @@ a.sparkline {
       }
 
       a {
-        color: rgb(var(--ui-highlight-color));
+        color: var(--ui-highlight-color);
         text-decoration: none;
 
         &:hover {
@@ -1685,7 +1685,7 @@ a.sparkline {
   float: right;
 
   a {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     text-decoration: none;
 
     &:hover,
@@ -1709,7 +1709,7 @@ a.sparkline {
   min-height: 100%;
 
   a {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     text-decoration: none;
 
     &:hover {
@@ -1838,8 +1838,8 @@ a.sparkline {
       width: calc(1.375rem + 1px);
       height: calc(1.375rem + 1px);
       background: $ui-base-color;
-      border: 1px solid rgb(var(--ui-highlight-color));
-      color: rgb(var(--ui-highlight-color));
+      border: 1px solid var(--ui-highlight-color);
+      color: var(--ui-highlight-color);
       border-radius: 8px;
     }
 
@@ -1847,7 +1847,7 @@ a.sparkline {
       position: absolute;
       content: '';
       width: 1px;
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       bottom: 0;
       top: calc(1.875rem + 1px);
       inset-inline-start: 0.6875rem;

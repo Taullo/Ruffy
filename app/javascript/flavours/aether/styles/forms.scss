@@ -97,7 +97,7 @@ textarea#account_note {
       }
 
       label a {
-        color: rgb(var(--ui-highlight-color));
+        color: var(--ui-highlight-color);
         text-decoration: underline;
 
         &:hover,
@@ -151,7 +151,7 @@ textarea#account_note {
     }
 
     a {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
   }
 
@@ -165,7 +165,7 @@ textarea#account_note {
     color: var(--ui-font-dimmest-color);
 
     a {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
 
     code {
@@ -455,7 +455,7 @@ textarea#account_note {
 
     &:active,
     &:focus {
-      border-color: rgb(var(--ui-highlight-color));
+      border-color: var(--ui-highlight-color);
       background: darken($ui-base-color, 8%);
     }
   }
@@ -543,7 +543,7 @@ textarea#account_note {
     &:active,
     &:focus,
     &:hover {
-      background-color: rgb(var(--ui-highlight-color));
+      background-color: var(--ui-highlight-color);
     }
 
     &:disabled:hover {
@@ -658,9 +658,9 @@ textarea#account_note {
   }
 
   &.warning {
-    border: 1px solid rgb(var(--ui-highlight-color));
-    background: rgb(var(--ui-highlight-color));
-    color: rgb(var(--ui-highlight-color));
+    border: 1px solid var(--ui-highlight-color);
+    background: var(--ui-highlight-color);
+    color: var(--ui-highlight-color);
   }
 
   &.alert {
@@ -801,7 +801,7 @@ textarea#account_note {
   }
 
   a {
-    color: rgb(var(--ui-highlight-color));
+    color: var(--ui-highlight-color);
     text-transform: uppercase;
     text-decoration: none;
     font-weight: 700;
@@ -809,7 +809,7 @@ textarea#account_note {
     &:hover,
     &:focus,
     &:active {
-      color: rgb(var(--ui-highlight-color));
+      color: var(--ui-highlight-color);
     }
   }
 }
@@ -1155,7 +1155,7 @@ textarea#account_note {
     flex: 1 1 auto;
 
     &.completed {
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
     }
   }
 
@@ -1203,14 +1203,14 @@ textarea#account_note {
   }
 
   .active .circle {
-    border-color: rgb(var(--ui-highlight-color));
+    border-color: var(--ui-highlight-color);
 
     &::before {
       content: '';
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgb(var(--ui-highlight-color));
+      background: var(--ui-highlight-color);
       position: absolute;
       left: 50%;
       top: 50%;
@@ -1219,8 +1219,8 @@ textarea#account_note {
   }
 
   .completed .circle {
-    border-color: rgb(var(--ui-highlight-color));
-    background: rgb(var(--ui-highlight-color));
+    border-color: var(--ui-highlight-color);
+    background: var(--ui-highlight-color);
   }
 }
 
