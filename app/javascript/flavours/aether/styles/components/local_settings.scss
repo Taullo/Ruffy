@@ -201,6 +201,7 @@
   position: static !important;
   border-radius: 4px;
   border: 2px solid var(--ui-body-color);
+  cursor: pointer;
   transition:
     0.2s border-color,
     0.2s box-shadow;
