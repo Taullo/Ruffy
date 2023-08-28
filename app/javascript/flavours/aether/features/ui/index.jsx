@@ -27,6 +27,7 @@ import initialState, { me, owner, singleUserMode, timelinePreview, trendsAsLandi
 
 import BundleColumnError from './components/bundle_column_error';
 import Header from './components/header';
+import MobileFooter from './components/mobile_footer';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import LoadingBarContainer from './containers/loading_bar_container';
@@ -689,6 +690,7 @@ class UI extends Component {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
+          <MobileFooter />
         </div>
       </HotKeys>
     );
