@@ -17,8 +17,9 @@ export default class LocalSettingsPageItem extends PureComponent {
     inputProps: PropTypes.object,
     options: PropTypes.arrayOf(PropTypes.shape({
       value: PropTypes.string.isRequired,
-      message: PropTypes.string.isRequired,
+      message: PropTypes.string,
       hint: PropTypes.string,
+      title: PropTypes.string,
     })),
     settings: ImmutablePropTypes.map.isRequired,
     placeholder: PropTypes.string,
@@ -57,6 +58,7 @@ export default class LocalSettingsPageItem extends PureComponent {
           <label key={optionId} htmlFor={optionId}>
             <input
               type='radio'
+              title={opt.title}
               name={id}
               id={optionId}
               value={opt.value}

@@ -67,29 +67,31 @@ class LocalSettingsPage extends PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page general'>
         <h1><FormattedMessage id='settings.general' defaultMessage='Appearance' /></h1>
+        <span className='accentSelector'>
         <LocalSettingsPageItem
           settings={settings}
           item={['accent']}
           id='mastodon-settings--accent'
           options={[
-            { value: 'default', message: intl.formatMessage(messages.accent_default) },
-            { value: '#589734', message: intl.formatMessage(messages.accent_green) },
-            { value: '#377ee4', message: intl.formatMessage(messages.accent_blue) },
-            { value: '#a539ff', message: intl.formatMessage(messages.accent_purple) },
-            { value: '#ff8300', message: intl.formatMessage(messages.accent_orange) },
-            { value: '#dda600', message: intl.formatMessage(messages.accent_yellow) },
-            { value: '#f02727', message: intl.formatMessage(messages.accent_red) },
-            { value: '#f027be', message: intl.formatMessage(messages.accent_pink) },
-            { value: '#6364ff', message: intl.formatMessage(messages.accent_mammoth) },
-            { value: '#8db600', message: intl.formatMessage(messages.accent_keystone) },
-            { value: '#a97fdc', message: intl.formatMessage(messages.accent_goby) },
-            { value: 'var(--ui-font-color)', message: intl.formatMessage(messages.accent_mono) },
+            { value: 'default', title: intl.formatMessage(messages.accent_default) },
+            { value: '#589734', title: intl.formatMessage(messages.accent_green) },
+            { value: '#377ee4', title: intl.formatMessage(messages.accent_blue) },
+            { value: '#a539ff', title: intl.formatMessage(messages.accent_purple) },
+            { value: '#ff8300', title: intl.formatMessage(messages.accent_orange) },
+            { value: '#dda600', title: intl.formatMessage(messages.accent_yellow) },
+            { value: '#f02727', title: intl.formatMessage(messages.accent_red) },
+            { value: '#f027be', title: intl.formatMessage(messages.accent_pink) },
+            { value: '#6364ff', title: intl.formatMessage(messages.accent_mammoth) },
+            { value: '#8db600', title: intl.formatMessage(messages.accent_keystone) },
+            { value: '#a97fdc', title: intl.formatMessage(messages.accent_goby) },
+            { value: 'mono', title: intl.formatMessage(messages.accent_mono) },
           ]}
           onChange={onChange}
         >
         <FormattedMessage id='settings.accent' defaultMessage='Accent Color' />
         <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change the accent color of the entire site' /></span>
         </LocalSettingsPageItem>
+        </span>
         <h2><FormattedMessage id='settings.misleading_links' defaultMessage='Tag Misleading Links' /></h2>
         <LocalSettingsPageItem
           settings={settings}
