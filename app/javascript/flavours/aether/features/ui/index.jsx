@@ -82,6 +82,7 @@ const mapStateToProps = state => ({
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 20,
   layout_local_setting: state.getIn(['local_settings', 'layout']),
+  accent: state.getIn(['local_settings', 'accent']),
   isWide: state.getIn(['local_settings', 'stretch']),
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
   unreadNotifications: state.getIn(['notifications', 'unread']),
@@ -261,6 +262,7 @@ class UI extends Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     layout_local_setting: PropTypes.string,
+    accent: PropTypes.string,
     isWide: PropTypes.bool,
     systemFontUi: PropTypes.bool,
     isComposing: PropTypes.bool,
@@ -406,6 +408,12 @@ class UI extends Component {
     document.addEventListener('drop', this.handleDrop, false);
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
+    
+    if (this.props.accent === 'default') {
+       document.documentElement.style.cssText = "--ui-highlight-color: #589734";
+    } else {
+       document.documentElement.style.setProperty('--ui-highlight-color', this.props.accent);
+    }
 
     if ('serviceWorker' in  navigator) {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);

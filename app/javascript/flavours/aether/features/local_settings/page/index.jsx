@@ -31,6 +31,20 @@ const messages = defineMessages({
   rewrite_mentions_username: { id: 'settings.rewrite_mentions_username', defaultMessage:  'Rewrite with username' },
   pop_in_left: { id: 'settings.pop_in_left', defaultMessage: 'Left' },
   pop_in_right: { id: 'settings.pop_in_right', defaultMessage:  'Right' },
+
+  accent_default: { id: 'settings.accent_default', defaultMessage:  'Default' },
+  accent_green: { id: 'settings.accent_green', defaultMessage:  'Green' },
+  accent_blue: { id: 'settings.accent_blue', defaultMessage:  'Blue' },
+  accent_purple: { id: 'settings.accent_purple', defaultMessage:  'Purple' },
+  accent_orange: { id: 'settings.accent_orange', defaultMessage:  'Orange' },
+  accent_yellow: { id: 'settings.accent_yellow', defaultMessage:  'Yellow' },
+  accent_red: { id: 'settings.accent_red', defaultMessage:  'Red' },
+  accent_pink: { id: 'settings.accent_pink', defaultMessage:  'Pink' },
+  accent_mammoth: { id: 'settings.accent_mammut', defaultMessage:  'Mammoth' },
+  accent_keystone: { id: 'settings.accent_mammut', defaultMessage:  'Keystone' },
+  accent_goby: { id: 'settings.accent_mammut', defaultMessage:  'Goby' },
+  accent_mono: { id: 'settings.accent_pink', defaultMessage:  'Monochrome' },
+
   cw_visibility_obscured: { id: 'settings.cw_visibility_obscured', defaultMessage:  'Obscured' },
   cw_visibility_hidden: { id: 'settings.cw_visibility_hidden', defaultMessage:  'Hidden' },
   cw_visibility_shown: { id: 'settings.cw_visibility_shown', defaultMessage:  'Visible' },
@@ -52,7 +66,31 @@ class LocalSettingsPage extends PureComponent {
   pages = [
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page general'>
-        <h1><FormattedMessage id='settings.general' defaultMessage='General' /></h1>
+        <h1><FormattedMessage id='settings.general' defaultMessage='Appearance' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['accent']}
+          id='mastodon-settings--accent'
+          options={[
+            { value: 'default', message: intl.formatMessage(messages.accent_default) },
+            { value: '#589734', message: intl.formatMessage(messages.accent_green) },
+            { value: '#377ee4', message: intl.formatMessage(messages.accent_blue) },
+            { value: '#a539ff', message: intl.formatMessage(messages.accent_purple) },
+            { value: '#ff8300', message: intl.formatMessage(messages.accent_orange) },
+            { value: '#dda600', message: intl.formatMessage(messages.accent_yellow) },
+            { value: '#f02727', message: intl.formatMessage(messages.accent_red) },
+            { value: '#f027be', message: intl.formatMessage(messages.accent_pink) },
+            { value: '#6364ff', message: intl.formatMessage(messages.accent_mammoth) },
+            { value: '#8db600', message: intl.formatMessage(messages.accent_keystone) },
+            { value: '#a97fdc', message: intl.formatMessage(messages.accent_goby) },
+            { value: 'var(--ui-font-color)', message: intl.formatMessage(messages.accent_mono) },
+          ]}
+          onChange={onChange}
+        >
+        <FormattedMessage id='settings.accent' defaultMessage='Accent Color' />
+        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change the accent color of the entire site' /></span>
+        </LocalSettingsPageItem>
+        <h2><FormattedMessage id='settings.misleading_links' defaultMessage='Tag Misleading Links' /></h2>
         <LocalSettingsPageItem
           settings={settings}
           item={['tag_misleading_links']}
