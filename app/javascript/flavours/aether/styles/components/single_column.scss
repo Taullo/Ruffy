@@ -247,7 +247,7 @@
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
   .ui__header__links button {
     position: fixed;
-    bottom: 8rem;
+    bottom: 6rem;
     right: 1rem;
     box-shadow: 1px 1px 4px var(--ui-shadow-color);
     height: 60px;
@@ -313,7 +313,7 @@
 
   .ui__mobile__footer__wrapper .column-link,
   .ui__mobile__footer__wrapper .icon-button {
-    font-size: 4rem !important;
+    font-size: 2.5rem !important;
     color: var(--ui-highlight-color);
     transition: color 0.2s;
     display: unset;
@@ -323,7 +323,6 @@
 
   .ui__mobile__footer__wrapper .column-link:hover,
   .ui__mobile__footer__wrapper .icon-button:hover {
-    font-size: 4rem !important;
     color: var(--ui-font-color);
   }
 
@@ -339,7 +338,7 @@
   }
 
   html {
-    padding-bottom: 5rem;
+    padding-bottom: 4rem;
   }
 }
 
