@@ -247,7 +247,7 @@
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
   .ui__header__links button {
     position: fixed;
-    bottom: 6rem;
+    top: calc(100vh - 9rem);
     right: 1rem;
     box-shadow: 1px 1px 4px var(--ui-shadow-color);
     height: 60px;
@@ -299,7 +299,7 @@
     position: fixed;
     width: 100vw;
     background-color: var(--ui-page-background);
-    bottom: 0;
+    top: calc(100vh - 3.5rem);
     left: 0;
     border-top: 1px #282c37 solid;
     text-align: center;
