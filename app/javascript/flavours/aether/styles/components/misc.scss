@@ -641,10 +641,10 @@ body > [data-popper-placement] {
   line-height: 18px;
   font-weight: 500;
   display: block;
-  color: var(--ui-font-color);
+  color: var(--ui-highlight-button-text-color);
 
   &--dangerous {
-    color: var(--ui-font-color);
+    color: var(--ui-highlight-button-text-color);
   }
 
   a,
@@ -1819,4 +1819,8 @@ noscript {
       color: var(--ui-highlight-button-text-color);
     }
   }
+}
+
+.optional_donation_link {
+  display: none;
 }

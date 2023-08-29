@@ -63,6 +63,7 @@ class LinkFooter extends PureComponent {
       <div className='link-footer'>
         <p>
           {' '}
+          <Link to='/policies'><FormattedMessage id='footer.privacy_policy' defaultMessage='Site policies' /></Link>
           {statusPageUrl && (
             <>
               {DividingCircle}
@@ -82,13 +83,15 @@ class LinkFooter extends PureComponent {
             </>
           )}
           {DividingCircle}
-          <Link to='/policies'><FormattedMessage id='footer.privacy_policy' defaultMessage='Site policies' /></Link>
-          {DividingCircle}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {DividingCircle}
           <Link to='/federation'><FormattedMessage id='footer.federation' defaultMessage='Federation info' /></Link>
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
+          <span className='optional_donation_link'>
+            {DividingCircle}
+            <a href='http://donate.ruffy.social' rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.support_ruffy' defaultMessage='Support Ruffy!' /></a>
+          </span>
           {DividingCircle}
           {version}
         </p>
