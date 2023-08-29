@@ -487,9 +487,13 @@ class UI extends Component {
         this.handleLayoutChange();
       }
     }
-    if (nextProps.accent !== this.props.accent) {
-      this.handleAccent();
-    }
+    setTimeout( // FIXME: Hack to wait for setting to save
+      function() {
+        this.handleAccent()
+      }
+      .bind(this),
+      100
+    );
   }
 
   componentDidUpdate (prevProps) {
