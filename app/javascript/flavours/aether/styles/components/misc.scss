@@ -573,7 +573,7 @@ body > [data-popper-placement] {
       padding-bottom: 8px;
       font-size: 13px;
       line-height: 18px;
-      color: var(--ui-font-color);
+      color: var(--ui-highlight-button-text-color);
     }
 
     &__list {
@@ -668,7 +668,7 @@ body > [data-popper-placement] {
     &:focus,
     &:hover,
     &:active {
-      background: var(--ui-font-color);
+      background: var(--ui-highlight-button-text-color);
       color: var(--ui-highlight-color);
       outline: 0;
     }
@@ -763,7 +763,7 @@ body > [data-popper-placement] {
 
     &:hover {
       background: var(--ui-highlight-color);
-      color: var(--ui-font-secondary-color);
+      color: var(--ui-highlight-button-text-color);
     }
   }
 }

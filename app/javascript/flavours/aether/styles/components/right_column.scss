@@ -16,6 +16,7 @@
 
       &:hover {
         background: var(--ui-highlight-color);
+        color: var(--ui-highlight-button-text-color);
       }
     }
   }
@@ -55,8 +56,9 @@
       &:hover {
         background: var(--ui-highlight-color);
 
-        .hashname {
-          color: rgb(var(--ui-font-color));
+        .hashname,
+        span {
+          color: var(--ui-highlight-button-text-color);
         }
 
         .trends__item__sparkline path:first-child {
