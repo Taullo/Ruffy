@@ -150,7 +150,7 @@
   margin-bottom: 10px;
 }
 
-@media screen and (width <= 630px) {
+@media screen and (width <= 650px) {
   .glitch.local-settings__navigation {
     width: 40px;
     flex-shrink: 0;
@@ -162,6 +162,10 @@
     span:last-of-type {
       display: none;
     }
+  }
+
+  .local-settings__navigation .local_prefs {
+    width: 40px;
   }
 }
 

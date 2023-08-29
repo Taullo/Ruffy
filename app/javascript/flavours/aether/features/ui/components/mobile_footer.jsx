@@ -75,6 +75,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   dispatchServer() {
     dispatch(fetchServer());
   },
+  openSettings: () => dispatch(openModal({
+    modalType: 'SETTINGS',
+    modalProps: {},
+  })),
   onLogout () {
     dispatch(openModal({
       modalType: 'CONFIRM',
