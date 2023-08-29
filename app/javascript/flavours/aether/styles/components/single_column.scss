@@ -247,8 +247,8 @@
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
   .ui__header__links button {
     position: fixed;
-    top: calc(100vh - 9rem);
-    right: 1rem;
+    bottom: 75px;
+    right: 5px;
     box-shadow: 1px 1px 4px var(--ui-shadow-color);
     height: 60px;
     border-radius: 100%;
@@ -299,7 +299,7 @@
     position: fixed;
     width: 100vw;
     background-color: var(--ui-page-background);
-    top: calc(100vh - 3.5rem);
+    bottom: 0;
     left: 0;
     border-top: 1px #282c37 solid;
     text-align: center;
@@ -338,7 +338,7 @@
   }
 
   .columns-area__panels {
-    padding-bottom: 4rem;
+    padding-bottom: 10rem;
   }
 }
 
