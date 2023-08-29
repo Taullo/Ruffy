@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { openModal } from 'flavours/glitch/actions/modal';
-import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'flavours/glitch/initial_state';
+import { version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'flavours/glitch/initial_state';
 import { PERMISSION_INVITE_USERS } from 'flavours/glitch/permissions';
 import { logOut } from 'flavours/glitch/utils/log_out';
 
@@ -90,6 +90,10 @@ class LinkFooter extends PureComponent {
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
+          <span className='optional_donation_link'>
+            {DividingCircle}
+            <a href='http://donate.ruffy.social' rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.support_ruffy' defaultMessage='Support Ruffy!' /></a>
+          </span>
           {DividingCircle}
           {version}
         </p>
