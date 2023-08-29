@@ -63,7 +63,6 @@ class LinkFooter extends PureComponent {
       <div className='link-footer'>
         <p>
           {' '}
-          <Link to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
           {statusPageUrl && (
             <>
               {DividingCircle}
