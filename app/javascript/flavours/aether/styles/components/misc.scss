@@ -549,6 +549,7 @@ body > [data-popper-placement] {
   box-shadow: 2px 4px 15px var(--ui-dropdown-shadow);
   z-index: 9999;
   overflow: hidden;
+  color: var(--ui-highlight-button-text-color);
 
   &__text-button {
     display: inline;
