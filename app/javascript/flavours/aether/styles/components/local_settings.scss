@@ -78,12 +78,12 @@
 
   &.active {
     background: var(--ui-highlight-color);
-    color: var(--ui-font-color);
+    color: var(--ui-highlight-button-text-color);
   }
 
   &.close {
     background: var(--ui-highlight-color);
-    color: var(--ui-font-color);
+    color: var(--ui-highlight-button-text-color);
     border: transparent;
     position: absolute;
     right: 0;
@@ -221,50 +221,62 @@
 }
 
 [for='mastodon-settings--accent--default'] input {
+  // Default
   background-color: #589734;
 }
 
 [for='mastodon-settings--accent--#589734'] input {
+  // Green
   background-color: #589734;
 }
 
 [for='mastodon-settings--accent--#377ee4'] input {
+  // Blue
   background-color: #377ee4;
 }
 
 [for='mastodon-settings--accent--#a539ff'] input {
+  // Purple
   background-color: #a539ff;
 }
 
 [for='mastodon-settings--accent--#ff8300'] input {
+  // Orange
   background-color: #ff8300;
 }
 
-[for='mastodon-settings--accent--#dda600'] input {
-  background-color: #dda600;
+[for='mastodon-settings--accent--#ffce00'] input {
+  // Yellow
+  background-color: #ffce00;
 }
 
 [for='mastodon-settings--accent--#f02727'] input {
+  // Red
   background-color: #f02727;
 }
 
 [for='mastodon-settings--accent--#f027be'] input {
+  // Pink
   background-color: #f027be;
 }
 
 [for='mastodon-settings--accent--#6364ff'] input {
+  // Mammoth
   background-color: #6364ff;
 }
 
-[for='mastodon-settings--accent--#8db600'] input {
-  background-color: #8db600;
+[for='mastodon-settings--accent--#b4e900'] input {
+  // Keystone
+  background-color: #b4e900;
 }
 
-[for='mastodon-settings--accent--#a97fdc'] input {
-  background-color: #a97fdc;
+[for='mastodon-settings--accent--#d1bcf5'] input {
+  // Goby
+  background-color: #d1bcf5;
 }
 
 [for='mastodon-settings--accent--mono'] input {
+  // Mono
   background-color: var(--ui-font-color);
 }
 

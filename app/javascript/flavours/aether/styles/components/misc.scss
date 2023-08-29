@@ -48,7 +48,7 @@
   border: 10px none;
   border-radius: 100px;
   box-sizing: border-box;
-  color: var(--ui-font-color);
+  color: var(--ui-highlight-button-text-color);
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
@@ -136,7 +136,7 @@
     &:focus,
     &:hover {
       background: var(--ui-highlight-color);
-      color: var(--ui-font-color);
+      color: var(--ui-highlight-button-text-color);
       border-width: 3px;
       padding: 7px 18px;
     }
@@ -1815,7 +1815,7 @@ noscript {
     &:hover {
       background: var(--ui-highlight-color);
       border-color: var(--ui-highlight-color);
-      color: var(--ui-font-color);
+      color: var(--ui-highlight-button-text-color);
     }
   }
 }

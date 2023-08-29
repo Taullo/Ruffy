@@ -78,13 +78,13 @@ class LocalSettingsPage extends PureComponent {
             { value: '#377ee4', title: intl.formatMessage(messages.accent_blue) },
             { value: '#a539ff', title: intl.formatMessage(messages.accent_purple) },
             { value: '#ff8300', title: intl.formatMessage(messages.accent_orange) },
-            { value: '#dda600', title: intl.formatMessage(messages.accent_yellow) },
+            { value: '#ffce00', title: intl.formatMessage(messages.accent_yellow) },
             { value: '#f02727', title: intl.formatMessage(messages.accent_red) },
             { value: '#f027be', title: intl.formatMessage(messages.accent_pink) },
             { value: '#6364ff', title: intl.formatMessage(messages.accent_mammoth) },
-            { value: '#8db600', title: intl.formatMessage(messages.accent_keystone) },
-            { value: '#a97fdc', title: intl.formatMessage(messages.accent_goby) },
-            { value: 'mono', title: intl.formatMessage(messages.accent_mono) },
+            { value: '#b4e900', title: intl.formatMessage(messages.accent_keystone) },
+            { value: '#d1bcf5', title: intl.formatMessage(messages.accent_goby) },
+            { value: '#ffffff', title: intl.formatMessage(messages.accent_mono) },
           ]}
           onChange={onChange}
         >

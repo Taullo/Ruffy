@@ -397,6 +397,28 @@ class UI extends Component {
       this.handleLayoutChange();
     }
   };
+  
+  handleAccent() {
+    console.log(this.props.accent);
+    var accentColor;
+    if (this.props.accent === 'default') {
+       accentColor = '#589734';
+    } else if (this.props.accent === 'mono') {
+       accentColor = '#ffffff';
+    } else {
+      accentColor = this.props.accent;
+    }
+    document.documentElement.style.setProperty('--ui-highlight-color', accentColor);
+    var color = (this.props.accent.charAt(0) === '#') ? this.props.accent.slice(1, 7) : this.props.accent;
+    var r = parseInt(color.slice(0, 2), 16); // hexToR
+    var g = parseInt(color.slice(2, 4), 16); // hexToG
+    var b = parseInt(color.slice(4, 6), 16); // hexToB
+    if (((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186) {
+      document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#000');
+    } else {  
+      document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#fff');
+    }
+  };
 
   componentDidMount () {
     const { signedIn } = this.context.identity;
@@ -410,11 +432,7 @@ class UI extends Component {
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
     
-    if (this.props.accent === 'default') {
-       document.documentElement.style.cssText = "--ui-highlight-color: #589734";
-    } else {
-       document.documentElement.style.setProperty('--ui-highlight-color', this.props.accent);
-    }
+    this.handleAccent();
 
     if ('serviceWorker' in  navigator) {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
@@ -468,6 +486,9 @@ class UI extends Component {
       } else {
         this.handleLayoutChange();
       }
+    }
+    if (nextProps.accent !== this.props.accent) {
+      this.handleAccent();
     }
   }
 
