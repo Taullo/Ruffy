@@ -112,7 +112,6 @@ class MobileFooter extends PureComponent {
     this.props.openSettings();
   };
 
-
   render () {
     const { signedIn } = this.context.identity;
     const { intl } = this.props;

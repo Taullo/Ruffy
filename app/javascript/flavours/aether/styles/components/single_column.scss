@@ -340,6 +340,18 @@
   .columns-area__panels {
     padding-bottom: 10rem;
   }
+
+  .ui__header .column-link {
+    font-size: 1.6rem;
+
+    span {
+      display: none;
+    }
+
+    i {
+      display: inline !important;
+    }
+  }
 }
 
 .explore__search-header {
