@@ -246,26 +246,8 @@ class LocalSettingsPage extends PureComponent {
     ),
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page content_warnings'>
-        <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h1>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['content_warnings', 'cw_visibility']}
-          id='mastodon-settings--cw-visibility'
-          options={[
-            { value: 'obscured', message: intl.formatMessage(messages.cw_visibility_obscured) },
-            { value: 'hidden', message: intl.formatMessage(messages.cw_visibility_hidden) },
-            { value: 'visible', message: intl.formatMessage(messages.cw_visibility_shown) },
-          ]}
-          onChange={onChange}
-        >
-        <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content warning text visibility:' />
-        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning is obscured, completely hidden, or shown by default' /></span>
-        </LocalSettingsPageItem>
-      </div>
-    ),
-    ({ onChange, settings }) => (
-      <div className='glitch local-settings__page media'>
-        <h1><FormattedMessage id='settings.media' defaultMessage='Media' /></h1>
+        <h1><FormattedMessage id='settings.statuses' defaultMessage='Posts' /></h1>
+        <h2><FormattedMessage id='settings.media' defaultMessage='Media' /></h2>
         <LocalSettingsPageItem
           settings={settings}
           item={['inline_preview_cards']}
@@ -281,6 +263,21 @@ class LocalSettingsPage extends PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.pop_in_player' defaultMessage='Enable pop-in player' />
+        </LocalSettingsPageItem>
+        <h2><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h2>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['content_warnings', 'cw_visibility']}
+          id='mastodon-settings--cw-visibility'
+          options={[
+            { value: 'obscured', message: intl.formatMessage(messages.cw_visibility_obscured) },
+            { value: 'hidden', message: intl.formatMessage(messages.cw_visibility_hidden) },
+            { value: 'visible', message: intl.formatMessage(messages.cw_visibility_shown) },
+          ]}
+          onChange={onChange}
+        >
+        <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content warning text visibility:' />
+        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning is obscured, completely hidden, or shown by default' /></span>
         </LocalSettingsPageItem>
       </div>
     ),

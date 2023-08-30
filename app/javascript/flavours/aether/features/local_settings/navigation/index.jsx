@@ -15,7 +15,7 @@ const messages = defineMessages({
   general: {  id: 'settings.general', defaultMessage: 'Appearance' },
   layout: {  id: 'settings.layout', defaultMessage: 'Layout' },
   compose: {  id: 'settings.compose_box_opts', defaultMessage: 'Compose box' },
-  content_warnings: { id: 'settings.content_warnings', defaultMessage: 'Content Warnings' },
+  statuses: { id: 'settings.statuses', defaultMessage: 'Posts' },
   collapsed: { id: 'settings.collapsed_statuses', defaultMessage: 'Collapsed posts' },
   media: { id: 'settings.media', defaultMessage: 'Media' },
   accessibility: { id: 'settings.accessibility', defaultMessage: 'Accessibility' },
@@ -74,19 +74,12 @@ class LocalSettingsNavigation extends PureComponent {
           active={index === 3}
           index={3}
           onNavigate={onNavigate}
-          icon='warning'
-          title={intl.formatMessage(messages.content_warnings)}
+          icon='comment'
+          title={intl.formatMessage(messages.statuses)}
         />
         <LocalSettingsNavigationItem
           active={index === 4}
           index={4}
-          onNavigate={onNavigate}
-          icon='image'
-          title={intl.formatMessage(messages.media)}
-        />
-        <LocalSettingsNavigationItem
-          active={index === 5}
-          index={5}
           onNavigate={onNavigate}
           icon='universal-access'
           title={intl.formatMessage(messages.accessibility)}
