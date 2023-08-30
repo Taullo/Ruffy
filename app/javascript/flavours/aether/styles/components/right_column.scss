@@ -62,11 +62,11 @@
         }
 
         .trends__item__sparkline path:first-child {
-          fill: var(--ui-font-color) !important;
+          fill: var(--ui-highlight-button-text-color) !important;
         }
 
         .trends__item__sparkline path:last-child {
-          stroke: var(--ui-font-color) !important;
+          stroke: var(--ui-highlight-button-text-color) !important;
         }
       }
     }

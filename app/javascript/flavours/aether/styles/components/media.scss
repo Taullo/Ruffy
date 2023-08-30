@@ -277,17 +277,16 @@
     padding: 20px 0;
 
     .icon-button {
-      color: $white;
+      color: var(--ui-font-color);
 
       &:hover,
       &:focus,
       &:active {
-        color: $white;
-        background-color: rgba($white, 0.15);
+        color: var(--ui-highlight-color);
       }
 
       &:focus {
-        background-color: rgba($white, 0.3);
+        color: var(--ui-highlight-color);
       }
 
       &.active {
@@ -300,16 +299,16 @@
         &:hover,
         &:focus,
         &:active {
-          background: var(--ui-highlight-color);
+          color: var(--ui-highlight-color);
         }
 
         &:focus {
-          background: var(--ui-highlight-color);
+          color: var(--ui-highlight-color);
         }
       }
 
       &.disabled {
-        color: $white;
+        color: var(--ui-font-color);
         background-color: transparent;
         cursor: default;
         opacity: 0.4;
@@ -326,7 +325,7 @@
 
 .media-modal__page-dot {
   flex: 0 0 auto;
-  background-color: $white;
+  background-color: var(--ui-font-color);
   opacity: 0.4;
   height: 6px;
   width: 6px;
