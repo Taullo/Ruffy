@@ -907,10 +907,6 @@ body > [data-popper-placement] {
   }
 }
 
-.column-link--transparent .icon-with-badge__badge {
-  border-color: darken($ui-base-color, 8%);
-}
-
 .scrollable {
   overflow-y: scroll;
   overflow-x: hidden;
