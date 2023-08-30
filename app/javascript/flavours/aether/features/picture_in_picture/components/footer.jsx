@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
-
-import classNames from 'classnames';
+import { defineMessages, injectIntl , FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -12,8 +10,7 @@ import { initBoostModal } from 'flavours/aether/actions/boosts';
 import { replyCompose } from 'flavours/aether/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'flavours/aether/actions/interactions';
 import { openModal } from 'flavours/aether/actions/modal';
-import { IconButton } from 'flavours/aether/components/icon_button';
-import { me, boostModal } from 'flavours/aether/initial_state';
+import { boostModal } from 'flavours/aether/initial_state';
 import { makeGetStatus } from 'flavours/aether/selectors';
 
 const messages = defineMessages({
@@ -167,49 +164,9 @@ class Footer extends ImmutablePureComponent {
   render () {
     const { status, intl, withOpenButton } = this.props;
 
-    const publicStatus  = ['public', 'unlisted'].includes(status.get('visibility'));
-    const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
-
-    let replyIcon, replyTitle;
-
-    if (status.get('in_reply_to_id', null) === null) {
-      replyIcon = 'reply';
-      replyTitle = intl.formatMessage(messages.reply);
-    } else {
-      replyIcon = 'reply-all';
-      replyTitle = intl.formatMessage(messages.replyAll);
-    }
-
-    let reblogTitle = '';
-
-    if (status.get('reblogged')) {
-      reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
-    } else if (publicStatus) {
-      reblogTitle = intl.formatMessage(messages.reblog);
-    } else if (reblogPrivate) {
-      reblogTitle = intl.formatMessage(messages.reblog_private);
-    } else {
-      reblogTitle = intl.formatMessage(messages.cannot_reblog);
-    }
-
-    let replyButton = null;
-    replyButton = (
-      <IconButton
-        className='status__action-bar-button'
-        title={replyTitle}
-        icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon}
-        onClick={this.handleReplyClick}
-        counter={status.get('replies_count')}
-        obfuscateCount
-      />
-    );
-
     return (
       <div className='picture-in-picture__footer'>
-        {replyButton}
-        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
-        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' onClick={this.handleOpenClick} href={status.get('url')} />}
+        {withOpenButton && <button className='button' title={intl.formatMessage(messages.open)} onClick={this.handleOpenClick} href={status.get('url')}><FormattedMessage id='messages.open' defaultMessage='Expand this post' /> <i className='fa fa-external-link fa-fw' /></button>}
       </div>
     );
   }
