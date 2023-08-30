@@ -276,6 +276,10 @@
     background: transparent;
     padding: 20px 0;
 
+    .fa-retweet {
+      background: var(--ui-font-color);
+    }
+
     .icon-button {
       color: var(--ui-font-color);
 
