@@ -887,13 +887,12 @@ body > [data-popper-placement] {
     inset-inline-start: 9px;
     top: -13px;
     background: var(--ui-highlight-color);
-    border: 2px solid lighten($ui-base-color, 8%);
     padding: 1px 6px;
     border-radius: var(--ui-border-radius);
     font-size: 10px;
     font-weight: 500;
     line-height: 14px;
-    color: var(--ui-font-color);
+    color: var(--ui-highlight-button-text-color);
   }
 
   &__issue-badge {
