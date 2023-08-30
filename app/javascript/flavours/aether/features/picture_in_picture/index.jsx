@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 
-import classNames from 'classnames';
-
 import { connect } from 'react-redux';
 
 import { removePictureInPicture } from 'flavours/aether/actions/picture_in_picture';
@@ -14,7 +12,6 @@ import Header from './components/header';
 
 const mapStateToProps = state => ({
   ...state.get('picture_in_picture'),
-  left: state.getIn(['local_settings', 'media', 'pop_in_position']) === 'left',
 });
 
 class PictureInPicture extends Component {
@@ -32,7 +29,6 @@ class PictureInPicture extends Component {
     foregroundColor: PropTypes.string,
     accentColor: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
-    left: PropTypes.bool,
   };
 
   handleClose = () => {
@@ -41,7 +37,7 @@ class PictureInPicture extends Component {
   };
 
   render () {
-    const { type, src, currentTime, accountId, statusId, left } = this.props;
+    const { type, src, currentTime, accountId, statusId } = this.props;
 
     if (!currentTime) {
       return null;
@@ -78,7 +74,7 @@ class PictureInPicture extends Component {
     }
 
     return (
-      <div className={classNames('picture-in-picture', { left })}>
+      <div className='picture-in-picture'>
         <Header accountId={accountId} statusId={statusId} onClose={this.handleClose} />
 
         {player}

@@ -1105,7 +1105,7 @@ a.status-card.compact:hover {
   position: fixed;
   bottom: 20px;
   inset-inline-end: 20px;
-  width: 300px;
+  width: 450px;
 
   &.left {
     inset-inline-end: unset;
@@ -1114,16 +1114,16 @@ a.status-card.compact:hover {
 
   &__footer {
     border-radius: 0 0 var(--ui-border-radius) var(--ui-border-radius);
-    background: lighten($ui-base-color, 4%);
+    background: var(--ui-body-color);
     padding: 10px;
     padding-top: 12px;
-    display: flex;
     justify-content: space-between;
+    display: none;
   }
 
   &__header {
     border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
-    background: lighten($ui-base-color, 4%);
+    background: var(--ui-body-color);
     padding: 10px;
     display: flex;
     justify-content: space-between;
