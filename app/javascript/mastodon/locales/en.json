@@ -643,7 +643,7 @@
   "status.more": "More",
   "status.mute": "Mute @{name}",
   "status.mute_conversation": "Mute conversation",
-  "status.open": "Expand this post",
+  "status.open": "Open original post",
   "status.pin": "Pin on profile",
   "status.pinned": "Pinned post",
   "status.read_more": "Read more",

@@ -497,7 +497,7 @@ en:
       dashboard:
         instance_accounts_dimension: Most followed accounts
         instance_accounts_measure: stored accounts
-        instance_followers_measure: Follow relationships form there to here
+        instance_followers_measure: Follow relationships from there to here
         instance_follows_measure: Follow relationships from here to there
         instance_languages_dimension: Top languages
         instance_media_attachments_measure: stored media attachments
