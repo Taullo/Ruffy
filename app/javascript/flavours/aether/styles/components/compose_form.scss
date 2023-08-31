@@ -638,26 +638,30 @@
   column-gap: 5px;
 
   .compose-form__publish-button-wrapper {
+    .primary {
+      z-index: 1;
+    }
+
     button {
       font-size: 1.2rem;
       padding: 0.5rem 1.2rem;
       text-align: center;
       height: 2.5rem;
       transition:
-        opacity 0.2s,
         color 0.2s,
-        background 0.2s;
+        background 0.2s,
+        box-shadow 0.2s;
     }
 
     & > .side_arm {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      padding-right: 30px;
-      left: 23px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      padding-left: 30px;
+      right: 23px;
       transition:
-        opacity 0.2s,
         color 0.2s,
-        background 0.2s;
+        background 0.2s,
+        box-shadow 0.2s;
     }
   }
 
@@ -665,7 +669,7 @@
     .compose-form__publish-button-wrapper {
       button {
         &:hover {
-          opacity: 0.8;
+          box-shadow: 0 0 8px var(--ui-highlight-color);
         }
       }
 
@@ -674,7 +678,7 @@
         color: var(--ui-highlight-color);
 
         &:hover {
-          opacity: 0.8;
+          box-shadow: 0 0 8px var(--ui-highlight-button-text-color);
         }
       }
     }
@@ -748,10 +752,10 @@
   line-height: normal !important;
   margin-right: 10px;
   height: 2.5rem;
+  transition: box-shadow 0.2s;
 
   &:hover {
-    background: lighten($ui-highlight-color, 4%);
-    color: var(--ui-font-color);
+    box-shadow: 0 0 8px var(--ui-highlight-color);
   }
 }
 

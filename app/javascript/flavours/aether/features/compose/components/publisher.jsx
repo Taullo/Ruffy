@@ -79,6 +79,15 @@ class Publisher extends ImmutablePureComponent {
 
     return (
       <div className={computedClass}>
+        <div className='compose-form__publish-button-wrapper'>
+          <Button
+            className='primary'
+            text={publishText}
+            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
+            onClick={this.handleSubmit}
+            disabled={disabled}
+          />
+        </div>
         {sideArm && !isEditing && sideArm !== 'none' ? (
           <div className='compose-form__publish-button-wrapper'>
             <Button
@@ -91,15 +100,6 @@ class Publisher extends ImmutablePureComponent {
             />
           </div>
         ) : null}
-        <div className='compose-form__publish-button-wrapper'>
-          <Button
-            className='primary'
-            text={publishText}
-            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
-            onClick={this.handleSubmit}
-            disabled={disabled}
-          />
-        </div>
       </div>
     );
   }

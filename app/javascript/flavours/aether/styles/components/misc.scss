@@ -64,11 +64,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   width: auto;
+  transition: box-shadow 0.2s;
 
   &:active,
   &:focus,
   &:hover {
-    background-color: var(--ui-highlight-color);
+    box-shadow: 0 0 8px var(--ui-highlight-color);
   }
 
   &--destructive {
@@ -83,6 +84,12 @@
   &:disabled {
     background-color: $ui-primary-color;
     cursor: default;
+
+    &:active,
+    &:focus,
+    &:hover {
+      box-shadow: 0 0 8px transparent;
+    }
   }
 
   &.button-alternative {
