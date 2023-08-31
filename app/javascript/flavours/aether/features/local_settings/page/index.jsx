@@ -73,7 +73,7 @@ class LocalSettingsPage extends PureComponent {
           item={['accent']}
           id='mastodon-settings--accent'
           options={[
-            { value: 'default', title: intl.formatMessage(messages.accent_default) },
+            { value: '#589734', title: intl.formatMessage(messages.accent_default) },
             { value: '#589734', title: intl.formatMessage(messages.accent_green) },
             { value: '#377ee4', title: intl.formatMessage(messages.accent_blue) },
             { value: '#a539ff', title: intl.formatMessage(messages.accent_purple) },

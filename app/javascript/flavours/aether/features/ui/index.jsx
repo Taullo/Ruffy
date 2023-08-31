@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import { PureComponent, Component } from 'react';
 
+
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -399,16 +401,7 @@ class UI extends Component {
   };
   
   handleAccent() {
-    console.log(this.props.accent);
-    var accentColor;
-    if (this.props.accent === 'default') {
-       accentColor = '#589734';
-    } else if (this.props.accent === 'mono') {
-       accentColor = '#ffffff';
-    } else {
-      accentColor = this.props.accent;
-    }
-    document.documentElement.style.setProperty('--ui-highlight-color', accentColor);
+    document.documentElement.style.setProperty('--ui-highlight-color', this.props.accent);
     var color = (this.props.accent.charAt(0) === '#') ? this.props.accent.slice(1, 7) : this.props.accent;
     var r = parseInt(color.slice(0, 2), 16); // hexToR
     var g = parseInt(color.slice(2, 4), 16); // hexToG
@@ -717,6 +710,9 @@ class UI extends Component {
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
           <MobileFooter />
         </div>
+        <Helmet>
+          <meta name='theme-color' content={this.props.accent} />
+        </Helmet>
       </HotKeys>
     );
   }
