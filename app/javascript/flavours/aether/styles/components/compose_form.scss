@@ -638,17 +638,45 @@
   column-gap: 5px;
 
   .compose-form__publish-button-wrapper {
-    overflow: hidden;
-
     button {
       font-size: 1.2rem;
       padding: 0.5rem 1.2rem;
       text-align: center;
       height: 2.5rem;
+      transition:
+        opacity 0.2s,
+        color 0.2s,
+        background 0.2s;
     }
 
     & > .side_arm {
-      width: 36px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      padding-right: 30px;
+      left: 23px;
+      transition:
+        opacity 0.2s,
+        color 0.2s,
+        background 0.2s;
+    }
+  }
+
+  &:not(.disabled) {
+    .compose-form__publish-button-wrapper {
+      button {
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      & > .side_arm {
+        background: var(--ui-highlight-button-text-color);
+        color: var(--ui-highlight-color);
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
     }
   }
 }
