@@ -73,7 +73,7 @@ class LocalSettingsPage extends PureComponent {
           item={['accent']}
           id='mastodon-settings--accent'
           options={[
-            { value: '#589734', title: intl.formatMessage(messages.accent_default) },
+            { value: 'default', title: intl.formatMessage(messages.accent_default) },
             { value: '#589734', title: intl.formatMessage(messages.accent_green) },
             { value: '#377ee4', title: intl.formatMessage(messages.accent_blue) },
             { value: '#a539ff', title: intl.formatMessage(messages.accent_purple) },
@@ -84,7 +84,7 @@ class LocalSettingsPage extends PureComponent {
             { value: '#6364ff', title: intl.formatMessage(messages.accent_mammoth) },
             { value: '#b4e900', title: intl.formatMessage(messages.accent_keystone) },
             { value: '#d1bcf5', title: intl.formatMessage(messages.accent_goby) },
-            { value: '#ffffff', title: intl.formatMessage(messages.accent_mono) },
+            { value: 'mono', title: intl.formatMessage(messages.accent_mono) },
           ]}
           onChange={onChange}
         >

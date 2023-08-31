@@ -5,7 +5,6 @@ import { PureComponent, Component } from 'react';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -401,8 +400,16 @@ class UI extends Component {
   };
   
   handleAccent() {
-    document.documentElement.style.setProperty('--ui-highlight-color', this.props.accent);
-    var color = (this.props.accent.charAt(0) === '#') ? this.props.accent.slice(1, 7) : this.props.accent;
+    var accentColor;
+    if (this.props.accent === 'default') {
+       accentColor = '#589734';
+    } else if (this.props.accent === 'mono') {
+       accentColor = '#ffffff';
+    } else {
+      accentColor = this.props.accent;
+    }
+    document.documentElement.style.setProperty('--ui-highlight-color', accentColor);
+    var color = (accentColor.charAt(0) === '#') ? accentColor.slice(1, 7) :accentColor.accent;
     var r = parseInt(color.slice(0, 2), 16); // hexToR
     var g = parseInt(color.slice(2, 4), 16); // hexToG
     var b = parseInt(color.slice(4, 6), 16); // hexToB
@@ -411,6 +418,7 @@ class UI extends Component {
     } else {  
       document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#fff');
     }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", accentColor);
   };
 
   componentDidMount () {
@@ -710,9 +718,6 @@ class UI extends Component {
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
           <MobileFooter />
         </div>
-        <Helmet>
-          <meta name='theme-color' content={this.props.accent} />
-        </Helmet>
       </HotKeys>
     );
   }

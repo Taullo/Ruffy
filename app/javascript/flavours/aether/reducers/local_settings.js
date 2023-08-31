@@ -8,7 +8,7 @@ import { STORE_HYDRATE } from 'flavours/aether/actions/store';
 const initialState = ImmutableMap({
   layout    : 'auto',
   stretch   : true,
-  accent    : '#589734',
+  accent    : 'default',
   side_arm  : 'none',
   side_arm_reply_mode : 'keep',
   always_show_spoilers_field: false,
