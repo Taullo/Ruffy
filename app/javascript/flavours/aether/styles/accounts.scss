@@ -1273,7 +1273,7 @@ img.parallax[src*='/headers/original/missing.png'] {
 
       .trends__item__name,
       .trends__item__current {
-        color: inherit;
+        color: var(--ui-highlight-button-text-color);
       }
     }
   }
