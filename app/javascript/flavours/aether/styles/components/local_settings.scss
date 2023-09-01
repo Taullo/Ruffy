@@ -196,9 +196,17 @@
 
 /* Accent Colors */
 
+.accentSelector fieldset {
+  margin-left: -6px;
+
+  legend {
+    margin-left: 6px;
+  }
+}
+
 [name='mastodon-settings--accent'] {
-  height: 32px;
-  width: 32px;
+  height: 30px;
+  width: 30px;
   appearance: none;
   background-color: white;
   clear: both;
@@ -217,6 +225,10 @@
   &:focus {
     border-color: var(--ui-font-color);
     box-shadow: 0 0 4px var(--ui-font-color);
+  }
+
+  &:checked {
+    outline: 4px solid var(--ui-highlight-color);
   }
 }
 
@@ -278,6 +290,13 @@
 [for='mastodon-settings--accent--mono'] input {
   // Mono
   background-color: var(--ui-font-color);
+}
+
+[for='mastodon-settings--accent--undefined'] input {
+  // Custom
+  margin-left: 6px;
+  top: -6px !important;
+  position: relative !important;
 }
 
 .accentSelector label {

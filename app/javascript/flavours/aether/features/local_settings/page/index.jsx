@@ -40,10 +40,11 @@ const messages = defineMessages({
   accent_yellow: { id: 'settings.accent_yellow', defaultMessage:  'Yellow' },
   accent_red: { id: 'settings.accent_red', defaultMessage:  'Red' },
   accent_pink: { id: 'settings.accent_pink', defaultMessage:  'Pink' },
-  accent_mammoth: { id: 'settings.accent_mammut', defaultMessage:  'Mammoth' },
-  accent_keystone: { id: 'settings.accent_mammut', defaultMessage:  'Keystone' },
-  accent_goby: { id: 'settings.accent_mammut', defaultMessage:  'Goby' },
-  accent_mono: { id: 'settings.accent_pink', defaultMessage:  'Monochrome' },
+  accent_mammoth: { id: 'settings.accent_mammoth', defaultMessage:  'Mammoth' },
+  accent_keystone: { id: 'settings.accent_keystone', defaultMessage:  'Keystone' },
+  accent_goby: { id: 'settings.accent_goby', defaultMessage:  'Goby' },
+  accent_mono: { id: 'settings.accent_mono', defaultMessage:  'Monochrome' },
+  accent_custom: { id: 'settings.accent_custom', defaultMessage:  'Custom' },
 
   cw_visibility_obscured: { id: 'settings.cw_visibility_obscured', defaultMessage:  'Obscured' },
   cw_visibility_hidden: { id: 'settings.cw_visibility_hidden', defaultMessage:  'Hidden' },
@@ -73,18 +74,19 @@ class LocalSettingsPage extends PureComponent {
           item={['accent']}
           id='mastodon-settings--accent'
           options={[
-            { value: 'default', title: intl.formatMessage(messages.accent_default) },
-            { value: '#589734', title: intl.formatMessage(messages.accent_green) },
-            { value: '#377ee4', title: intl.formatMessage(messages.accent_blue) },
-            { value: '#a539ff', title: intl.formatMessage(messages.accent_purple) },
-            { value: '#ff8300', title: intl.formatMessage(messages.accent_orange) },
-            { value: '#ffce00', title: intl.formatMessage(messages.accent_yellow) },
-            { value: '#f02727', title: intl.formatMessage(messages.accent_red) },
-            { value: '#f027be', title: intl.formatMessage(messages.accent_pink) },
-            { value: '#6364ff', title: intl.formatMessage(messages.accent_mammoth) },
-            { value: '#b4e900', title: intl.formatMessage(messages.accent_keystone) },
-            { value: '#d1bcf5', title: intl.formatMessage(messages.accent_goby) },
-            { value: 'mono', title: intl.formatMessage(messages.accent_mono) },
+            { type: 'radio', value: 'default', title: intl.formatMessage(messages.accent_default) },
+            { type: 'radio', value: '#589734', title: intl.formatMessage(messages.accent_green) },
+            { type: 'radio', value: '#377ee4', title: intl.formatMessage(messages.accent_blue) },
+            { type: 'radio', value: '#a539ff', title: intl.formatMessage(messages.accent_purple) },
+            { type: 'radio', value: '#ff8300', title: intl.formatMessage(messages.accent_orange) },
+            { type: 'radio', value: '#ffce00', title: intl.formatMessage(messages.accent_yellow) },
+            { type: 'radio', value: '#f02727', title: intl.formatMessage(messages.accent_red) },
+            { type: 'radio', value: '#f027be', title: intl.formatMessage(messages.accent_pink) },
+            { type: 'radio', value: '#6364ff', title: intl.formatMessage(messages.accent_mammoth) },
+            { type: 'radio', value: '#b4e900', title: intl.formatMessage(messages.accent_keystone) },
+            { type: 'radio', value: '#d1bcf5', title: intl.formatMessage(messages.accent_goby) },
+            { type: 'radio', value: 'mono', title: intl.formatMessage(messages.accent_mono) },
+            { type: 'color', title: intl.formatMessage(messages.accent_custom) },
           ]}
           onChange={onChange}
         >
@@ -107,9 +109,9 @@ class LocalSettingsPage extends PureComponent {
           item={['rewrite_mentions']}
           id='mastodon-settings--rewrite_mentions'
           options={[
-            { value: 'no', message: intl.formatMessage(messages.rewrite_mentions_no) },
-            { value: 'acct', message: intl.formatMessage(messages.rewrite_mentions_acct) },
-            { value: 'username', message: intl.formatMessage(messages.rewrite_mentions_username) },
+            {  type: 'radio', value: 'no', message: intl.formatMessage(messages.rewrite_mentions_no) },
+            {  type: 'radio', value: 'acct', message: intl.formatMessage(messages.rewrite_mentions_acct) },
+            {  type: 'radio', value: 'username', message: intl.formatMessage(messages.rewrite_mentions_username) },
           ]}
           onChange={onChange}
         >
@@ -127,9 +129,9 @@ class LocalSettingsPage extends PureComponent {
             item={['layout']}
             id='mastodon-settings--layout'
             options={[
-              { value: 'auto', message: intl.formatMessage(messages.layout_auto), hint: intl.formatMessage(messages.layout_auto_hint) },
-              { value: 'single', message: intl.formatMessage(messages.layout_mobile), hint: intl.formatMessage(messages.layout_mobile_hint) },
-              { value: 'multiple', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
+              {  type: 'radio', value: 'auto', message: intl.formatMessage(messages.layout_auto), hint: intl.formatMessage(messages.layout_auto_hint) },
+              {  type: 'radio', value: 'single', message: intl.formatMessage(messages.layout_mobile), hint: intl.formatMessage(messages.layout_mobile_hint) },
+              {  type: 'radio', value: 'multiple', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
             ]}
             onChange={onChange}
            />
@@ -159,7 +161,7 @@ class LocalSettingsPage extends PureComponent {
             settings={settings}
             item={['collapsed', 'auto', 'height']}
             id='mastodon-settings--collapsed-auto-height'
-            placeholder='1200'
+            placeholder='1400'
             onChange={onChange}
             dependsOn={[['collapsed', 'enabled']]}
             dependsOnNot={[['collapsed', 'auto', 'all']]}
@@ -219,11 +221,11 @@ class LocalSettingsPage extends PureComponent {
           item={['side_arm']}
           id='mastodon-settings--side_arm'
           options={[
-            { value: 'none', message: intl.formatMessage(messages.side_arm_none) },
-            { value: 'direct', message: intl.formatMessage(messages.direct) },
-            { value: 'private', message: intl.formatMessage(messages.private) },
-            { value: 'unlisted', message: intl.formatMessage(messages.unlisted) },
-            { value: 'public', message: intl.formatMessage(messages.public) },
+            { type: 'radio', value: 'none', message: intl.formatMessage(messages.side_arm_none) },
+            { type: 'radio', value: 'direct', message: intl.formatMessage(messages.direct) },
+            { type: 'radio', value: 'private', message: intl.formatMessage(messages.private) },
+            { type: 'radio', value: 'unlisted', message: intl.formatMessage(messages.unlisted) },
+            { type: 'radio', value: 'public', message: intl.formatMessage(messages.public) },
           ]}
           onChange={onChange}
         >
@@ -234,9 +236,9 @@ class LocalSettingsPage extends PureComponent {
           item={['side_arm_reply_mode']}
           id='mastodon-settings--side_arm_reply_mode'
           options={[
-            { value: 'keep', message: intl.formatMessage(messages.side_arm_keep) },
-            { value: 'copy', message: intl.formatMessage(messages.side_arm_copy) },
-            { value: 'restrict', message: intl.formatMessage(messages.side_arm_restrict) },
+            { type: 'radio', value: 'keep', message: intl.formatMessage(messages.side_arm_keep) },
+            { type: 'radio', value: 'copy', message: intl.formatMessage(messages.side_arm_copy) },
+            { type: 'radio', value: 'restrict', message: intl.formatMessage(messages.side_arm_restrict) },
           ]}
           onChange={onChange}
         >
@@ -270,9 +272,9 @@ class LocalSettingsPage extends PureComponent {
           item={['content_warnings', 'cw_visibility']}
           id='mastodon-settings--cw-visibility'
           options={[
-            { value: 'obscured', message: intl.formatMessage(messages.cw_visibility_obscured) },
-            { value: 'hidden', message: intl.formatMessage(messages.cw_visibility_hidden) },
-            { value: 'visible', message: intl.formatMessage(messages.cw_visibility_shown) },
+            { type: 'radio', value: 'obscured', message: intl.formatMessage(messages.cw_visibility_obscured) },
+            { type: 'radio', value: 'hidden', message: intl.formatMessage(messages.cw_visibility_hidden) },
+            { type: 'radio', value: 'visible', message: intl.formatMessage(messages.cw_visibility_shown) },
           ]}
           onChange={onChange}
         >
