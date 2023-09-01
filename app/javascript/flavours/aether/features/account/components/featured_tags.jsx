@@ -35,7 +35,7 @@ class FeaturedTags extends ImmutablePureComponent {
     return (
       <div className='featured_tags'>
         <h4><FormattedMessage id='account.featured_tags.title' defaultMessage='Featured hashtags' values={{ name: <bdi dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /> }} /></h4>
-
+        <div className='tags-wrapper'>
         {featuredTags.take(10).map(featuredTag => (
           <Hashtag
             key={featuredTag.get('name')}
@@ -47,6 +47,7 @@ class FeaturedTags extends ImmutablePureComponent {
             description={((featuredTag.get('statuses_count') * 1) > 0) ? intl.formatMessage(messages.lastStatusAt, { date: intl.formatDate(featuredTag.get('last_status_at'), { month: 'short', day: '2-digit' }) }) : intl.formatMessage(messages.empty)}
           />
         ))}
+        </div>
       </div>
     );
   }

@@ -1243,17 +1243,34 @@ img.parallax[src*='/headers/original/missing.png'] {
   }
 }
 
+.tags-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .account-timeline__right-column .trends__item {
   border-bottom: 0;
-  float: left;
   width: 50%;
   box-sizing: border-box;
+  padding: 0;
+  margin-top: 8px;
 
   a {
     text-decoration: none;
     width: 100%;
     display: flex;
     align-items: flex-end;
+    padding: 15px;
+    transition:
+      background 0.2s,
+      color 0.2s;
+    border-radius: var(--ui-border-radius);
+
+    &:hover {
+      background: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
+    }
   }
 }
 
