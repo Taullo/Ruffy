@@ -86,7 +86,7 @@ class LocalSettingsPage extends PureComponent {
             { type: 'radio', value: '#b4e900', title: intl.formatMessage(messages.accent_keystone) },
             { type: 'radio', value: '#d1bcf5', title: intl.formatMessage(messages.accent_goby) },
             { type: 'radio', value: 'mono', title: intl.formatMessage(messages.accent_mono) },
-            { type: 'color', title: intl.formatMessage(messages.accent_custom) },
+            { type: 'color', value: undefined, title: intl.formatMessage(messages.accent_custom) },
           ]}
           onChange={onChange}
         >
