@@ -1270,6 +1270,11 @@ img.parallax[src*='/headers/original/missing.png'] {
     &:hover {
       background: var(--ui-highlight-color);
       color: var(--ui-highlight-button-text-color);
+
+      .trends__item__name,
+      .trends__item__current {
+        color: inherit;
+      }
     }
   }
 }
