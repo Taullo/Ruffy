@@ -10,6 +10,7 @@ class Form::AdminSettings
     site_short_description
     site_extended_description
     site_terms
+    site_accent_color
     registrations_mode
     closed_registrations_message
     timeline_preview
@@ -94,6 +95,7 @@ class Form::AdminSettings
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks_rationale) }
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
   validates :site_short_description, length: { maximum: 200 }, if: -> { defined?(@site_short_description) }
+  validates :site_accent_color, length: { maximum: 7 }, if: -> { defined?(@site_accent_color) }
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
 

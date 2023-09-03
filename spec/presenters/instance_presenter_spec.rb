@@ -58,6 +58,19 @@ describe InstancePresenter do
     end
   end
 
+  describe '#accent_color' do
+    around do |example|
+      accent_color = Setting.site_accent_color
+      example.run
+      Setting.site_accent_color = accent_color
+    end
+
+    it 'delegates accent_color to Setting' do
+      Setting.site_accent_color = 'Accent Color'
+      expect(instance_presenter.accent_color).to eq 'Accent Color'
+    end
+  end
+
   describe '#user_count' do
     it 'returns the number of site users' do
       Rails.cache.write 'user_count', 123
@@ -118,6 +131,20 @@ describe InstancePresenter do
     it 'returns SiteUpload' do
       thumbnail = Fabricate(:site_upload, var: 'thumbnail')
       expect(instance_presenter.thumbnail).to eq(thumbnail)
+    end
+  end
+
+  describe '#wordmark' do
+    it 'returns SiteUpload' do
+      wordmark = Fabricate(:site_upload, var: 'wordmark')
+      expect(instance_presenter.wordmark).to eq(wordmark)
+    end
+  end
+
+  describe '#wordmark_dark' do
+    it 'returns SiteUpload' do
+      wordmark_dark = Fabricate(:site_upload, var: 'wordmark_dark')
+      expect(instance_presenter.wordmark_dark).to eq(wordmark_dark)
     end
   end
 

@@ -234,7 +234,7 @@
 
 [for='mastodon-settings--accent--default'] input {
   // Default
-  background-color: #589734;
+  background-color: var(--site-highlight-color);
 }
 
 [for='mastodon-settings--accent--#589734'] input {

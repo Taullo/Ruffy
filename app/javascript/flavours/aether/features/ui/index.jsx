@@ -93,6 +93,7 @@ const mapStateToProps = state => ({
   moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved'])]),
   firstLaunch: false, // TODO: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
   username: state.getIn(['accounts', me, 'username']),
+  site_accent_color: state.getIn(['server', 'server', 'accent_color']),
 });
 
 const keyMap = {
@@ -283,6 +284,7 @@ class UI extends Component {
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
     username: PropTypes.string,
+    site_accent_color: PropTypes.string,
   };
 
   state = {
@@ -402,11 +404,15 @@ class UI extends Component {
   handleAccent() {
     var accentColor;
     if (this.props.accent === 'default') {
-       accentColor = '#589734';
+       accentColor = this.props.site_accent_color;
     } else if (this.props.accent === 'mono') {
        accentColor = '#ffffff';
     } else {
       accentColor = this.props.accent;
+    }
+    if (!CSS.supports('color', accentColor)) { //fallback if cookie isn't a color (e.g. undefined)
+      console.log('Accent color is invalid. Value is:' + accentColor + ' Cookie is set to:' + this.props.accent);
+      accentColor = '#589734';
     }
     document.documentElement.style.setProperty('--ui-highlight-color', accentColor);
     var color = (accentColor.charAt(0) === '#') ? accentColor.slice(1, 7) :accentColor.accent;
@@ -419,6 +425,7 @@ class UI extends Component {
       document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#fff');
     }
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", accentColor);
+    document.documentElement.style.setProperty('--site-highlight-color', this.props.site_accent_color);
   };
 
   componentDidMount () {

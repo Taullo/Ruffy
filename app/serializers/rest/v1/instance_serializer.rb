@@ -3,7 +3,7 @@
 class REST::V1::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :uri, :title, :short_description, :description, :email,
+  attributes :uri, :title, :short_description, :description, :email, :accent_color,
              :version, :urls, :stats, :thumbnail, :wordmark, :wordmark_dark, :icon, :max_toot_chars, :poll_limits,
              :languages, :registrations, :approval_required, :invites_enabled,
              :configuration
@@ -23,6 +23,8 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
   def description
     Setting.site_description # Legacy
   end
+
+  delegate :accent_color, to: :object
 
   def email
     object.contact.email

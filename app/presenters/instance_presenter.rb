@@ -26,6 +26,10 @@ class InstancePresenter < ActiveModelSerializers::Model
     Setting.site_short_description
   end
 
+  def accent_color
+    Setting.site_accent_color
+  end
+
   def extended_description
     Setting.site_extended_description
   end

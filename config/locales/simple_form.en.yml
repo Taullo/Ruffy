@@ -90,6 +90,7 @@ en:
         site_contact_username: How people can reach you on the site.
         site_extended_description: Any additional information that may be useful to visitors and your users. Can be structured with Markdown syntax.
         site_short_description: A short description to help uniquely identify your server. Who is running it, who is it for?
+        site_accent_color: The default accent color that will be used for your server.
         site_terms: Use your own privacy policy or leave blank to use the default. Can be structured with Markdown syntax.
         site_title: How people may refer to your server besides its domain name.
         status_page_url: URL of a page where people can see the status of this server during an outage
@@ -259,6 +260,7 @@ en:
         site_short_description: Server description
         site_terms: Privacy Policy
         site_title: Server name
+        site_accent_color: Accent Color
         status_page_url: Status page URL
         theme: Default theme
         thumbnail: Server thumbnail

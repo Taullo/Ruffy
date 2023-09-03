@@ -9,6 +9,7 @@ defaults: &defaults
   site_terms: ''
   site_contact_username: ''
   site_contact_email: ''
+  site_accent_color: '#589734'
   registrations_mode: 'open'
   profile_directory: true
   closed_registrations_message: ''
