@@ -9,9 +9,9 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { fetchServer, fetchDomainBlocks } from 'flavours/aether/actions/server';
 import Column from 'flavours/aether/components/column';
 import { Skeleton } from 'flavours/aether/components/skeleton';
+import { fetchServer, fetchDomainBlocks } from 'flavours/glitch/actions/server';
 
 const messages = defineMessages({
   title: { id: 'column.federation', defaultMessage: 'Federation' },
@@ -53,7 +53,7 @@ class Section extends PureComponent {
 
     return (
       <div className={classNames('about__section')}>
-        <div className='about__section__title' role='button' tabIndex={0} >{title}</div>
+        <div className='about__section__title' tabIndex={0} >{title}</div>
         <div className='about__section__body'>{children}</div>
       </div>
     );
@@ -66,7 +66,6 @@ class Federation extends PureComponent {
   static propTypes = {
     server: ImmutablePropTypes.map,
     domainBlocks: ImmutablePropTypes.contains({
-      isLoading: PropTypes.bool,
       isAvailable: PropTypes.bool,
       items: ImmutablePropTypes.list,
     }),
@@ -87,14 +86,13 @@ class Federation extends PureComponent {
 
   render () {
     const { multiColumn, intl, server, domainBlocks } = this.props;
-    const isLoading = server.get('isLoading');
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <div className='scrollable federation'>
 
           <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
-            {domainBlocks.get('isLoading') ? (
+            {domainBlocks.get(server.get('isLoading')) ? (
               <>
                 <Skeleton width='100%' />
                 <br />
@@ -102,7 +100,7 @@ class Federation extends PureComponent {
               </>
             ) : (domainBlocks.get('isAvailable') ? (
               <>
-                <p><FormattedMessage id='about.domain_blocks.preamble' defaultMessage='Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.' /></p>
+                <p><FormattedMessage id='about.domain_blocks.preamble' defaultMessage='Servers on the fediverse generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.' /></p>
 
                 <div className='about__domain-blocks'>
                   {domainBlocks.get('items').map(block => (
