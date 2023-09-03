@@ -40,7 +40,7 @@ class Section extends PureComponent {
 
     return (
       <div className={classNames('about__section')}>
-        <div className='about__section__title' role='button' tabIndex={0} >{title}</div>
+        <div className='about__section__title' tabIndex={0} >{title}</div>
         <div className='about__section__body'>{children}</div>
       </div>
     );
