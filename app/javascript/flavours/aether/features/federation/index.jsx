@@ -9,34 +9,21 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { fetchServer, fetchExtendedDescription } from 'flavours/aether/actions/server';
 import Column from 'flavours/aether/components/column';
+import { ServerHeroImage } from 'flavours/aether/components/server_hero_image';
 import { Skeleton } from 'flavours/aether/components/skeleton';
-import { fetchServer, fetchDomainBlocks } from 'flavours/glitch/actions/server';
+import Account from 'flavours/aether/containers/account_container';
+import LinkFooter from 'flavours/aether/features/ui/components/link_footer';
 
 const messages = defineMessages({
-  title: { id: 'column.federation', defaultMessage: 'Federation' },
-  blocks: { id: 'about.blocks', defaultMessage: 'Moderated servers' },
-  silenced: { id: 'about.domain_blocks.silenced.title', defaultMessage: 'Limited' },
-  silencedExplanation: { id: 'about.domain_blocks.silenced.explanation', defaultMessage: 'You will generally not see profiles and content from this server, unless you explicitly look it up or opt into it by following.' },
-  suspended: { id: 'about.domain_blocks.suspended.title', defaultMessage: 'Suspended' },
-  suspendedExplanation: { id: 'about.domain_blocks.suspended.explanation', defaultMessage: 'No data from this server will be processed, stored or exchanged, making any interaction or communication with users from this server impossible.' },
+  title: { id: 'column.about', defaultMessage: 'About' },
+  rules: { id: 'about.rules', defaultMessage: 'Server rules' },
 });
-
-const severityMessages = {
-  silence: {
-    title: messages.silenced,
-    explanation: messages.silencedExplanation,
-  },
-
-  suspend: {
-    title: messages.suspended,
-    explanation: messages.suspendedExplanation,
-  },
-};
 
 const mapStateToProps = state => ({
   server: state.getIn(['server', 'server']),
-  domainBlocks: state.getIn(['server', 'domainBlocks']),
+  extendedDescription: state.getIn(['server', 'extendedDescription']),
 });
 
 class Section extends PureComponent {
@@ -61,14 +48,11 @@ class Section extends PureComponent {
 
 }
 
-class Federation extends PureComponent {
+class About extends PureComponent {
 
   static propTypes = {
     server: ImmutablePropTypes.map,
-    domainBlocks: ImmutablePropTypes.contains({
-      isAvailable: PropTypes.bool,
-      items: ImmutablePropTypes.list,
-    }),
+    extendedDescription: ImmutablePropTypes.map,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
@@ -77,49 +61,74 @@ class Federation extends PureComponent {
   componentDidMount () {
     const { dispatch } = this.props;
     dispatch(fetchServer());
+    dispatch(fetchExtendedDescription());
   }
 
-  handleDomainBlocksOpen = () => {
-    const { dispatch } = this.props;
-    dispatch(fetchDomainBlocks());
-  };
-
   render () {
-    const { multiColumn, intl, server, domainBlocks } = this.props;
+    const { multiColumn, intl, server, extendedDescription } = this.props;
+    const isLoading = server.get('isLoading');
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
-        <div className='scrollable federation'>
+        <div className='scrollable about'>
+         <div className='about__left-column'>
+          <div className='about__header'>
+            <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
+            <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('title')}</h1>
+            <p>{isLoading ? <Skeleton width='10ch' /> : server.get('description')}</p>
+          </div>
 
-          <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
-            {domainBlocks.get(server.get('isLoading')) ? (
+          <div className='about__meta'>
+            <div className='about__meta__column'>
+              <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
+
+              <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
+            </div>
+
+            <hr className='about__meta__divider' />
+
+            <div className='about__meta__column'>
+              <h4><FormattedMessage id='about.contact' defaultMessage='Contact:' /></h4>
+
+              {isLoading ? <Skeleton width='10ch' /> : <a className='about__mail' href={`mailto:${server.getIn(['contact', 'email'])}`}>{server.getIn(['contact', 'email'])}</a>}
+            </div>
+          </div>
+
+            {extendedDescription.get('isLoading') ? (
               <>
+                <Skeleton width='100%' />
+                <br />
+                <Skeleton width='100%' />
+                <br />
                 <Skeleton width='100%' />
                 <br />
                 <Skeleton width='70%' />
               </>
-            ) : (domainBlocks.get('isAvailable') ? (
-              <>
-                <p><FormattedMessage id='about.domain_blocks.preamble' defaultMessage='Servers on the fediverse generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.' /></p>
-
-                <div className='about__domain-blocks'>
-                  {domainBlocks.get('items').map(block => (
-                    <div className='about__domain-blocks__domain' key={block.get('domain')}>
-                      <div className='about__domain-blocks__domain__header'>
-                        <h6><span title={`SHA-256: ${block.get('digest')}`}>{block.get('domain')}</span></h6>
-                        <span className='about__domain-blocks__domain__type' title={intl.formatMessage(severityMessages[block.get('severity')].explanation)}>{intl.formatMessage(severityMessages[block.get('severity')].title)}</span>
-                      </div>
-
-                      <p>{(block.get('comment') || '').length > 0 ? block.get('comment') : <FormattedMessage id='about.domain_blocks.no_reason_available' defaultMessage='Reason not available' />}</p>
-                    </div>
-                  ))}
-                </div>
-              </>
-            ) : (
+            ) : (extendedDescription.get('content')?.length > 0 ? (
+              <div
+                className='prose'
+                dangerouslySetInnerHTML={{ __html: extendedDescription.get('content') }}
+              />
+            ) : (''))}
+         </div>
+         <div className='about__right-column'>
+          <Section title={intl.formatMessage(messages.rules)}>
+            {!isLoading && (server.get('rules', []).isEmpty() ? (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
+            ) : (
+              <ol className='rules-list'>
+                {server.get('rules').map(rule => (
+                  <li key={rule.get('id')}>
+                    <span className='rules-list__text'>{rule.get('text')}</span>
+                  </li>
+                ))}
+              </ol>
             ))}
           </Section>
 
+          <LinkFooter />
+
+         </div>
         </div>
 
         <Helmet>
@@ -132,4 +141,5 @@ class Federation extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Federation));
+
+export default connect(mapStateToProps)(injectIntl(About));
