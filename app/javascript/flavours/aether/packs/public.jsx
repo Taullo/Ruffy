@@ -120,7 +120,7 @@ function main() {
 
   const reactComponents = document.querySelectorAll('[data-component]');
   if (reactComponents.length > 0) {
-    import(/* webpackChunkName: "containers/media_container" */ 'flavours/glitch/containers/media_container')
+    import(/* webpackChunkName: "containers/media_container" */ 'flavours/aether/containers/media_container')
       .then(({ default: MediaContainer }) => {
         [].forEach.call(reactComponents, (component) => {
           [].forEach.call(component.children, (child) => {
