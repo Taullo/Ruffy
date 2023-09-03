@@ -419,21 +419,12 @@ class UI extends Component {
     var r = parseInt(color.slice(0, 2), 16); // hexToR
     var g = parseInt(color.slice(2, 4), 16); // hexToG
     var b = parseInt(color.slice(4, 6), 16); // hexToB
-    var uicolors = [r / 255, g / 255, b / 255];
-    var c = uicolors.map((col) => {
-      if (col <= 0.03928) {
-        return col / 12.92;
-      }
-      return Math.pow((col + 0.055) / 1.055, 2.4);
-    });
-    var L = (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2]);
-    if (L > 0.179) {
+    if (((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186) {
       document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#000');
     } else {  
       document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#fff');
     }
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", accentColor);
-    document.documentElement.style.setProperty('--site-highlight-color', this.props.site_accent_color);
   };
 
   componentDidMount () {
