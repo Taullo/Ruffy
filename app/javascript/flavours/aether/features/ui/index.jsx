@@ -410,12 +410,12 @@ class UI extends Component {
     } else {
       accentColor = this.props.accent;
     }
-    if (!CSS.supports('color', accentColor)) { //fallback if cookie isn't a color (e.g. undefined)
+    if (!CSS.supports('color', accentColor)) { //fallback if props or cookie isn't a color (e.g. undefined)
       console.log('Accent color is invalid. Value is:' + accentColor + ' Cookie is set to:' + this.props.accent);
-      accentColor = '#589734';
+      accentColor = document.documentElement.style.getPropertyValue('--site-highlight-color');
     }
     document.documentElement.style.setProperty('--ui-highlight-color', accentColor);
-    var color = (accentColor.charAt(0) === '#') ? accentColor.slice(1, 7) :accentColor.accent;
+    var color = (accentColor.charAt(0) === '#') ? accentColor.slice(1, 7) :accentColor;
     var r = parseInt(color.slice(0, 2), 16); // hexToR
     var g = parseInt(color.slice(2, 4), 16); // hexToG
     var b = parseInt(color.slice(4, 6), 16); // hexToB
