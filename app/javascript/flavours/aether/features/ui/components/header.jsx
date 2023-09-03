@@ -22,7 +22,6 @@ import { registrationsOpen, me, sso_redirect } from 'flavours/glitch/initial_sta
 
 import NotificationsCounterIcon from './notifications_counter_icon';
 
-
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -79,6 +78,7 @@ const messages = defineMessages({
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
   logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });
+
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
 }))(({ account }) => (
@@ -130,17 +130,22 @@ class Header extends PureComponent {
     server: ImmutablePropTypes.map,
     openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
+    signupUrl: PropTypes.string.isRequired,
+    dispatchServer: PropTypes.func,
     intl: PropTypes.object.isRequired,
     onLogout: PropTypes.func.isRequired,
     openSettings: PropTypes.func.isRequired,
     openCompose: PropTypes.func.isRequired,
-    signupUrl: PropTypes.string.isRequired,
-    dispatchServer: PropTypes.func,
   };
 
   handleLogout = () => {
     this.props.onLogout();
   };
+
+  componentDidMount () {
+    const { dispatchServer } = this.props;
+    dispatchServer();
+  }
 
   render () {
     const { signedIn } = this.context.identity;
@@ -177,7 +182,8 @@ class Header extends PureComponent {
           <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='chevron-down' size={12} direction='right' />
         </>
       );
-    }  else {
+    } else {
+
       if (sso_redirect) {
         content = (
             <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
