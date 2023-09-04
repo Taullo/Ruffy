@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def flags
-      ENV['MASTODON_VERSION_FLAGS'].presence || '-beta2'
+      ENV['MASTODON_VERSION_FLAGS'].presence || '-prerelease'
     end
 
     def prefix
@@ -30,6 +30,10 @@ module Mastodon
 
     def to_s
       [prefix, to_a.join('.'), flags].join
+    end
+
+    def gem_version
+      @gem_version ||= Gem::Version.new(to_s.split('+')[0])
     end
 
     def repository

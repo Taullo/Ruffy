@@ -3,6 +3,8 @@
 class Form::AdminSettings
   include ActiveModel::Model
 
+  include AuthorizedFetchHelper
+
   KEYS = %i(
     site_contact_username
     site_contact_email
@@ -47,6 +49,7 @@ class Form::AdminSettings
     backups_retention_period
     status_page_url
     captcha_enabled
+    authorized_fetch
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -71,6 +74,7 @@ class Form::AdminSettings
     noindex
     require_invite_text
     captcha_enabled
+    authorized_fetch
   ).freeze
 
   UPLOAD_KEYS = %i(
@@ -84,6 +88,10 @@ class Form::AdminSettings
   PSEUDO_KEYS = %i(
     flavour_and_skin
   ).freeze
+
+  OVERRIDEN_SETTINGS = {
+    authorized_fetch: :authorized_fetch_mode?,
+  }.freeze
 
   attr_accessor(*KEYS)
 
@@ -105,6 +113,8 @@ class Form::AdminSettings
 
       stored_value = if UPLOAD_KEYS.include?(key)
                        SiteUpload.where(var: key).first_or_initialize(var: key)
+                     elsif OVERRIDEN_SETTINGS.include?(key)
+                       public_send(OVERRIDEN_SETTINGS[key])
                      else
                        Setting.public_send(key)
                      end
