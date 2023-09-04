@@ -5,6 +5,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
+import { NavLink } from 'react-router-dom';
 
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
@@ -13,8 +14,13 @@ import { createSelector } from 'reselect';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/aether/actions/announcements';
 import { IconWithBadge } from 'flavours/aether/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/aether/components/not_signed_in_indicator';
+import ComposeFormContainer from 'flavours/aether/features/compose/containers/compose_form_container';
+import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
+import Suggestions from 'flavours/aether/features/explore/suggestions';
+import Tags from 'flavours/aether/features/explore/tags';
 import AnnouncementsContainer from 'flavours/aether/features/getting_started/containers/announcements_container';
-import { me } from 'flavours/aether/initial_state';
+import ListPanel from 'flavours/aether/features/ui/components/list_panel';
+import { me, criticalUpdatesPending } from 'flavours/aether/initial_state';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { expandHomeTimeline } from '../../actions/timelines';
@@ -22,17 +28,10 @@ import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
-import { ExplorePrompt } from './components/explore_prompt';
 import { ColumnSettings } from './components/column_settings';
+import { CriticalUpdateBanner } from './components/critical_update_banner';
+import { ExplorePrompt } from './components/explore_prompt';
 
-import Tags from 'flavours/aether/features/explore/tags';
-import Suggestions from 'flavours/aether/features/explore/suggestions';
-
-import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
-
-import ListPanel from 'flavours/aether/features/ui/components/list_panel';
-import { NavLink } from 'react-router-dom';
-import ComposeFormContainer from 'flavours/aether/features/compose/containers/compose_form_container';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -167,8 +166,9 @@ class HomeTimeline extends PureComponent {
     const { intl, hasUnread, columnId, multiColumn, tooSlow, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
     const { signedIn } = this.context.identity;
+    const banners = [];
 
-    let announcementsButton, banner;
+    let announcementsButton;
 
     if (hasAnnouncements) {
       announcementsButton = (
@@ -183,8 +183,12 @@ class HomeTimeline extends PureComponent {
       );
     }
 
+    if (criticalUpdatesPending) {
+      banners.push(<CriticalUpdateBanner key='critical-update-banner' />);
+    }
+
     if (tooSlow) {
-      banner = <ExplorePrompt />;
+      banners.push(<ExplorePrompt key='explore-prompt' />);
     }
 
     return (
@@ -245,7 +249,7 @@ class HomeTimeline extends PureComponent {
           <div className='scrollable home-scroll'>
             <ComposeFormContainer />
             <StatusListContainer
-              prepend={banner}
+              prepend={banners}
               alwaysPrepend
               trackScroll={!pinned}
               scrollKey={`home_timeline-${columnId}`}

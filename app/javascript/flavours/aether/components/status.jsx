@@ -767,6 +767,7 @@ class Status extends ImmutablePureComponent {
           tabIndex={0}
           data-featured={featured ? 'true' : null}
           aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}
+          data-nosnippet={status.getIn(['account', 'noindex'], true) || undefined}
         >
           {!muted && prepend}
 

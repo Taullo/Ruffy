@@ -1,5 +1,5 @@
 {
-  "about.fork_disclaimer": "Glitch-socはMastodonからフォークされたフリーなオープンソースソフトウェアです。",
+  "about.fork_disclaimer": "RuffyはMastodon/Glitch-Socからフォークされたフリーなオープンソースソフトウェアです。",
   "account.add_account_note": "@{name}のメモを追加",
   "account.disclaimer_full": "このユーザー情報は不正確な可能性があります。",
   "account.follows": "フォロー",
