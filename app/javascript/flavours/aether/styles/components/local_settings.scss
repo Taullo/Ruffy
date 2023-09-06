@@ -61,7 +61,9 @@
   cursor: pointer;
   text-decoration: none;
   outline: none;
-  transition: background 0.3s;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
   box-sizing: border-box;
   width: 100%;
   text-align: start;
@@ -82,21 +84,17 @@
   }
 
   &.close {
-    background: var(--ui-highlight-color);
-    color: var(--ui-highlight-button-text-color);
+    color: var(--ui-font-color);
     border: transparent;
     position: absolute;
     right: 0;
     border-bottom-left-radius: 8px;
     z-index: 10;
     width: 60px;
-    border-left: 4px solid transparent;
-    border-bottom: 4px solid transparent;
 
     &:hover {
-      color: var(--ui-highlight-color);
-      background: var(--ui-body-color);
-      border-color: var(--ui-highlight-color);
+      background: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
     }
   }
 

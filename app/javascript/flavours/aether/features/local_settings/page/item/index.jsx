@@ -62,7 +62,7 @@ export default class LocalSettingsPageItem extends PureComponent {
               title={opt.title}
               name={id}
               id={optionId}
-              value={opt.value === undefined ? (CSS.supports('color', currentValue) ? currentValue : document.documentElement.style.getPropertyValue('--site-highlight-color')) : opt.value}
+              value={opt.value === undefined ? (CSS.supports('color', currentValue) ? currentValue : window.getComputedStyle(document.documentElement).getPropertyValue('--site-highlight-color')) : opt.value}
               onBlur={handleChange}
               onChange={handleChange}
               checked={currentValue === opt.value}
