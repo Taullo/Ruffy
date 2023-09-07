@@ -13,6 +13,10 @@
   color: var(--ui-highlight-color);
 }
 
+.reactions-bar__item__count .animated-number {
+  color: var(--ui-font-color);
+}
+
 .link-button {
   display: block;
   font-size: 15px;
