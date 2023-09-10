@@ -99,8 +99,9 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
         max_characters: StatusLengthValidator::MAX_CHARS,
         max_media_attachments: 20,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
+        supported_visibility: { public: true, unlisted: true, private: true, direct: true },
+        supported_toggles: { sensitive: false, local_only: true },
         supported_mime_types: HtmlAwareFormatter::STATUS_MIME_TYPES,
-        local_only: true,
       },
 
       media_attachments: {
