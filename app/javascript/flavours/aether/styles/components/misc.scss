@@ -118,17 +118,17 @@
   }
 
   &.button-secondary {
-    color: var(--ui-font-dimmest-color);
+    color: var(--ui-highlight-color);
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid lighten($ui-base-color, 12%);
+    border: 1px solid var(--ui-highlight-color);
 
     &:active,
     &:focus,
     &:hover {
-      background: lighten($ui-base-color, 4%);
-      border-color: lighten($ui-base-color, 16%);
-      color: var(--ui-font-dimmest-color);
+      background: var(--ui-highlight-color);
+      border-color: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
       text-decoration: none;
     }
 
@@ -148,8 +148,6 @@
     &:hover {
       background: var(--ui-highlight-color);
       color: var(--ui-highlight-button-text-color);
-      border-width: 3px;
-      padding: 7px 18px;
     }
 
     &:disabled {
