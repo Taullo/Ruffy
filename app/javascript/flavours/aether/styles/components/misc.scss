@@ -28,9 +28,9 @@
   cursor: pointer;
   text-decoration: none;
 
-  &--destructive {
-    color: $error-value-color;
-  }
+  // &--destructive {
+  //  color: $error-value-color;
+  // }
 
   &:hover,
   &:active {
@@ -76,14 +76,14 @@
     box-shadow: 0 0 8px var(--ui-highlight-color);
   }
 
-  &--destructive {
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: $error-red;
-      transition: none;
-    }
-  }
+  // &--destructive {
+  //  &:active,
+  //  &:focus,
+  //  &:hover {
+  //    background-color: $error-red;
+  //    transition: none;
+  //  }
+  // }
 
   &:disabled {
     background-color: $ui-primary-color;
@@ -166,17 +166,17 @@
       }
     }
 
-    &.button--destructive {
-      color: $error-value-color;
-      border-color: $error-value-color;
+    //    &.button--destructive {
+    //      color: $error-value-color;
+    //      border-color: $error-value-color;
 
-      &:active,
-      &:focus,
-      &:hover {
-        background: $error-value-color;
-        color: var(--ui-font-color);
-      }
-    }
+    //      &:active,
+    //      &:focus,
+    //      &:hover {
+    //        background: $error-value-color;
+    //        color: var(--ui-font-color);
+    //      }
+    //    }
   }
 
   &.button--block {

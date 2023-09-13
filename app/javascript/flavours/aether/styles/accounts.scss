@@ -1002,6 +1002,7 @@
     &__name {
       padding: 15px;
       flex-grow: 2;
+      align-self: flex-end;
 
       .account-role {
         vertical-align: top;
