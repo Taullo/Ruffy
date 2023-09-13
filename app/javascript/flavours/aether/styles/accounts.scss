@@ -1003,6 +1003,7 @@
       padding: 15px;
       flex-grow: 2;
       align-self: flex-end;
+      overflow: scroll;
 
       .account-role {
         vertical-align: top;
@@ -1027,15 +1028,12 @@
         color: var(--ui-font-color);
         font-weight: 500;
         white-space: nowrap;
-        text-overflow: ellipsis;
 
         small {
           display: block;
           font-size: 14px;
           color: var(--ui-font-dimmest-color);
           font-weight: 400;
-          overflow: hidden;
-          text-overflow: ellipsis;
 
           span {
             user-select: all;
