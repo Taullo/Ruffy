@@ -333,11 +333,6 @@ class Header extends ImmutablePureComponent {
         </div>
 
         <div className='account__header__bar'>
-          <div className='account__header__tabs'>
-            <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
-              <Avatar account={suspended || hidden ? undefined : account} size={150} />
-              {role}
-            </a>
 
             {!suspended && (
               <div className='account__header__tabs__buttons'>
@@ -351,15 +346,21 @@ class Header extends ImmutablePureComponent {
                 <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
               </div>
             )}
-          </div>
 
-          <div className='account__header__tabs__name'>
-            <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
-              <small>
-                <span>@{acct}</span> {lockedIcon}
-              </small>
-            </h1>
+          <div className='account__header__tabs'>
+            <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
+              <Avatar account={suspended || hidden ? undefined : account} size={150} />
+              {role}
+            </a>
+
+            <div className='account__header__tabs__name'>
+              <h1>
+                <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
+                <small>
+                  <span>@{acct}</span> {lockedIcon}
+                </small>
+              </h1>
+            </div>
           </div>
 
           {signedIn && <AccountNoteContainer account={account} />}
