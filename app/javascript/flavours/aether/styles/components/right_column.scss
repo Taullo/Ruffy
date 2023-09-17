@@ -3,24 +3,6 @@
     display: none;
   }
 
-  .list-panel {
-    margin-top: 0;
-    margin-bottom: 15px;
-
-    a {
-      text-decoration: none;
-      padding: 15px;
-      display: block;
-      border-radius: var(--ui-border-radius);
-      color: rgb(var(--ui-font-color));
-
-      &:hover {
-        background: var(--ui-highlight-color);
-        color: var(--ui-highlight-button-text-color);
-      }
-    }
-  }
-
   .explore__tags-header,
   .list-panel,
   .explore__suggested-header {
@@ -31,5 +13,25 @@
     overflow: hidden;
     font-size: 1rem;
     padding: 15px;
+  }
+}
+
+.item-list,
+.list-panel {
+  margin-top: 0;
+  margin-bottom: 15px;
+
+  a {
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    border-radius: var(--ui-border-radius);
+    color: rgb(var(--ui-font-color));
+
+    &:hover {
+      background: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
+    }
   }
 }

@@ -47,7 +47,7 @@ const messages = defineMessages({
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
-  lists: { id: 'navigation_bar.lists', defaultMessage: 'Manage lists' },
+  lists: { id: 'lists.new.create', defaultMessage: 'Create list' },
   followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed Tags' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
@@ -118,6 +118,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     modalType: 'COMPOSE',
     modalProps: {},
   })),
+  openLists: () => dispatch(openModal({
+    modalType: 'LISTS',
+    modalProps: {},
+  })),
 });
 
 class Header extends PureComponent {
@@ -136,10 +140,15 @@ class Header extends PureComponent {
     onLogout: PropTypes.func.isRequired,
     openSettings: PropTypes.func.isRequired,
     openCompose: PropTypes.func.isRequired,
+    openLists: PropTypes.func.isRequired,
   };
 
   handleLogout = () => {
     this.props.onLogout();
+  };
+  
+  handleLists = () => {
+    this.props.openLists();
   };
 
   componentDidMount () {
@@ -157,7 +166,7 @@ class Header extends PureComponent {
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests', href: '/follow_requests' });
-    menu.push({ text: intl.formatMessage(messages.lists), to: '/lists', href: '/lists' });
+    menu.push({ text: intl.formatMessage(messages.lists), action: this.handleLists, href: '/lists' });
     menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags', href: '/followed_tags' });
     menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites', href: '/favourites' });
     menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks', href: '/bookmarks' });

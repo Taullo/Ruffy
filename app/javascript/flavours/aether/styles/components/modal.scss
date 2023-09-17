@@ -987,15 +987,22 @@
 .mute-modal__cancel-button,
 .block-modal__cancel-button {
   background-color: transparent;
-  color: var(--ui-font-brighter-color);
+  color: var(--ui-highlight-color);
   font-size: 14px;
   font-weight: 500;
+  border: 2px solid;
+  padding: 5px 18px;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
 
   &:hover,
   &:focus,
   &:active {
-    color: var(--ui-font-brighter-color);
-    background-color: transparent;
+    color: var(--ui-highlight-button-text-color);
+    background: var(--ui-highlight-color);
+    border-color: var(--ui-highlight-color);
   }
 }
 
@@ -1437,5 +1444,22 @@ img.modal-warning {
       background: $valid-value-color;
       transition: none;
     }
+  }
+}
+
+.lists-modal .new_list {
+  border-radius: 8px;
+  padding: 20px;
+  background: var(--ui-body-color);
+  min-width: 400px;
+
+  .new_list_cancel {
+    margin-top: 10px;
+    float: left;
+  }
+
+  .new_list_button {
+    float: right;
+    margin-top: 10px;
   }
 }

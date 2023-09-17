@@ -142,6 +142,10 @@ export function ComposeModal () {
   return import(/* webpackChunkName: "flavours/aether/async/compose_modal" */'flavours/aether/features/compose_modal');
 }
 
+export function ListsModal () {
+  return import(/* webpackChunkName: "flavours/aether/async/lists_modal" */'flavours/aether/features/lists_modal');
+}
+
 export function MediaGallery () {
   return import(/* webpackChunkName: "flavours/aether/async/media_gallery" */'flavours/aether/components/media_gallery');
 }

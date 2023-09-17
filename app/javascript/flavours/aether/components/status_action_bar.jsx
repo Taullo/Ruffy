@@ -209,8 +209,6 @@ class StatusActionBar extends ImmutablePureComponent {
     let replyIcon;
     let replyTitle;
 
-    menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
-
     if (publicStatus && isRemote) {
       menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: status.get('url') });
     }
@@ -219,10 +217,6 @@ class StatusActionBar extends ImmutablePureComponent {
 
     if (publicStatus && 'share' in navigator) {
       menu.push({ text: intl.formatMessage(messages.share), action: this.handleShareClick });
-    }
-
-    if (publicStatus && (signedIn || !isRemote)) {
-      menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
     if (signedIn) {
@@ -270,10 +264,6 @@ class StatusActionBar extends ImmutablePureComponent {
             const domain = status.getIn(['account', 'acct']).split('@')[1];
             menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
           }
-        }
-        if (isRemote && (permissions & PERMISSION_MANAGE_FEDERATION) === PERMISSION_MANAGE_FEDERATION) {
-          const domain = status.getIn(['account', 'acct']).split('@')[1];
-          menu.push({ text: intl.formatMessage(messages.admin_domain, { domain: domain }), href: `/admin/instances/${domain}` });
         }
       }
     }
