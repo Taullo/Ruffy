@@ -237,8 +237,8 @@ class AccountTimeline extends ImmutablePureComponent {
 
     return (
       <Column ref={this.setRef} name='account'>
-       <div className='scrollable account-scroll'>
         <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
+        <div className='scrollable account-scroll'>
         <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
         <div className='account-timeline__right-column'>
           <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />

@@ -123,6 +123,15 @@
 }
 
 .layout-multiple-columns {
+  .account__fields {
+    margin-top: 8px;
+  }
+
+  .dismissable-banner {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
   .home-scroll .compose-form,
   .fixed_wrapper {
     display: none;
@@ -134,7 +143,8 @@
   }
 
   .column-header {
-    margin-bottom: 8px;
+    border-bottom: 2px solid var(--ui-highlight-color);
+    padding-bottom: 8px;
 
     > button {
       font-size: 1.2rem;

@@ -250,7 +250,10 @@
   font-size: 0.95rem;
   line-height: 20px;
   margin: 0;
-  border-radius: var(--ui-border-radius);
+  @media screen and (min-width: $no-gap-breakpoint) {
+    border-radius: var(--ui-border-radius);
+  }
+
   overflow: hidden;
   background: var(--ui-body-color);
 
@@ -910,7 +913,9 @@
     position: relative;
     background: lighten($ui-base-color, 4%);
     padding: 5px;
-    border-radius: 0 0 var(--ui-border-radius) var(--ui-border-radius);
+    @media screen and (min-width: $no-gap-breakpoint) {
+      border-radius: 0 0 var(--ui-border-radius) var(--ui-border-radius);
+    }
 
     .avatar {
       display: block;
