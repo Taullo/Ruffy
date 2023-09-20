@@ -33,7 +33,9 @@ const messages = defineMessages({
   navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
-  explore: { id: 'navigation_bar.explore', defaultMessage: 'Explore' },
+  hashtags: { id: 'navigation_bar.hashtags', defaultMessage: 'Trending Hashtags' },
+  posts: { id: 'navigation_bar.posts', defaultMessage: 'Trending Posts' },
+  suggested: { id: 'navigation_bar.suggested', defaultMessage: 'Suggestions' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
@@ -137,16 +139,18 @@ class GettingStarted extends ImmutablePureComponent {
       }
 
       if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
-        navItems.push(<ColumnLink key='community_timeline' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/public/local' />);
+        navItems.push(<ColumnLink key='community_timeline' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/explore/local' />);
       }
 
       if (!columns.find(item => item.get('id') === 'PUBLIC')) {
-        navItems.push(<ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/public' />);
+        navItems.push(<ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/explore/remote' />);
       }
     }
 
     if (showTrends) {
-      navItems.push(<ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.explore)} to='/explore' />);
+      navItems.push(<ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.hashtags)} to='/explore/tags' />);
+      navItems.push(<ColumnLink key='explore' icon='pencil-square' text={intl.formatMessage(messages.posts)} to='/explore/posts' />);
+      navItems.push(<ColumnLink key='explore' icon='vcard' text={intl.formatMessage(messages.suggested)} to='/explore/suggestions' />);
     }
 
     if (signedIn) {

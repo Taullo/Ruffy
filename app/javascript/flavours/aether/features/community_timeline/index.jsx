@@ -18,14 +18,6 @@ import { domain } from 'flavours/aether/initial_state';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
 
-import { NavLink, Switch, Route } from 'react-router-dom';
-
-import Tags from 'flavours/aether/features/explore/tags';
-import Statuses from 'flavours/aether/features/explore/statuses';
-import Suggestions from 'flavours/aether/features/explore/suggestions';
-
-import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
-
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
 });
@@ -134,7 +126,6 @@ class CommunityTimeline extends PureComponent {
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
-    const { signedIn } = this.context.identity;
 
     return (
       <Column ref={this.setRef} name='local' bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
@@ -151,64 +142,7 @@ class CommunityTimeline extends PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <div className='right_column'>
-          <div className='fixed_wrapper'>
-            <div className='explore__search-header'>
-              <SearchContainer openInRoute />
-            </div>
-
-            <div className='explore__tags-header'>
-              <Tags openInRoute />
-              <div className='right-column-show-more'>
-                <NavLink className='navbutton' exact to='/explore/tags'>
-                  <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                </NavLink>
-              </div>
-            </div>
-
-            {!multiColumn &&signedIn && (
-              <div className='explore__suggested-header'>
-                <Suggestions openInRoute />
-                <div className='right-column-show-more'>
-                  <NavLink className='navbutton' exact to='/explore/suggestions'>
-                    <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                  </NavLink>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
         <div className='scrollable community-scroll'>
-
-          <>
-            <div className='account__section-headline'>
-              <NavLink exact to='/explore/local'>
-                <FormattedMessage tagName='div' id='explore.local' defaultMessage='Local' />
-              </NavLink>
-              <NavLink exact to='/explore/federated'>
-                <FormattedMessage tagName='div' id='explore.federated' defaultMessage='Fediverse' />
-              </NavLink>
-              <NavLink exact to='/explore/posts'>
-                <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
-              </NavLink>
-              {multiColumn && signedIn && (
-                <NavLink exact to='/explore/suggestions'>
-                  <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='For you' />
-                </NavLink>
-              )}
-            </div>
-
-            <Switch>
-              <Route path='/explore/tags' component={Tags} />
-              <Route path='/explore/suggestions' component={Suggestions} />
-              <Route exact path='/explore/posts'>
-                <Statuses multiColumn={multiColumn} />
-              </Route>
-            </Switch>
-
-          </>
-
           <StatusListContainer
             prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
             trackScroll={!pinned}

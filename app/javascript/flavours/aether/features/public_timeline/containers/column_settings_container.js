@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { changeColumnParams } from 'flavours/aether/actions/columns';
-import { changeSetting } from 'flavours/aether/actions/settings';
+import { changeColumnParams } from 'flavours/glitch/actions/columns';
+import { changeSetting } from 'flavours/glitch/actions/settings';
 
 import ColumnSettings from '../components/column_settings';
 

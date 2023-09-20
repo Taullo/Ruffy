@@ -54,10 +54,10 @@ class GettingStartedMisc extends ImmutablePureComponent {
     const { signedIn } = this.context.identity;
 
     return (
-      <Column icon='ellipsis-h' heading={intl.formatMessage(messages.heading)}>
+      <Column id='misc_title' icon='ellipsis-h' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
-        <div className='scrollable'>
+        <div className='scrollable getting-started__wrapper'>
           <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
           {signedIn && (<ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />)}
           {signedIn && (<ColumnLink key='pinned' icon='thumb-tack' text={intl.formatMessage(messages.pins)} to='/pinned' />)}

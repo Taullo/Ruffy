@@ -33,7 +33,7 @@ const messages = defineMessages({
     id: 'navigation_bar.public_timeline',
   },
   settings: {
-    defaultMessage: 'App settings',
+    defaultMessage: 'Interface settings',
     id: 'navigation_bar.app_settings',
   },
   start: {
@@ -103,14 +103,14 @@ class Header extends ImmutablePureComponent {
           <Link
             aria-label={intl.formatMessage(messages.community)}
             title={intl.formatMessage(messages.community)}
-            to='/public/local'
+            to='/explore/local'
           ><Icon id='users' /></Link>
         ))}
         {renderForColumn('PUBLIC', (
           <Link
             aria-label={intl.formatMessage(messages.public)}
             title={intl.formatMessage(messages.public)}
-            to='/public'
+            to='/explore/all'
           ><Icon id='globe' /></Link>
         ))}
         <a

@@ -4,7 +4,6 @@ import { PureComponent } from 'react';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -14,16 +13,10 @@ import { expandPublicTimeline } from 'flavours/aether/actions/timelines';
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
 import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
-import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
-import Statuses from 'flavours/aether/features/explore/statuses';
-import Suggestions from 'flavours/aether/features/explore/suggestions';
-import Tags from 'flavours/aether/features/explore/tags';
 import StatusListContainer from 'flavours/aether/features/ui/containers/status_list_container';
 import { domain } from 'flavours/aether/initial_state';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
-
-
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
@@ -138,7 +131,6 @@ class PublicTimeline extends PureComponent {
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
     const pinned = !!columnId;
-    const { signedIn } = this.context.identity;
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='federated' label={intl.formatMessage(messages.title)}>
@@ -155,61 +147,7 @@ class PublicTimeline extends PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <div className='right_column'>
-          <div className='fixed_wrapper'>
-            <div className='explore__search-header'>
-              <SearchContainer openInRoute />
-            </div>
-
-            <div className='explore__tags-header'>
-              <Tags openInRoute />
-              <div className='right-column-show-more'>
-                <NavLink className='navbutton' exact to='/explore/tags'>
-                  <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                </NavLink>
-              </div>
-            </div>
-
-            {!multiColumn &&signedIn && (
-              <div className='explore__suggested-header'>
-                <Suggestions openInRoute />
-                <div className='right-column-show-more'>
-                  <NavLink className='navbutton' exact to='/explore/suggestions'>
-                    <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                  </NavLink>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
         <div className='scrollable public-scroll'>
-
-          <div className='account__section-headline'>
-              <NavLink exact to='/explore/local'>
-                <FormattedMessage tagName='div' id='explore.local' defaultMessage='Local Timeline' />
-              </NavLink>
-              <NavLink exact to='/explore/federated'>
-                <FormattedMessage tagName='div' id='explore.federated' defaultMessage='Federated Timeline' />
-              </NavLink>
-              <NavLink exact to='/explore/posts'>
-                <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Popular Posts' />
-              </NavLink>
-              {multiColumn && signedIn && (
-                <NavLink exact to='/explore/suggestions'>
-                  <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='Suggested' />
-                </NavLink>
-              )}
-            </div>
-
-            <Switch>
-              <Route path='/explore/tags' component={Tags} />
-              <Route path='/explore/suggestions' component={Suggestions} />
-              <Route exact path='/explore/posts'>
-                <Statuses multiColumn={multiColumn} />
-              </Route>
-            </Switch>
-
           <StatusListContainer
             prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
             timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}

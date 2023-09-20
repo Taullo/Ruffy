@@ -105,12 +105,7 @@ class Explore extends PureComponent {
               <NavLink exact to='/explore/posts'>
                 <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Popular' />
               </NavLink>
- 
-              {multiColumn && signedIn && (
-                <NavLink exact to='/explore/suggestions'>
-                  <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='Suggested' />
-                </NavLink>
-              )}
+
             </div>
 
             <Switch>

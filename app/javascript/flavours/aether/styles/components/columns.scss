@@ -162,7 +162,6 @@ $ui-header-height: 55px;
 .column-back-button {
   box-sizing: border-box;
   width: 100%;
-  background: lighten($ui-base-color, 4%);
   border-radius: 4px 4px 0 0;
   color: var(--ui-highlight-color);
   cursor: pointer;
@@ -1206,5 +1205,62 @@ $ui-header-height: 55px;
   .column-link,
   .ui__header__links .icon-button {
     display: none;
+  }
+}
+
+h1#Misc {
+  margin-bottom: 0;
+  margin-left: 25px;
+}
+
+.getting-started__wrapper {
+  border-radius: 8px;
+
+  .column-link {
+    background: lighten($ui-base-color, 8%);
+    color: var(--ui-font-color);
+    display: block;
+    font-size: 16px;
+    padding: 15px;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 11%);
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &--transparent {
+      background: transparent;
+      color: $ui-secondary-color;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: transparent;
+        color: var(--ui-font-color);
+      }
+
+      &.active {
+        color: var(--ui-font-color);
+      }
+    }
+
+    &--logo {
+      background: transparent;
+      padding: 10px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: transparent;
+      }
+    }
   }
 }
