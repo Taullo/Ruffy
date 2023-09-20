@@ -1,29 +1,27 @@
 import { supportsPassiveEvents } from 'detect-passive-events';
 
-import { forceSingleColumn } from 'flavours/aether/initial_state';
+// import { forceSingleColumn } from 'flavours/aether/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
 export const isMobile = (width: number) => width <= LAYOUT_BREAKPOINT;
 
-export type LayoutType = 'mobile' | 'single-column' | 'multi-column';
+export type LayoutType = 'mobile' | 'normal' | 'advanced';
 export const layoutFromWindow = (layout_local_setting: string): LayoutType => {
   switch (layout_local_setting) {
-    case 'multiple':
-      return 'multi-column';
-    case 'single':
+    case 'advanced':
+      return 'advanced';
+    case 'normal':
       if (isMobile(window.innerWidth)) {
         return 'mobile';
       } else {
-        return 'single-column';
+        return 'normal';
       }
     default:
       if (isMobile(window.innerWidth)) {
         return 'mobile';
-      } else if (forceSingleColumn) {
-        return 'single-column';
       } else {
-        return 'multi-column';
+        return 'normal';
       }
   }
 };

@@ -15,12 +15,10 @@ import LocalSettingsPageItem from './item';
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 const messages = defineMessages({
-  layout_auto: {  id: 'layout.auto', defaultMessage: 'Auto' },
-  layout_auto_hint: {  id: 'layout.hint.auto', defaultMessage: 'Automatically chose layout based on “Enable advanced web interface” setting and screen size.' },
   layout_desktop: { id: 'layout.desktop', defaultMessage: 'Advanced Layout' },
   layout_desktop_hint: { id: 'layout.hint.desktop', defaultMessage: 'Allows you to configure multiple columns to see as much information as you want (e.g. home, notifications, timeline, lists and hashtags).' },
   layout_mobile: { id: 'layout.single', defaultMessage: 'Normal Layout' },
-  layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use the default single column layout. This lays out information in a less compact and more readable way.' },
+  layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use the default simple layout. This lays out information in a less compact and more readable way.' },
   side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
   side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep its set privacy' },
   side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the post being replied to' },
@@ -129,9 +127,8 @@ class LocalSettingsPage extends PureComponent {
             item={['layout']}
             id='mastodon-settings--layout'
             options={[
-              {  type: 'radio', value: 'auto', message: intl.formatMessage(messages.layout_auto), hint: intl.formatMessage(messages.layout_auto_hint) },
-              {  type: 'radio', value: 'single', message: intl.formatMessage(messages.layout_mobile), hint: intl.formatMessage(messages.layout_mobile_hint) },
-              {  type: 'radio', value: 'multiple', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
+              {  type: 'radio', value: 'normal', message: intl.formatMessage(messages.layout_mobile), hint: intl.formatMessage(messages.layout_mobile_hint) },
+              {  type: 'radio', value: 'advanced', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
             ]}
             onChange={onChange}
            />
@@ -143,31 +140,6 @@ class LocalSettingsPage extends PureComponent {
           >
             <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Advanced Layout only)' />
             <span className='hint'><FormattedMessage id='settings.wide_view_hint' defaultMessage='Stretches columns to better fill the available space.' /></span>
-          </LocalSettingsPageItem>
-        </section>
-        <h2><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapse posts' /></h2>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['collapsed', 'enabled']}
-          id='mastodon-settings--collapsed-enabled'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed posts' />
-          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
-        </LocalSettingsPageItem>
-        <section>
-          <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'height']}
-            id='mastodon-settings--collapsed-auto-height'
-            placeholder='1400'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-            inputProps={{ type: 'number', min: '400', max: '2000' }}
-          >
-            <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a post to be considered lengthy' />
           </LocalSettingsPageItem>
         </section>
       </div>
@@ -247,8 +219,48 @@ class LocalSettingsPage extends PureComponent {
       </div>
     ),
     ({ intl, onChange, settings }) => (
-      <div className='glitch local-settings__page content_warnings'>
+      <div className='glitch local-settings__page posts'>
         <h1><FormattedMessage id='settings.statuses' defaultMessage='Posts' /></h1>
+        <h2><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapse posts' /></h2>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['collapsed', 'enabled']}
+          id='mastodon-settings--collapsed-enabled'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed posts' />
+          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
+        </LocalSettingsPageItem>
+        <section>
+          <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['collapsed', 'auto', 'height']}
+            id='mastodon-settings--collapsed-auto-height'
+            placeholder='1400'
+            onChange={onChange}
+            dependsOn={[['collapsed', 'enabled']]}
+            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            inputProps={{ type: 'range', min: '400', max: '2000' }}
+          >
+            <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a post to be considered lengthy' />
+          </LocalSettingsPageItem>
+        </section>
+        <h2><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h2>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['content_warnings', 'cw_visibility']}
+          id='mastodon-settings--cw-visibility'
+          options={[
+            { type: 'radio', value: 'obscured', message: intl.formatMessage(messages.cw_visibility_obscured) },
+            { type: 'radio', value: 'hidden', message: intl.formatMessage(messages.cw_visibility_hidden) },
+            { type: 'radio', value: 'visible', message: intl.formatMessage(messages.cw_visibility_shown) },
+          ]}
+          onChange={onChange}
+        >
+        <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content warning text visibility:' />
+        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning is obscured, completely hidden, or shown by default' /></span>
+        </LocalSettingsPageItem>
         <h2><FormattedMessage id='settings.media' defaultMessage='Media' /></h2>
         <LocalSettingsPageItem
           settings={settings}
@@ -265,21 +277,6 @@ class LocalSettingsPage extends PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.pop_in_player' defaultMessage='Enable pop-in player' />
-        </LocalSettingsPageItem>
-        <h2><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h2>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['content_warnings', 'cw_visibility']}
-          id='mastodon-settings--cw-visibility'
-          options={[
-            { type: 'radio', value: 'obscured', message: intl.formatMessage(messages.cw_visibility_obscured) },
-            { type: 'radio', value: 'hidden', message: intl.formatMessage(messages.cw_visibility_hidden) },
-            { type: 'radio', value: 'visible', message: intl.formatMessage(messages.cw_visibility_shown) },
-          ]}
-          onChange={onChange}
-        >
-        <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content warning text visibility:' />
-        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning is obscured, completely hidden, or shown by default' /></span>
         </LocalSettingsPageItem>
       </div>
     ),

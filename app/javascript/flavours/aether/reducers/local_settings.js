@@ -6,7 +6,7 @@ import { LOCAL_SETTING_CHANGE, LOCAL_SETTING_DELETE } from 'flavours/aether/acti
 import { STORE_HYDRATE } from 'flavours/aether/actions/store';
 
 const initialState = ImmutableMap({
-  layout    : 'auto',
+  layout    : 'normal',
   stretch   : true,
   accent    : 'default',
   side_arm  : 'none',

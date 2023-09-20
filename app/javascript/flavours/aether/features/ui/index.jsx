@@ -485,22 +485,23 @@ class UI extends Component {
 
   UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.layout_local_setting !== this.props.layout_local_setting) {
-      const layout = layoutFromWindow(nextProps.layout_local_setting);
-
-      if (layout !== this.props.layout) {
-        this.handleLayoutChange.cancel();
-        this.props.dispatch(changeLayout(layout));
-      } else {
-        this.handleLayoutChange();
-      }
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleResize()
+        }
+        .bind(this),
+        100
+      );
     }
-    setTimeout( // FIXME: Hack to wait for setting to save
-      function() {
-        this.handleAccent()
-      }
-      .bind(this),
-      100
-    );
+    if (nextProps.accent !== this.props.accent) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleAccent()
+        }
+        .bind(this),
+        100
+      );
+    }
   }
 
   componentDidUpdate (prevProps) {
@@ -659,10 +660,10 @@ class UI extends Component {
 
     const columnsClass = layout => {
       switch (layout) {
-      case 'single':
-        return 'single-column';
-      case 'multiple':
-        return 'multi-columns';
+      case 'normal':
+        return 'normal';
+      case 'advanced':
+        return 'advanced';
       default:
         return 'auto-columns';
       }
@@ -713,7 +714,7 @@ class UI extends Component {
 
           <Header />
 
-          <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'single-column'}>
+          <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'normal'}>
             {children}
           </SwitchingColumnsArea>
 

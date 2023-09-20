@@ -54,7 +54,7 @@ const messages = defineMessages({
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
-  filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
+  filters: { id: 'navigation_bar.filters', defaultMessage: 'Manage filters' },
   endorse: { id: 'account.endorse', defaultMessage: 'Feature on profile' },
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
@@ -170,7 +170,6 @@ class Header extends PureComponent {
     menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags', href: '/followed_tags' });
     menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites', href: '/favourites' });
     menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks', href: '/bookmarks' });
-    menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned', href: '/pinned' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes', href: '/mutes' });
     menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks', href: '/blocks' });
