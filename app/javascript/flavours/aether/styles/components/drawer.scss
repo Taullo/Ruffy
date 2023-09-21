@@ -52,7 +52,7 @@
 .drawer__header {
   flex: none;
   font-size: 16px;
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-highlight-color);
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
@@ -62,23 +62,25 @@
   & > * {
     display: block;
     box-sizing: border-box;
-    border-bottom: 2px solid transparent;
     padding: 15px 5px 13px;
     height: 48px;
     flex: 1 1 auto;
-    color: var(--ui-font-dimmest-color);
+    color: var(--ui-highlight-button-text-color);
     text-align: center;
     text-decoration: none;
     cursor: pointer;
   }
 
   a {
-    transition: background 100ms ease-in;
+    transition:
+      background 100ms ease-in,
+      color 100ms ease-in;
 
     &:focus,
     &:hover {
       outline: none;
-      background: lighten($ui-base-color, 3%);
+      background: var(--ui-body-dim-color);
+      color: var(--ui-font-color);
       transition: background 200ms ease-out;
     }
   }
