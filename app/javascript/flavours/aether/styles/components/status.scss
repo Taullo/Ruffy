@@ -575,9 +575,8 @@
 }
 
 .detailed-status {
-  background: lighten($ui-base-color, 4%);
+  background: var(--ui-body-color);
   padding: 14px 10px;
-  border-top: 1px solid lighten($ui-base-color, 8%);
 
   &--flex {
     display: flex;
@@ -624,9 +623,7 @@
 }
 
 .detailed-status__action-bar {
-  background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  background: var(--ui-body-color);
   display: flex;
   flex-direction: row;
   padding: 10px 0;

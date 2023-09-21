@@ -34,6 +34,42 @@
   accent-color: var(--ui-highlight-color);
 }
 
+/* Light theme */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ui-page-background: #e4ecf0;
+    --ui-base-color: #ffffff;
+    --ui-base-lighter-color: #ffffff;
+    --ui-primary-color: #9baec8;
+    --ui-secondary-color: #dfdfdf;
+    --ui-shadow-color: #202020;
+    --ui-body-color: #ffffff;
+    --ui-body-secondary-color: #f2f2f7; /* change to border for light theme? */
+    --ui-body-dim-color: #ffffff;
+    --ui-body-simple-bg: #ffffff;
+    --ui-font-border-color: #d5d5d5;
+
+    /* Font Colors */
+    --ui-font-color: #000000;
+    --ui-font-secondary-color: #46494a;
+    --ui-inverted-font-color: #282c37;
+    --ui-font-dimmer-color: #606984;
+    --ui-font-dimmest-color: #6f7791;
+    --ui-font-brighter-color: #96a4c8;
+    --ui-font-bright-color: #545e6c;
+    --ui-font-stark-color: #fff;
+  }
+
+  .wordmark img {
+    display: inherit;
+  }
+
+  .wordmark_dark img {
+    display: none;
+  }
+}
+
 /* SCSS Vars */
 
 // Commonly used web colors
