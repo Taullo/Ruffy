@@ -153,13 +153,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # This uses the vagrant-hostsupdater plugin, and lets you
-  # access the development site at http://mastodon.local.
+  # access the development site at http://ruffy.local.
   # If you change it, also change it in .env.vagrant before provisioning
   # the vagrant server to update the development build.
   #
   # To install:
   #   $ vagrant plugin install vagrant-hostsupdater
-  config.vm.hostname = "mastodon.local"
+  config.vm.hostname = "ruffy.local"
 
   if defined?(VagrantPlugins::HostsUpdater)
     config.vm.network :private_network, ip: "192.168.42.42", nictype: "virtio"
