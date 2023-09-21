@@ -89,9 +89,9 @@ $media-modal-media-max-height: 80%;
 
 $no-gap-breakpoint: 1175px;
 
-$font-sans-serif: 'mastodon-font-sans-serif' !default;
-$font-display: 'mastodon-font-display' !default;
-$font-monospace: 'mastodon-font-monospace' !default;
+$font-sans-serif: 'roboto' !default;
+$font-display: 'roboto-font-display' !default;
+$font-monospace: 'roboto-monospace' !default;
 
 :root {
   --dropdown-border-color: #{lighten($ui-base-color, 12%)};
