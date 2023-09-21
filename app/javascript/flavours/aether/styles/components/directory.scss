@@ -1,25 +1,21 @@
 .scrollable .account-card {
   margin: 10px;
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-base-color);
 }
 
 .scrollable .account-card__title__avatar {
   img,
   .account__avatar {
-    border-color: lighten($ui-base-color, 8%);
+    border-color: var(--ui-base-color);
   }
 }
 
 .scrollable .account-card__bio::after {
-  background: linear-gradient(
-    to left,
-    lighten($ui-base-color, 8%),
-    transparent
-  );
+  background: linear-gradient(to left, var(--ui-base-color), transparent);
 }
 
 .filter-form {
-  background: $ui-base-color;
+  background: var(--ui-base-color);
 
   &__column {
     padding: 10px 15px;
@@ -50,7 +46,7 @@
   &__input {
     display: inline-block;
     position: relative;
-    border: 1px solid $ui-primary-color;
+    border: 1px solid var(--ui-primary-color);
     box-sizing: border-box;
     width: 18px;
     height: 18px;
@@ -61,8 +57,8 @@
     vertical-align: middle;
 
     &.checked {
-      border-color: lighten($ui-highlight-color, 4%);
-      background: lighten($ui-highlight-color, 4%);
+      border-color: var(--ui-highlight-color);
+      background: var(--ui-highlight-color);
     }
   }
 }
