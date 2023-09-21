@@ -62,11 +62,11 @@
   }
 
   .wordmark img {
-    display: inherit;
+    display: inherit !important;
   }
 
   .wordmark_dark img {
-    display: none;
+    display: none !important;
   }
 }
 
