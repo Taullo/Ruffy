@@ -38,7 +38,7 @@
   }
 
   &:disabled {
-    color: $ui-primary-color;
+    color: var(--ui-primary-color);
     cursor: default;
   }
 }
@@ -86,7 +86,7 @@
   // }
 
   &:disabled {
-    background-color: $ui-primary-color;
+    background-color: var(--ui-primary-color);
     cursor: default;
 
     &:active,
@@ -98,22 +98,22 @@
 
   &.button-alternative {
     color: var(--ui-inverted-font-color);
-    background: $ui-primary-color;
+    background: var(--ui-primary-color);
 
     &:active,
     &:focus,
     &:hover {
-      background-color: lighten($ui-primary-color, 4%);
+      background-color: var(--ui-base-lighter-color);
     }
   }
 
   &.button-alternative-2 {
-    background: $ui-base-lighter-color;
+    background: var(--ui-base-lighter-color);
 
     &:active,
     &:focus,
     &:hover {
-      background-color: lighten($ui-base-lighter-color, 4%);
+      background-color: var(--ui-base-lighter-color);
     }
   }
 
@@ -839,7 +839,7 @@ body > [data-popper-placement] {
 .tabs-bar {
   box-sizing: border-box;
   display: flex;
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-base-lighter-color);
   flex: 0 0 auto;
   overflow-y: auto;
 }
@@ -854,7 +854,7 @@ body > [data-popper-placement] {
   text-align: center;
   font-size: 14px;
   font-weight: 500;
-  border-bottom: 2px solid lighten($ui-base-color, 8%);
+  border-bottom: 2px solid var(--ui-base-lighter-color);
   transition: all 50ms linear;
   transition-property: border-bottom, background, color;
 
@@ -867,8 +867,8 @@ body > [data-popper-placement] {
   &:focus,
   &:active {
     @include multi-columns('screen and (min-width: 631px)') {
-      background: lighten($ui-base-color, 14%);
-      border-bottom-color: lighten($ui-base-color, 14%);
+      background: var(--ui-base-lighter-color);
+      border-bottom-color: var(--ui-base-lighter-color);
     }
   }
 
@@ -993,17 +993,17 @@ body > [data-popper-placement] {
   height: 24px;
   padding: 0;
   border-radius: 30px;
-  background-color: $ui-base-color;
+  background-color: var(--ui-base-color);
   transition: background-color 0.2s ease;
 }
 
 .react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled)
   .react-toggle-track {
-  background-color: darken($ui-base-color, 10%);
+  background-color: var(--ui-page-background);
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: darken($ui-highlight-color, 2%);
+  background-color: var(--ui-highlight-color);
 }
 
 .react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled)
@@ -1054,9 +1054,9 @@ body > [data-popper-placement] {
   inset-inline-start: 1px;
   width: 22px;
   height: 22px;
-  border: 1px solid $ui-base-color;
+  border: 1px solid var(--ui-base-color);
   border-radius: 50%;
-  background-color: darken($simple-background-color, 2%);
+  background-color: var(--ui-body-simple-bg);
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
@@ -1070,7 +1070,7 @@ body > [data-popper-placement] {
 .getting-started__wrapper,
 .getting_started,
 .flex-spacer {
-  background: $ui-base-color;
+  background: var(--ui-base-color);
 }
 
 .getting-started__wrapper {
@@ -1083,7 +1083,7 @@ body > [data-popper-placement] {
 }
 
 .getting-started {
-  background: $ui-base-color;
+  background: var(--ui-base-color);
   flex: 1 0 auto;
 
   p {
@@ -1101,7 +1101,7 @@ body > [data-popper-placement] {
     margin-top: 10px;
 
     h4 {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--ui-base-lighter-color);
       padding: 10px;
       font-size: 12px;
       text-transform: uppercase;
@@ -1167,8 +1167,8 @@ body > [data-popper-placement] {
   kbd {
     display: inline-block;
     padding: 3px 5px;
-    background-color: lighten($ui-base-color, 8%);
-    border: 1px solid darken($ui-base-color, 4%);
+    background-color: var(--ui-base-lighter-color);
+    border: 1px solid var(--ui-base-color);
   }
 }
 
@@ -1176,7 +1176,7 @@ body > [data-popper-placement] {
   color: var(--ui-font-dimmest-color);
   background: transparent;
   border: 0;
-  border-bottom: 2px solid $ui-primary-color;
+  border-bottom: 2px solid var(--ui-primary-color);
   outline: 0;
   box-sizing: border-box;
   display: block;
@@ -1197,7 +1197,7 @@ body > [data-popper-placement] {
 
   &.light {
     color: var(--ui-inverted-font-color);
-    border-bottom: 2px solid lighten($ui-base-color, 27%);
+    border-bottom: 2px solid var(--ui-primary-color);
 
     &:focus,
     &:active {
@@ -1248,18 +1248,18 @@ button.icon-button.active i.fa-retweet {
   box-sizing: border-box;
   clear: both;
   text-decoration: none;
-  background: $ui-base-color;
+  background: var(--ui-base-color);
   margin: 0 auto;
   border-radius: 100px;
   margin-top: 8px;
 
   &:hover {
-    background: lighten($ui-base-color, 2%);
+    background: var(--ui-base-color);
   }
 }
 
 .load-gap {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--ui-base-lighter-color);
 }
 
 .timeline-hint {
@@ -1296,7 +1296,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .scrollable > div > :first-child .notification__dismiss-overlay > .wrappy {
-  border-top: 1px solid $ui-base-color;
+  border-top: 1px solid var(--ui-base-color);
 }
 
 .notification__dismiss-overlay {
@@ -1319,14 +1319,14 @@ button.icon-button.active i.fa-retweet {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: lighten($ui-base-color, 8%);
-    border-inline-start: 1px solid lighten($ui-base-color, 20%);
+    background: var(--ui-base-lighter-color);
+    border-inline-start: 1px solid var(--ui-secondary-color);
     box-shadow: 0 0 5px black;
-    border-bottom: 1px solid $ui-base-color;
+    border-bottom: 1px solid var(--ui-base-color);
   }
 
   .ckbox {
-    border: 2px solid $ui-primary-color;
+    border: 2px solid var(--ui-primary-color);
     border-radius: 2px;
     width: 30px;
     height: 30px;
@@ -1374,7 +1374,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .circular-progress {
-  color: lighten($ui-base-color, 26%);
+  color: var(--ui-primary-color);
   animation: 1.4s linear 0s infinite normal none running simple-rotate;
 
   circle {
@@ -1601,7 +1601,7 @@ button.icon-button.active i.fa-retweet {
   inset-inline-start: 0;
   z-index: -1;
   border-radius: var(--ui-border-radius);
-  background: $ui-base-color;
+  background: var(--ui-base-color);
   box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
 }
 
@@ -1614,7 +1614,7 @@ button.icon-button.active i.fa-retweet {
   color: var(--ui-font-secondary-color);
   font-size: 18px;
   font-weight: 500;
-  border: 2px dashed $ui-base-lighter-color;
+  border: 2px dashed var(--ui-base-lighter-color);
   border-radius: var(--ui-border-radius);
 }
 
@@ -1650,12 +1650,12 @@ button.icon-button.active i.fa-retweet {
 
 .conversation {
   display: flex;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--ui-base-lighter-color);
   padding: 5px;
   padding-bottom: 0;
 
   &:focus {
-    background: lighten($ui-base-color, 2%);
+    background: var(--ui-base-lighter-color);
     outline: 0;
   }
 
@@ -1723,10 +1723,10 @@ button.icon-button.active i.fa-retweet {
   }
 
   &--unread {
-    background: lighten($ui-base-color, 2%);
+    background: var(--ui-base-color);
 
     &:focus {
-      background: lighten($ui-base-color, 4%);
+      background: var(--ui-base-lighter-color);
     }
 
     .conversation__content__info {
