@@ -84,6 +84,7 @@ const mapStateToProps = state => ({
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 20,
   layout_local_setting: state.getIn(['local_settings', 'layout']),
+  theme: state.getIn(['local_settings', 'theme']),
   accent: state.getIn(['local_settings', 'accent']),
   isWide: state.getIn(['local_settings', 'stretch']),
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
@@ -265,6 +266,7 @@ class UI extends Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     layout_local_setting: PropTypes.string,
+    theme: PropTypes.string,
     accent: PropTypes.string,
     isWide: PropTypes.bool,
     systemFontUi: PropTypes.bool,
@@ -401,6 +403,25 @@ class UI extends Component {
     }
   };
   
+  handleTheme() {
+    let prefersLight = window.matchMedia('prefers-color-scheme: light').matches;
+    if (((prefersLight === true) && (this.props.theme === 'auto')) || (this.props.theme === 'light')) {
+      document.body.classList.toggle('light-theme', true);
+      document.body.classList.toggle('dark-theme', false);
+      document.body.classList.toggle('mixed-theme', false);
+    }
+    else if (((prefersLight === false) && (this.props.theme === 'auto')) || (this.props.theme === 'dark')) {
+      document.body.classList.toggle('light-theme', false);
+      document.body.classList.toggle('dark-theme', true);
+      document.body.classList.toggle('mixed-theme', false);
+    }
+    else {
+      document.body.classList.toggle('light-theme', false);
+      document.body.classList.toggle('dark-theme', false);
+      document.body.classList.toggle('mixed-theme', true);
+    }
+  }
+  
   handleAccent() {
     var accentColor;
     if (this.props.accent === 'default') {
@@ -439,6 +460,7 @@ class UI extends Component {
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
     
+    this.handleTheme();
     this.handleAccent();
 
     if ('serviceWorker' in  navigator) {
@@ -488,6 +510,15 @@ class UI extends Component {
       setTimeout( // FIXME: Hack to wait for setting to save
         function() {
           this.handleResize()
+        }
+        .bind(this),
+        100
+      );
+    }
+    if (nextProps.theme !== this.props.theme) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleTheme()
         }
         .bind(this),
         100

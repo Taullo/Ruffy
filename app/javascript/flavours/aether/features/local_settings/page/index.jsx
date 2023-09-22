@@ -24,6 +24,12 @@ const messages = defineMessages({
   side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the post being replied to' },
   side_arm_restrict: { id: 'settings.side_arm_reply_mode.restrict', defaultMessage: 'Restrict privacy setting to that of the post being replied to' },
   regexp: { id: 'settings.content_warnings.regexp', defaultMessage: 'Regular expression' },
+
+  theme_auto: { id: 'settings.theme_auto', defaultMessage:  'Automatic' },
+  theme_light: { id: 'settings.theme_light', defaultMessage:  'Light' },
+  theme_dark: { id: 'settings.theme_dark', defaultMessage:  'Dark' },
+  theme_mixed: { id: 'settings.theme_mixed', defaultMessage:  'Mixed' },
+
   rewrite_mentions_no: { id: 'settings.rewrite_mentions_no', defaultMessage: 'Do not rewrite mentions' },
   rewrite_mentions_acct: { id: 'settings.rewrite_mentions_acct', defaultMessage: 'Rewrite with username and domain (when the account is remote)' },
   rewrite_mentions_username: { id: 'settings.rewrite_mentions_username', defaultMessage:  'Rewrite with username' },
@@ -66,6 +72,20 @@ class LocalSettingsPage extends PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page general'>
         <h1><FormattedMessage id='settings.general' defaultMessage='Appearance' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['theme']}
+          id='mastodon-settings--theme'
+          options={[
+            {  type: 'radio', value: 'auto', message: intl.formatMessage(messages.theme_auto) },
+            {  type: 'radio', value: 'light', message: intl.formatMessage(messages.theme_light) },
+            {  type: 'radio', value: 'dark', message: intl.formatMessage(messages.theme_dark) },
+            {  type: 'radio', value: 'mixed', message: intl.formatMessage(messages.theme_mixed) },
+          ]}
+          onChange={onChange}
+        >
+        <FormattedMessage id='settings.theme' defaultMessage='Theme' />
+        </LocalSettingsPageItem>
         <span className='accentSelector'>
         <LocalSettingsPageItem
           settings={settings}

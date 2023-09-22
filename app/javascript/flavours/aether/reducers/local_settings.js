@@ -22,6 +22,7 @@ const initialState = ImmutableMap({
   show_content_type_choice: false,
   tag_misleading_links: true,
   rewrite_mentions: 'no',
+  theme: 'auto',
   content_warnings : ImmutableMap({
     cw_visibility  : 'obscured',
     filter              : null,

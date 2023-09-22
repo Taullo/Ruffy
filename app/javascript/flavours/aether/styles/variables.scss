@@ -1,4 +1,17 @@
 :root {
+  /* Specialty Elements */
+  --ui-dropdown-shadow: rgba(0, 0, 0, 40%);
+  --ui-dropdown-shadow-20: rgba(0, 0, 0, 20%);
+
+  /* Element Sizes */
+  --ui-avatar-status-size: 62px;
+  --ui-border-radius: 6px;
+  --ui-highlight-button-text-color: #ffffff;
+
+  accent-color: var(--ui-highlight-color);
+}
+
+.dark-theme {
   /* Background colors */
   --ui-page-background: #191b22;
   --ui-base-color: #282c37;
@@ -21,45 +34,32 @@
   --ui-font-brighter-color: #333845;
   --ui-font-bright-color: #9baec8;
   --ui-font-stark-color: #000000;
-  --ui-highlight-button-text-color: #ffffff;
-
-  /* Specialty Elements */
-  --ui-dropdown-shadow: rgba(0, 0, 0, 40%);
-  --ui-dropdown-shadow-20: rgba(0, 0, 0, 20%);
-
-  /* Element Sizes */
-  --ui-avatar-status-size: 62px;
-  --ui-border-radius: 6px;
-
-  accent-color: var(--ui-highlight-color);
 }
 
 /* Light theme */
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --ui-page-background: #e4ecf0;
-    --ui-base-color: #ffffff;
-    --ui-base-lighter-color: #ffffff;
-    --ui-primary-color: #9baec8;
-    --ui-secondary-color: #dfdfdf;
-    --ui-shadow-color: #202020;
-    --ui-body-color: #ffffff;
-    --ui-body-secondary-color: #f2f2f7; /* change to border for light theme? */
-    --ui-body-dim-color: #ffffff;
-    --ui-body-simple-bg: #333845;
-    --ui-font-border-color: #d5d5d5;
+.light-theme {
+  --ui-page-background: #e4ecf0;
+  --ui-base-color: #ffffff;
+  --ui-base-lighter-color: #ffffff;
+  --ui-primary-color: #9baec8;
+  --ui-secondary-color: #dfdfdf;
+  --ui-shadow-color: #202020;
+  --ui-body-color: #ffffff;
+  --ui-body-secondary-color: #f2f2f7; /* change to border for light theme? */
+  --ui-body-dim-color: #ffffff;
+  --ui-body-simple-bg: #333845;
+  --ui-font-border-color: #d5d5d5;
 
-    /* Font Colors */
-    --ui-font-color: #000000;
-    --ui-font-secondary-color: #46494a;
-    --ui-inverted-font-color: #282c37;
-    --ui-font-dimmer-color: #606984;
-    --ui-font-dimmest-color: #6f7791;
-    --ui-font-brighter-color: #96a4c8;
-    --ui-font-bright-color: #545e6c;
-    --ui-font-stark-color: #fff;
-  }
+  /* Font Colors */
+  --ui-font-color: #000000;
+  --ui-font-secondary-color: #46494a;
+  --ui-inverted-font-color: #282c37;
+  --ui-font-dimmer-color: #606984;
+  --ui-font-dimmest-color: #6f7791;
+  --ui-font-brighter-color: #96a4c8;
+  --ui-font-bright-color: #545e6c;
+  --ui-font-stark-color: #fff;
 
   .wordmark img {
     display: inherit !important;
@@ -68,6 +68,32 @@
   .wordmark_dark img {
     display: none !important;
   }
+}
+
+/* Mixed theme */
+
+.mixed-theme {
+  --ui-page-background: #191b22;
+  --ui-base-color: #ffffff;
+  --ui-base-lighter-color: #ffffff;
+  --ui-primary-color: #9baec8;
+  --ui-secondary-color: #dfdfdf;
+  --ui-shadow-color: #202020;
+  --ui-body-color: #ffffff;
+  --ui-body-secondary-color: #f2f2f7; /* change to border for light theme? */
+  --ui-body-dim-color: #ffffff;
+  --ui-body-simple-bg: #333845;
+  --ui-font-border-color: #d5d5d5;
+
+  /* Font Colors */
+  --ui-font-color: #000000;
+  --ui-font-secondary-color: #46494a;
+  --ui-inverted-font-color: #282c37;
+  --ui-font-dimmer-color: #606984;
+  --ui-font-dimmest-color: #6f7791;
+  --ui-font-brighter-color: #96a4c8;
+  --ui-font-bright-color: #545e6c;
+  --ui-font-stark-color: #fff;
 }
 
 /* SCSS Vars */
