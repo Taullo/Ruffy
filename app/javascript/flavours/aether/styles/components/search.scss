@@ -242,7 +242,7 @@
 
         .hashname,
         span {
-          color: var(--ui-highlight-button-text-color);
+          color: var(--ui-highlight-button-text-color) !important;
         }
 
         .trends__item__sparkline path:first-child {
