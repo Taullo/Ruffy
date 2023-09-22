@@ -106,7 +106,7 @@ $ui-header-height: 55px;
 }
 
 .tabs-bar__wrapper {
-  background: darken($ui-base-color, 8%);
+  background: var(--ui-base-color);
   top: $ui-header-height;
   padding-top: 0;
 
@@ -179,7 +179,7 @@ $ui-header-height: 55px;
 }
 
 .column-header__back-button {
-  background: lighten($ui-base-color, 4%);
+  background: var(--ui-base-color);
   border: 0;
   font-family: inherit;
   color: var(--ui-highlight-color);
@@ -225,7 +225,7 @@ $ui-header-height: 55px;
 }
 
 .column-subheading {
-  background: $ui-base-color;
+  background: var(--ui-base-color);
   color: var(--ui-font-dimmer-color);
   padding: 8px 20px;
   font-size: 12px;
@@ -350,7 +350,7 @@ $ui-header-height: 55px;
 }
 
 .column-header__button {
-  background: lighten($ui-base-color, 4%);
+  background: var(--ui-base-color);
   border: 0;
   color: var(--ui-font-dimmest-color);
   cursor: pointer;
@@ -366,11 +366,11 @@ $ui-header-height: 55px;
   &.active {
     color: var(--ui-font-color);
     border-color: var(--ui-highlight-color);
-    background: lighten($ui-base-color, 8%);
+    background: var(--ui-base-lighter-color);
 
     &:hover {
       color: var(--ui-font-color);
-      background: lighten($ui-base-color, 8%);
+      background: var(--ui-base-lighter-color);
     }
   }
 
@@ -404,11 +404,11 @@ $ui-header-height: 55px;
     &.active {
       color: var(--ui-font-color);
       border-color: var(--ui-highlight-color);
-      background: lighten($ui-base-color, 8%);
+      background: var(--ui-base-lighter-color);
 
       &:hover {
         color: var(--ui-font-color);
-        background: lighten($ui-base-color, 8%);
+        background: var(--ui-base-lighter-color);
       }
     }
 
@@ -496,7 +496,7 @@ $ui-header-height: 55px;
 }
 
 .column-header__collapsible-inner {
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-body-color);
   padding: 15px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -577,7 +577,7 @@ $ui-header-height: 55px;
   margin: 0;
   font-size: inherit;
   flex: auto;
-  background-color: $ui-base-color;
+  background-color: var(--ui-base-color);
   transition: all 0.2s ease;
   transition-property: background-color, box-shadow;
 
@@ -589,7 +589,7 @@ $ui-header-height: 55px;
   &:not([disabled]) {
     &:hover,
     &:focus {
-      background-color: darken($ui-base-color, 10%);
+      background-color: var(--ui-page-background);
     }
 
     &.active {
@@ -615,7 +615,7 @@ $ui-header-height: 55px;
 .empty-column-indicator,
 .follow_requests-unlocked_explanation {
   color: var(--ui-font-dimmer-color);
-  background: $ui-base-color;
+  background: var(--ui-base-color);
   text-align: center;
   padding: 20px;
   font-size: 15px;
@@ -624,10 +624,6 @@ $ui-header-height: 55px;
   display: flex;
   flex: 1 1 auto;
   justify-content: center;
-  @supports (display: grid) {
-    // hack to fix Chrome <57
-    contain: strict;
-  }
 
   & > span {
     max-width: 500px;
@@ -644,14 +640,14 @@ $ui-header-height: 55px;
 }
 
 .follow_requests-unlocked_explanation {
-  background: darken($ui-base-color, 4%);
+  background: var(--ui-base-color);
   contain: initial;
   flex-grow: 0;
 }
 
 .error-column {
   padding: 20px;
-  background: $ui-base-color;
+  background: var(--ui-base-color);
   border-radius: 4px;
   display: flex;
   flex: 1 1 auto;
@@ -700,7 +696,7 @@ $ui-header-height: 55px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: lighten($ui-base-color, 4%);
+  background: var(--ui-base-color);
 
   label {
     flex: 1 1 auto;
@@ -722,7 +718,7 @@ $ui-header-height: 55px;
 }
 
 .column-settings__outer {
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-base-lighter-color);
   padding: 15px;
 }
 
@@ -762,7 +758,7 @@ $ui-header-height: 55px;
       }
 
       &:focus {
-        background: lighten($ui-base-color, 4%);
+        background: var(--ui-base-color);
       }
 
       @media screen and (width <= 600px) {
@@ -781,7 +777,7 @@ $ui-header-height: 55px;
     }
 
     &__multi-value {
-      background: lighten($ui-base-color, 8%);
+      background: var(--ui-base-color);
 
       &__remove {
         cursor: pointer;
@@ -789,7 +785,7 @@ $ui-header-height: 55px;
         &:hover,
         &:active,
         &:focus {
-          background: lighten($ui-base-color, 12%);
+          background: var(--ui-base-lighter-color);
           color: var(--ui-font-dimmest-color);
         }
       }
@@ -815,7 +811,7 @@ $ui-header-height: 55px;
     }
 
     &__indicator-separator {
-      background-color: lighten($ui-base-color, 8%);
+      background-color: var(--ui-base-lighter-color);
     }
 
     &__menu {
@@ -850,7 +846,7 @@ $ui-header-height: 55px;
 
 .notifications-permission-banner {
   padding: 30px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--ui-base-lighter-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -928,8 +924,8 @@ $ui-header-height: 55px;
 
 .column-list {
   margin: 0 20px;
-  border: 1px solid lighten($ui-base-color, 8%);
-  background: darken($ui-base-color, 2%);
+  border: 1px solid var(--ui-base-lighter-color);
+  background: var(--ui-base-color);
   border-radius: 4px;
 
   &__empty-message {
@@ -1004,7 +1000,7 @@ $ui-header-height: 55px;
     }
 
     .button-tertiary {
-      background: rgba($ui-base-color, 0.15);
+      background: transparent;
       backdrop-filter: blur(8px);
     }
   }
@@ -1201,7 +1197,7 @@ h1#Misc {
 
 .getting-started__wrapper {
   .column-link {
-    background: lighten($ui-base-color, 8%);
+    background: var(--ui-base-color);
     color: var(--ui-font-color);
     display: block;
     font-size: 16px;
@@ -1213,7 +1209,7 @@ h1#Misc {
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 11%);
+      background: var(--ui-base-lighter-color);
     }
 
     &:focus {

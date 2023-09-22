@@ -263,7 +263,7 @@
 
   &.overlayed {
     box-sizing: content-box;
-    color: rgb(var(--ui-font-color));
+    color: #fff; // Hardcoded color
     padding: 2px;
   }
 
@@ -1498,7 +1498,7 @@ button.icon-button.active i.fa-retweet {
       justify-content: center;
       gap: 8px;
       flex-direction: column;
-      color: var(--ui-font-color);
+      color: #fff; // Hardcoded color
       font-weight: 500;
       font-size: 14px;
       font-family: roboto, sans-serif;

@@ -1463,3 +1463,11 @@ img.modal-warning {
     margin-top: 10px;
   }
 }
+
+.react-toggle-track-x svg path {
+  fill: var(--ui-font-color);
+}
+
+.react-toggle-track-check svg path {
+  fill: var(--ui-highlight-button-text-color);
+}

@@ -27,7 +27,7 @@
     padding: 15px;
     display: block;
     border-radius: var(--ui-border-radius);
-    color: rgb(var(--ui-font-color));
+    color: var(--ui-font-color);
 
     &:hover {
       background: var(--ui-highlight-color);
