@@ -263,7 +263,7 @@
 
   &.overlayed {
     box-sizing: content-box;
-    color: #fff; // Hardcoded color
+    color: var(--ui-highlight-color);
     padding: 2px;
   }
 

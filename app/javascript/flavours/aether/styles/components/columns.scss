@@ -351,34 +351,10 @@ $ui-header-height: 55px;
 }
 
 .column-header__button {
-  background: var(--ui-base-color);
   border: 0;
-  color: var(--ui-font-dimmest-color);
   cursor: pointer;
-  font-size: 16px;
   padding: 0 15px;
-  border-bottom: 4px solid;
   transition: color 0.2s;
-
-  &:hover {
-    color: var(--ui-font-dimmest-color);
-  }
-
-  &.active {
-    color: var(--ui-font-color);
-    border-color: var(--ui-highlight-color);
-    background: var(--ui-base-lighter-color);
-
-    &:hover {
-      color: var(--ui-font-color);
-      background: var(--ui-base-lighter-color);
-    }
-  }
-
-  //  glitch - added focus ring for keyboard navigation
-  // &:focus {
-  //   text-shadow: 0 0 4px var(--ui-font-color);
-  // }
 
   &:disabled {
     color: var(--ui-font-dimmer-color);
