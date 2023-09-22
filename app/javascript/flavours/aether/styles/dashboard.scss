@@ -158,6 +158,24 @@
       display: none;
     }
   }
+
+  .drawer__header .icon-badge {
+    background-color: var(--ui-highlight-button-text-color);
+    border: 1px solid var(--ui-highlight-color);
+    width: 0.8em;
+    height: 0.8em;
+    transition:
+      color 0.2s,
+      border 0.2s;
+  }
+
+  .drawer__header > a:hover {
+    color: var(--ui-font-color);
+  }
+
+  .drawer__header > a:hover .icon-badge {
+    background-color: var(--ui-highlight-color);
+  }
 }
 
 .column-header__buttons {
