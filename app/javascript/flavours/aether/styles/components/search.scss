@@ -78,6 +78,11 @@
           font-weight: 700;
           color: var(--ui-font-color);
         }
+
+        span {
+          overflow: inherit;
+          text-overflow: inherit;
+        }
       }
     }
   }
