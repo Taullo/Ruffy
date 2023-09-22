@@ -999,7 +999,7 @@ body > [data-popper-placement] {
 
 .react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled)
   .react-toggle-track {
-  background-color: var(--ui-base-lighter-color);
+  background-color: var(--ui-body-secondary-color);
 }
 
 .react-toggle--checked .react-toggle-track {
