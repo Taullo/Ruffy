@@ -143,23 +143,12 @@ class ComposerOptions extends ImmutablePureComponent {
   };
 
   //  Handles attachment clicks.
-  handleClickAttach = (name) => {
-    const { fileElement } = this;
-    const { onDoodleOpen } = this.props;
-
-    //  We switch over the name of the option.
-    switch (name) {
-    case 'upload':
-      if (fileElement) {
-        fileElement.click();
-      }
-      return;
-    case 'doodle':
-      if (onDoodleOpen) {
-        onDoodleOpen();
-      }
-      return;
-    }
+  handleClickAttach = () => {
+    this.fileElement.click();
+  };
+  
+  handleClickDoodle = () => {
+    this.props.onDoodleOpen();
   };
 
   //  Handles a ref to the file input.
@@ -221,23 +210,27 @@ class ComposerOptions extends ImmutablePureComponent {
           multiple
           style={{ display: 'none' }}
         />
-        <DropdownContainer
+        <IconButton
           disabled={disabled}
           icon='paperclip'
-          items={[
-            {
-              icon: 'cloud-upload',
-              name: 'upload',
-              text: formatMessage(messages.upload),
-            },
-            {
-              icon: 'paint-brush',
-              name: 'doodle',
-              text: formatMessage(messages.doodle),
-            },
-          ]}
-          onChange={this.handleClickAttach}
+          onClick={this.handleClickAttach}
           title={formatMessage(messages.attach)}
+        />
+        <input
+          accept={acceptContentTypes}
+          disabled={disabled}
+          key={resetFileKey}
+          onChange={this.handleChangeFiles}
+          ref={this.handleRefFileElement}
+          type='file'
+          multiple
+          style={{ display: 'none' }}
+        />
+        <IconButton
+          disabled={disabled}
+          icon='paint-brush'
+          onClick={this.handleClickDoodle}
+          title={formatMessage(messages.doodle)}
         />
         {!!pollLimits && (
           <IconButton
