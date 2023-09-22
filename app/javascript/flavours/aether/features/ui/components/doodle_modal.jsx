@@ -114,11 +114,9 @@ function dataURLtoFile(dataurl, filename) {
 }
 /** Doodle canvas size options */
 const DOODLE_SIZES = {
-  normal: [500, 500, 'Square 500'],
-  tootbanner: [702, 330, 'Tootbanner'],
-  s640x480: [640, 480, '640×480 - 480p'],
-  s800x600: [800, 600, '800×600 - SVGA'],
-  s720x480: [720, 405, '720x405 - 16:9'],
+  normal: [750, 350, 'Landscape'],
+  square: [600, 600, 'Square'],
+  portrait: [350, 750, 'Portrait'],
 };
 
 
