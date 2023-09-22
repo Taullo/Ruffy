@@ -145,15 +145,14 @@
   }
 
   &__header {
-    background: var(--ui-base-color, 4%);
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
     cursor: default;
-    padding: 15px;
-    font-weight: 500;
-    font-size: 16px;
-    color: var(--ui-font-dimmer-color);
+    padding: 15px 0;
+    font-size: 1.4rem;
+    color: var(--ui-highlight-color);
     display: flex;
     justify-content: space-between;
+    font-weight: bold;
+    margin-top: 14px;
 
     h3 .fa {
       margin-inline-end: 5px;
