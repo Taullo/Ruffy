@@ -18,7 +18,7 @@ echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo deb
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
 sudo apt-get install iptables-persistent -y
 
-# Add packages to build and run Mastodon
+# Add packages to build and run Ruffy
 sudo apt-get install \
   git-core \
   g++ \
@@ -116,7 +116,7 @@ sudo corepack enable
 yarn set version classic
 yarn install
 
-# Build Mastodon
+# Build Ruffy
 export RAILS_ENV=development 
 export $(cat ".env.vagrant" | xargs)
 bundle exec rails db:setup
@@ -134,7 +134,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/focal64"
 
   config.vm.provider :virtualbox do |vb|
-    vb.name = "mastodon"
+    vb.name = "ruffy"
     vb.customize ["modifyvm", :id, "--memory", "8192"]
 
     # Increase the number of CPUs. Uncomment and adjust to
