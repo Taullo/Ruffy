@@ -142,6 +142,10 @@
     min-height: 100%;
   }
 
+  .column_explore .account__section-headline {
+    display: none;
+  }
+
   .column-header {
     border-bottom: 2px solid var(--ui-highlight-color);
     padding-bottom: 8px;
@@ -150,22 +154,22 @@
       font-size: 1.2rem;
     }
 
-    .column-header__buttons {
-      > .column-header__button {
-        border-radius: 100%;
-        margin-right: 5px;
-        color: var(--ui-highlight-color);
-        border: 3px solid;
-        background: transparent;
-      }
-
-      > .active {
-        color: var(--ui-font-color);
-      }
+    .column_explore .account__section-headline {
+      display: none;
     }
   }
+}
 
-  .column_explore .account__section-headline {
-    display: none;
+.column-header__buttons {
+  > .column-header__button {
+    border-radius: 100%;
+    margin-right: 5px;
+    color: var(--ui-highlight-color);
+    border: 3px solid;
+    background: transparent;
+  }
+
+  > .active {
+    color: var(--ui-font-color);
   }
 }
