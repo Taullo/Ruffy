@@ -17,7 +17,7 @@
 }
 
 .modal-container--preloader {
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-base-lighter-color);
 }
 
 .modal-root {
@@ -165,7 +165,7 @@
 
   .onboarding-modal__nav,
   .error-modal__nav {
-    color: var(--ui-font-brighter-color);
+    color: var(--ui-font-bright-color);
     border: 0;
     font-size: 14px;
     font-weight: 500;
@@ -179,7 +179,7 @@
     &:hover,
     &:focus,
     &:active {
-      color: var(--ui-font-brighter-color);
+      color: var(--ui-font-bright-color);
       background-color: darken($ui-secondary-color, 16%);
     }
 
@@ -262,7 +262,7 @@
 
   p {
     font-size: 16px;
-    color: var(--ui-font-brighter-color);
+    color: var(--ui-font-bright-color);
     margin-top: 10px;
     margin-bottom: 10px;
 
@@ -272,7 +272,7 @@
 
     strong {
       font-weight: 500;
-      background: $ui-base-color;
+      background: var(--ui-base-color);
       color: var(--ui-highlight-color);
       border-radius: 4px;
       font-size: 14px;
@@ -333,7 +333,7 @@
   }
 
   &__case {
-    background: $ui-base-color;
+    background: var(--ui-base-color);
     color: var(--ui-font-secondary-color);
     font-weight: 500;
     padding: 10px;
@@ -350,7 +350,7 @@
   }
 
   .figure {
-    background: darken($ui-base-color, 8%);
+    background: var(--ui-page-background);
     color: var(--ui-font-secondary-color);
     margin-bottom: 20px;
     border-radius: 4px;
@@ -521,7 +521,7 @@
   & > div {
     flex: 1 1 auto;
     text-align: end;
-    color: var(--ui-font-brighter-color);
+    color: var(--ui-font-bright-color);
     padding-inline-end: 10px;
   }
 
@@ -1158,7 +1158,7 @@
       border: 0;
       padding: 10px;
       font-family: roboto-monospace, monospace;
-      background: $ui-base-color;
+      background: var(--ui-base-color);
       color: var(--ui-font-color);
       font-size: 14px;
       margin: 0;
@@ -1176,7 +1176,7 @@
       }
 
       &:focus {
-        background: lighten($ui-base-color, 4%);
+        background: var(--ui-base-lighter-color);
       }
 
       @media screen and (width <= 600px) {
@@ -1330,7 +1330,7 @@ img.modal-warning {
 .interaction-modal {
   max-width: 90vw;
   width: 600px;
-  background: $ui-base-color;
+  background: var(--ui-base-color);
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -1412,7 +1412,7 @@ img.modal-warning {
   input {
     display: block;
     font-family: inherit;
-    background: darken($ui-base-color, 8%);
+    background: var(--ui-page-background);
     border: 1px solid var(--ui-highlight-color);
     color: var(--ui-font-dimmest-color);
     border-radius: 4px;
@@ -1425,7 +1425,7 @@ img.modal-warning {
 
     &:focus {
       outline: 0;
-      background: darken($ui-base-color, 4%);
+      background: var(--ui-base-color);
     }
   }
 
