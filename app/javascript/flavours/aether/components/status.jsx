@@ -530,15 +530,8 @@ class Status extends ImmutablePureComponent {
     //  CW.
     let contentMedia = [];
     let contentMediaIcons = [];
-    let extraMedia = [];
-    let extraMediaIcons = [];
     let media = contentMedia;
     let mediaIcons = contentMediaIcons;
-
-    if (settings.getIn(['content_warnings', 'media_outside'])) {
-      media = extraMedia;
-      mediaIcons = extraMediaIcons;
-    }
 
     if (status === null) {
       return null;
@@ -791,7 +784,7 @@ class Status extends ImmutablePureComponent {
             </span>
             <StatusIcons
               status={status}
-              mediaIcons={contentMediaIcons.concat(extraMediaIcons)}
+              mediaIcons={contentMediaIcons}
               collapsible={settings.getIn(['collapsed', 'enabled'])}
               collapsed={isCollapsed}
               setCollapsed={setCollapsed}
@@ -801,7 +794,6 @@ class Status extends ImmutablePureComponent {
           <StatusContent
             status={status}
             media={contentMedia}
-            extraMedia={extraMedia}
             mediaIcons={contentMediaIcons}
             expanded={isExpanded}
             onExpandedToggle={this.handleToggleVisibility}

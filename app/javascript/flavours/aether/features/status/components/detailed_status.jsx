@@ -145,7 +145,6 @@ class DetailedStatus extends ImmutablePureComponent {
     //  CW.
     let contentMedia = [];
     let contentMediaIcons = [];
-    let extraMedia = [];
     let media = contentMedia;
     let mediaIcons = contentMediaIcons;
 
@@ -317,7 +316,6 @@ class DetailedStatus extends ImmutablePureComponent {
           <StatusContent
             status={status}
             media={contentMedia}
-            extraMedia={extraMedia}
             mediaIcons={contentMediaIcons}
             expanded={expanded}
             collapsed={false}
