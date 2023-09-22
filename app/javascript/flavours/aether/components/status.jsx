@@ -20,6 +20,7 @@ import Bundle from '../features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 
 import AttachmentList from './attachment_list';
+import { getHashtagBarForStatus } from './hashtag_bar';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import StatusHeader from './status_header';
@@ -757,6 +758,9 @@ class Status extends ImmutablePureComponent {
       unread,
       muted,
     }, 'focusable');
+    
+    const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
+    contentMedia.push(hashtagBar);
 
     return (
       <HotKeys handlers={handlers}>
@@ -807,6 +811,7 @@ class Status extends ImmutablePureComponent {
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
             cwSettings={settings.getIn(['content_warnings', 'cw_visibility'])}
+            {...statusContentProps}
           />
 
           {!isCollapsed ? (

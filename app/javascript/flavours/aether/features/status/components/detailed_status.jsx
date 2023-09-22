@@ -13,6 +13,7 @@ import AttachmentList from 'flavours/aether/components/attachment_list';
 import { Avatar } from 'flavours/aether/components/avatar';
 import { DisplayName } from 'flavours/aether/components/display_name';
 import EditedTimestamp from 'flavours/aether/components/edited_timestamp';
+import { getHashtagBarForStatus } from 'flavours/aether/components/hashtag_bar';
 import { Icon } from 'flavours/aether/components/icon';
 import MediaGallery from 'flavours/aether/components/media_gallery';
 import PictureInPicturePlaceholder from 'flavours/aether/components/picture_in_picture_placeholder';
@@ -302,6 +303,9 @@ class DetailedStatus extends ImmutablePureComponent {
       );
     }
 
+    const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
+    contentMedia.push(hashtagBar);
+
     return (
       <div style={outerStyle}>
         <div ref={this.setRef} className={classNames('detailed-status', `detailed-status-${status.get('visibility')}`, { compact })} data-status-by={status.getIn(['account', 'acct'])}>
@@ -325,6 +329,7 @@ class DetailedStatus extends ImmutablePureComponent {
             rewriteMentions={settings.get('rewrite_mentions')}
             cwSettings={settings.getIn(['content_warnings', 'cw_visibility'])}
             disabled
+            {...statusContentProps}
           />
 
           <div className='detailed-status__meta'>
