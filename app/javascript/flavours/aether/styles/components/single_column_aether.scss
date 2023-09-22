@@ -51,10 +51,6 @@
       background: transparent;
     }
 
-    .column-header__button.active {
-      background: lighten($ui-base-color, 8%);
-    }
-
     .dismissable-banner {
       border-radius: var(--ui-border-radius);
       margin-top: 8px;
