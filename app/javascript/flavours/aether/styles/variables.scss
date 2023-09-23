@@ -84,7 +84,7 @@
   --ui-body-secondary-color: #eff2f5; /* change to border for light theme? */
   --ui-body-dim-color: #ffffff;
   --ui-body-simple-bg: #333845;
-  --ui-font-border-color: #d5d5d5;
+  --ui-font-border-color: #282c37;
 
   /* Font Colors */
   --ui-font-color: #000000;
@@ -95,6 +95,48 @@
   --ui-font-brighter-color: #96a4c8;
   --ui-font-bright-color: #545e6c;
   --ui-font-stark-color: #fff;
+
+  .account__section-headline a,
+  .account__section-headline button,
+  .notification__filter-bar a,
+  .notification__filter-bar button,
+  .ui__header__left .column-link,
+  .link-footer p,
+  .link-footer p a,
+  .about__header p,
+  .about__header h1,
+  .search__icon .fa {
+    color: white;
+  }
+
+  .account__section-headline a.active,
+  .account__section-headline button.active,
+  .notification__filter-bar a.active,
+  .notification__filter-bar button.active {
+    color: var(--ui-highlight-color);
+  }
+
+  .conversation-scroll {
+    background: var(--ui-base-color);
+    border-radius: 8px;
+  }
+
+  .about__domain-blocks {
+    background: transparent;
+  }
+
+  .ui__header__links .column-link .fa:hover {
+    -webkit-text-stroke: 1.8px white;
+  }
+
+  .notification-follow.focusable {
+    background: var(--ui-body-color);
+    border-radius: 8px;
+  }
+
+  .search__input {
+    color: var(--ui-body-secondary-color);
+  }
 }
 
 /* SCSS Vars */
