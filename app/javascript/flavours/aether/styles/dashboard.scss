@@ -123,6 +123,11 @@
 }
 
 .layout-multiple-columns {
+  .column-header__collapsible {
+    overflow-y: scroll;
+    max-height: calc(100vh - 5rem);
+  }
+
   .account__fields {
     margin-top: 8px;
   }
