@@ -16,12 +16,16 @@ module Mastodon
       0
     end
 
-    def flags
-      ENV['MASTODON_VERSION_FLAGS'].presence || '-prerelease'
+    def default_prerelease
+      ''
     end
 
-    def prefix
-      'Ruffy '
+    def prerelease
+      ENV['MASTODON_VERSION_PRERELEASE'].presence || default_prerelease
+    end
+
+    def build_metadata
+      ['Ruffy', ENV.fetch('MASTODON_VERSION_METADATA', nil)].compact_blank.join('.')
     end
 
     def to_a
@@ -29,7 +33,10 @@ module Mastodon
     end
 
     def to_s
-      [prefix, to_a.join('.'), flags].join
+      components = [to_a.join('.')]
+      components << "-#{prerelease}" if prerelease.present?
+      components << "+#{build_metadata}" if build_metadata.present?
+      components.join
     end
 
     def gem_version
