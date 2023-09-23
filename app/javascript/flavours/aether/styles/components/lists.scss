@@ -30,6 +30,7 @@
       width: calc(100% - 60px);
       box-shadow: 2px 4px 15px var(--ui-dropdown-shadow);
       border-radius: 0 0 0 8px;
+      background: var(--ui-body-secondary-color);
     }
   }
 
@@ -90,5 +91,13 @@
     text-decoration: none;
     font-size: 16px;
     padding: 10px;
+  }
+}
+
+.modal-root__modal.list-editor {
+  .drawer__inner.backdrop {
+    width: 100%;
+    box-shadow: none;
+    transform: none !important;
   }
 }
