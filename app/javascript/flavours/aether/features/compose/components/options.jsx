@@ -250,11 +250,11 @@ class ComposerOptions extends ImmutablePureComponent {
 
         <DropdownContainer
           disabled={disabled}
-          icon='file-text'
+          icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
           items={[
+            contentTypeItems.plain,
             contentTypeItems.markdown,
             contentTypeItems.html,
-            contentTypeItems.plain,
           ]}
           onChange={onChangeContentType}
           title={formatMessage(messages.content_type)}
@@ -269,11 +269,6 @@ class ComposerOptions extends ImmutablePureComponent {
               meta: formatMessage(messages.local_only_long),
               name: 'do_not_federate',
               text: formatMessage(messages.local_only_short),
-            },
-            {
-              meta: formatMessage(messages.threaded_mode_long),
-              name: 'threaded_mode',
-              text: formatMessage(messages.threaded_mode_short),
             },
           ] : null}
           onChange={onChangeAdvancedOption}
