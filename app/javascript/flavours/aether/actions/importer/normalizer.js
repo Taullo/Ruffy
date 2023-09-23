@@ -1,7 +1,6 @@
 import escapeTextContentForBrowser from 'escape-html';
 
 import emojify from 'flavours/aether/features/emoji/emoji';
-import { autoHideCW } from 'flavours/aether/utils/content_warning';
 import { unescapeHTML } from 'flavours/aether/utils/html';
 
 const domParser = new DOMParser();
@@ -51,7 +50,7 @@ export function normalizeFilterResult(result) {
   return normalResult;
 }
 
-export function normalizeStatus(status, normalOldStatus, settings) {
+export function normalizeStatus(status, normalOldStatus) {
   const normalStatus   = { ...status };
   normalStatus.account = status.account.id;
 
@@ -87,7 +86,7 @@ export function normalizeStatus(status, normalOldStatus, settings) {
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
     normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
     normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
-    normalStatus.hidden       = (spoilerText.length > 0 || normalStatus.sensitive) && autoHideCW(settings, spoilerText);
+    normalStatus.hidden       = (spoilerText.length > 0 || normalStatus.sensitive);
   }
 
   if (normalOldStatus) {

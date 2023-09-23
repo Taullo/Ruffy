@@ -432,7 +432,6 @@ class UI extends Component {
       accentColor = this.props.accent;
     }
     if (!CSS.supports('color', accentColor)) { //fallback if props or cookie isn't a color (e.g. undefined)
-      console.log('Accent color is invalid. Value is:' + accentColor + ' Cookie is set to:' + this.props.accent);
       accentColor = document.documentElement.style.getPropertyValue('--site-highlight-color');
     }
     document.documentElement.style.setProperty('--ui-highlight-color', accentColor);
@@ -646,11 +645,11 @@ class UI extends Component {
   };
 
   handleHotkeyGoToLocal = () => {
-    this.props.history.push('/public/local');
+    this.props.history.push('/explore/local');
   };
 
   handleHotkeyGoToFederated = () => {
-    this.props.history.push('/public');
+    this.props.history.push('/explore/remote');
   };
 
   handleHotkeyGoToDirect = () => {

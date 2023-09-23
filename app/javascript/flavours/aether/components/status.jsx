@@ -12,8 +12,6 @@ import { HotKeys } from 'react-hotkeys';
 import PictureInPicturePlaceholder from 'flavours/aether/components/picture_in_picture_placeholder';
 import PollContainer from 'flavours/aether/containers/poll_container';
 import NotificationOverlayContainer from 'flavours/aether/features/notifications/containers/overlay_container';
-import { displayMedia } from 'flavours/aether/initial_state';
-import { autoUnfoldCW } from 'flavours/aether/utils/content_warning';
 
 import Card from '../features/status/components/card';
 import Bundle from '../features/ui/components/bundle';
@@ -50,7 +48,7 @@ export const textForScreenReader = (intl, status, rebloggedByText = false, expan
   return values.join(', ');
 };
 
-export const defaultMediaVisibility = (status) => {
+export const defaultMediaVisibility = (status, settings) => {
   if (!status) {
     return undefined;
   }
@@ -59,11 +57,7 @@ export const defaultMediaVisibility = (status) => {
     status = status.get('reblog');
   }
 
-  if (status.get('spoiler_text')) { //should set images to hidden if a CW is set
-    return false;
-  }
-
-  return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
+  return ((settings.getIn(['cw_visibility']) !== 'lockdown') && (!status.get('sensitive') && !status.get('spoiler_text')) || settings.getIn(['cw_visibility']) === 'visible');
 };
 
 class Status extends ImmutablePureComponent {
@@ -127,6 +121,7 @@ class Status extends ImmutablePureComponent {
     statusId: undefined,
     showCard: false,
     forceFilter: undefined,
+    cw_visibility: undefined,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -152,6 +147,7 @@ class Status extends ImmutablePureComponent {
     'isCollapsed',
     'showMedia',
     'forceFilter',
+    'cw_visibility',
   ];
 
   //  If our settings have changed to disable collapsed statuses, then we
@@ -203,24 +199,17 @@ class Status extends ImmutablePureComponent {
       updated = true;
     }
 
-    if (prevState.isExpanded === undefined && update.isExpanded === undefined) {
-      update.isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
-      updated = true;
-    }
-
     if (nextProps.status && nextProps.status.get('id') !== prevState.statusId) {
       update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
       update.statusId = nextProps.status.get('id');
       updated = true;
     }
-
-    // if (nextProps.settings.getIn(['media', 'reveal_behind_cw']) !== prevState.revealBehindCW) {
-    //   update.revealBehindCW = nextProps.settings.getIn(['media', 'reveal_behind_cw']);
-    //   if (update.revealBehindCW) {
-    //     update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
-    //   }
-    //   updated = true;
-    // }
+    
+    if (nextProps.settings.getIn(['cw_visibility']) !== prevState.cw_visibility) {
+      update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
+      update.cw_visibility = nextProps.settings.getIn(['cw_visibility']);
+      updated = true;
+    }
 
     return updated ? update : null;
   }
@@ -802,7 +791,7 @@ class Status extends ImmutablePureComponent {
             disabled={!router}
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
-            cwSettings={settings.getIn(['content_warnings', 'cw_visibility'])}
+            cwSettings={settings.getIn(['cw_visibility'])}
             {...statusContentProps}
           />
 

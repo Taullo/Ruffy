@@ -136,7 +136,8 @@
     line-height: 1.1;
   }
 
-  .status__content__spoiler--hidden {
+  .status__content__spoiler--hidden,
+  .status__content__spoiler--lockdown {
     display: none;
   }
 

@@ -54,7 +54,6 @@ import BundleColumnError from 'flavours/aether/features/ui/components/bundle_col
 import Column from 'flavours/aether/features/ui/components/column';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/aether/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/aether/selectors';
-import { autoUnfoldCW } from 'flavours/aether/utils/content_warning';
 
 import ColumnHeader from '../../components/column_header';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
@@ -233,7 +232,6 @@ class Status extends ImmutablePureComponent {
     if (props.status && state.loadedStatusId !== props.status.get('id')) {
       update.showMedia = defaultMediaVisibility(props.status, props.settings);
       update.loadedStatusId = props.status.get('id');
-      update.isExpanded = autoUnfoldCW(props.settings, props.status);
       updated = true;
     }
 

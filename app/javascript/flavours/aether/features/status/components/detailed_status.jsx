@@ -325,7 +325,7 @@ class DetailedStatus extends ImmutablePureComponent {
             onUpdate={this.handleChildUpdate}
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
-            cwSettings={settings.getIn(['content_warnings', 'cw_visibility'])}
+            cwSettings={settings.getIn(['cw_visibility'])}
             disabled
             {...statusContentProps}
           />

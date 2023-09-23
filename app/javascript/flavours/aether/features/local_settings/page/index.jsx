@@ -53,6 +53,7 @@ const messages = defineMessages({
   cw_visibility_obscured: { id: 'settings.cw_visibility_obscured', defaultMessage:  'Obscured' },
   cw_visibility_hidden: { id: 'settings.cw_visibility_hidden', defaultMessage:  'Hidden' },
   cw_visibility_shown: { id: 'settings.cw_visibility_shown', defaultMessage:  'Visible' },
+  cw_visibility_lockdown: { id: 'settings.cw_visibility_shown', defaultMessage:  'Lockdown' },
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
@@ -269,17 +270,18 @@ class LocalSettingsPage extends PureComponent {
         <h2><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h2>
         <LocalSettingsPageItem
           settings={settings}
-          item={['content_warnings', 'cw_visibility']}
+          item={['cw_visibility']}
           id='mastodon-settings--cw-visibility'
           options={[
             { type: 'radio', value: 'obscured', message: intl.formatMessage(messages.cw_visibility_obscured) },
             { type: 'radio', value: 'hidden', message: intl.formatMessage(messages.cw_visibility_hidden) },
             { type: 'radio', value: 'visible', message: intl.formatMessage(messages.cw_visibility_shown) },
+            { type: 'radio', value: 'lockdown', message: intl.formatMessage(messages.cw_visibility_lockdown) },
           ]}
           onChange={onChange}
         >
-        <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content warning text visibility:' />
-        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning is obscured, completely hidden, or shown by default' /></span>
+        <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content visibility:' />
+        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning and/or attachment is obscured, completely hidden, or shown by default' /></span>
         </LocalSettingsPageItem>
         <h2><FormattedMessage id='settings.media' defaultMessage='Media' /></h2>
         <LocalSettingsPageItem
