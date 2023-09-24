@@ -125,7 +125,7 @@
   "settings.confirm_before_clearing_draft": "Show confirmation dialog before overwriting the message being composed",
   "settings.confirm_boost_missing_media_description": "Show confirmation dialog before boosting posts lacking media descriptions",
   "settings.confirm_missing_media_description": "Show confirmation dialog before sending posts lacking media descriptions",
-  "settings.content_warnings": "Content Warnings",
+  "settings.content_warnings": "Sensitive Content",
   "settings.content_warnings.regexp": "Regular expression",
   "settings.content_warnings_filter": "Content warnings to not automatically unfold:",
   "settings.content_warnings_media_outside": "Display media attachments outside content warnings",

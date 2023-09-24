@@ -303,7 +303,6 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
-    contentMedia.push(hashtagBar);
 
     return (
       <div style={outerStyle}>
@@ -317,6 +316,7 @@ class DetailedStatus extends ImmutablePureComponent {
             status={status}
             media={contentMedia}
             mediaIcons={contentMediaIcons}
+            hashtagBar={hashtagBar}
             expanded={expanded}
             collapsed={false}
             onExpandedToggle={onToggleHidden}
@@ -326,6 +326,7 @@ class DetailedStatus extends ImmutablePureComponent {
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
             cwSettings={settings.getIn(['cw_visibility'])}
+            hashtagSettings={settings.getIn(['hashtag_cw'])}
             disabled
             {...statusContentProps}
           />

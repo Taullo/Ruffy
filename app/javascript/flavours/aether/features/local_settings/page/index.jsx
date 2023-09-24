@@ -267,7 +267,7 @@ class LocalSettingsPage extends PureComponent {
             <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a post to be considered lengthy' />
           </LocalSettingsPageItem>
         </section>
-        <h2><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h2>
+        <h2><FormattedMessage id='settings.content_warnings' defaultMessage='Sensitive Content' /></h2>
         <LocalSettingsPageItem
           settings={settings}
           item={['cw_visibility']}
@@ -282,6 +282,14 @@ class LocalSettingsPage extends PureComponent {
         >
         <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content visibility:' />
         <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning and/or attachment is obscured, completely hidden, or shown by default' /></span>
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['hashtag_cw']}
+          id='mastodon-settings--hashtag-cw'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.hashtag_cw' defaultMessage='Show the hashtag bar even when a post is obscured or hidden' />
         </LocalSettingsPageItem>
         <h2><FormattedMessage id='settings.media' defaultMessage='Media' /></h2>
         <LocalSettingsPageItem

@@ -91,3 +91,20 @@
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+.hashtag_force_hidden {
+  &.hashtag-hidden,
+  &.hashtag-lockdown {
+    display: none;
+  }
+
+  &.hashtag-obscured {
+    cursor: pointer;
+    font-family: flow-block, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+  }
+}

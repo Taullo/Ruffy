@@ -131,12 +131,14 @@ class StatusContent extends PureComponent {
     onTranslate: PropTypes.func,
     media: PropTypes.node,
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
+    hashtagBar: PropTypes.object,
     parseClick: PropTypes.func,
     disabled: PropTypes.bool,
     onUpdate: PropTypes.func,
     tagLinks: PropTypes.bool,
     rewriteMentions: PropTypes.string,
     cwSettings: PropTypes.string,
+    hashtagSettings: PropTypes.bool,
     languages: ImmutablePropTypes.map,
     intl: PropTypes.object,
   };
@@ -327,11 +329,13 @@ class StatusContent extends PureComponent {
       status,
       media,
       mediaIcons,
+      hashtagBar,
       parseClick,
       disabled,
       tagLinks,
       rewriteMentions,
       cwSettings,
+      hashtagSettings,
       intl,
       statusContent,
     } = this.props;
@@ -400,10 +404,13 @@ class StatusContent extends PureComponent {
           />
         );
       }
-
-      //  if (hidden) {
-      //    mentionsPlaceholder = <div>{mentionLinks}</div>;
-      //  }
+      
+      let hashtagState = null;
+      if (hashtagSettings) {
+        hashtagState = 'hashtag_force_visible ' + `${!hidden ? 'hashtag-visible' : 'hashtag-' + cwSettings}`;
+      } else {
+        hashtagState = 'hashtag_force_hidden ' + `${!hidden ? 'hashtag-visible' : 'hashtag-' + cwSettings}`;
+      }
 
       return (
       <>
@@ -432,6 +439,7 @@ class StatusContent extends PureComponent {
             {!hidden && translateButton}
             {media}
           </div>
+          <div className={hashtagState}>{hashtagBar}</div>
 
         </div>
         </>
@@ -456,6 +464,7 @@ class StatusContent extends PureComponent {
           />
           {translateButton}
           {media}
+          {hashtagBar}
         </div>
       );
     } else {
@@ -476,6 +485,7 @@ class StatusContent extends PureComponent {
           />
           {translateButton}
           {media}
+          {hashtagBar}
         </div>
       );
     }

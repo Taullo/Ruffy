@@ -742,7 +742,6 @@ class Status extends ImmutablePureComponent {
     }, 'focusable');
     
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
-    contentMedia.push(hashtagBar);
 
     return (
       <HotKeys handlers={handlers}>
@@ -784,6 +783,7 @@ class Status extends ImmutablePureComponent {
             status={status}
             media={contentMedia}
             mediaIcons={contentMediaIcons}
+            hashtagBar={hashtagBar}
             expanded={isExpanded}
             onExpandedToggle={this.handleToggleVisibility}
             onTranslate={this.handleTranslate}
@@ -792,6 +792,7 @@ class Status extends ImmutablePureComponent {
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
             cwSettings={settings.getIn(['cw_visibility'])}
+            hashtagSettings={settings.getIn(['hashtag_cw'])}
             {...statusContentProps}
           />
 
