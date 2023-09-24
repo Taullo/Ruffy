@@ -64,6 +64,7 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
     hidden: getAccountHidden(state, accountId),
     attachments: getAccountGallery(state, accountId),
+    cwVisibility: state.getIn(['local_settings', 'cw_visibility']),
   };
 };
 
@@ -192,7 +193,7 @@ class AccountTimeline extends ImmutablePureComponent {
   };
 
   render () {
-    const { accountId, acctName, statusIds, featuredStatusIds, isLoading, hasMore, suspended, isAccount, hidden, multiColumn, remote, remoteUrl, attachments } = this.props;
+    const { accountId, acctName, statusIds, featuredStatusIds, isLoading, hasMore, suspended, isAccount, hidden, multiColumn, remote, remoteUrl, attachments, cwVisibility } = this.props;
 
     if (isLoading && statusIds.isEmpty()) {
       return (
@@ -247,7 +248,7 @@ class AccountTimeline extends ImmutablePureComponent {
             {attachments.map((attachment) => attachment === null ? (
               ''
               ) : (
-              <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} />
+              <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia}  cwSettings={cwVisibility} />
             ))}
           </div>
           {mediaLink}

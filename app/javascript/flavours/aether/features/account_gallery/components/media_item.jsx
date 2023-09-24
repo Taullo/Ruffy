@@ -7,7 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Blurhash } from 'flavours/aether/components/blurhash';
 import { Icon } from 'flavours/aether/components/icon';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/aether/initial_state';
+import { autoPlayGif, useBlurhash } from 'flavours/aether/initial_state';
 
 
 
@@ -15,12 +15,12 @@ export default class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
     attachment: ImmutablePropTypes.map.isRequired,
-    displayWidth: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
+    cwSettings: PropTypes.string.isRequired,
   };
 
   state = {
-    visible: displayMedia !== 'hide_all' && !this.props.attachment.getIn(['status', 'sensitive']) || displayMedia === 'show_all',
+    visible: ((this.props.cwSettings !== 'lockdown') && (!this.props.attachment.getIn(['status', 'sensitive']) && !this.props.attachment.getIn(['status', 'spoiler_text'])) || this.props.cwSettings === 'visible'),
     loaded: false,
   };
 
