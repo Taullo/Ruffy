@@ -1171,13 +1171,6 @@ $ui-header-height: 55px;
   }
 }
 
-@media screen and (max-width: $no-gap-breakpoint) {
-  .column-link,
-  .ui__header__links .icon-button {
-    display: none;
-  }
-}
-
 h1#Misc {
   margin-bottom: 0;
   margin-left: 25px;

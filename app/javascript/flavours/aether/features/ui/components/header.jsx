@@ -141,6 +141,7 @@ class Header extends PureComponent {
     openSettings: PropTypes.func.isRequired,
     openCompose: PropTypes.func.isRequired,
     openLists: PropTypes.func.isRequired,
+    layout: PropTypes.string.isRequired,
   };
 
   handleLogout = () => {
@@ -158,7 +159,7 @@ class Header extends PureComponent {
 
   render () {
     const { signedIn } = this.context.identity;
-    const { server, location, openClosedRegistrationsModal, signupUrl, intl, openSettings, openCompose } = this.props;
+    const { server, location, openClosedRegistrationsModal, signupUrl, intl, openSettings, openCompose, layout } = this.props;
 
     let menu        = [];
     menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
@@ -178,18 +179,28 @@ class Header extends PureComponent {
     menu.push({ text: intl.formatMessage(messages.logout), action: this.handleLogout });
 
     let content;
+    let left;
 
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <button onClick={openCompose} className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /><i className='fa fa-pencil-square-o fa-fw' /></button>}
-          <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />} title={intl.formatMessage(messages.notifications)} />
-          <ColumnLink transparent to='/conversations' icon='comments' title={intl.formatMessage(messages.direct)} />
-          <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />
+          {location.pathname !== '/publish' && <button id='compose_button' onClick={openCompose} className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /><i className='fa fa-pencil-square-o fa-fw' /></button>}
+          {layout !== 'mobile' && <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />} title={intl.formatMessage(messages.notifications)} />}
+          {layout !== 'mobile' && <ColumnLink transparent to='/conversations' icon='comments' title={intl.formatMessage(messages.direct)} />}
+          {layout === 'mobile' && <ColumnLink transparent to='/search' icon='search' title={intl.formatMessage(messages.search)} />}
+          {layout !== 'mobile' && <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />}
           <Account />
-          <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='chevron-down' size={12} direction='right' />
+          {layout !== 'mobile' && <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='chevron-down' size={12} direction='right' />}
         </>
       );
+      if (layout !== 'mobile') {
+        left = (
+          <>
+            <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
+            <ColumnLink transparent to='/explore/local' icon='hashtag' text={intl.formatMessage(messages.explore)} />
+          </>
+        );
+      }   
     } else {
 
       if (sso_redirect) {
@@ -230,9 +241,8 @@ class Header extends PureComponent {
               <Wordmark src={server.getIn(['wordmark', 'url'])} className='wordmark' />
               <Wordmark src={server.getIn(['wordmark_dark', 'url'])} className='wordmark_dark' />
             </Link>
-            <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
-            <ColumnLink transparent to='/explore/local' icon='hashtag' text={intl.formatMessage(messages.explore)} />
-            <ColumnLink transparent to='/about' icon='info' text={intl.formatMessage(messages.about)} />
+            {left}
+            <ColumnLink transparent to='/about' icon='info-circle' text={intl.formatMessage(messages.about)} />
           </div>
 
           <div className='ui__header__links'>

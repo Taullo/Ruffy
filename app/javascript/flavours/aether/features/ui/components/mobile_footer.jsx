@@ -131,7 +131,6 @@ class MobileFooter extends PureComponent {
     menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags', href: '/followed_tags' });
     menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites', href: '/favourites' });
     menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks', href: '/bookmarks' });
-    menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned', href: '/pinned' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes', href: '/mutes' });
     menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks', href: '/blocks' });

@@ -742,7 +742,7 @@ class UI extends Component {
             />
           </div>)}
 
-          <Header />
+          <Header layout={layout} />
 
           <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'normal'}>
             {children}
@@ -753,7 +753,7 @@ class UI extends Component {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
-          <MobileFooter />
+          {layout === 'mobile' && <MobileFooter />}
         </div>
       </HotKeys>
     );
