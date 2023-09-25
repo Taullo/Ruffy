@@ -75,14 +75,6 @@
   }
 }
 
-.status__content__spoiler--obscured {
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
-
 .status__content__spoiler__link--visible {
   color: transparent;
   pointer-events: none;
@@ -107,4 +99,24 @@
     -ms-user-select: none;
     pointer-events: none;
   }
+}
+
+.status__content__spoiler--obscured {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  display: block;
+  font-family: flow-block, sans-serif;
+  line-height: 1.1;
+
+  .emojione {
+    display: none;
+  }
+}
+
+.status__content__spoiler--hidden,
+.status__content__spoiler--lockdown {
+  display: none;
 }
