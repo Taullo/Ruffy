@@ -404,7 +404,7 @@ class UI extends Component {
   };
   
   handleTheme() {
-    let prefersLight = window.matchMedia('prefers-color-scheme: light').matches;
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     if (((prefersLight === true) && (this.props.theme === 'auto')) || (this.props.theme === 'light')) {
       document.body.classList.toggle('light-theme', true);
       document.body.classList.toggle('dark-theme', false);
@@ -449,6 +449,9 @@ class UI extends Component {
 
   componentDidMount () {
     const { signedIn } = this.context.identity;
+    
+    const systemThemePreference = window.matchMedia("(prefers-color-scheme: light)");
+    systemThemePreference.addEventListener("change", e => e && this.handleTheme());
 
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
     window.addEventListener('resize', this.handleResize, { passive: true });
