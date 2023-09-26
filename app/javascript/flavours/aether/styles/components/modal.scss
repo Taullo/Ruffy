@@ -326,7 +326,7 @@
 
   &__label {
     font-weight: 500;
-    color: var(--ui-font-secondary-color);
+    color: var(--ui-inverted-font-color);
     margin-bottom: 5px;
     text-transform: uppercase;
     font-size: 12px;
@@ -1072,7 +1072,7 @@
     align-items: center;
 
     &__label {
-      color: var(--ui-inverted-font-color);
+      color: var(--ui-font-color);
       margin: 0;
       margin-inline-start: 8px;
     }
@@ -1101,7 +1101,7 @@
   }
 
   .status__content {
-    color: var(--ui-inverted-font-color);
+    color: var(--ui-font-secondary-color);
     font-size: 19px;
     line-height: 24px;
 
@@ -1118,7 +1118,7 @@
     hr {
       height: 0.25rem;
       padding: 0;
-      background-color: $ui-secondary-color;
+      background-color: var(--ui-secondary-color);
       border: 0;
       margin: 20px 0;
     }

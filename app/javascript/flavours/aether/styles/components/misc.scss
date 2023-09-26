@@ -1518,6 +1518,7 @@ button.icon-button.active i.fa-retweet {
 
 .setting-toggle__label,
 .setting-meta__label {
+  color: var(--ui-font-dimmest-color);
   display: inline-block;
   margin-bottom: 14px;
   margin-inline-start: 8px;
