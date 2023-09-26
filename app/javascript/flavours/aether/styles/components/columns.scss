@@ -456,7 +456,7 @@ $ui-header-height: 55px;
   position: relative;
 
   &.collapsed {
-    max-height: 0;
+    max-height: 0 !important;
     opacity: 0.5;
   }
 
