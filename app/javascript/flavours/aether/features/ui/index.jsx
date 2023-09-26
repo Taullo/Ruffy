@@ -524,7 +524,8 @@ class UI extends Component {
     if (nextProps.theme !== this.props.theme) {
       setTimeout( // FIXME: Hack to wait for setting to save
         function() {
-          this.handleTheme()
+          this.handleTheme();
+          this.handleAccent();
         }
         .bind(this),
         100
