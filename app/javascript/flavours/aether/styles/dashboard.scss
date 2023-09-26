@@ -144,7 +144,9 @@
 
   .column_explore,
   .scrollable--flex {
-    min-height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .column_explore .account__section-headline {

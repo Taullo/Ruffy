@@ -38,6 +38,7 @@ const messages = defineMessages({
   suggested: { id: 'navigation_bar.suggested', defaultMessage: 'Suggestions' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
@@ -161,6 +162,8 @@ class GettingStarted extends ImmutablePureComponent {
       if (!multiColumn || !columns.find(item => item.get('id') === 'BOOKMARKS')) {
         navItems.push(<ColumnLink key='bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
       }
+      
+      navItems.push(<ColumnLink key='about' icon='info-circle' text={intl.formatMessage(messages.about)} to='/about' />);
 
       if (myAccount.get('locked') || unreadFollowRequests > 0) {
         navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
