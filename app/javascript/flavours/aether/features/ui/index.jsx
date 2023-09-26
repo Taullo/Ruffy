@@ -429,7 +429,7 @@ class UI extends Component {
     } else if (this.props.accent === 'mono') {
       if (this.props.theme === 'light') {
         accentColor = '#000000';
-      } else if (this.props.accent === 'mixed') {
+      } else if (this.props.theme === 'mixed') {
         accentColor = '#888888';
       } else {
         accentColor = '#ffffff';
