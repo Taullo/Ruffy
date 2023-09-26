@@ -144,7 +144,7 @@ class Video extends PureComponent {
     fullscreen: false,
     hovered: false,
     muted: false,
-    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
+    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'), // TODO switch to local setting
   };
 
   setPlayerRef = c => {

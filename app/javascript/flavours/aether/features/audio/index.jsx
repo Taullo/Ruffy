@@ -67,7 +67,7 @@ class Audio extends PureComponent {
     muted: false,
     volume: 1,
     dragging: false,
-    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'),
+    revealed: this.props.visible !== undefined ? this.props.visible : (displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all'), // TODO switch to local setting
   };
 
   constructor (props) {
