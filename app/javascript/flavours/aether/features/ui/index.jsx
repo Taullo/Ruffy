@@ -425,9 +425,13 @@ class UI extends Component {
   handleAccent() {
     var accentColor;
     if (this.props.accent === 'default') {
-       accentColor = this.props.site_accent_color;
+      accentColor = this.props.site_accent_color;
     } else if (this.props.accent === 'mono') {
-       accentColor = '#ffffff';
+      if (this.props.theme === 'light') {
+        accentColor = '#000000';
+      } else {
+        accentColor = '#ffffff';
+      }
     } else {
       accentColor = this.props.accent;
     }
