@@ -31,6 +31,7 @@ const selectRepliedToAccountIds = createSelector(
 
 const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedDomains, onSubmit, onChangeComment, onToggleDomain }) => {
   const intl = useIntl();
+  const userForwardingEnabled = false;
 
   const dispatch = useAppDispatch();
   const loadedRef = useRef(false);
@@ -84,7 +85,7 @@ const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedD
         disabled={isSubmitting}
       />
 
-      {isRemote && (
+      {(isRemote && userForwardingEnabled) && (
         <>
           <p className='report-dialog-modal__lead'><FormattedMessage id='report.forward_hint' defaultMessage='The account is from another server. Send an anonymized copy of the report there as well?' /></p>
 
