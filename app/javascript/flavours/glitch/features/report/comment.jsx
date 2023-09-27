@@ -62,7 +62,7 @@ const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedD
 
     // First, pre-select known domains
     availableDomains.forEach((domain) => {
-      onToggleDomain(domain, true);
+      onToggleDomain(domain, false);
     });
 
     // Then, fetch missing replied-to accounts
