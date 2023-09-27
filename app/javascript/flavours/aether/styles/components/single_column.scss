@@ -320,7 +320,9 @@
   }
 
   .ui__mobile__footer__wrapper .column-link:hover,
-  .ui__mobile__footer__wrapper .icon-button:hover {
+  .ui__mobile__footer__wrapper .icon-button:hover,
+  .ui__mobile__footer__wrapper .column-link:active,
+  .ui__mobile__footer__wrapper .icon-button:active {
     -webkit-text-stroke-color: transparent;
     color: var(--ui-font-color);
   }
