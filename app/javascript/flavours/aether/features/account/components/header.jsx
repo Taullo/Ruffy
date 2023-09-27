@@ -351,11 +351,12 @@ class Header extends ImmutablePureComponent {
             <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
               <Avatar account={suspended || hidden ? undefined : account} size={150} />
               {role}
+              {badge}
             </a>
 
             <div className='account__header__tabs__name'>
               <h1>
-                <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
+                <span dangerouslySetInnerHTML={displayNameHtml} />
                 <small>
                   <span>@{acct}</span> {lockedIcon}
                 </small>
