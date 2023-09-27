@@ -83,9 +83,9 @@ describe ApplicationController do
 
     it 'returns instances\'s flavour when user is not signed in' do
       allow(Setting).to receive(:[]).with('skin').and_return 'default'
-      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'aether'
 
-      expect(controller.view_context.current_flavour).to eq 'vanilla'
+      expect(controller.view_context.current_flavour).to eq 'aether'
     end
 
     it 'returns instances\'s default flavour when user didn\'t set theme' do
@@ -93,10 +93,10 @@ describe ApplicationController do
       sign_in current_user
 
       allow(Setting).to receive(:[]).with('skin').and_return 'default'
-      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'aether'
       allow(Setting).to receive(:[]).with('noindex').and_return false
 
-      expect(controller.view_context.current_flavour).to eq 'vanilla'
+      expect(controller.view_context.current_flavour).to eq 'aether'
     end
 
     it 'returns user\'s flavour when it is set' do
@@ -106,7 +106,7 @@ describe ApplicationController do
       sign_in current_user
 
       allow(Setting).to receive(:[]).with('skin').and_return 'default'
-      allow(Setting).to receive(:[]).with('flavour').and_return 'vanilla'
+      allow(Setting).to receive(:[]).with('flavour').and_return 'aether'
 
       expect(controller.view_context.current_flavour).to eq 'glitch'
     end

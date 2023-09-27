@@ -11,7 +11,7 @@ module ThemingConcern
   private
 
   def current_flavour
-    [current_user&.setting_flavour, Setting.flavour, 'glitch', 'vanilla'].find { |flavour| Themes.instance.flavours.include?(flavour) }
+    [current_user&.setting_flavour, Setting.flavour, 'aether'].find { |flavour| Themes.instance.flavours.include?(flavour) }
   end
 
   def current_skin
