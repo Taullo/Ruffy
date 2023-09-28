@@ -16,9 +16,9 @@ import Permalink from 'flavours/aether/components/permalink';
 import { Wordmark } from 'flavours/aether/components/wordmark';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import ColumnLink from 'flavours/aether/features/ui/components/column_link';
+import { registrationsOpen, me, sso_redirect } from 'flavours/aether/initial_state';
 import { preferencesLink, profileLink } from 'flavours/aether/utils/backend_links';
 import { logOut } from 'flavours/aether/utils/log_out';
-import { registrationsOpen, me, sso_redirect } from 'flavours/glitch/initial_state';
 
 import NotificationsCounterIcon from './notifications_counter_icon';
 

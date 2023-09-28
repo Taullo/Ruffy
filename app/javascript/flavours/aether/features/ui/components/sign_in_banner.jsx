@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { openModal } from 'flavours/aether/actions/modal';
+import { registrationsOpen, sso_redirect } from 'flavours/aether/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/aether/store';
-import { registrationsOpen, sso_redirect } from 'flavours/glitch/initial_state';
 
 const SignInBanner = () => {
   const dispatch = useAppDispatch();

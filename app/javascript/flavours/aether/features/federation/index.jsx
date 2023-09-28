@@ -9,9 +9,9 @@ import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
+import { fetchServer, fetchDomainBlocks } from 'flavours/aether/actions/server';
 import Column from 'flavours/aether/components/column';
 import { Skeleton } from 'flavours/aether/components/skeleton';
-import { fetchServer, fetchDomainBlocks } from 'flavours/glitch/actions/server';
 
 const messages = defineMessages({
   title: { id: 'column.federation', defaultMessage: 'Federation' },

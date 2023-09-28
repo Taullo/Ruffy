@@ -87,7 +87,7 @@ const mapStateToProps = state => ({
   theme: state.getIn(['local_settings', 'theme']),
   accent: state.getIn(['local_settings', 'accent']),
   isWide: state.getIn(['local_settings', 'stretch']),
-  dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
+  dropdownMenuIsOpen: state.dropdownMenu.openId !== null,
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),

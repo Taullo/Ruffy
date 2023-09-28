@@ -10,13 +10,13 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { fetchReblogs, expandReblogs } from 'flavours/aether/actions/interactions';
 import ColumnHeader from 'flavours/aether/components/column_header';
 import { Icon } from 'flavours/aether/components/icon';
 import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import ScrollableList from 'flavours/aether/components/scrollable_list';
 import AccountContainer from 'flavours/aether/containers/account_container';
 import Column from 'flavours/aether/features/ui/components/column';
-import { fetchReblogs, expandReblogs } from 'flavours/glitch/actions/interactions';
 
 const messages = defineMessages({
   heading: { id: 'column.reblogged_by', defaultMessage: 'Boosted by' },
