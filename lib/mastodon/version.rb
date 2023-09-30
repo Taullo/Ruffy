@@ -25,7 +25,7 @@ module Mastodon
     end
 
     def build_metadata
-      ['Ruffy', ENV.fetch('MASTODON_VERSION_METADATA', nil)].compact_blank.join('.')
+      ENV.fetch('MASTODON_VERSION_METADATA', nil)
     end
 
     def to_a
@@ -62,6 +62,18 @@ module Mastodon
       else
         source_base_url
       end
+    end
+
+    def api_schema
+      'Mastodon'
+    end
+
+    def software_name
+      'Ruffy'
+    end
+
+    def software_version
+      '0.9.0'
     end
 
     def user_agent

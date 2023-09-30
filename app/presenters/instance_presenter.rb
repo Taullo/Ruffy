@@ -74,6 +74,18 @@ class InstancePresenter < ActiveModelSerializers::Model
     Mastodon::Version.to_s
   end
 
+  def api_schema
+    Mastodon::Version.api_schema
+  end
+
+  def software_name
+    Mastodon::Version.software_name
+  end
+
+  def software_version
+    Mastodon::Version.software_version
+  end
+
   def source_url
     Mastodon::Version.source_url
   end
