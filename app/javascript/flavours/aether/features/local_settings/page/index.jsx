@@ -19,6 +19,8 @@ const messages = defineMessages({
   layout_desktop_hint: { id: 'layout.hint.desktop', defaultMessage: 'Allows you to configure multiple columns to see as much information as you want (e.g. home, notifications, timeline, lists and hashtags).' },
   layout_mobile: { id: 'layout.single', defaultMessage: 'Normal Layout' },
   layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use the default simple layout. This lays out information in a less compact and more readable way.' },
+  rightcolumn_show: { id: 'layout.rightcolumn_show', defaultMessage: 'Show Right Column' },
+  rightcolumn_hide: { id: 'layout.rightcolumn_hide', defaultMessage: 'Hide Right Column' },
   side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
   side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep its set privacy' },
   side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the post being replied to' },
@@ -161,6 +163,43 @@ class LocalSettingsPage extends PureComponent {
           >
             <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Advanced Layout only)' />
             <span className='hint'><FormattedMessage id='settings.wide_view_hint' defaultMessage='Stretches columns to better fill the available space.' /></span>
+          </LocalSettingsPageItem>
+          <h2><FormattedMessage id='settings.layout_home' defaultMessage='Home Timeline' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['right_column', 'visibility']}
+            id='mastodon-settings--right_column'
+            options={[
+              {  type: 'radio', value: 'show', message: intl.formatMessage(messages.rightcolumn_show) },
+              {  type: 'radio', value: 'hide', message: intl.formatMessage(messages.rightcolumn_hide) },
+            ]}
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.right_column' defaultMessage='Show the right column on the home page' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['right_column', 'widgets', 'lists']}
+            id='mastodon-settings--right_column-lists'
+            onChange={onChange}
+          >
+          <FormattedMessage id='settings.right_column_lists' defaultMessage='Show lists in the right column' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['right_column', 'widgets', 'hashtags']}
+            id='mastodon-settings--right_column-hashtags'
+            onChange={onChange}
+          >
+          <FormattedMessage id='settings.right_column_hashtags' defaultMessage='Show hashtags in the right column' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['right_column', 'widgets', 'suggestions']}
+            id='mastodon-settings--right_column-suggested'
+            onChange={onChange}
+          >
+          <FormattedMessage id='settings.right_column_suggested' defaultMessage='Show suggested accounts in the right column' />
           </LocalSettingsPageItem>
         </section>
       </div>

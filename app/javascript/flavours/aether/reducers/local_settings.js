@@ -25,6 +25,14 @@ const initialState = ImmutableMap({
   theme: 'auto',
   cw_visibility  : 'obscured',
   hashtag_cw: false,
+  right_column : ImmutableMap({
+    visibility     : 'show',
+    widgets        : ImmutableMap({
+      lists          : true,
+      hashtags       : true,
+      suggestions    : false,
+    }),
+  }),
   content_warnings : ImmutableMap({
     filter              : null,
     media_outside       : false,

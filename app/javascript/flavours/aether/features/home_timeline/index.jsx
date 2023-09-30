@@ -76,6 +76,10 @@ const mapStateToProps = state => ({
   showAnnouncements: state.getIn(['announcements', 'show']),
   tooSlow: homeTooSlow(state),
   regex: state.getIn(['settings', 'home', 'regex', 'body']),
+  showRightColumn: (state.getIn(['local_settings', 'right_column', 'visibility']) === 'show'),
+  showLists: state.getIn(['local_settings', 'right_column', 'widgets', 'lists']),
+  showHashtags: state.getIn(['local_settings', 'right_column', 'widgets', 'hashtags']),
+  showSuggestions: state.getIn(['local_settings', 'right_column', 'widgets', 'suggestions']),
 });
 
 class HomeTimeline extends PureComponent {
@@ -96,6 +100,10 @@ class HomeTimeline extends PureComponent {
     showAnnouncements: PropTypes.bool,
     tooSlow: PropTypes.bool,
     regex: PropTypes.string,
+    showRightColumn: PropTypes.bool,
+    showLists: PropTypes.bool,
+    showHashtags: PropTypes.bool,
+    showSuggestions: PropTypes.bool,
   };
 
   handlePin = () => {
@@ -165,7 +173,7 @@ class HomeTimeline extends PureComponent {
   };
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn, tooSlow, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, tooSlow, hasAnnouncements, unreadAnnouncements, showAnnouncements, showRightColumn, showLists, showHashtags, showSuggestions } = this.props;
     const pinned = !!columnId;
     const { signedIn } = this.context.identity;
     const banners = [];
@@ -210,6 +218,7 @@ class HomeTimeline extends PureComponent {
           <ColumnSettings />
         </ColumnHeader>
 
+        {(showRightColumn || !signedIn) && (
         <div className='right_column'>
 
           <div className='fixed_wrapper'>
@@ -218,11 +227,11 @@ class HomeTimeline extends PureComponent {
               <SearchContainer openInRoute />
             </div>
 
-            {!multiColumn && signedIn && (
+            {showLists && !multiColumn && signedIn && (
               <ListPanel />
             )}
 
-            {!multiColumn && (
+            {showHashtags && !multiColumn && (
               <div className='explore__tags-header'>
                 <Tags openInRoute />
                 <div className='right-column-show-more'>
@@ -233,7 +242,7 @@ class HomeTimeline extends PureComponent {
               </div>
             )}
 
-            {!multiColumn && signedIn && (
+            {showSuggestions && !multiColumn && signedIn && (
               <div className='explore__suggested-header'>
                 <Suggestions openInRoute />
                 <div className='right-column-show-more'>
@@ -246,6 +255,7 @@ class HomeTimeline extends PureComponent {
           </div>
 
         </div>
+        )}
 
         {signedIn ? (
           <div className='scrollable home-scroll'>
