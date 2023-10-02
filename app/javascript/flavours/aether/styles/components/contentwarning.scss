@@ -114,6 +114,10 @@
   .emojione {
     display: none;
   }
+
+  a {
+    pointer-events: none;
+  }
 }
 
 .status__content__spoiler--hidden,
