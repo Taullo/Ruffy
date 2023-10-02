@@ -68,7 +68,7 @@ module.exports = merge(sharedConfig, {
       include: [/\.js$/, /\.css$/],
       maximumFileSizeToCacheInBytes: 2 * 1_024 * 1_024, // 2 MiB
       swDest: resolve(root, 'public', 'packs', 'sw.js'),
-      swSrc: resolve(root, 'app', 'javascript', 'mastodon', 'service_worker', 'entry.js'),
+      swSrc: resolve(root, 'app', 'javascript', 'flavours', 'aether', 'service_worker', 'entry.js'),
     }),
   ],
 });
