@@ -193,8 +193,8 @@ module.exports = {
       {
         devDependencies: [
           'config/webpack/**',
-          'app/javascript/mastodon/performance.js',
-          'app/javascript/mastodon/test_setup.js',
+          'app/javascript/flavours/aether/performance.js',
+          'app/javascript/flavours/aether/test_setup.js',
           'app/javascript/**/__tests__/**',
         ],
       },
@@ -247,7 +247,7 @@ module.exports = {
           },
           // Internal packages
           {
-            pattern: '{mastodon/**}',
+            pattern: '{flavours/aether/**}',
             group: 'internal',
             position: 'after',
           },
@@ -267,7 +267,7 @@ module.exports = {
       {
         zones: [{
           target: 'app/javascript/flavours/glitch/',
-          from: 'app/javascript/mastodon/',
+          from: 'app/javascript/flavours/aether/',
           message: 'Import from /flavours/glitch/ instead'
         }]
       }

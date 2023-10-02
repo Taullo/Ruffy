@@ -3,7 +3,7 @@
 import 'packs/public-path';
 import { delegate } from '@rails/ujs';
 
-import ready from '../mastodon/ready';
+import ready from '../flavours/aether/ready';
 
 const setAnnouncementEndsAttributes = (target) => {
   const valid = target?.value && target?.validity?.valid;

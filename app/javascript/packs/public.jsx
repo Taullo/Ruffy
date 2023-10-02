@@ -9,13 +9,13 @@ import { delegate }  from '@rails/ujs';
 import axios from 'axios';
 import { throttle } from 'lodash';
 
-import { start } from '../mastodon/common';
-import { timeAgoString }  from '../mastodon/components/relative_timestamp';
-import emojify  from '../mastodon/features/emoji/emoji';
-import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
+import { start } from '../flavours/aether/common';
+import { timeAgoString }  from '../flavours/aether/components/relative_timestamp';
+import emojify  from '../flavours/aether/features/emoji/emoji';
+import loadKeyboardExtensions from '../flavours/aether/load_keyboard_extensions';
+import { loadPolyfills } from '../flavours/aether/polyfills';
+import ready from '../flavours/aether/ready';
 import { loadLocale, getLocale } from '../mastodon/locales';
-import { loadPolyfills } from '../mastodon/polyfills';
-import ready from '../mastodon/ready';
 
 import 'cocoon-js-vanilla';
 
@@ -110,7 +110,7 @@ function loaded() {
   const reactComponents = document.querySelectorAll('[data-component]');
 
   if (reactComponents.length > 0) {
-    import(/* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container')
+    import(/* webpackChunkName: "containers/media_container" */ '../flavours/aether/containers/media_container')
       .then(({ default: MediaContainer }) => {
         [].forEach.call(reactComponents, (component) => {
           [].forEach.call(component.children, (child) => {

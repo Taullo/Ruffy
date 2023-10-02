@@ -58,14 +58,14 @@
 docker-compose.override.yml
 
 # Ignore emoji map file
-/app/javascript/mastodon/features/emoji/emoji_map.json
+/app/javascript/flavours/aether/features/emoji/emoji_map.json
 
 # Ignore locale files
 /app/javascript/mastodon/locales/*.json
 /config/locales
 
 # Ignore vendored CSS reset
-app/javascript/styles/mastodon/reset.scss
+app/javascript/styles/flavours/aether/reset.scss
 
 # Ignore Javascript pending https://github.com/mastodon/mastodon/pull/23631
 *.js

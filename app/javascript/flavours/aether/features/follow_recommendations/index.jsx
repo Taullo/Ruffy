@@ -14,7 +14,6 @@ import { fetchSuggestions } from 'flavours/aether/actions/suggestions';
 import { markAsPartial } from 'flavours/aether/actions/timelines';
 import Button from 'flavours/aether/components/button';
 import Column from 'flavours/aether/features/ui/components/column';
-import imageGreeting from 'mastodon/../images/elephant_ui_greeting.svg';
 
 import Account from './components/account';
 
@@ -102,7 +101,6 @@ class FollowRecommendations extends ImmutablePureComponent {
               </div>
 
               <div className='column-actions'>
-                <img src={imageGreeting} alt='' className='column-actions__background' />
                 <Button onClick={this.handleDone}><FormattedMessage id='follow_recommendations.done' defaultMessage='Done' /></Button>
               </div>
             </>

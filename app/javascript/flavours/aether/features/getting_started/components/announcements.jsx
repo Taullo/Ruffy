@@ -19,7 +19,6 @@ import EmojiPickerDropdown from 'flavours/aether/features/compose/containers/emo
 import unicodeMapping from 'flavours/aether/features/emoji/emoji_unicode_mapping_light';
 import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'flavours/aether/initial_state';
 import { assetHost } from 'flavours/aether/utils/config';
-import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 
 
 
@@ -422,7 +421,7 @@ class Announcements extends ImmutablePureComponent {
 
     return (
       <div className='announcements'>
-        <img className='announcements__mastodon' alt='' draggable='false' src={mascot || elephantUIPlane} />
+        <img className='announcements__mastodon' alt='' draggable='false' src={mascot} />
 
         <div className='announcements__container'>
           <ReactSwipeableViews animateHeight animateTransitions={!reduceMotion} index={index} onChangeIndex={this.handleChangeIndex}>

@@ -1,7 +1,7 @@
 import './public-path';
 import axios from 'axios';
 
-import ready from '../mastodon/ready';
+import ready from '../flavours/aether/ready';
 
 ready(() => {
   setInterval(() => {

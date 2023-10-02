@@ -7,7 +7,7 @@ import DropdownMenu from 'flavours/aether/components/dropdown_menu';
 import { isUserTouching } from '../is_mobile';
 
 /**
- * @param {import('mastodon/store').RootState} state
+ * @param {import('flavours/aether/store').RootState} state
  */
 const mapStateToProps = state => ({
   openDropdownId: state.dropdownMenu.openId,

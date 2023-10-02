@@ -6,7 +6,7 @@ import DropdownMenu from 'flavours/aether/components/dropdown_menu';
 
 /**
  *
- * @param {import('mastodon/store').RootState} state
+ * @param {import('flavours/aether/store').RootState} state
  * @param {*} props
  */
 const mapStateToProps = (state, { statusId }) => ({

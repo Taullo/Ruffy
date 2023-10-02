@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::RelationshipSerializer < ActiveModel::Serializer
-  # Please update `app/javascript/mastodon/api_types/relationships.ts` when making changes to the attributes
+  # Please update `app/javascript/flavours/aether/api_types/relationships.ts` when making changes to the attributes
 
   attributes :id, :following, :showing_reblogs, :notifying, :languages, :followed_by,
              :blocking, :blocked_by, :muting, :muting_notifications,

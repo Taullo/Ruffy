@@ -151,7 +151,7 @@ const PageSix = ({ admin, domain }) => {
       <p>
         <FormattedMessage
           id='onboarding.page_six.github'
-          defaultMessage='{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.'
+          defaultMessage='{domain} runs on Ruffy. Ruffy is a friendly {fork} of {Mastodon}. Ruffy is fully compatible with all Mastodon apps and instances. Ruffy is free open-source software. You can report bugs, request features, or contribute to the code on {github}.'
           values={{
             domain,
             fork: <a href='https://en.wikipedia.org/wiki/Fork_(software_development)' target='_blank' rel='noopener'>fork</a>,

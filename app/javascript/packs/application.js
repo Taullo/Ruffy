@@ -1,9 +1,9 @@
 import './public-path';
-import main from "mastodon/main"
+import main from "flavours/aether/main"
 
-import { start } from '../mastodon/common';
+import { start } from '../flavours/aether/common';
+import { loadPolyfills } from '../flavours/aether/polyfills';
 import { loadLocale } from '../mastodon/locales';
-import { loadPolyfills } from '../mastodon/polyfills';
 
 start();
 

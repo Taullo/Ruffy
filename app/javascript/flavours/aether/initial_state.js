@@ -87,6 +87,9 @@
  * @property {string} default_content_type
  */
 
+/** @type {string} */
+// const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
+
 /**
  * @typedef InitialState
  * @property {Record<string, Account>} accounts
