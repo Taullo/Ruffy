@@ -42,22 +42,14 @@
 }
 
 .announcements {
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-base-color);
   font-size: 13px;
   display: flex;
   align-items: flex-end;
-
-  &__mastodon {
-    width: 124px;
-    flex: 0 0 auto;
-
-    @media screen and (max-width: 124px + 300px) {
-      display: none;
-    }
-  }
+  margin-bottom: 12px;
 
   &__container {
-    width: calc(100% - 124px);
+    width: 100%;
     flex: 0 0 auto;
     position: relative;
 
@@ -126,7 +118,7 @@
 
   &__item {
     flex-shrink: 0;
-    background: lighten($ui-base-color, 12%);
+    background: var(--ui-base-lighter-color);
     border: 0;
     border-radius: 3px;
     margin: 2px;
@@ -169,12 +161,12 @@
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 16%);
+      background: var(--ui-highlight-color);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
 
       &__count {
-        color: var(--ui-font-dimmest-color);
+        color: var(--ui-highlight-button-text-color);
       }
     }
 
@@ -182,8 +174,8 @@
       transition: all 100ms ease-in;
       transition-property: background-color, color;
       background-color: mix(
-        lighten($ui-base-color, 12%),
-        $ui-highlight-color,
+        var(--ui-base-color),
+        var(--ui-highlight-color),
         80%
       );
 
