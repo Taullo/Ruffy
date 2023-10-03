@@ -173,7 +173,7 @@ class SwitchingColumnsArea extends PureComponent {
     let redirect;
 
     if (signedIn) {
-      if (singleColumn && (advancedLayout === false)) {
+      if (singleColumn || (advancedLayout === false)) {
         redirect = <Redirect from='/' to='/home' exact />;
       } else {
         redirect = <Redirect from='/' to='/deck/getting-started' exact />;
