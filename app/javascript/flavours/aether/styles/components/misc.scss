@@ -516,6 +516,7 @@ body > [data-popper-placement] {
     width: auto;
     height: auto;
     object-fit: contain;
+    backface-visibility: hidden;
   }
 }
 
