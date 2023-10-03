@@ -25,6 +25,7 @@
   position: relative;
   z-index: 9999;
   transition: opacity 0.5s;
+  backface-visibility: hidden;
 }
 
 .modal-root__overlay {
