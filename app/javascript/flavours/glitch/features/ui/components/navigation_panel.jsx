@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import NavigationPortal from 'flavours/glitch/components/navigation_portal';
 import { Wordmark } from 'flavours/glitch/components/wordmark';
 import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';
-import { transientSingleColumn } from 'flavours/glitch/is_mobile';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 
 import ColumnLink from './column_link';
@@ -67,15 +66,13 @@ class NavigationPanel extends Component {
 
     return (
       <div className='navigation-panel'>
-        {transientSingleColumn && (
-          <div className='navigation-panel__logo'>
-            <Link to='/' className='column-link column-link--logo'>
-              <Wordmark src={server.getIn(['wordmark', 'url'])} className='wordmark' />
-              <Wordmark src={server.getIn(['wordmark_dark', 'url'])} className='wordmark_dark' />
-            </Link>
-            <hr />
-          </div>
-        )}
+        <div className='navigation-panel__logo'>
+          <Link to='/' className='column-link column-link--logo'>
+            <Wordmark src={server.getIn(['wordmark', 'url'])} className='wordmark' />
+            <Wordmark src={server.getIn(['wordmark_dark', 'url'])} className='wordmark_dark' />
+          </Link>
+          <hr />
+        </div>
 
         {signedIn && (
           <>
