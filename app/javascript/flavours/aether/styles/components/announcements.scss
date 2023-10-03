@@ -175,11 +175,6 @@
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(
-        var(--ui-base-color),
-        var(--ui-highlight-color),
-        80%
-      );
 
       .reactions-bar__item__count {
         color: var(--ui-highlight-color);
