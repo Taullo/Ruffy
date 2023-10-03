@@ -16,7 +16,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  collapseEnabled: state.getIn(['local_settings', 'collapsed', 'enabled']),
+  collapseEnabled: state.getIn(['local_settings', 'collapsed_posts', 'enabled']),
 });
 
 class KeyboardShortcuts extends ImmutablePureComponent {

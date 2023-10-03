@@ -173,7 +173,7 @@ class Status extends ImmutablePureComponent {
     }
 
     // Update state based on new props
-    if (!nextProps.settings.getIn(['collapsed', 'enabled'])) {
+    if (!nextProps.settings.getIn(['collapsed_posts', 'enabled'])) {
       if (prevState.isCollapsed) {
         update.isCollapsed = false;
         updated = true;
@@ -246,7 +246,7 @@ class Status extends ImmutablePureComponent {
     // happens, might be because status === null.
     if (node === undefined) return;
 
-    const autoCollapseSettings = settings.getIn(['collapsed', 'auto']);
+    const autoCollapseSettings = settings.getIn(['collapsed_posts', 'auto']);
 
     // Don't autocollapse if CW state is shared and status is explicitly revealed,
     // as it could cause surprising changes when receiving notifications
@@ -311,7 +311,7 @@ class Status extends ImmutablePureComponent {
   //  `setCollapsed()` automatically checks for us whether toot collapsing
   //  is enabled, so we don't have to.
   setCollapsed = (value) => {
-    if (this.props.settings.getIn(['collapsed', 'enabled'])) {
+    if (this.props.settings.getIn(['collapsed_posts', 'enabled'])) {
       if (value) {
         this.setExpansion(false);
       }
@@ -444,7 +444,7 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyCollapse = () => {
-    if (!this.props.settings.getIn(['collapsed', 'enabled']))
+    if (!this.props.settings.getIn(['collapsed_posts', 'enabled']))
       return;
 
     this.setCollapsed(!this.state.isCollapsed);
@@ -682,7 +682,7 @@ class Status extends ImmutablePureComponent {
         mediaIcons.push('picture-o');
       }
 
-      if (!status.get('sensitive') && !(status.get('spoiler_text').length > 0) && settings.getIn(['collapsed', 'backgrounds', 'preview_images'])) {
+      if (!status.get('sensitive') && !(status.get('spoiler_text').length > 0) && settings.getIn(['collapsed_posts', 'backgrounds', 'preview_images'])) {
       }
     } else if (status.get('card') && settings.get('inline_preview_cards') && !this.props.muted) {
       media.push(
@@ -773,7 +773,7 @@ class Status extends ImmutablePureComponent {
             <StatusIcons
               status={status}
               mediaIcons={contentMediaIcons}
-              collapsible={settings.getIn(['collapsed', 'enabled'])}
+              collapsible={settings.getIn(['collapsed_posts', 'enabled'])}
               collapsed={isCollapsed}
               setCollapsed={setCollapsed}
               settings={settings.get('status_icons')}

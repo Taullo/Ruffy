@@ -284,7 +284,7 @@ class LocalSettingsPage extends PureComponent {
         <h2><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapse posts' /></h2>
         <LocalSettingsPageItem
           settings={settings}
-          item={['collapsed', 'enabled']}
+          item={['collapsed_posts', 'enabled']}
           id='mastodon-settings--collapsed-enabled'
           onChange={onChange}
         >
@@ -295,12 +295,11 @@ class LocalSettingsPage extends PureComponent {
           <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
           <LocalSettingsPageItem
             settings={settings}
-            item={['collapsed', 'auto', 'height']}
+            item={['collapsed_posts', 'auto', 'height']}
             id='mastodon-settings--collapsed-auto-height'
             placeholder='1400'
             onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            dependsOn={[['collapsed_posts', 'enabled']]}
             inputProps={{ type: 'range', min: '400', max: '2000' }}
           >
             <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a post to be considered lengthy' />
