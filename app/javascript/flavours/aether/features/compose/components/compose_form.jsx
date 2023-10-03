@@ -361,7 +361,9 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
         </div>
 
-      <div className='compose-form__bottom-buttons'>
+      <div className={`compose-form__bottom-buttons ${spoiler ? 'spoiler-button--clicked' : ''}`}>
+      
+      <div className='spoiler_wrapper'>
       
       <span className='spoiler_button'>
           <IconButton
@@ -397,6 +399,8 @@ class ComposeForm extends ImmutablePureComponent {
             autoFocus={false}
             spellCheck
           />
+        </div>
+        
         </div>
       
         <PrivacyDropdownContainer disabled={disabled || isEditing} />

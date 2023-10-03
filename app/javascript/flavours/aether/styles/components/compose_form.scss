@@ -38,12 +38,19 @@
   }
 }
 
+.spoiler_wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
 .no-reduce-motion .spoiler-input {
   transition:
     height 0.4s ease,
     opacity 0.4s ease,
     width 0.4s ease,
-    margin-right 0.4s ease;
+    margin-right 0.4s ease,
+    padding-bottom 0.4s ease;
 }
 
 .spoiler-input {

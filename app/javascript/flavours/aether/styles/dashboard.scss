@@ -183,4 +183,21 @@
   .drawer__header > a:hover .icon-badge {
     background-color: var(--ui-highlight-color);
   }
+
+  .compose-form__bottom-buttons {
+    &.spoiler-button--clicked {
+      flex-flow: row wrap;
+    }
+
+    .spoiler_wrapper {
+      .spoiler-input {
+        padding-bottom: 0;
+
+        &.spoiler-input--visible {
+          flex: 1 100%;
+          padding-bottom: 12px;
+        }
+      }
+    }
+  }
 }
