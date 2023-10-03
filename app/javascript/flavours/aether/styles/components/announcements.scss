@@ -47,6 +47,8 @@
   display: flex;
   align-items: flex-end;
   margin-bottom: 12px;
+  border-radius: 8px;
+  border: 2px solid var(--ui-highlight-color);
 
   &__container {
     width: 100%;
