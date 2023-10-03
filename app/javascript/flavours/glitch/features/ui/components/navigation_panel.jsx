@@ -8,8 +8,8 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { Wordmark } from 'flavours/aether/components/wordmark';
 import NavigationPortal from 'flavours/glitch/components/navigation_portal';
+import { Wordmark } from 'flavours/glitch/components/wordmark';
 import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';
 import { transientSingleColumn } from 'flavours/glitch/is_mobile';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
@@ -73,13 +73,6 @@ class NavigationPanel extends Component {
               <Wordmark src={server.getIn(['wordmark', 'url'])} className='wordmark' />
               <Wordmark src={server.getIn(['wordmark_dark', 'url'])} className='wordmark_dark' />
             </Link>
-            <div class='switch-to-advanced'>
-              {intl.formatMessage(messages.openedInClassicInterface)}
-              {" "}
-              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
-                {intl.formatMessage(messages.advancedInterface)}
-              </a>
-            </div>
             <hr />
           </div>
         )}

@@ -1903,15 +1903,3 @@ a.sparkline {
     }
   }
 }
-
-[action='/settings/preferences/appearance'] {
-  .user_settings_web\.expand_content_warnings,
-  .user_settings_web\.advanced_layout,
-  .user_settings_web\.display_media {
-    display: none !important;
-  }
-
-  .hint {
-    display: none;
-  }
-}

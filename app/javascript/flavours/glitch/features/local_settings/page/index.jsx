@@ -48,6 +48,14 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.general' defaultMessage='General' /></h1>
         <LocalSettingsPageItem
           settings={settings}
+          item={['advanced_layout']}
+          id='mastodon-settings--advanced-layout'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.advanced_layout' defaultMessage='Use the advanced layout' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['show_reply_count']}
           id='mastodon-settings--reply-count'
           onChange={onChange}

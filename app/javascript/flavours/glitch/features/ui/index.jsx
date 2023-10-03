@@ -80,6 +80,7 @@ const mapStateToProps = state => ({
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 20,
   isWide: state.getIn(['local_settings', 'stretch']),
+  advancedLayout: state.getIn(['local_settings', 'advanced_layout']),
   dropdownMenuIsOpen: state.dropdownMenu.openId !== null,
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
@@ -134,6 +135,7 @@ class SwitchingColumnsArea extends PureComponent {
     children: PropTypes.node,
     location: PropTypes.object,
     singleColumn: PropTypes.bool,
+    advancedLayout: PropTypes.bool,
   };
 
   UNSAFE_componentWillMount () {
@@ -164,14 +166,14 @@ class SwitchingColumnsArea extends PureComponent {
   };
 
   render () {
-    const { children, singleColumn } = this.props;
+    const { children, singleColumn, advancedLayout } = this.props;
     const { signedIn } = this.context.identity;
     const pathName = this.props.location.pathname;
 
     let redirect;
 
     if (signedIn) {
-      if (singleColumn) {
+      if (singleColumn && (advancedLayout === false)) {
         redirect = <Redirect from='/' to='/home' exact />;
       } else {
         redirect = <Redirect from='/' to='/deck/getting-started' exact />;
@@ -261,6 +263,7 @@ class UI extends Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     isWide: PropTypes.bool,
+    advancedLayout: PropTypes.bool,
     systemFontUi: PropTypes.bool,
     isComposing: PropTypes.bool,
     hasComposingText: PropTypes.bool,
@@ -600,16 +603,20 @@ class UI extends Component {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, isWide, location, dropdownMenuIsOpen, layout, moved } = this.props;
+    const { children, isWide, advancedLayout, location, dropdownMenuIsOpen, layout, moved } = this.props;
 
     const columnsClass = layout => {
-      switch (layout) {
-      case 'single':
-        return 'single-column';
-      case 'multiple':
+      if (advancedLayout === false) {
+        switch (layout) {
+        case 'single':
+          return 'single-column';
+        case 'multiple':
+          return 'multi-columns';
+        default:
+          return 'auto-columns';
+        }
+      } else {
         return 'multi-columns';
-      default:
-        return 'auto-columns';
       }
     };
 
@@ -658,7 +665,7 @@ class UI extends Component {
 
           <Header />
 
-          <SwitchingColumnsArea location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
+          <SwitchingColumnsArea location={location} singleColumn={advancedLayout === false && (layout === 'mobile' || layout === 'single-column')}>
             {children}
           </SwitchingColumnsArea>
 
