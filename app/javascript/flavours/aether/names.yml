@@ -1,8 +1,8 @@
 en:
   flavours:
     aether:
-      description: An early (and unfinished) preview of the new theme!
-      name: Beta
+      description: The default (and beta) theme!
+      name: Default
   skins:
     aether:
       default: Default
@@ -10,7 +10,7 @@ cs:
   flavours:
     aether:
       description: Výchozí rozhraní instancí Aether.
-      name: Beta
+      name: Default
   skins:
     aether:
       default: Výchozí
@@ -25,7 +25,7 @@ es:
   flavours:
     aether:
       description: El diseño predeterminado para las instancias con Aether.
-      name: Beta
+      name: Default
   skins:
     aether:
       default: Predeterminado
@@ -34,7 +34,7 @@ ja:
   flavours:
     aether:
       description: Aetherインスタンスのデフォルトフレーバーです。
-      name: Beta
+      name: Default
   skins:
     aether:
       default: デフォルト
