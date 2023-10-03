@@ -1138,8 +1138,10 @@ $ui-header-height: 55px;
     color: var(--ui-highlight-button-text-color);
   }
 
-  .button {
-    margin-right: 15px !important;
+  @media screen and (min-width: $no-gap-breakpoint) {
+    .button {
+      margin-right: 15px !important;
+    }
   }
 }
 
