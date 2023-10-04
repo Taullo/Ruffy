@@ -232,10 +232,11 @@ class Status extends ImmutablePureComponent {
       updated = true;
     }
     
-   // if (nextProps.settings.getIn(['content_warnings', 'auto_open']) !== prevState.autoOpen) {
-   //   update.isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
-   //   updated = true;
-   // }
+    if (nextProps.settings.getIn(['content_warnings', 'auto_open']) !== prevState.autoOpen) {
+      update.isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
+      update.autoOpen = nextProps.settings.getIn(['content_warnings', 'auto_open']);
+      updated = true;
+    }
 
     return updated ? update : null;
   }
