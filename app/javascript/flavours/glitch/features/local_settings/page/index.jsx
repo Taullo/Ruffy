@@ -8,10 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 
 //  Our imports
-import { expandSpoilers } from 'flavours/glitch/initial_state';
-import { preferenceLink } from 'flavours/glitch/utils/backend_links';
 
-import DeprecatedLocalSettingsPageItem from './deprecated_item';
 import LocalSettingsPageItem from './item';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -31,6 +28,9 @@ const messages = defineMessages({
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+  media_vis_default: { id: 'media.vis_default', defaultMessage: 'Hide media marked as sensitive' },
+  media_vis_show: { id: 'media.vis_show', defaultMessage: 'Always show media' },
+  media_vis_hide: { id: 'media.vis_hide', defaultMessage: 'Always hide media' },
 });
 
 class LocalSettingsPage extends PureComponent {
@@ -254,7 +254,7 @@ class LocalSettingsPage extends PureComponent {
         </LocalSettingsPageItem>
       </div>
     ),
-    ({ intl, onChange, settings }) => (
+    ({ onChange, settings }) => (
       <div className='glitch local-settings__page content_warnings'>
         <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content Warnings' /></h1>
         <LocalSettingsPageItem
@@ -276,39 +276,15 @@ class LocalSettingsPage extends PureComponent {
           <span className='hint'><FormattedMessage id='settings.content_warnings_media_outside_hint' defaultMessage='Reproduce upstream Mastodon behavior by having the Content Warning toggle not affect media attachments' /></span>
         </LocalSettingsPageItem>
         <section>
-          <h2><FormattedMessage id='settings.content_warnings_unfold_opts' defaultMessage='Auto-unfolding options' /></h2>
-          <DeprecatedLocalSettingsPageItem
-            id='mastodon-settings--content_warnings-auto_unfold'
-            value={expandSpoilers}
-          >
-            <FormattedMessage id='settings.enable_content_warnings_auto_unfold' defaultMessage='Automatically unfold content-warnings' />
-            <span className='hint'>
-              <FormattedMessage
-                id='settings.deprecated_setting'
-                defaultMessage="This setting is now controlled from Mastodon's {settings_page_link}"
-                values={{
-                  settings_page_link: (
-                    <a href={preferenceLink('user_setting_expand_spoilers')}>
-                      <FormattedMessage
-                        id='settings.shared_settings_link'
-                        defaultMessage='user preferences'
-                      />
-                    </a>
-                  ),
-                }}
-              />
-            </span>
-          </DeprecatedLocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['content_warnings', 'filter']}
-            id='mastodon-settings--content_warnings-auto_unfold'
-            onChange={onChange}
-            placeholder={intl.formatMessage(messages.regexp)}
-            disabled={!expandSpoilers}
-          >
-            <FormattedMessage id='settings.content_warnings_filter' defaultMessage='Content warnings to not automatically unfold:' />
-          </LocalSettingsPageItem>
+        <h2><FormattedMessage id='settings.content_warnings_unfold_opts' defaultMessage='Auto-unfolding options' /></h2>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['content_warnings', 'auto_open']}
+          id='mastodon-settings--content_warnings-auto_open'
+          onChange={onChange}
+        >
+        <FormattedMessage id='settings.enable_content_warnings_auto_unfold' defaultMessage='Automatically unfold content-warnings' />
+        </LocalSettingsPageItem>
         </section>
       </div>
     ),
@@ -434,6 +410,19 @@ class LocalSettingsPage extends PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page media'>
         <h1><FormattedMessage id='settings.media' defaultMessage='Media' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['media', 'default_visibility']}
+          id='mastodon-settings--media_default_visibility'
+          options={[
+            { value: 'default', message: intl.formatMessage(messages.media_vis_default) },
+            { value: 'show_all', message: intl.formatMessage(messages.media_vis_show) },
+            { value: 'hide_all', message: intl.formatMessage(messages.media_vis_hide) },
+          ]}
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.media_default_visibility' defaultMessage='Media display:' />
+        </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
           item={['media', 'letterbox']}

@@ -23,6 +23,7 @@ const initialState = ImmutableMap({
   tag_misleading_links: true,
   rewrite_mentions: 'no',
   content_warnings : ImmutableMap({
+    auto_open    : false,
     filter       : null,
     media_outside: false,
     shared_state : false,
@@ -45,6 +46,7 @@ const initialState = ImmutableMap({
     show_action_bar : true,
   }),
   media     : ImmutableMap({
+    default_visibility : 'default',
     letterbox        : true,
     fullwidth        : true,
     reveal_behind_cw : false,

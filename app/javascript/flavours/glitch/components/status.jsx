@@ -12,7 +12,6 @@ import { HotKeys } from 'react-hotkeys';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
 import PollContainer from 'flavours/glitch/containers/poll_container';
 import NotificationOverlayContainer from 'flavours/glitch/features/notifications/containers/overlay_container';
-import { displayMedia } from 'flavours/glitch/initial_state';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 
 import Card from '../features/status/components/card';
@@ -63,7 +62,7 @@ export const defaultMediaVisibility = (status, settings) => {
     return true;
   }
 
-  return (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
+  return (settings.getIn(['media', 'default_visibility']) !== 'hide_all' && !status.get('sensitive') || settings.getIn(['media', 'default_visibility']) === 'show_all');
 };
 
 class Status extends ImmutablePureComponent {
@@ -129,6 +128,7 @@ class Status extends ImmutablePureComponent {
     revealBehindCW: undefined,
     showCard: false,
     forceFilter: undefined,
+    default_visibility: undefined,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -154,6 +154,8 @@ class Status extends ImmutablePureComponent {
     'isCollapsed',
     'showMedia',
     'forceFilter',
+    'default_visibilty',
+    'auto_open',
   ];
 
   //  If our settings have changed to disable collapsed statuses, then we
@@ -221,6 +223,17 @@ class Status extends ImmutablePureComponent {
       if (update.revealBehindCW) {
         update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
       }
+      updated = true;
+    }
+
+    if (nextProps.settings.getIn(['media', 'default_visibility']) !== prevState.defaultVisibility) {
+      update.showMedia = defaultMediaVisibility(nextProps.status, nextProps.settings);
+      update.defaultVisibility = nextProps.settings.getIn(['media', 'default_visibility']);
+      updated = true;
+    }
+    
+    if (nextProps.settings.getIn(['content_warnings', 'auto_open']) !== prevState.autoOpen) {
+      update.isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
       updated = true;
     }
 
