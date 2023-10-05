@@ -617,19 +617,15 @@
   &:hover,
   &.active {
     background: var(--ui-highlight-color);
-    color: var(--ui-font-color);
+    color: var(--ui-highlight-button-text-color);
 
     .privacy-dropdown__option__content {
-      color: var(--ui-font-color);
+      color: var(--ui-highlight-button-text-color);
 
       strong {
-        color: var(--ui-font-color);
+        color: var(--ui-highlight-button-text-color);
       }
     }
-  }
-
-  &.active:hover {
-    background: lighten($ui-highlight-color, 4%);
   }
 }
 
