@@ -587,7 +587,7 @@
 .privacy-dropdown__dropdown {
   border-radius: 4px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  background: $simple-background-color;
+  background: var(--ui-body-color);
   overflow: hidden;
   transform-origin: 50% 0;
 }
@@ -596,7 +596,7 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  color: var(--ui-inverted-font-color);
+  color: var(--ui-font-color);
   cursor: pointer;
 
   .privacy-dropdown__option__content {
@@ -609,7 +609,7 @@
 
     strong {
       display: block;
-      color: var(--ui-inverted-font-color);
+      color: var(--ui-font-color);
       font-weight: 500;
     }
   }
