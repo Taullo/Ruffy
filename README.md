@@ -14,10 +14,14 @@ Current user features unique from Glitch-soc:
 - 15 profile fields
 - 100 character limit display name
 - Mixed poll and media uploads
+- Custom logo upload support
 
-Aether flavour (work in progress) features:
+New default theme:
 
 - Redesigned layout to allow for better readability and denser content
+- Light and Dark theme depending on browser settings
+- Options to force a light or dark theme, or even use a new Mixed color scheme
+- Custom accent color for servers. Users can even select their own.
 - Header-based navigation
 - Two column content layout to allow for denser timelines, userpages, etc.
 - Redesigned Explore page that merges the timelines and explore features
@@ -30,6 +34,7 @@ Aether flavour (work in progress) features:
 
 Admin settings features:
 
+- Custom server-wide accent colors
 - Exposes setting for "Link previews for posts with Content Warnings"
 - Adds an option for marking outgoing media as sensitive
 - Custom wordmark (logo) for both light and dark themes
@@ -38,6 +43,9 @@ Admin settings features:
 API Changes
 
 - Add toggleable local_only parameter to post options
+- Detailed info on post privacy types
+- Wordmark (both light and dark), icon, and accent color information
+- Detailed fork info
 
 - You can view documentation for Glitch-soc at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/) and the documentation for Mastodon at [docs.joinmastodon.org](https://docs.joinmastodon.org/)
 
