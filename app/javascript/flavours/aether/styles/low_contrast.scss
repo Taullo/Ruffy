@@ -52,6 +52,14 @@
     background: var(--ui-body-secondary-color);
     color: var(--ui-font-color);
   }
+
+  .drawer__header {
+    border: 2px solid var(--ui-highlight-color);
+  }
+
+  .drawer__header > * {
+    color: var(--ui-highlight-color);
+  }
 }
 
 .hicolor-action-buttons {

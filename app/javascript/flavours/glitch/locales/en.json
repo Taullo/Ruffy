@@ -70,7 +70,7 @@
   "layout.single": "Normal",
   "media_gallery.sensitive": "Sensitive",
   "moved_to_warning": "This account is marked as moved to {moved_to_link}, and may thus not accept new follows.",
-  "navigation_bar.app_settings": "Display Settings",
+  "navigation_bar.app_settings": "Interface Settings",
   "navigation_bar.featured_users": "Featured users",
   "navigation_bar.keyboard_shortcuts": "Keyboard shortcuts",
   "navigation_bar.misc": "Misc",

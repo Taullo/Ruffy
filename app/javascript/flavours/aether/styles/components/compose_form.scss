@@ -783,6 +783,8 @@
 
 .compose-modal {
   width: 700px;
+  max-height: 100vw;
+  overflow-y: auto;
 }
 
 .autosuggest-textarea__textarea {
