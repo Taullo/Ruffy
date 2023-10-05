@@ -18,6 +18,7 @@ const initialState = ImmutableMap({
   prepend_cw_re: true,
   preselect_on_reply: true,
   inline_preview_cards: true,
+  hicolor_action_buttons: false,
   hicolor_privacy_icons: false,
   show_content_type_choice: false,
   tag_misleading_links: true,
@@ -25,6 +26,7 @@ const initialState = ImmutableMap({
   theme: 'auto',
   cw_visibility  : 'obscured',
   hashtag_cw: false,
+  low_contrast_theme: false,
   right_column : ImmutableMap({
     visibility     : 'show',
     widgets        : ImmutableMap({

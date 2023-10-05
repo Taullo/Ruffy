@@ -353,6 +353,24 @@ class LocalSettingsPage extends PureComponent {
         <h1><FormattedMessage id='settings.accessibility' defaultMessage='Accessibility' /></h1>
         <LocalSettingsPageItem
           settings={settings}
+          item={['low_contrast_theme']}
+          id='mastodon-settings--low_contrast_theme'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.low_contrast_theme' defaultMessage='Simplified theme' />
+          <span className='hint'><FormattedMessage id='settings.low_contrast_theme.hint' defaultMessage='Reduces the use of the accent color on certain areas of the site and simplifies certain elements' /></span>
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['hicolor_action_buttons']}
+          id='mastodon-settings--hicolor_action_buttons'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.hicolor_action_buttons' defaultMessage='High color post action buttons' />
+          <span className='hint'><FormattedMessage id='settings.hicolor_action_buttons.hint' defaultMessage='Display post action buttons (e.g. boost, favorite, bookmark) in bright and easily distinguishable colors when clicked' /></span>
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['hicolor_privacy_icons']}
           id='mastodon-settings--hicolor_privacy_icons'
           onChange={onChange}

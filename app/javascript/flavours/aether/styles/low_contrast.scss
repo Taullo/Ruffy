@@ -1,0 +1,72 @@
+.low-contrast {
+  .account__header__tabs__buttons,
+  .account__header__bar .avatar,
+  .dropdown-menu__arrow::before {
+    background: var(--ui-body-secondary-color);
+  }
+
+  .account__header__bar .avatar {
+    border-color: var(--ui-body-secondary-color);
+  }
+
+  .dropdown-menu {
+    background: var(--ui-body-dim-color);
+  }
+
+  .dropdown-menu__item {
+    color: var(--ui-font-color);
+  }
+
+  .dropdown-menu__separator {
+    border-color: var(--ui-font-color);
+  }
+
+  .account__header__tabs__buttons .icon-button,
+  .column-header__button,
+  .column-back-button__icon {
+    color: var(--ui-highlight-color);
+    border-width: 0;
+
+    &:hover {
+      background: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
+    }
+  }
+
+  .compose-form__bottom-buttons .icon-button {
+    color: var(--ui-highlight-color);
+    background: transparent;
+
+    &:hover {
+      color: var(--ui-font-color);
+      box-shadow: none;
+    }
+  }
+
+  .account-role,
+  .information-badge,
+  .simple_form .overridden,
+  .simple_form .recommended,
+  .simple_form .not_recommended,
+  .simple_form .glitch_only {
+    background: var(--ui-body-secondary-color);
+    color: var(--ui-font-color);
+  }
+}
+
+.hicolor-action-buttons {
+  .star-icon.active {
+    color: #ca8f04;
+    -webkit-text-stroke: 0;
+  }
+
+  .bookmark-icon.active {
+    color: #ff5050;
+    -webkit-text-stroke: 0;
+  }
+
+  button.icon-button.active i.fa-retweet {
+    background: #2ca600;
+    -webkit-text-stroke: 0;
+  }
+}

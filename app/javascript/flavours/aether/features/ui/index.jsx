@@ -85,11 +85,13 @@ const mapStateToProps = state => ({
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 20,
   layout_local_setting: state.getIn(['local_settings', 'layout']),
   theme: state.getIn(['local_settings', 'theme']),
+  lowContrast: state.getIn(['local_settings', 'low_contrast_theme']),
   accent: state.getIn(['local_settings', 'accent']),
   isWide: state.getIn(['local_settings', 'stretch']),
   dropdownMenuIsOpen: state.dropdownMenu.openId !== null,
   unreadNotifications: state.getIn(['notifications', 'unread']),
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
+  hicolorActionButtons: state.getIn(['local_settings', 'hicolor_action_buttons']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
   moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved'])]),
   firstLaunch: false, // TODO: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
@@ -268,6 +270,7 @@ class UI extends Component {
     children: PropTypes.node,
     layout_local_setting: PropTypes.string,
     theme: PropTypes.string,
+    lowContrast: PropTypes.bool,
     accent: PropTypes.string,
     isWide: PropTypes.bool,
     systemFontUi: PropTypes.bool,
@@ -282,6 +285,7 @@ class UI extends Component {
     dropdownMenuIsOpen: PropTypes.bool,
     unreadNotifications: PropTypes.number,
     showFaviconBadge: PropTypes.bool,
+    hicolorActionButtons: PropTypes.bool,
     hicolorPrivacyIcons: PropTypes.bool,
     moved: PropTypes.map,
     layout: PropTypes.string.isRequired,
@@ -421,6 +425,12 @@ class UI extends Component {
       document.body.classList.toggle('dark-theme', false);
       document.body.classList.toggle('mixed-theme', true);
     }
+    if (this.props.lowContrast === true) {
+      document.body.classList.toggle('low-contrast', true);
+    }
+    else {
+      document.body.classList.toggle('low-contrast', false);
+    }
   }
   
   handleAccent() {
@@ -529,6 +539,15 @@ class UI extends Component {
         function() {
           this.handleTheme();
           this.handleAccent();
+        }
+        .bind(this),
+        100
+      );
+    }
+    if (nextProps.lowContrast !== this.props.lowContrast) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleTheme();
         }
         .bind(this),
         100
@@ -713,6 +732,7 @@ class UI extends Component {
     const className = classNames('ui', columnsClass(layout), {
       'wide': isWide,
       'system-font': this.props.systemFontUi,
+      'hicolor-action-buttons': this.props.hicolorActionButtons,
       'hicolor-privacy-icons': this.props.hicolorPrivacyIcons,
     });
 

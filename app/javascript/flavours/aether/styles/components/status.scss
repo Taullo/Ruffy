@@ -518,13 +518,16 @@
 
   .icon-button {
     color: transparent;
-    -webkit-text-stroke: var(--ui-highlight-color) 2px;
+    -webkit-text-stroke: var(--ui-highlight-color) 1.5px;
     transition:
       0.2s color,
-      0.2s -webkit-text-stroke;
+      0.2s background,
+      0.2s -webkit-text-stroke,
+      0.2s mask-image,
+      0.2s -webkit-mask-image;
 
     &:hover {
-      -webkit-text-stroke: var(--ui-font-color) 2px;
+      -webkit-text-stroke: var(--ui-font-color) 1.5px;
     }
   }
 }
