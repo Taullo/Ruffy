@@ -380,6 +380,9 @@ class Header extends ImmutablePureComponent {
                   />
                 </NavLink>
                 
+                <NavLink exact to={`/@${account.get('acct')}/hide_boosts`}><FormattedMessage id='account.hide_boosts' defaultMessage='Hide boosts' />
+                </NavLink>
+                
                 <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.show_replies' defaultMessage='Show replies' />
                 </NavLink>
 

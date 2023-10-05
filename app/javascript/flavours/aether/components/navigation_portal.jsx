@@ -23,6 +23,7 @@ class NavigationPortal extends PureComponent {
         <Route path='/@:acct' exact component={AccountNavigation} />
         <Route path='/@:acct/tagged/:tagged?' exact component={AccountNavigation} />
         <Route path='/@:acct/with_replies' exact component={AccountNavigation} />
+        <Route path='/@:acct/hide_boosts' exact component={AccountNavigation} />
         <Route path='/@:acct/followers' exact component={AccountNavigation} />
         <Route path='/@:acct/following' exact component={AccountNavigation} />
         <Route path='/@:acct/media' exact component={AccountNavigation} />

@@ -33,7 +33,7 @@ import RightColumnContainer from './containers/right_column_container';
 
 const emptyList = ImmutableList();
 
-const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
+const mapStateToProps = (state, { params: { acct, id, tagged }, hideBoosts = false, withReplies = false }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
   if (accountId === null) {
@@ -49,7 +49,7 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
     };
   }
 
-  const path = withReplies ? `${accountId}:with_replies` : `${accountId}${tagged ? `:${tagged}` : ''}`;
+  const path = withReplies ? `${accountId}:with_replies` : hideBoosts ? `${accountId}:hide_boosts` : `${accountId}${tagged ? `:${tagged}` : ''}`;
 
   return {
     accountId,
@@ -58,7 +58,7 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
     remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], ImmutableList()),
-    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, 'items'], ImmutableList()),
+    featuredStatusIds: withReplies || hideBoosts ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, 'items'], ImmutableList()),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore:   state.getIn(['timelines', `account:${path}`, 'hasMore']),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
@@ -91,6 +91,7 @@ class AccountTimeline extends ImmutablePureComponent {
     featuredStatusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
+    hideBoosts: PropTypes.bool,
     withReplies: PropTypes.bool,
     isAccount: PropTypes.bool,
     suspended: PropTypes.bool,
@@ -102,7 +103,7 @@ class AccountTimeline extends ImmutablePureComponent {
   };
 
   _load () {
-    const { accountId, withReplies, params: { tagged }, dispatch } = this.props;
+    const { accountId, hideBoosts, withReplies, params: { tagged }, dispatch } = this.props;
 
     dispatch(fetchAccount(accountId));
 
@@ -111,7 +112,7 @@ class AccountTimeline extends ImmutablePureComponent {
     }
 
     dispatch(fetchFeaturedTags(accountId));
-    dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
+    dispatch(expandAccountTimeline(accountId, { withReplies, hideBoosts, tagged }));
     dispatch(expandAccountMediaTimeline(accountId));
   }
 
@@ -126,7 +127,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    const { params: { acct, tagged }, accountId, withReplies, dispatch } = this.props;
+    const { params: { acct, tagged }, accountId, withReplies, hideBoosts, dispatch } = this.props;
 
     if (prevProps.accountId !== accountId && accountId) {
       this._load();
@@ -136,21 +137,21 @@ class AccountTimeline extends ImmutablePureComponent {
       if (!withReplies) {
         dispatch(expandAccountFeaturedTimeline(accountId, { tagged }));
       }
-      dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
+      dispatch(expandAccountTimeline(accountId, { withReplies, hideBoosts, tagged }));
     }
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
     const { dispatch } = this.props;
 
-    if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
+    if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies || nextProps.hideBoosts !== this.props.hideBoosts) {
       dispatch(fetchAccount(nextProps.params.accountId));
 
       if (!nextProps.withReplies) {
         dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
 
-      dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
+      dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies, hideBoosts: nextProps.params.hideBoosts }));
     }
   }
 
@@ -159,7 +160,7 @@ class AccountTimeline extends ImmutablePureComponent {
   };
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies, tagged: this.props.params.tagged }));
+    this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies, hideBoosts: this.props.hideBoosts, tagged: this.props.params.tagged }));
   };
 
   setRef = c => {

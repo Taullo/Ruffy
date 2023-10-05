@@ -34,6 +34,10 @@ describe 'Routes under accounts/' do
       expect(get("/@#{username}/followers")).to route_to('follower_accounts#index', account_username: username)
     end
 
+    it 'routes /@:username/hide_boosts' do
+      expect(get("/@#{username}/hide_boosts")).to route_to('accounts#show', username: username)
+    end
+
     it 'routes /@:username/with_replies' do
       expect(get("/@#{username}/with_replies")).to route_to('accounts#show', username: username)
     end
