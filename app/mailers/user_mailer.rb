@@ -145,7 +145,7 @@ class UserMailer < Devise::Mailer
     return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject')
+      mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject', domain: local_domain)
     end
   end
 

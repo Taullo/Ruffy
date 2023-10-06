@@ -1817,7 +1817,7 @@ en-GB:
       final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
       full_handle: Your full handle
       full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
-      subject: Welcome to Mastodon
+      subject: Welcome to %{domain}!
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
