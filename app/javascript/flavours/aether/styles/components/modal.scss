@@ -26,6 +26,7 @@
   z-index: 9999;
   transition: opacity 0.5s;
   backface-visibility: hidden;
+  will-change: opacity;
 }
 
 .modal-root__overlay {
@@ -53,6 +54,9 @@
   z-index: 9999;
   pointer-events: none;
   user-select: none;
+}
+
+.no-reduce-motion .modal-root__container {
   transition: top 0.5s;
   animation: bounce 0.7s;
 }
