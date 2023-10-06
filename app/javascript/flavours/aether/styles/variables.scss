@@ -137,6 +137,10 @@
   .search__input {
     color: var(--ui-body-secondary-color);
   }
+
+  code {
+    background: var(--ui-font-brighter-color);
+  }
 }
 
 /* SCSS Vars */
