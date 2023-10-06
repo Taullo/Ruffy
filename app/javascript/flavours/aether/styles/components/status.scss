@@ -1192,3 +1192,9 @@ a.status-card.compact:hover {
 code {
   background: var(--ui-page-background);
 }
+
+pre > code {
+  padding: 8px;
+  display: block;
+  border-radius: 4px;
+}
