@@ -941,8 +941,6 @@
     &__buttons {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
       justify-content: end;
       z-index: 1;
       position: relative;
@@ -952,44 +950,53 @@
       margin-left: -10px;
       margin-right: -10px;
 
-      .button {
-        flex-shrink: 1;
-        white-space: nowrap;
-        padding: 8px 18px;
-        border: 2px solid;
-        transition:
-          background 0.2s,
-          color 0.2s;
+      &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 8px;
+        max-width: calc(100% - 170px);
+        flex-wrap: wrap;
 
-        @media screen and (max-width: $no-gap-breakpoint) {
-          min-width: 0;
+        .button {
+          flex-shrink: 1;
+          white-space: nowrap;
+          padding: 8px 18px;
+          border: 2px solid;
+          transition:
+            background 0.2s,
+            color 0.2s;
+
+          @media screen and (max-width: $no-gap-breakpoint) {
+            min-width: 0;
+          }
+
+          &:hover,
+          &:focus {
+            color: var(--ui-highlight-color);
+            background: var(--ui-highlight-button-text-color);
+            border-color: var(--ui-highlight-button-text-color);
+          }
         }
 
-        &:hover,
-        &:focus {
-          color: var(--ui-highlight-color);
-          background: var(--ui-highlight-button-text-color);
-          border-color: var(--ui-highlight-button-text-color);
-        }
-      }
+        .icon-button {
+          border: 2px solid;
+          color: var(--ui-highlight-button-text-color);
+          border-radius: 100%;
+          box-sizing: content-box;
+          padding: 4px;
+          transition:
+            color 0.2s,
+            background 0.2s,
+            border-color 0.2s;
+          box-shadow: 0 0 8px transparent;
 
-      .icon-button {
-        border: 2px solid;
-        color: var(--ui-highlight-button-text-color);
-        border-radius: 100%;
-        box-sizing: content-box;
-        padding: 4px;
-        transition:
-          color 0.2s,
-          background 0.2s,
-          border-color 0.2s;
-        box-shadow: 0 0 8px transparent;
-
-        &:hover,
-        &:focus {
-          color: var(--ui-highlight-color);
-          background: var(--ui-highlight-button-text-color);
-          border-color: var(--ui-highlight-button-text-color);
+          &:hover,
+          &:focus {
+            color: var(--ui-highlight-color);
+            background: var(--ui-highlight-button-text-color);
+            border-color: var(--ui-highlight-button-text-color);
+          }
         }
       }
     }

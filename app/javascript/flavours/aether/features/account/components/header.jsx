@@ -336,6 +336,7 @@ class Header extends ImmutablePureComponent {
 
             {!suspended && (
               <div className='account__header__tabs__buttons'>
+                <div className='account__header__tabs__buttons__wrapper'>
                 {!hidden && (
                   <>
                     {actionBtn}
@@ -344,6 +345,7 @@ class Header extends ImmutablePureComponent {
                 )}
 
                 <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
+                </div>
               </div>
             )}
 
