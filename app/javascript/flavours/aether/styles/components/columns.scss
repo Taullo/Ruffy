@@ -384,6 +384,10 @@ $ui-header-height: 55px;
     cursor: pointer;
     border-bottom: 4px solid;
     transition: color 0.2s;
+    border-radius: 0;
+    width: auto;
+    height: auto;
+    margin-right: 0;
 
     &:hover {
       color: var(--ui-font-dimmest-color);
