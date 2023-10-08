@@ -74,7 +74,7 @@ const Firehose = ({ feedType, multiColumn }) => {
   const { signedIn } = useIdentity();
   const columnRef = useRef(null);
 
-  const allowLocalOnly = useAppSelector((state) => state.getIn(['settings', 'firehose', 'allowLocalOnly']));
+  const allowLocalOnly = true;
   const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
