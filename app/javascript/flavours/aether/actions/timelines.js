@@ -23,14 +23,6 @@ export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 
 export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
 
-export const TRENDS_STATUSES_FETCH_REQUEST = 'TRENDS_STATUSES_FETCH_REQUEST';
-export const TRENDS_STATUSES_FETCH_SUCCESS = 'TRENDS_STATUSES_FETCH_SUCCESS';
-export const TRENDS_STATUSES_FETCH_FAIL    = 'TRENDS_STATUSES_FETCH_FAIL';
-
-export const TRENDS_STATUSES_EXPAND_REQUEST = 'TRENDS_STATUSES_EXPAND_REQUEST';
-export const TRENDS_STATUSES_EXPAND_SUCCESS = 'TRENDS_STATUSES_EXPAND_SUCCESS';
-export const TRENDS_STATUSES_EXPAND_FAIL    = 'TRENDS_STATUSES_EXPAND_FAIL';
-
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
   timeline,
@@ -164,7 +156,6 @@ export function fillTimelineGaps(timelineId, path, params = {}, done = noOp) {
 export const expandHomeTimeline            = ({ maxId } = {}, done = noOp) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId }, done);
 export const expandPublicTimeline          = ({ maxId, onlyMedia, onlyRemote, allowLocalOnly } = {}, done = noOp) => expandTimeline(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, allow_local_only: !!allowLocalOnly, max_id: maxId, only_media: !!onlyMedia }, done);
 export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}, done = noOp) => expandTimeline(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, max_id: maxId, only_media: !!onlyMedia }, done);
-export const expandTrendingTimeline        = ({ maxId } = {}, done = noOp) => expandTimeline('/api/v1/trends/statuses', { max_id: maxId }, done);
 export const expandDirectTimeline          = ({ maxId } = {}, done = noOp) => expandTimeline('direct', '/api/v1/timelines/direct', { max_id: maxId }, done);
 export const expandAccountTimeline         = (accountId, { maxId, withReplies, hideBoosts, tagged } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}${hideBoosts ? ':hide_boosts' : ''}${tagged ? `:${tagged}` : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, exclude_reblogs: withReplies || hideBoosts, tagged, max_id: maxId });
 export const expandAccountFeaturedTimeline = (accountId, { tagged } = {}) => expandTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true, tagged });
@@ -241,19 +232,4 @@ export const disconnectTimeline = timeline => ({
 export const markAsPartial = timeline => ({
   type: TIMELINE_MARK_AS_PARTIAL,
   timeline,
-});
-
-export const expandTrendingStatusesRequest = () => ({
-  type: TRENDS_STATUSES_EXPAND_REQUEST,
-});
-
-export const expandTrendingStatusesSuccess = (statuses, next) => ({
-  type: TRENDS_STATUSES_EXPAND_SUCCESS,
-  statuses,
-  next,
-});
-
-export const expandTrendingStatusesFail = error => ({
-  type: TRENDS_STATUSES_EXPAND_FAIL,
-  error,
 });

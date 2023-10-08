@@ -9,7 +9,8 @@ import { NavLink } from 'react-router-dom';
 import { addColumn } from 'flavours/aether/actions/columns';
 import { changeSetting } from 'flavours/aether/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/aether/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline, expandTrendingTimeline } from 'flavours/aether/actions/timelines';
+import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/aether/actions/timelines';
+import { expandTrendingStatuses } from 'flavours/aether/actions/trends';
 import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import SettingText from 'flavours/aether/components/setting_text';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
@@ -113,7 +114,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
         break;
       case 'trending':
-        dispatch(expandTrendingTimeline());
+        dispatch(expandTrendingStatuses());
         break;
       }
     },
@@ -145,7 +146,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       }
       break;
     case 'trending':
-      dispatch(expandTrendingTimeline());
+      dispatch(expandTrendingStatuses());
       break;
     }
 
