@@ -93,7 +93,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }  }));
         break;
       case 'trending':
-        dispatch(addColumn('TRENDING', { other: { onlyMedia }, regex: { body: regex } }));
+        dispatch(addColumn('TRENDING'));
         break;
       }
     },
@@ -113,7 +113,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
         break;
       case 'trending':
-        dispatch(expandTrendingTimeline({ maxId, onlyMedia }));
+        dispatch(expandTrendingTimeline());
         break;
       }
     },
