@@ -23,6 +23,14 @@ export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 
 export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
 
+export const TRENDS_STATUSES_FETCH_REQUEST = 'TRENDS_STATUSES_FETCH_REQUEST';
+export const TRENDS_STATUSES_FETCH_SUCCESS = 'TRENDS_STATUSES_FETCH_SUCCESS';
+export const TRENDS_STATUSES_FETCH_FAIL    = 'TRENDS_STATUSES_FETCH_FAIL';
+
+export const TRENDS_STATUSES_EXPAND_REQUEST = 'TRENDS_STATUSES_EXPAND_REQUEST';
+export const TRENDS_STATUSES_EXPAND_SUCCESS = 'TRENDS_STATUSES_EXPAND_SUCCESS';
+export const TRENDS_STATUSES_EXPAND_FAIL    = 'TRENDS_STATUSES_EXPAND_FAIL';
+
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
   timeline,
@@ -171,6 +179,24 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = 
   }, done);
 };
 
+export const expandTrendingTimeline = () => (dispatch, getState) => {
+  const url = getState().getIn(['status_lists', 'trending', 'next'], null);
+
+  if (url === null || getState().getIn(['status_lists', 'trending', 'isLoading'])) {
+    return;
+  }
+
+  dispatch(expandTrendingStatusesRequest());
+
+  api(getState).get(url).then(response => {
+    const next = getLinks(response).refs.find(link => link.rel === 'next');
+    dispatch(importFetchedStatuses(response.data));
+    dispatch(expandTrendingStatusesSuccess(response.data, next ? next.uri : null));
+  }).catch(error => {
+    dispatch(expandTrendingStatusesFail(error));
+  });
+};
+
 export const fillHomeTimelineGaps      = (done = noOp) => fillTimelineGaps('home', '/api/v1/timelines/home', {}, done);
 export const fillPublicTimelineGaps    = ({ onlyMedia, onlyRemote, allowLocalOnly } = {}, done = noOp) => fillTimelineGaps(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, only_media: !!onlyMedia, allow_local_only: !!allowLocalOnly }, done);
 export const fillCommunityTimelineGaps = ({ onlyMedia } = {}, done = noOp) => fillTimelineGaps(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, only_media: !!onlyMedia }, done);
@@ -232,4 +258,19 @@ export const disconnectTimeline = timeline => ({
 export const markAsPartial = timeline => ({
   type: TIMELINE_MARK_AS_PARTIAL,
   timeline,
+});
+
+export const expandTrendingStatusesRequest = () => ({
+  type: TRENDS_STATUSES_EXPAND_REQUEST,
+});
+
+export const expandTrendingStatusesSuccess = (statuses, next) => ({
+  type: TRENDS_STATUSES_EXPAND_SUCCESS,
+  statuses,
+  next,
+});
+
+export const expandTrendingStatusesFail = error => ({
+  type: TRENDS_STATUSES_EXPAND_FAIL,
+  error,
 });

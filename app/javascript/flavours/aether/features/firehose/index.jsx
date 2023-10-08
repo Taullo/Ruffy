@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { addColumn } from 'flavours/aether/actions/columns';
 import { changeSetting } from 'flavours/aether/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/aether/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/aether/actions/timelines';
+import { expandPublicTimeline, expandCommunityTimeline, expandTrendingTimeline } from 'flavours/aether/actions/timelines';
 import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import SettingText from 'flavours/aether/components/setting_text';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
@@ -56,12 +56,6 @@ const ColumnSettings = () => {
           onChange={onChange}
           label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
         />
-        <SettingToggle
-          settings={settings}
-          settingPath={['allowLocalOnly']}
-          onChange={onChange}
-          label={<FormattedMessage id='firehose.column_settings.allow_local_only' defaultMessage='Show local-only posts in "All"' />}
-        />
         <span className='column-settings__section'><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></span>
         <SettingText
           settings={settings}
@@ -84,7 +78,7 @@ const Firehose = ({ feedType, multiColumn }) => {
   const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
+  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && ':allow_local_only'}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
 
   const handlePin = useCallback(
     () => {
@@ -97,6 +91,9 @@ const Firehose = ({ feedType, multiColumn }) => {
         break;
       case 'public:remote':
         dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }  }));
+        break;
+      case 'trending':
+        dispatch(addColumn('TRENDING', { other: { onlyMedia }, regex: { body: regex } }));
         break;
       }
     },
@@ -114,6 +111,9 @@ const Firehose = ({ feedType, multiColumn }) => {
         break;
       case 'public:remote':
         dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
+        break;
+      case 'trending':
+        dispatch(expandTrendingTimeline({ maxId, onlyMedia }));
         break;
       }
     },
@@ -144,6 +144,9 @@ const Firehose = ({ feedType, multiColumn }) => {
         disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote: true }));
       }
       break;
+    case 'trending':
+      dispatch(expandTrendingTimeline());
+      break;
     }
 
     return () => disconnect?.();
@@ -158,13 +161,22 @@ const Firehose = ({ feedType, multiColumn }) => {
       />
     </DismissableBanner>
   ) : (
-    <DismissableBanner id='public_timeline'>
-      <FormattedMessage
-        id='dismissable_banner.public_timeline'
-        defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
-        values={{ domain }}
-      />
-    </DismissableBanner>
+    feedType === 'trending' ? (
+      <DismissableBanner id='explore/statuses'>
+        <FormattedMessage
+          id='dismissable_banner.explore_statuses'
+          defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favourites are ranked higher.'
+        />
+      </DismissableBanner>
+      ) : (
+      <DismissableBanner id='public_timeline'>
+        <FormattedMessage
+          id='dismissable_banner.public_timeline'
+          defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
+          values={{ domain }}
+        />
+      </DismissableBanner>
+    )
   );
 
   const emptyMessage = feedType === 'community' ? (
@@ -234,14 +246,14 @@ const Firehose = ({ feedType, multiColumn }) => {
             <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
           </NavLink>
           
-          <NavLink exact to='/explore/posts'>
-            <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Popular' />
+          <NavLink exact to='/explore/popular'>
+            <FormattedMessage tagName='div' id='firehose.trending' defaultMessage='Popular' />
           </NavLink>
         </div>
 
         <StatusListContainer
           prepend={prependBanner}
-          timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`}
+          timelineId={`${feedType}${feedType === 'public' && ':allow_local_only'}${onlyMedia ? ':media' : ''}`}
           onLoadMore={handleLoadMore}
           trackScroll
           scrollKey='firehose'
