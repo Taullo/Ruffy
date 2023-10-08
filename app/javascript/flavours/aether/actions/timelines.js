@@ -164,6 +164,7 @@ export function fillTimelineGaps(timelineId, path, params = {}, done = noOp) {
 export const expandHomeTimeline            = ({ maxId } = {}, done = noOp) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId }, done);
 export const expandPublicTimeline          = ({ maxId, onlyMedia, onlyRemote, allowLocalOnly } = {}, done = noOp) => expandTimeline(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, allow_local_only: !!allowLocalOnly, max_id: maxId, only_media: !!onlyMedia }, done);
 export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}, done = noOp) => expandTimeline(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, max_id: maxId, only_media: !!onlyMedia }, done);
+export const expandTrendingTimeline        = ({ maxId } = {}, done = noOp) => expandTimeline('/api/v1/trends/statuses', { max_id: maxId }, done);
 export const expandDirectTimeline          = ({ maxId } = {}, done = noOp) => expandTimeline('direct', '/api/v1/timelines/direct', { max_id: maxId }, done);
 export const expandAccountTimeline         = (accountId, { maxId, withReplies, hideBoosts, tagged } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}${hideBoosts ? ':hide_boosts' : ''}${tagged ? `:${tagged}` : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, exclude_reblogs: withReplies || hideBoosts, tagged, max_id: maxId });
 export const expandAccountFeaturedTimeline = (accountId, { tagged } = {}) => expandTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true, tagged });
@@ -177,24 +178,6 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = 
     none:   parseTags(tags, 'none'),
     local:  local,
   }, done);
-};
-
-export const expandTrendingTimeline = () => (dispatch, getState) => {
-  const url = getState().getIn(['status_lists', 'trending', 'next'], null);
-
-  if (url === null || getState().getIn(['status_lists', 'trending', 'isLoading'])) {
-    return;
-  }
-
-  dispatch(expandTrendingStatusesRequest());
-
-  api(getState).get(url).then(response => {
-    const next = getLinks(response).refs.find(link => link.rel === 'next');
-    dispatch(importFetchedStatuses(response.data));
-    dispatch(expandTrendingStatusesSuccess(response.data, next ? next.uri : null));
-  }).catch(error => {
-    dispatch(expandTrendingStatusesFail(error));
-  });
 };
 
 export const fillHomeTimelineGaps      = (done = noOp) => fillTimelineGaps('home', '/api/v1/timelines/home', {}, done);
