@@ -78,7 +78,7 @@ const Firehose = ({ feedType, multiColumn }) => {
   const regex = useAppSelector((state) => state.getIn(['settings', 'firehose', 'regex', 'body']));
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
-  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && ':allow_local_only'}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
+  const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
 
   const handlePin = useCallback(
     () => {
@@ -253,7 +253,7 @@ const Firehose = ({ feedType, multiColumn }) => {
 
         <StatusListContainer
           prepend={prependBanner}
-          timelineId={`${feedType}${feedType === 'public' && ':allow_local_only'}${onlyMedia ? ':media' : ''}`}
+          timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`}
           onLoadMore={handleLoadMore}
           trackScroll
           scrollKey='firehose'
