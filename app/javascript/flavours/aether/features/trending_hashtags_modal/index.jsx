@@ -21,7 +21,7 @@ class ComposeModal extends PureComponent {
   };
   
   handleClose = (e) => {
-    if (e.target.className !== 'trending_hashtags-modal') {
+    if (e.target.className !== ('trending_hashtags-modal' || 'aether' || 'modal-root__modal')) {
       this.props.onClose();
     }
   };
