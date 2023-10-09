@@ -21,7 +21,7 @@ class ComposeModal extends PureComponent {
   };
 
   handleClose = () => {
-    const linkClass = document.querySelector('.permalink');
+    const linkClass = document.querySelectorAll('.permalink');
     if (linkClass.contains(event.target)) {
       this.props.onClose();
     }
