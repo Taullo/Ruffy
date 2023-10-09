@@ -247,7 +247,7 @@ const Firehose = ({ feedType, multiColumn }) => {
             <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
           </NavLink>
           
-          <NavLink exact to='/explore/popular'>
+          <NavLink exact to='/explore/posts'>
             <FormattedMessage tagName='div' id='firehose.trending' defaultMessage='Popular' />
           </NavLink>
         </div>
