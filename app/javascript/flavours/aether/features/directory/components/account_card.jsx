@@ -185,7 +185,7 @@ class AccountCard extends ImmutablePureComponent {
 
     return (
       <div className='account-card'>
-        <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='account-card__permalink'>
+        <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} id='close_item' className='account-card__permalink'>
           <div className='account-card__header'>
             {this.props.onDismiss && <IconButton className='media-modal__close' title={intl.formatMessage(messages.dismissSuggestion)} icon='times' onClick={this.handleDismiss} size={20} />}
 
