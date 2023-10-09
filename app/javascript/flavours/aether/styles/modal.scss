@@ -38,7 +38,7 @@
 
 .trending_hashtags-modal {
   width: 500px;
-  max-height: calc(100vw - 8px);
+  max-height: calc(100vh - 8px);
   overflow-y: auto;
   box-sizing: border-box;
 
@@ -51,7 +51,7 @@
 .suggestions-modal,
 .compose-modal {
   width: 700px;
-  max-height: calc(100vw - 20px);
+  max-height: calc(100vh - 20px);
   overflow-y: auto;
   box-sizing: border-box;
 
