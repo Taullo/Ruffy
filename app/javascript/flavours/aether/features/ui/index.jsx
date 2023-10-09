@@ -222,7 +222,7 @@ class SwitchingColumnsArea extends PureComponent {
 
           <WrappedRoute path='/start' component={FollowRecommendations} content={children} />
           <WrappedRoute path='/directory' component={Directory} content={children} />
-          <WrappedRoute path={['/explore/posts', '/explore/tags', '/explore/suggestions']} component={Explore} content={children} />
+          <WrappedRoute path={['/explore/tags', '/explore/suggestions']} component={Explore} content={children} />
           <WrappedRoute path={'/search'} component={SearchPage} content={children} />
           <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
