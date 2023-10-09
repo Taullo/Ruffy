@@ -74,7 +74,7 @@ ImmutableHashtag.propTypes = {
 // @ts-expect-error
 const Hashtag = ({ name, href, to, people, uses, history, className, description, withGraph }) => (
   <div className={classNames('trends__item', className)}>
-    <Permalink id='close_item' href={href} to={to}>
+    <Permalink href={href} to={to}>
       <div className='trends__item__name'>
         <div class='hashname'>
           {name ? <>#<span>{name}</span></> : <Skeleton width={50} />}
