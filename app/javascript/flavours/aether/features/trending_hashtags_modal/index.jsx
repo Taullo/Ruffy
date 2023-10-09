@@ -20,8 +20,8 @@ class ComposeModal extends PureComponent {
     onClose: PropTypes.func.isRequired,
   };
   
-  handleClose = () => {
-    if (event.target.classList.contains("trends__item")) {
+  handleClose = (e) => {
+    if (e.target.className === 'trends__item') {
       this.props.onClose();
     }
   };

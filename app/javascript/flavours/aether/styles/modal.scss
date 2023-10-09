@@ -51,14 +51,23 @@
 .suggestions-modal,
 .compose-modal {
   width: 700px;
-  max-height: calc(100vw - 8px);
+  max-height: calc(100vw - 20px);
   overflow-y: auto;
   box-sizing: border-box;
+
+  .account-card {
+    margin-top: 20px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }
 
 .right-column-show-more {
   display: flex;
   justify-content: center;
+  margin-top: 8px;
 }
 
 .trending_hashtags-modal,
