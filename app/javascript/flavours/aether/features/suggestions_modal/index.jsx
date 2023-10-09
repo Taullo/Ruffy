@@ -20,14 +20,20 @@ class ComposeModal extends PureComponent {
     onClose: PropTypes.func.isRequired,
   };
 
+  handleClose = () => {
+    if (event.target.classList.contains("display-name")) {
+      this.props.onClose();
+    }
+  };
+
   navigateTo = (index) =>
     this.setState({ currentIndex: +index });
 
   render () {
 
     return (
-      <div className='aether modal-root__modal trending_hashtags-modal'>
-        <Suggestions />
+      <div className='aether modal-root__modal suggestions-modal'>
+        <Suggestions onClick={this.handleClose} />
       </div>
     );
   }

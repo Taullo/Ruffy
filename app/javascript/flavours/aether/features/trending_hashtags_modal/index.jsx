@@ -19,6 +19,12 @@ class ComposeModal extends PureComponent {
   static propTypes = {
     onClose: PropTypes.func.isRequired,
   };
+  
+  handleClose = () => {
+    if (event.target.classList.contains("trends__item")) {
+      this.props.onClose();
+    }
+  };
 
   navigateTo = (index) =>
     this.setState({ currentIndex: +index });
@@ -27,7 +33,7 @@ class ComposeModal extends PureComponent {
 
     return (
       <div className='aether modal-root__modal trending_hashtags-modal'>
-        <TrendingHashtags />
+        <TrendingHashtags onClick={this.handleClose} />
       </div>
     );
   }

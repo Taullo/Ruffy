@@ -38,8 +38,9 @@
 
 .trending_hashtags-modal {
   width: 500px;
-  max-height: 100vw;
+  max-height: calc(100vw - 8px);
   overflow-y: auto;
+  box-sizing: border-box;
 
   .explore__links {
     width: 500px;
@@ -50,8 +51,9 @@
 .suggestions-modal,
 .compose-modal {
   width: 700px;
-  max-height: 100vw;
+  max-height: calc(100vw - 8px);
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .right-column-show-more {
@@ -72,7 +74,7 @@
   .suggestions-modal,
   .compose-modal,
   .compose-form {
-    width: 100vw;
+    width: calc(100vw - 20px);
 
     .explore__links {
       width: auto;
