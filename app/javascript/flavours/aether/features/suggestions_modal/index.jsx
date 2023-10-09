@@ -20,8 +20,8 @@ class ComposeModal extends PureComponent {
     onClose: PropTypes.func.isRequired,
   };
 
-  handleClose = (e) => {
-    if (e.target.className === 'display-name') {
+  handleClose = () => {
+    if (event.target.classList.contains("display-name")) {
       this.props.onClose();
     }
   };
@@ -32,8 +32,8 @@ class ComposeModal extends PureComponent {
   render () {
 
     return (
-      <div className='aether modal-root__modal suggestions-modal'>
-        <Suggestions onClick={this.handleClose} />
+      <div className='aether modal-root__modal suggestions-modal' onClick={this.handleClose}>
+        <Suggestions />
       </div>
     );
   }

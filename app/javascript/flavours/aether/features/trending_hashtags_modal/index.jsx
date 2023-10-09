@@ -20,8 +20,8 @@ class ComposeModal extends PureComponent {
     onClose: PropTypes.func.isRequired,
   };
   
-  handleClose = (e) => {
-    if (e.target.className === 'trends__item') {
+  handleClose = () => {
+    if (event.target.classList.contains("trends__item")) {
       this.props.onClose();
     }
   };
@@ -32,8 +32,8 @@ class ComposeModal extends PureComponent {
   render () {
 
     return (
-      <div className='aether modal-root__modal trending_hashtags-modal'>
-        <TrendingHashtags onClick={this.handleClose} />
+      <div className='aether modal-root__modal trending_hashtags-modal' onClick={this.handleClose}>
+        <TrendingHashtags />
       </div>
     );
   }
