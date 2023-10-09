@@ -10,7 +10,7 @@ import { addColumn } from 'flavours/aether/actions/columns';
 import { changeSetting } from 'flavours/aether/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/aether/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/aether/actions/timelines';
-import { expandTrendingStatuses } from 'flavours/aether/actions/trends';
+import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/aether/actions/trends';
 import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import SettingText from 'flavours/aether/components/setting_text';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
@@ -146,7 +146,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       }
       break;
     case 'trending':
-      dispatch(expandTrendingStatuses());
+      dispatch(fetchTrendingStatuses());
       break;
     }
 
