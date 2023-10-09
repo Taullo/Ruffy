@@ -9,8 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { addColumn } from 'flavours/aether/actions/columns';
 import { changeSetting } from 'flavours/aether/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/aether/actions/streaming';
-import { expandPublicTimeline, expandCommunityTimeline } from 'flavours/aether/actions/timelines';
-import { fetchTrendingStatuses, expandTrendingStatuses } from 'flavours/aether/actions/trends';
+import { expandPublicTimeline, expandCommunityTimeline, expandTrendingTimeline } from 'flavours/aether/actions/timelines';
 import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import SettingText from 'flavours/aether/components/setting_text';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
@@ -114,7 +113,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
         break;
       case 'trending':
-        dispatch(expandTrendingStatuses({ maxId }));
+        dispatch(expandTrendingTimeline({ maxId }));
         break;
       }
     },
@@ -146,7 +145,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       }
       break;
     case 'trending':
-      dispatch(fetchTrendingStatuses());
+      dispatch(expandTrendingTimeline());
       break;
     }
 
@@ -166,14 +165,14 @@ const Firehose = ({ feedType, multiColumn }) => {
       <DismissableBanner id='explore/statuses'>
         <FormattedMessage
           id='dismissable_banner.explore_statuses'
-          defaultMessage='These are posts from across the social web that are gaining traction today. Newer posts with more boosts and favourites are ranked higher.'
+          defaultMessage='These are posts from across the fediverse that are gaining traction today. Newer posts with more boosts and favourites are ranked higher.'
         />
       </DismissableBanner>
       ) : (
       <DismissableBanner id='public_timeline'>
         <FormattedMessage
           id='dismissable_banner.public_timeline'
-          defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
+          defaultMessage='These are the most recent public posts from people on the fediverse that people on {domain} follow.'
           values={{ domain }}
         />
       </DismissableBanner>
@@ -254,7 +253,7 @@ const Firehose = ({ feedType, multiColumn }) => {
 
         <StatusListContainer
           prepend={prependBanner}
-          timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`}
+          timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${feedType !== 'trending' && onlyMedia ? ':media' : ''}`}
           onLoadMore={handleLoadMore}
           trackScroll
           scrollKey='firehose'
