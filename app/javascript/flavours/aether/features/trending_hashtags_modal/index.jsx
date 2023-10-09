@@ -20,8 +20,10 @@ class ComposeModal extends PureComponent {
     onClose: PropTypes.func.isRequired,
   };
   
-  handleClose = () => {
+  handleClose = (e) => {
+    if (e.target.className !== 'trending_hashtags-modal') {
       this.props.onClose();
+    }
   };
 
   navigateTo = (index) =>

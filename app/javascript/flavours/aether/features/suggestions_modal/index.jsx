@@ -21,7 +21,7 @@ class ComposeModal extends PureComponent {
   };
 
   handleClose = (e) => {
-    if (e.target.className === 'display-name') {
+    if (e.target.className === ('display-name__html' || 'display-name__account')) {
       this.props.onClose();
     }
   };
