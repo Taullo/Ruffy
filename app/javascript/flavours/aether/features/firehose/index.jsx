@@ -114,7 +114,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote: true }));
         break;
       case 'trending':
-        dispatch(expandTrendingStatuses());
+        dispatch(expandTrendingStatuses({ maxId }));
         break;
       }
     },
