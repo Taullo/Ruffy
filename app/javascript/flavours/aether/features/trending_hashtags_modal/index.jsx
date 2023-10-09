@@ -20,9 +20,9 @@ class ComposeModal extends PureComponent {
     onClose: PropTypes.func.isRequired,
   };
   
-  handleClose = (e) => {
+  handleClose = () => {
     const linkClass = document.querySelector('#close_item');
-    if (linkClass.contains(e.target)) {
+    if (linkClass.contains(event.target)) {
       this.props.onClose();
     }
   };
