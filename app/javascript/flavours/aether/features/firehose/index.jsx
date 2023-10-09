@@ -7,14 +7,13 @@ import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
 import { addColumn } from 'flavours/aether/actions/columns';
+import { openModal } from 'flavours/aether/actions/modal';
 import { changeSetting } from 'flavours/aether/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'flavours/aether/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline, expandTrendingTimeline } from 'flavours/aether/actions/timelines';
 import { DismissableBanner } from 'flavours/aether/components/dismissable_banner';
 import SettingText from 'flavours/aether/components/setting_text';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
-import Suggestions from 'flavours/aether/features/explore/suggestions';
-import Tags from 'flavours/aether/features/explore/tags';
 import initialState, { domain } from 'flavours/aether/initial_state';
 import { useAppDispatch, useAppSelector } from 'flavours/aether/store';
 
@@ -22,6 +21,9 @@ import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import SettingToggle from '../notifications/components/setting_toggle';
 import StatusListContainer from '../ui/containers/status_list_container';
+
+import Suggestions from './components/suggestions';
+import Tags from './components/tags';
 
 
 const messages = defineMessages({
@@ -122,6 +124,22 @@ const Firehose = ({ feedType, multiColumn }) => {
 
   const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
 
+  const openTrendingHashtags = useCallback(() => {
+    dispatch(openModal({
+      modalType: 'TRENDING_HASHTAGS',
+      modalProps: {},
+    }))
+    }
+  );
+  
+  const openSuggestions = useCallback(() => {
+    dispatch(openModal({
+      modalType: 'SUGGESTIONS',
+      modalProps: {},
+    }))
+    }
+  );
+
   useEffect(() => {
     let disconnect;
 
@@ -213,9 +231,9 @@ const Firehose = ({ feedType, multiColumn }) => {
             <div className='explore__tags-header'>
               <Tags openInRoute />
               <div className='right-column-show-more'>
-                <NavLink className='navbutton' exact to='/explore/tags'>
+                <button className='button button-tertiary' onClick={openTrendingHashtags} >
                   <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                </NavLink>
+                </button>
               </div>
             </div>
 
@@ -223,9 +241,9 @@ const Firehose = ({ feedType, multiColumn }) => {
               <div className='explore__suggested-header'>
                 <Suggestions openInRoute />
                 <div className='right-column-show-more'>
-                  <NavLink className='navbutton' exact to='/explore/suggestions'>
+                  <button className='button button-tertiary' onClick={openSuggestions} >
                     <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                  </NavLink>
+                  </button>
                 </div>
               </div>
             )}

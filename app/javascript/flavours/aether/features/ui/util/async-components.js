@@ -146,6 +146,14 @@ export function ListsModal () {
   return import(/* webpackChunkName: "flavours/aether/async/lists_modal" */'flavours/aether/features/lists_modal');
 }
 
+export function TrendingHashtagsModal () {
+  return import(/* webpackChunkName: "flavours/aether/async/trending_hashtags_modal" */'flavours/aether/features/trending_hashtags_modal');
+}
+
+export function SuggestionsModal () {
+  return import(/* webpackChunkName: "flavours/aether/async/suggestions_modal" */'flavours/aether/features/suggestions_modal');
+}
+
 export function MediaGallery () {
   return import(/* webpackChunkName: "flavours/aether/async/media_gallery" */'flavours/aether/components/media_gallery');
 }
@@ -190,8 +198,12 @@ export function FilterModal () {
   return import(/*webpackChunkName: "flavours/aether/async/filter_modal" */'flavours/aether/features/ui/components/filter_modal');
 }
 
-export function Explore () {
-  return import(/* webpackChunkName: "flavours/aether/async/explore" */'flavours/aether/features/explore');
+export function TrendingHashtags () {
+  return import(/* webpackChunkName: "flavours/aether/async/trending_hashtags" */'flavours/aether/features/trending_hashtags');
+}
+
+export function AccountSuggestions () {
+  return import(/* webpackChunkName: "flavours/aether/async/suggestions" */'flavours/aether/features/suggestions');
 }
 
 export function SearchPage () {

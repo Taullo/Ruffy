@@ -5,19 +5,19 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
-import { NavLink } from 'react-router-dom';
 
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/aether/actions/announcements';
+import { openModal } from 'flavours/aether/actions/modal';
 import { IconWithBadge } from 'flavours/aether/components/icon_with_badge';
 import { NotSignedInIndicator } from 'flavours/aether/components/not_signed_in_indicator';
 import ComposeFormContainer from 'flavours/aether/features/compose/containers/compose_form_container';
 import SearchContainer from 'flavours/aether/features/compose/containers/search_container';
-import Suggestions from 'flavours/aether/features/explore/suggestions';
-import Tags from 'flavours/aether/features/explore/tags';
+import Suggestions from 'flavours/aether/features/firehose/components/suggestions';
+import Tags from 'flavours/aether/features/firehose/components/tags';
 import AnnouncementsContainer from 'flavours/aether/features/getting_started/containers/announcements_container';
 import ListPanel from 'flavours/aether/features/ui/components/list_panel';
 import { me, criticalUpdatesPending } from 'flavours/aether/initial_state';
@@ -104,6 +104,20 @@ class HomeTimeline extends PureComponent {
     showLists: PropTypes.bool,
     showHashtags: PropTypes.bool,
     showSuggestions: PropTypes.bool,
+  };
+  
+  openTrendingHashtags = () => {
+    this.props.dispatch(openModal({
+      modalType: 'TRENDING_HASHTAGS',
+      modalProps: {},
+    }));
+  };
+  
+  openSuggestions = () => {
+    this.props.dispatch(openModal({
+      modalType: 'SUGGESTIONS',
+      modalProps: {},
+    }));
   };
 
   handlePin = () => {
@@ -235,9 +249,9 @@ class HomeTimeline extends PureComponent {
               <div className='explore__tags-header'>
                 <Tags openInRoute />
                 <div className='right-column-show-more'>
-                  <NavLink className='navbutton' exact to='/explore/tags'>
+                  <button className='button button-tertiary' onClick={this.openTrendingHashtags} >
                     <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                  </NavLink>
+                  </button>
                 </div>
               </div>
             )}
@@ -246,9 +260,9 @@ class HomeTimeline extends PureComponent {
               <div className='explore__suggested-header'>
                 <Suggestions openInRoute />
                 <div className='right-column-show-more'>
-                  <NavLink className='navbutton' exact to='/explore/suggestions'>
+                  <button className='button button-tertiary' onClick={this.openSuggestions} >
                     <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                  </NavLink>
+                  </button>
                 </div>
               </div>
             )}

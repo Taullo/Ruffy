@@ -36,6 +36,32 @@
   }
 }
 
+.trending_hashtags-modal,
+.suggestions-modal,
 .compose-modal {
   width: 700px;
+  max-height: 100vw;
+  overflow-y: auto;
+}
+
+.right-column-show-more {
+  display: flex;
+  justify-content: center;
+}
+
+.trending_hashtags-modal,
+.suggestions-modal {
+  min-height: 200px;
+  background: var(--ui-body-secondary-color);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+@media screen and (max-width: $no-gap-breakpoint) {
+  .trending_hashtags-modal,
+  .suggestions-modal,
+  .compose-modal,
+  .compose-form {
+    width: 100vw;
+  }
 }

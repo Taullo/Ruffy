@@ -21,6 +21,8 @@ import {
   ClosedRegistrationsModal,
   ComposeModal,
   ListsModal,
+  TrendingHashtagsModal,
+  SuggestionsModal,
 } from 'flavours/aether/features/ui/util/async-components';
 import { getScrollbarWidth } from 'flavours/aether/utils/scrollbar';
 
@@ -68,6 +70,8 @@ export const MODAL_COMPONENTS = {
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
   'COMPOSE': ComposeModal,
   'LISTS': ListsModal,
+  'TRENDING_HASHTAGS': TrendingHashtagsModal,
+  'SUGGESTIONS': SuggestionsModal,
 };
 
 export default class ModalRoot extends PureComponent {

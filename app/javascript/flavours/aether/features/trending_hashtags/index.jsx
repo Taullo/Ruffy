@@ -4,19 +4,16 @@ import { PureComponent } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { Switch, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
 import Column from 'flavours/aether/components/column';
 import ColumnHeader from 'flavours/aether/components/column_header';
-
-import Suggestions from './suggestions';
-import Tags from './tags';
+import Tags from 'flavours/aether/features/firehose/components/tags';
 
 
 const messages = defineMessages({
-  title: { id: 'explore.title', defaultMessage: 'Explore' },
+  title: { id: 'explore.trending_hashtags', defaultMessage: 'Trending Hashtags' },
   more: { id: 'status.more', defaultMessage: 'More' },
 });
 
@@ -24,7 +21,7 @@ const mapStateToProps = state => ({
   layout: state.getIn(['meta', 'layout']),
 });
 
-class Explore extends PureComponent {
+class TrendingHashtags extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -59,10 +56,7 @@ class Explore extends PureComponent {
 
           <div className='scrollable scrollable--flex community-scroll'>
 
-            <Switch>
-              <Route path='/explore/tags' component={Tags} />
-              <Route path='/explore/suggestions' component={Suggestions} />
-            </Switch>
+            <Tags />
 
             <Helmet>
               <title>{intl.formatMessage(messages.title)}</title>
@@ -76,4 +70,4 @@ class Explore extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(Explore));
+export default connect(mapStateToProps)(injectIntl(TrendingHashtags));

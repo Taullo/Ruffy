@@ -62,7 +62,8 @@ import {
   Lists,
   GettingStartedMisc,
   Directory,
-  Explore,
+  TrendingHashtags,
+  AccountSuggestions,
   SearchPage,
   FollowRecommendations,
   About,
@@ -222,7 +223,8 @@ class SwitchingColumnsArea extends PureComponent {
 
           <WrappedRoute path='/start' component={FollowRecommendations} content={children} />
           <WrappedRoute path='/directory' component={Directory} content={children} />
-          <WrappedRoute path={['/explore/tags', '/explore/suggestions']} component={Explore} content={children} />
+          <WrappedRoute path={'/explore/tags'} component={TrendingHashtags} content={children} />
+          <WrappedRoute path={'/explore/suggestions'} component={AccountSuggestions} content={children} />
           <WrappedRoute path={'/search'} component={SearchPage} content={children} />
           <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
