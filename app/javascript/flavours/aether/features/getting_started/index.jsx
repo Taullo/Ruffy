@@ -29,12 +29,13 @@ const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
+  remote_timeline: { id: 'navigation_bar.remote_timeline', defaultMessage: 'Remote timeline' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   hashtags: { id: 'navigation_bar.hashtags', defaultMessage: 'Trending Hashtags' },
-  posts: { id: 'navigation_bar.posts', defaultMessage: 'Trending Posts' },
+  posts: { id: 'navigation_bar.posts', defaultMessage: 'Popular Posts' },
   suggested: { id: 'navigation_bar.suggested', defaultMessage: 'Suggestions' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
@@ -142,15 +143,22 @@ class GettingStarted extends ImmutablePureComponent {
       if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
         navItems.push(<ColumnLink key='community_timeline' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/explore/local' />);
       }
+      
+      if (!columns.find(item => item.get('id') === 'REMOTE')) {
+        navItems.push(<ColumnLink key='remote_timeline' icon='sitemap' text={intl.formatMessage(messages.remote_timeline)} to='/explore/remote' />);
+      }
 
       if (!columns.find(item => item.get('id') === 'PUBLIC')) {
-        navItems.push(<ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/explore/remote' />);
+        navItems.push(<ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/explore/all' />);
+      }
+      
+      if (!columns.find(item => item.get('id') === 'TRENDING')) {
+        navItems.push(<ColumnLink key='trending_timeline' icon='commenting' text={intl.formatMessage(messages.posts)} to='/explore/popular' />);
       }
     }
 
     if (showTrends) {
       navItems.push(<ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.hashtags)} to='/explore/tags' />);
-      navItems.push(<ColumnLink key='explore' icon='pencil-square' text={intl.formatMessage(messages.posts)} to='/explore/popular' />);
       navItems.push(<ColumnLink key='explore' icon='vcard' text={intl.formatMessage(messages.suggested)} to='/explore/suggestions' />);
     }
 

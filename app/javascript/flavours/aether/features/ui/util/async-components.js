@@ -15,11 +15,19 @@ export function HomeTimeline () {
 }
 
 export function PublicTimeline () {
-  return import(/* webpackChunkName: "flavours/aether/async/public_timeline" */'flavours/aether/features/public_timeline');
+  return import(/* webpackChunkName: "flavours/aether/async/public_timeline" */'flavours/aether/features/explore_timelines/public_timeline');
 }
 
 export function CommunityTimeline () {
-  return import(/* webpackChunkName: "flavours/aether/async/community_timeline" */'flavours/aether/features/community_timeline');
+  return import(/* webpackChunkName: "flavours/aether/async/community_timeline" */'flavours/aether/features/explore_timelines/local_timeline');
+}
+
+export function RemoteTimeline () {
+  return import(/* webpackChunkName: "flavours/aether/async/remote_timeline" */'flavours/aether/features/explore_timelines/remote_timeline');
+}
+
+export function TrendingTimeline () {
+  return import(/* webpackChunkName: "flavours/aether/async/trending_timeline" */'flavours/aether/features/explore_timelines/trending_timeline');
 }
 
 export function Firehose () {

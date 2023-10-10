@@ -89,13 +89,13 @@ const Firehose = ({ feedType, multiColumn }) => {
         dispatch(addColumn('COMMUNITY', { other: { onlyMedia }, regex: { body: regex } }));
         break;
       case 'public':
-        dispatch(addColumn('PUBLIC', { other: { onlyMedia, allowLocalOnly }, regex: { body: regex }  }));
+        dispatch(addColumn('PUBLIC', { other: { onlyMedia }, regex: { body: regex }  }));
         break;
       case 'public:remote':
         dispatch(addColumn('REMOTE', { other: { onlyMedia, onlyRemote: true }, regex: { body: regex }  }));
         break;
       case 'trending':
-        dispatch(addColumn('TRENDING'));
+        dispatch(addColumn('TRENDING', {}));
         break;
       }
     },

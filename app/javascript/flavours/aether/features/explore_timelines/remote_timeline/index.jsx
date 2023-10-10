@@ -19,7 +19,7 @@ import { domain } from 'flavours/aether/initial_state';
 import ColumnSettingsContainer from './containers/column_settings_container';
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Federated timeline' },
+  title: { id: 'column.remote', defaultMessage: 'Remote timeline' },
 });
 
 const mapStateToProps = (state, { columnId }) => {
@@ -27,21 +27,19 @@ const mapStateToProps = (state, { columnId }) => {
   const columns = state.getIn(['settings', 'columns']);
   const index = columns.findIndex(c => c.get('uuid') === uuid);
   const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
-  const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyRemote']) : state.getIn(['settings', 'public', 'other', 'onlyRemote']);
-  const allowLocalOnly = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'allowLocalOnly']) : state.getIn(['settings', 'public', 'other', 'allowLocalOnly']);
+  const onlyRemote = true;
   const regex = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'regex', 'body']) : state.getIn(['settings', 'public', 'regex', 'body']);
-  const timelineState = state.getIn(['timelines', `public${onlyRemote ? ':remote' : allowLocalOnly ? ':allow_local_only' : ''}${onlyMedia ? ':media' : ''}`]);
+  const timelineState = state.getIn(['timelines', `public:remote' ${onlyMedia ? ':media' : ''}`]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
     onlyMedia,
     onlyRemote,
-    allowLocalOnly,
     regex,
   };
 };
 
-class PublicTimeline extends PureComponent {
+class RemoteTimeline extends PureComponent {
 
   static defaultProps = {
     onlyMedia: false,
@@ -60,17 +58,16 @@ class PublicTimeline extends PureComponent {
     hasUnread: PropTypes.bool,
     onlyMedia: PropTypes.bool,
     onlyRemote: PropTypes.bool,
-    allowLocalOnly: PropTypes.bool,
     regex: PropTypes.string,
   };
 
   handlePin = () => {
-    const { columnId, dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    const { columnId, dispatch, onlyMedia } = this.props;
 
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn(onlyRemote ? 'REMOTE' : 'PUBLIC', { other: { onlyMedia, onlyRemote, allowLocalOnly } }));
+      dispatch(addColumn('REMOTE', { other: { onlyMedia } }));
     }
   };
 
@@ -84,29 +81,29 @@ class PublicTimeline extends PureComponent {
   };
 
   componentDidMount () {
-    const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    const { dispatch, onlyMedia, onlyRemote } = this.props;
     const { signedIn } = this.context.identity;
 
-    dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, allowLocalOnly }));
+    dispatch(expandPublicTimeline({ onlyMedia, onlyRemote }));
     if (signedIn) {
-      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly }));
+      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote }));
     }
   }
 
   componentDidUpdate (prevProps) {
     const { signedIn } = this.context.identity;
 
-    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote || prevProps.allowLocalOnly !== this.props.allowLocalOnly) {
-      const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    if (prevProps.onlyMedia !== this.props.onlyMedia) {
+      const { dispatch, onlyMedia, onlyRemote } = this.props;
 
       if (this.disconnect) {
         this.disconnect();
       }
 
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, allowLocalOnly }));
+      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote }));
 
       if (signedIn) {
-        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly }));
+        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote }));
       }
     }
   }
@@ -122,20 +119,20 @@ class PublicTimeline extends PureComponent {
     this.column = c;
   };
 
-  handleLoadMore = maxId => {
-    const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+  handleLoadMore = () => {
+    const { dispatch, onlyMedia } = this.props;
 
-    dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote, allowLocalOnly }));
+    dispatch(expandPublicTimeline({ onlyMedia }));
   };
 
   render () {
-    const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    const { intl, columnId, hasUnread, multiColumn, onlyMedia } = this.props;
     const pinned = !!columnId;
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='federated' label={intl.formatMessage(messages.title)}>
         <ColumnHeader
-          icon='globe'
+          icon='sitemap'
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
@@ -150,7 +147,7 @@ class PublicTimeline extends PureComponent {
         <div className='scrollable public-scroll'>
           <StatusListContainer
             prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
-            timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}
+            timelineId={`public:remote${onlyMedia ? ':media' : ''}`}
             onLoadMore={this.handleLoadMore}
             trackScroll={!pinned}
             scrollKey={`public_timeline-${columnId}`}
@@ -170,4 +167,4 @@ class PublicTimeline extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(PublicTimeline));
+export default connect(mapStateToProps)(injectIntl(RemoteTimeline));
