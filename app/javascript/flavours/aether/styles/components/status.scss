@@ -394,7 +394,7 @@
   display: flex;
   align-items: center;
   height: 1em;
-  color: $action-button-color;
+  color: var(--ui-font-dimmer-color);
   font-size: 0.9rem;
 
   .status__media-icon,
@@ -407,6 +407,24 @@
 
   .status__collapse-button {
     margin-right: 4px;
+    transition:
+      color 0.2s,
+      background 0.2s;
+    border-radius: 100%;
+    color: var(--ui-font-dimmer-color);
+
+    &:hover {
+      color: var(--ui-highlight-color);
+    }
+
+    &:active {
+      background: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
+
+      &:hover {
+        box-shadow: 0 0 1px 1px var(--ui-highlight-color);
+      }
+    }
   }
 
   .status__collapse-button.active > .fa-angle-double-up {
@@ -441,7 +459,7 @@
   padding: 0 10px;
 
   .detailed-status__display-name {
-    color: var(--ui-inverted-font-color);
+    color: var(--ui-font-dimmer-color);
 
     span {
       display: inline;
