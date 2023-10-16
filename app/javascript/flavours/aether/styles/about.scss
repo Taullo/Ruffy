@@ -331,15 +331,11 @@ $fluid-breakpoint: $maximum-width + 20px;
       h6 {
         color: var(--ui-font-secondary-color);
         font-size: inherit;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
 
       p {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        color: var(--ui-font-bright-color);
+        margin-top: 12px;
       }
     }
   }
