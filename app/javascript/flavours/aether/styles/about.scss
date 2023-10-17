@@ -344,12 +344,12 @@ $fluid-breakpoint: $maximum-width + 20px;
 @media screen and (min-width: $widescreen-breakpoint) {
   .layout-single-column {
     .about__left-column {
-      max-width: 700px;
+      max-width: var(--ui-main-column-width);
       display: block;
     }
 
     .about__right-column {
-      max-width: 450px;
+      max-width: var(--ui-secondary-profile-column-width);
     }
 
     .about {

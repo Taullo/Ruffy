@@ -114,9 +114,10 @@ function dataURLtoFile(dataurl, filename) {
 }
 /** Doodle canvas size options */
 const DOODLE_SIZES = {
-  normal: [750, 350, 'Landscape'],
+  normal: [600, 300, 'Default'],
+  wide: [700, 350, 'Wide'],
   square: [600, 600, 'Square'],
-  portrait: [350, 750, 'Portrait'],
+  portrait: [350, 600, 'Portrait']
 };
 
 

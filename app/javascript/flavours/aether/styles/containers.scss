@@ -1,5 +1,5 @@
 .container-alt {
-  width: 700px;
+  width: var(--ui-main-column-width);
   margin: 0 auto;
 
   @media screen and (width <= 740px) {

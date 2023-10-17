@@ -205,7 +205,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($action-button-color, 7%);
+    color: var(--ui-font-color);
     transition: all 200ms ease-out;
     transition-property: background-color, color;
   }
@@ -217,7 +217,7 @@
   }
 
   &.active {
-    color: var(--ui-highlight-color);
+    color: var(--ui-font-color);
   }
 
   &.copyable {
@@ -253,7 +253,7 @@
     }
 
     &.active {
-      color: var(--ui-highlight-color);
+      color: var(--ui-font-color);
 
       &.disabled {
         color: var(--ui-highlight-color);

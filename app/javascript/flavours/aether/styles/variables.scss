@@ -4,11 +4,23 @@
   --ui-dropdown-shadow-20: rgba(0, 0, 0, 20%);
 
   /* Element Sizes */
+  --ui-main-column-width: 630px;
+  --ui-secondary-column-width: 460px;
+  --ui-secondary-profile-column-width: 515px;
   --ui-avatar-status-size: 62px;
   --ui-border-radius: 6px;
   --ui-highlight-button-text-color: #ffffff;
+  --ui-widescreen-width: 1175px;
 
   accent-color: var(--ui-highlight-color);
+}
+
+.wide {
+  --ui-widescreen-width: 1415px;
+  --ui-main-column-width: 700px;
+  --ui-secondary-profile-column-width: calc(
+    100vw - 35px - var(--ui-main-column-width)
+  ); /* Page width - column padding - columns-area padding - main column */
 }
 
 .dark-theme,
@@ -192,7 +204,7 @@ $media-modal-media-max-width: 100%;
 $media-modal-media-max-height: 80%;
 
 $no-gap-breakpoint: 890px; /* Originally 1175px */
-$widescreen-breakpoint: 1175px;
+$widescreen-breakpoint: 1175px; /* TODO Should change to 1175 depending on if wide is set */
 
 $font-sans-serif: 'roboto' !default;
 $font-display: 'roboto-font-display' !default;

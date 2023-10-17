@@ -12,7 +12,7 @@
 
     .ui__header {
       display: flex;
-      max-width: 1175px;
+      max-width: var(--ui-widescreen-width);
       margin: 0 auto;
     }
 
@@ -141,10 +141,10 @@
     }
 
     .account-scroll {
-      max-width: 1175px;
+      max-width: var(--ui-widescreen-width);
       width: auto;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       flex-wrap: wrap;
       row-gap: 15px;
       column-gap: 15px;
@@ -153,18 +153,17 @@
 
     .scrollable,
     .home-scroll {
-      width: 700px;
+      width: var(--ui-main-column-width);
     }
 
     .home-scroll,
     .account-scroll .scrollable-list,
     .account-scroll .scrollable_list {
-      width: 700px;
+      width: var(--ui-main-column-width);
     }
 
     .account-timeline__right-column {
-      width: 100%;
-      max-width: 700px;
+      max-width: var(--ui-main-column-width);
     }
 
     .columns-area .columns-area--mobile {
@@ -173,11 +172,11 @@
 
     .column {
       justify-content: left;
-      max-width: 700px;
+      max-width: var(--ui-main-column-width);
     }
 
     .account-timeline__header {
-      max-width: 700px;
+      max-width: var(--ui-main-column-width);
       width: 100%;
     }
 
@@ -186,7 +185,7 @@
     }
 
     .tabs-bar__wrapper {
-      max-width: 700px !important;
+      max-width: var(--ui-main-column-width) !important;
     }
   }
 }
@@ -194,25 +193,24 @@
 @media screen and (min-width: $widescreen-breakpoint) {
   .layout-single-column {
     .column {
-      max-width: 1175px;
+      max-width: var(--ui-widescreen-width);
+      box-sizing: border-box;
     }
 
     .account-timeline__right-column {
-      max-width: 460px;
+      width: var(--ui-secondary-profile-column-width);
+      max-width: 700px;
+      flex-basis: 100%;
+      order: 1;
     }
 
     .columns-area__panels__main {
-      padding: 0;
-    }
-
-    .account-timeline__right-column {
-      width: 100%;
-      position: absolute;
-      right: 0;
+      padding: 0 10px;
     }
 
     .account-scroll {
-      width: 1175px;
+      max-width: var(--ui-widescreen-width);
+      width: calc(100vw - 20px);
 
       .scrollable-list {
         margin-top: -5px;
