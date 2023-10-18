@@ -18,6 +18,7 @@ import { Icon } from 'flavours/aether/components/icon';
 import MediaGallery from 'flavours/aether/components/media_gallery';
 import PictureInPicturePlaceholder from 'flavours/aether/components/picture_in_picture_placeholder';
 import StatusContent from 'flavours/aether/components/status_content';
+import StatusReactions from 'flavours/aether/components/status_reactions';
 import VisibilityIcon from 'flavours/aether/components/status_visibility_icon';
 import PollContainer from 'flavours/aether/containers/poll_container';
 import Audio from 'flavours/aether/features/audio';
@@ -34,6 +35,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -54,6 +56,8 @@ class DetailedStatus extends ImmutablePureComponent {
       available: PropTypes.bool,
     }),
     onToggleMediaVisibility: PropTypes.func,
+    onReactionAdd: PropTypes.func.isRequired,
+    onReactionRemove: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -329,6 +333,14 @@ class DetailedStatus extends ImmutablePureComponent {
             hashtagSettings={settings.getIn(['hashtag_cw'])}
             disabled
             {...statusContentProps}
+          />
+
+          <StatusReactions
+            statusId={status.get('id')}
+            reactions={status.get('reactions')}
+            addReaction={this.props.onReactionAdd}
+            removeReaction={this.props.onReactionRemove}
+            canReact={this.context.identity.signedIn}
           />
 
           <div className='detailed-status__meta'>

@@ -705,6 +705,10 @@
   text-align: center;
 }
 
+.detailed-status__button .emoji-button {
+  padding: 0;
+}
+
 .relationship-tag {
   color: var(--ui-font-color);
   margin-bottom: 4px;

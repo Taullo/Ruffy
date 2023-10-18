@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const PERSISTENCE_KEY = 'flavours/glitch_home';
+const PERSISTENCE_KEY = 'flavours/aether_home';
 
 const isValidDomain = value => {
   const url = new URL('https:///path');

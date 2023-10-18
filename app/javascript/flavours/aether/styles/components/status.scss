@@ -338,6 +338,10 @@
   .notification__message {
     margin: -10px 0 10px;
   }
+
+  .reactions-bar--empty {
+    display: none;
+  }
 }
 
 .notification-favourite {
@@ -519,6 +523,10 @@
   display: flex;
   margin-top: 16px !important;
   padding: 0 20px;
+
+  & > .emoji-picker-dropdown > .emoji-button {
+    padding: 0;
+  }
 }
 
 .status__action-bar-button {
@@ -526,6 +534,10 @@
 
   &.icon-button--with-counter {
     margin-inline-end: 14px;
+  }
+
+  .fa-plus {
+    padding-top: 1px;
   }
 }
 
@@ -621,6 +633,10 @@
   display: flex;
   flex-direction: row;
   padding: 10px 0;
+
+  .fa-plus {
+    padding-top: 2px;
+  }
 }
 
 .detailed-status__link {
@@ -1046,7 +1062,8 @@ a.status-card.compact:hover {
     border-bottom: 0;
 
     .status__content,
-    .status__action-bar {
+    .status__action-bar,
+    .reactions-bar {
       margin-inline-start: 46px + 10px;
 
       /* width: calc(100% - (46px + 10px)); */

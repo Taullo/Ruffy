@@ -24,6 +24,7 @@ import StatusContent from './status_content';
 import StatusHeader from './status_header';
 import StatusIcons from './status_icons';
 import StatusPrepend from './status_prepend';
+import StatusReactions from './status_reactions';
 
 const domParser = new DOMParser();
 
@@ -64,6 +65,7 @@ class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -81,6 +83,8 @@ class Status extends ImmutablePureComponent {
     onDelete: PropTypes.func,
     onDirect: PropTypes.func,
     onMention: PropTypes.func,
+    onReactionAdd: PropTypes.func,
+    onReactionRemove: PropTypes.func,
     onPin: PropTypes.func,
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
@@ -511,6 +515,7 @@ class Status extends ImmutablePureComponent {
       ...other
     } = this.props;
     const { isCollapsed } = this.state;
+    const visibleReactions = 100; //TODO add local setting for this
     // let background = null;
     let attachments = null;
 
@@ -794,6 +799,15 @@ class Status extends ImmutablePureComponent {
             cwSettings={settings.getIn(['cw_visibility'])}
             hashtagSettings={settings.getIn(['hashtag_cw'])}
             {...statusContentProps}
+          />
+
+          <StatusReactions
+            statusId={status.get('id')}
+            reactions={status.get('reactions')}
+            numVisible={visibleReactions}
+            addReaction={this.props.onReactionAdd}
+            removeReaction={this.props.onReactionRemove}
+            canReact={this.context.identity.signedIn}
           />
 
           {!isCollapsed ? (

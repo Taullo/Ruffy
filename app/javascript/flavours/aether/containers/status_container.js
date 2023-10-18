@@ -21,6 +21,8 @@ import {
   unbookmark,
   pin,
   unpin,
+  addReaction,
+  removeReaction,
 } from 'flavours/aether/actions/interactions';
 import { changeLocalSetting } from 'flavours/aether/actions/local_settings';
 import { openModal } from 'flavours/aether/actions/modal';
@@ -171,6 +173,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     } else {
       dispatch(pin(status));
     }
+  },
+
+  onReactionAdd (statusId, name, url) {
+    dispatch(addReaction(statusId, name, url));
+  },
+
+  onReactionRemove (statusId, name) {
+    dispatch(removeReaction(statusId, name));
   },
 
   onEmbed (status) {

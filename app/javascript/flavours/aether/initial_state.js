@@ -85,6 +85,7 @@
  * @property {string} status_page_url
  * @property {boolean} system_emoji_font
  * @property {string} default_content_type
+ * @property {number} max_reactions
  */
 
 /** @type {string} */
@@ -133,6 +134,7 @@ export const domain = getMeta('domain');
 export const expandSpoilers = getMeta('expand_spoilers');
 export const limitedFederationMode = getMeta('limited_federation_mode');
 export const mascot = getMeta('mascot');
+export const maxReactions = (initialState && initialState.max_reactions) || 1;
 export const me = getMeta('me');
 export const movedToAccountId = getMeta('moved_to_account_id');
 export const owner = getMeta('owner');

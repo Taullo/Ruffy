@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import type { ModalProps } from 'flavours/glitch/reducers/modal';
+import type { ModalProps } from 'flavours/aether/reducers/modal';
 
 import type { MODAL_COMPONENTS } from '../features/ui/components/modal_root';
 
