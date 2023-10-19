@@ -9,21 +9,29 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 
+import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dropdown_container';
 import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
-import { autoPlayGif, reduceMotion } from '../initial_state';
+import { autoPlayGif, reduceMotion, maxReactions } from '../initial_state';
 import { assetHost } from '../utils/config';
 
 import { AnimatedNumber } from './animated_number';
 
+
 export default class StatusReactions extends ImmutablePureComponent {
 
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
+
   static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
     statusId: PropTypes.string.isRequired,
     reactions: ImmutablePropTypes.list.isRequired,
     numVisible: PropTypes.number,
     addReaction: PropTypes.func.isRequired,
     canReact: PropTypes.bool.isRequired,
     removeReaction: PropTypes.func.isRequired,
+    reactTitle: PropTypes.string.isRequired,
   };
 
   willEnter() {
@@ -34,8 +42,26 @@ export default class StatusReactions extends ImmutablePureComponent {
     return { scale: reduceMotion ? 0 : spring(0, { stiffness: 170, damping: 26 }) };
   }
 
+  handleNoOp = () => {}; // hack for reaction add button
+  
+  handleEmojiPick = data => {
+    this.props.addReaction(this.props.status.get('id'), data.native.replace(/:/g, ''), data.imageUrl);
+  };
+
   render() {
-    const { reactions, numVisible } = this.props;
+    const { reactions, numVisible, status, reactTitle } = this.props;
+    const { permissions } = this.context.identity;
+    const canReact = permissions && status.get('reactions').filter(r => r.get('count') > 0 && r.get('me')).size < maxReactions;
+    const title = reactTitle
+    const reactButton = (
+      <div
+        className='clicky'
+        onClick={this.handleNoOp} // EmojiPickerDropdown handles that
+        title={title}
+        disabled={!canReact}
+        icon='plus'
+      ><span className='fa fa-plus fa-fw' /></div>
+    );
     let visibleReactions = reactions
       .filter(x => x.get('count') > 0)
       .sort((a, b) => b.get('count') - a.get('count'));
@@ -53,7 +79,7 @@ export default class StatusReactions extends ImmutablePureComponent {
     return (
       <TransitionMotion styles={styles} willEnter={this.willEnter} willLeave={this.willLeave}>
         {items => (
-          <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
+          <div className='reactions-bar'>
             {items.map(({ key, data, style }) => (
               <Reaction
                 key={key}
@@ -65,6 +91,7 @@ export default class StatusReactions extends ImmutablePureComponent {
                 canReact={this.props.canReact}
               />
             ))}
+            {permissions ? <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={reactButton} disabled={!canReact} /> : reactButton }
           </div>
         )}
       </TransitionMotion>

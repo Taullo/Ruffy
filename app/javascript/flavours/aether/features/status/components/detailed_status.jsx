@@ -41,6 +41,7 @@ class DetailedStatus extends ImmutablePureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map,
     settings: ImmutablePropTypes.map.isRequired,
+    intl: PropTypes.object.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
     onToggleHidden: PropTypes.func,
@@ -58,7 +59,6 @@ class DetailedStatus extends ImmutablePureComponent {
     onToggleMediaVisibility: PropTypes.func,
     onReactionAdd: PropTypes.func.isRequired,
     onReactionRemove: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
   };
 
   state = {
@@ -132,7 +132,7 @@ class DetailedStatus extends ImmutablePureComponent {
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
     const outerStyle = { boxSizing: 'border-box' };
-    const { compact, pictureInPicture, expanded, onToggleHidden, settings } = this.props;
+    const { compact, pictureInPicture, expanded, onToggleHidden, settings, intl } = this.props;
 
     if (!status) {
       return null;
@@ -337,10 +337,12 @@ class DetailedStatus extends ImmutablePureComponent {
 
           <StatusReactions
             statusId={status.get('id')}
+            status={status}
             reactions={status.get('reactions')}
             addReaction={this.props.onReactionAdd}
             removeReaction={this.props.onReactionRemove}
             canReact={this.context.identity.signedIn}
+            reactTitle={intl.formatMessage({ id: 'status.react', defaultMessage: 'Add reaction' })}
           />
 
           <div className='detailed-status__meta'>

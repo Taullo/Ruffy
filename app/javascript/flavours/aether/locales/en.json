@@ -201,7 +201,7 @@
   "status.in_reply_to": "This post is a reply",
   "status.is_poll": "This post is a poll",
   "status.local_only": "Prevents post from appearing on other servers",
-  "status.react": "React",
+  "status.react": "Add reaction",
   "status.sensitive_toggle": "Click to view",
   "status.uncollapse": "Uncollapse",
   "web_app_crash.change_your_settings": "Change your {settings}",

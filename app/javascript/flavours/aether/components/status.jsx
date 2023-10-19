@@ -803,11 +803,13 @@ class Status extends ImmutablePureComponent {
 
           <StatusReactions
             statusId={status.get('id')}
+            status={status}
             reactions={status.get('reactions')}
             numVisible={visibleReactions}
             addReaction={this.props.onReactionAdd}
             removeReaction={this.props.onReactionRemove}
             canReact={this.context.identity.signedIn}
+            reactTitle={intl.formatMessage({ id: 'status.react', defaultMessage: 'Add reaction' })}
           />
 
           {!isCollapsed ? (
