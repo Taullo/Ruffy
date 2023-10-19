@@ -801,25 +801,28 @@ class Status extends ImmutablePureComponent {
             {...statusContentProps}
           />
 
-          <StatusReactions
-            statusId={status.get('id')}
-            status={status}
-            reactions={status.get('reactions')}
-            numVisible={visibleReactions}
-            addReaction={this.props.onReactionAdd}
-            removeReaction={this.props.onReactionRemove}
-            canReact={this.context.identity.signedIn}
-            reactTitle={intl.formatMessage({ id: 'status.react', defaultMessage: 'Add reaction' })}
-          />
-
           {!isCollapsed ? (
+            <>
+            <StatusReactions
+              statusId={status.get('id')}
+              status={status}
+              reactions={status.get('reactions')}
+              numVisible={visibleReactions}
+              addReaction={this.props.onReactionAdd}
+              removeReaction={this.props.onReactionRemove}
+              canReact={this.context.identity.signedIn}
+              reactTitle={intl.formatMessage({ id: 'status.react', defaultMessage: 'Add reaction' })}
+            />
+
             <StatusActionBar
               status={status}
               account={status.get('account')}
               onFilter={matchedFilters ? this.handleFilterClick : null}
               {...other}
             />
-          ) : null}
+            </>
+          ) : <button className='button button-expand' title='Expand Post' onClick={() => this.setCollapsed(false)} >Expand Post</button>}
+
           {notification ? (
             <NotificationOverlayContainer
               notification={notification}

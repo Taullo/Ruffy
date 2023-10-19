@@ -179,6 +179,23 @@
     //    }
   }
 
+  &.button-expand {
+    background: transparent;
+    padding: 2px 17px;
+    color: var(--ui-highlight-color);
+    border: 1px solid var(--ui-highlight-color);
+    display: block;
+    margin: 0 auto;
+    width: max-content;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
+    }
+  }
+
   &.button--block {
     display: block;
     width: 100%;

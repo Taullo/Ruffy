@@ -109,7 +109,11 @@ module.exports = {
     'react/display-name': 'off',
     'react/jsx-fragments': ['error', 'syntax'],
     'react/jsx-equals-spacing': 'error',
-    'react/jsx-no-bind': 'error',
+    "react/jsx-no-bind": [1, {
+      "allowArrowFunctions": true,
+      "allowFunctions": true,
+      "allowBind": true
+    }],
     'react/jsx-no-useless-fragment': 'error',
     'react/jsx-no-target-blank': 'off',
     'react/jsx-tag-spacing': 'error',
