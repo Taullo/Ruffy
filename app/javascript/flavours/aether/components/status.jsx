@@ -318,6 +318,7 @@ class Status extends ImmutablePureComponent {
     if (this.props.settings.getIn(['collapsed_posts', 'enabled'])) {
       if (value) {
         this.setExpansion(false);
+        this.setState({ showMedia: false });
       }
       this.setState({ isCollapsed: value });
     } else {
