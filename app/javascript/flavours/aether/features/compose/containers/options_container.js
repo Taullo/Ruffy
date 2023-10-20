@@ -6,7 +6,7 @@ import {
   addPoll,
   removePoll,
 } from 'flavours/aether/actions/compose';
-import { openModal } from 'flavours/aether/actions/modal';
+import { openModal, closeModal } from 'flavours/aether/actions/modal';
 
 import Options from '../components/options';
 
@@ -50,6 +50,24 @@ const mapDispatchToProps = (dispatch) => ({
       modalType: 'DOODLE',
       modalProps: { noEsc: true, noClose: true },
     }));
+  },
+
+  onEmbedTenor() {
+    dispatch(openModal({
+      modalType: 'TENOR',
+      modalProps: { noEsc: true },
+    }));
+  },
+
+  onModalClose() {
+    dispatch(closeModal({
+      modalType: undefined,
+      ignoreFocus: false,
+    }));
+  },
+
+  onModalOpen(props) {
+    dispatch(openModal({ modalType: 'ACTIONS', modalProps: props }));
   },
 });
 

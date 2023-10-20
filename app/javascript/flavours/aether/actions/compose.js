@@ -69,6 +69,7 @@ export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS'
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
 export const COMPOSE_DOODLE_SET        = 'COMPOSE_DOODLE_SET';
+export const COMPOSE_TENOR_SET         = 'COMPOSE_TENOR_SET';
 
 export const COMPOSE_POLL_ADD             = 'COMPOSE_POLL_ADD';
 export const COMPOSE_POLL_REMOVE          = 'COMPOSE_POLL_REMOVE';
@@ -291,7 +292,14 @@ export function doodleSet(options) {
   };
 }
 
-export function uploadCompose(files) {
+export function tenorSet(options) {
+  return {
+    type: COMPOSE_TENOR_SET,
+    options: options,
+  };
+};
+
+export function uploadCompose(files, alt = '') {
   return function (dispatch, getState) {
     const uploadLimit = 20;
     const media  = getState().getIn(['compose', 'media_attachments']);
@@ -311,6 +319,7 @@ export function uploadCompose(files) {
 
       const data = new FormData();
       data.append('file', file);
+      data.append('description', alt);
 
       api(getState).post('/api/v2/media', data, {
         onUploadProgress: function({ loaded }){

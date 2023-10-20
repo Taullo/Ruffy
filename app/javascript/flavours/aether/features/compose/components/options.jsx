@@ -17,6 +17,8 @@ import { pollLimits } from 'flavours/aether/initial_state';
 import DropdownContainer from '../containers/dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
 
+import TextIconButton from './text_icon_button';
+
 
 
 //  Utils.
@@ -38,6 +40,10 @@ const messages = defineMessages({
   doodle: {
     defaultMessage: 'Draw something',
     id: 'compose.attach.doodle',
+  },
+  gif: {
+    defaultMessage: 'Embed GIF',
+    id: 'compose.attach.gif',
   },
   html: {
     defaultMessage: 'HTML',
@@ -128,6 +134,9 @@ class ComposerOptions extends ImmutablePureComponent {
     onChangeContentType: PropTypes.func,
     onTogglePoll: PropTypes.func,
     onDoodleOpen: PropTypes.func,
+    onEmbedTenor: PropTypes.func,
+    onModalClose: PropTypes.func,
+    onModalOpen: PropTypes.func,
     onUpload: PropTypes.func,
     contentType: PropTypes.string,
     resetFileKey: PropTypes.number,
@@ -150,6 +159,10 @@ class ComposerOptions extends ImmutablePureComponent {
   handleClickDoodle = () => {
     this.props.onDoodleOpen();
   };
+  
+  handleClickGif = () => {
+    this.props.onEmbedTenor();
+  }
 
   //  Handles a ref to the file input.
   handleRefFileElement = (fileElement) => {
@@ -226,12 +239,6 @@ class ComposerOptions extends ImmutablePureComponent {
           multiple
           style={{ display: 'none' }}
         />
-        <IconButton
-          disabled={disabled}
-          icon='paint-brush'
-          onClick={this.handleClickDoodle}
-          title={formatMessage(messages.doodle)}
-        />
         {!!pollLimits && (
           <IconButton
             active={hasPoll}
@@ -246,6 +253,18 @@ class ComposerOptions extends ImmutablePureComponent {
             title={formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
           />
         )}
+        <TextIconButton
+          disabled={disabled}
+          label='GIF'
+          onClick={this.handleClickGif}
+          title={formatMessage(messages.gif)}
+        />
+        <IconButton
+          disabled={disabled}
+          icon='paint-brush'
+          onClick={this.handleClickDoodle}
+          title={formatMessage(messages.doodle)}
+        />
         <hr />
 
         <DropdownContainer
