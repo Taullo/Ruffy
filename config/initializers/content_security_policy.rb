@@ -53,13 +53,13 @@ unless Rails.env.development?
     p.frame_ancestors :none
     p.script_src      :self, assets_host, "'wasm-unsafe-eval'"
     p.font_src        :self, assets_host
-    p.img_src         :self, :data, :blob, *data_hosts
+    p.img_src         :self, :data, :blob, *data_hosts, 'media.tenor.com'
     p.style_src       :self, assets_host
     p.media_src       :self, :data, *data_hosts
     p.frame_src       :self, :https
     p.child_src       :self, :blob, assets_host
     p.worker_src      :self, :blob, assets_host
-    p.connect_src     :self, :blob, :data, Rails.configuration.x.streaming_api_base_url, *data_hosts
+    p.connect_src     :self, :blob, :data, Rails.configuration.x.streaming_api_base_url, *data_hosts, '*.tenor.com'
     p.manifest_src    :self, assets_host
 
     if sso_host.present?
