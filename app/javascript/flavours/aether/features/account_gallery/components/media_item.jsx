@@ -123,7 +123,7 @@ export default class MediaItem extends ImmutablePureComponent {
           />
         );
 
-        label = 'GIF';
+        label = 'GIFV';
       }
 
       thumbnail = (
