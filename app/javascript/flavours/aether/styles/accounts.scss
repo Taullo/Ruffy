@@ -1297,7 +1297,7 @@ img.parallax[src*='/headers/original/missing.png'] {
   .account-gallery__item {
     flex: auto;
     width: 148px;
-    height: 148px;
+    max-height: 400px;
 
     &:nth-child(n + 9) {
       display: none;
@@ -1311,15 +1311,9 @@ img.parallax[src*='/headers/original/missing.png'] {
       .account-gallery__item {
         &:first-child,
         &:nth-child(2) {
-          height: 220px;
-          width: 220px;
+          width: calc(33% - 4px);
         }
       }
-    }
-
-    .account-gallery__container .account-gallery__item {
-      width: 228px;
-      height: 228px;
     }
   }
 }
