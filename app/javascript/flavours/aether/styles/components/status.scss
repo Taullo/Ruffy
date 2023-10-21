@@ -195,6 +195,27 @@
   }
 }
 
+.no-reduce-motion {
+  .status {
+    &:hover,
+    &:focus,
+    &:hover,
+    &.active {
+      .emoji-picker-dropdown {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .emoji-picker-dropdown {
+      transition: all 200ms !important;
+      transition-property: background-color, color, opacity, transform !important;
+      opacity: 0;
+      transform: scale(0.3);
+    }
+  }
+}
+
 .status {
   padding: 10px 14px;
   position: relative;
@@ -203,6 +224,21 @@
   cursor: auto;
   background: var(--ui-body-dim-color);
   transition: background 0.2s;
+
+  &:hover,
+  &:focus,
+  &:hover,
+  &.active {
+    .emoji-picker-dropdown {
+      opacity: 1;
+    }
+  }
+
+  .emoji-picker-dropdown {
+    transition: all 200ms !important;
+    transition-property: background-color, color, opacity;
+    opacity: 0;
+  }
 
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
