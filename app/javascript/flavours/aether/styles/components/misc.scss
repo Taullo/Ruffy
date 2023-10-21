@@ -1257,22 +1257,28 @@ button.icon-button.active i.fa-retweet {
 
 .load-more {
   display: block;
-  color: var(--ui-font-dimmer-color);
-  border: 0;
-  font-size: inherit;
+  color: var(--ui-highlight-color);
+  border: 3px solid var(--ui-highlight-color);
+  font-size: 1rem;
   text-align: center;
-  line-height: inherit;
-  padding: 15px;
+  padding: 10px 15px;
   box-sizing: border-box;
   clear: both;
   text-decoration: none;
-  background: var(--ui-base-color);
+  background: transparent;
   margin: 0 auto;
   border-radius: 100px;
   margin-top: 8px;
+  font-weight: bold;
+  transition:
+    0.2s background,
+    0.2s color,
+    0.2s border-color;
 
   &:hover {
-    background: var(--ui-base-color);
+    background: var(--ui-highlight-color);
+    color: var(--ui-highlight-button-text-color);
+    border-color: var(--ui-highlight-button-text-color);
   }
 }
 
