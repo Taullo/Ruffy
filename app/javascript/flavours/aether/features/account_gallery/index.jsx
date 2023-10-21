@@ -209,6 +209,7 @@ class AccountGallery extends ImmutablePureComponent {
                 <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />
               </div>
             ) : (
+              <>
               <div role='feed' className='account-gallery__container' ref={this.handleRef}>
                 {attachments.map((attachment, index) => attachment === null ? (
                   <LoadMoreMedia key={'more:' + attachments.getIn(index + 1, 'id')} maxId={index > 0 ? attachments.getIn(index - 1, 'id') : null} onLoadMore={this.handleLoadMore} />
@@ -216,8 +217,9 @@ class AccountGallery extends ImmutablePureComponent {
                   <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} cwSettings={cwVisibility} />
                 ))}
 
-                {loadOlder}
               </div>
+              {loadOlder}
+              </>
             )}
 
             {isLoading && attachments.size === 0 && (
