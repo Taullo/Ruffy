@@ -132,7 +132,7 @@ class Item extends PureComponent {
           if (index === 0) {
             width = 50
           }
-          if (index === 7) {
+          if (index === 1) {
             width = 50
           }
         }
@@ -140,10 +140,10 @@ class Item extends PureComponent {
           if (index === 0) {
             width = 50
           }
-          if (index === 4) {
+          if (index === 1) {
             width = 50
           }
-          if (index === 8) {
+          if (index === 3) {
             width = 50
           }
         }
