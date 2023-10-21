@@ -243,7 +243,6 @@ class ComposerOptions extends ImmutablePureComponent {
           <IconButton
             active={hasPoll}
             icon='tasks'
-            inverted
             onClick={onTogglePoll}
             size={18}
             style={{

@@ -126,9 +126,8 @@
 
       &:hover {
         background: var(--ui-highlight-color);
-        color: var(--ui-font-color);
+        color: var(--ui-highlight-button-text-color);
         text-decoration: none;
-        border-color: white;
       }
     }
 

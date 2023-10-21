@@ -197,7 +197,6 @@ export default class ComposerOptionsDropdown extends PureComponent {
             className='privacy-dropdown__value-icon'
             disabled={disabled}
             icon={icon}
-            inverted
             onClick={this.handleToggle}
             onMouseDown={this.handleMouseDown}
             onKeyDown={this.handleButtonKeyDown}

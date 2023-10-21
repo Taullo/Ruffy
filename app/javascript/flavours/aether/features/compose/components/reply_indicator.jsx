@@ -55,7 +55,6 @@ class ReplyIndicator extends ImmutablePureComponent {
             icon='times'
             onClick={this.handleClick}
             title={intl.formatMessage(messages.cancel)}
-            inverted
           />
           {account && (
             <AccountContainer
