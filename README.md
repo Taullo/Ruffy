@@ -9,6 +9,9 @@ Current user features unique from Glitch-soc:
 - Blog length posts (100k character limit)
 - 20 media uploads (including from other instances)
 - 20 poll options
+- Emoji Reactions (https://github.com/glitch-soc/mastodon/pull/2221/files)
+- GIF Reactions ([adapted from](https://github.com/koyuspace/mastodon))
+- Domain muting (https://github.com/glitch-soc/mastodon/pull/2163/files)
 - Larger profile headers
 - Larger filesize limits
 - 15 profile fields
