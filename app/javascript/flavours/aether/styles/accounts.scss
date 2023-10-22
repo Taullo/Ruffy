@@ -733,6 +733,7 @@
 }
 
 .account-gallery__item {
+  /* TODO Redo gallery item sizes */
   border: 0;
   box-sizing: border-box;
   display: block;
@@ -740,6 +741,7 @@
   border-radius: var(--ui-border-radius);
   overflow: hidden;
   margin: 2px;
+  width: calc(33% - 4px);
 
   &__icons {
     position: absolute;
@@ -747,6 +749,10 @@
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px;
+  }
+
+  &__hidden {
+    min-height: 200px;
   }
 }
 
@@ -1314,11 +1320,6 @@ img.parallax[src*='/headers/original/missing.png'] {
           width: calc(33% - 4px);
         }
       }
-    }
-
-    .account-gallery__container .account-gallery__item {
-      width: calc(33% - 4px);
-      min-height: 150px;
     }
   }
 }

@@ -140,7 +140,7 @@ export default class MediaItem extends ImmutablePureComponent {
     }
 
     return (
-      <div className='account-gallery__item' style={{ width, height }}>
+      <div className={`account-gallery__item ${!visible ? 'account-gallery__item__hidden' : 'account-gallery__item__visible'}`} style={{ width, height }}>
         <a className='media-gallery__item-thumbnail' href={status.get('url')} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
           <Blurhash
             hash={attachment.get('blurhash')}
