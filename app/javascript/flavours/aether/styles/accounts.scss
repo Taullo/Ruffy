@@ -1318,6 +1318,7 @@ img.parallax[src*='/headers/original/missing.png'] {
 
     .account-gallery__container .account-gallery__item {
       width: calc(33% - 4px);
+      min-height: 150px;
     }
   }
 }
