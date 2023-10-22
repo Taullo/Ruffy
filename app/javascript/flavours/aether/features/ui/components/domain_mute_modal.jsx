@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 
 import Toggle from 'react-toggle';
 
-import { muteDomain, toggleHideFromHome } from '../../../actions/domain_mutes';
-import { closeModal } from '../../../actions/modal';
-import Button from '../../../components/button';
+import { muteDomain, toggleHideFromHome } from 'flavours/aether/actions/domain_mutes';
+import { closeModal } from 'flavours/glitch/actions/modal';
+import Button from 'flavours/glitch/components/button';
 
 const mapStateToProps = state => {
   return {
