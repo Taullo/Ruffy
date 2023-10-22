@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 
 import Toggle from 'react-toggle';
 
-import { muteDomain, toggleHideFromHome } from 'flavours/aether/actions/domain_mutes';
-import { closeModal } from 'flavours/aether/actions/modal';
-import Button from 'flavours/aether/components/button';
+import { muteDomain, toggleHideFromHome } from '../../../actions/domain_mutes';
+import { closeModal } from '../../../actions/modal';
+import Button from '../../../components/button';
 
 const mapStateToProps = state => {
   return {
@@ -25,7 +25,10 @@ const mapDispatchToProps = dispatch => {
     },
 
     onClose() {
-      dispatch(closeModal());
+      dispatch(closeModal({
+        modalType: undefined,
+        ignoreFocus: false,
+      }));
     },
 
     onToggleHideFromHome() {
@@ -75,14 +78,14 @@ class DomainMuteModal extends React.PureComponent {
           <p>
             <FormattedMessage
               id='confirmations.domain_mute.message'
-              defaultMessage='Are you sure you want to mute entire domain {domain}?'
+              defaultMessage='Are you sure you want to mute the entire domain, {domain}?'
               values={{ domain: <strong>{domain}</strong> }}
             />
           </p>
           <p className='mute-modal__explanation'>
             <FormattedMessage
               id='confirmations.domain_mute.explanation'
-              defaultMessage='This will hide posts from them and posts mentioning them, but it will still allow them to see your posts and follow you.'
+              defaultMessage='This will hide posts from {domain} from public timelines except for profiles you follow'
             />
           </p>
           <div className='setting-toggle'>
