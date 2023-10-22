@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 
 import { fetchDomainMutes, expandDomainMutes } from '../../actions/domain_mutes';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
-import LoadingIndicator from '../../components/loading_indicator';
+import {LoadingIndicator} from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import MutedDomainContainer from '../../containers/muted_domain_container';
 import Column from '../ui/components/column';

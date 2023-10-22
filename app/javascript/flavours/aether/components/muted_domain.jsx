@@ -6,7 +6,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import IconButton from './icon_button';
+import {IconButton} from './icon_button';
 
 const messages = defineMessages({
   unmute_domain: { id: 'account.unmute_domain', defaultMessage: 'Unmute domain {domain}' },
