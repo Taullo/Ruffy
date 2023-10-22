@@ -24,6 +24,7 @@
   "account.direct": "Privately mention @{name}",
   "account.disable_notifications": "Stop notifying me when @{name} posts",
   "account.domain_blocked": "Domain blocked",
+  "account.domain_muted": "Domain muted",
   "account.edit_profile": "Edit profile",
   "account.enable_notifications": "Notify me when @{name} posts",
   "account.endorse": "Feature on profile",

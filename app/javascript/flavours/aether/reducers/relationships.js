@@ -24,6 +24,10 @@ import {
   DOMAIN_BLOCK_SUCCESS,
   DOMAIN_UNBLOCK_SUCCESS,
 } from 'flavours/aether/actions/domain_blocks';
+import {
+  DOMAIN_MUTE_SUCCESS,
+  DOMAIN_UNMUTE_SUCCESS,
+} from 'flavours/aether/actions/domain_mutes';
 
 import {
   NOTIFICATIONS_UPDATE,
@@ -44,6 +48,14 @@ const setDomainBlocking = (state, accounts, blocking) => {
   return state.withMutations(map => {
     accounts.forEach(id => {
       map.setIn([id, 'domain_blocking'], blocking);
+    });
+  });
+};
+
+const setDomainMuting = (state, accounts, muting) => {
+  return state.withMutations(map => {
+    accounts.forEach(id => {
+      map.setIn([id, 'domain_muting'], muting);
     });
   });
 };
@@ -82,6 +94,10 @@ export default function relationships(state = initialState, action) {
     return setDomainBlocking(state, action.accounts, true);
   case DOMAIN_UNBLOCK_SUCCESS:
     return setDomainBlocking(state, action.accounts, false);
+  case DOMAIN_MUTE_SUCCESS:
+    return setDomainMuting(state, action.accounts, true);
+  case DOMAIN_UNMUTE_SUCCESS:
+    return setDomainMuting(state, action.accounts, false);
   default:
     return state;
   }

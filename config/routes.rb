@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     /follow_requests
     /blocks
     /domain_blocks
+    /domain_mutes
     /mutes
     /followed_tags
     /statuses/(*any)

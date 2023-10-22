@@ -17,6 +17,7 @@ import {
   directCompose,
 } from 'flavours/aether/actions/compose';
 import { blockDomain, unblockDomain } from 'flavours/aether/actions/domain_blocks';
+import { initDomainMuteModal, unmuteDomain } from 'flavours/aether/actions/domain_mutes';
 import { openModal } from 'flavours/aether/actions/modal';
 import { initMuteModal } from 'flavours/aether/actions/mutes';
 import { initReport } from 'flavours/aether/actions/reports';
@@ -157,6 +158,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onUnblockDomain (domain) {
     dispatch(unblockDomain(domain));
+  },
+
+  onMuteDomain (domain) {
+    dispatch(initDomainMuteModal(domain));
+  },
+
+  onUnmuteDomain (domain) {
+    dispatch(unmuteDomain(domain));
   },
 
   onAddToList (account) {

@@ -810,6 +810,7 @@ const startServer = async () => {
       // Filter based on domain blocks, blocks, mutes, or custom filters:
       const targetAccountIds = [payload.account.id].concat(payload.mentions.map(item => item.id));
       const accountDomain = payload.account.acct.split('@')[1];
+      const statusAccountId = payload.account.id;
 
       // TODO: Move this logic out of the message handling loop
       pgPool.connect((err, client, releasePgConnection) => {
@@ -831,7 +832,11 @@ const startServer = async () => {
         ];
 
         if (accountDomain) {
-          queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
+          queries.push(client.query(
+            `SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2
+             UNION
+             SELECT 1 FROM account_domain_mutes WHERE account_id = $1 AND domain = $2
+             AND NOT EXISTS (SELECT 1 FROM follows where account_id = $1 and target_account_id = $3)`, [req.accountId, accountDomain, statusAccountId]));
         }
 
         if (!payload.filtered && !req.cachedFilters) {

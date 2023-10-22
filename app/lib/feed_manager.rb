@@ -421,6 +421,7 @@ class FeedManager
   # @param [Integer] receiver_id
   # @param [Hash] crutches
   # @return [Boolean]
+  # rubocop:disable Metrics/CyclomaticComplexity
   def filter_from_home?(status, receiver_id, crutches, timeline_type = :home)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
@@ -444,16 +445,18 @@ class FeedManager
       should_filter &&= status.account_id != status.in_reply_to_account_id                                                       # and it's not a self-reply
 
       return !!should_filter
-    elsif status.reblog?                                                                                                         # Filter out a reblog
-      should_filter   = crutches[:hiding_reblogs][status.account_id]                                                             # if the reblogger's reblogs are suppressed
-      should_filter ||= crutches[:blocked_by][status.reblog.account_id]                                                          # or if the author of the reblogged status is blocking me
-      should_filter ||= crutches[:domain_blocking][status.reblog.account.domain]                                                 # or the author's domain is blocked
+    elsif status.reblog?                                                                                                               # Filter out a reblog
+      should_filter   = crutches[:hiding_reblogs][status.account_id]                                                                   # if the reblogger's reblogs are suppressed
+      should_filter ||= crutches[:blocked_by][status.reblog.account_id]                                                                # or if the author of the reblogged status is blocking me
+      should_filter ||= crutches[:domain_blocking][status.reblog.account.domain]                                                       # or the author's domain is blocked
+      should_filter ||= !crutches[:following][status.reblog.account_id] && crutches[:domain_muting_home][status.reblog.account.domain] # or if the author's domain is muted
 
       return !!should_filter
     end
 
     false
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   # Check if status should not be added to the mentions feed
   # @see NotifyService
@@ -633,6 +636,7 @@ class FeedManager
     crutches[:muting]               = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:domain_blocking]      = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
     crutches[:blocked_by]           = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+    crutches[:domain_muting_home]   = AccountDomainMute.where(hide_from_home: true, account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
     crutches[:exclusive_list_users] = ListAccount.where(list: lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
 
     crutches

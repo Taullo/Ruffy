@@ -128,6 +128,7 @@ namespace :api, format: false do
       resources :peers, only: [:index], controller: 'instances/peers'
       resources :rules, only: [:index], controller: 'instances/rules'
       resources :domain_blocks, only: [:index], controller: 'instances/domain_blocks'
+      resources :domain_mutes, only: [:index], controller: 'instances/domain_mutes'
       resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
       resource :extended_description, only: [:show], controller: 'instances/extended_descriptions'
       resource :translation_languages, only: [:show], controller: 'instances/translation_languages'
@@ -140,6 +141,7 @@ namespace :api, format: false do
     end
 
     resource :domain_blocks, only: [:show, :create, :destroy]
+    resource :domain_mutes, only: [:show, :create, :destroy]
 
     resource :directory, only: [:show]
 

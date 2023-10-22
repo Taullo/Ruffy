@@ -51,6 +51,7 @@ const messages = defineMessages({
   followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed Tags' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  domain_mutes: { id: 'navigation_bar.domain_mutes', defaultMessage: 'Muted domains' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
@@ -174,6 +175,7 @@ class Header extends PureComponent {
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes', href: '/mutes' });
     menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks', href: '/blocks' });
+    menu.push({ text: intl.formatMessage(messages.domain_mutes), to: '/domain_mutes', href: '/domain_mutes' });
     menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks', href: '/domain_blocks' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.logout), action: this.handleLogout });
