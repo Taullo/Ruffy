@@ -12,6 +12,7 @@ import {
   DOMAIN_MUTE_HOME_TIMELINE_SUCCESS,
 } from '../actions/domain_mutes';
 
+
 const initialState = ImmutableMap({
   blocks: ImmutableMap({
     items: ImmutableOrderedSet(),
