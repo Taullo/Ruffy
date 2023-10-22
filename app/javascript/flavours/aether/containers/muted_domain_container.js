@@ -2,8 +2,8 @@ import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
-import { unmuteDomain, excludeDomainHomeTimeline, initDomainMuteModal } from '../actions/domain_mutes';
-import MutedDomain from '../components/muted_domain';
+import { unmuteDomain, excludeDomainHomeTimeline, initDomainMuteModal } from 'flavours/aether/actions/domain_mutes';
+import MutedDomain from 'flavours/aether/components/muted_domain';
 
 const makeMapStateToProps = () => {
   const mapStateToProps = () => ({});

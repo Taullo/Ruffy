@@ -11,12 +11,12 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { fetchDomainMutes, expandDomainMutes } from '../../actions/domain_mutes';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
-import {LoadingIndicator} from '../../components/loading_indicator';
-import ScrollableList from '../../components/scrollable_list';
-import MutedDomainContainer from '../../containers/muted_domain_container';
-import Column from '../ui/components/column';
+import { fetchDomainMutes, expandDomainMutes } from 'flavours/aether/actions/domain_mutes';
+import ColumnBackButtonSlim from 'flavours/aether/components/column_back_button_slim';
+import {LoadingIndicator} from 'flavours/aether/components/loading_indicator';
+import ScrollableList from 'flavours/aether/components/scrollable_list';
+import MutedDomainContainer from 'flavours/aether/containers/muted_domain_container';
+import Column from 'flavours/aether/features/ui/components/column';
 
 
 const messages = defineMessages({
