@@ -85,7 +85,8 @@ class DomainMuteModal extends React.PureComponent {
           <p className='mute-modal__explanation'>
             <FormattedMessage
               id='confirmations.domain_mute.explanation'
-              defaultMessage='This will hide posts from {domain} from public timelines except for profiles you follow'
+              defaultMessage='This will hide posts from {domain} from public timelines except for profiles you follow!'
+              values={{ domain: <strong>{domain}</strong> }}
             />
           </p>
           <div className='setting-toggle'>
