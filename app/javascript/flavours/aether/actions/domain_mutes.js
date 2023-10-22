@@ -222,7 +222,7 @@ export function initDomainMuteModal(domain) {
       domain,
     });
 
-    dispatch(openModal('DOMAIN_MUTE'));
+    dispatch(openModal({ modalType: 'DOMAIN_MUTE' }));
   };
 }
 
