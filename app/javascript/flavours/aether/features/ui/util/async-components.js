@@ -123,11 +123,11 @@ export function DomainBlocks () {
 }
 
 export function DomainMutes () {
-  return import(/* webpackChunkName: "features/domain_mutes" */'../../domain_mutes');
+  return import(/* webpackChunkName: "flavours/aether/features/domain_mutes" */'../../domain_mutes');
 }
 
 export function DomainMuteModal () {
-  return import(/* webpackChunkName: "modals/domain_mute_modal" */'../components/domain_mute_modal');
+  return import(/* webpackChunkName: "flavours/aether/async/modals/domain_mute_modal" */'../components/domain_mute_modal');
 }
 
 export function Mutes () {
