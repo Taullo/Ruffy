@@ -121,11 +121,11 @@
     color: var(--ui-highlight-color);
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid var(--ui-highlight-color);
+    border: 2px solid var(--ui-highlight-color);
 
-    &:active,
-    &:focus,
-    &:hover {
+    &:not(:disabled):active,
+    &:not(:disabled):focus,
+    &:not(:disabled):hover {
       background: var(--ui-highlight-color);
       border-color: var(--ui-highlight-color);
       color: var(--ui-highlight-button-text-color);
@@ -134,6 +134,8 @@
 
     &:disabled {
       opacity: 0.5;
+      color: var(--ui-font-dimmer-color);
+      border-color: var(--ui-font-dimmer-color);
     }
   }
 
