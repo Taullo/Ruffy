@@ -158,7 +158,6 @@
   box-sizing: border-box;
   width: 100%;
   clear: both;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
 }
 
 .status__prepend-icon-wrapper {
@@ -1064,7 +1063,7 @@ a.status-card.compact:hover {
 
 .status__wrapper--filtered__button {
   display: inline;
-  color: lighten($ui-highlight-color, 8%);
+  color: var(--ui-highlight-color);
   border: 0;
   background: transparent;
   padding: 0;
