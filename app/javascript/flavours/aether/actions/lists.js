@@ -238,7 +238,7 @@ export const fetchListSuggestions = q => (dispatch, getState) => {
   const params = {
     q,
     resolve: false,
-    limit: 100,
+    limit: 4,
     following: true,
   };
 
