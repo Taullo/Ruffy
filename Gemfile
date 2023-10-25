@@ -106,6 +106,9 @@ group :test do
   # Used to split testing into chunks in CI
   gem 'rspec_chunked', '~> 0.6'
 
+  # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
+  gem 'rspec-github', '~> 2.4', require: false
+
   # RSpec progress bar formatter
   gem 'fuubar', '~> 2.5'
 
@@ -169,12 +172,6 @@ group :development do
 
   # Linter CLI for HAML files
   gem 'haml_lint', require: false
-
-  # Deployment automation
-  gem 'capistrano', '~> 3.17'
-  gem 'capistrano-rails', '~> 1.6'
-  gem 'capistrano-rbenv', '~> 2.2'
-  gem 'capistrano-yarn', '~> 2.0'
 
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false

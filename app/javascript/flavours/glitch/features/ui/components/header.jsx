@@ -8,12 +8,12 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-import { Wordmark } from 'flavours/aether/components/wordmark';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { fetchServer } from 'flavours/glitch/actions/server';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { Icon } from 'flavours/glitch/components/icon';
 import Permalink from 'flavours/glitch/components/permalink';
+import { Wordmark } from 'flavours/glitch/components/wordmark';
 import { registrationsOpen, me, sso_redirect } from 'flavours/glitch/initial_state';
 
 
@@ -82,8 +82,8 @@ class Header extends PureComponent {
 
       if (sso_redirect) {
         content = (
-            <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
-        )
+          <a href={sso_redirect} data-method='post' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sso_redirect' defaultMessage='Login or Register' /></a>
+        );
       } else {
         let signupButton;
 

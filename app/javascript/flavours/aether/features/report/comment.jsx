@@ -105,7 +105,7 @@ const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedD
       </div>
     </>
   );
-}
+};
 
 Comment.propTypes = {
   comment: PropTypes.string.isRequired,

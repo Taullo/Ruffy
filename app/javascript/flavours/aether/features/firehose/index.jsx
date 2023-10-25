@@ -99,7 +99,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         break;
       }
     },
-    [dispatch, onlyMedia, feedType, allowLocalOnly, regex],
+    [dispatch, onlyMedia, feedType, regex],
   );
 
   const handleLoadMore = useCallback(
@@ -128,16 +128,18 @@ const Firehose = ({ feedType, multiColumn }) => {
     dispatch(openModal({
       modalType: 'TRENDING_HASHTAGS',
       modalProps: {},
-    }))
-    }
+    }));
+  },
+  []
   );
   
   const openSuggestions = useCallback(() => {
     dispatch(openModal({
       modalType: 'SUGGESTIONS',
       modalProps: {},
-    }))
-    }
+    }));
+  },
+  []
   );
 
   useEffect(() => {
@@ -186,7 +188,7 @@ const Firehose = ({ feedType, multiColumn }) => {
           defaultMessage='These are posts from across the fediverse that are gaining traction today. Newer posts with more boosts and favourites are ranked higher.'
         />
       </DismissableBanner>
-      ) : (
+    ) : (
       <DismissableBanner id='public_timeline'>
         <FormattedMessage
           id='dismissable_banner.public_timeline'
@@ -250,36 +252,36 @@ const Firehose = ({ feedType, multiColumn }) => {
           </div>
         </div>
 
-      <div className='scrollable scrollable--flex'>
-        <div className='account__section-headline'>
-          <NavLink exact to='/explore/local'>
-            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='Local' />
-          </NavLink>
+        <div className='scrollable scrollable--flex'>
+          <div className='account__section-headline'>
+            <NavLink exact to='/explore/local'>
+              <FormattedMessage tagName='div' id='firehose.local' defaultMessage='Local' />
+            </NavLink>
 
-          <NavLink exact to='/explore/remote'>
-            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Remote' />
-          </NavLink>
+            <NavLink exact to='/explore/remote'>
+              <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Remote' />
+            </NavLink>
 
-          <NavLink exact to='/explore/all'>
-            <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
-          </NavLink>
+            <NavLink exact to='/explore/all'>
+              <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+            </NavLink>
           
-          <NavLink exact to='/explore/popular'>
-            <FormattedMessage tagName='div' id='firehose.trending' defaultMessage='Popular' />
-          </NavLink>
-        </div>
+            <NavLink exact to='/explore/popular'>
+              <FormattedMessage tagName='div' id='firehose.trending' defaultMessage='Popular' />
+            </NavLink>
+          </div>
 
-        <StatusListContainer
-          prepend={prependBanner}
-          timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${feedType !== 'trending' && onlyMedia ? ':media' : ''}`}
-          onLoadMore={handleLoadMore}
-          trackScroll
-          scrollKey='firehose'
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-          regex={regex}
-        />
-      </div>
+          <StatusListContainer
+            prepend={prependBanner}
+            timelineId={`${feedType}${feedType === 'public' && allowLocalOnly ? ':allow_local_only' : ''}${feedType !== 'trending' && onlyMedia ? ':media' : ''}`}
+            onLoadMore={handleLoadMore}
+            trackScroll
+            scrollKey='firehose'
+            emptyMessage={emptyMessage}
+            bindToDocument={!multiColumn}
+            regex={regex}
+          />
+        </div>
       </div>
 
       <Helmet>
@@ -288,7 +290,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       </Helmet>
     </Column>
   );
-}
+};
 
 Firehose.propTypes = {
   multiColumn: PropTypes.bool,

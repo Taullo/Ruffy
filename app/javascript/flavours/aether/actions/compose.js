@@ -297,7 +297,7 @@ export function tenorSet(options) {
     type: COMPOSE_TENOR_SET,
     options: options,
   };
-};
+}
 
 export function uploadCompose(files, alt = '') {
   return function (dispatch, getState) {

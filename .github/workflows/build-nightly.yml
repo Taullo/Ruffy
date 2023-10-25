@@ -11,6 +11,7 @@ permissions:
 jobs:
   compute-suffix:
     runs-on: ubuntu-latest
+    if: github.repository == 'taullo/ruffy'
     steps:
       - id: version_vars
         env:
