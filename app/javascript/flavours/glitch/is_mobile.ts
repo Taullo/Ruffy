@@ -12,7 +12,7 @@ export type LayoutType = 'mobile' | 'single-column' | 'multi-column';
 export const layoutFromWindow = (): LayoutType => {
   if (isMobile(window.innerWidth)) {
     return 'mobile';
-  } else if (!forceSingleColumn && !transientSingleColumn) {
+  } else if (!transientSingleColumn) {
     return 'multi-column';
   } else {
     return 'single-column';
