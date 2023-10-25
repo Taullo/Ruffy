@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import NavigationPortal from 'flavours/glitch/components/navigation_portal';
 import { Wordmark } from 'flavours/glitch/components/wordmark';
 import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';
-import { transientSingleColumn } from 'flavours/glitch/is_mobile';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 
 import ColumnLink from './column_link';
@@ -66,15 +65,6 @@ class NavigationPanel extends Component {
     const { signedIn, disabledAccountId } = this.context.identity;
 
     let banner = undefined;
-
-    if(transientSingleColumn)
-      banner = (<div className='switch-to-advanced'>
-        {intl.formatMessage(messages.openedInClassicInterface)}
-        {" "}
-        <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
-          {intl.formatMessage(messages.advancedInterface)}
-        </a>
-      </div>);
 
     return (
       <div className='navigation-panel'>
