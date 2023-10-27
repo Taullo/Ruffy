@@ -371,8 +371,13 @@ class Status extends ImmutablePureComponent {
   };
 
   handleToggleVisibility = () => {
-    this.setState({ showMedia: !this.state.showMedia });
-    this.setExpansion(!this.state.isExpanded);
+    if (!this.state.isExpanded) {
+      this.setState({ showMedia: true });
+      this.setExpansion(true);
+    } else {
+      this.setState({ showMedia: false });
+      this.setExpansion(false);
+    }
   };
 
   handleOpenVideo = (options) => {
@@ -804,23 +809,23 @@ class Status extends ImmutablePureComponent {
 
           {!isCollapsed ? (
             <>
-            <StatusReactions
-              statusId={status.get('id')}
-              status={status}
-              reactions={status.get('reactions')}
-              numVisible={visibleReactions}
-              addReaction={this.props.onReactionAdd}
-              removeReaction={this.props.onReactionRemove}
-              canReact={this.context.identity.signedIn}
-              reactTitle={intl.formatMessage({ id: 'status.react', defaultMessage: 'Add reaction' })}
-            />
+              <StatusReactions
+                statusId={status.get('id')}
+                status={status}
+                reactions={status.get('reactions')}
+                numVisible={visibleReactions}
+                addReaction={this.props.onReactionAdd}
+                removeReaction={this.props.onReactionRemove}
+                canReact={this.context.identity.signedIn}
+                reactTitle={intl.formatMessage({ id: 'status.react', defaultMessage: 'Add reaction' })}
+              />
 
-            <StatusActionBar
-              status={status}
-              account={status.get('account')}
-              onFilter={matchedFilters ? this.handleFilterClick : null}
-              {...other}
-            />
+              <StatusActionBar
+                status={status}
+                account={status.get('account')}
+                onFilter={matchedFilters ? this.handleFilterClick : null}
+                {...other}
+              />
             </>
           ) : <button className='button button-expand' title='Expand Post' onClick={() => this.setCollapsed(false)} >Expand Post</button>}
 

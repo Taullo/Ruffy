@@ -291,15 +291,15 @@ class StatusContent extends PureComponent {
       element = element.parentNode;
     }
     if (deltaX + deltaY < 5) {
-      if (((this.props.status.get('spoiler_text').length > 0) || (this.props.status.get('sensitive'))) && (!this.props.expanded)) {
+      if (((this.props.status.get('spoiler_text').length > 0) || (this.props.status.get('sensitive'))) && (!this.props.expanded) && (this.props.cwSettings === 'obscured')) {
         this.props.onExpandedToggle();
         return;
-      } else if (e.button === 0 && parseClick) {
-        parseClick(e);
       }
-
       if (disabled || !this.startXY) {
         return;
+      }
+      if (e.button === 0 && parseClick) {
+        parseClick(e);
       }
 
       this.startXY = null;
@@ -413,7 +413,7 @@ class StatusContent extends PureComponent {
       }
 
       return (
-      <>
+        <>
           <div className='spoiler_content'>
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
             {' '}
@@ -421,27 +421,27 @@ class StatusContent extends PureComponent {
               {toggleText}
             </button>
           </div>
-        <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+          <div className={classNames} tabIndex={0} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
 
-          {mentionsPlaceholder}
+            {mentionsPlaceholder}
 
-          <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : 'status__content__spoiler--' + cwSettings}`}>
-            <div
-              ref={this.setContentsRef}
-              key={`contents-${tagLinks}`}
-              tabIndex={!hidden ? 0 : null}
-              dangerouslySetInnerHTML={content}
-              className='status__content__text translate'
-              onMouseEnter={this.handleMouseEnter}
-              onMouseLeave={this.handleMouseLeave}
-              lang={language}
-            />
-            {!hidden && translateButton}
-            {media}
+            <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : 'status__content__spoiler--' + cwSettings}`}>
+              <div
+                ref={this.setContentsRef}
+                key={`contents-${tagLinks}`}
+                tabIndex={!hidden ? 0 : null}
+                dangerouslySetInnerHTML={content}
+                className='status__content__text translate'
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
+                lang={language}
+              />
+              {!hidden && translateButton}
+              {media}
+            </div>
+            <div className={hashtagState}>{hashtagBar}</div>
+
           </div>
-          <div className={hashtagState}>{hashtagBar}</div>
-
-        </div>
         </>
       );
     } else if (parseClick) {
