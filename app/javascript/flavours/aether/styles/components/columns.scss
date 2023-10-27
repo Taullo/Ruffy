@@ -1134,6 +1134,10 @@ $ui-header-height: 55px;
         -webkit-text-stroke: 0 transparent;
       }
     }
+
+    span {
+      display: none;
+    }
   }
 
   .icon-with-badge__badge {

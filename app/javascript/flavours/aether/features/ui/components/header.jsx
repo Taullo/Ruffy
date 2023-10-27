@@ -167,7 +167,6 @@ class Header extends PureComponent {
     menu.push({ text: intl.formatMessage(messages.preferences), href: preferencesLink });
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
     menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests', href: '/follow_requests' });
     menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags', href: '/followed_tags' });
     menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites', href: '/favourites' });
     menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks', href: '/bookmarks' });
@@ -187,8 +186,8 @@ class Header extends PureComponent {
         <>
           {location.pathname !== '/publish' && <button id='compose_button' onClick={openCompose} className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /><i className='fa fa-pencil-square-o fa-fw' /></button>}
           {layout !== 'mobile' && <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />} title={intl.formatMessage(messages.notifications)} />}
-          {layout !== 'mobile' && <ColumnLink transparent to='/conversations' icon='comments' title={intl.formatMessage(messages.direct)} />}
           <FollowRequestsColumnLink />
+          {layout !== 'mobile' && <ColumnLink transparent to='/conversations' icon='comments' title={intl.formatMessage(messages.direct)} />}
           {layout === 'mobile' && <ColumnLink transparent to='/search' icon='search' title={intl.formatMessage(messages.search)} />}
           {layout !== 'mobile' && <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />}
           <Account />
