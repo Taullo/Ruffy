@@ -8,7 +8,6 @@ import { Link, withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
-
 import { openModal } from 'flavours/aether/actions/modal';
 import { fetchServer } from 'flavours/aether/actions/server';
 import { Avatar } from 'flavours/aether/components/avatar';
@@ -20,6 +19,7 @@ import { registrationsOpen, me, sso_redirect } from 'flavours/aether/initial_sta
 import { preferencesLink, profileLink } from 'flavours/aether/utils/backend_links';
 import { logOut } from 'flavours/aether/utils/log_out';
 
+import FollowRequestsColumnLink from './follow_requests_column_link';
 import NotificationsCounterIcon from './notifications_counter_icon';
 
 const messages = defineMessages({
@@ -168,7 +168,6 @@ class Header extends PureComponent {
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests', href: '/follow_requests' });
-    menu.push({ text: intl.formatMessage(messages.lists), action: this.handleLists, href: '/lists' });
     menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags', href: '/followed_tags' });
     menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites', href: '/favourites' });
     menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks', href: '/bookmarks' });
@@ -189,6 +188,7 @@ class Header extends PureComponent {
           {location.pathname !== '/publish' && <button id='compose_button' onClick={openCompose} className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='New post' /><i className='fa fa-pencil-square-o fa-fw' /></button>}
           {layout !== 'mobile' && <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='header-link__notif' />} title={intl.formatMessage(messages.notifications)} />}
           {layout !== 'mobile' && <ColumnLink transparent to='/conversations' icon='comments' title={intl.formatMessage(messages.direct)} />}
+          <FollowRequestsColumnLink />
           {layout === 'mobile' && <ColumnLink transparent to='/search' icon='search' title={intl.formatMessage(messages.search)} />}
           {layout !== 'mobile' && <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />}
           <Account />

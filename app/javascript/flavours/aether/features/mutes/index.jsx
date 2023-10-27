@@ -66,18 +66,20 @@ class Mutes extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} name='mutes' icon='volume-off' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <ScrollableList
-          scrollKey='mutes'
-          onLoadMore={this.handleLoadMore}
-          hasMore={hasMore}
-          isLoading={isLoading}
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        >
-          {accountIds.map(id =>
-            <AccountContainer key={id} id={id} defaultAction='mute' />,
-          )}
-        </ScrollableList>
+        <div className='scrollable mute-scroll'>
+          <ScrollableList
+            scrollKey='mutes'
+            onLoadMore={this.handleLoadMore}
+            hasMore={hasMore}
+            isLoading={isLoading}
+            emptyMessage={emptyMessage}
+            bindToDocument={!multiColumn}
+          >
+            {accountIds.map(id =>
+              <AccountContainer key={id} id={id} defaultAction='mute' />,
+            )}
+          </ScrollableList>
+        </div>
 
         <Helmet>
           <meta name='robots' content='noindex' />
