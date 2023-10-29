@@ -362,17 +362,6 @@ class StatusContent extends PureComponent {
         spoilerContent = { __html: 'Unlabeled sensitive content' };
       }
 
-      //  const mentionLinks = status.get('mentions').map(item => (
-      //    <Permalink
-      //      to={`/@${item.get('acct')}`}
-      //      href={item.get('url')}
-      //      key={item.get('id')}
-      //      className='mention'
-      //    >
-      //      @<span>{item.get('username')}</span>
-      //    </Permalink>
-      //  )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
-
       let toggleText = null;
       if (hidden) {
         toggleText = [
