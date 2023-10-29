@@ -36,6 +36,7 @@ export default class StatusHeader extends PureComponent {
     } = this.props;
 
     const account = status.get('account');
+    const accountLink = `/@${account.get('acct')}`;
 
     let statusAvatar;
     if (friend === undefined || friend === null) {
@@ -47,7 +48,7 @@ export default class StatusHeader extends PureComponent {
     return (
       <div className='status__info__account'>
         <a
-          href={account.get('url')}
+          href={accountLink}
           target='_blank'
           className='status__avatar'
           onClick={this.handleAccountClick}
@@ -56,7 +57,7 @@ export default class StatusHeader extends PureComponent {
           {statusAvatar}
         </a>
         <a
-          href={account.get('url')}
+          href={accountLink}
           target='_blank'
           className='status__display-name'
           onClick={this.handleAccountClick}
