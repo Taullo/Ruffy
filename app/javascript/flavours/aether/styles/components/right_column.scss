@@ -37,6 +37,7 @@
 
   .active {
     color: var(--ui-highlight-color);
+    font-weight: bold;
 
     &:hover {
       color: var(--ui-font-color);
