@@ -34,4 +34,12 @@
       color: var(--ui-highlight-button-text-color);
     }
   }
+
+  .active {
+    color: var(--ui-highlight-color);
+
+    &:hover {
+      color: var(--ui-font-color);
+    }
+  }
 }

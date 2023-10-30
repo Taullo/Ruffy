@@ -618,6 +618,8 @@
 .detailed-status {
   background: var(--ui-body-color);
   padding: 14px 10px;
+  border-top-left-radius: var(--ui-border-radius);
+  border-top-right-radius: var(--ui-border-radius);
 
   &--flex {
     display: flex;
