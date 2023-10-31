@@ -556,22 +556,29 @@ $ui-header-height: 55px;
   overflow: hidden;
   background-color: transparent;
   border: 0;
-  border-radius: 4px;
   margin-bottom: 10px;
   align-items: stretch;
   gap: 2px;
 }
 
 .pillbar-button {
-  border: 0;
-  color: #fafafa;
-  padding: 2px;
+  color: var(--ui-font-color);
+  padding: 10px;
   margin: 0;
   font-size: inherit;
   flex: auto;
-  background-color: var(--ui-base-color);
+  background: transparent;
   transition: all 0.2s ease;
-  transition-property: background-color, box-shadow;
+  transition-property: color, background-color, box-shadow, border-color;
+  border: 3px solid var(--ui-highlight-color);
+
+  &:first-child {
+    border-radius: 20px 0 0 20px;
+  }
+
+  &:last-child {
+    border-radius: 0 20px 20px 0;
+  }
 
   &[disabled] {
     cursor: not-allowed;
@@ -581,15 +588,19 @@ $ui-header-height: 55px;
   &:not([disabled]) {
     &:hover,
     &:focus {
-      background-color: var(--ui-page-background);
+      background: var(--ui-font-color);
+      border-color: var(--ui-font-color);
+      color: var(--ui-base-color);
     }
 
     &.active {
-      background-color: var(--ui-highlight-color);
+      background: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
 
       &:hover,
       &:focus {
-        background-color: var(--ui-highlight-color);
+        background: var(--ui-highlight-color);
+        color: var(--ui-highlight-button-text-color);
       }
     }
   }
