@@ -238,6 +238,7 @@
   font-size: 0.95rem;
   line-height: 20px;
   margin: 0;
+  margin-top: 8px;
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: var(--ui-border-radius);
   }
@@ -1098,19 +1099,26 @@
     &__links {
       font-size: 14px;
       color: var(--ui-font-dimmest-color);
-      padding: 10px 0;
+      padding: 15px 0;
+      background: var(--ui-body-color);
+      @media screen and (min-width: $no-gap-breakpoint) {
+        border-radius: var(--ui-border-radius);
+      }
+
+      margin-top: 8px;
+      display: flex;
+      font-weight: 500;
+      justify-content: space-around;
+
+      strong {
+        font-weight: 700;
+        color: var(--ui-font-color);
+      }
 
       a {
-        display: inline-block;
         color: var(--ui-font-dimmest-color);
         text-decoration: none;
-        padding: 5px 10px;
         font-weight: 500;
-
-        strong {
-          font-weight: 700;
-          color: var(--ui-font-color);
-        }
       }
     }
   }

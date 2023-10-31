@@ -135,12 +135,6 @@
     .account-scroll {
       max-width: var(--ui-widescreen-width);
       width: auto;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      row-gap: 15px;
-      column-gap: 15px;
-      align-content: start;
     }
 
     .scrollable,
@@ -200,9 +194,19 @@
       padding: 0 10px;
     }
 
+    .account__fields {
+      margin-top: 0;
+    }
+
     .account-scroll {
       max-width: var(--ui-widescreen-width);
       width: calc(100vw - 20px);
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      row-gap: 15px;
+      column-gap: 15px;
+      align-content: start;
 
       .scrollable-list {
         margin-top: -5px;

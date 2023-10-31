@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import Fields from 'flavours/aether/features/account/components/fields';
-
+import Relationships from 'flavours/aether/features/account/components/relationships';
 
 export default class RightColumn extends ImmutablePureComponent {
 
@@ -36,12 +36,19 @@ export default class RightColumn extends ImmutablePureComponent {
     }
 
     return (
-        
+      <>
         <Fields 
           account={account}
           domain={this.props.domain}
           hidden={hidden}
         />
+        
+        <Relationships 
+          account={account}
+          domain={this.props.domain}
+          hidden={hidden}
+        />
+      </>
 
     );
   }

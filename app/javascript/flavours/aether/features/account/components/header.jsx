@@ -4,16 +4,13 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
-import { NavLink } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { Avatar } from 'flavours/aether/components/avatar';
 import Button from 'flavours/aether/components/button';
-import { FollowersCounter, FollowingCounter, StatusesCounter } from 'flavours/aether/components/counters';
 import { Icon } from 'flavours/aether/components/icon';
-import { ShortNumber } from 'flavours/aether/components/short_number';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'flavours/aether/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/aether/permissions';
@@ -349,9 +346,9 @@ class Header extends ImmutablePureComponent {
 
         <div className='account__header__bar'>
 
-            {!suspended && (
-              <div className='account__header__tabs__buttons'>
-                <div className='account__header__tabs__buttons__wrapper'>
+          {!suspended && (
+            <div className='account__header__tabs__buttons'>
+              <div className='account__header__tabs__buttons__wrapper'>
                 {!hidden && (
                   <>
                     {actionBtn}
@@ -360,9 +357,9 @@ class Header extends ImmutablePureComponent {
                 )}
 
                 <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
-                </div>
               </div>
-            )}
+            </div>
+          )}
 
           <div className='account__header__tabs'>
             <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
@@ -388,44 +385,6 @@ class Header extends ImmutablePureComponent {
               <div className='account__header__bio'>
 
                 {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
-                
-              <div className='account__header__extra__links'>
-                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
-                  <ShortNumber
-                    value={account.get('statuses_count')}
-                    renderer={StatusesCounter}
-                  />
-                </NavLink>
-                
-                <NavLink exact to={`/@${account.get('acct')}/hide_boosts`}><FormattedMessage id='account.hide_boosts' defaultMessage='Hide boosts' />
-                </NavLink>
-                
-                <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.show_replies' defaultMessage='Show replies' />
-                </NavLink>
-
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/following`} title={intl.formatNumber(account.get('following_count'))}>
-                  <ShortNumber
-                    value={account.get('following_count')}
-                    renderer={FollowingCounter}
-                  />
-                </NavLink>
-
-                {(account.get('followers_count') >= 0) && (
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
-                  <ShortNumber
-                    value={account.get('followers_count')}
-                    renderer={FollowersCounter}
-                  />
-                </NavLink>)}
-                {(account.get('followers_count') === -1) && (
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`}>
-                  <FormattedMessage 
-                    id='account.followers'
-                    defaultMessage='Followers'
-                  />
-                </NavLink>
-                )}
-              </div>
                 
               </div>
             </div>
