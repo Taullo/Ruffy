@@ -237,7 +237,7 @@
   border: 0;
   font-size: 0.95rem;
   line-height: 20px;
-  margin: 0;
+  margin: 1px 0 0;
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: var(--ui-border-radius);
     margin-top: 8px;
@@ -1097,6 +1097,7 @@
       color: var(--ui-font-dimmest-color);
       padding: 15px 0;
       background: var(--ui-body-color);
+      margin-top: 1px;
       @media screen and (min-width: $no-gap-breakpoint) {
         border-radius: var(--ui-border-radius);
         margin-top: 8px;
