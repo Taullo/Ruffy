@@ -238,9 +238,9 @@
   font-size: 0.95rem;
   line-height: 20px;
   margin: 0;
-  margin-top: 8px;
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: var(--ui-border-radius);
+    margin-top: 8px;
   }
 
   overflow: hidden;
@@ -1099,9 +1099,9 @@
       background: var(--ui-body-color);
       @media screen and (min-width: $no-gap-breakpoint) {
         border-radius: var(--ui-border-radius);
+        margin-top: 8px;
       }
 
-      margin-top: 8px;
       display: flex;
       font-weight: 500;
       justify-content: space-around;
