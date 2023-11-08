@@ -796,7 +796,7 @@ a.status__display-name,
   position: relative;
   display: flex;
   font-size: 14px;
-  border: 1px solid var(--ui-body-color);
+  border: 1px solid var(--ui-body-secondary-color);
   border-radius: var(--ui-border-radius);
   color: var(--ui-font-dimmer-color);
   margin-top: 14px;
@@ -971,7 +971,7 @@ a.status-card {
 }
 
 a.status-card.compact:hover {
-  background-color: var(--ui-body-color);
+  background-color: var(--ui-body-secondary-color);
 }
 
 .status-card__image-image {
