@@ -856,6 +856,7 @@ a.status__display-name,
 
 a.status-card {
   cursor: pointer;
+  transition: background 0.2s;
 
   &:hover {
     background: var(--ui-body-secondary-color);
@@ -951,6 +952,7 @@ a.status-card {
 
 .status-card.compact {
   border-color: var(--ui-body-secondary-color);
+  transition: background 0.2s;
 
   &.interactive {
     border: 0;
