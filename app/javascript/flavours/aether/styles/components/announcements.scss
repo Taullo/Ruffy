@@ -169,7 +169,7 @@
       transition-property: background-color, color;
       color: var(--ui-font-stark-color);
 
-      &.animated-number {
+      .animated-number {
         color: var(--ui-font-stark-color);
       }
     }
