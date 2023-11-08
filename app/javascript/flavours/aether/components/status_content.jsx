@@ -345,6 +345,8 @@ class StatusContent extends PureComponent {
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
     const renderTranslate = this.props.onTranslate && this.context.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
     const content = { __html: statusContent ?? getStatusContent(status) };
+    const statusObscured = (cwSettings === 'obscured') ? statusContent.replace(/[^\x31-\x7F]/g, "---") : '';
+    const contentObscured = { __html: statusObscured };
     let spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
     const language = status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
@@ -419,7 +421,7 @@ class StatusContent extends PureComponent {
                 ref={this.setContentsRef}
                 key={`contents-${tagLinks}`}
                 tabIndex={!hidden ? 0 : null}
-                dangerouslySetInnerHTML={content}
+                dangerouslySetInnerHTML={(hidden && (cwSettings === 'obscured')) ? contentObscured : content}
                 className='status__content__text translate'
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
