@@ -151,7 +151,7 @@
       }
     }
 
-    &__count {
+    .animated-number {
       display: block;
       min-width: 9px;
       font-size: 13px;
@@ -169,7 +169,7 @@
       transition-property: background-color, color;
       color: var(--ui-font-stark-color);
 
-      &__count {
+      .animated-number {
         color: var(--ui-font-stark-color);
       }
     }
@@ -204,7 +204,7 @@
     &:active,
     &:focus {
       opacity: 1;
-      color: var(--ui-highlight-button-text-color);
+      color: var(--ui-font-stark-color);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
     }
