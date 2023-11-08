@@ -187,7 +187,7 @@
       &:hover,
       &:focus,
       &:active {
-        &.animated-number {
+        .animated-number {
           color: var(--ui-highlight-button-text-color);
         }
       }
