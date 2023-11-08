@@ -858,7 +858,7 @@ a.status-card {
   cursor: pointer;
 
   &:hover {
-    background: var(--ui-body-color);
+    background: var(--ui-body-secondary-color);
   }
 }
 
@@ -950,7 +950,7 @@ a.status-card {
 }
 
 .status-card.compact {
-  border-color: var(--ui-body-color);
+  border-color: var(--ui-body-secondary-color);
 
   &.interactive {
     border: 0;
