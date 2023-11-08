@@ -25,7 +25,7 @@ const initialState = ImmutableMap({
   rewrite_mentions: 'no',
   theme: 'auto',
   cw_visibility  : 'obscured',
-  hashtag_cw: true,
+  hashtag_cw: false,
   low_contrast_theme: false,
   right_column : ImmutableMap({
     visibility     : 'show',
