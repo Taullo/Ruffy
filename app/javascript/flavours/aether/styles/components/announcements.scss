@@ -164,21 +164,24 @@
     &:hover,
     &:focus,
     &:active {
-      background: var(--ui-highlight-color);
+      background: var(--ui-font-color);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
+      color: var(--ui-font-stark-color);
 
       &__count {
-        color: var(--ui-highlight-button-text-color);
+        color: var(--ui-font-stark-color);
       }
     }
 
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
+      color: var(--ui-highlight-button-text-color);
+      background: var(--ui-highlight-color);
 
       .reactions-bar__item__count {
-        color: var(--ui-highlight-color);
+        color: var(--ui-highlight-button-text-color);
       }
     }
   }
