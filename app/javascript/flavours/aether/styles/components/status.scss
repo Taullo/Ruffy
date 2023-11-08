@@ -180,7 +180,11 @@
     background: var(--ui-body-color);
 
     &.status.status-direct {
-      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+      background: color-mix(
+        in srgb,
+        var(--ui-base-color),
+        var(--ui-highlight-color) 95%
+      );
 
       &.muted {
         background: transparent;
@@ -219,7 +223,7 @@
   padding: 10px 14px;
   position: relative;
   height: auto;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--ui-body-color);
   cursor: auto;
   background: var(--ui-body-dim-color);
   transition: background 0.2s;
@@ -792,7 +796,7 @@ a.status__display-name,
   position: relative;
   display: flex;
   font-size: 14px;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--ui-body-color);
   border-radius: var(--ui-border-radius);
   color: var(--ui-font-dimmer-color);
   margin-top: 14px;
@@ -854,7 +858,7 @@ a.status-card {
   cursor: pointer;
 
   &:hover {
-    background: lighten($ui-base-color, 8%);
+    background: var(--ui-body-color);
   }
 }
 
@@ -915,7 +919,7 @@ a.status-card {
 
 .status-card__image {
   flex: 0 0 100px;
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-body-color);
   position: relative;
 
   & > .fa {
@@ -946,7 +950,7 @@ a.status-card {
 }
 
 .status-card.compact {
-  border-color: lighten($ui-base-color, 4%);
+  border-color: var(--ui-body-color);
 
   &.interactive {
     border: 0;
@@ -967,7 +971,7 @@ a.status-card {
 }
 
 a.status-card.compact:hover {
-  background-color: lighten($ui-base-color, 4%);
+  background-color: var(--ui-body-color);
 }
 
 .status-card__image-image {
@@ -1002,7 +1006,7 @@ a.status-card.compact:hover {
 .attachment-list {
   display: flex;
   font-size: 14px;
-  border: 1px solid lighten($ui-base-color, 8%);
+  border: 1px solid var(--ui-body-color);
   border-radius: var(--ui-border-radius);
   margin-top: 14px;
   overflow: hidden;
@@ -1012,7 +1016,7 @@ a.status-card.compact:hover {
     color: var(--ui-font-dimmer-color);
     padding: 8px 18px;
     cursor: default;
-    border-inline-end: 1px solid lighten($ui-base-color, 8%);
+    border-inline-end: 1px solid var(--ui-body-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1108,12 +1112,12 @@ a.status-card.compact:hover {
   }
 
   &--first-in-thread {
-    border-top: 1px solid lighten($ui-base-color, 8%);
+    border-top: 1px solid var(--ui-body-color);
   }
 
   &__line {
     height: 10px - 4px;
-    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    border-inline-start: 2px solid var(--ui-body-color);
     width: 0;
     position: absolute;
     top: 0;
@@ -1130,7 +1134,7 @@ a.status-card.compact:hover {
         top: 10px - 4px;
         height: 62px + 4px + 4px;
         width: 2px;
-        background: $ui-base-color;
+        background: var(--ui-body-dim-color);
         inset-inline-start: -2px;
       }
     }
@@ -1208,8 +1212,8 @@ a.status-card.compact:hover {
 
 .picture-in-picture-placeholder {
   box-sizing: border-box;
-  border: 2px dashed lighten($ui-base-color, 8%);
-  background: $base-shadow-color;
+  border: 2px dashed var(--ui-body-color);
+  background: var(--ui-shadow-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1231,7 +1235,7 @@ a.status-card.compact:hover {
   &:hover,
   &:focus,
   &:active {
-    border-color: lighten($ui-base-color, 12%);
+    border-color: var(--ui-body-color);
   }
 }
 
