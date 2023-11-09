@@ -1478,16 +1478,3 @@ img.modal-warning {
 .react-toggle-track-check svg path {
   fill: var(--ui-highlight-button-text-color);
 }
-
-.modal-layout {
-  /* TODO: Figure out why the vars aren't working */
-  color: white;
-
-  .privacy-dropdown__dropdown {
-    background: #282c37 !important;
-  }
-
-  .autosuggest-textarea__textarea {
-    background: #313543 !important;
-  }
-}
