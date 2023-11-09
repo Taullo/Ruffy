@@ -1478,3 +1478,15 @@ img.modal-warning {
 .react-toggle-track-check svg path {
   fill: var(--ui-highlight-button-text-color);
 }
+
+.modal-layout {
+  color: white;
+
+  .compose-form {
+    background: #1f222b;
+  }
+
+  .autosuggest-textarea__textarea {
+    background: #313543;
+  }
+}

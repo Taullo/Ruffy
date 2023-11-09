@@ -599,6 +599,12 @@
     &:hover {
       -webkit-text-stroke: var(--ui-font-color) 1.5px;
     }
+
+    &.active {
+      &:hover {
+        -webkit-text-stroke: transparent 1.5px;
+      }
+    }
   }
 }
 
