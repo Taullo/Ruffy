@@ -1482,11 +1482,7 @@ img.modal-warning {
 .modal-layout {
   color: white;
 
-  .compose-form {
-    background: #1f222b;
-  }
-
   .autosuggest-textarea__textarea {
-    background: #313543;
+    background: #313543 !important;
   }
 }
