@@ -636,8 +636,10 @@
     position: relative;
     overflow: hidden;
 
-    .no-reduce-motion & {
-      transition: all 100ms linear;
+    @media screen and (prefers-reduced-motion: no-preference) {
+      & {
+        transition: all 100ms linear;
+      }
     }
 
     &.active {
@@ -684,8 +686,10 @@
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
       opacity: 0;
 
-      .no-reduce-motion & {
-        transition: opacity 100ms linear;
+      @media screen and (prefers-reduced-motion: no-preference) {
+        & {
+          transition: opacity 100ms linear;
+        }
       }
     }
 
@@ -753,8 +757,10 @@
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
-      .no-reduce-motion & {
-        transition: opacity 0.1s ease;
+      @media screen and (prefers-reduced-motion: no-preference) {
+        & {
+          transition: opacity 0.1s ease;
+        }
       }
 
       &.active {

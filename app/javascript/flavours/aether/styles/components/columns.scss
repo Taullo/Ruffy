@@ -452,12 +452,17 @@ $ui-header-height: 55px;
   overflow: hidden;
   overflow-y: auto;
   color: var(--ui-font-dimmest-color);
-  transition:
-    max-height 150ms ease-in-out,
-    opacity 300ms linear;
   opacity: 1;
   z-index: 1;
   position: relative;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    & {
+      transition:
+        max-height 150ms ease-in-out,
+        opacity 300ms linear;
+    }
+  }
 
   &.collapsed {
     max-height: 0 !important;

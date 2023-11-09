@@ -44,13 +44,15 @@
   justify-content: flex-end;
 }
 
-.no-reduce-motion .spoiler-input {
-  transition:
-    height 0.4s ease,
-    opacity 0.4s ease,
-    width 0.4s ease,
-    margin-right 0.4s ease,
-    padding-bottom 0.4s ease;
+@media screen and (prefers-reduced-motion: no-preference) {
+  .spoiler-input {
+    transition:
+      height 0.4s ease,
+      opacity 0.4s ease,
+      width 0.4s ease,
+      margin-right 0.4s ease,
+      padding-bottom 0.4s ease;
+  }
 }
 
 .spoiler-input {
@@ -767,12 +769,14 @@
   }
 }
 
-.no-reduce-motion .spoiler_button .icon-button {
-  transition:
-    height 0.4s ease,
-    width 0.4s ease,
-    margin 0.4s ease,
-    border-radius 0.4s ease;
+@media screen and (prefers-reduced-motion: no-preference) {
+  .spoiler_button .icon-button {
+    transition:
+      height 0.4s ease,
+      width 0.4s ease,
+      margin 0.4s ease,
+      border-radius 0.4s ease;
+  }
 }
 
 .compose-form__bottom-buttons {

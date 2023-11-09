@@ -365,16 +365,18 @@ body > [data-popper-placement] {
   color: $red-bookmark;
 }
 
-.no-reduce-motion .icon-button.star-icon {
-  &.activate {
-    & > .fa-star {
-      animation: spring-rotate-in 1s linear;
+@media screen and (prefers-reduced-motion: no-preference) {
+  .icon-button.star-icon {
+    &.activate {
+      & > .fa-star {
+        animation: spring-rotate-in 1s linear;
+      }
     }
-  }
 
-  &.deactivate {
-    & > .fa-star {
-      animation: spring-rotate-out 1s linear;
+    &.deactivate {
+      & > .fa-star {
+        animation: spring-rotate-out 1s linear;
+      }
     }
   }
 }
@@ -518,8 +520,10 @@ body > [data-popper-placement] {
     }
   }
 
-  .reduce-motion & {
-    animation: none;
+  @media screen and (prefers-reduced-motion) {
+    & {
+      animation: none;
+    }
   }
 }
 
@@ -1086,13 +1090,15 @@ button.icon-button.active i.fa-retweet {
   background-position: 0 100%;
 }
 
-.reduce-motion button.icon-button i.fa-retweet,
-.reduce-motion button.icon-button.active i.fa-retweet {
-  transition: none;
-}
+@media screen and (prefers-reduced-motion) {
+  button.icon-button i.fa-retweet,
+  button.icon-button.active i.fa-retweet {
+    transition: none;
+  }
 
-.reduce-motion button.icon-button.disabled i.fa-retweet {
-  color: darken($action-button-color, 13%);
+  button.icon-button.disabled i.fa-retweet {
+    color: darken($action-button-color, 13%);
+  }
 }
 
 .load-more {

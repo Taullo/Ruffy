@@ -198,7 +198,7 @@
   }
 }
 
-.no-reduce-motion {
+@media screen and (prefers-reduced-motion: no-preference) {
   .status {
     &:hover,
     &:focus,
@@ -476,16 +476,18 @@
   }
 }
 
-.no-reduce-motion .status__collapse-button {
-  &.activate {
-    & > .fa-angle-double-up {
-      animation: spring-flip-in 1s linear;
+@media screen and (prefers-reduced-motion: no-preference) {
+  .status__collapse-button {
+    &.activate {
+      & > .fa-angle-double-up {
+        animation: spring-flip-in 1s linear;
+      }
     }
-  }
 
-  &.deactivate {
-    & > .fa-angle-double-up {
-      animation: spring-flip-out 1s linear;
+    &.deactivate {
+      & > .fa-angle-double-up {
+        animation: spring-flip-out 1s linear;
+      }
     }
   }
 }

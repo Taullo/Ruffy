@@ -56,9 +56,11 @@
   user-select: none;
 }
 
-.no-reduce-motion .modal-root__container {
-  transition: top 0.5s;
-  animation: bounce 0.7s;
+@media screen and (prefers-reduced-motion: no-preference) {
+  .modal-root__container {
+    transition: top 0.5s;
+    animation: bounce 0.7s;
+  }
 }
 
 .modal-root__modal {

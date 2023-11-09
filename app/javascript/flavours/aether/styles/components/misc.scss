@@ -399,16 +399,18 @@ body > [data-popper-placement] {
   color: var(--ui-highlight-color);
 }
 
-.no-reduce-motion .icon-button.star-icon {
-  &.activate {
-    & > .fa-star {
-      animation: spring-rotate-in 1s linear;
+@media screen and (prefers-reduced-motion: no-preference) {
+  .icon-button.star-icon {
+    &.activate {
+      & > .fa-star {
+        animation: spring-rotate-in 1s linear;
+      }
     }
-  }
 
-  &.deactivate {
-    & > .fa-star {
-      animation: spring-rotate-out 1s linear;
+    &.deactivate {
+      & > .fa-star {
+        animation: spring-rotate-out 1s linear;
+      }
     }
   }
 }
@@ -553,8 +555,10 @@ body > [data-popper-placement] {
     }
   }
 
-  .reduce-motion & {
-    animation: none;
+  @media screen and (prefers-reduced-motion) {
+    & {
+      animation: none;
+    }
   }
 }
 
@@ -1079,8 +1083,12 @@ body > [data-popper-placement] {
   border-radius: 50%;
   background-color: var(--ui-body-simple-bg);
   box-sizing: border-box;
-  transition: all 0.25s ease;
-  transition-property: border-color, left;
+  @media screen and (prefers-reduced-motion: no-preference) {
+    & {
+      transition: all 0.25s ease;
+      transition-property: border-color, left;
+    }
+  }
 }
 
 .react-toggle--checked .react-toggle-thumb {
@@ -1249,13 +1257,17 @@ button.icon-button.active i.fa-retweet {
   mask-position: 0 100%;
 }
 
-.reduce-motion button.icon-button i.fa-retweet,
-.reduce-motion button.icon-button.active i.fa-retweet {
-  transition: none;
+@media screen and (prefers-reduced-motion) {
+  button.icon-button i.fa-retweet,
+  button.icon-button.active i.fa-retweet {
+    transition: none;
+  }
 }
 
-.reduce-motion button.icon-button.disabled i.fa-retweet {
-  color: var(--ui-highlight-color);
+@media screen and (prefers-reduced-motion) {
+  button.icon-button.disabled i.fa-retweet {
+    color: var(--ui-highlight-color);
+  }
 }
 
 .load-more {
