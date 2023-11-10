@@ -1290,7 +1290,7 @@ pre > code {
 [data-boosted-by],
 [data-reaction-by] {
   .status__action-bar,
-  .emoji-picker-dropdown,
+  .reactions-bar > .emoji-picker-dropdown,
   .status__info__account {
     display: none;
   }
