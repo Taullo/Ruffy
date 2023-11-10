@@ -1285,3 +1285,13 @@ pre > code {
   display: block;
   border-radius: 4px;
 }
+
+[data-favourited-by],
+[data-boosted-by],
+[data-reaction-by] {
+  .status__action-bar,
+  .emoji-picker-dropdown,
+  .status__info__account {
+    display: none;
+  }
+}
