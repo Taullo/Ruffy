@@ -1292,8 +1292,25 @@ pre > code {
   [data-reaction-by] {
     .status__action-bar,
     .reactions-bar > .emoji-picker-dropdown,
-    .status__info__account {
+    .display-name,
+    .account__avatar-overlay-base {
       display: none;
+    }
+
+    .status__info__account {
+      height: auto;
+      overflow: visible;
+      position: absolute;
+      top: -8px;
+      margin: 0;
+    }
+
+    .status__info .notification__message > span {
+      margin-left: 30px;
+    }
+
+    .status__avatar {
+      height: 0;
     }
   }
 }
