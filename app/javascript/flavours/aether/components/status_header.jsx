@@ -17,7 +17,7 @@ export default class StatusHeader extends PureComponent {
     parseClick: PropTypes.func.isRequired,
   };
 
-  //  Handles clicks on account name/image
+  //  Handles clicks on account name
   handleClick = (acct, e) => {
     const { parseClick } = this.props;
     parseClick(e, `/@${acct}`);
@@ -33,6 +33,7 @@ export default class StatusHeader extends PureComponent {
     const {
       status,
       friend,
+      parseClick,
     } = this.props;
 
     const account = status.get('account');
@@ -40,22 +41,18 @@ export default class StatusHeader extends PureComponent {
 
     let statusAvatar;
     if (friend === undefined || friend === null) {
-      statusAvatar = <Avatar account={account} size={62} />;
+      statusAvatar = <a href={accountLink} onClick={this.handleAccountClick} ><Avatar account={account} size={62} /></a>;
     } else {
-      statusAvatar = <AvatarOverlay account={account} friend={friend} />;
+      statusAvatar = <AvatarOverlay account={account} friend={friend} parseClick={parseClick} />;
     }
 
     return (
       <div className='status__info__account'>
-        <a
-          href={accountLink}
-          target='_blank'
+        <div
           className='status__avatar'
-          onClick={this.handleAccountClick}
-          rel='noopener noreferrer'
         >
           {statusAvatar}
-        </a>
+        </div>
         <a
           href={accountLink}
           target='_blank'

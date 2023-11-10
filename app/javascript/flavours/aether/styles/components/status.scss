@@ -1286,6 +1286,10 @@ pre > code {
   border-radius: 4px;
 }
 
+.account__avatar-overlay-base {
+  display: block;
+}
+
 .notification-scroll {
   [data-favourited-by],
   [data-boosted-by],
