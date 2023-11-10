@@ -1286,12 +1286,14 @@ pre > code {
   border-radius: 4px;
 }
 
-[data-favourited-by],
-[data-boosted-by],
-[data-reaction-by] {
-  .status__action-bar,
-  .reactions-bar > .emoji-picker-dropdown,
-  .status__info__account {
-    display: none;
+.notification-scroll {
+  [data-favourited-by],
+  [data-boosted-by],
+  [data-reaction-by] {
+    .status__action-bar,
+    .reactions-bar > .emoji-picker-dropdown,
+    .status__info__account {
+      display: none;
+    }
   }
 }
