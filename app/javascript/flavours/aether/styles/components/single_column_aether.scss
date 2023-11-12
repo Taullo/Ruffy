@@ -188,6 +188,9 @@
       max-width: 700px;
       flex-basis: 100%;
       order: 1;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
 
     .columns-area__panels__main {
@@ -201,12 +204,6 @@
     .account-scroll {
       max-width: var(--ui-widescreen-width);
       width: calc(100vw - 20px);
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      row-gap: 15px;
-      column-gap: 15px;
-      align-content: start;
 
       .scrollable-list {
         margin-top: -5px;

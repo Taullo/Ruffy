@@ -762,6 +762,7 @@
   cursor: default;
   display: flex;
   flex-shrink: 0;
+  width: var(--ui-main-column-width);
 
   button {
     background: transparent;
