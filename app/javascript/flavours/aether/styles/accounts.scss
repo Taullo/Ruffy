@@ -757,12 +757,16 @@
   }
 }
 
+.normal .account-scroll .account__section-headline {
+  width: var(--ui-main-column-width);
+  max-width: 100vw;
+}
+
 .notification__filter-bar,
 .account__section-headline {
   cursor: default;
   display: flex;
   flex-shrink: 0;
-  width: var(--ui-main-column-width);
 
   button {
     background: transparent;
