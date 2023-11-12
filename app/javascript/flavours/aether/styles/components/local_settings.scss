@@ -11,10 +11,28 @@
   max-height: 450px;
   overflow: hidden;
 
+  fieldset {
+    margin-top: 24px;
+  }
+
   label,
   legend {
     display: block;
-    font-size: 14px;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  legend span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-bottom: 2px;
+
+    &.hint > span {
+      font-size: 1rem;
+      font-weight: normal;
+    }
   }
 
   .boolean label,
@@ -36,14 +54,14 @@
   }
 
   h1 {
-    font-size: 18px;
+    font-size: 1.4rem;
     font-weight: 500;
     line-height: 24px;
     margin-bottom: 20px;
   }
 
   h2 {
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 20px;
     margin-top: 20px;
@@ -109,7 +127,7 @@
 .glitch.local-settings__navigation {
   background: var(--ui-body-secondary-color);
   width: 212px;
-  font-size: 15px;
+  font-size: 1rem;
   line-height: 20px;
   overflow-y: auto;
 }
@@ -306,4 +324,68 @@
 
 #mastodon-settings--collapsed-auto-height {
   width: 100% !important;
+}
+
+.themeSelector {
+  margin-top: 10px;
+
+  span.hint span {
+    font-size: 1rem;
+  }
+
+  fieldset {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  legend {
+    margin-bottom: 10px;
+  }
+
+  label {
+    height: 100px;
+    width: 100px;
+    -webkit-padding-start: 0;
+    padding-inline-start: 0 !important;
+    padding-top: 0 !important;
+    cursor: pointer;
+
+    #mastodon-settings--theme {
+      &--auto {
+        background: url('~images/settings/auto.png');
+        background-size: cover;
+      }
+
+      &--light {
+        background: url('~images/settings/light.png');
+        background-size: cover;
+      }
+
+      &--dark {
+        background: url('~images/settings/dark.png');
+        background-size: cover;
+      }
+
+      &--mixed {
+        background: url('~images/settings/mixed.png');
+        background-size: cover;
+      }
+    }
+  }
+
+  input {
+    height: 100px;
+    width: 100px;
+    margin: 0;
+    appearance: none;
+    outline: 4px solid transparent;
+    border: 2px solid var(--ui-body-color);
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:checked {
+      outline-color: var(--ui-highlight-color);
+    }
+  }
 }

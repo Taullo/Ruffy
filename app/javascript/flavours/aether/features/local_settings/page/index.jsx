@@ -75,45 +75,47 @@ class LocalSettingsPage extends PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page general'>
         <h1><FormattedMessage id='settings.general' defaultMessage='Appearance' /></h1>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['theme']}
-          id='mastodon-settings--theme'
-          options={[
-            {  type: 'radio', value: 'auto', message: intl.formatMessage(messages.theme_auto) },
-            {  type: 'radio', value: 'light', message: intl.formatMessage(messages.theme_light) },
-            {  type: 'radio', value: 'dark', message: intl.formatMessage(messages.theme_dark) },
-            {  type: 'radio', value: 'mixed', message: intl.formatMessage(messages.theme_mixed) },
-          ]}
-          onChange={onChange}
-        >
-        <FormattedMessage id='settings.theme' defaultMessage='Theme' />
-        </LocalSettingsPageItem>
+        <span className='themeSelector'>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['theme']}
+            id='mastodon-settings--theme'
+            options={[
+              {  type: 'radio', value: 'auto', title: intl.formatMessage(messages.theme_auto) },
+              {  type: 'radio', value: 'light', title: intl.formatMessage(messages.theme_light) },
+              {  type: 'radio', value: 'dark', title: intl.formatMessage(messages.theme_dark) },
+              {  type: 'radio', value: 'mixed', title: intl.formatMessage(messages.theme_mixed) },
+            ]}
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.theme' defaultMessage='Theme' />
+          </LocalSettingsPageItem>
+        </span>
         <span className='accentSelector'>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['accent']}
-          id='mastodon-settings--accent'
-          options={[
-            { type: 'radio', value: 'default', title: intl.formatMessage(messages.accent_default) },
-            { type: 'radio', value: '#589734', title: intl.formatMessage(messages.accent_green) },
-            { type: 'radio', value: '#377ee4', title: intl.formatMessage(messages.accent_blue) },
-            { type: 'radio', value: '#a539ff', title: intl.formatMessage(messages.accent_purple) },
-            { type: 'radio', value: '#ff8300', title: intl.formatMessage(messages.accent_orange) },
-            { type: 'radio', value: '#ffce00', title: intl.formatMessage(messages.accent_yellow) },
-            { type: 'radio', value: '#f02727', title: intl.formatMessage(messages.accent_red) },
-            { type: 'radio', value: '#f027be', title: intl.formatMessage(messages.accent_pink) },
-            { type: 'radio', value: '#6364ff', title: intl.formatMessage(messages.accent_mammoth) },
-            { type: 'radio', value: '#b4e900', title: intl.formatMessage(messages.accent_keystone) },
-            { type: 'radio', value: '#d1bcf5', title: intl.formatMessage(messages.accent_goby) },
-            { type: 'radio', value: 'mono', title: intl.formatMessage(messages.accent_mono) },
-            { type: 'color', value: undefined, title: intl.formatMessage(messages.accent_custom) },
-          ]}
-          onChange={onChange}
-        >
-        <FormattedMessage id='settings.accent' defaultMessage='Accent Color' />
-        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change the accent color of the entire site' /></span>
-        </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['accent']}
+            id='mastodon-settings--accent'
+            options={[
+              { type: 'radio', value: 'default', title: intl.formatMessage(messages.accent_default) },
+              { type: 'radio', value: '#589734', title: intl.formatMessage(messages.accent_green) },
+              { type: 'radio', value: '#377ee4', title: intl.formatMessage(messages.accent_blue) },
+              { type: 'radio', value: '#a539ff', title: intl.formatMessage(messages.accent_purple) },
+              { type: 'radio', value: '#ff8300', title: intl.formatMessage(messages.accent_orange) },
+              { type: 'radio', value: '#ffce00', title: intl.formatMessage(messages.accent_yellow) },
+              { type: 'radio', value: '#f02727', title: intl.formatMessage(messages.accent_red) },
+              { type: 'radio', value: '#f027be', title: intl.formatMessage(messages.accent_pink) },
+              { type: 'radio', value: '#6364ff', title: intl.formatMessage(messages.accent_mammoth) },
+              { type: 'radio', value: '#b4e900', title: intl.formatMessage(messages.accent_keystone) },
+              { type: 'radio', value: '#d1bcf5', title: intl.formatMessage(messages.accent_goby) },
+              { type: 'radio', value: 'mono', title: intl.formatMessage(messages.accent_mono) },
+              { type: 'color', value: undefined, title: intl.formatMessage(messages.accent_custom) },
+            ]}
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.accent' defaultMessage='Accent Color' />
+            <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change the accent color of the entire site' /></span>
+          </LocalSettingsPageItem>
         </span>
         <h2><FormattedMessage id='settings.misleading_links' defaultMessage='Tag Misleading Links' /></h2>
         <LocalSettingsPageItem
@@ -154,7 +156,7 @@ class LocalSettingsPage extends PureComponent {
               {  type: 'radio', value: 'advanced', message: intl.formatMessage(messages.layout_desktop), hint: intl.formatMessage(messages.layout_desktop_hint) },
             ]}
             onChange={onChange}
-           />
+          />
           <LocalSettingsPageItem
             settings={settings}
             item={['stretch']}
@@ -183,7 +185,7 @@ class LocalSettingsPage extends PureComponent {
             id='mastodon-settings--right_column-lists'
             onChange={onChange}
           >
-          <FormattedMessage id='settings.right_column_lists' defaultMessage='Show lists in the right column' />
+            <FormattedMessage id='settings.right_column_lists' defaultMessage='Show lists in the right column' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
@@ -191,7 +193,7 @@ class LocalSettingsPage extends PureComponent {
             id='mastodon-settings--right_column-hashtags'
             onChange={onChange}
           >
-          <FormattedMessage id='settings.right_column_hashtags' defaultMessage='Show hashtags in the right column' />
+            <FormattedMessage id='settings.right_column_hashtags' defaultMessage='Show hashtags in the right column' />
           </LocalSettingsPageItem>
           <LocalSettingsPageItem
             settings={settings}
@@ -199,7 +201,7 @@ class LocalSettingsPage extends PureComponent {
             id='mastodon-settings--right_column-suggested'
             onChange={onChange}
           >
-          <FormattedMessage id='settings.right_column_suggested' defaultMessage='Show suggested accounts in the right column' />
+            <FormattedMessage id='settings.right_column_suggested' defaultMessage='Show suggested accounts in the right column' />
           </LocalSettingsPageItem>
         </section>
       </div>
@@ -318,8 +320,8 @@ class LocalSettingsPage extends PureComponent {
           ]}
           onChange={onChange}
         >
-        <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content visibility:' />
-        <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning and/or attachment is obscured, completely hidden, or shown by default' /></span>
+          <FormattedMessage id='settings.cw_visibility_header' defaultMessage='Content visibility:' />
+          <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change whether a post with a content warning and/or attachment is obscured, completely hidden, or shown by default' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
