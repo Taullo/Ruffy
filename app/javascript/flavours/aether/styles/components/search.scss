@@ -257,10 +257,14 @@
       .trends__item__name {
         white-space: nowrap;
         font-weight: bold;
-        overflow: hidden;
-        text-overflow: ellipsis;
         color: var(--ui-highlight-color);
         flex: 1 1;
+        @media screen and (max-width: $no-gap-breakpoint) {
+          max-width: 360px;
+        }
+
+        text-overflow: ellipsis;
+        overflow: hidden;
 
         > span {
           color: var(--ui-font-secondary-color);
@@ -268,6 +272,11 @@
 
         strong {
           font-weight: 500;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          @media screen and (max-width: $no-gap-breakpoint) {
+            max-width: 360px;
+          }
         }
 
         .hashname {
