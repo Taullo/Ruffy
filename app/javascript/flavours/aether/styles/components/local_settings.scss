@@ -383,6 +383,13 @@
     border: 2px solid var(--ui-body-color);
     border-radius: 8px;
     cursor: pointer;
+    transition:
+      outline-color 0.2s,
+      border-color 0.2s;
+
+    &:hover {
+      border-color: var(--ui-font-color);
+    }
 
     &:checked {
       outline-color: var(--ui-highlight-color);
