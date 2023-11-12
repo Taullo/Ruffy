@@ -11,6 +11,7 @@
   --ui-border-radius: 6px;
   --ui-highlight-button-text-color: #ffffff;
   --ui-widescreen-width: 1175px;
+  --ui-right-column-width: 300px;
 
   accent-color: var(--ui-highlight-color);
 }
@@ -18,6 +19,7 @@
 .wide {
   --ui-widescreen-width: 1415px;
   --ui-main-column-width: 700px;
+  --ui-right-column-width: 450px;
   --ui-secondary-profile-column-width: calc(
     100vw - 35px - var(--ui-main-column-width)
   ); /* Page width - column padding - columns-area padding - main column */

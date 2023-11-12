@@ -13,6 +13,10 @@
     overflow: hidden;
     font-size: 1rem;
     padding: 15px;
+
+    .trends__item__sparkline {
+      display: none;
+    }
   }
 }
 

@@ -214,10 +214,10 @@
     }
 
     .right_column {
-      width: 450px;
+      width: var(--ui-right-column-width);
 
       .fixed_wrapper {
-        width: 450px;
+        width: var(--ui-right-column-width);
         top: 55px;
         max-height: calc(100vh - 55px);
         position: fixed;

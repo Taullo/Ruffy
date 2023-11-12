@@ -1455,6 +1455,14 @@ a.sparkline {
       padding-bottom: 15px;
       font-size: 15px;
       line-height: 20px;
+      max-width: calc(var(--ui-right-column-width) - 165px);
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      strong {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
 
       bdi {
         display: block;
