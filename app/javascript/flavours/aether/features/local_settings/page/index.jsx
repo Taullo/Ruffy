@@ -88,7 +88,7 @@ class LocalSettingsPage extends PureComponent {
             ]}
             onChange={onChange}
           >
-            <FormattedMessage id='settings.theme' defaultMessage='Theme' />
+            <FormattedMessage id='settings.theme' defaultMessage='Color Scheme' />
           </LocalSettingsPageItem>
         </span>
         <span className='accentSelector'>
