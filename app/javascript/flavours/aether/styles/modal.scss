@@ -48,7 +48,7 @@
 
 .suggestions-modal,
 .compose-modal {
-  width: 700px;
+  width: var(--ui-main-column-width);
   max-height: calc(100vh - 20px);
   overflow-y: auto;
   box-sizing: border-box;
