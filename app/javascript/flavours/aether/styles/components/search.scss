@@ -271,12 +271,15 @@
           font-weight: 500;
           text-overflow: ellipsis;
           overflow: hidden;
-          max-width: 360px;
         }
 
         .hashname {
-          max-width: 360px;
           font-weight: bold;
+
+          span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
       }
 
