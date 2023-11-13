@@ -259,7 +259,7 @@
         font-weight: bold;
         color: var(--ui-highlight-color);
         flex: 1 1;
-        @media screen and (max-width: $no-gap-breakpoint) {
+        @media screen and (min-width: $no-gap-breakpoint) {
           max-width: 360px;
         }
 
@@ -274,7 +274,7 @@
           font-weight: 500;
           text-overflow: ellipsis;
           overflow: hidden;
-          @media screen and (max-width: $no-gap-breakpoint) {
+          @media screen and (min-width: $no-gap-breakpoint) {
             max-width: 360px;
           }
         }
