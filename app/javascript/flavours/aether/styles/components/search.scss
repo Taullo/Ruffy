@@ -259,10 +259,7 @@
         font-weight: bold;
         color: var(--ui-highlight-color);
         flex: 1 1;
-        @media screen and (min-width: $no-gap-breakpoint) {
-          max-width: 360px;
-        }
-
+        max-width: 360px;
         text-overflow: ellipsis;
         overflow: hidden;
 
@@ -274,12 +271,11 @@
           font-weight: 500;
           text-overflow: ellipsis;
           overflow: hidden;
-          @media screen and (min-width: $no-gap-breakpoint) {
-            max-width: 360px;
-          }
+          max-width: 360px;
         }
 
         .hashname {
+          max-width: 360px;
           font-weight: bold;
         }
       }
