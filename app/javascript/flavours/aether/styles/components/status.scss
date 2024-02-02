@@ -175,21 +175,12 @@
 }
 
 .focusable {
+  border: 2px solid transparent;
+
   &:focus {
     outline: 0;
     background: var(--ui-body-color);
-
-    &.status.status-direct {
-      background: color-mix(
-        in srgb,
-        var(--ui-base-color),
-        var(--ui-highlight-color) 95%
-      );
-
-      &.muted {
-        background: transparent;
-      }
-    }
+    border-color: var(--ui-highlight-color);
 
     .detailed-status,
     .detailed-status__action-bar {

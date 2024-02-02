@@ -395,8 +395,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   font-family: inherit;
-  padding: 5px;
+  padding: 5px 0;
   overflow: hidden;
+  gap: 5px;
 }
 
 .compose-form__upload {

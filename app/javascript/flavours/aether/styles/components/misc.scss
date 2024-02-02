@@ -261,9 +261,7 @@
   &.inverted {
     color: var(--ui-highlight-color);
 
-    &:hover,
-    &:active,
-    &:focus {
+    &:hover {
       color: var(--ui-highlight-button-text-color);
     }
 
