@@ -113,11 +113,11 @@ bundle install
 
 # Install node modules
 sudo corepack enable
-yarn set version classic
+corepack prepare
 yarn install
 
 # Build Ruffy
-export RAILS_ENV=development 
+export RAILS_ENV=development
 export $(cat ".env.vagrant" | xargs)
 bundle exec rails db:setup
 

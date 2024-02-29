@@ -17,6 +17,8 @@ const config = {
     '!app/javascript/flavours/aether/service_worker/entry.js',
     '!app/javascript/flavours/aether/test_setup.js',
   ],
+  // Those packages are ESM, so we need them to be processed by Babel
+  transformIgnorePatterns: ['/node_modules/(?!(redent|strip-indent)/)'],
   coverageDirectory: '<rootDir>/coverage',
   moduleDirectories: ['<rootDir>/node_modules', '<rootDir>/app/javascript'],
 };
