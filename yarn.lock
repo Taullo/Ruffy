@@ -79,6 +79,7 @@ __metadata:
     classnames: "npm:^2.3.2"
     cocoon-js-vanilla: "npm:^1.3.0"
     color-blend: "npm:^4.0.0"
+    compression-webpack-plugin: "patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch"
     core-js: "npm:^3.30.2"
     cross-env: "npm:^7.0.3"
     css-loader: "npm:^5.2.7"
@@ -2404,6 +2405,7 @@ __metadata:
   checksum: 10c0/2cd9a5613b1bae5300dd16d76c7790d1d3b43cb55654dc2b64b202d1522bb03844f88c7bc60b72e3095c8479873ade91009ab0cb8a851842dab00d4d9fc1e3cb
   languageName: node
   linkType: hard
+
 
 "@jest/fake-timers@npm:^29.6.2":
   version: 29.6.2
@@ -5983,6 +5985,36 @@ __metadata:
   dependencies:
     mime-db: "npm:>= 1.43.0 < 2"
   checksum: 10c0/8a03712bc9f5b9fe530cc5a79e164e665550d5171a64575d7dcf3e0395d7b4afa2d79ab176c61b5b596e28228b350dd07c1a2a6ead12fd81d1b6cd632af2fef7
+  languageName: node
+  linkType: hard
+
+"compression-webpack-plugin@npm:6.1.1":
+  version: 6.1.1
+  resolution: "compression-webpack-plugin@npm:6.1.1"
+  dependencies:
+    cacache: "npm:^15.0.5"
+    find-cache-dir: "npm:^3.3.1"
+    schema-utils: "npm:^3.0.0"
+    serialize-javascript: "npm:^5.0.1"
+    webpack-sources: "npm:^1.4.3"
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 2f2ac6ba8f3cf48b523efc5d8e50e0172f4676f47bf5d62f2365185a6d37e96c2dc090e74f5f30ddf4be092e2400c5c7e1fb34301f3f939acf4c9944e1356525
+  languageName: node
+  linkType: hard
+
+"compression-webpack-plugin@patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch":
+  version: 6.1.1
+  resolution: "compression-webpack-plugin@patch:compression-webpack-plugin@npm%3A6.1.1#~/.yarn/patches/compression-webpack-plugin-npm-6.1.1-3a2a65987e.patch::version=6.1.1&hash=129d4d"
+  dependencies:
+    cacache: "npm:^15.0.5"
+    find-cache-dir: "npm:^3.3.1"
+    schema-utils: "npm:^3.0.0"
+    serialize-javascript: "npm:^5.0.1"
+    webpack-sources: "npm:^1.4.3"
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 68d130bcf7dcc3fd13a286dc57426640732593db4a2f326a4b159c7c32e856e2752e4d43e5f44dc42d07a0e477ad08c08d9aba029a958ad57e71f06deb42784f
   languageName: node
   linkType: hard
 
