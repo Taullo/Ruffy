@@ -22,7 +22,7 @@ if(data.compressed) {
 
 const emojiMartData = data;
 
-const excluded       = ['®', '©', '™', '🇮🇱', 'Israel Flag', 'flag-il', '1F1EE-1F1F1'];
+const excluded       = ['®', '©', '™', '🇮🇱'];
 const skinTones      = ['🏻', '🏼', '🏽', '🏾', '🏿'];
 const shortcodeMap   = {};
 
