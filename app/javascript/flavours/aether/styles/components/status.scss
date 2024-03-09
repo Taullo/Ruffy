@@ -214,7 +214,10 @@
   padding: 10px 14px;
   position: relative;
   height: auto;
-  border-bottom: 1px solid var(--ui-body-color);
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-bottom: 2px solid var(--ui-page-background);
+  }
+
   cursor: auto;
   background: var(--ui-body-dim-color);
   transition: background 0.2s;
