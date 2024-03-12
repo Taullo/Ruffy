@@ -105,10 +105,10 @@ en:
       not_subscribed: Not subscribed
       pending: Pending review
       perform_full_suspension: Suspend
-      previous_strikes: Previous strikes
+      previous_strikes: Previous staff actions
       previous_strikes_description_html:
-        one: This account has <strong>one</strong> strike.
-        other: This account has <strong>%{count}</strong> strikes.
+        one: This account has <strong>one</strong> staff action taken.
+        other: This account has <strong>%{count}</strong> staff actions taken.
       promote: Promote
       protocol: Protocol
       public: Public
@@ -147,7 +147,7 @@ en:
       silence: Limit
       silenced: Limited
       statuses: Posts
-      strikes: Previous strikes
+      strikes: Previous staff actions
       subscribe: Subscribe
       suspend: Suspend
       suspended: Suspended
@@ -586,10 +586,10 @@ en:
       action_log: Audit log
       action_taken_by: Action taken by
       actions:
-        delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
-        mark_as_sensitive_description_html: The post will be marked as sensitive with a generic content warning and a strike will be recorded to help you escalate on future infractions by the same account.
+        delete_description_html: The reported posts will be deleted and will be recorded to help you escalate on future infractions by the same account.
+        mark_as_sensitive_description_html: The post will be marked as sensitive with a generic content warning and will be recorded to help you escalate on future infractions by the same account.
         other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
-        resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
+        resolve_description_html: No action will be taken against the reported account, no actions will be recorded, and the report will be closed.
         silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
         suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
@@ -651,7 +651,7 @@ en:
         close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
         delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
         preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
-        record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
+        record_strike_html: Record a notice against <strong>@%{acct}</strong> to help you escalate on future violations from this account
         send_email_html: Send <strong>@%{acct}</strong> a warning e-mail
         warning_placeholder: Optional additional reasoning for the moderation action.
       target_origin: Origin of reported account
@@ -1101,7 +1101,7 @@ en:
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
-      view_strikes: View past strikes against your account
+      view_strikes: View past staff actions against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
   challenge:
@@ -1152,7 +1152,7 @@ en:
     strikes:
       action_taken: Action taken
       appeal: Appeal
-      appeal_approved: This strike has been successfully appealed and is no longer valid
+      appeal_approved: This action has been successfully appealed and is no longer valid
       appeal_rejected: The appeal has been rejected
       appeal_submitted_at: Appeal submitted
       appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
@@ -1636,7 +1636,7 @@ en:
     profile: Public profile
     relationships: Follows and followers
     statuses_cleanup: Automated post deletion
-    strikes: Moderation strikes
+    strikes: Staff actions
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
   statuses:
@@ -1727,7 +1727,7 @@ en:
     sensitive_content: Sensitive content
   strikes:
     errors:
-      too_late: It is too late to appeal this strike
+      too_late: It is too late to appeal this staff action
   tags:
     does_not_match_previous_name: does not match the previous name
   themes:
@@ -1762,11 +1762,11 @@ en:
   user_mailer:
     appeal_approved:
       action: Go to your account
-      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
+      explanation: The appeal for the staff action which was taken on your account on %{strike_date} that you submitted on %{appeal_date} has been approved. The action (if any) has been reverted.
       subject: Your appeal from %{date} has been approved
       title: Appeal approved
     appeal_rejected:
-      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
+      explanation: The appeal for the staff action against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
       subject: Your appeal from %{date} has been rejected
       title: Appeal rejected
     backup_ready:
