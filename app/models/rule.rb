@@ -16,7 +16,7 @@ class Rule < ApplicationRecord
 
   self.discard_column = :deleted_at
 
-  validates :text, presence: true, length: { maximum: 300 }
+  validates :text, presence: true, length: { maximum: 500 }
 
   scope :ordered, -> { kept.order(priority: :asc, id: :asc) }
 end
