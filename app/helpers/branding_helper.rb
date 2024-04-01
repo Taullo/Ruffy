@@ -34,6 +34,6 @@ module BrandingHelper
   end
 
   def icon
-    @icon ||= Rails.cache.fetch('site_uploads/icon') { SiteUpload.find_by(var: 'icon') }
+    @icon ||= Rails.cache.fetch('site_uploads/icon') { SiteUpload.find_by(var: 'icon')&.file_path }
   end
 end
