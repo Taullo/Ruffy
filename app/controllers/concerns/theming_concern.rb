@@ -86,9 +86,4 @@ module ThemingConcern
     result[:common] = resolve_pack(data, 'common', skin) if result.delete(:use_common)
     result
   end
-
-  def icon
-    @icon ||= Rails.cache.fetch('site_uploads/icon') { SiteUpload.find_by(var: 'icon') }
-    (@icon.presence || '/favicon.png')
-  end
 end
