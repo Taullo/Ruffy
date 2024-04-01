@@ -172,9 +172,4 @@ class ApplicationController < ActionController::Base
   def set_cache_control_defaults
     response.cache_control.replace(private: true, no_store: true)
   end
-
-  def icon
-    @icon ||= Rails.cache.fetch('site_uploads/icon') { SiteUpload.find_by(var: 'icon') }
-    (@icon.presence || '/favicon.png')
-  end
 end
