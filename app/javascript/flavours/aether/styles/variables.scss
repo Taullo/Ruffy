@@ -39,6 +39,7 @@
   --ui-body-dim-color: #252933;
   --ui-body-simple-bg: #ffffff;
   --ui-page-border-color: #282c37;
+  --ui-body-dark-color: var(--ui-page-background);
 
   /* Font Colors */
   --ui-font-color: #e8e8e8;
@@ -65,6 +66,9 @@
   --ui-body-dim-color: #ffffff;
   --ui-body-simple-bg: #333845;
   --ui-page-border-color: #d5d5d5;
+  --ui-body-dark-color: var(--ui-page-background);
+
+  /* Font Colors */
   --ui-font-color: #262626;
   --ui-font-secondary-color: #46494a;
   --ui-inverted-font-color: #282c37;
@@ -97,6 +101,7 @@
   --ui-body-dim-color: #ffffff;
   --ui-body-simple-bg: #333845;
   --ui-page-border-color: #282c37;
+  --ui-body-dark-color: #e9ecee;
 
   /* Font Colors */
   --ui-font-color: #262626;
@@ -148,6 +153,10 @@
 
   .search__input {
     color: var(--ui-body-secondary-color);
+
+    &::placeholder {
+      color: var(--ui-body-secondary-color);
+    }
   }
 
   code {
