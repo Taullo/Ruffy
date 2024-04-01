@@ -1,4 +1,3 @@
-  document.addEventListener('DOMContentLoaded', function() {
     const localSettingsJSON = localStorage.getItem('mastodon-settings');
     var theme = (localSettingsJSON !== null) ? (JSON.parse(localSettingsJSON).theme ?? 'auto') : 'auto';
     const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
@@ -17,4 +16,3 @@
       document.body.classList.toggle('dark-theme', false);
       document.body.classList.toggle('mixed-theme', true);
     }
-  });
