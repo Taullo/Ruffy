@@ -1000,8 +1000,8 @@ textarea#account_note {
 }
 
 .input-copy {
-  background: darken($ui-base-color, 10%);
-  border: 1px solid darken($ui-base-color, 14%);
+  background: var(--ui-body-dark-color);
+  border: 1px solid var(--ui-font-color);
   border-radius: 4px;
   display: flex;
   align-items: center;
