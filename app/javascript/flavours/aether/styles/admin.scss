@@ -20,8 +20,7 @@ $content-width: 840px;
       display: flex;
       justify-content: flex-end;
       background: var(--ui-page-background);
-
-      /* height: 100%; Fixme: Broke on mobile? */
+      height: 100%;
     }
   }
 
@@ -176,6 +175,10 @@ $content-width: 840px;
   @media screen and (max-width: $no-columns-breakpoint) {
     .sidebar-wrapper {
       width: 100%;
+
+      &__inner {
+        height: auto;
+      }
     }
   }
 
