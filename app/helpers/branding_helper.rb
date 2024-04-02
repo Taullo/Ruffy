@@ -25,9 +25,9 @@ module BrandingHelper
   def render_symbol(version = :icon)
     path = case version
            when :icon
-             icon_url
+             'logo-symbol-icon.png' # Adjust to the actual relative path
            when :wordmark
-             wordmark_url
+             'logo-symbol-wordmark.png' # Adjust to the actual relative path
            end
 
     image_pack_tag(path, class: "logo-symbol-#{version}").html_safe # rubocop:disable Rails/OutputSafety
