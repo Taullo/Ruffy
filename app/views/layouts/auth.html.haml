@@ -1,12 +1,12 @@
 - content_for :content do
   .container-alt
-    .logo-container
+    .logo-container .logo-container-light
       %h1
         .wordmark
           = link_to root_path do
             = logo_as_symbol(:wordmark)
 
-    .logo-container
+    .logo-container .logo-container-dark
       %h1
         .wordmark_dark
           = link_to root_path do

@@ -1090,6 +1090,14 @@ $ui-header-height: 55px;
   }
 }
 
+.logo-container-light {
+  display: none;
+}
+
+.logo-container-dark {
+  display: inherit;
+}
+
 .ui__header__left {
   .column-link {
     display: block;

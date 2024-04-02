@@ -78,11 +78,13 @@
   --ui-font-bright-color: #545e6c;
   --ui-font-stark-color: #ffffff;
 
-  .wordmark img {
+  .wordmark img,
+  .logo-container-light {
     display: inherit !important;
   }
 
-  .wordmark_dark img {
+  .wordmark_dark img,
+  .logo-container-dark {
     display: none !important;
   }
 }
