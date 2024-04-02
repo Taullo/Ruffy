@@ -39,9 +39,9 @@ Admin settings features:
 
 - Custom server-wide accent colors
 - Exposes setting for "Link previews for posts with Content Warnings"
-- Adds an option for marking outgoing media as sensitive
+- Adds an option for marking all outgoing media as sensitive
 - Custom wordmark (logo) for both light and dark themes
-- WIP: Custom icon used for favicon, app icons, etc.
+- Custom icon used for favicon, app icons, etc.
 
 API Changes
 
