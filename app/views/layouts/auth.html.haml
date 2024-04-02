@@ -2,13 +2,15 @@
   .container-alt
     .logo-container
       %h1
-        = link_to root_path do
-          = logo_as_symbol(:wordmark)
+        .wordmark
+          = link_to root_path do
+            = logo_as_symbol(:wordmark)
 
-    .logo-container-dark
+    .logo-container
       %h1
-        = link_to root_path do
-          = logo_as_symbol(:wordmark_dark)
+        .wordmark_dark
+          = link_to root_path do
+            = logo_as_symbol(:wordmark_dark)
 
     .form-container
       = render 'flashes'
