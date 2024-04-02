@@ -5,9 +5,16 @@
         = link_to root_path do
           = logo_as_symbol(:wordmark)
 
+    .logo-container-dark
+      %h1
+        = link_to root_path do
+          = logo_as_symbol(:wordmark_dark)
+
     .form-container
       = render 'flashes'
 
       = yield
+
+%script{ src: "/theme.js", defer: true }
 
 = render template: 'layouts/application'

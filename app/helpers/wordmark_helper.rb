@@ -5,6 +5,10 @@ module WordmarkHelper
     full_asset_url(instance_presenter.wordmark&.file&.url || asset_pack_path('media/images/wordmark.png'))
   end
 
+  def wordmark_dark_url
+    full_asset_url(instance_presenter.wordmark_dark&.file&.url || asset_pack_path('media/images/wordmark.png'))
+  end
+
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
   end
