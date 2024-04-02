@@ -32,8 +32,4 @@ module BrandingHelper
 
     render(file: Rails.root.join('app', 'javascript', 'images', path)).html_safe # rubocop:disable Rails/OutputSafety
   end
-
-  def icon
-    @icon ||= Rails.cache.fetch('site_uploads/icon') { SiteUpload.find_by(var: 'icon')&.file_path }
-  end
 end

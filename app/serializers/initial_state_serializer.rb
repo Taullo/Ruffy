@@ -43,6 +43,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       source_url: instance_presenter.source_url,
       version: instance_presenter.version,
       limited_federation_mode: Rails.configuration.x.limited_federation_mode,
+      icon: instance_presenter.icon&.file&.url,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
       trends_enabled: Setting.trends,

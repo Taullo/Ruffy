@@ -11,10 +11,7 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    - if defined?(icon) && icon.present? && icon.file.present?
-      %link{ rel: 'icon', href: icon, type: 'image/png' }/
-    - else
-      %link{ rel: 'icon', href: '/favicon.png', type: 'image/png' }/
+    %link{ rel: 'icon', href: icon_url, type: 'image/png' }/
 
     %link{ rel: 'mask-icon', href: asset_pack_path('media/images/logo-symbol-icon.svg'), color: '#6364FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
