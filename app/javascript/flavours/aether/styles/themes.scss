@@ -25,9 +25,11 @@
 .wired.smooshed {
   .focusable {
     border-bottom: 2px solid transparent;
+    margin-top: -2px;
 
     &:focus {
       border-bottom: 2px solid var(--ui-highlight-color);
+      z-index: 1;
     }
   }
 
