@@ -8,16 +8,10 @@
   .right_column .explore__tags-header,
   .right_column .list-panel {
     background: var(--ui-body-dark-color);
-    border: 2px solid var(--ui-body-color);
   }
 
   .account__fields {
-    border: 1px solid var(--ui-body-color);
     background: var(--ui-page-background);
-
-    dl {
-      border-bottom: 1px solid var(--ui-body-color);
-    }
   }
 }
 
@@ -33,6 +27,30 @@
     background: var(--ui-body-color);
   }
 
+  .right_column .explore__suggested-header,
+  .right_column .explore__tags-header,
+  .right_column .list-panel {
+    background: var(--ui-body-color);
+  }
+}
+
+.wired.dark-theme {
+  .right_column .explore__suggested-header,
+  .right_column .explore__tags-header,
+  .right_column .list-panel {
+    border: 2px solid var(--ui-body-color);
+  }
+
+  .account__fields {
+    border: 1px solid var(--ui-body-color);
+
+    dl {
+      border-bottom: 1px solid var(--ui-body-color);
+    }
+  }
+}
+
+.wired.light-theme {
   .focusable {
     border-color: var(--ui-page-background);
   }
@@ -40,7 +58,6 @@
   .right_column .explore__suggested-header,
   .right_column .explore__tags-header,
   .right_column .list-panel {
-    background: var(--ui-body-color);
     border: 2px solid var(--ui-page-background);
   }
 
