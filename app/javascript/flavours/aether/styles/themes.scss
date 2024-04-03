@@ -1,5 +1,5 @@
-.wired .dark-theme,
-.wireless .dark-theme {
+.wired.dark-theme,
+.wireless.dark-theme {
   .status {
     background: var(--ui-body-dark-color);
   }
@@ -12,8 +12,8 @@
   }
 }
 
-.wired .light-theme,
-.wireless .light-theme {
+.wired.light-theme,
+.wireless.light-theme {
   background: var(--ui-body-color) !important;
 
   .status {
