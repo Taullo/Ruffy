@@ -12,10 +12,13 @@
 }
 
 .smooshed {
+  .status {
+    border-radius: 0;
+  }
+
   .status:first-child {
-    border-top-left-radius: var(--ui-border-radius);
-    border-top-right-radius: var(--ui-border-radius);
     margin-top: 0;
+    border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
   }
 }
 
