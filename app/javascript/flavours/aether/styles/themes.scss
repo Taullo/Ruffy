@@ -20,6 +20,10 @@
   article:first-child .status {
     border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
   }
+
+  article:last-child .status {
+    border-radius: 0 0 var(--ui-border-radius) var(--ui-border-radius);
+  }
 }
 
 .wired.smooshed {
