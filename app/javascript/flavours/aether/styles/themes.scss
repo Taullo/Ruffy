@@ -25,9 +25,13 @@
 .wired.smooshed {
   .focusable {
     border-bottom: 2px solid transparent;
+
+    &:focus {
+      border-bottom: 2px solid var(--ui-highlight-color);
+    }
   }
 
-  .focusable:last-child {
+  article:last-child .focusable {
     border-bottom: 2px solid var(--ui-body-color);
   }
 }
