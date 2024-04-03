@@ -1,4 +1,5 @@
-.wired {
+.wired,
+.wireless {
   .status {
     background: var(--ui-body-dark-color);
   }
@@ -8,6 +9,25 @@
   .right_column .list-panel {
     background: var(--ui-body-dark-color);
     border: 2px solid var(--ui-body-color);
+  }
+
+  .light-theme {
+    background: var(--ui-body-color);
+
+    .status {
+      background: var(--ui-body-dark-color);
+    }
+
+    .focusable {
+      border-color: var(--ui-page-background);
+    }
+
+    .right_column .explore__suggested-header,
+    .right_column .explore__tags-header,
+    .right_column .list-panel {
+      background: var(--ui-body-dark-color);
+      border-color: var(--ui-page-background);
+    }
   }
 }
 
@@ -43,5 +63,16 @@
 
   article:last-child .focusable {
     border-bottom: 2px solid var(--ui-body-color);
+  }
+}
+
+.wireless {
+  .focusable {
+    border-color: transparent;
+  }
+
+  .right_column .list-panel {
+    background: var(--ui-body-dark-color);
+    border-color: transparent;
   }
 }
