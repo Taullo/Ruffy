@@ -17,6 +17,10 @@
     margin-top: 0;
   }
 
+  .focusable {
+    border-bottom: 2px solid var(--ui-page-background);
+  }
+
   article:first-child .status {
     border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
   }
