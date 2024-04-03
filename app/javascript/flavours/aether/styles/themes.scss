@@ -10,6 +10,15 @@
     background: var(--ui-body-dark-color);
     border: 2px solid var(--ui-body-color);
   }
+
+  .account__fields {
+    border: 1px solid var(--ui-body-color);
+    background: var(--ui-body-color);
+
+    dl {
+      border-bottom: 1px solid var(--ui-body-color);
+    }
+  }
 }
 
 .wired.light-theme,
@@ -27,8 +36,12 @@
   .right_column .explore__suggested-header,
   .right_column .explore__tags-header,
   .right_column .list-panel {
-    background: var(--ui-body-dark-color);
+    background: var(--ui-body-color);
     border: 2px solid var(--ui-page-background);
+  }
+
+  .account__fields {
+    border: 1px solid var(--ui-page-background);
   }
 }
 
@@ -75,5 +88,13 @@
   .right_column .list-panel {
     background: var(--ui-body-dark-color);
     border-color: transparent;
+  }
+
+  .account__fields {
+    border-color: transparent;
+
+    dl {
+      border-bottom-color: transparent;
+    }
   }
 }
