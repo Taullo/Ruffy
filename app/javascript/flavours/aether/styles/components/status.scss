@@ -331,10 +331,7 @@
         bottom: 0;
         inset-inline-start: 0;
         inset-inline-end: 0;
-        background: linear-gradient(
-          rgba($ui-base-color, 0),
-          rgba($ui-base-color, 1)
-        );
+        background: linear-gradient(rgba(40, 44, 55, 0%), var(--ui-body-color));
         pointer-events: none;
       }
 
