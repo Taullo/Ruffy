@@ -25,6 +25,10 @@
 .wireless.light-theme {
   background: var(--ui-body-color) !important;
 
+  .ui__header__wrapper {
+    background: var(--ui-body-color);
+  }
+
   .status {
     background: var(--ui-body-color);
   }
