@@ -1,21 +1,23 @@
 .wired,
 .wireless {
-  .status {
-    background: var(--ui-body-dark-color);
-  }
+  .dark-theme {
+    .status {
+      background: var(--ui-body-dark-color);
+    }
 
-  .right_column .explore__suggested-header,
-  .right_column .explore__tags-header,
-  .right_column .list-panel {
-    background: var(--ui-body-dark-color);
-    border: 2px solid var(--ui-body-color);
+    .right_column .explore__suggested-header,
+    .right_column .explore__tags-header,
+    .right_column .list-panel {
+      background: var(--ui-body-dark-color);
+      border: 2px solid var(--ui-body-color);
+    }
   }
 
   .light-theme {
-    background: var(--ui-body-color);
+    background: var(--ui-body-color) !important;
 
     .status {
-      background: var(--ui-body-dark-color);
+      background: var(--ui-body-color);
     }
 
     .focusable {
@@ -26,7 +28,7 @@
     .right_column .explore__tags-header,
     .right_column .list-panel {
       background: var(--ui-body-dark-color);
-      border-color: var(--ui-page-background);
+      border: 2px solid var(--ui-page-background);
     }
   }
 }
