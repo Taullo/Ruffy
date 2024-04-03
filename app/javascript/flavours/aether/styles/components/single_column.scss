@@ -272,7 +272,7 @@
 
   .layout-single-column .ui__header {
     display: flex;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--ui-page-border-color);
   }
 
   .column-header,
@@ -292,7 +292,7 @@
     background-color: var(--ui-page-background);
     bottom: 0;
     left: 0;
-    border-top: 1px #282c37 solid;
+    border-top: 1px var(--ui-page-border-color) solid;
     text-align: center;
 
     .icon-with-badge__badge {
