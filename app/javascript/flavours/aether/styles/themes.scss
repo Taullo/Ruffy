@@ -1,0 +1,30 @@
+.wired {
+  .status {
+    background: var(--ui-body-dark-color);
+  }
+
+  .right_column .explore__suggested-header,
+  .right_column .explore__tags-header,
+  .right_column .list-panel {
+    background: var(--ui-body-dark-color);
+    border: 2px solid var(--ui-body-color);
+  }
+}
+
+.smooshed {
+  .status:first-child {
+    border-top-left-radius: var(--ui-border-radius);
+    border-top-right-radius: var(--ui-border-radius);
+    margin-top: 0;
+  }
+}
+
+.wired.smooshed {
+  .focusable {
+    border-bottom: 2px solid transparent;
+  }
+
+  .focusable:last-child {
+    border-bottom: 2px solid var(--ui-body-color);
+  }
+}

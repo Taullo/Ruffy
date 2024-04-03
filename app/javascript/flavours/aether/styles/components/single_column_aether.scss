@@ -3,12 +3,12 @@
     display: block;
   }
 
-  .layout-single-column {
-    .status {
-      margin-top: 8px;
-      border-radius: var(--ui-border-radius);
-    }
+  .status {
+    margin-top: 8px;
+    border-radius: var(--ui-border-radius);
+  }
 
+  .layout-single-column {
     .ui__header {
       display: flex;
       max-width: var(--ui-widescreen-width);
