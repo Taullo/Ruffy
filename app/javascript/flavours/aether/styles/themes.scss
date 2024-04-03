@@ -14,10 +14,10 @@
 .smooshed {
   .status {
     border-radius: 0;
+    margin-top: 0;
   }
 
   article:first-child .status {
-    margin-top: 0;
     border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
   }
 }
