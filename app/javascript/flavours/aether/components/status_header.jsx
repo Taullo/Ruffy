@@ -48,9 +48,7 @@ export default class StatusHeader extends PureComponent {
 
     return (
       <div className='status__info__account'>
-        <div
-          className='status__avatar'
-        >
+        <div className='status__avatar'>
           {statusAvatar}
         </div>
         <a
