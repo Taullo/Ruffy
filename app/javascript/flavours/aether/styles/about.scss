@@ -164,7 +164,7 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__meta {
-    background: var(--ui-body-dim-color);
+    background: var(--ui-body-color);
     border-radius: 4px;
     display: flex;
     margin-bottom: 30px;
@@ -313,7 +313,7 @@ $fluid-breakpoint: $maximum-width + 20px;
       color: var(--ui-font-secondary-color);
 
       &:nth-child(2n) {
-        background: var(--ui-body-dim-color);
+        background: var(--ui-body-color);
       }
 
       &:last-child {

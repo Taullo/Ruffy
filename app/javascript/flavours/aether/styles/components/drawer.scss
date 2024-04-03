@@ -79,7 +79,7 @@
     &:focus,
     &:hover {
       outline: none;
-      background: var(--ui-body-dim-color);
+      background: var(--ui-body-color);
       color: var(--ui-font-color);
       transition: background 200ms ease-out;
     }

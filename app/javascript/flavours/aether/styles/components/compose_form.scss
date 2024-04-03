@@ -164,7 +164,7 @@
   margin: 0 0 10px;
   border-radius: 4px;
   padding: 10px;
-  background: var(--ui-body-dim-color);
+  background: var(--ui-body-color);
   min-height: 23px;
   max-height: 20vh;
   overflow-y: auto;
@@ -253,7 +253,7 @@
       min-height: 100px;
       outline: 0;
       color: var(--ui-font-color);
-      background: var(--ui-body-dim-color);
+      background: var(--ui-body-color);
       transition: background 0.2s;
       font-size: 1rem;
       font-family: inherit;

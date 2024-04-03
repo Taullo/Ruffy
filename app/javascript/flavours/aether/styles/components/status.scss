@@ -175,11 +175,10 @@
 }
 
 .focusable {
-  border: 2px solid transparent;
+  border: 2px solid var(--ui-body-color);
 
   &:focus {
     outline: 0;
-    background: var(--ui-body-color);
     border-color: var(--ui-highlight-color);
 
     .detailed-status,
@@ -208,6 +207,10 @@
       transform: scale(0.3);
     }
   }
+
+  .focusable {
+    transition: border-color 0.2s;
+  }
 }
 
 .status {
@@ -219,8 +222,7 @@
   }
 
   cursor: auto;
-  background: var(--ui-body-dim-color);
-  transition: background 0.2s;
+  background: var(--ui-body-color);
 
   &:hover,
   &:focus,
@@ -263,7 +265,7 @@
 
   &.status-direct {
     background: var(--ui-base-color);
-    border-bottom-color: var(--ui-body-dim-color);
+    border-bottom-color: var(--ui-body-color);
   }
 
   &.light {
@@ -1138,7 +1140,7 @@ a.status-card.compact:hover {
         top: 10px - 4px;
         height: 62px + 4px + 4px;
         width: 2px;
-        background: var(--ui-body-dim-color);
+        background: var(--ui-body-color);
         inset-inline-start: -2px;
       }
     }
