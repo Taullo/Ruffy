@@ -816,7 +816,7 @@ a.status__display-name,
 
     & > div {
       background: var(--ui-body-secondary-color);
-      border-radius: 8px;
+      border-radius: var(--ui-border-radius);
       padding: 12px 9px;
       flex: 0 0 auto;
       display: flex;

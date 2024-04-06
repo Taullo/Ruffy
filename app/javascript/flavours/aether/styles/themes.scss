@@ -71,7 +71,8 @@
     margin-top: 8px;
   }
 
-  .status {
+  .status,
+  .notification {
     border-radius: 0;
     margin-top: 2px;
   }
@@ -117,5 +118,9 @@
     dl {
       border-bottom-color: transparent;
     }
+  }
+
+  .notification {
+    border-color: transparent;
   }
 }

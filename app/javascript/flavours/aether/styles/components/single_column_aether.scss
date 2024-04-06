@@ -3,7 +3,8 @@
     display: block;
   }
 
-  .status {
+  .status,
+  .notification {
     margin-top: 8px;
     border-radius: var(--ui-border-radius);
   }
