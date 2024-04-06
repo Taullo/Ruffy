@@ -61,6 +61,7 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
   add_account_note: { id: 'account.add_account_note', defaultMessage: 'Add note for @{name}' },
+  view_rss_feed: { id: 'account.add_account_note', defaultMessage: 'View RSS feed for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
   followers: { id: 'account.followers', defaultMessage: 'Followers' },
@@ -230,9 +231,16 @@ class Header extends ImmutablePureComponent {
       menu.push(null);
     }
 
-    if ('share' in navigator && !suspended) {
-      menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
-      menu.push(null);
+    if (!suspended) {
+      if ('share' in navigator) {
+        menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
+      }
+      if (!isRemote) {
+        menu.push({ text: intl.formatMessage(messages.view_rss_feed, { name: account.get('username') }), href: `/${name}.rss` });
+      }
+      if ('share' in navigator || !isRemote) {
+        menu.push(null);
+      }
     }
 
     if (account.get('id') !== me && (accountNote === null || accountNote === '')) {
