@@ -158,6 +158,8 @@
   box-sizing: border-box;
   width: 100%;
   clear: both;
+  z-index: 1;
+  position: relative;
 }
 
 .status__prepend-icon-wrapper {
