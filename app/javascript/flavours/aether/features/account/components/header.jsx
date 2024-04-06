@@ -238,9 +238,10 @@ class Header extends ImmutablePureComponent {
       if (!isRemote) {
         menu.push({ text: intl.formatMessage(messages.view_rss_feed, { name: account.get('username') }), href: `/${name}.rss` });
       }
-      if ('share' in navigator || !isRemote) {
-        menu.push(null);
+      else {
+        menu.push({ text: intl.formatMessage(messages.view_rss_feed, { name: account.get('username') }), href: (account.get('url') + '.rss') });
       }
+      menu.push(null);
     }
 
     if (account.get('id') !== me && (accountNote === null || accountNote === '')) {
