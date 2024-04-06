@@ -61,7 +61,7 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
   add_account_note: { id: 'account.add_account_note', defaultMessage: 'Add note for @{name}' },
-  view_rss_feed: { id: 'account.add_account_note', defaultMessage: 'View RSS feed for @{name}' },
+  view_rss_feed: { id: 'account.view_rss_feed', defaultMessage: 'View RSS feed for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
   followers: { id: 'account.followers', defaultMessage: 'Followers' },
