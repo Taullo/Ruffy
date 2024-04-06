@@ -4,7 +4,8 @@
   }
 
   .status,
-  .notification {
+  .notification,
+  .status__wrapper--filtered {
     margin-top: 8px;
     border-radius: var(--ui-border-radius);
   }
