@@ -87,6 +87,8 @@ const mapStateToProps = state => ({
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 20,
   layout_local_setting: state.getIn(['local_settings', 'layout']),
   theme: state.getIn(['local_settings', 'theme']),
+  post_style: state.getIn(['local_settings', 'post_style']),
+  post_smoosh: state.getIn(['local_settings', 'post_smoosh']),
   lowContrast: state.getIn(['local_settings', 'low_contrast_theme']),
   accent: state.getIn(['local_settings', 'accent']),
   isWide: state.getIn(['local_settings', 'stretch']),
@@ -275,6 +277,8 @@ class UI extends Component {
     children: PropTypes.node,
     layout_local_setting: PropTypes.string,
     theme: PropTypes.string,
+    post_style: PropTypes.string,
+    post_smoosh: PropTypes.bool,
     lowContrast: PropTypes.bool,
     accent: PropTypes.string,
     isWide: PropTypes.bool,
@@ -438,6 +442,30 @@ class UI extends Component {
     }
   }
   
+  handlePostStyle() {
+    if (this.props.post_style === 'wired') {
+      document.body.classList.toggle('wired', true);
+      document.body.classList.toggle('wireless', false);
+    }
+    else if (this.props.post_style === 'wireless') {
+      document.body.classList.toggle('wired', false);
+      document.body.classList.toggle('wireless', true);
+    }
+    else {
+      document.body.classList.toggle('wired', false);
+      document.body.classList.toggle('wireless', false);
+    }
+  }
+  
+  handlePostSmoosh() {
+    if (this.props.post_smoosh === true) {
+      document.body.classList.toggle('smooshed', true);
+    }
+    else {
+      document.body.classList.toggle('smooshed', false);
+    }
+  }
+  
   handleAccent() {
     var accentColor;
     if (this.props.accent === 'default') {
@@ -467,7 +495,7 @@ class UI extends Component {
       document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#fff');
     }
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", accentColor);
-  };
+  }
 
   componentDidMount () {
     const { signedIn } = this.context.identity;
@@ -485,6 +513,8 @@ class UI extends Component {
     document.addEventListener('dragend', this.handleDragEnd, false);
     
     this.handleTheme();
+    this.handlePostStyle();
+    this.handlePostSmoosh();
     this.handleAccent();
 
     if ('serviceWorker' in  navigator) {
@@ -533,9 +563,9 @@ class UI extends Component {
     if (nextProps.layout_local_setting !== this.props.layout_local_setting) {
       setTimeout( // FIXME: Hack to wait for setting to save
         function() {
-          this.handleResize()
+          this.handleResize();
         }
-        .bind(this),
+          .bind(this),
         100
       );
     }
@@ -545,7 +575,7 @@ class UI extends Component {
           this.handleTheme();
           this.handleAccent();
         }
-        .bind(this),
+          .bind(this),
         100
       );
     }
@@ -554,16 +584,34 @@ class UI extends Component {
         function() {
           this.handleTheme();
         }
-        .bind(this),
+          .bind(this),
         100
       );
     }
     if (nextProps.accent !== this.props.accent) {
       setTimeout( // FIXME: Hack to wait for setting to save
         function() {
-          this.handleAccent()
+          this.handleAccent();
         }
-        .bind(this),
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.post_style !== this.props.post_style) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handlePostStyle();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.post_smoosh !== this.props.post_smoosh) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handlePostSmoosh();
+        }
+          .bind(this),
         100
       );
     }

@@ -52,6 +52,12 @@ const messages = defineMessages({
   accent_mono: { id: 'settings.accent_mono', defaultMessage:  'Monochrome' },
   accent_custom: { id: 'settings.accent_custom', defaultMessage:  'Custom' },
 
+  post_style_filled: { id: 'settings.post_style_filled', defaultMessage:  'Filled' },
+  post_style_wired: { id: 'settings.post_style_wired', defaultMessage:  'Wireframe' },
+  post_style_wireless: { id: 'settings.post_style_wireless', defaultMessage:  'Borderless' },
+  
+  post_smoosh: { id: 'settings.post_smoosh', defaultMessage:  'Make posts appear closer together' },
+
   cw_visibility_obscured: { id: 'settings.cw_visibility_obscured', defaultMessage:  'Obscured' },
   cw_visibility_hidden: { id: 'settings.cw_visibility_hidden', defaultMessage:  'Hidden' },
   cw_visibility_shown: { id: 'settings.cw_visibility_shown', defaultMessage:  'Visible' },
@@ -114,7 +120,7 @@ class LocalSettingsPage extends PureComponent {
             onChange={onChange}
           >
             <FormattedMessage id='settings.accent' defaultMessage='Accent Color' />
-            <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change the accent color of the entire site' /></span>
+            <span className='hint'><FormattedMessage id='settings.accent_hint' defaultMessage='Change the accent color of the entire site' /></span>
           </LocalSettingsPageItem>
         </span>
         <h2><FormattedMessage id='settings.misleading_links' defaultMessage='Tag Misleading Links' /></h2>
@@ -283,6 +289,29 @@ class LocalSettingsPage extends PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page posts'>
         <h1><FormattedMessage id='settings.statuses' defaultMessage='Posts' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['post_style']}
+          id='mastodon-settings--post-style'
+          options={[
+            { type: 'radio', value: 'filled', message: intl.formatMessage(messages.post_style_filled) },
+            { type: 'radio', value: 'wired', message: intl.formatMessage(messages.post_style_wired) },
+            { type: 'radio', value: 'wireless', message: intl.formatMessage(messages.post_style_wireless) },
+          ]}
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.post_style_header' defaultMessage='Post style:' />
+          <span className='hint'><FormattedMessage id='settings.cw_visibility_hint' defaultMessage='Change the appearance of posts' /></span>
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['post_smoosh']}
+          id='mastodon-settings--post-smoosh'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.post_smoosh' defaultMessage='Make posts appear closer together' />
+          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Posts will be separated by a small border instead of appearing separately' /></span>
+        </LocalSettingsPageItem>
         <h2><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapse posts' /></h2>
         <LocalSettingsPageItem
           settings={settings}

@@ -5,11 +5,6 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import Textarea from 'react-textarea-autosize';
-
-import AutosuggestAccountContainer from 'flavours/glitch/features/compose/containers/autosuggest_account_container';
-
-import AutosuggestEmoji from './autosuggest_emoji';
 import { AutosuggestHashtag } from './autosuggest_hashtag';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
@@ -24,20 +19,21 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
     word = str.slice(left, right + caretPosition);
   }
 
-  if (!word || word.trim().length < 3 || ['@', ':', '#'].indexOf(word[0]) === -1) {
-    return [null, null];
+  if (!word || word.trim().length < 2 || (word.trim().length < 3 && ['#'].indexOf(word[0]) === 0)) {
+    return [null, null, null];
   }
 
   word = word.trim().toLowerCase();
 
   if (word.length > 0) {
-    return [left, word];
+    let symbol = ['#'].indexOf(word[0]) === 0 ? true : false;
+    return [left, word, symbol];
   } else {
-    return [null, null];
+    return [null, null, null];
   }
 };
 
-export default class AutosuggestTextarea extends ImmutablePureComponent {
+export default class AutosuggestHashtagarea extends ImmutablePureComponent {
 
   static propTypes = {
     value: PropTypes.string,
@@ -68,11 +64,12 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   };
 
   onChange = (e) => {
-    const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
+    const [ tokenStart, token, symbol ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
 
     if (token !== null && this.state.lastToken !== token) {
       this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
-      this.props.onSuggestionsFetchRequested(token);
+      // Check if # is used, and if not, add one to the hashtag search
+      this.props.onSuggestionsFetchRequested(symbol === true ? token : '#' + token);
     } else if (token === null) {
       this.setState({ lastToken: null });
       this.props.onSuggestionsClearRequested();
@@ -84,6 +81,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   onKeyDown = (e) => {
     const { suggestions, disabled } = this.props;
     const { selectedSuggestion, suggestionsHidden } = this.state;
+    const { value } = this.props;
 
     if (disabled) {
       e.preventDefault();
@@ -128,6 +126,31 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
         e.stopPropagation();
         this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
       }
+      else if (suggestions.size === 0 || suggestionsHidden) {
+        const caretPosition = e.target.selectionStart;
+        const [tokenStart, token, symbol] = textAtCursorMatchesToken(value, caretPosition);
+        if (!symbol && token) {
+          const newValue = value.slice(0, tokenStart) + '#' + value.slice(tokenStart) + ' ';
+          this.props.onChange({ target: { value: newValue } }); // Call onChange with the new value
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+
+      break;
+    case ' ':
+      console.log('Space pressed');
+      const caretPosition = e.target.selectionStart;
+      const [tokenStart, token, symbol] = textAtCursorMatchesToken(value, caretPosition);
+      if (!symbol && token) {
+        if (caretPosition < value.length - 1 && !/\s/.test(value[caretPosition])) {
+          return;
+        }
+        const newValue = value.slice(0, tokenStart) + '#' + value.slice(tokenStart) + ' ';
+        this.props.onChange({ target: { value: newValue } }); // Call onChange with the new value
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
       break;
     }
@@ -154,7 +177,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
-    this.textarea.focus();
+    this.input.focus();
   };
 
   UNSAFE_componentWillReceiveProps (nextProps) {
@@ -163,31 +186,47 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
   }
 
-  setTextarea = (c) => {
-    this.textarea = c;
+  setInput = (c) => {
+    this.input = c;
   };
 
   onPaste = (e) => {
-    if (e.clipboardData && e.clipboardData.files.length === 1) {
-      this.props.onPaste(e.clipboardData.files);
-      e.preventDefault();
+    const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+
+    // Get selection range to allow overwriting the field
+    const selectionStart = this.input.selectionStart;
+    const selectionEnd = this.input.selectionEnd;
+    const currentValue = this.props.value;
+    let prepend = '';
+    let append = '';
+    
+    if ((currentValue.charAt(selectionStart - 1) !== ' ') && (currentValue.charAt(selectionStart - 1).length > 0)) {
+      prepend = ' ';
     }
+    
+    if ((currentValue.charAt(selectionEnd + 1) !== ' ') && (currentValue.charAt(selectionEnd + 1).length > 0)) {
+      if (currentValue.charAt(selectionEnd + 1) === '#') {
+        append = ' ';
+      }
+      else {
+        append = ' #';
+      }
+    }
+    const modifiedText = pastedText.split(/\s+/).map(word => (!word.startsWith('#') ? '#' + word : word)).join(' ');
+    const newValue = currentValue.slice(0, selectionStart) + prepend + modifiedText + append + currentValue.slice(selectionEnd);
+    this.props.onChange({ target: { value: newValue } });
+    const newCursorPosition = selectionStart + modifiedText.length + prepend.length + append.length;
+    setTimeout(() => {
+      this.input.setSelectionRange(newCursorPosition, newCursorPosition);
+    }, 1);
+    e.preventDefault();
   };
 
   renderSuggestion = (suggestion, i) => {
     const { selectedSuggestion } = this.state;
     let inner, key;
-
-    if (suggestion.type === 'emoji') {
-      inner = <AutosuggestEmoji emoji={suggestion} />;
-      key   = suggestion.id;
-    } else if (suggestion.type === 'hashtag') {
-      inner = <AutosuggestHashtag tag={suggestion} />;
-      key   = suggestion.name;
-    } else if (suggestion.type === 'account') {
-      inner = <AutosuggestAccountContainer id={suggestion.id} />;
-      key   = suggestion.id;
-    }
+    inner = <AutosuggestHashtag tag={suggestion} />;
+    key   = suggestion.name;
 
     return (
       <div role='button' tabIndex={0} key={key} data-index={i} className={classNames('autosuggest-textarea__suggestions__item', { selected: i === selectedSuggestion })} onMouseDown={this.onSuggestionClick}>
@@ -201,14 +240,14 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     const { suggestionsHidden } = this.state;
 
     return [
-      <div className='compose-form__autosuggest-wrapper' key='autosuggest-wrapper'>
+      <div className='compose-form__autosuggest-wrapper compose-form__autosuggest-wrapper-hashtags' key='autosuggest-wrapper'>
         <div className='autosuggest-textarea'>
           <label>
             <span style={{ display: 'none' }}>{placeholder}</span>
 
-            <Textarea
-              ref={this.setTextarea}
-              className='autosuggest-textarea__textarea'
+            <input
+              ref={this.setInput}
+              className='autosuggest-textarea__hashtagarea'
               disabled={disabled}
               placeholder={placeholder}
               autoFocus={autoFocus}

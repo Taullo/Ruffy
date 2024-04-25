@@ -6,11 +6,11 @@
   /* Element Sizes */
   --ui-main-column-width: 630px;
   --ui-secondary-column-width: 460px;
-  --ui-secondary-profile-column-width: 525px;
+  --ui-secondary-profile-column-width: 500px;
   --ui-avatar-status-size: 62px;
   --ui-border-radius: 6px;
   --ui-highlight-button-text-color: #ffffff;
-  --ui-widescreen-width: 1175px;
+  --ui-widescreen-width: 1150px;
   --ui-right-column-width: 300px;
 
   accent-color: var(--ui-highlight-color);
@@ -28,33 +28,33 @@
 .dark-theme,
 .modal-layout {
   /* Background colors */
-  --ui-page-background: #191b22;
-  --ui-base-color: #282c37;
-  --ui-base-lighter-color: #333845;
-  --ui-primary-color: #9baec8;
-  --ui-secondary-color: #d9e1e8;
+  --ui-page-background: #151515;
+  --ui-primary-color: #c6c6c6;
+  --ui-secondary-color: #e1e1e8;
   --ui-shadow-color: #202020;
-  --ui-body-color: #252933;
-  --ui-body-secondary-color: #1f222b;
+  --ui-body-color: #242427;
+  --ui-body-secondary-color: #1e1e20;
   --ui-body-simple-bg: #ffffff;
-  --ui-page-border-color: #282c37;
+  --ui-page-border-color: #272729;
   --ui-body-dark-color: var(--ui-page-background);
+  --ui-base-color: var(--ui-body-color);
+  --ui-base-lighter-color: #333336;
 
   /* Font Colors */
-  --ui-font-color: #e8e8e8;
-  --ui-font-secondary-color: #d9e1e8;
-  --ui-inverted-font-color: #282c37;
-  --ui-font-dimmer-color: #606984;
+  --ui-font-color: #eaeaea;
+  --ui-font-secondary-color: #dedee5;
+  --ui-inverted-font-color: #252933;
+  --ui-font-dimmer-color: #6f6f79;
   --ui-font-dimmest-color: var(--ui-primary-color);
   --ui-font-brighter-color: #333845;
-  --ui-font-bright-color: #9baec8;
+  --ui-font-bright-color: #b4b4c8;
   --ui-font-stark-color: #000000;
 }
 
 /* Light theme */
 
 .light-theme {
-  --ui-page-background: #e9ecee;
+  --ui-page-background: #f1f1f1;
   --ui-base-color: #ffffff;
   --ui-base-lighter-color: #ffffff;
   --ui-primary-color: #c1c1c1;
@@ -90,7 +90,7 @@
 /* Mixed theme */
 
 .mixed-theme {
-  --ui-page-background: #191b22;
+  --ui-page-background: #151515;
   --ui-base-color: #ffffff;
   --ui-base-lighter-color: #ffffff;
   --ui-primary-color: #9baec8;
@@ -99,7 +99,7 @@
   --ui-body-color: #ffffff;
   --ui-body-secondary-color: #eff2f5; /* change to border for light theme? */
   --ui-body-simple-bg: #333845;
-  --ui-page-border-color: #282c37;
+  --ui-page-border-color: #272729;
   --ui-body-dark-color: #e9ecee;
 
   /* Font Colors */

@@ -2,16 +2,20 @@
   padding-bottom: 20px;
   width: 100%;
 
-  .autosuggest-textarea__textarea {
-    border-radius: var(--ui-border-radius) !important;
-    padding-bottom: 10px !important;
+  .compose-form__autosuggest-wrapper {
+    border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
+    background: var(--ui-body-color);
+    border-bottom: 2px dashed var(--ui-body-secondary-color);
   }
 
-  .compose-form__autosuggest-wrapper {
-    border: 14px solid var(--ui-body-secondary-color);
-    border-width: 8px 8px 0;
-    border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
-    background: var(--ui-body-secondary-color);
+  &.reply-form .compose-form__autosuggest-wrapper {
+    border-bottom: 0;
+  }
+
+  .compose-form__autosuggest-wrapper-hashtags {
+    border-radius: 0;
+    border-top: 0;
+    border-bottom: 0;
   }
 
   .emoji-picker-dropdown {
@@ -71,7 +75,6 @@
   input {
     display: block;
     margin: 0;
-    border-radius: 4px;
     padding: 0.5rem;
     width: 100%;
     outline: 0;
@@ -247,7 +250,7 @@
       box-sizing: border-box;
       margin: 0;
       border: 0;
-      border-radius: 4px 4px 0 0;
+      border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
       padding: 10px 32px 0 10px;
       width: 100%;
       min-height: 100px;
@@ -271,6 +274,47 @@
       &:focus {
         outline: 0;
         background: var(--ui-body-color);
+      }
+
+      @include single-column('screen and (max-width: 630px)') {
+        font-size: 16px;
+      }
+
+      @include limited-single-column('screen and (max-width: 600px)') {
+        height: 100px !important; // prevent auto-resize textarea
+        resize: vertical;
+      }
+    }
+
+    .autosuggest-textarea__hashtagarea {
+      display: block;
+      box-sizing: border-box;
+      margin: 0;
+      border: 0;
+      padding: 10px 32px 8px 10px;
+      width: 100%;
+      min-height: 1rem;
+      outline: 0;
+      color: var(--ui-font-color);
+      background: var(--ui-body-color);
+      transition: background 0.2s;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: none;
+      overflow: auto;
+      white-space: nowrap;
+      scrollbar-color: initial;
+
+      &::placeholder {
+        color: var(--ui-font-dimmer-color);
+      }
+
+      &::-webkit-scrollbar {
+        all: unset;
+      }
+
+      &:focus {
+        outline: 0;
       }
 
       @include single-column('screen and (max-width: 630px)') {
@@ -513,18 +557,22 @@
 }
 
 .compose-form__buttons-wrapper {
-  padding: 10px;
-  background: var(--ui-body-secondary-color);
-  border-radius: 0 0 4px 4px;
-  height: 27px;
+  border-radius: 0 0 var(--ui-border-radius) var(--ui-border-radius);
   display: flex;
-  justify-content: space-between;
-  flex: 0 0 auto;
+  justify-content: start;
+  margin-top: 6px;
+  column-gap: 6px;
+  overflow: hidden;
 }
 
 .compose-form__buttons {
   display: flex;
-  flex: 0 0 auto;
+  background: var(--ui-body-secondary-color);
+  padding: 8px;
+
+  &__right {
+    flex-grow: 1;
+  }
 
   & .icon-button,
   & .text-icon-button {
@@ -552,6 +600,8 @@
 .character-counter__wrapper {
   align-self: center;
   margin-inline-end: 4px;
+  position: absolute;
+  right: 8px;
 }
 
 .privacy-dropdown {

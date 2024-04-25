@@ -11,6 +11,7 @@ import { IconButton } from 'flavours/aether/components/icon_button';
 import { maxChars } from 'flavours/aether/initial_state';
 import { isMobile } from 'flavours/aether/is_mobile';
 
+import AutosuggestHashtagarea from '../../../components/autosuggest_hashtagarea';
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
@@ -22,7 +23,6 @@ import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { countableText } from '../util/counter';
 
-import CharacterCounter from './character_counter';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
 
@@ -37,6 +37,7 @@ const messages = defineMessages({
     id: 'confirmations.missing_media_description.confirm',
     defaultMessage: 'Send anyway',
   },
+  hashtag_placeholder: { id: 'compose_form.hashtag_placeholder', defaultMessage: 'Add #hashtags to your post' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
   spoiler: {
     defaultMessage: 'Toggle content warning',
@@ -53,6 +54,7 @@ class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     text: PropTypes.string,
+    hashtags: PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
     privacy: PropTypes.string,
@@ -69,6 +71,7 @@ class ComposeForm extends ImmutablePureComponent {
     onClearSuggestions: PropTypes.func,
     onFetchSuggestions: PropTypes.func,
     onSuggestionSelected: PropTypes.func,
+    onChangeHashtags: PropTypes.func,
     onChangeSpoilerText: PropTypes.func,
     onPaste: PropTypes.func,
     onPickEmoji: PropTypes.func,
@@ -104,6 +107,7 @@ class ComposeForm extends ImmutablePureComponent {
     return [
       this.props.spoiler? this.props.spoilerText: '',
       countableText(this.props.text),
+      countableText(this.props.hashtags)
     ].join('');
   };
 
@@ -145,6 +149,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
   };
 
+  handleChangeHashtags = (e) => {
+    this.props.onChangeHashtags(e.target.value);
+  };
+
   //  Changes the text value of the spoiler.
   handleChangeSpoiler = ({ target: { value } }) => {
     const { onChangeSpoilerText } = this.props;
@@ -178,6 +186,10 @@ class ComposeForm extends ImmutablePureComponent {
   handleSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value, ['text']);
   };
+  
+  handleHashtagSuggestionSelected = (tokenStart, token, value) => {
+    this.props.onSuggestionSelected(tokenStart, token, value, ['hashtags']);
+  };
 
   handleSpoilerSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value, ['spoiler_text']);
@@ -199,7 +211,13 @@ class ComposeForm extends ImmutablePureComponent {
       this.textarea = textareaComponent.textarea;
     }
   };
-
+  
+  setAutosuggestHashtagarea = (hashtagareaComponent) => {
+    if (hashtagareaComponent) {
+      this.hashtagarea = hashtagareaComponent.input;
+    }
+  };
+ 
   //  Sets a reference to the CW field.
   handleRefSpoilerText = (spoilerComponent) => {
     if (spoilerComponent) {
@@ -313,12 +331,14 @@ class ComposeForm extends ImmutablePureComponent {
       spoilersAlwaysOn,
       isEditing,
       disabled,
+      isInReply
     } = this.props;
 
     const countText = this.getFulltextForCharacterCounting();
+    const composerClass = !isInReply ? 'compose-form' : 'compose-form reply-form';
 
     return (
-      <div className='compose-form'>
+      <div className={composerClass}>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
@@ -346,6 +366,25 @@ class ComposeForm extends ImmutablePureComponent {
             <PollFormContainer />
           </div>
         </AutosuggestTextarea>
+        
+        {!isInReply && (
+          <AutosuggestHashtagarea
+            ref={this.setAutosuggestHashtagarea}
+            placeholder={intl.formatMessage(messages.hashtag_placeholder)}
+            disabled={isSubmitting}
+            value={this.props.hashtags}
+            onChange={this.handleChangeHashtags}
+            onKeyDown={this.handleKeyDown}
+            suggestions={suggestions}
+            onFocus={this.handleFocus}
+            onSuggestionsFetchRequested={onFetchSuggestions}
+            onSuggestionsClearRequested={onClearSuggestions}
+            onSuggestionSelected={this.handleHashtagSuggestionSelected}
+            onPaste={onPaste}
+            autoFocus={false}
+            lang={this.props.lang}
+          />
+        )}
 
         <div className='compose-form__buttons-wrapper'>
           <OptionsContainer
@@ -355,66 +394,65 @@ class ComposeForm extends ImmutablePureComponent {
             isEditing={isEditing}
             sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
             spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
+            countText={countText}
+            maxChars={maxChars}
           />
-          <div className='character-counter__wrapper'>
-            <CharacterCounter text={countText} max={maxChars} />
-          </div>
         </div>
 
-      <div className={`compose-form__bottom-buttons ${spoiler ? 'spoiler-button--clicked' : ''}`}>
+        <div className={`compose-form__bottom-buttons ${spoiler ? 'spoiler-button--clicked' : ''}`}>
       
-      <div className='spoiler_wrapper'>
+          <div className='spoiler_wrapper'>
       
-      <span className='spoiler_button'>
-          <IconButton
-            active={spoiler}
-            ariaControls='glitch.composer.spoiler.input'
-            icon='warning'
-            size={18}
-            style={{
-              height: null,
-              lineHeight: null,
-            }}
-            onClick={onChangeSpoilerness}
-            title={intl.formatMessage(messages.spoiler)}
-          />
-       </span>
+            <span className='spoiler_button'>
+              <IconButton
+                active={spoiler}
+                ariaControls='glitch.composer.spoiler.input'
+                icon='warning'
+                size={18}
+                style={{
+                  height: null,
+                  lineHeight: null,
+                }}
+                onClick={onChangeSpoilerness}
+                title={intl.formatMessage(messages.spoiler)}
+              />
+            </span>
       
-        <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
-          <AutosuggestInput
-            placeholder={intl.formatMessage(messages.spoiler_placeholder)}
-            value={spoilerText}
-            onChange={this.handleChangeSpoiler}
-            onKeyDown={this.handleKeyDown}
-            disabled={!spoiler}
-            ref={this.handleRefSpoilerText}
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={onFetchSuggestions}
-            onSuggestionsClearRequested={onClearSuggestions}
-            onSuggestionSelected={this.handleSpoilerSuggestionSelected}
-            searchTokens={[':']}
-            id='glitch.composer.spoiler.input'
-            className='spoiler-input__input'
-            lang={this.props.lang}
-            autoFocus={false}
-            spellCheck
-          />
-        </div>
+            <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
+              <AutosuggestInput
+                placeholder={intl.formatMessage(messages.spoiler_placeholder)}
+                value={spoilerText}
+                onChange={this.handleChangeSpoiler}
+                onKeyDown={this.handleKeyDown}
+                disabled={!spoiler}
+                ref={this.handleRefSpoilerText}
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={onFetchSuggestions}
+                onSuggestionsClearRequested={onClearSuggestions}
+                onSuggestionSelected={this.handleSpoilerSuggestionSelected}
+                searchTokens={[':']}
+                id='glitch.composer.spoiler.input'
+                className='spoiler-input__input'
+                lang={this.props.lang}
+                autoFocus={false}
+                spellCheck
+              />
+            </div>
         
-        </div>
+          </div>
       
-        <PrivacyDropdownContainer disabled={disabled || isEditing} />
+          <PrivacyDropdownContainer disabled={disabled || isEditing} />
 
-        <Publisher
-          countText={countText}
-          disabled={!this.canSubmit()}
-          isEditing={isEditing}
-          onSecondarySubmit={handleSecondarySubmit}
-          onSubmit={handleSubmit}
-          privacy={privacy}
-          sideArm={sideArm}
-        />
-      </div>
+          <Publisher
+            countText={countText}
+            disabled={!this.canSubmit()}
+            isEditing={isEditing}
+            onSecondarySubmit={handleSecondarySubmit}
+            onSubmit={handleSubmit}
+            privacy={privacy}
+            sideArm={sideArm}
+          />
+        </div>
       </div>
     );
   }

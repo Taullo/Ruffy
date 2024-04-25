@@ -14,17 +14,12 @@ const messages = defineMessages({
     defaultMessage: 'This post is local-only',
     id: 'advanced_options.local-only.tooltip',
   },
-  threadedMode: {
-    defaultMessage: 'Threaded mode enabled',
-    id: 'advanced_options.threaded_mode.tooltip',
-  },
 });
 
 //  We use an array of tuples here instead of an object because it
 //  preserves order.
 const iconMap = [
   ['do_not_federate', 'home', messages.localOnly],
-  ['threaded_mode', 'comments', messages.threadedMode],
 ];
 
 class TextareaIcons extends ImmutablePureComponent {

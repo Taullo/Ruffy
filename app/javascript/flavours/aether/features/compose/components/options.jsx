@@ -17,6 +17,7 @@ import { pollLimits } from 'flavours/aether/initial_state';
 import DropdownContainer from '../containers/dropdown_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
 
+import CharacterCounter from './character_counter';
 import TextIconButton from './text_icon_button';
 
 
@@ -141,6 +142,8 @@ class ComposerOptions extends ImmutablePureComponent {
     contentType: PropTypes.string,
     resetFileKey: PropTypes.number,
     isEditing: PropTypes.bool,
+    countText: PropTypes.number,
+    maxChars: PropTypes.number,
   };
 
   //  Handles file selection.
@@ -162,7 +165,7 @@ class ComposerOptions extends ImmutablePureComponent {
   
   handleClickGif = () => {
     this.props.onEmbedTenor();
-  }
+  };
 
   //  Handles a ref to the file input.
   handleRefFileElement = (fileElement) => {
@@ -189,6 +192,8 @@ class ComposerOptions extends ImmutablePureComponent {
       onTogglePoll,
       resetFileKey,
       isEditing,
+      countText,
+      maxChars,
       intl: { formatMessage },
     } = this.props;
 
@@ -212,89 +217,95 @@ class ComposerOptions extends ImmutablePureComponent {
 
     //  The result.
     return (
-      <div className='compose-form__buttons'>
-        <input
-          accept={acceptContentTypes}
-          disabled={disabled}
-          key={resetFileKey}
-          onChange={this.handleChangeFiles}
-          ref={this.handleRefFileElement}
-          type='file'
-          multiple
-          style={{ display: 'none' }}
-        />
-        <IconButton
-          disabled={disabled}
-          icon='paperclip'
-          onClick={this.handleClickAttach}
-          title={formatMessage(messages.attach)}
-        />
-        <input
-          accept={acceptContentTypes}
-          disabled={disabled}
-          key={resetFileKey}
-          onChange={this.handleChangeFiles}
-          ref={this.handleRefFileElement}
-          type='file'
-          multiple
-          style={{ display: 'none' }}
-        />
-        {!!pollLimits && (
-          <IconButton
-            active={hasPoll}
-            icon='tasks'
-            onClick={onTogglePoll}
-            size={18}
-            style={{
-              height: null,
-              lineHeight: null,
-            }}
-            title={formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
+      <>
+        <div className='compose-form__buttons compose-form__buttons__left'>
+          <input
+            accept={acceptContentTypes}
+            disabled={disabled}
+            key={resetFileKey}
+            onChange={this.handleChangeFiles}
+            ref={this.handleRefFileElement}
+            type='file'
+            multiple
+            style={{ display: 'none' }}
           />
-        )}
-        <TextIconButton
-          disabled={disabled}
-          label='GIF'
-          onClick={this.handleClickGif}
-          title={formatMessage(messages.gif)}
-        />
-        <IconButton
-          disabled={disabled}
-          icon='paint-brush'
-          onClick={this.handleClickDoodle}
-          title={formatMessage(messages.doodle)}
-        />
-        <hr />
+          <IconButton
+            disabled={disabled}
+            icon='upload'
+            onClick={this.handleClickAttach}
+            title={formatMessage(messages.attach)}
+          />
+          <input
+            accept={acceptContentTypes}
+            disabled={disabled}
+            key={resetFileKey}
+            onChange={this.handleChangeFiles}
+            ref={this.handleRefFileElement}
+            type='file'
+            multiple
+            style={{ display: 'none' }}
+          />
+          {!!pollLimits && (
+            <IconButton
+              active={hasPoll}
+              icon='tasks'
+              onClick={onTogglePoll}
+              size={18}
+              style={{
+                height: null,
+                lineHeight: null,
+              }}
+              title={formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
+            />
+          )}
+          <TextIconButton
+            disabled={disabled}
+            label='GIF'
+            onClick={this.handleClickGif}
+            title={formatMessage(messages.gif)}
+          />
+          <IconButton
+            disabled={disabled}
+            icon='paint-brush'
+            onClick={this.handleClickDoodle}
+            title={formatMessage(messages.doodle)}
+          />
+        </div>
 
-        <DropdownContainer
-          disabled={disabled}
-          icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
-          items={[
-            contentTypeItems.plain,
-            contentTypeItems.markdown,
-            contentTypeItems.html,
-          ]}
-          onChange={onChangeContentType}
-          title={formatMessage(messages.content_type)}
-          value={contentType}
-        />
-        <LanguageDropdown />
-        <DropdownContainer
-          disabled={disabled || isEditing}
-          icon='ellipsis-h'
-          items={advancedOptions ? [
-            {
-              meta: formatMessage(messages.local_only_long),
-              name: 'do_not_federate',
-              text: formatMessage(messages.local_only_short),
-            },
-          ] : null}
-          onChange={onChangeAdvancedOption}
-          renderItemContents={this.renderToggleItemContents}
-          title={formatMessage(messages.advanced_options_icon_title)}
-          closeOnChange={false}
-        />
-      </div>
+        <div className='compose-form__buttons compose-form__buttons__right'>
+          <DropdownContainer
+            disabled={disabled}
+            icon={(contentTypeItems[contentType.split('/')[1]] || {}).icon}
+            items={[
+              contentTypeItems.plain,
+              contentTypeItems.markdown,
+              contentTypeItems.html,
+            ]}
+            onChange={onChangeContentType}
+            title={formatMessage(messages.content_type)}
+            value={contentType}
+          />
+          <LanguageDropdown />
+          <DropdownContainer
+            disabled={disabled || isEditing}
+            icon='ellipsis-h'
+            items={advancedOptions ? [
+              {
+                meta: formatMessage(messages.local_only_long),
+                name: 'do_not_federate',
+                text: formatMessage(messages.local_only_short),
+              },
+            ] : null}
+            onChange={onChangeAdvancedOption}
+            renderItemContents={this.renderToggleItemContents}
+            title={formatMessage(messages.advanced_options_icon_title)}
+            closeOnChange={false}
+          />
+          <div className='character-counter__wrapper'>
+            <CharacterCounter text={countText} max={maxChars} />
+          </div>
+        </div>
+      </>
     );
   }
 

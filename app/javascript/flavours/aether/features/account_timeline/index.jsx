@@ -210,8 +210,7 @@ class AccountTimeline extends ImmutablePureComponent {
     }
 
     let emptyMessage;
-    
-    let featuredPostsTitle;
+
     let mediaTitle;
     let mediaLink;
 
@@ -225,10 +224,6 @@ class AccountTimeline extends ImmutablePureComponent {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {
       emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts found' />;
-    }
-    
-    if (!featuredStatusIds.isEmpty()) {
-      featuredPostsTitle = <h4><FormattedMessage id='account.featured_posts.title' defaultMessage='Featured posts' /></h4>;
     }
     
     if (attachments.size > 0) {
@@ -250,19 +245,10 @@ class AccountTimeline extends ImmutablePureComponent {
               {attachments.map((attachment) => attachment === null ? (
                 ''
               ) : (
-                <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia}  cwSettings={cwVisibility} />
+                <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} cwSettings={cwVisibility} />
               ))}
             </div>
             {mediaLink}
-            {featuredPostsTitle}
-            <StatusList
-              alwaysPrepend
-              scrollKey='account_pinned'
-              statusIds={featuredStatusIds}
-              isLoading={isLoading}
-              bindToDocument={!multiColumn}
-              timelineId='account_pinned'
-            />
             <FeaturedTags accountId={accountId} tagged={this.props.params.tagged} />
           </div>
 
@@ -279,6 +265,7 @@ class AccountTimeline extends ImmutablePureComponent {
             append={remoteMessage}
             scrollKey='account_timeline'
             statusIds={forceEmptyState ? emptyList : statusIds}
+            featuredStatusIds={featuredStatusIds}
             isLoading={isLoading}
             hasMore={!forceEmptyState && hasMore}
             onLoadMore={this.handleLoadMore}

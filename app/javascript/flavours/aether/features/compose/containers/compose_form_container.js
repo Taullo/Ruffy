@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import {
   changeCompose,
+  changeComposeHashtags,
   changeComposeSpoilerText,
   changeComposeSpoilerness,
   changeComposeVisibility,
@@ -70,6 +71,7 @@ function mapStateToProps (state) {
     showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
     spoiler: spoilersAlwaysOn || state.getIn(['compose', 'spoiler']),
     spoilerText: state.getIn(['compose', 'spoiler_text']),
+    hashtags: state.getIn(['compose', 'hashtags']),
     suggestions: state.getIn(['compose', 'suggestions']),
     text: state.getIn(['compose', 'text']),
     anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
@@ -86,6 +88,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onChange(text) {
     dispatch(changeCompose(text));
+  },
+  
+  onChangeHashtags(text) {
+    dispatch(changeComposeHashtags(text));
   },
 
   onSubmit(routerHistory) {

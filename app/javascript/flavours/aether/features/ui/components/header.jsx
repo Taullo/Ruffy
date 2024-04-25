@@ -47,7 +47,7 @@ const messages = defineMessages({
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
-  lists: { id: 'lists.new.create', defaultMessage: 'Create list' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Manage Lists' },
   followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed Tags' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
@@ -166,6 +166,7 @@ class Header extends PureComponent {
     menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
     menu.push({ text: intl.formatMessage(messages.preferences), href: preferencesLink });
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
+    menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags', href: '/followed_tags' });
     menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites', href: '/favourites' });

@@ -56,6 +56,7 @@ export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 export const COMPOSE_ADVANCED_OPTIONS_CHANGE = 'COMPOSE_ADVANCED_OPTIONS_CHANGE';
 export const COMPOSE_SENSITIVITY_CHANGE  = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
+export const COMPOSE_HASHTAGS_CHANGE     = 'COMPOSE_HASHTAGS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE   = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE  = 'COMPOSE_LISTABILITY_CHANGE';
@@ -171,7 +172,26 @@ export function directCompose(account) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
-    let status     = getState().getIn(['compose', 'text'], '');
+    let hashtags = getState().getIn(['compose', 'hashtags'], '');
+    let status;
+    if (hashtags.length > 0) {
+      hashtags = hashtags.replace(/[,/\\]+|\s+|#+/g, ' ').trim();
+      let tags = hashtags.split(/\s+/);
+      tags = tags.map(tag => {
+        // Check if the word already starts with '#'
+        if (!/^#/.test(tag)) {
+          // If not add '#' in front of the word
+          return `#${tag}`;
+        } else {
+          // If yes return the word unchanged
+          return tag;
+        }
+      });
+      const newHashtags = tags.join(' ');
+      status = getState().getIn(['compose', 'text'], '') + '\n\n' + newHashtags;
+    } else {
+      status = getState().getIn(['compose', 'text'], '');
+    }
     const media    = getState().getIn(['compose', 'media_attachments']);
     const statusId = getState().getIn(['compose', 'id'], null);
     const spoilers = getState().getIn(['compose', 'spoiler']) || getState().getIn(['local_settings', 'always_show_spoilers_field']);
@@ -741,6 +761,13 @@ export const changeComposeLanguage = language => ({
 export function changeComposeSpoilerness() {
   return {
     type: COMPOSE_SPOILERNESS_CHANGE,
+  };
+}
+
+export function changeComposeHashtags(text) {
+  return {
+    type: COMPOSE_HASHTAGS_CHANGE,
+    text,
   };
 }
 

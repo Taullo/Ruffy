@@ -14,7 +14,7 @@ import { Icon } from 'flavours/aether/components/icon';
 import DropdownMenuContainer from 'flavours/aether/containers/dropdown_menu_container';
 import { autoPlayGif, me, domain } from 'flavours/aether/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'flavours/aether/permissions';
-import { preferencesLink, profileLink, accountAdminLink } from 'flavours/aether/utils/backend_links';
+import { profileLink, accountAdminLink } from 'flavours/aether/utils/backend_links';
 
 import { IconButton } from '../../../components/icon_button';
 import AccountNoteContainer from '../containers/account_note_container';
@@ -46,15 +46,6 @@ const messages = defineMessages({
   enableNotifications: { id: 'account.enable_notifications', defaultMessage: 'Notify me when @{name} posts' },
   disableNotifications: { id: 'account.disable_notifications', defaultMessage: 'Stop notifying me when @{name} posts' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
-  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
-  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
-  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
-  followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed hashtags' },
-  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
-  domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
-  domain_mutes: { id: 'navigation_bar.domain_mutes', defaultMessage: 'Muted domains' },
-  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   endorse: { id: 'account.endorse', defaultMessage: 'Feature on profile' },
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
@@ -249,19 +240,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.get('id') === me) {
-      if (profileLink) menu.push({ text: intl.formatMessage(messages.edit_profile), href: profileLink });
-      if (preferencesLink) menu.push({ text: intl.formatMessage(messages.preferences), href: preferencesLink });
       menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned', href: '/pinned' });
-      menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
-      menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
-      menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
-      menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags' });
-      menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes', href: '/mutes' });
-      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks', href: '/blocks' });
-      menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks', href: '/domain_blocks' });
-      menu.push({ text: intl.formatMessage(messages.domain_mutes), to: '/domain_mutes' });
     } else if (signedIn) {
       if (account.getIn(['relationship', 'following'])) {
         if (!account.getIn(['relationship', 'muting'])) {

@@ -4,7 +4,6 @@ import {
   COMPOSE_MOUNT,
   COMPOSE_UNMOUNT,
   COMPOSE_CHANGE,
-  COMPOSE_CYCLE_ELEFRIEND,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
   COMPOSE_DIRECT,
@@ -31,6 +30,7 @@ import {
   COMPOSE_ADVANCED_OPTIONS_CHANGE,
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
+  COMPOSE_HASHTAGS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
@@ -64,12 +64,6 @@ import { privacyPreference } from 'flavours/aether/utils/privacy_preference';
 
 import { uuid } from '../uuid';
 
-const totalElefriends = 3;
-
-// ~4% chance you'll end up with an unexpected friend
-// glitch-soc/mastodon repo created_at date: 2017-04-20T21:55:28Z
-const glitchProbability = 1 - 0.0420215528;
-
 const initialState = ImmutableMap({
   mounted: 0,
   advanced_options: ImmutableMap({
@@ -77,8 +71,8 @@ const initialState = ImmutableMap({
     threaded_mode: false,
   }),
   sensitive: false,
-  elefriend: Math.random() < glitchProbability ? Math.floor(Math.random() * totalElefriends) : totalElefriends,
   spoiler: false,
+  hashtags: '',
   spoiler_text: '',
   privacy: null,
   id: null,
@@ -171,6 +165,7 @@ function clearAll(state) {
   return state.withMutations(map => {
     map.set('id', null);
     map.set('text', '');
+    map.set('hashtags', '');
     if (defaultContentType) map.set('content_type', defaultContentType);
     map.set('spoiler', false);
     map.set('spoiler_text', '');
@@ -394,6 +389,10 @@ export default function compose(state = initialState, action) {
         map.set('sensitive', true);
       }
     });
+  case COMPOSE_HASHTAGS_CHANGE:
+    return state
+      .set('hashtags', action.text)
+      .set('idempotencyKey', uuid());
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state
       .set('spoiler_text', action.text)
@@ -410,9 +409,6 @@ export default function compose(state = initialState, action) {
     return state
       .set('text', action.text)
       .set('idempotencyKey', uuid());
-  case COMPOSE_CYCLE_ELEFRIEND:
-    return state
-      .set('elefriend', (state.get('elefriend') + 1) % totalElefriends);
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('id', null);
@@ -456,6 +452,7 @@ export default function compose(state = initialState, action) {
       map.set('in_reply_to', null);
       if (defaultContentType) map.set('content_type', defaultContentType);
       map.set('text', '');
+      map.set('hashtags', '');
       map.set('spoiler', false);
       map.set('spoiler_text', '');
       map.set('privacy', state.get('default_privacy'));
@@ -616,6 +613,11 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('id', action.status.get('id'));
       map.set('text', action.text);
+      if (action.hashtags !== undefined && action.hashtags.length > 0) {
+        map.set('hashtags', action.hashtags);
+      } else {
+        map.set('hashtags', '');
+      }
       map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
