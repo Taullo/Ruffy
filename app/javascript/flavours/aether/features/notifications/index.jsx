@@ -84,7 +84,7 @@ const mapStateToProps = state => ({
   needsNotificationPermission: state.getIn(['settings', 'notifications', 'alerts']).includes(true) && state.getIn(['notifications', 'browserSupport']) && state.getIn(['notifications', 'browserPermission']) === 'default' && !state.getIn(['settings', 'notifications', 'dismissPermissionBanner']),
 });
 
-/* glitch */
+/* aether */
 const mapDispatchToProps = dispatch => ({
   onEnterCleaningMode(yes) {
     dispatch(enterNotificationClearingMode(yes));
@@ -263,25 +263,25 @@ class Notifications extends PureComponent {
 
     if (signedIn) {
       scrollContainer = (
-       <div className='scrollable notification-scroll'>
-        <ScrollableList
-          scrollKey={`notifications-${columnId}`}
-          trackScroll={!pinned}
-          isLoading={isLoading}
-          showLoading={isLoading && notifications.size === 0}
-          hasMore={hasMore}
-          numPending={numPending}
-          prepend={needsNotificationPermission && <NotificationsPermissionBanner />}
-          alwaysPrepend
-          emptyMessage={emptyMessage}
-          onLoadMore={this.handleLoadOlder}
-          onLoadPending={this.handleLoadPending}
-          onScrollToTop={this.handleScrollToTop}
-          onScroll={this.handleScroll}
-          bindToDocument={!multiColumn}
-        >
-          {scrollableContent}
-        </ScrollableList>
+        <div className='scrollable notification-scroll'>
+          <ScrollableList
+            scrollKey={`notifications-${columnId}`}
+            trackScroll={!pinned}
+            isLoading={isLoading}
+            showLoading={isLoading && notifications.size === 0}
+            hasMore={hasMore}
+            numPending={numPending}
+            prepend={needsNotificationPermission && <NotificationsPermissionBanner />}
+            alwaysPrepend
+            emptyMessage={emptyMessage}
+            onLoadMore={this.handleLoadOlder}
+            onLoadPending={this.handleLoadPending}
+            onScrollToTop={this.handleScrollToTop}
+            onScroll={this.handleScroll}
+            bindToDocument={!multiColumn}
+          >
+            {scrollableContent}
+          </ScrollableList>
         </div>
       );
     } else {
