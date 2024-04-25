@@ -4,7 +4,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
   include FormattingHelper
 
-  # Please update `app/flavours/aether/mastodon/api_types/accounts.ts` when making changes to the attributes
+  # Please update `app/flavours/aether/api_types/accounts.ts` when making changes to the attributes
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
              :note, :url, :uri, :avatar, :avatar_static, :header, :header_static,
