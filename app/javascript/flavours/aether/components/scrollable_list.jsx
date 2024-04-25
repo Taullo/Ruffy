@@ -312,7 +312,7 @@ class ScrollableList extends PureComponent {
 
     if (showLoading) {
       scrollableArea = (
-        <div className='scrollable-list scrollable-list--flex' ref={this.setRef}>
+        <div className='scrollable scrollable--flex' ref={this.setRef}>
           <div role='feed' className='item-list'>
             {prepend}
           </div>
@@ -324,7 +324,7 @@ class ScrollableList extends PureComponent {
       );
     } else if (isLoading || childrenCount > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable-list', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
+        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>
             {prepend}
 
@@ -356,7 +356,7 @@ class ScrollableList extends PureComponent {
       );
     } else {
       scrollableArea = (
-        <div className={classNames('scrollable_list scrollable-list--flex', { fullscreen })} ref={this.setRef}>
+        <div className={classNames('scrollable scrollable--flex', { fullscreen })} ref={this.setRef}>
           {alwaysPrepend && prepend}
 
           <div className='empty-column-indicator'>

@@ -235,45 +235,92 @@ class AccountTimeline extends ImmutablePureComponent {
 
     return (
       <Column ref={this.setRef} name='account'>
-        <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
-        <div className='scrollable account-scroll'>
-          <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
-          <div className='account-timeline__right-column'>
-            <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
-            {mediaTitle}
-            <div role='feed' className='account-mini-gallery__container' ref={this.handleRef}>
-              {attachments.map((attachment) => attachment === null ? (
-                ''
-              ) : (
-                <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} cwSettings={cwVisibility} />
-              ))}
+        {!multiColumn && (
+          <div class='account-scroll'>
+            <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
+            <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
+            <div className='account-timeline__right-column'>
+              <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
+              {mediaTitle}
+              <div role='feed' className='account-mini-gallery__container' ref={this.handleRef}>
+                {attachments.map((attachment) => attachment === null ? (
+                  ''
+                ) : (
+                  <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} cwSettings={cwVisibility} />
+                ))}
+              </div>
+              {mediaLink}
+              <FeaturedTags accountId={accountId} tagged={this.props.params.tagged} />
             </div>
-            {mediaLink}
-            <FeaturedTags accountId={accountId} tagged={this.props.params.tagged} />
+
+            {!(hideTabs || hidden) && (
+              <div className='account__section-headline'>
+                <NavLink exact to={`/@${acctName}`}><FormattedMessage id='account.all' defaultMessage='All' /></NavLink>
+                <NavLink exact to={`/@${acctName}/with_replies`}><FormattedMessage id='account.show_replies' defaultMessage='Show Replies' /></NavLink>
+                <NavLink exact to={`/@${acctName}/hide_boosts`}><FormattedMessage id='account.hide_boosts' defaultMessage='Hide Boosts' /></NavLink>
+              </div>
+            )}
+
+            <StatusList
+              alwaysPrepend
+              append={remoteMessage}
+              scrollKey='account_timeline'
+              statusIds={forceEmptyState ? emptyList : statusIds}
+              featuredStatusIds={featuredStatusIds}
+              isLoading={isLoading}
+              hasMore={!forceEmptyState && hasMore}
+              onLoadMore={this.handleLoadMore}
+              emptyMessage={emptyMessage}
+              bindToDocument={!multiColumn}
+              timelineId='account'
+            />
           </div>
+        )}
+        {multiColumn && (
+          <>
+            <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
-          {!(hideTabs || hidden) && (
-            <div className='account__section-headline'>
-              <NavLink exact to={`/@${acctName}`}><FormattedMessage id='account.all' defaultMessage='All' /></NavLink>
-              <NavLink exact to={`/@${acctName}/with_replies`}><FormattedMessage id='account.show_replies' defaultMessage='Show Replies' /></NavLink>
-              <NavLink exact to={`/@${acctName}/hide_boosts`}><FormattedMessage id='account.hide_boosts' defaultMessage='Hide Boosts' /></NavLink>
-            </div>
-          )}
+            <StatusList
+              prepend={
+                <>
+                  <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
+                  <div className='account-timeline__right-column'>
+                    <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
+                    {mediaTitle}
+                    <div role='feed' className='account-mini-gallery__container' ref={this.handleRef}>
+                      {attachments.map((attachment) => attachment === null ? (
+                        ''
+                      ) : (
+                        <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} cwSettings={cwVisibility} />
+                      ))}
+                    </div>
+                    {mediaLink}
+                    <FeaturedTags accountId={accountId} tagged={this.props.params.tagged} />
+                  </div>
 
-          <StatusList
-            alwaysPrepend
-            append={remoteMessage}
-            scrollKey='account_timeline'
-            statusIds={forceEmptyState ? emptyList : statusIds}
-            featuredStatusIds={featuredStatusIds}
-            isLoading={isLoading}
-            hasMore={!forceEmptyState && hasMore}
-            onLoadMore={this.handleLoadMore}
-            emptyMessage={emptyMessage}
-            bindToDocument={!multiColumn}
-            timelineId='account'
-          />
-        </div>
+                  {!(hideTabs || hidden) && (
+                    <div className='account__section-headline'>
+                      <NavLink exact to={`/@${acctName}`}><FormattedMessage id='account.all' defaultMessage='All' /></NavLink>
+                      <NavLink exact to={`/@${acctName}/with_replies`}><FormattedMessage id='account.show_replies' defaultMessage='Show Replies' /></NavLink>
+                      <NavLink exact to={`/@${acctName}/hide_boosts`}><FormattedMessage id='account.hide_boosts' defaultMessage='Hide Boosts' /></NavLink>
+                    </div>
+                  )}
+                </>
+              }
+              alwaysPrepend
+              append={remoteMessage}
+              scrollKey='account_timeline'
+              statusIds={forceEmptyState ? emptyList : statusIds}
+              featuredStatusIds={featuredStatusIds}
+              isLoading={isLoading}
+              hasMore={!forceEmptyState && hasMore}
+              onLoadMore={this.handleLoadMore}
+              emptyMessage={emptyMessage}
+              bindToDocument={!multiColumn}
+              timelineId='account'
+            />
+          </>
+        )}
       </Column>
     );
   }

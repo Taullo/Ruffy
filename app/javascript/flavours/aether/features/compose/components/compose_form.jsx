@@ -9,7 +9,6 @@ import { length } from 'stringz';
 
 import { IconButton } from 'flavours/aether/components/icon_button';
 import { maxChars } from 'flavours/aether/initial_state';
-import { isMobile } from 'flavours/aether/is_mobile';
 
 import AutosuggestHashtagarea from '../../../components/autosuggest_hashtagarea';
 import AutosuggestInput from '../../../components/autosuggest_input';
@@ -82,7 +81,6 @@ class ComposeForm extends ImmutablePureComponent {
     lang: PropTypes.string,
 
     advancedOptions: ImmutablePropTypes.map,
-    layout: PropTypes.string,
     media: ImmutablePropTypes.list,
     sideArm: PropTypes.string,
     sensitive: PropTypes.bool,
@@ -261,7 +259,6 @@ class ComposeForm extends ImmutablePureComponent {
       preselectDate,
       text,
       preselectOnReply,
-      singleColumn,
     } = this.props;
     let selectionEnd, selectionStart;
 
@@ -285,7 +282,7 @@ class ComposeForm extends ImmutablePureComponent {
         Promise.resolve().then(() => {
           textarea.setSelectionRange(selectionStart, selectionEnd);
           textarea.focus();
-          if (!singleColumn) textarea.scrollIntoView();
+          // if (!singleColumn) textarea.scrollIntoView(); //causer of so many bugs idk why this is here
         }).catch(console.error);
       }
 
@@ -316,14 +313,12 @@ class ComposeForm extends ImmutablePureComponent {
       advancedOptions,
       intl,
       isSubmitting,
-      layout,
       onChangeSpoilerness,
       onClearSuggestions,
       onFetchSuggestions,
       onPaste,
       privacy,
       sensitive,
-      showSearch,
       sideArm,
       spoiler,
       spoilerText,
@@ -356,7 +351,7 @@ class ComposeForm extends ImmutablePureComponent {
           onSuggestionsClearRequested={onClearSuggestions}
           onSuggestionSelected={this.handleSuggestionSelected}
           onPaste={onPaste}
-          autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
+          autoFocus={false}
           lang={this.props.lang}
         >
           <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />

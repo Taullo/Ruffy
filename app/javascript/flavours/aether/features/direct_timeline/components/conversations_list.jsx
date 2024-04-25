@@ -61,7 +61,6 @@ export default class ConversationsList extends ImmutablePureComponent {
     const { conversations, isLoading, onLoadMore, ...other } = this.props;
 
     return (
-     <div className='scrollable conversation-scroll'>
       <ScrollableList {...other} isLoading={isLoading} showLoading={isLoading && conversations.isEmpty()} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {conversations.map(item => (
           <ConversationContainer
@@ -73,7 +72,6 @@ export default class ConversationsList extends ImmutablePureComponent {
           />
         ))}
       </ScrollableList>
-     </div>
     );
   }
 

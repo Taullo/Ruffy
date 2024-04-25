@@ -10,10 +10,10 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { fetchLists } from 'flavours/aether/actions/lists';
+import ColumnHeader from 'flavours/aether/components/column_header';
 import { LoadingIndicator } from 'flavours/aether/components/loading_indicator';
 import ScrollableList from 'flavours/aether/components/scrollable_list';
 import Column from 'flavours/aether/features/ui/components/column';
-import ColumnHeader from 'flavours/aether/components/column_header';
 import ColumnLink from 'flavours/aether/features/ui/components/column_link';
 import ColumnSubheading from 'flavours/aether/features/ui/components/column_subheading';
 
@@ -69,7 +69,6 @@ class Lists extends ImmutablePureComponent {
 
         <NewListForm />
 
-        <div className='scrollable manage-lists'>
         <ScrollableList
           scrollKey='lists'
           emptyMessage={emptyMessage}
@@ -80,7 +79,6 @@ class Lists extends ImmutablePureComponent {
             <ColumnLink key={list.get('id')} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />,
           )}
         </ScrollableList>
-        </div>
 
         <Helmet>
           <title>{intl.formatMessage(messages.heading)}</title>

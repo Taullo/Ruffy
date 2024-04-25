@@ -60,7 +60,6 @@ class FollowedTags extends ImmutablePureComponent {
           multiColumn={multiColumn}
         />
 
-        <div className='scrollable followedtag-scroll'>
         <ScrollableList
           scrollKey='followed_tags'
           emptyMessage={emptyMessage}
@@ -81,7 +80,6 @@ class FollowedTags extends ImmutablePureComponent {
             />
           ))}
         </ScrollableList>
-        </div>
 
         <Helmet>
           <meta name='robots' content='noindex' />

@@ -71,8 +71,7 @@ class About extends PureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
-        <div className='scrollable about'>
-         <div className='about__left-column'>
+        <div className='about__left-column'>
           <div className='about__header'>
             <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
             <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('title')}</h1>
@@ -95,24 +94,24 @@ class About extends PureComponent {
             </div>
           </div>
 
-            {extendedDescription.get('isLoading') ? (
-              <>
-                <Skeleton width='100%' />
-                <br />
-                <Skeleton width='100%' />
-                <br />
-                <Skeleton width='100%' />
-                <br />
-                <Skeleton width='70%' />
-              </>
-            ) : (extendedDescription.get('content')?.length > 0 ? (
-              <div
-                className='prose'
-                dangerouslySetInnerHTML={{ __html: extendedDescription.get('content') }}
-              />
-            ) : (''))}
-         </div>
-         <div className='about__right-column'>
+          {extendedDescription.get('isLoading') ? (
+            <>
+              <Skeleton width='100%' />
+              <br />
+              <Skeleton width='100%' />
+              <br />
+              <Skeleton width='100%' />
+              <br />
+              <Skeleton width='70%' />
+            </>
+          ) : (extendedDescription.get('content')?.length > 0 ? (
+            <div
+              className='prose'
+              dangerouslySetInnerHTML={{ __html: extendedDescription.get('content') }}
+            />
+          ) : (''))}
+        </div>
+        <div className='about__right-column'>
           <Section title={intl.formatMessage(messages.rules)}>
             {!isLoading && (server.get('rules', ImmutableList()).isEmpty() ? (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
@@ -129,7 +128,6 @@ class About extends PureComponent {
 
           <LinkFooter />
 
-         </div>
         </div>
 
         <Helmet>

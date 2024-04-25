@@ -52,14 +52,12 @@ class PinnedStatuses extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} icon='thumb-tack' heading={intl.formatMessage(messages.heading)} ref={this.setRef}>
         <ColumnBackButtonSlim />
-        <div className='scrollable pinned-scroll'>
         <StatusList
           statusIds={statusIds}
           scrollKey='pinned_statuses'
           hasMore={hasMore}
           bindToDocument={!multiColumn}
         />
-        </div>
         <Helmet>
           <meta name='robots' content='noindex' />
         </Helmet>

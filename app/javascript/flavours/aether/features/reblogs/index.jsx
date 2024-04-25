@@ -89,7 +89,6 @@ class Reblogs extends ImmutablePureComponent {
           )}
         />
 
-        <div className='scrollable reblogs-scroll'>
         <ScrollableList
           scrollKey='reblogs'
           onLoadMore={this.handleLoadMore}
@@ -102,7 +101,6 @@ class Reblogs extends ImmutablePureComponent {
             <AccountContainer key={id} id={id} withNote={false} />,
           )}
         </ScrollableList>
-        </div>
 
         <Helmet>
           <meta name='robots' content='noindex' />

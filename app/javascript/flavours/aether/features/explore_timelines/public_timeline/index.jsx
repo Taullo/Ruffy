@@ -147,18 +147,16 @@ class PublicTimeline extends PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <div className='scrollable public-scroll'>
-          <StatusListContainer
-            prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
-            timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}
-            onLoadMore={this.handleLoadMore}
-            trackScroll={!pinned}
-            scrollKey={`public_timeline-${columnId}`}
-            emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
-            bindToDocument={!multiColumn}
-            regex={this.props.regex}
-          />
-        </div>
+        <StatusListContainer
+          prepend={<DismissableBanner id='public_timeline'><FormattedMessage id='dismissable_banner.public_timeline' defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.' values={{ domain }} /></DismissableBanner>}
+          timelineId={`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`}
+          onLoadMore={this.handleLoadMore}
+          trackScroll={!pinned}
+          scrollKey={`public_timeline-${columnId}`}
+          emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
+          bindToDocument={!multiColumn}
+          regex={this.props.regex}
+        />
 
         <Helmet>
           <title>{intl.formatMessage(messages.title)}</title>

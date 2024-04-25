@@ -152,7 +152,6 @@ class Followers extends ImmutablePureComponent {
       <Column ref={this.setRef}>
         <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
-        <div className='scrollable followers-scroll'>
         <ScrollableList
           scrollKey='followers'
           hasMore={!forceEmptyState && hasMore}
@@ -166,7 +165,6 @@ class Followers extends ImmutablePureComponent {
             <AccountContainer key={id} id={id} withNote={false} />,
           )}
         </ScrollableList>
-        </div>
       </Column>
     );
   }

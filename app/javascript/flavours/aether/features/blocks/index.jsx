@@ -62,7 +62,6 @@ class Blocks extends ImmutablePureComponent {
     return (
       <Column name='blocks' bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <div className='scrollable block-scroll'>
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}
@@ -75,7 +74,6 @@ class Blocks extends ImmutablePureComponent {
             <AccountContainer key={id} id={id} defaultAction='block' />,
           )}
         </ScrollableList>
-        </div>
       </Column>
     );
   }

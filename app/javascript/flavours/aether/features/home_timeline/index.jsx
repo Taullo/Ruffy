@@ -241,7 +241,7 @@ class HomeTimeline extends PureComponent {
           <ColumnSettings />
         </ColumnHeader>
 
-        {(showRightColumn || !signedIn) && (
+        {((showRightColumn || !signedIn) && !multiColumn) && (
           <div className='right_column'>
 
             <div className='fixed_wrapper'>
@@ -281,20 +281,20 @@ class HomeTimeline extends PureComponent {
         )}
 
         {signedIn ? (
-          <div className='scrollable home-scroll'>
-            <ComposeFormContainer />
-            <StatusListContainer
-              prepend={banners}
-              alwaysPrepend
-              trackScroll={!pinned}
-              scrollKey={`home_timeline-${columnId}`}
-              onLoadMore={this.handleLoadMore}
-              timelineId='home'
-              emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up.' />}
-              bindToDocument={!multiColumn}
-              regex={this.props.regex}
-            />
-          </div>
+          <StatusListContainer
+            prepend={[
+              ...banners,
+              !multiColumn && <ComposeFormContainer key='compose-form' />,
+            ]}
+            alwaysPrepend
+            trackScroll={!pinned}
+            scrollKey={`home_timeline-${columnId}`}
+            onLoadMore={this.handleLoadMore}
+            timelineId='home'
+            emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up.' />}
+            bindToDocument={!multiColumn}
+            regex={this.props.regex}
+          />
         ) : <NotSignedInIndicator />}
 
         <Helmet>

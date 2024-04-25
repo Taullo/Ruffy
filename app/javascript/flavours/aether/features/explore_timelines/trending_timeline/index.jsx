@@ -99,19 +99,17 @@ class TrendingTimeline extends PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-         />
+        />
 
-        <div className='scrollable trending-scroll'>
-          <StatusListContainer
-            prepend={<DismissableBanner id='trending_timeline'><FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the fediverse that are gaining traction today. Newer posts with more boosts and favourites are ranked higher.' values={{ domain }} /></DismissableBanner>}
-            timelineId={`trending`}
-            onLoadMore={this.handleLoadMore}
-            trackScroll={!pinned}
-            scrollKey={`trending_timeline-${columnId}`}
-            emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
-            bindToDocument={!multiColumn}
-          />
-        </div>
+        <StatusListContainer
+          prepend={<DismissableBanner id='trending_timeline'><FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These are posts from across the fediverse that are gaining traction today. Newer posts with more boosts and favourites are ranked higher.' values={{ domain }} /></DismissableBanner>}
+          timelineId={`trending`}
+          onLoadMore={this.handleLoadMore}
+          trackScroll={!pinned}
+          scrollKey={`trending_timeline-${columnId}`}
+          emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
+          bindToDocument={!multiColumn}
+        />
 
         <Helmet>
           <title>{intl.formatMessage(messages.title)}</title>

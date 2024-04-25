@@ -120,7 +120,6 @@ class DirectTimeline extends PureComponent {
       );
     } else {
       contents = (
-       <div className='scrollable direct-scroll'>
         <StatusListContainer
           trackScroll={!pinned}
           scrollKey={`direct_timeline-${columnId}`}
@@ -129,7 +128,6 @@ class DirectTimeline extends PureComponent {
           onLoadMore={this.handleLoadMoreTimeline}
           emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
         />
-       </div>
       );
     }
 

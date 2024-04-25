@@ -65,19 +65,17 @@ class Mutes extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
-        <div className='scrollable domainmute-scroll'>
-          <ScrollableList
-            scrollKey='domain_mutes'
-            onLoadMore={this.handleLoadMore}
-            hasMore={hasMore}
-            emptyMessage={emptyMessage}
-            bindToDocument={!multiColumn}
-          >
-            {domains.toList().map(domain =>
-              <MutedDomainContainer key={domain.domain} domain={domain} />,
-            )}
-          </ScrollableList>
-        </div>
+        <ScrollableList
+          scrollKey='domain_mutes'
+          onLoadMore={this.handleLoadMore}
+          hasMore={hasMore}
+          emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
+        >
+          {domains.toList().map(domain =>
+            <MutedDomainContainer key={domain.domain} domain={domain} />,
+          )}
+        </ScrollableList>
 
         <Helmet>
           <meta name='robots' content='noindex' />

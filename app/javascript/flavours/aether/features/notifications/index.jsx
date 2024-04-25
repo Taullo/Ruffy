@@ -263,26 +263,24 @@ class Notifications extends PureComponent {
 
     if (signedIn) {
       scrollContainer = (
-        <div className='scrollable notification-scroll'>
-          <ScrollableList
-            scrollKey={`notifications-${columnId}`}
-            trackScroll={!pinned}
-            isLoading={isLoading}
-            showLoading={isLoading && notifications.size === 0}
-            hasMore={hasMore}
-            numPending={numPending}
-            prepend={needsNotificationPermission && <NotificationsPermissionBanner />}
-            alwaysPrepend
-            emptyMessage={emptyMessage}
-            onLoadMore={this.handleLoadOlder}
-            onLoadPending={this.handleLoadPending}
-            onScrollToTop={this.handleScrollToTop}
-            onScroll={this.handleScroll}
-            bindToDocument={!multiColumn}
-          >
-            {scrollableContent}
-          </ScrollableList>
-        </div>
+        <ScrollableList
+          scrollKey={`notifications-${columnId}`}
+          trackScroll={!pinned}
+          isLoading={isLoading}
+          showLoading={isLoading && notifications.size === 0}
+          hasMore={hasMore}
+          numPending={numPending}
+          prepend={needsNotificationPermission && <NotificationsPermissionBanner />}
+          alwaysPrepend
+          emptyMessage={emptyMessage}
+          onLoadMore={this.handleLoadOlder}
+          onLoadPending={this.handleLoadPending}
+          onScrollToTop={this.handleScrollToTop}
+          onScroll={this.handleScroll}
+          bindToDocument={!multiColumn}
+        >
+          {scrollableContent}
+        </ScrollableList>
       );
     } else {
       scrollContainer = <NotSignedInIndicator />;

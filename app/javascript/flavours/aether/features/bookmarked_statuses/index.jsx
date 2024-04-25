@@ -89,7 +89,6 @@ class Bookmarks extends ImmutablePureComponent {
           showBackButton
         />
 
-        <div className='scrollable bookmark-list'>
         <StatusList
           trackScroll={!pinned}
           statusIds={statusIds}
@@ -100,7 +99,6 @@ class Bookmarks extends ImmutablePureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         />
-        </div>
 
         <Helmet>
           <title>{intl.formatMessage(messages.heading)}</title>

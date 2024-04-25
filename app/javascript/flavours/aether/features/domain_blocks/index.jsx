@@ -68,7 +68,6 @@ class Blocks extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
-        <div className='scrollable domainblock-scroll'>
         <ScrollableList
           scrollKey='domain_blocks'
           onLoadMore={this.handleLoadMore}
@@ -80,7 +79,6 @@ class Blocks extends ImmutablePureComponent {
             <DomainContainer key={domain} domain={domain} />,
           )}
         </ScrollableList>
-        </div>
 
         <Helmet>
           <meta name='robots' content='noindex' />

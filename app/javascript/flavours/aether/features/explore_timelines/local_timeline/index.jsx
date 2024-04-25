@@ -142,18 +142,16 @@ class CommunityTimeline extends PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
-        <div className='scrollable community-scroll'>
-          <StatusListContainer
-            prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
-            trackScroll={!pinned}
-            scrollKey={`community_timeline-${columnId}`}
-            timelineId={`community${onlyMedia ? ':media' : ''}`}
-            onLoadMore={this.handleLoadMore}
-            emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
-            bindToDocument={!multiColumn}
-            regex={this.props.regex}
-          />
-        </div>
+        <StatusListContainer
+          prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
+          trackScroll={!pinned}
+          scrollKey={`community_timeline-${columnId}`}
+          timelineId={`community${onlyMedia ? ':media' : ''}`}
+          onLoadMore={this.handleLoadMore}
+          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          bindToDocument={!multiColumn}
+          regex={this.props.regex}
+        />
 
         <Helmet>
           <title>{intl.formatMessage(messages.title)}</title>
