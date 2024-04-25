@@ -6,9 +6,12 @@
   @return '%23' + unquote($color);
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   font-family: $font-sans-serif, sans-serif;
-  font-size: 16px;
   background: var(--ui-page-background);
   line-height: 1.14em;
   font-weight: 400;
