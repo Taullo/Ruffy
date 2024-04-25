@@ -16,7 +16,7 @@
     "fix:sass": "stylelint --fix \"**/*.{css,scss}\" && prettier --write \"**/*.{css,scss}\"",
     "fix:yml": "prettier --write \"**/*.{yaml,yml}\"",
     "fix": "yarn fix:js && yarn fix:json && yarn fix:sass && yarn fix:yml",
-    "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' '--ignore=**/*.d.ts' --out-file app/javascript/flavours/glitch/locales/en.json --format config/formatjs-formatter.js",
+    "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' '--ignore=**/*.d.ts' --out-file app/javascript/flavours/aether/locales/en.json --format config/formatjs-formatter.js",
     "jest": "cross-env NODE_ENV=test jest",
     "lint:js": "eslint . --ext=.js,.jsx,.ts,.tsx --cache --report-unused-disable-directives",
     "lint:json": "prettier --check \"**/*.{json,json5}\"",

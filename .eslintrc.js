@@ -256,11 +256,6 @@ module.exports = {
             group: 'internal',
             position: 'after',
           },
-          {
-            pattern: '{flavours/glitch-soc/**}',
-            group: 'internal',
-            position: 'after',
-          },
         ],
         pathGroupsExcludedImportTypes: [],
       },
