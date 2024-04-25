@@ -19,6 +19,8 @@ const messages = defineMessages({
   layout_desktop_hint: { id: 'layout.hint.desktop', defaultMessage: 'Allows you to configure multiple columns to see as much information as you want (e.g. home, notifications, timeline, lists and hashtags).' },
   layout_mobile: { id: 'layout.single', defaultMessage: 'Normal Layout' },
   layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use the default simple layout. This lays out information in a less compact and more readable way.' },
+  font_size: { id: 'settings.font_size', defaultMessage: 'Font Size' },
+  font_size_hint: { id: 'settings.font_size_hint', defaultMessage: 'Change the size of the text across the site (default is center)' },
   rightcolumn_show: { id: 'layout.rightcolumn_show', defaultMessage: 'Show Right Column' },
   rightcolumn_hide: { id: 'layout.rightcolumn_hide', defaultMessage: 'Hide Right Column' },
   side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
@@ -57,6 +59,7 @@ const messages = defineMessages({
   post_style_wireless: { id: 'settings.post_style_wireless', defaultMessage:  'Borderless' },
   
   post_smoosh: { id: 'settings.post_smoosh', defaultMessage:  'Make posts appear closer together' },
+  post_smoosh_hint: { id: 'settings.post_smoosh_hint', defaultMessage:  'Posts will be separated by a small border instead of appearing separately' },
 
   cw_visibility_obscured: { id: 'settings.cw_visibility_obscured', defaultMessage:  'Obscured' },
   cw_visibility_hidden: { id: 'settings.cw_visibility_hidden', defaultMessage:  'Hidden' },
@@ -121,6 +124,17 @@ class LocalSettingsPage extends PureComponent {
           >
             <FormattedMessage id='settings.accent' defaultMessage='Accent Color' />
             <span className='hint'><FormattedMessage id='settings.accent_hint' defaultMessage='Change the accent color of the entire site' /></span>
+          </LocalSettingsPageItem>
+          <h2><FormattedMessage id='settings.font_size' defaultMessage='Font Size' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['font_size']}
+            id='mastodon-settings--font-size'
+            placeholder='12'
+            onChange={onChange}
+            inputProps={{ type: 'range', min: '12', max: '20' }}
+          >
+            <FormattedMessage id='settings.font_size_hint' defaultMessage='Change the size of the text across the site (default is center)' />
           </LocalSettingsPageItem>
         </span>
         <h2><FormattedMessage id='settings.misleading_links' defaultMessage='Tag Misleading Links' /></h2>
@@ -310,9 +324,9 @@ class LocalSettingsPage extends PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.post_smoosh' defaultMessage='Make posts appear closer together' />
-          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Posts will be separated by a small border instead of appearing separately' /></span>
+          <span className='hint'><FormattedMessage id='settings.post_smoosh_hint' defaultMessage='Posts will be separated by a small border instead of appearing separately' /></span>
         </LocalSettingsPageItem>
-        <h2><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapse posts' /></h2>
+        <h2><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapsed posts' /></h2>
         <LocalSettingsPageItem
           settings={settings}
           item={['collapsed_posts', 'enabled']}

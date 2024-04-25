@@ -82,6 +82,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   layout: state.getIn(['meta', 'layout']),
+  font_size: state.getIn(['local_settings', 'font_size']),
   hasComposingText: state.getIn(['compose', 'text']).trim().length !== 0,
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 20,
@@ -276,6 +277,7 @@ class UI extends Component {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     layout_local_setting: PropTypes.string,
+    font_size: PropTypes.number,
     theme: PropTypes.string,
     post_style: PropTypes.string,
     post_smoosh: PropTypes.bool,
@@ -417,6 +419,10 @@ class UI extends Component {
     }
   };
   
+  handleFontSize() {
+    document.documentElement.style.fontSize = this.props.font_size + "px";
+  }
+  
   handleTheme() {
     const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     if (((prefersLight === true) && (this.props.theme === 'auto')) || (this.props.theme === 'light')) {
@@ -512,6 +518,7 @@ class UI extends Component {
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
     
+    this.handleFontSize();
     this.handleTheme();
     this.handlePostStyle();
     this.handlePostSmoosh();
@@ -564,6 +571,15 @@ class UI extends Component {
       setTimeout( // FIXME: Hack to wait for setting to save
         function() {
           this.handleResize();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.font_size !== this.props.font_size) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleFontSize();
         }
           .bind(this),
         100
