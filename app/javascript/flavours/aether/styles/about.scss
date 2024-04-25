@@ -48,10 +48,6 @@ $fluid-breakpoint: $maximum-width + 20px;
       justify-content: center;
       align-items: center;
     }
-
-    &:last-child {
-      border-bottom: 0;
-    }
   }
 }
 
@@ -360,4 +356,9 @@ $fluid-breakpoint: $maximum-width + 20px;
       width: 100%;
     }
   }
+}
+
+.rules_footer {
+  text-align: center;
+  margin-top: 1em;
 }
