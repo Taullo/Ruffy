@@ -205,8 +205,12 @@
     .emoji-picker-dropdown {
       transition: all 200ms !important;
       transition-property: background-color, color, opacity, transform !important;
-      opacity: 0;
-      transform: scale(0.3);
+      @media screen and (min-width: $no-gap-breakpoint) {
+        & {
+          opacity: 0;
+          transform: scale(0.3);
+        }
+      }
     }
   }
 
@@ -238,7 +242,11 @@
   .emoji-picker-dropdown {
     transition: all 200ms !important;
     transition-property: background-color, color, opacity;
-    opacity: 0;
+    @media screen and (min-width: $no-gap-breakpoint) {
+      & {
+        opacity: 0;
+      }
+    }
   }
 
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
