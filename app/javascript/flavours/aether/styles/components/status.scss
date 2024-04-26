@@ -224,7 +224,9 @@
   position: relative;
   height: auto;
   @media screen and (max-width: $no-gap-breakpoint) {
-    border-bottom: 2px solid var(--ui-page-background);
+    & {
+      border-bottom: 2px solid var(--ui-page-background);
+    }
   }
 
   cursor: auto;
