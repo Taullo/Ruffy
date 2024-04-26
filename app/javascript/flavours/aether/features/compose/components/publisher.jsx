@@ -81,7 +81,7 @@ class Publisher extends ImmutablePureComponent {
       <div className={computedClass}>
         <div className='compose-form__publish-button-wrapper'>
           <Button
-            className='primary'
+            className='primary publish_button'
             text={publishText}
             title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage(privacyNames[privacy])}`}
             onClick={this.handleSubmit}

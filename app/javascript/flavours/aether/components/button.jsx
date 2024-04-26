@@ -45,7 +45,7 @@ export default class Button extends PureComponent {
 
     return (
       <button {...attrs}>
-        {this.props.text || this.props.children}
+        <span>{this.props.text || this.props.children}</span>
       </button>
     );
   }
