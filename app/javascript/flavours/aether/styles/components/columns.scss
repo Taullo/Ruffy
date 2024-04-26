@@ -1206,7 +1206,7 @@ $ui-header-height: 55px;
 }
 
 @media screen and (max-width: $widescreen-breakpoint) {
-  .right_column {
+  .right_column .explore__suggested-header {
     display: none;
   }
 }
