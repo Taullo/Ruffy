@@ -175,7 +175,10 @@ export function submitCompose() {
     let hashtags = getState().getIn(['compose', 'hashtags'], '');
     let status;
     if (hashtags.length > 0) {
-      hashtags = hashtags.replace(/[,/\\]+|\s+|#+/g, ' ').trim();
+      /* eslint-disable no-useless-escape */
+      hashtags = hashtags.replace(/[,/\\\.]+|\s+|#+/g, ' ').trim(); //replace certain characters with space
+      hashtags = hashtags.replace(/[!"$%&'()*+,\/:;<=>?@[\\\]^`{|}~-]+/g, '').trim(); //delete leftover punctuation
+      /* eslint-enable no-useless-escape */
       let tags = hashtags.split(/\s+/);
       tags = tags.map(tag => {
         // Check if the word already starts with '#'

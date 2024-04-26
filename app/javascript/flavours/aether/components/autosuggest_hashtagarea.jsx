@@ -82,18 +82,25 @@ export default class AutosuggestHashtagarea extends ImmutablePureComponent {
     const { suggestions, disabled } = this.props;
     const { selectedSuggestion, suggestionsHidden } = this.state;
     const { value } = this.props;
-
+  
     if (disabled) {
       e.preventDefault();
       return;
     }
 
-    if (e.which === 229 || e.isComposing) {
-      // Ignore key events during text composition
-      // e.key may be a name of the physical key even in this case (e.x. Safari / Chrome on Mac)
+    /* eslint-disable no-useless-escape */
+    if (/[,/\\\.!"$%&'()*+,\/:;<=>?@[\\\]^`{|}~-]+/.test(e.key) ||
+        (e.key === '#' && (value[e.target.selectionStart] === '#' || value[e.target.selectionStart + 1] === '#' || value[e.target.selectionStart - 1] === '#')) ||
+        (e.key === '#' && e.target.selectionStart > 0 && e.target.value[e.target.selectionStart - 1] !== ' ' && e.target.value[e.target.selectionStart - 1] !== '#')) {
+      e.preventDefault();
       return;
     }
-
+    /* eslint-enable no-useless-escape */
+  
+    if (e.which === 229 || e.isComposing) {
+      return;
+    }
+  
     switch(e.key) {
     case 'Escape':
       if (suggestions.size === 0 || suggestionsHidden) {
@@ -102,44 +109,37 @@ export default class AutosuggestHashtagarea extends ImmutablePureComponent {
         e.preventDefault();
         this.setState({ suggestionsHidden: true });
       }
-
       break;
     case 'ArrowDown':
       if (suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
         this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
       }
-
       break;
     case 'ArrowUp':
       if (suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
         this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
       }
-
       break;
     case 'Enter':
     case 'Tab':
-      // Select suggestion
       if (this.state.lastToken !== null && suggestions.size > 0 && !suggestionsHidden) {
         e.preventDefault();
         e.stopPropagation();
         this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
-      }
-      else if (suggestions.size === 0 || suggestionsHidden) {
+      } else if (suggestions.size === 0 || suggestionsHidden) {
         const caretPosition = e.target.selectionStart;
         const [tokenStart, token, symbol] = textAtCursorMatchesToken(value, caretPosition);
         if (!symbol && token) {
           const newValue = value.slice(0, tokenStart) + '#' + value.slice(tokenStart) + ' ';
-          this.props.onChange({ target: { value: newValue } }); // Call onChange with the new value
+          this.props.onChange({ target: { value: newValue } }); 
           e.preventDefault();
           e.stopPropagation();
         }
       }
-
       break;
     case ' ':
-      console.log('Space pressed');
       const caretPosition = e.target.selectionStart;
       const [tokenStart, token, symbol] = textAtCursorMatchesToken(value, caretPosition);
       if (!symbol && token) {
@@ -147,11 +147,10 @@ export default class AutosuggestHashtagarea extends ImmutablePureComponent {
           return;
         }
         const newValue = value.slice(0, tokenStart) + '#' + value.slice(tokenStart) + ' ';
-        this.props.onChange({ target: { value: newValue } }); // Call onChange with the new value
+        this.props.onChange({ target: { value: newValue } }); 
         e.preventDefault();
         e.stopPropagation();
       }
-
       break;
     }
 
@@ -162,7 +161,38 @@ export default class AutosuggestHashtagarea extends ImmutablePureComponent {
     this.props.onKeyDown(e);
   };
 
+
   onBlur = () => {
+    const { value } = this.input;
+    let modifiedValue = '';
+    let word = '';
+    let inWord = false;
+
+    for (let i = 0; i < value.length; i++) {
+      const char = value[i];
+
+      if (char === '#' && !inWord) {
+        inWord = true;
+        word = '#';
+      } else if (/\s/.test(char) && inWord) {
+        inWord = false;
+        modifiedValue += word + ' ';
+        word = '';
+      } else if (/\S/.test(char) && inWord) {
+        word += char;
+      } else if (/\S/.test(char) && !inWord) {
+        inWord = true;
+        word = '#' + char;
+      } else if (/\s/.test(char) && !inWord) {
+        modifiedValue += char;
+      }
+    }
+
+    if (inWord) {
+      modifiedValue += word + ' ';
+    }
+
+    this.props.onChange({ target: { value: modifiedValue } });
     this.setState({ suggestionsHidden: true, focused: false });
   };
 
@@ -191,34 +221,41 @@ export default class AutosuggestHashtagarea extends ImmutablePureComponent {
   };
 
   onPaste = (e) => {
-    const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+    let pastedText = (e.clipboardData || window.clipboardData).getData('text');
+    /* eslint-disable no-useless-escape */
+    pastedText = pastedText.replace(/[,/\\\.]+|\s+|#+/g, ' ').trim(); //replace certain characters with space
+    pastedText = pastedText.replace(/[!"$%&'()*+,\/:;<=>?@[\\\]^-`{|}~]+/g, '').trim(); //delete leftover punctuation
+    /* eslint-enable no-useless-escape */
+    
+    if (pastedText.length !== 0) {
 
-    // Get selection range to allow overwriting the field
-    const selectionStart = this.input.selectionStart;
-    const selectionEnd = this.input.selectionEnd;
-    const currentValue = this.props.value;
-    let prepend = '';
-    let append = '';
+      // Get selection range to allow overwriting the field
+      const selectionStart = this.input.selectionStart;
+      const selectionEnd = this.input.selectionEnd;
+      const currentValue = this.props.value;
+      let prepend = '';
+      let append = '';
     
-    if ((currentValue.charAt(selectionStart - 1) !== ' ') && (currentValue.charAt(selectionStart - 1).length > 0)) {
-      prepend = ' ';
-    }
+      if ((currentValue.charAt(selectionStart - 1) !== ' ') && (currentValue.charAt(selectionStart - 1).length > 0)) {
+        prepend = ' ';
+      }
     
-    if ((currentValue.charAt(selectionEnd + 1) !== ' ') && (currentValue.charAt(selectionEnd + 1).length > 0)) {
-      if (currentValue.charAt(selectionEnd + 1) === '#') {
-        append = ' ';
+      if ((currentValue.charAt(selectionEnd + 1) !== ' ') && (currentValue.charAt(selectionEnd + 1).length > 0)) {
+        if (currentValue.charAt(selectionEnd + 1) === '#') {
+          append = ' ';
+        }
+        else {
+          append = ' #';
+        }
       }
-      else {
-        append = ' #';
-      }
+      const modifiedText = pastedText.split(/\s+/).map(word => (!word.startsWith('#') ? '#' + word : word)).join(' ');
+      const newValue = currentValue.slice(0, selectionStart) + prepend + modifiedText + append + currentValue.slice(selectionEnd);
+      this.props.onChange({ target: { value: newValue } });
+      const newCursorPosition = selectionStart + modifiedText.length + prepend.length + append.length;
+      setTimeout(() => {
+        this.input.setSelectionRange(newCursorPosition, newCursorPosition);
+      }, 1);
     }
-    const modifiedText = pastedText.split(/\s+/).map(word => (!word.startsWith('#') ? '#' + word : word)).join(' ');
-    const newValue = currentValue.slice(0, selectionStart) + prepend + modifiedText + append + currentValue.slice(selectionEnd);
-    this.props.onChange({ target: { value: newValue } });
-    const newCursorPosition = selectionStart + modifiedText.length + prepend.length + append.length;
-    setTimeout(() => {
-      this.input.setSelectionRange(newCursorPosition, newCursorPosition);
-    }, 1);
     e.preventDefault();
   };
 
