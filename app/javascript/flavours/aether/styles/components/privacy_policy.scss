@@ -1,5 +1,4 @@
 .privacy-policy {
-  background: $ui-base-color;
   padding: 20px;
 
   @media screen and (min-width: $no-gap-breakpoint) {
@@ -167,14 +166,14 @@
 
   code {
     font-size: 0.875em;
-    background: darken($ui-base-color, 8%);
+    background: var(--ui-body-dark-color);
     border-radius: 4px;
     padding: 0.2em 0.3em;
   }
 
   hr {
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid var(--ui-font-color);
     margin-top: 3em;
     margin-bottom: 3em;
   }
