@@ -242,7 +242,7 @@ class HomeTimeline extends PureComponent {
         </ColumnHeader>
 
         {((showRightColumn || !signedIn) && !multiColumn) && (
-          <div className='right_column'>
+          <div className='right_column right_column__home'>
 
             <div className='fixed_wrapper'>
 
