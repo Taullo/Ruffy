@@ -301,6 +301,7 @@ body::before {
   top: 0;
   opacity: 0.015;
   pointer-events: none;
+  color: transparent;
 }
 
 .light-theme::before {
