@@ -91,6 +91,7 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeVisibility: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
     onPoorContentWarning: PropTypes.func,
+    onNudeContentWarning: PropTypes.func,
     disabled: PropTypes.bool,
   };
 
@@ -124,6 +125,7 @@ class ComposeForm extends ImmutablePureComponent {
       mediaDescriptionConfirmation,
       onMediaDescriptionConfirm,
       onPoorContentWarning,
+      onNudeContentWarning,
       onChangeVisibility,
     } = this.props;
 
@@ -137,18 +139,29 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
     
-    // Cancel submitting if inadequate content warning
-    if (this.props.spoilerText.toLowerCase().trim() === "nsfw") {
-      onPoorContentWarning();
+    if (this.props.spoilerText.length > 0) {
+      const allowNudity = window.getComputedStyle(document.body, '::before').getPropertyValue('content').includes('allow-nudity');
+      const containsNudity = /(nude|naked|nudity)/i.test(this.props.spoilerText.toLowerCase());
+      // Cancel submitting if inadequate content warning
+      if (this.props.spoilerText.toLowerCase().includes('nsfw')) {
+        onPoorContentWarning();
+        return;
+      }
+      // Forced confirmation if nudity is allowed but still warned for
+      else if (allowNudity && containsNudity) {
+        onNudeContentWarning(this.context.router ? this.context.router.history : null, overriddenVisibility);
+        return;
+      }
     }
 
     // Submit unless there are media with missing descriptions
-    else if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
+    if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
       const firstWithoutDescription = media.find(item => !item.get('description'));
       onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null, firstWithoutDescription.get('id'), overriddenVisibility);
+      return;
     }
     
-    else if (onSubmit) {
+    if (onSubmit) {
       if (onChangeVisibility && overriddenVisibility) {
         onChangeVisibility(overriddenVisibility);
       }

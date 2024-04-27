@@ -36,12 +36,20 @@ const messages = defineMessages({
     id: 'confirmations.missing_media_description.edit',
     defaultMessage: 'Edit media',
   },
-  badContentWarningMessage: {
-    id: 'confirmations.bad_content_warning.message',
-    defaultMessage: 'Please add a more descriptive content warning. Check the About page for more information.',
+  badContentWarningMessageNSFW: {
+    id: 'confirmations.bad_content_warning_nsfw.message',
+    defaultMessage: 'Please add a more descriptive content warning. Instead, consider what about this post makes it "not safe for work" and write those reasons instead. Check the About page for more information.',
   },
-  badContentWarningConfirm: {
-    id: 'confirmations.bad_content_warning.confirm',
+  nudeContentWarningMessage: {
+    id: 'confirmations.nude_content_warning_nsfw.message',
+    defaultMessage: 'Non-sexual nudity does not require a content warning! If the content is sexual in nature, be sure you have said as much in your warning.',
+  },
+  nudeContentWarningDiscard: {
+    id: 'confirmations.nude_content_warning_nsfw.discard',
+    defaultMessage: 'Remove Content Warning',
+  },
+  warningConfirm: {
+    id: 'confirmations.warning.confirm',
     defaultMessage: 'Okay',
   },
 });
@@ -163,8 +171,31 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(openModal({
       modalType: 'WARNING',
       modalProps: {
-        message: intl.formatMessage(messages.badContentWarningMessage),
-        confirm: intl.formatMessage(messages.badContentWarningConfirm),
+        message: intl.formatMessage(messages.badContentWarningMessageNSFW),
+        confirm: intl.formatMessage(messages.warningConfirm),
+      },
+    }));
+  },
+  onNudeContentWarning(routerHistory, overriddenVisibility = null) {
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.nudeContentWarningMessage),
+        confirm: intl.formatMessage(messages.missingDescriptionConfirm),
+        onConfirm: () => {
+          if (overriddenVisibility) {
+            dispatch(changeComposeVisibility(overriddenVisibility));
+          }
+          dispatch(submitCompose(routerHistory));
+        },
+        secondary: intl.formatMessage(messages.nudeContentWarningDiscard),
+        onSecondary: () => {
+          dispatch(changeComposeSpoilerText(''));
+          if (overriddenVisibility) {
+            dispatch(changeComposeVisibility(overriddenVisibility));
+          }
+          dispatch(submitCompose(routerHistory));
+        },
       },
     }));
   },
