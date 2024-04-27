@@ -91,6 +91,7 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeVisibility: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
     onPoorContentWarning: PropTypes.func,
+    onSemiPoorContentWarning: PropTypes.func,
     onNudeContentWarning: PropTypes.func,
     disabled: PropTypes.bool,
   };
@@ -125,6 +126,7 @@ class ComposeForm extends ImmutablePureComponent {
       mediaDescriptionConfirmation,
       onMediaDescriptionConfirm,
       onPoorContentWarning,
+      onSemiPoorContentWarning,
       onNudeContentWarning,
       onChangeVisibility,
     } = this.props;
@@ -144,7 +146,12 @@ class ComposeForm extends ImmutablePureComponent {
       const containsNudity = /(nude|naked|nudity)/i.test(this.props.spoilerText.toLowerCase());
       // Cancel submitting if inadequate content warning
       if (this.props.spoilerText.toLowerCase().includes('nsfw')) {
-        onPoorContentWarning();
+        if (this.props.spoilerText.toLowerCase().trim() === 'nsfw') {
+          onPoorContentWarning();
+        }
+        else {
+          onSemiPoorContentWarning(this.context.router ? this.context.router.history : null, overriddenVisibility);
+        }
         return;
       }
       // Forced confirmation if nudity is allowed but still warned for

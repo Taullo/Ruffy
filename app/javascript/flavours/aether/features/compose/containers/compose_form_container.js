@@ -40,6 +40,10 @@ const messages = defineMessages({
     id: 'confirmations.bad_content_warning_nsfw.message',
     defaultMessage: 'Please add a more descriptive content warning. Instead, consider what about this post makes it "not safe for work" and write those reasons instead. Check the About page for more information.',
   },
+  semiBadContentWarningMessageNSFW: {
+    id: 'confirmations.semi_bad_content_warning_nsfw.message',
+    defaultMessage: 'Please consider using something more specific than "NSFW" as a content warning (e.g. sexual, kink, gore, etc.). Check the About page for more information.',
+  },
   nudeContentWarningMessage: {
     id: 'confirmations.nude_content_warning_nsfw.message',
     defaultMessage: 'Non-sexual nudity does not require a content warning! If the content is sexual in nature, be sure you have said as much in your warning.',
@@ -173,6 +177,21 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       modalProps: {
         message: intl.formatMessage(messages.badContentWarningMessageNSFW),
         confirm: intl.formatMessage(messages.warningConfirm),
+      },
+    }));
+  },
+  onSemiPoorContentWarning(routerHistory, overriddenVisibility = null) {
+    dispatch(openModal({
+      modalType: 'CONFIRM',
+      modalProps: {
+        message: intl.formatMessage(messages.semiBadContentWarningMessageNSFW),
+        confirm: intl.formatMessage(messages.missingDescriptionConfirm),
+        onConfirm: () => {
+          if (overriddenVisibility) {
+            dispatch(changeComposeVisibility(overriddenVisibility));
+          }
+          dispatch(submitCompose(routerHistory));
+        },
       },
     }));
   },
