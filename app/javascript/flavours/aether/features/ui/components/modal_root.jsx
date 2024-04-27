@@ -43,6 +43,7 @@ import ImageModal from './image_modal';
 import MediaModal from './media_modal';
 import ModalLoading from './modal_loading';
 import VideoModal from './video_modal';
+import WarningModal from './warning_modal';
 
 export const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
@@ -55,6 +56,7 @@ export const MODAL_COMPONENTS = {
   'DOODLE': () => Promise.resolve({ default: DoodleModal }),
   'TENOR': () => Promise.resolve({ default: GIFModal }),
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
+  'WARNING': () => Promise.resolve({ default: WarningModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
   'DOMAIN_MUTE': DomainMuteModal,
@@ -106,7 +108,7 @@ export default class ModalRoot extends PureComponent {
   };
 
   renderLoading = modalId => () => {
-    return ['MEDIA', 'VIDEO', 'BOOST', 'FAVOURITE', 'DOODLE', 'TENOR', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
+    return ['MEDIA', 'VIDEO', 'BOOST', 'FAVOURITE', 'DOODLE', 'TENOR', 'CONFIRM', 'WARNING', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
   };
 
   renderError = (props) => {

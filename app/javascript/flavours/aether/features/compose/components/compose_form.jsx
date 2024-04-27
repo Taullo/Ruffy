@@ -90,6 +90,7 @@ class ComposeForm extends ImmutablePureComponent {
     onChangeSpoilerness: PropTypes.func,
     onChangeVisibility: PropTypes.func,
     onMediaDescriptionConfirm: PropTypes.func,
+    onPoorContentWarning: PropTypes.func,
     disabled: PropTypes.bool,
   };
 
@@ -122,6 +123,7 @@ class ComposeForm extends ImmutablePureComponent {
       media,
       mediaDescriptionConfirmation,
       onMediaDescriptionConfirm,
+      onPoorContentWarning,
       onChangeVisibility,
     } = this.props;
 
@@ -134,12 +136,19 @@ class ComposeForm extends ImmutablePureComponent {
     if (!this.canSubmit()) {
       return;
     }
+    
+    // Cancel submitting if inadequate content warning
+    if (this.props.spoilerText.toLowerCase().trim() === "nsfw") {
+      onPoorContentWarning();
+    }
 
     // Submit unless there are media with missing descriptions
-    if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
+    else if (mediaDescriptionConfirmation && onMediaDescriptionConfirm && media && media.some(item => !item.get('description'))) {
       const firstWithoutDescription = media.find(item => !item.get('description'));
       onMediaDescriptionConfirm(this.context.router ? this.context.router.history : null, firstWithoutDescription.get('id'), overriddenVisibility);
-    } else if (onSubmit) {
+    }
+    
+    else if (onSubmit) {
       if (onChangeVisibility && overriddenVisibility) {
         onChangeVisibility(overriddenVisibility);
       }

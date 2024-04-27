@@ -36,6 +36,14 @@ const messages = defineMessages({
     id: 'confirmations.missing_media_description.edit',
     defaultMessage: 'Edit media',
   },
+  badContentWarningMessage: {
+    id: 'confirmations.bad_content_warning.message',
+    defaultMessage: 'Please add a more descriptive content warning. Check the About page for more information.',
+  },
+  badContentWarningConfirm: {
+    id: 'confirmations.bad_content_warning.confirm',
+    defaultMessage: 'Okay',
+  },
 });
 
 //  State mapping.
@@ -148,6 +156,15 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
           modalProps: { id: mediaId },
         })),
         onDoNotAsk: () => dispatch(changeLocalSetting(['confirm_missing_media_description'], false)),
+      },
+    }));
+  },
+  onPoorContentWarning() {
+    dispatch(openModal({
+      modalType: 'WARNING',
+      modalProps: {
+        message: intl.formatMessage(messages.badContentWarningMessage),
+        confirm: intl.formatMessage(messages.badContentWarningConfirm),
       },
     }));
   },
