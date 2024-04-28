@@ -573,7 +573,17 @@ export default function compose(state = initialState, action) {
     let text = action.raw_text || unescapeHTML(expandMentions(action.status));
     if (do_not_federate) text = text.replace(/ ?👁\ufe0f?\u200b?$/, '');
     return state.withMutations(map => {
-      map.set('text', text);
+      const lastLine = text.trim().split('\n').pop().trim();
+      const hashtagsPresent = lastLine.split(/\s+/).every(word => word.startsWith('#'));
+      if (!hashtagsPresent) {
+        map.set('text', text);
+        map.set('hashtags', '');
+      } else {
+        const postLines = text.trim().split('\n');
+        postLines.pop();
+        map.set('text', postLines.join('\n').trimEnd());
+        map.set('hashtags', lastLine);
+      }
       map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
@@ -612,11 +622,16 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SET_STATUS:
     return state.withMutations(map => {
       map.set('id', action.status.get('id'));
-      map.set('text', action.text);
-      if (action.hashtags !== undefined && action.hashtags.length > 0) {
-        map.set('hashtags', action.hashtags);
-      } else {
+      const lastLine = action.text.trim().split('\n').pop().trim();
+      const hashtagsPresent = lastLine.split(/\s+/).every(word => word.startsWith('#'));
+      if (!hashtagsPresent) {
+        map.set('text', action.text);
         map.set('hashtags', '');
+      } else {
+        const postLines = action.text.trim().split('\n');
+        postLines.pop();
+        map.set('text', postLines.join('\n').trimEnd());
+        map.set('hashtags', lastLine);
       }
       map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
