@@ -116,10 +116,12 @@ export function replyCompose(status) {
       prependCWRe: prependCWRe,
     });
 
-    dispatch(openModal({
-      modalType: 'COMPOSE',
-      modalProps: { },
-    }));
+    if (document.body.classList.contains("layout-single-column")) {
+      dispatch(openModal({
+        modalType: 'COMPOSE',
+        modalProps: { },
+      }));
+    }
   };
 }
 

@@ -2,22 +2,36 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
+
 //  Our imports
+import { FormattedMessage } from 'react-intl';
+
+import { connect } from 'react-redux';
+
+import { resetCompose } from 'flavours/aether/actions/compose';
+import { closeModal } from 'flavours/aether/actions/modal';
 import ComposeFormContainer from 'flavours/aether/features/compose/containers/compose_form_container';
 
-const dispatch = ({
-  onClose () {
-    dispatch({
-      modalType: undefined,
-      ignoreFocus: false,
-    });
-  },
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    onCancelCompose() {
+      dispatch(resetCompose());
+      dispatch(closeModal({
+        modalType: undefined,
+        ignoreFocus: false,
+      }));
+    },
+  };
+};
 
 class ComposeModal extends PureComponent {
 
   static propTypes = {
-    onClose: PropTypes.func.isRequired,
+    onCancelCompose: PropTypes.func.isRequired,
+  };
+  
+  handleCancel = () => {
+    this.props.onCancelCompose();
   };
 
   navigateTo = (index) =>
@@ -28,10 +42,11 @@ class ComposeModal extends PureComponent {
     return (
       <div className='aether modal-root__modal compose-modal'>
         <ComposeFormContainer />
+        <button className='button button-secondary button-cancel' onClick={this.handleCancel}><FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' /></button>
       </div>
     );
   }
 
 }
 
-export default ComposeModal;
+export default connect(null, mapDispatchToProps)(ComposeModal);

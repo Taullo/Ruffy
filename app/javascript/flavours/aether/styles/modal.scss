@@ -62,6 +62,20 @@
   }
 }
 
+.compose-modal {
+  position: relative;
+
+  .compose-form {
+    padding-bottom: 0;
+  }
+
+  .button-cancel {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+}
+
 .right-column-show-more {
   display: flex;
   justify-content: center;
