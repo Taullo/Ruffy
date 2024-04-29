@@ -77,6 +77,10 @@
     left: 8px;
     bottom: 8px;
   }
+
+  .spoiler-input.spoiler-input--visible {
+    width: calc(100% - 9rem);
+  }
 }
 
 .right-column-show-more {
