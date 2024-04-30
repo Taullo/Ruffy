@@ -76,9 +76,11 @@ class ComposeForm extends ImmutablePureComponent {
     onPickEmoji: PropTypes.func,
     showSearch: PropTypes.bool,
     anyMedia: PropTypes.bool,
+    replyingTo: PropTypes.string,
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
+    account: PropTypes.string,
 
     advancedOptions: ImmutablePropTypes.map,
     media: ImmutablePropTypes.list,
@@ -339,6 +341,7 @@ class ComposeForm extends ImmutablePureComponent {
       handleSubmit,
     } = this;
     const {
+      account,
       advancedOptions,
       intl,
       isSubmitting,
@@ -355,6 +358,7 @@ class ComposeForm extends ImmutablePureComponent {
       spoilersAlwaysOn,
       isEditing,
       disabled,
+      replyingTo,
       isInReply
     } = this.props;
 
@@ -391,7 +395,7 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
         </AutosuggestTextarea>
         
-        {!isInReply && (
+        {(!isInReply || (replyingTo === account)) && (
           <AutosuggestHashtagarea
             ref={this.setAutosuggestHashtagarea}
             placeholder={intl.formatMessage(messages.hashtag_placeholder)}

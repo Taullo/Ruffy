@@ -19,9 +19,11 @@ import { changeLocalSetting } from 'flavours/aether/actions/local_settings';
 import {
   openModal,
 } from 'flavours/aether/actions/modal';
+import { me } from 'flavours/aether/initial_state';
 import { privacyPreference } from 'flavours/aether/utils/privacy_preference';
 
 import ComposeForm from '../components/compose_form';
+
 
 const messages = defineMessages({
   missingDescriptionMessage: {
@@ -76,6 +78,7 @@ function mapStateToProps (state) {
   }
   sideArmPrivacy = sideArmPrivacy || sideArmBasePrivacy;
   return {
+    account: state.getIn(['accounts', me, 'id']),
     advancedOptions: state.getIn(['compose', 'advanced_options']),
     focusDate: state.getIn(['compose', 'focusDate']),
     caretPosition: state.getIn(['compose', 'caretPosition']),
@@ -98,6 +101,7 @@ function mapStateToProps (state) {
     spoilersAlwaysOn: spoilersAlwaysOn,
     mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
     preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
+    replyingTo: inReplyTo ? state.getIn(['statuses', inReplyTo, 'account']) : null,
     isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
     lang: state.getIn(['compose', 'language']),
   };

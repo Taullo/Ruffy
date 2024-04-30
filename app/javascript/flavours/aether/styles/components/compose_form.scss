@@ -5,16 +5,11 @@
   .compose-form__autosuggest-wrapper {
     border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
     background: var(--ui-body-color);
-    border-bottom: 2px dashed var(--ui-body-secondary-color);
-  }
-
-  &.reply-form .compose-form__autosuggest-wrapper {
-    border-bottom: 0;
   }
 
   .compose-form__autosuggest-wrapper-hashtags {
+    border-top: 2px dashed var(--ui-body-secondary-color);
     border-radius: 0;
-    border-top: 0;
     border-bottom: 0;
   }
 
