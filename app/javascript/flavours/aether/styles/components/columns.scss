@@ -358,7 +358,7 @@ $ui-header-height: 55px;
 .column-header__button {
   cursor: pointer;
   transition: color 0.2s;
-  font-size: 16px;
+  font-size: 1rem;
   border-radius: 100%;
   margin-right: 5px;
   color: var(--ui-highlight-color);
@@ -1062,10 +1062,6 @@ $ui-header-height: 55px;
       vertical-align: middle;
     }
   }
-}
-
-.ui__header__left .column-link i {
-  display: none;
 }
 
 .ui__header__left .column-link {

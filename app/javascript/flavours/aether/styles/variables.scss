@@ -12,6 +12,8 @@
   --ui-highlight-button-text-color: #ffffff;
   --ui-widescreen-width: 1150px;
   --ui-right-column-width: 300px;
+  --ui-interface-font:roboto;
+  --ui-post-font:roboto;
 
   accent-color: var(--ui-highlight-color);
 }
@@ -212,7 +214,7 @@ $media-modal-media-max-width: 100%;
 $media-modal-media-max-height: 80%;
 
 $no-gap-breakpoint: 890px; /* Originally 1175px */
-$widescreen-breakpoint: 1175px; /* TODO Should change to 1175 depending on if wide is set */
+$widescreen-breakpoint: 1150px; /* TODO Should change to 1175 depending on if wide is set */
 
 $font-sans-serif: 'roboto' !default;
 $font-display: 'roboto-font-display' !default;

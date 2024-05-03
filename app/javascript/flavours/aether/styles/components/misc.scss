@@ -55,7 +55,7 @@
   color: var(--ui-highlight-button-text-color);
   cursor: pointer;
   display: inline-block;
-  font-family: inherit;
+  font-family: var(--ui-interface-font), sans-serif;
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0;
@@ -688,7 +688,6 @@ body > [data-popper-placement] {
 
   a,
   button {
-    font: inherit;
     display: block;
     width: 100%;
     padding: 0.5em 1em;

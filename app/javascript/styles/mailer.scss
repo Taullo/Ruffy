@@ -179,7 +179,7 @@ p {
   font-family: Helvetica, Arial, sans-serif;
 
   @media only screen {
-    font-family: $font-sans-serif, sans-serif !important;
+    font-family: var(--ui-post-font), sans-serif !important;
   }
 }
 

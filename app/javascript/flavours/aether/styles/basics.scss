@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: $font-sans-serif, sans-serif;
+  font-family: var(--ui-interface-font), sans-serif;
   background: var(--ui-page-background);
   line-height: 1.14em;
   font-weight: 400;
@@ -161,7 +161,8 @@ body {
 }
 
 button {
-  font-family: inherit;
+  font-family: var(--ui-interface-font), sans-serif;
+  font-weight: bold;
   cursor: pointer;
 
   &:focus {
@@ -242,7 +243,6 @@ button {
     border: 0;
     background: transparent;
     color: var(--ui-font-dimmer-color);
-    font: inherit;
     padding: 0;
     margin: 0;
     line-height: inherit;
@@ -323,4 +323,17 @@ body::before {
 
 .light-theme .ui__header__wrapper::before {
   opacity: 0.03;
+}
+
+button {
+  font-family: var(--ui-interface-font), sans-serif;
+}
+
+.prose,
+.about__section__body,
+.account__header__bio,
+.account__fields__block,
+.tags-wrapper,
+.dismissable-banner__message {
+  font-family: var(--ui-post-font), sans-serif;
 }
