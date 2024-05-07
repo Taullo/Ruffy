@@ -36,18 +36,18 @@
   &__text {
     text-align: center;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: var(--ui-font-color);
     margin-bottom: 20px;
-    line-height: 30px;
+    line-height: 1.8em;
   }
 
   &__text {
-    font-size: 18px;
+    font-size: 1.1rem;
   }
 
   &__label {
-    font-size: 14px;
+    font-size: 0.8rem;
     color: var(--ui-font-dimmest-color);
     text-align: center;
     font-weight: 500;
@@ -84,10 +84,9 @@
     background: var(--ui-highlight-color);
     color: var(--ui-font-color);
     transition: all 100ms ease-in;
-    font-size: 14px;
+    font-size: 0.8rem;
     padding: 0 16px;
-    line-height: 36px;
-    height: 36px;
+    line-height: 1.9em;
     text-decoration: none;
     margin-bottom: 4px;
 

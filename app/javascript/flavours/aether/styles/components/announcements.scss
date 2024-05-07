@@ -43,7 +43,7 @@
 
 .announcements {
   background: var(--ui-base-color);
-  font-size: 13px;
+  font-size: 0.8rem;
   display: flex;
   align-items: flex-end;
   margin-bottom: 12px;
@@ -65,8 +65,7 @@
     width: 100%;
     padding: 15px;
     position: relative;
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 0.95rem;
     word-wrap: break-word;
     font-weight: 400;
     max-height: 50vh;

@@ -201,7 +201,7 @@ export default class ComposerOptionsDropdown extends PureComponent {
             onMouseDown={this.handleMouseDown}
             onKeyDown={this.handleButtonKeyDown}
             onKeyPress={this.handleKeyPress}
-            size={18}
+            size={1.1}
             style={{
               height: null,
               lineHeight: '27px',

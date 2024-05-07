@@ -63,7 +63,7 @@ class ActionBar extends PureComponent {
     return (
       <div className='compose__action-bar'>
         <div className='compose__action-bar-dropdown'>
-          <DropdownMenuContainer items={menu} icon='bars' size={18} direction='right' />
+          <DropdownMenuContainer items={menu} icon='bars' size={1.1} direction='right' />
         </div>
       </div>
     );

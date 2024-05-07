@@ -31,7 +31,7 @@ class BundleModalError extends Component {
     return (
       <div className='modal-root__modal error-modal'>
         <div className='error-modal__body'>
-          <IconButton title={formatMessage(messages.retry)} icon='refresh' onClick={this.handleRetry} size={64} />
+          <IconButton title={formatMessage(messages.retry)} icon='refresh' onClick={this.handleRetry} size={4} />
           {formatMessage(messages.error)}
         </div>
 

@@ -49,7 +49,7 @@ $content-width: 840px;
         color: var(--ui-font-dimmest-color);
         text-decoration: none;
         flex: 0 0 auto;
-        font-size: 18px;
+        font-size: 1.1rem;
         padding: 10px;
         margin: 5px 10px;
         border-radius: 4px;
@@ -222,7 +222,7 @@ $content-width: 840px;
         }
 
         a {
-          font-size: 14px;
+          font-size: 0.9rem;
           display: inline-flex;
           align-items: center;
           padding: 7px 10px;
@@ -254,11 +254,10 @@ $content-width: 840px;
       }
 
       h2 small {
-        font-size: 12px;
+        font-size: 0.7rem;
         display: block;
         font-weight: 500;
         color: var(--ui-font-dimmest-color);
-        line-height: 18px;
       }
 
       @media screen and (max-width: $no-columns-breakpoint) {
@@ -269,22 +268,20 @@ $content-width: 840px;
 
     h2 {
       color: var(--ui-font-secondary-color);
-      font-size: 24px;
-      line-height: 36px;
+      font-size: 1.4rem;
       font-weight: 700;
     }
 
     h3 {
       color: var(--ui-font-secondary-color);
-      font-size: 20px;
-      line-height: 28px;
+      font-size: 1.1rem;
       font-weight: 400;
       margin-bottom: 30px;
     }
 
     h4 {
       text-transform: uppercase;
-      font-size: 13px;
+      font-size: 0.75rem;
       font-weight: 700;
       color: var(--ui-font-dimmest-color);
       padding-bottom: 8px;
@@ -293,9 +290,8 @@ $content-width: 840px;
     }
 
     h6 {
-      font-size: 16px;
+      font-size: 1rem;
       color: var(--ui-font-secondary-color);
-      line-height: 28px;
       font-weight: 500;
     }
 
@@ -314,7 +310,7 @@ $content-width: 840px;
     }
 
     .directory__tag h4 {
-      font-size: 18px;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--ui-font-color);
       text-transform: none;
@@ -324,8 +320,7 @@ $content-width: 840px;
     }
 
     & > p {
-      font-size: 14px;
-      line-height: 21px;
+      font-size: 0.9rem;
       color: var(--ui-font-secondary-color);
       margin-bottom: 20px;
 
@@ -535,7 +530,7 @@ body,
     strong {
       font-weight: 500;
       text-transform: uppercase;
-      font-size: 12px;
+      font-size: 0.8rem;
 
       @each $lang in $cjk-langs {
         &:lang(#{$lang}) {
@@ -554,7 +549,7 @@ body,
       color: var(--ui-font-dimmest-color);
       text-decoration: none;
       text-transform: uppercase;
-      font-size: 12px;
+      font-size: 0.8rem;
       font-weight: 500;
       border-bottom: 2px solid var(--ui-base-color);
 
@@ -579,7 +574,7 @@ body,
 
 .flavour-description {
   display: block;
-  font-size: 16px;
+  font-size: 1rem;
   margin: 10px 0;
 
   & > p {
@@ -606,8 +601,7 @@ body,
     margin-inline-end: 0;
     margin-inline-start: -5px;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 0.9rem;
     color: var(--ui-font-secondary-color);
 
     @each $lang in $cjk-langs {
@@ -645,7 +639,7 @@ body,
   flex-direction: column;
 
   .icon-button {
-    font-size: 24px;
+    font-size: 1.25rem;
     width: 24px;
     text-align: center;
     margin-bottom: 10px;
@@ -697,7 +691,7 @@ body,
 
 .back-link {
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 0.9rem;
 
   a {
     color: var(--ui-font-color);
@@ -727,7 +721,6 @@ body,
 
 .log-entry {
   display: block;
-  line-height: 20px;
   padding: 15px;
   padding-inline-start: 15px * 2 + 40px;
   background: var(--ui-base-color);
@@ -735,7 +728,7 @@ body,
   position: relative;
   text-decoration: none;
   color: var(--ui-font-dimmest-color);
-  font-size: 14px;
+  font-size: 0.9rem;
 
   &:first-child {
     border-top-left-radius: 4px;
@@ -855,8 +848,7 @@ a.name-tag,
   &__bubble {
     padding: 16px;
     padding-inline-start: 14px;
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 0.95rem;
     border-radius: 4px 4px 4px 0;
     position: relative;
     font-weight: 500;
@@ -1059,7 +1051,7 @@ a.name-tag,
       padding: 0 15px;
       display: block;
       font-weight: 500;
-      font-size: 18px;
+      font-size: 1.1rem;
       line-height: 1.5;
       color: var(--ui-font-secondary-color);
       text-decoration: none;
@@ -1123,7 +1115,7 @@ a.name-tag,
   }
 
   .expiration {
-    font-size: 13px;
+    font-size: 0.75rem;
   }
 
   &.expired {
@@ -1213,7 +1205,6 @@ a.name-tag,
 
   &__value {
     display: flex;
-    line-height: 33px;
     align-items: flex-end;
     padding: 20px;
     padding-bottom: 10px;
@@ -1222,14 +1213,14 @@ a.name-tag,
       display: block;
       margin-inline-end: 10px;
       font-weight: 500;
-      font-size: 28px;
+      font-size: 1.6rem;
       color: var(--ui-font-color);
     }
 
     &__change {
       display: block;
       font-weight: 500;
-      font-size: 18px;
+      font-size: 1.1rem;
       color: var(--ui-font-dimmest-color);
       margin-bottom: -3px;
 
@@ -1471,8 +1462,7 @@ a.sparkline {
     .display-name {
       color: var(--ui-font-dimmest-color);
       padding-bottom: 15px;
-      font-size: 15px;
-      line-height: 20px;
+      font-size: 0.95rem;
       text-overflow: ellipsis;
       overflow: hidden;
 
@@ -1497,8 +1487,7 @@ a.sparkline {
     word-wrap: break-word;
     max-height: 21px * 2;
     position: relative;
-    font-size: 15px;
-    line-height: 21px;
+    font-size: 0.95rem;
 
     &::after {
       display: block;
@@ -1566,15 +1555,13 @@ a.sparkline {
       text-align: center;
       color: var(--ui-font-color);
       font-weight: 600;
-      font-size: 15px;
-      line-height: 21px;
+      font-size: 0.95rem;
 
       small {
         display: block;
         color: var(--ui-font-dimmest-color);
         font-weight: 400;
-        font-size: 13px;
-        line-height: 18px;
+        font-size: 0.85rem;
       }
     }
   }
@@ -1616,8 +1603,7 @@ a.sparkline {
 
     &__header {
       color: var(--ui-font-dimmest-color);
-      font-size: 15px;
-      line-height: 20px;
+      font-size: 0.95rem;
       margin-bottom: 4px;
 
       .username {
@@ -1644,8 +1630,7 @@ a.sparkline {
     }
 
     &__content {
-      font-size: 15px;
-      line-height: 20px;
+      font-size: 0.95rem;
       word-wrap: break-word;
       font-weight: 400;
       color: var(--ui-font-color);
@@ -1685,7 +1670,6 @@ a.sparkline {
   &__item {
     display: flex;
     align-items: center;
-    line-height: 18px;
     border-bottom: 1px solid var(--ui-body-dark-color);
 
     &:last-child {
@@ -1707,7 +1691,7 @@ a.sparkline {
 
     &__description {
       padding: 15px;
-      font-size: 14px;
+      font-size: 0.9rem;
       color: var(--ui-font-dimmer-color);
     }
   }
@@ -1751,8 +1735,7 @@ a.sparkline {
   padding: 15px;
   border-radius: 4px;
   background: var(--ui-base-color);
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 0.95rem;
   word-wrap: break-word;
   font-weight: 400;
   color: var(--ui-font-color);
@@ -1799,8 +1782,7 @@ a.sparkline {
   &__statuses-list {
     border-radius: 4px;
     border: 1px solid var(--ui-body-dark-color);
-    font-size: 13px;
-    line-height: 18px;
+    font-size: 0.85rem;
     overflow: hidden;
 
     &__item {
@@ -1834,8 +1816,7 @@ a.sparkline {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.9rem;
 
   &__hint {
     padding: 0 15px;
@@ -1867,8 +1848,7 @@ a.sparkline {
 
 .history {
   counter-reset: step 0;
-  font-size: 15px;
-  line-height: 22px;
+  font-size: 0.95rem;
 
   li {
     counter-increment: step 1;
@@ -1917,7 +1897,6 @@ a.sparkline {
     h5 {
       font-weight: 500;
       color: var(--ui-font-color);
-      line-height: 25px;
       margin-bottom: 16px;
     }
 

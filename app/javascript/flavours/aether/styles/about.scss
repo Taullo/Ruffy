@@ -19,8 +19,7 @@ $fluid-breakpoint: $maximum-width + 20px;
 }
 
 .rules-list {
-  font-size: 15px;
-  line-height: 22px;
+  font-size: 0.9rem;
   color: var(--ui-font-color);
   counter-reset: list-counter;
 
@@ -124,7 +123,6 @@ $fluid-breakpoint: $maximum-width + 20px;
     color: var(--ui-font-secondary-color);
     text-align: center;
     font-size: 0.8rem;
-    line-height: 22px;
     margin-top: 20px;
   }
 
@@ -183,7 +181,7 @@ $fluid-breakpoint: $maximum-width + 20px;
     }
 
     h4 {
-      font-size: 15px;
+      font-size: 0.95rem;
       text-transform: uppercase;
       color: var(--ui-font-color);
       font-weight: 500;

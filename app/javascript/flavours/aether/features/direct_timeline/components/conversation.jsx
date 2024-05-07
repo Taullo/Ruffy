@@ -218,7 +218,7 @@ class Conversation extends ImmutablePureComponent {
                   status={lastStatus}
                   items={menu}
                   icon='ellipsis-h'
-                  size={18}
+                  size={1.1}
                   direction='right'
                   title={intl.formatMessage(messages.more)}
                 />

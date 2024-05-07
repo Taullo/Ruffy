@@ -182,7 +182,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
-      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} size={1.3} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (me !== account.get('id')) {
@@ -196,7 +196,7 @@ class Header extends ImmutablePureComponent {
         actionBtn = <Button text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
     } else if (profileLink) {
-      actionBtn = <IconButton size={24} icon='pencil' title={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
+      actionBtn = <IconButton size={1.3} icon='pencil' title={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
     }
 
     if (account.get('moved') && !account.getIn(['relationship', 'following'])) {
@@ -344,7 +344,7 @@ class Header extends ImmutablePureComponent {
                   </>
                 )}
 
-                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
+                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={1.2} direction='right' />
               </div>
             </div>
           )}

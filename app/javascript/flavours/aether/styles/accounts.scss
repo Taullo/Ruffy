@@ -84,7 +84,7 @@
       }
 
       strong {
-        font-size: 15px;
+        font-size: 0.95rem;
         color: var(--ui-font-color);
         font-weight: 500;
         overflow: hidden;
@@ -93,7 +93,7 @@
 
       span {
         display: block;
-        font-size: 14px;
+        font-size: 0.9rem;
         color: var(--ui-font-secondary-color);
         font-weight: 400;
         overflow: hidden;
@@ -114,7 +114,7 @@
   .older,
   .page,
   .gap {
-    font-size: 14px;
+    font-size: 0.9rem;
     color: var(--ui-font-color);
     font-weight: 500;
     display: inline-block;
@@ -183,7 +183,7 @@
   background: var(--ui-body-color);
   box-shadow: 0 0 15px var(--ui-dropdown-shadow-20);
   color: var(--ui-font-bright-color);
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 500;
   text-align: center;
   display: flex;
@@ -237,7 +237,6 @@
   padding: 0;
   border: 0;
   font-size: 0.95rem;
-  line-height: 20px;
   margin: 1px 0 0;
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: var(--ui-border-radius);
@@ -400,7 +399,7 @@
     color: var(--ui-font-dimmest-color);
     overflow: hidden;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 0.9rem;
 
     &--with-note {
       strong {
@@ -426,7 +425,6 @@
 
     & > .display-name {
       height: 24px;
-      line-height: 24px;
     }
   }
 }
@@ -490,7 +488,7 @@
       color: var(--ui-font-color);
       text-shadow: 1px 1px 2px $base-shadow-color;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 0.95rem;
     }
   }
 }
@@ -571,7 +569,6 @@
 .account__action-bar {
   border-top: 1px solid lighten($ui-base-color, 8%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  line-height: 36px;
   overflow: hidden;
   flex: 0 0 auto;
   display: flex;
@@ -580,7 +577,6 @@
 .account__action-bar-links {
   display: flex;
   flex: 1 1 auto;
-  line-height: 18px;
   text-align: center;
 }
 
@@ -609,13 +605,13 @@
   & > span {
     display: block;
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 0.65rem;
     color: var(--ui-font-dimmest-color);
   }
 
   strong {
     display: block;
-    font-size: 15px;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--ui-font-color);
 
@@ -657,8 +653,7 @@
     justify-content: space-between;
     align-items: center;
     color: var(--ui-font-dimmest-color);
-    font-size: 15px;
-    line-height: 22px;
+    font-size: 0.95rem;
 
     strong {
       font-weight: 500;
@@ -678,7 +673,7 @@
   padding-inline-start: 26px;
   cursor: default;
   color: var(--ui-font-dimmest-color);
-  font-size: 15px;
+  font-size: 0.95rem;
   position: relative;
 
   .fa {
@@ -717,7 +712,7 @@
   display: block;
   background-color: var(--ui-body-color);
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 0.65rem;
   font-weight: 500;
   padding: 4px;
   border-radius: var(--ui-border-radius);
@@ -750,7 +745,7 @@
     top: 50%;
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
+    font-size: 1.4rem;
   }
 
   &__hidden {
@@ -781,7 +776,7 @@
     flex: 1 1 auto;
     color: var(--ui-font-dimmest-color);
     padding: 15px 0;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 500;
     text-align: center;
     text-decoration: none;
@@ -827,7 +822,7 @@
     padding: 8px 0;
     padding-top: 0;
     padding-bottom: 4px;
-    font-size: 14px;
+    font-size: 0.9rem;
 
     > span {
       display: block;
@@ -1039,14 +1034,13 @@
 
       h1 {
         font-size: 1rem;
-        line-height: 24px;
         color: var(--ui-font-color);
         font-weight: 500;
         white-space: nowrap;
 
         small {
           display: block;
-          font-size: 14px;
+          font-size: 0.9rem;
           color: var(--ui-font-dimmest-color);
           font-weight: 400;
 
@@ -1073,7 +1067,7 @@
     }
 
     .account__header__joined {
-      font-size: 14px;
+      font-size: 0.9rem;
       padding: 5px 15px;
       color: var(--ui-font-dimmest-color);
 
@@ -1099,7 +1093,7 @@
     margin-top: 4px;
 
     &__links {
-      font-size: 14px;
+      font-size: 0.9rem;
       color: var(--ui-font-dimmest-color);
       padding: 15px 0;
       background: var(--ui-body-color);
@@ -1131,7 +1125,7 @@
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 400;
     border-top: 1px solid lighten($ui-base-color, 12%);
     border-bottom: 1px solid lighten($ui-base-color, 12%);
@@ -1156,7 +1150,7 @@
       flex: 1 0;
 
       .icon-button {
-        font-size: 14px;
+        font-size: 0.9rem;
         padding: 2px 6px;
         color: var(--ui-font-dimmest-color);
 
@@ -1174,7 +1168,7 @@
     }
 
     strong {
-      font-size: 12px;
+      font-size: 0.7rem;
       font-weight: 500;
       text-transform: uppercase;
     }
@@ -1188,7 +1182,7 @@
       padding: 10px;
       margin: 0 -10px;
       font-family: inherit;
-      font-size: 14px;
+      font-size: 0.9rem;
       resize: none;
       border: 0;
       outline: 0;
@@ -1221,7 +1215,7 @@ img.parallax[src*='/headers/original/missing.png'] {
     padding: 8px 0;
     padding-top: 0;
     padding-bottom: 4px;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 500;
     text-align: center;
     margin-bottom: 16px;

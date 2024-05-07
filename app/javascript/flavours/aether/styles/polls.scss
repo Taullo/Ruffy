@@ -1,6 +1,6 @@
 .poll {
   margin-top: 16px;
-  font-size: 14px;
+  font-size: 0.9rem;
 
   ul,
   .e-content & ul {
@@ -83,7 +83,7 @@
       display: block;
       box-sizing: border-box;
       width: 100%;
-      font-size: 14px;
+      font-size: 0.9rem;
       color: var(--ui-font-color);
       outline: 0;
       font-family: inherit;
@@ -177,7 +177,7 @@
     display: inline-block;
 
     &__mark {
-      font-size: 18px;
+      font-size: 1.1rem;
     }
   }
 
@@ -212,7 +212,7 @@
     height: 36px;
     padding: 0 16px;
     margin-inline-end: 10px;
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 }
 
@@ -240,7 +240,7 @@
   }
 
   .button.button-secondary {
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 400;
     padding: 6px 10px;
     height: auto;
@@ -264,7 +264,7 @@
   select {
     appearance: none;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 0.9rem;
     color: var(--ui-font-color);
     display: inline-block;
     width: auto;

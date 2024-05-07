@@ -250,7 +250,7 @@ class ComposerOptions extends ImmutablePureComponent {
               active={hasPoll}
               icon='tasks'
               onClick={onTogglePoll}
-              size={18}
+              size={1.1}
               style={{
                 height: null,
                 lineHeight: null,

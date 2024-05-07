@@ -583,10 +583,10 @@ class DoodleModal extends ImmutablePureComponent {
             </div>
           </div>
           <div className='doodle-toolbar'>
-            <IconButton icon='pencil' title='Draw' label='Draw' onClick={this.setModeDraw} size={18} active={this.mode === 'draw'} inverted />
-            <IconButton icon='bath' title='Fill' label='Fill' onClick={this.setModeFill} size={18} active={this.mode === 'fill'} inverted />
-            <IconButton icon='undo' title='Undo' label='Undo' onClick={this.undo} size={18} inverted />
-            <IconButton icon='trash' title='Clear' label='Clear' onClick={this.handleClearBtn} size={18} inverted />
+            <IconButton icon='pencil' title='Draw' label='Draw' onClick={this.setModeDraw} size={1.1} active={this.mode === 'draw'} inverted />
+            <IconButton icon='bath' title='Fill' label='Fill' onClick={this.setModeFill} size={1.1} active={this.mode === 'fill'} inverted />
+            <IconButton icon='undo' title='Undo' label='Undo' onClick={this.undo} size={1.1} inverted />
+            <IconButton icon='trash' title='Clear' label='Clear' onClick={this.handleClearBtn} size={1.1} inverted />
           </div>
           <div className='doodle-palette'>
             {

@@ -75,7 +75,7 @@
 
 .button.logo-button {
   flex: 0 auto;
-  font-size: 14px;
+  font-size: 0.9rem;
   background: darken($ui-highlight-color, 2%);
   color: var(--ui-font-color);
   text-transform: none;
@@ -152,7 +152,7 @@
     }
 
     &__action-bar-button {
-      font-size: 18px;
+      font-size: 1.1rem;
       width: 23.1429px;
       height: 23.1429px;
       line-height: 23.15px;
@@ -171,7 +171,7 @@
     .status__relative-time {
       color: var(--ui-font-dimmer-color);
       float: right;
-      font-size: 14px;
+      font-size: 0.9rem;
       width: auto;
       margin: initial;
       padding: initial;
@@ -221,8 +221,8 @@
 .status__content__read-more-button,
 .status__content__translate-button {
   display: block;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 0.95rem;
+  line-height: 1.25em;
   color: var(--ui-highlight-color);
   border: 0;
   background: transparent;

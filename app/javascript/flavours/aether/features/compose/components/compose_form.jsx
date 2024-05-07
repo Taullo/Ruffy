@@ -436,7 +436,7 @@ class ComposeForm extends ImmutablePureComponent {
                 active={spoiler}
                 ariaControls='glitch.composer.spoiler.input'
                 icon='warning'
-                size={18}
+                size={1.1}
                 style={{
                   height: null,
                   lineHeight: null,

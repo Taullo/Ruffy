@@ -192,7 +192,7 @@ class Header extends PureComponent {
           {layout === 'mobile' && <ColumnLink transparent to='/search' icon='search' title={intl.formatMessage(messages.search)} />}
           {layout !== 'mobile' && <ColumnLink transparent icon='cogs' title={intl.formatMessage(messages.app_settings)} onClick={openSettings} />}
           <Account />
-          {layout !== 'mobile' && <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='chevron-down' size={12} direction='right' />}
+          {layout !== 'mobile' && <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='chevron-down' size={0.75} direction='right' />}
         </>
       );
       if (layout !== 'mobile') {

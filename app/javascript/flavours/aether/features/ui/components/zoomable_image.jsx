@@ -419,9 +419,9 @@ class ZoomableImage extends PureComponent {
           title={zoomButtonTitle}
           icon={this.state.zoomState}
           onClick={this.handleZoomClick}
-          size={40}
+          size={2.5}
           style={{
-            fontSize: '30px', /* Fontawesome's fa-compress fa-expand is larger than fa-close */
+            fontSize: '1.8rem', /* Fontawesome's fa-compress fa-expand is larger than fa-close */
           }}
         />
         <div

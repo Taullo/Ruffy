@@ -165,7 +165,7 @@ $ui-header-height: 55px;
   color: var(--ui-highlight-color);
   cursor: pointer;
   flex: 0 0 auto;
-  font-size: 16px;
+  font-size: 1rem;
   border: 0;
   text-align: unset;
   padding: 15px;
@@ -185,7 +185,7 @@ $ui-header-height: 55px;
   cursor: pointer;
   flex: 0 0 auto !important;
   padding: 0 !important;
-  font-size: 16px;
+  font-size: 1rem;
   padding-inline-end: 5px;
   z-index: 3;
 
@@ -211,7 +211,7 @@ $ui-header-height: 55px;
 .column-back-button--slim-button {
   cursor: pointer;
   flex: 0 0 auto;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 15px;
   position: absolute;
   inset-inline-end: 0;
@@ -227,7 +227,7 @@ $ui-header-height: 55px;
   background: var(--ui-base-color);
   color: var(--ui-font-dimmer-color);
   padding: 8px 20px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
   cursor: default;
@@ -268,7 +268,7 @@ $ui-header-height: 55px;
 
 .column-header {
   display: flex;
-  font-size: 16px;
+  font-size: 1rem;
   border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
   cursor: pointer;
@@ -416,7 +416,7 @@ $ui-header-height: 55px;
     background: transparent;
     text-align: center;
     padding: 10px 5px;
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 
   b {
@@ -613,7 +613,7 @@ $ui-header-height: 55px;
 .limited-account-hint {
   p {
     color: var(--ui-font-secondary-color);
-    font-size: 15px;
+    font-size: 0.95rem;
     font-weight: 500;
     margin-bottom: 20px;
   }
@@ -625,7 +625,7 @@ $ui-header-height: 55px;
   background: var(--ui-base-color);
   text-align: center;
   padding: 20px;
-  font-size: 15px;
+  font-size: 0.95rem;
   font-weight: 400;
   cursor: default;
   display: flex;
@@ -672,14 +672,13 @@ $ui-header-height: 55px;
   &__message {
     text-align: center;
     color: var(--ui-font-dimmest-color);
-    font-size: 15px;
-    line-height: 22px;
+    font-size: 0.95rem;
 
     h1 {
-      font-size: 28px;
-      line-height: 33px;
+      font-size: 1.8rem;
+      line-height: 1.1;
       font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: 0.95rem;
       color: var(--ui-font-color);
     }
 
@@ -769,14 +768,14 @@ $ui-header-height: 55px;
       }
 
       @media screen and (width <= 600px) {
-        font-size: 16px;
+        font-size: 1rem;
       }
     }
 
     &__placeholder {
       color: var(--ui-font-dimmer-color);
       padding-inline-start: 2px;
-      font-size: 12px;
+      font-size: 0.85rem;
     }
 
     &__value-container {
@@ -835,7 +834,7 @@ $ui-header-height: 55px;
     &__option {
       color: var(--ui-inverted-font-color);
       border-radius: 4px;
-      font-size: 14px;
+      font-size: 0.9rem;
 
       &--is-focused,
       &--is-selected {
@@ -867,7 +866,7 @@ $ui-header-height: 55px;
   }
 
   h2 {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
     margin-bottom: 15px;
     text-align: center;
@@ -891,15 +890,14 @@ $ui-header-height: 55px;
   }
 
   h3 {
-    font-size: 24px;
+    font-size: 1.8rem;
     line-height: 1.5;
     font-weight: 700;
     margin-bottom: 10px;
   }
 
   p {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
     font-weight: 400;
     color: var(--ui-font-dimmest-color);
   }
@@ -938,8 +936,8 @@ $ui-header-height: 55px;
   &__empty-message {
     padding: 40px;
     text-align: center;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.4em;
     font-weight: 400;
     color: var(--ui-font-dimmest-color);
   }
@@ -984,8 +982,8 @@ $ui-header-height: 55px;
 
     h1 {
       color: var(--ui-highlight-color);
-      font-size: 22px;
-      line-height: 33px;
+      font-size: 1.5rem;
+      line-height: 3em;
       font-weight: 700;
       margin-bottom: 15px;
     }
@@ -1064,7 +1062,7 @@ $ui-header-height: 55px;
 }
 
 .ui__header__left .column-link {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1;
   font-weight: bold;
 }
@@ -1096,7 +1094,7 @@ $ui-header-height: 55px;
 .ui__header__left {
   .column-link {
     display: block;
-    font-size: 16px;
+    font-size: 1rem;
     padding: 15px;
     text-decoration: none;
     overflow: hidden;
@@ -1220,7 +1218,7 @@ h1#Misc {
     background: var(--ui-base-color);
     color: var(--ui-font-color);
     display: block;
-    font-size: 16px;
+    font-size: 1rem;
     padding: 15px;
     text-decoration: none;
     overflow: hidden;

@@ -51,7 +51,7 @@
 
 .drawer__header {
   flex: none;
-  font-size: 16px;
+  font-size: 1rem;
   background: var(--ui-highlight-color);
   margin-bottom: 10px;
   display: flex;
@@ -97,7 +97,7 @@
     margin-bottom: 0;
   }
   @include single-column('screen and (max-width: 630px)') {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
@@ -253,7 +253,7 @@
 
 .pseudo-drawer {
   background: var(--ui-body-color);
-  font-size: 13px;
+  font-size: 0.85rem;
   text-align: start;
 }
 

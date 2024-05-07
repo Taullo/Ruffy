@@ -74,7 +74,7 @@ textarea#account_note {
 
       .label_input > label {
         font-family: inherit;
-        font-size: 14px;
+        font-size: 0.9rem;
         padding-top: 5px;
         color: var(--ui-font-color);
         display: block;
@@ -134,15 +134,15 @@ textarea#account_note {
   }
 
   .title {
-    font-size: 28px;
-    line-height: 33px;
+    font-size: 1.6rem;
+    line-height: 1.2;
     font-weight: 700;
     margin-bottom: 15px;
   }
 
   .lead {
-    font-size: 17px;
-    line-height: 22px;
+    font-size: 1.05rem;
+    line-height: 1.4;
     color: var(--ui-font-secondary-color);
     margin-bottom: 30px;
 
@@ -156,8 +156,8 @@ textarea#account_note {
   }
 
   .rules-list {
-    font-size: 17px;
-    line-height: 22px;
+    font-size: 1.05rem;
+    line-height: 1.25;
     margin-bottom: 30px;
   }
 
@@ -186,7 +186,7 @@ textarea#account_note {
 
   span.hint {
     display: block;
-    font-size: 12px;
+    font-size: 0.75rem;
     margin-top: 4px;
   }
 
@@ -196,8 +196,8 @@ textarea#account_note {
 
     &.subtle-hint {
       text-align: center;
-      font-size: 12px;
-      line-height: 18px;
+      font-size: 0.75rem;
+      line-height: 1em;
       margin-top: 15px;
       margin-bottom: 0;
     }
@@ -227,7 +227,7 @@ textarea#account_note {
 
       & > label {
         font-family: inherit;
-        font-size: 14px;
+        font-size: 0.85rem;
         color: var(--ui-font-color);
         font-weight: 500;
         min-width: 150px;
@@ -249,7 +249,7 @@ textarea#account_note {
   .input.with_label {
     .label_input > label {
       font-family: inherit;
-      font-size: 14px;
+      font-size: 0.9rem;
       color: var(--ui-font-color);
       display: block;
       margin-bottom: 8px;
@@ -271,7 +271,7 @@ textarea#account_note {
 
     & > label {
       font-family: inherit;
-      font-size: 14px;
+      font-size: 0.9rem;
       color: var(--ui-font-color);
       display: block;
       font-weight: 500;
@@ -381,7 +381,7 @@ textarea#account_note {
   .input.radio_buttons .radio label {
     margin-bottom: 5px;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 0.9rem;
     color: var(--ui-font-color);
     display: block;
     width: auto;
@@ -391,7 +391,7 @@ textarea#account_note {
     .checkbox {
       label {
         font-family: inherit;
-        font-size: 14px;
+        font-size: 0.9rem;
         color: var(--ui-font-color);
         display: inline-block;
         width: auto;
@@ -411,7 +411,7 @@ textarea#account_note {
   }
 
   .input.static .label_input__wrapper {
-    font-size: 16px;
+    font-size: 1rem;
     padding: 10px;
     border: 1px solid var(--ui-font-dimmer-color);
     border-radius: 4px;
@@ -425,7 +425,7 @@ textarea#account_note {
   input[type='datetime-local'],
   textarea {
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--ui-font-color);
     display: block;
     width: 100%;
@@ -517,7 +517,7 @@ textarea#account_note {
     border-radius: 100px;
     background: var(--ui-highlight-color);
     color: var(--ui-font-color);
-    font-size: 18px;
+    font-size: 1.1rem;
     line-height: inherit;
     height: auto;
     padding: 10px;
@@ -572,7 +572,7 @@ textarea#account_note {
   select {
     appearance: none;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--ui-font-color);
     display: block;
     width: 100%;
@@ -604,7 +604,7 @@ textarea#account_note {
       top: 1px;
       padding: 10px;
       padding-bottom: 9px;
-      font-size: 16px;
+      font-size: 1rem;
       color: var(--ui-font-dimmer-color);
       font-family: inherit;
       pointer-events: none;
@@ -635,11 +635,11 @@ textarea#account_note {
   display: block;
   margin: 0 auto;
   margin-bottom: 10px;
-  font-size: 24px;
+  font-size: 1.4rem;
 }
 
 .flash-message {
-  background: lighten($ui-base-color, 8%);
+  background: var(--ui-body-color);
   color: var(--ui-font-dimmest-color);
   border-radius: 4px;
   padding: 15px 10px;
@@ -706,7 +706,7 @@ textarea#account_note {
     font-family: $font-monospace, monospace;
     background: $ui-base-color;
     color: var(--ui-font-color);
-    font-size: 14px;
+    font-size: 0.9rem;
     margin: 0;
 
     &::-moz-focus-inner {
@@ -788,7 +788,7 @@ textarea#account_note {
 .quick-nav {
   list-style: none;
   margin-bottom: 25px;
-  font-size: 14px;
+  font-size: 0.9rem;
 
   li {
     display: inline-block;
@@ -815,7 +815,7 @@ textarea#account_note {
   color: var(--ui-font-dimmest-color);
 
   h2 {
-    font-size: 16px;
+    font-size: 1rem;
     margin-bottom: 30px;
     text-align: center;
   }
@@ -835,15 +835,15 @@ textarea#account_note {
 .oauth-prompt {
   h3 {
     color: $ui-secondary-color;
-    font-size: 17px;
-    line-height: 22px;
+    font-size: 1.05rem;
+    line-height: 1.25;
     font-weight: 500;
     margin-bottom: 30px;
   }
 
   p {
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 0.85rem;
+    line-height: 1.1em;
     margin-bottom: 30px;
   }
 
@@ -896,7 +896,7 @@ textarea#account_note {
 
   samp {
     display: block;
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 }
 
@@ -971,7 +971,7 @@ textarea#account_note {
   margin-bottom: 20px;
 
   h4 {
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--ui-font-color);
     text-align: center;
     margin-bottom: 20px;
@@ -1018,7 +1018,7 @@ textarea#account_note {
     background: transparent;
     border: 0;
     padding: 10px;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-family: $font-monospace, monospace;
   }
 
@@ -1027,7 +1027,7 @@ textarea#account_note {
     margin: 4px;
     text-transform: none;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.9rem;
     padding: 7px 18px;
     padding-bottom: 6px;
     width: auto;
@@ -1081,7 +1081,7 @@ textarea#account_note {
 
     &__icon {
       flex: 0 0 auto;
-      font-size: 18px;
+      font-size: 1.1rem;
       width: 30px;
       color: $valid-value-color;
       display: flex;
@@ -1173,7 +1173,7 @@ textarea#account_note {
 
   .label {
     position: absolute;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--ui-font-secondary-color);
     padding-top: 10px;
