@@ -589,9 +589,11 @@ class Status extends ImmutablePureComponent {
         onMoveUp={this.handleMoveUp}
         onMoveDown={this.handleMoveDown}
         contextType='thread'
+        priorPreviousId={i > 1 ? list.get(i - 2) : undefined}
         previousId={i > 0 ? list.get(i - 1) : undefined}
         nextId={list.get(i + 1) || (ancestors && statusId)}
         rootId={statusId}
+        replyDepth={i}
       />
     ));
   }
@@ -779,3 +781,4 @@ class Status extends ImmutablePureComponent {
 }
 
 export default injectIntl(connect(makeMapStateToProps)(Status));
+

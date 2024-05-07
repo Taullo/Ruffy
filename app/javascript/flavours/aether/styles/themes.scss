@@ -1,6 +1,6 @@
 .wired.dark-theme,
 .wireless.dark-theme {
-  .status {
+  .focusable {
     background: transparent;
   }
 
@@ -12,6 +12,10 @@
 
   .account__fields {
     background: var(--ui-page-background);
+  }
+
+  .status.collapsed .status__content::after {
+    background: linear-gradient(rgba(40, 44, 55, 0%), var(--ui-page-color));
   }
 }
 
@@ -31,7 +35,7 @@
     background: var(--ui-body-color);
   }
 
-  .status {
+  .focusable {
     background: var(--ui-body-color);
   }
 
@@ -74,6 +78,10 @@
 
   .focusable {
     border-color: var(--ui-page-background);
+    
+    &:focus {
+      border-color: var(--ui-highlight-color);
+    }
   }
 
   .right_column .explore__suggested-header,
@@ -92,18 +100,18 @@
     margin-top: 8px;
   }
 
-  .status,
+  .focusable,
   .notification,
   .status__wrapper--filtered {
     border-radius: 0;
     margin-top: 2px;
   }
 
-  article:first-child .status {
+  article:first-child .focusable {
     border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
   }
 
-  article:last-child .status {
+  article:last-child .focusable {
     border-radius: 0 0 var(--ui-border-radius) var(--ui-border-radius);
   }
 }

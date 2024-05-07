@@ -179,15 +179,12 @@
 
 .focusable {
   border: 2px solid var(--ui-body-color);
+  background: var(--ui-body-color);
+  border-radius: var(--ui-border-radius);
 
   &:focus {
     outline: 0;
     border-color: var(--ui-highlight-color);
-
-    .detailed-status,
-    .detailed-status__action-bar {
-      background: var(--ui-body-color);
-    }
   }
 }
 
@@ -231,7 +228,6 @@
   }
 
   cursor: auto;
-  background: var(--ui-body-color);
 
   &:hover,
   &:focus,
@@ -634,10 +630,7 @@
 }
 
 .detailed-status {
-  background: var(--ui-body-color);
   padding: 14px 10px;
-  border-top-left-radius: var(--ui-border-radius);
-  border-top-right-radius: var(--ui-border-radius);
 
   &--flex {
     display: flex;
@@ -684,7 +677,6 @@
 }
 
 .detailed-status__action-bar {
-  background: var(--ui-body-color);
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -1116,8 +1108,6 @@ a.status-card.compact:hover {
   }
 
   &--in-thread {
-    border-bottom: 0;
-
     .status__content,
     .status__action-bar,
     .reactions-bar {

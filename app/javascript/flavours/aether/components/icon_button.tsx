@@ -87,9 +87,9 @@ export class IconButton extends React.PureComponent<Props, States> {
 
   render() {
     // Hack required for some icons which have an overriden size
-    let containerSize = '1.28571429em';
+    let containerSize = '18px'; //1.28571429em
     if (this.props.style?.fontSize) {
-      containerSize = `${this.props.size * 1.28571429}px`;
+      containerSize = `${this.props.size * 18}px`;
     }
 
     const style = {
