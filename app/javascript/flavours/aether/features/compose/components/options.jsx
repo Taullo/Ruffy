@@ -228,12 +228,14 @@ class ComposerOptions extends ImmutablePureComponent {
             type='file'
             multiple
             style={{ display: 'none' }}
+            size={1.1}
           />
           <IconButton
             disabled={disabled}
             icon='upload'
             onClick={this.handleClickAttach}
             title={formatMessage(messages.attach)}
+            size={1.1}
           />
           <input
             accept={acceptContentTypes}
@@ -263,12 +265,14 @@ class ComposerOptions extends ImmutablePureComponent {
             label='GIF'
             onClick={this.handleClickGif}
             title={formatMessage(messages.gif)}
+            size={1.1}
           />
           <IconButton
             disabled={disabled}
             icon='paint-brush'
             onClick={this.handleClickDoodle}
             title={formatMessage(messages.doodle)}
+            size={1.1}
           />
         </div>
 

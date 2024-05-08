@@ -59,13 +59,6 @@ class Publisher extends ImmutablePureComponent {
     let publishText;
     if (isEditing) {
       publishText = intl.formatMessage(messages.saveChanges);
-    } else if (privacy === 'private' || privacy === 'direct') {
-      const iconId = privacyIcons[privacy];
-      publishText = (
-        <span>
-          <Icon id={iconId} /> {intl.formatMessage(messages.publish)}
-        </span>
-      );
     } else {
       publishText = privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
@@ -107,4 +100,5 @@ class Publisher extends ImmutablePureComponent {
 }
 
 export default injectIntl(Publisher);
+
 

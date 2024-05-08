@@ -10,9 +10,9 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 //  Mastodon imports.
 import { Icon } from 'flavours/aether/components/icon';
 import { languages } from 'flavours/aether/initial_state';
-import { RelativeTimestamp } from './relative_timestamp';
 
 import { IconButton } from './icon_button';
+import { RelativeTimestamp } from './relative_timestamp';
 import VisibilityIcon from './status_visibility_icon';
 
 //  Messages for use with internationalization stuff.
@@ -74,7 +74,7 @@ class StatusIcons extends PureComponent {
     }
 
     this.handleHotkeyOpen();
-  }
+  };
   
   handleHotkeyOpen = () => {
     if (this.props.onClick) {
@@ -90,7 +90,7 @@ class StatusIcons extends PureComponent {
     }
 
     router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
-  }
+  };
   
   _properStatus () {
     const { status } = this.props;
@@ -182,9 +182,10 @@ class StatusIcons extends PureComponent {
             }
             icon='angle-double-up'
             onClick={this.handleCollapsedClick}
+            size={1.25}
           />
         )}
-         <a onClick={this.handleClick} href={`/@${status.getIn(['account', 'acct'])}\/${status.get('id')}`} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
+        <a onClick={this.handleClick} href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
           <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { hour12: false, year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
         </a>
       </div>

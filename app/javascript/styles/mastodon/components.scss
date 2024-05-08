@@ -3533,11 +3533,9 @@ $ui-header-height: 55px;
 
 button.icon-button i.fa-retweet {
   background-position: 0 0;
-  height: 19px;
   transition: background-position 0.9s steps(10);
   transition-duration: 0s;
   vertical-align: middle;
-  width: 22px;
 
   &::before {
     display: none !important;

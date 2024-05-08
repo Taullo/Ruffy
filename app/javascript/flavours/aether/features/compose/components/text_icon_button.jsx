@@ -3,8 +3,8 @@ import { PureComponent } from 'react';
 
 const iconStyle = {
   height: null,
-  lineHeight: '27px',
-  minWidth: `${18 * 1.28571429}px`,
+  lineHeight: '1.8rem',
+  minWidth: `${18 * 1.5}px`,
 };
 
 export default class TextIconButton extends PureComponent {

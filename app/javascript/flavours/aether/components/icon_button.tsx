@@ -35,7 +35,7 @@ interface States {
 }
 export class IconButton extends React.PureComponent<Props, States> {
   static defaultProps = {
-    size: 1.3,
+    size: 1.5,
     active: false,
     disabled: false,
     animate: false,
@@ -87,9 +87,9 @@ export class IconButton extends React.PureComponent<Props, States> {
 
   render() {
     // Hack required for some icons which have an overriden size
-    let containerSize = '1.28571429em';
+    let containerSize = '1.5em';
     if (this.props.style?.fontSize) {
-      containerSize = `${this.props.size * 1.28571429}em`;
+      containerSize = `${this.props.size * 1.5}em`;
     }
 
     const style = {
