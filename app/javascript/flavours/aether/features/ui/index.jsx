@@ -508,9 +508,15 @@ class UI extends Component {
 
   componentDidMount () {
     const { signedIn } = this.context.identity;
-    this.setState({ anchorHeight: -1 });
+
+    this.setState({ anchorHeight: window.scrollY });
     this.setState({ sidebarPos: 60 });
-    this.handleSidebarScroll();
+    let sidebarClass = document.getElementsByClassName("fixed_wrapper")[0];
+    if (sidebarClass !== undefined) {
+      sidebarClass.style.top = 60 + 'px';
+    }
+    
+    //TODO fix this hack
     
     const systemThemePreference = window.matchMedia("(prefers-color-scheme: light)");
     systemThemePreference.addEventListener("change", e => e && this.handleTheme());
@@ -642,10 +648,16 @@ class UI extends Component {
 
   componentDidUpdate (prevProps) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      this.setState({ anchorHeight: -1 });
+      this.setState({ anchorHeight: window.scrollY });
       this.setState({ sidebarPos: 60 });
-      this.handleSidebarScroll();
+      let sidebarClass = document.getElementsByClassName("fixed_wrapper")[0];
+      if (sidebarClass !== undefined) {
+        sidebarClass.style.top = 60 + 'px';
+      }
     }
+    
+    //TODO fix this hack
+    
     if (this.props.unreadNotifications !== prevProps.unreadNotifications ||
         this.props.showFaviconBadge !== prevProps.showFaviconBadge) {
       if (this.favicon) {
@@ -804,6 +816,14 @@ class UI extends Component {
     let sidebarHeight = sidebarClass.getBoundingClientRect().height;
     let scrollPos = window.scrollY;
     let scrollStep = scrollPos - this.state.anchorHeight;
+    
+    if (scrollPos === 0) {
+      this.setState({ anchorHeight: -1 });
+      this.setState({ sidebarPos: 60 });
+      sidebarClass.style.top = this.state.sidebarPos + 'px';
+    }
+    
+    //TODO: Fix this hack
 
     if (sidebarHeight + 60 > window.innerHeight) {
       const newSidebarPos = this.state.sidebarPos - scrollStep;
