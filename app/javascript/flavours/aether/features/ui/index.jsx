@@ -419,6 +419,7 @@ class UI extends Component {
     } else {
       this.handleLayoutChange();
     }
+    this.handleSidebarScroll();
   };
   
   handleFontSize() {
@@ -507,6 +508,9 @@ class UI extends Component {
 
   componentDidMount () {
     const { signedIn } = this.context.identity;
+    this.setState({ anchorHeight: -1 });
+    this.setState({ sidebarPos: 60 });
+    this.handleSidebarScroll();
     
     const systemThemePreference = window.matchMedia("(prefers-color-scheme: light)");
     systemThemePreference.addEventListener("change", e => e && this.handleTheme());
@@ -637,6 +641,11 @@ class UI extends Component {
   }
 
   componentDidUpdate (prevProps) {
+    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
+      this.setState({ anchorHeight: -1 });
+      this.setState({ sidebarPos: 60 });
+      this.handleSidebarScroll();
+    }
     if (this.props.unreadNotifications !== prevProps.unreadNotifications ||
         this.props.showFaviconBadge !== prevProps.showFaviconBadge) {
       if (this.favicon) {
@@ -789,6 +798,9 @@ class UI extends Component {
 
   handleSidebarScroll = () => {
     let sidebarClass = document.getElementsByClassName("fixed_wrapper")[0];
+    if (sidebarClass === undefined) {
+      return;
+    }
     let sidebarHeight = sidebarClass.getBoundingClientRect().height;
     let scrollPos = window.scrollY;
     let scrollStep = scrollPos - this.state.anchorHeight;
