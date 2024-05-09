@@ -923,12 +923,12 @@ body > [data-popper-placement] {
 
   &__badge {
     position: absolute;
-    inset-inline-start: 9px;
+    inset-inline-start: 8px;
     top: -13px;
     background: var(--ui-highlight-color);
     padding: 1px 6px;
     border-radius: var(--ui-border-radius);
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     font-weight: 500;
     line-height: 1em;
     color: var(--ui-highlight-button-text-color);

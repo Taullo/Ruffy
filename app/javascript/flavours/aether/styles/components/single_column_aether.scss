@@ -198,40 +198,12 @@
       padding: 0 10px;
     }
 
-    .account__fields {
-      margin-top: 0;
-    }
-
     .account-scroll {
       max-width: var(--ui-widescreen-width);
       width: calc(100vw - 20px);
 
       .scrollable-list {
         margin-top: -5px;
-      }
-    }
-
-    .right_column {
-      width: var(--ui-right-column-width);
-
-      .fixed_wrapper {
-        width: var(--ui-right-column-width);
-        top: 55px;
-        max-height: calc(100vh - 55px);
-        position: fixed;
-        overflow-y: auto;
-
-        > div:last-child {
-          padding-bottom: 20px;
-        }
-      }
-
-      .list-panel {
-        margin-bottom: 15px;
-      }
-
-      .scrollable {
-        width: auto;
       }
     }
 

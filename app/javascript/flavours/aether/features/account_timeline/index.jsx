@@ -240,17 +240,19 @@ class AccountTimeline extends ImmutablePureComponent {
             <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
             <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
             <div className='account-timeline__right-column'>
-              <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
-              {mediaTitle}
-              <div role='feed' className='account-mini-gallery__container' ref={this.handleRef}>
-                {attachments.map((attachment) => attachment === null ? (
-                  ''
-                ) : (
-                  <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} cwSettings={cwVisibility} />
-                ))}
+              <div className='fixed_wrapper'>
+                <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
+                {mediaTitle}
+                <div role='feed' className='account-mini-gallery__container' ref={this.handleRef}>
+                  {attachments.map((attachment) => attachment === null ? (
+                    ''
+                  ) : (
+                    <MediaItem key={attachment.get('id')} attachment={attachment} onOpenMedia={this.handleOpenMedia} cwSettings={cwVisibility} />
+                  ))}
+                </div>
+                {mediaLink}
+                <FeaturedTags accountId={accountId} tagged={this.props.params.tagged} />
               </div>
-              {mediaLink}
-              <FeaturedTags accountId={accountId} tagged={this.props.params.tagged} />
             </div>
 
             {!(hideTabs || hidden) && (

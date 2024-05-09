@@ -307,6 +307,8 @@ class UI extends Component {
 
   state = {
     draggingOver: false,
+    anchorHeight: -1,
+    sidebarPos: 60,
   };
 
   handleBeforeUnload = (e) => {
@@ -517,6 +519,7 @@ class UI extends Component {
     document.addEventListener('drop', this.handleDrop, false);
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
+    window.addEventListener('scroll', this.handleSidebarScroll);
     
     this.handleFontSize();
     this.handleTheme();
@@ -659,6 +662,7 @@ class UI extends Component {
     document.removeEventListener('drop', this.handleDrop);
     document.removeEventListener('dragleave', this.handleDragLeave);
     document.removeEventListener('dragend', this.handleDragEnd);
+    window.removeEventListener('scroll', this.handleSidebarScroll);
   }
 
   setRef = c => {
@@ -783,6 +787,21 @@ class UI extends Component {
     this.props.history.push('/follow_requests');
   };
 
+  handleSidebarScroll = () => {
+    let sidebarClass = document.getElementsByClassName("fixed_wrapper")[0];
+    let sidebarHeight = sidebarClass.getBoundingClientRect().height;
+    let scrollPos = window.scrollY;
+    let scrollStep = scrollPos - this.state.anchorHeight;
+
+    if (sidebarHeight + 60 > window.innerHeight) {
+      const newSidebarPos = this.state.sidebarPos - scrollStep;
+      this.setState({ sidebarPos: Math.max(Math.min(newSidebarPos, 60), (-1 * (sidebarHeight - window.innerHeight))) });
+      sidebarClass.style.top = this.state.sidebarPos + 'px';
+    }
+
+    this.setState({ anchorHeight: scrollPos });
+  };
+
   render () {
     const { draggingOver } = this.state;
     const { children, isWide, location, dropdownMenuIsOpen, layout, moved } = this.props;
@@ -825,6 +844,7 @@ class UI extends Component {
       goToBlocked: this.handleHotkeyGoToBlocked,
       goToMuted: this.handleHotkeyGoToMuted,
       goToRequests: this.handleHotkeyGoToRequests,
+      handleSidebarScroll: this.handleSidebarScroll,
     };
 
     return (

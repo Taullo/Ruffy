@@ -19,6 +19,7 @@
   .search .fa {
     top: 10px;
     inset-inline-end: 10px;
+    z-index: -1;
   }
 
   .search .fa-times-circle {
