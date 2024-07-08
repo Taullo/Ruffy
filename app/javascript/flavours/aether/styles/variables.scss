@@ -12,8 +12,8 @@
   --ui-highlight-button-text-color: #ffffff;
   --ui-widescreen-width: 1150px;
   --ui-right-column-width: 300px;
-  --ui-interface-font:roboto;
-  --ui-post-font:roboto;
+  --ui-interface-font: roboto;
+  --ui-post-font: roboto;
 
   accent-color: var(--ui-highlight-color);
 }
@@ -22,9 +22,6 @@
   --ui-widescreen-width: 1415px;
   --ui-main-column-width: 700px;
   --ui-right-column-width: 450px;
-  --ui-secondary-profile-column-width: calc(
-    100vw - 35px - var(--ui-main-column-width)
-  ); /* Page width - column padding - columns-area padding - main column */
 }
 
 .dark-theme,
