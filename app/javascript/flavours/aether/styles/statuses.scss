@@ -232,3 +232,15 @@
     text-decoration: underline;
   }
 }
+
+.detailed-status__wrapper {
+  margin-top: 8px;
+}
+
+.status--in-thread {
+  transform: scale(0.98);
+
+  p {
+    transform: scale(1.02);
+  }
+}
