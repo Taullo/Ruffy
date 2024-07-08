@@ -1246,6 +1246,14 @@ img.parallax[src*='/headers/original/missing.png'] {
 }
 
 .normal .account-timeline__bio-column {
+  @media screen and (min-width: $widescreen-breakpoint) {
+    width: var(--ui-secondary-profile-column-width);
+    max-width: 700px;
+    position: absolute;
+  }
+}
+
+.account-timeline__bio-column {
   .status__info {
     display: none;
   }
@@ -1264,11 +1272,8 @@ img.parallax[src*='/headers/original/missing.png'] {
   }
 
   @media screen and (min-width: $widescreen-breakpoint) {
-    width: var(--ui-secondary-profile-column-width);
-    max-width: 700px;
     flex-basis: 100%;
     order: 1;
-    position: absolute;
     top: 0;
     left: 0;
   }
