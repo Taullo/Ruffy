@@ -835,8 +835,6 @@ class UI extends Component {
       this.sidebarPos = Math.round(Math.max(Math.min(newSidebarPos, 60), (-1 * (sidebarHeight - window.innerHeight))));
       sidebarClass.style.top = this.sidebarPos + 'px';
     }
-    
-    console.log(this.anchorHeight + ' ' + this.sidebarPos + ' ' + scrollPos + ' ' + window.scrollY + ' ' + scrollStep);
 
     this.anchorHeight = scrollPos;
   };
