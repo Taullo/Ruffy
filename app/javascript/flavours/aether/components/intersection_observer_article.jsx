@@ -79,7 +79,7 @@ export default class IntersectionObserverArticle extends Component {
     const { onHeightChange, saveHeightKey, id } = this.props;
     // save the height of the fully-rendered element (this is expensive
     // on Chrome, where we need to fall back to getBoundingClientRect)
-    this.height = getRectFromEntry(this.entry).height;
+    this.height = getRectFromEntry(this.entry).height.round();
 
     if (onHeightChange && saveHeightKey) {
       onHeightChange(saveHeightKey, id, this.height);
