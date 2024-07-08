@@ -4,7 +4,7 @@
   position: relative;
   margin-top: 15px;
 
-  .translate {
+  > span {
     max-width: calc(100% - 80px);
     font-size: 1rem;
     width: 100%;
@@ -58,7 +58,7 @@
 }
 
 .muted {
-  .spoiler_content > .translate {
+  .spoiler_content > span {
     border: var(--ui-body-color) 2px solid;
     background: var(--ui-body-color);
     color: var(--ui-font-secondary-color);

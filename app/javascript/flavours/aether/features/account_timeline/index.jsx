@@ -196,6 +196,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
   render () {
     const { accountId, acctName, statusIds, featuredStatusIds, isLoading, hasMore, suspended, isAccount, hidden, multiColumn, remote, remoteUrl, attachments, cwVisibility, hideTabs } = this.props;
+    const container = 'account__header__title';
 
     if (isLoading && statusIds.isEmpty()) {
       return (
@@ -237,10 +238,11 @@ class AccountTimeline extends ImmutablePureComponent {
       <Column ref={this.setRef} name='account'>
         {!multiColumn && (
           <div className='account-scroll'>
-            <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
-            <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
-            <div className='account-timeline__right-column'>
+            <ProfileColumnHeader container={container} onClick={this.handleHeaderClick} multiColumn={multiColumn} />
+            <div className='account-timeline__bio-column'>
               <div className='fixed_wrapper'>
+                <div id={container} />
+                <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
                 <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
                 {mediaTitle}
                 <div role='feed' className='account-mini-gallery__container' ref={this.handleRef}>
@@ -286,7 +288,7 @@ class AccountTimeline extends ImmutablePureComponent {
               prepend={
                 <>
                   <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
-                  <div className='account-timeline__right-column'>
+                  <div className='account-timeline__bio-column'>
                     <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
                     {mediaTitle}
                     <div role='feed' className='account-mini-gallery__container' ref={this.handleRef}>

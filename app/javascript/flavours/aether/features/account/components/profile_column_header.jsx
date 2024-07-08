@@ -15,10 +15,11 @@ class ProfileColumnHeader extends PureComponent {
     onClick: PropTypes.func,
     multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
+    container: PropTypes.string,
   };
 
   render() {
-    const { onClick, intl, multiColumn } = this.props;
+    const { onClick, intl, multiColumn, container } = this.props;
 
     return (
       <ColumnHeader
@@ -27,6 +28,7 @@ class ProfileColumnHeader extends PureComponent {
         onClick={onClick}
         showBackButton
         multiColumn={multiColumn}
+        container={container}
       />
     );
   }

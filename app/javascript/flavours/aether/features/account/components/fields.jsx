@@ -1,9 +1,13 @@
-import React from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import React from 'react';
+
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import classNames from 'classnames';
+
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import { Icon } from 'flavours/aether/components/icon';
 
 const messages = defineMessages({
@@ -27,22 +31,18 @@ class Fields extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
-    identity_props: ImmutablePropTypes.list,
-    onChangeLanguages: PropTypes.func.isRequired,
-    onInteractionModal: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hidden: PropTypes.bool,
+    suspended: PropTypes.bool,
+    fields: ImmutablePropTypes.map,
   };
 
   render () {
-    const { account, hidden, intl } = this.props;
+    const { account, hidden, intl, suspended, fields } = this.props;
 
     if (!account) {
       return null;
     }
-
-    const suspended    = account.get('suspended');
-    const fields       = account.get('fields');
 
     return (
       <div className={classNames('account__fields__block', { inactive: !!account.get('moved') })}>

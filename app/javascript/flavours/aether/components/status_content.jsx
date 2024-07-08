@@ -361,7 +361,7 @@ class StatusContent extends PureComponent {
     if ((status.get('spoiler_text').length > 0) || (status.get('sensitive'))) {
       let mentionsPlaceholder = '';
       if (status.get('spoiler_text').length === 0) {
-        spoilerContent = { __html: 'Unlabeled sensitive content' };
+        spoilerContent = { __html: <FormattedMessage id='status.unlabeled' defaultMessage='Unlabeled sensitive content' /> };
       }
 
       let toggleText = null;
@@ -406,7 +406,12 @@ class StatusContent extends PureComponent {
       return (
         <>
           <div className='spoiler_content'>
-            <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
+          
+            {status.get('spoiler_text').length === 0 ? (
+              <FormattedMessage id='status.unlabeled' defaultMessage='Unlabeled sensitive content' />
+            ) : (
+              <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
+            )}
             {' '}
             <button type='button' className={`status__content__spoiler-link status__content__spoiler__link--` + cwSettings} onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
               {toggleText}

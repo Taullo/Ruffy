@@ -23,8 +23,6 @@ class Relationships extends ImmutablePureComponent {
   static propTypes = {
     account: ImmutablePropTypes.map,
     identity_props: ImmutablePropTypes.list,
-    onChangeLanguages: PropTypes.func.isRequired,
-    onInteractionModal: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 

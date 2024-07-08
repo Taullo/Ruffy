@@ -307,8 +307,6 @@ class UI extends Component {
 
   state = {
     draggingOver: false,
-    anchorHeight: -1,
-    sidebarPos: 60,
   };
 
   handleBeforeUnload = (e) => {
@@ -509,8 +507,8 @@ class UI extends Component {
   componentDidMount () {
     const { signedIn } = this.context.identity;
 
-    this.setState({ anchorHeight: window.scrollY });
-    this.setState({ sidebarPos: 60 });
+    this.anchorHeight = window.scrollY;
+    this.sidebarPos = 60;
     let sidebarClass = document.getElementsByClassName("fixed_wrapper")[0];
     if (sidebarClass !== undefined) {
       sidebarClass.style.top = 60 + 'px';
@@ -648,7 +646,7 @@ class UI extends Component {
 
   componentDidUpdate (prevProps) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      this.setState({ anchorHeight: window.scrollY });
+      this.anchorHeight = window.scrollY;
       this.setState({ sidebarPos: 60 });
       let sidebarClass = document.getElementsByClassName("fixed_wrapper")[0];
       if (sidebarClass !== undefined) {
@@ -807,31 +805,40 @@ class UI extends Component {
   handleHotkeyGoToRequests = () => {
     this.props.history.push('/follow_requests');
   };
+  
+  constructor(props) {
+    super(props);
+    // Initialize instance variables
+    this.anchorHeight = -1;
+    this.sidebarPos = 60;
+  }
 
   handleSidebarScroll = () => {
     let sidebarClass = document.getElementsByClassName("fixed_wrapper")[0];
     if (sidebarClass === undefined) {
       return;
     }
-    let sidebarHeight = sidebarClass.getBoundingClientRect().height;
-    let scrollPos = window.scrollY;
-    let scrollStep = scrollPos - this.state.anchorHeight;
+    let sidebarHeight = Math.round(sidebarClass.getBoundingClientRect().height);
+    let scrollPos = Math.round(window.scrollY);
+    let scrollStep = Math.round(scrollPos - this.anchorHeight);
     
     if (scrollPos === 0) {
-      this.setState({ anchorHeight: -1 });
-      this.setState({ sidebarPos: 60 });
-      sidebarClass.style.top = this.state.sidebarPos + 'px';
+      this.anchorHeight = -1;
+      this.sidebarPos = 60;
+      sidebarClass.style.top = this.sidebarPos + 'px';
     }
     
     //TODO: Fix this hack
 
     if (sidebarHeight + 60 > window.innerHeight) {
-      const newSidebarPos = this.state.sidebarPos - scrollStep;
-      this.setState({ sidebarPos: Math.max(Math.min(newSidebarPos, 60), (-1 * (sidebarHeight - window.innerHeight))) });
-      sidebarClass.style.top = this.state.sidebarPos + 'px';
+      const newSidebarPos = this.sidebarPos - scrollStep;
+      this.sidebarPos = Math.round(Math.max(Math.min(newSidebarPos, 60), (-1 * (sidebarHeight - window.innerHeight))));
+      sidebarClass.style.top = this.sidebarPos + 'px';
     }
+    
+    console.log(this.anchorHeight + ' ' + this.sidebarPos + ' ' + scrollPos + ' ' + window.scrollY + ' ' + scrollStep);
 
-    this.setState({ anchorHeight: scrollPos });
+    this.anchorHeight = scrollPos;
   };
 
   render () {

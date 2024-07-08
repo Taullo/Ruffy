@@ -1245,7 +1245,64 @@ img.parallax[src*='/headers/original/missing.png'] {
   margin-bottom: 0;
 }
 
-.account-timeline__right-column {
+.account-timeline__bio-column {
+  .status__info {
+    display: none;
+  }
+
+  .scrollable-list {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .status__content {
+    margin: 0;
+  }
+
+  @media screen and (min-width: $no-gap-breakpoint) {
+    max-width: var(--ui-main-column-width);
+  }
+
+  @media screen and (min-width: $widescreen-breakpoint) {
+    width: var(--ui-secondary-profile-column-width);
+    max-width: 700px;
+    flex-basis: 100%;
+    order: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &.trends__item {
+    border-bottom: 0;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0;
+    margin-top: 8px;
+
+    a {
+      text-decoration: none;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      padding: 15px;
+      transition:
+        background 0.2s,
+        color 0.2s;
+      border-radius: var(--ui-border-radius);
+
+      &:hover {
+        background: var(--ui-highlight-color);
+        color: var(--ui-highlight-button-text-color);
+
+        .trends__item__name,
+        .trends__item__current {
+          color: var(--ui-highlight-button-text-color);
+        }
+      }
+    }
+  }
+
   @media screen and (max-width: $no-gap-breakpoint) {
     margin-bottom: 20px;
   }
@@ -1273,36 +1330,6 @@ img.parallax[src*='/headers/original/missing.png'] {
   flex-wrap: wrap;
 }
 
-.account-timeline__right-column .trends__item {
-  border-bottom: 0;
-  width: 50%;
-  box-sizing: border-box;
-  padding: 0;
-  margin-top: 8px;
-
-  a {
-    text-decoration: none;
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    padding: 15px;
-    transition:
-      background 0.2s,
-      color 0.2s;
-    border-radius: var(--ui-border-radius);
-
-    &:hover {
-      background: var(--ui-highlight-color);
-      color: var(--ui-highlight-button-text-color);
-
-      .trends__item__name,
-      .trends__item__current {
-        color: var(--ui-highlight-button-text-color);
-      }
-    }
-  }
-}
-
 .account-mini-gallery__container {
   display: flex;
   flex-wrap: wrap;
@@ -1321,6 +1348,12 @@ img.parallax[src*='/headers/original/missing.png'] {
 
 .layout-single-column {
   @media screen and (min-width: $widescreen-breakpoint) {
+    .account-scroll {
+      max-width: var(--ui-widescreen-width);
+      width: auto;
+      margin-left: calc(var(--ui-secondary-profile-column-width) + 10px);
+    }
+
     .account-mini-gallery__container {
       .account-gallery__item {
         &:first-child,

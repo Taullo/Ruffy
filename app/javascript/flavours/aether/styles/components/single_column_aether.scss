@@ -133,11 +133,6 @@
       padding: 0 !important;
     }
 
-    .account-scroll {
-      max-width: var(--ui-widescreen-width);
-      width: auto;
-    }
-
     .scrollable,
     .home-scroll {
       width: var(--ui-main-column-width);
@@ -147,10 +142,6 @@
     .account-scroll .scrollable-list,
     .account-scroll .scrollable_list {
       width: var(--ui-main-column-width);
-    }
-
-    .account-timeline__right-column {
-      max-width: var(--ui-main-column-width);
     }
 
     .columns-area .columns-area--mobile {
@@ -184,23 +175,12 @@
       box-sizing: border-box;
     }
 
-    .account-timeline__right-column {
-      width: var(--ui-secondary-profile-column-width);
-      max-width: 700px;
-      flex-basis: 100%;
-      order: 1;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-
     .columns-area__panels__main {
       padding: 0 10px;
     }
 
     .account-scroll {
       max-width: var(--ui-widescreen-width);
-      width: calc(100vw - 20px);
 
       .scrollable-list {
         margin-top: -5px;
@@ -243,19 +223,4 @@
 
 .compose_popup .autosuggest-textarea__textarea {
   max-height: 50vh;
-}
-
-.account-timeline__right-column {
-  .status__info {
-    display: none;
-  }
-
-  .scrollable-list {
-    width: 100% !important;
-    margin: 0 !important;
-  }
-
-  .status__content {
-    margin: 0;
-  }
 }
