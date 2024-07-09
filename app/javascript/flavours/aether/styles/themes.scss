@@ -175,3 +175,7 @@
     border-color: transparent;
   }
 }
+
+.light-theme .ui__header__wrapper {
+  background-color: var(--ui-body-color);
+}
