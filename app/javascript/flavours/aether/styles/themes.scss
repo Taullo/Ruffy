@@ -23,6 +23,10 @@
 .wireless.light-theme {
   background: var(--ui-body-color) !important;
 
+  .ui__header__wrapper {
+    background-color: var(--ui-page-background);
+  }
+
   .ui__header__wrapper::before {
     background: transparent;
   }
@@ -78,7 +82,7 @@
 
   .focusable {
     border-color: var(--ui-page-background);
-    
+
     &:focus {
       border-color: var(--ui-highlight-color);
     }
