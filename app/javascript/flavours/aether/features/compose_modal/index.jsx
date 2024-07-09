@@ -41,7 +41,7 @@ class ComposeModal extends PureComponent {
 
     return (
       <div className='aether modal-root__modal compose-modal'>
-        <ComposeFormContainer />
+        <ComposeFormContainer autoFocus />
         <button className='button button-secondary button-cancel' onClick={this.handleCancel}><FormattedMessage id='confirmation_modal.cancel' defaultMessage='Cancel' /></button>
       </div>
     );

@@ -81,6 +81,7 @@ class ComposeForm extends ImmutablePureComponent {
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
     account: PropTypes.string,
+    autoFocus: PropTypes.bool,
 
     advancedOptions: ImmutablePropTypes.map,
     media: ImmutablePropTypes.list,
@@ -312,8 +313,6 @@ class ComposeForm extends ImmutablePureComponent {
         // described in https://github.com/WICG/inert#performance-and-gotchas
         Promise.resolve().then(() => {
           textarea.setSelectionRange(selectionStart, selectionEnd);
-          textarea.focus();
-          // if (!singleColumn) textarea.scrollIntoView(); //causer of so many bugs idk why this is here
         }).catch(console.error);
       }
 
@@ -359,7 +358,8 @@ class ComposeForm extends ImmutablePureComponent {
       isEditing,
       disabled,
       replyingTo,
-      isInReply
+      isInReply,
+      autoFocus
     } = this.props;
 
     const countText = this.getFulltextForCharacterCounting();
@@ -384,7 +384,7 @@ class ComposeForm extends ImmutablePureComponent {
           onSuggestionsClearRequested={onClearSuggestions}
           onSuggestionSelected={this.handleSuggestionSelected}
           onPaste={onPaste}
-          autoFocus={false}
+          autoFocus={autoFocus}
           lang={this.props.lang}
         >
           <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />

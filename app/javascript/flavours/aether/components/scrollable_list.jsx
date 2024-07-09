@@ -11,7 +11,6 @@ import { throttle } from 'lodash';
 
 import IntersectionObserverArticleContainer from 'flavours/aether/containers/intersection_observer_article_container';
 import ScrollContainer from 'flavours/aether/containers/scroll_container';
-import IntersectionObserverWrapper from 'flavours/aether/features/ui/util/intersection_observer_wrapper';
 
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 
@@ -68,8 +67,6 @@ class ScrollableList extends PureComponent {
     fullscreen: null,
     cachedMediaWidth: 300,
   };
-
-  intersectionObserverWrapper = new IntersectionObserverWrapper();
 
   handleScroll = throttle(() => {
     if (this.node) {
@@ -160,7 +157,6 @@ class ScrollableList extends PureComponent {
 
   componentDidMount () {
     this.attachScrollListener();
-    this.attachIntersectionObserver();
 
     attachFullscreenListener(this.onFullScreenChange);
 
@@ -224,7 +220,6 @@ class ScrollableList extends PureComponent {
   componentWillUnmount () {
     this.clearMouseIdleTimer();
     this.detachScrollListener();
-    this.detachIntersectionObserver();
 
     detachFullscreenListener(this.onFullScreenChange);
   }
@@ -232,20 +227,6 @@ class ScrollableList extends PureComponent {
   onFullScreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });
   };
-
-  attachIntersectionObserver () {
-    let nodeOptions = {
-      root: this.node,
-      rootMargin: '300% 0px',
-    };
-
-    this.intersectionObserverWrapper
-      .connect(this.props.bindToDocument ? {} : nodeOptions);
-  }
-
-  detachIntersectionObserver () {
-    this.intersectionObserverWrapper.disconnect();
-  }
 
   attachScrollListener () {
     if (this.props.bindToDocument) {
@@ -336,7 +317,6 @@ class ScrollableList extends PureComponent {
                 id={child.key}
                 index={index}
                 listLength={childrenCount}
-                intersectionObserverWrapper={this.intersectionObserverWrapper}
                 saveHeightKey={trackScroll ? `${this.context.router.route.location.key}:${scrollKey}` : null}
               >
                 {cloneElement(child, {
