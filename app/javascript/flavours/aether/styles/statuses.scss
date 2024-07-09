@@ -244,3 +244,20 @@
     transform: scale(1.025);
   }
 }
+
+.scrollable div:not(:first-child) .detailed-status__wrapper {
+  border: unset;
+  margin-top: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 5px solid var(--ui-highlight-color);
+}
+
+.detailed-status__wrapper > * {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.spoiler_content {
+  margin-left: 5px;
+}
