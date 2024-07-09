@@ -56,7 +56,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    autoFocus: true,
+    autoFocus: false,
   };
 
   state = {
