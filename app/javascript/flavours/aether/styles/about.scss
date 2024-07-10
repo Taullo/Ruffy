@@ -348,6 +348,10 @@ $fluid-breakpoint: $maximum-width + 20px;
       .about__section__title {
         margin-top: 10px;
       }
+
+      .fixed_wrapper {
+        padding-bottom: 50px;
+      }
     }
 
     .about {
