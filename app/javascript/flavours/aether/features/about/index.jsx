@@ -117,26 +117,28 @@ class About extends PureComponent {
             ) : (''))}
           </div>
           <div className='about__right-column'>
-            <Section title={intl.formatMessage(messages.rules)}>
-              {!isLoading && (server.get('rules', ImmutableList()).isEmpty() ? (
-                <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
-              ) : (
-                <ol className='rules-list'>
-                  {server.get('rules').map(rule => (
-                    <li key={rule.get('id')}>
-                      <span className='rules-list__text'>{rule.get('text')}</span>
-                    </li>
-                  ))}
-                </ol>
-              ))}
-              <div class='rules_footer'>
-                <button className='button' onClick={this.openPolicies}>
-                  <FormattedMessage id='about.rules_button' defaultMessage='View full policy' />
-                </button>
-              </div>
-            </Section>
+            <div className='fixed_wrapper'>
+              <Section title={intl.formatMessage(messages.rules)}>
+                {!isLoading && (server.get('rules', ImmutableList()).isEmpty() ? (
+                  <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
+                ) : (
+                  <ol className='rules-list'>
+                    {server.get('rules').map(rule => (
+                      <li key={rule.get('id')}>
+                        <span className='rules-list__text'>{rule.get('text')}</span>
+                      </li>
+                    ))}
+                  </ol>
+                ))}
+                <div class='rules_footer'>
+                  <button className='button' onClick={this.openPolicies}>
+                    <FormattedMessage id='about.rules_button' defaultMessage='View full policy' />
+                  </button>
+                </div>
+              </Section>
 
-            <LinkFooter />
+              <LinkFooter />
+            </div>
 
           </div>
 

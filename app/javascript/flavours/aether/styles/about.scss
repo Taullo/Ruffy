@@ -343,7 +343,11 @@ $fluid-breakpoint: $maximum-width + 20px;
     }
 
     .about__right-column {
-      max-width: var(--ui-secondary-profile-column-width);
+      width: var(--ui-secondary-profile-column-width);
+
+      .about__section__title {
+        margin-top: 10px;
+      }
     }
 
     .about {
