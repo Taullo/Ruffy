@@ -117,7 +117,7 @@ class About extends PureComponent {
             ) : (''))}
           </div>
           <div className='about__right-column'>
-            <div className='fixed_wrapper'>
+            <div className={!multiColumn ? 'fixed_wrapper' : 'rules__wrapper'}>
               <Section title={intl.formatMessage(messages.rules)}>
                 {!isLoading && (server.get('rules', ImmutableList()).isEmpty() ? (
                   <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
