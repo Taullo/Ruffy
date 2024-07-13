@@ -40,6 +40,7 @@ class Form::AdminSettings
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
+    outgoing_sensitive
     outgoing_spoilers
     require_invite_text
     captcha_enabled
@@ -66,7 +67,7 @@ class Form::AdminSettings
     hide_followers_count
     show_reblogs_in_public_timelines
     show_replies_in_public_timelines
-    outgoing_sensitivity
+    outgoing_sensitive
     trends
     trends_as_landing_page
     trendable_by_default
