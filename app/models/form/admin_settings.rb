@@ -41,7 +41,6 @@ class Form::AdminSettings
     show_domain_blocks_rationale
     noindex
     outgoing_spoilers
-    outgoing_sensitive
     require_invite_text
     captcha_enabled
     media_cache_retention_period
@@ -67,6 +66,7 @@ class Form::AdminSettings
     hide_followers_count
     show_reblogs_in_public_timelines
     show_replies_in_public_timelines
+    outgoing_sensitivity
     trends
     trends_as_landing_page
     trendable_by_default
