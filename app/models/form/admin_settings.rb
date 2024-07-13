@@ -41,7 +41,6 @@ class Form::AdminSettings
     show_domain_blocks_rationale
     noindex
     outgoing_spoilers
-    outgoing_sensitive
     require_invite_text
     captcha_enabled
     media_cache_retention_period
@@ -75,6 +74,7 @@ class Form::AdminSettings
     require_invite_text
     captcha_enabled
     authorized_fetch
+    outgoing_sensitive
   ).freeze
 
   UPLOAD_KEYS = %i(
