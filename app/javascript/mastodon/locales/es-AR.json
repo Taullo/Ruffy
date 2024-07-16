@@ -672,7 +672,6 @@
   "status.translated_from_with": "Traducido desde el {lang} vía {provider}",
   "status.uncached_media_warning": "Previsualización no disponible",
   "status.unmute_conversation": "Dejar de silenciar conversación",
-  "status.unlabeled": "Contenido sensible sin etiquetar",
   "status.unpin": "Dejar de fijar",
   "subscribed_languages.lead": "Después del cambio, sólo los mensajes en los idiomas seleccionados aparecerán en tu línea temporal Principal y en las líneas de tiempo de lista. No seleccionés ningún idioma para poder recibir mensajes en todos los idiomas.",
   "subscribed_languages.save": "Guardar cambios",

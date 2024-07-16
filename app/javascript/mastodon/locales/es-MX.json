@@ -672,7 +672,6 @@
   "status.translated_from_with": "Traducido del {lang} usando {provider}",
   "status.uncached_media_warning": "Vista previa no disponible",
   "status.unmute_conversation": "Dejar de silenciar conversación",
-  "status.unlabeled": "Contenido sensible sin etiquetar",
   "status.unpin": "Dejar de fijar",
   "subscribed_languages.lead": "Solo las publicaciones en los idiomas seleccionados aparecerán en tu inicio y enlistará las líneas de tiempo después del cambio. Selecciona ninguno para recibir publicaciones en todos los idiomas.",
   "subscribed_languages.save": "Guardar cambios",

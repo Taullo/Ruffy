@@ -338,6 +338,7 @@ class StatusContent extends PureComponent {
       hashtagSettings,
       intl,
       statusContent,
+      account = status.get('account'),
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? (!this.props.expanded || (cwSettings === 'visible')) : this.state.hidden;
@@ -360,9 +361,6 @@ class StatusContent extends PureComponent {
 
     if ((status.get('spoiler_text').length > 0) || (status.get('sensitive'))) {
       let mentionsPlaceholder = '';
-      if (status.get('spoiler_text').length === 0) {
-        spoilerContent = { __html: <FormattedMessage id='status.unlabeled' defaultMessage='Unlabeled sensitive content' /> };
-      }
 
       let toggleText = null;
       if (hidden) {
@@ -402,16 +400,23 @@ class StatusContent extends PureComponent {
       } else {
         hashtagState = 'hashtag_force_hidden ' + `${!hidden ? 'hashtag-visible' : 'hashtag-' + cwSettings}`;
       }
+      
+      console.log(account.get('acct'));
 
       return (
         <>
           <div className='spoiler_content'>
           
             {status.get('spoiler_text').length === 0 ? (
-              <FormattedMessage id='status.unlabeled' defaultMessage='Unlabeled sensitive content' />
-            ) : (
-              <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
-            )}
+                !account.get('acct').includes('@') ? (
+                  <FormattedMessage id='status.marked_sensitive' defaultMessage='Moderator marked as sensitive' />
+                ) : (
+                  <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />
+                )
+              ) : (
+                <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={language} />
+              )}
+
             {' '}
             <button type='button' className={`status__content__spoiler-link status__content__spoiler__link--` + cwSettings} onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
               {toggleText}
