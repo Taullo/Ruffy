@@ -407,7 +407,7 @@ class StatusContent extends PureComponent {
           
             {status.get('spoiler_text').length === 0 ? (
                 !account.get('acct').includes('@') ? (
-                  <FormattedMessage id='status.marked_sensitive' defaultMessage='Moderator marked as sensitive' />
+                  <FormattedMessage id='status.marked_sensitive' defaultMessage='Marked as sensitive by moderator' />
                 ) : (
                   <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />
                 )
