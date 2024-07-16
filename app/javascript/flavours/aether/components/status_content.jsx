@@ -400,8 +400,6 @@ class StatusContent extends PureComponent {
       } else {
         hashtagState = 'hashtag_force_hidden ' + `${!hidden ? 'hashtag-visible' : 'hashtag-' + cwSettings}`;
       }
-      
-      console.log(account.get('acct'));
 
       return (
         <>
