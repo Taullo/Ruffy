@@ -40,11 +40,11 @@ const messages = defineMessages({
   },
   badContentWarningMessageNSFW: {
     id: 'confirmations.bad_content_warning_nsfw.message',
-    defaultMessage: 'Please add a more descriptive content warning. Instead, consider what about this post makes it "not safe for work" and write those reasons instead. Check the About page for more information.',
+    defaultMessage: 'Please add a more descriptive content warning. Instead, consider what about this post makes it "not safe for work" or sensitive content, then write those reasons instead. Check the About page for more information.',
   },
   semiBadContentWarningMessageNSFW: {
     id: 'confirmations.semi_bad_content_warning_nsfw.message',
-    defaultMessage: 'Please consider using something more specific than "NSFW" as a content warning (e.g. sexual, kink, gore, etc.). Check the About page for more information.',
+    defaultMessage: 'Please consider using something more specific than "NSFW" or "sensitive content" as a content warning (e.g. sexual, kink, gore, etc.). Check the About page for more information.',
   },
   nudeContentWarningMessage: {
     id: 'confirmations.nude_content_warning_nsfw.message',

@@ -148,8 +148,8 @@ class ComposeForm extends ImmutablePureComponent {
       const allowNudity = window.getComputedStyle(document.body, '::before').getPropertyValue('content').includes('allow-nudity');
       const containsNudity = /(nude|naked|nudity)/i.test(this.props.spoilerText.toLowerCase());
       // Cancel submitting if inadequate content warning
-      if (this.props.spoilerText.toLowerCase().includes('nsfw')) {
-        if (this.props.spoilerText.toLowerCase().trim() === 'nsfw') {
+      if ((this.props.spoilerText.toLowerCase().includes('nsfw')) || (this.props.spoilerText.toLowerCase().includes('sensitive content'))) {
+        if ((this.props.spoilerText.toLowerCase().trim() === 'nsfw') || (this.props.spoilerText.toLowerCase().trim() === 'sensitive content')) {
           onPoorContentWarning();
         }
         else {

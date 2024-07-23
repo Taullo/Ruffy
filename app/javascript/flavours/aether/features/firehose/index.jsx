@@ -238,17 +238,6 @@ const Firehose = ({ feedType, multiColumn }) => {
                 </button>
               </div>
             </div>
-
-            {!multiColumn &&signedIn && (
-              <div className='explore__suggested-header'>
-                <Suggestions openInRoute />
-                <div className='right-column-show-more'>
-                  <button className='button button-tertiary' onClick={openSuggestions} >
-                    <FormattedMessage tagName='div' id='status.more' defaultMessage='More' />
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
         </div>
 
