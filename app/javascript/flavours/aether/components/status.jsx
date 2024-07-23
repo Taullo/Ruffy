@@ -538,6 +538,10 @@ class Status extends ImmutablePureComponent {
     }
 
     const isExpanded = settings.getIn(['content_warnings', 'shared_state']) ? !status.get('hidden') : this.state.isExpanded;
+    let spoilerContent;
+    if (status.get('spoiler_text').length > 0) {
+      spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
+    }
 
     const handlers = {
       reply: this.handleHotkeyReply,
@@ -684,6 +688,7 @@ class Status extends ImmutablePureComponent {
                 onOpenMedia={this.handleOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
+                spoilerContent={spoilerContent}
                 visible={this.state.showMedia}
                 onToggleVisibility={this.handleToggleVisibility}
               />
@@ -795,6 +800,7 @@ class Status extends ImmutablePureComponent {
             status={status}
             media={contentMedia}
             mediaIcons={contentMediaIcons}
+            spoilerContent={spoilerContent}
             hashtagBar={hashtagBar}
             expanded={isExpanded}
             onExpandedToggle={this.handleToggleVisibility}

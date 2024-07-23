@@ -274,6 +274,7 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    spoilerContent: PropTypes.object,
   };
 
   static defaultProps = {
@@ -348,7 +349,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, defaultWidth, standalone, autoplay } = this.props;
+    const { media, lang, intl, sensitive, defaultWidth, standalone, autoplay, spoilerContent } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
@@ -387,7 +388,15 @@ class MediaGallery extends PureComponent {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
           <span className='spoiler-button__overlay__label'>
-            {sensitive ? <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /> : <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />}
+            {sensitive ? (
+              spoilerContent === undefined ? (
+                <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />
+                ) : (
+                <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={lang} />
+                )
+              ) : (
+                <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />
+              )}
             <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
           </span>
         </button>

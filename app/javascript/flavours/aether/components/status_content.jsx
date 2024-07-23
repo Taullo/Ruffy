@@ -141,6 +141,7 @@ class StatusContent extends PureComponent {
     hashtagSettings: PropTypes.bool,
     languages: ImmutablePropTypes.map,
     intl: PropTypes.object,
+    spoilerContent: PropTypes.object,
   };
 
   static defaultProps = {
@@ -338,9 +339,10 @@ class StatusContent extends PureComponent {
       hashtagSettings,
       intl,
       statusContent,
-      account = status.get('account'),
+      spoilerContent,
     } = this.props;
 
+    const account = status.get('account');
     const hidden = this.props.onExpandedToggle ? (!this.props.expanded || (cwSettings === 'visible')) : this.state.hidden;
     const contentLocale = intl.locale.replace(/[_-].*/, '');
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
@@ -348,7 +350,6 @@ class StatusContent extends PureComponent {
     const content = { __html: statusContent ?? getStatusContent(status) };
     const statusObscured = (cwSettings === 'obscured') ? statusContent.replace(/[^\x20-\x7F]/g, "---") : '';
     const contentObscured = { __html: statusObscured };
-    let spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
     const language = status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': parseClick && !disabled,
@@ -405,7 +406,7 @@ class StatusContent extends PureComponent {
         <>
           <div className='spoiler_content'>
           
-            {status.get('spoiler_text').length === 0 ? (
+            {spoilerContent === undefined ? (
                 !account.get('acct').includes('@') ? (
                   <FormattedMessage id='status.marked_sensitive' defaultMessage='Marked as sensitive by moderator' />
                 ) : (
