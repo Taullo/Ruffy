@@ -133,6 +133,10 @@ class DetailedStatus extends ImmutablePureComponent {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
     const outerStyle = { boxSizing: 'border-box' };
     const { compact, pictureInPicture, expanded, onToggleHidden, settings, intl } = this.props;
+    let spoilerContent;
+    if (status.get('spoiler_text').length > 0) {
+      spoilerContent = { __html: status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml') };
+    }
 
     if (!status) {
       return null;
@@ -216,6 +220,7 @@ class DetailedStatus extends ImmutablePureComponent {
             standalone
             sensitive={status.get('sensitive')}
             media={status.get('media_attachments')}
+            spoilerContent={spoilerContent}
             lang={language}
             letterbox={settings.getIn(['media', 'letterbox'])}
             fullwidth={settings.getIn(['media', 'fullwidth'])}
@@ -319,6 +324,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
           <StatusContent
             status={status}
+            spoilerContent={spoilerContent}
             media={contentMedia}
             mediaIcons={contentMediaIcons}
             hashtagBar={hashtagBar}
