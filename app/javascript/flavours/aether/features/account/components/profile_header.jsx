@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { injectIntl, defineMessages } from 'react-intl';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import { Icon } from 'flavours/aether/components/icon';
 
