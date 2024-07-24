@@ -38,7 +38,6 @@ class ColumnHeader extends PureComponent {
     onClick: PropTypes.func,
     appendContent: PropTypes.node,
     collapseIssues: PropTypes.bool,
-    container: PropTypes.string,
   };
 
   state = {
@@ -87,7 +86,7 @@ class ColumnHeader extends PureComponent {
 
   render () {
     const { router } = this.context;
-    const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues, container } = this.props;
+    const { title, icon, active, children, pinned, multiColumn, extraButton, showBackButton, intl: { formatMessage }, placeholder, appendContent, collapseIssues } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -199,13 +198,7 @@ class ColumnHeader extends PureComponent {
       // The portal container and the component may be rendered to the DOM in
       // the same React render pass, so the container might not be available at
       // the time `render()` is called.
-      let pageContainer;
-      if (container === undefined) {
-        pageContainer = document.getElementById('tabs-bar__portal');
-      }
-      else {
-        pageContainer = document.getElementById(container);
-      }
+      const pageContainer = document.getElementById('tabs-bar__portal');
       if (pageContainer === null) {
         // The container wasn't available, force a re-render so that the
         // component can eventually be inserted in the container and not scroll

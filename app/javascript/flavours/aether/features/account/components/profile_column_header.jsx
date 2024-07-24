@@ -28,7 +28,6 @@ class ProfileColumnHeader extends PureComponent {
         onClick={onClick}
         showBackButton
         multiColumn={multiColumn}
-        container={container}
       />
     );
   }

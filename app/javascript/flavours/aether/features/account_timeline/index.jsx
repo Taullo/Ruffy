@@ -13,6 +13,7 @@ import { lookupAccount, fetchAccount } from 'flavours/aether/actions/accounts';
 import { openModal } from 'flavours/aether/actions/modal';
 import { expandAccountMediaTimeline , expandAccountFeaturedTimeline, expandAccountTimeline } from 'flavours/aether/actions/timelines';
 import { TimelineHint } from 'flavours/aether/components/timeline_hint';
+import ProfileHeader from 'flavours/aether/features/account/components/profile_header';
 import ProfileColumnHeader from 'flavours/aether/features/account/components/profile_column_header';
 import FeaturedTags from 'flavours/aether/features/account/containers/featured_tags_container';
 import MediaItem from 'flavours/aether/features/account_gallery/components/media_item';
@@ -196,7 +197,6 @@ class AccountTimeline extends ImmutablePureComponent {
 
   render () {
     const { accountId, acctName, statusIds, featuredStatusIds, isLoading, hasMore, suspended, isAccount, hidden, multiColumn, remote, remoteUrl, attachments, cwVisibility, hideTabs } = this.props;
-    const container = 'account__header__title';
 
     if (isLoading && statusIds.isEmpty()) {
       return (
@@ -238,10 +238,9 @@ class AccountTimeline extends ImmutablePureComponent {
       <Column ref={this.setRef} name='account'>
         {!multiColumn && (
           <div className='account-scroll'>
-            <ProfileColumnHeader container={container} onClick={this.handleHeaderClick} multiColumn={multiColumn} />
             <div className='account-timeline__bio-column'>
               <div className='fixed_wrapper'>
-                <div id={container} />
+                <ProfileHeader />
                 <HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
                 <RightColumnContainer statusIds={featuredStatusIds} accountId={this.props.accountId} tagged={this.props.params.tagged} />
                 {mediaTitle}
