@@ -71,7 +71,7 @@
       filter 0.2s;
 
     &:hover {
-      transform: scale(2);
+      transform: scale(2.5);
       filter: drop-shadow(0 0 3px var(--ui-shadow-color));
     }
   }
@@ -89,6 +89,10 @@
   
   p {
     overflow:hidden;
+    
+    &:hover {
+      overflow:visible;
+    }
   }
 
   a {
@@ -222,6 +226,7 @@
 }
 
 .status {
+  overflow:hidden;
   padding: 10px 14px;
   position: relative;
   height: auto;
