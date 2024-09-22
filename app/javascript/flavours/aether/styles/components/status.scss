@@ -86,6 +86,10 @@
       margin-bottom: 0;
     }
   }
+  
+  p {
+    overflow:hidden;
+  }
 
   a {
     color: var(--ui-font-secondary-color);
