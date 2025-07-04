@@ -1,6 +1,6 @@
 # Ruffy
 
-Fork of [Glitch-soc](https://glitch-soc.github.io/docs/) of [Chuckya](github.com/TheEssem/mastodon)
+Fork of [Glitch-soc](https://glitch-soc.github.io/docs/) of [Chuckya](https://github.com/TheEssem/mastodon)
 
 Anyone who uses this is doing so at their own risk! There will be bugs and other possible issues with the code!
 
