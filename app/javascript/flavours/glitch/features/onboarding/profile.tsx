@@ -237,7 +237,7 @@ export const Profile: React.FC<{
                   type='text'
                   value={displayName}
                   onChange={handleDisplayNameChange}
-                  maxLength={30}
+                  maxLength={100}
                 />
               </div>
             </div>
@@ -266,7 +266,7 @@ export const Profile: React.FC<{
                   id='note'
                   value={note}
                   onChange={handleNoteChange}
-                  maxLength={500}
+                  maxLength={3000}
                 />
               </div>
             </div>

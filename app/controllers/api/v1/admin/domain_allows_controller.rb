@@ -5,7 +5,7 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
   include AccountableConcern
 
   LIMIT = 100
-  MAX_LIMIT = 500
+  MAX_LIMIT = 3000
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:domain_allows' }, only: [:index, :show]
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:domain_allows' }, except: [:index, :show]

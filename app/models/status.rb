@@ -46,8 +46,8 @@ class Status < ApplicationRecord
   include Status::ThreadingConcern
   include Status::Visibility
 
-  MEDIA_ATTACHMENTS_LIMIT = (ENV['MAX_MEDIA_ATTACHMENTS'] || 4).to_i
-  REMOTE_MEDIA_ATTACHMENTS_LIMIT = (ENV['MAX_REMOTE_MEDIA_ATTACHMENTS'] || 16).to_i
+  MEDIA_ATTACHMENTS_LIMIT = (ENV['MAX_MEDIA_ATTACHMENTS'] || 20).to_i
+  REMOTE_MEDIA_ATTACHMENTS_LIMIT = (ENV['MAX_REMOTE_MEDIA_ATTACHMENTS'] || 20).to_i
 
   QUOTE_APPROVAL_POLICY_FLAGS = {
     unknown: (1 << 0),
