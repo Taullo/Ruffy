@@ -2,7 +2,7 @@
   "about.blocks": "Servidores moderados",
   "about.contact": "Contacto:",
   "about.default_locale": "Por defecto",
-  "about.disclaimer": "Mastodon es software libre, de código abierto, y una marca comercial de Mastodon gGmbH.",
+  "about.disclaimer": "Ruffy es software libre, de código abierto.",
   "about.domain_blocks.no_reason_available": "Razón no disponible",
   "about.domain_blocks.preamble": "Mastodon normalmente te permite ver el contenido e interactuar con los usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se han hecho en este servidor en particular.",
   "about.domain_blocks.silenced.explanation": "Normalmente no verás perfiles y contenido de este servidor, a menos que lo busques explícitamente o sigas alguna cuenta.",

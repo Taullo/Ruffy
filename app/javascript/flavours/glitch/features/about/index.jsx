@@ -193,9 +193,7 @@ class About extends PureComponent {
           <LinkFooter />
 
           <div className='about__footer'>
-            <p><FormattedMessage id='about.chuckya_disclaimer' defaultMessage='Chuckya is a free and open-source fork of Glitch-soc.' /></p>
-            <p><FormattedMessage id='about.fork_disclaimer' defaultMessage='Glitch-soc is free open source software forked from Mastodon.' /></p>
-            <p><FormattedMessage id='about.disclaimer' defaultMessage='Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.' /></p>
+            <p><FormattedMessage id='about.disclaimer' defaultMessage='Ruffy is a free, open-source software based on Mastodon, Glitch-soc, and Chuckya.' /></p>
           </div>
         </div>
 

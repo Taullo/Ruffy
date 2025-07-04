@@ -22,7 +22,7 @@ echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo deb
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
 sudo apt-get install iptables-persistent -y
 
-# Add packages to build and run Mastodon
+# Add packages to build and run Ruffy
 sudo apt-get install \
   git-core \
   g++ \
@@ -120,7 +120,7 @@ sudo corepack enable
 corepack prepare
 yarn install
 
-# Build Mastodon
+# Build Ruffy
 export RAILS_ENV=development
 export $(cat ".env.vagrant" | xargs)
 bundle exec rails db:setup
@@ -138,7 +138,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "alvistack/ubuntu-24.04"
 
   config.vm.provider :virtualbox do |vb|
-    vb.name = "mastodon"
+    vb.name = "ruffy"
     vb.customize ["modifyvm", :id, "--memory", "8192"]
     vb.customize ["modifyvm", :id, "--cpus", "3"]
 
@@ -159,13 +159,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   # This uses the vagrant-hostsupdater plugin, and lets you
-  # access the development site at http://mastodon.local.
+  # access the development site at http://ruffy.local.
   # If you change it, also change it in .env.vagrant before provisioning
   # the vagrant server to update the development build.
   #
   # To install:
   #   $ vagrant plugin install vagrant-hostsupdater
-  config.vm.hostname = "mastodon.local"
+  config.vm.hostname = "ruffy.local"
 
   if defined?(VagrantPlugins::HostsUpdater)
     config.vm.network :private_network, ip: "192.168.42.42", nictype: "virtio"

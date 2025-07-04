@@ -69,6 +69,7 @@ RSpec.describe 'Instances' do
       include(
         api_versions: include(
           mastodon: anything,
+          ruffy: anything,
           chuckya: anything
         )
       )

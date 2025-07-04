@@ -30,7 +30,7 @@ complete the following steps:
   `vagrant plugin install vagrant-hostsupdater`
 - Run `vagrant up`
 - Run `vagrant ssh -c "cd /vagrant && bin/dev"`
-- Open `http://mastodon.local` in your browser
+- Open `http://ruffy.local` in your browser
 
 ### macOS
 
