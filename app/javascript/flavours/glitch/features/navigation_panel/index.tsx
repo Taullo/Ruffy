@@ -15,6 +15,7 @@ import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
+import GroupsIcon from '@/material-icons/400-24px/groups-fill.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
@@ -25,9 +26,8 @@ import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?r
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
-import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
-import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
+import VillageIcon from '@/material-icons/400-24px/village.svg?react';
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import {
@@ -45,7 +45,7 @@ import {
   trendsEnabled,
   me,
 } from 'flavours/glitch/initial_state';
-import { transientSingleColumn } from 'flavours/glitch/is_mobile';
+// import { transientSingleColumn } from 'flavours/glitch/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'flavours/glitch/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
@@ -64,8 +64,11 @@ const messages = defineMessages({
   },
   explore: { id: 'explore.title', defaultMessage: 'Trending' },
   firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
+  local: { id: 'firehose.local', defaultMessage: 'Local' },
+  public: { id: 'firehose.public', defaultMessage: 'Public' },
+  remote: { id: 'firehose.remote', defaultMessage: 'Remote' },
+  bubble: { id: 'firehose.bubble', defaultMessage: 'Neighbors' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: {
     id: 'navigation_bar.preferences',
@@ -194,13 +197,6 @@ const ProfileCard: React.FC = () => {
   );
 };
 
-const isFirehoseActive = (
-  match: unknown,
-  { pathname }: { pathname: string },
-) => {
-  return !!match || pathname.startsWith('/public');
-};
-
 const MENU_WIDTH = 284;
 
 export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
@@ -208,25 +204,10 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 }) => {
   const intl = useIntl();
   const { signedIn, disabledAccountId } = useIdentity();
-  const location = useLocation();
   const showSearch = useBreakpoint('full') && !multiColumn;
   const dispatch = useAppDispatch();
 
   let banner: React.ReactNode;
-
-  if (transientSingleColumn) {
-    banner = (
-      <div className='switch-to-advanced'>
-        {intl.formatMessage(messages.openedInClassicInterface)}{' '}
-        <a
-          href={`/deck${location.pathname}`}
-          className='switch-to-advanced__toggle'
-        >
-          {intl.formatMessage(messages.advancedInterface)}
-        </a>
-      </div>
-    );
-  }
 
   const handleOpenSettings = useCallback<MouseEventHandler>(
     (e) => {
@@ -266,7 +247,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             )}
             <ColumnLink
               transparent
-              to='/home'
+              to='/feeds/home'
               icon='home'
               iconComponent={HomeIcon}
               activeIconComponent={HomeActiveIcon}
@@ -286,14 +267,29 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
         )}
 
         {(signedIn || timelinePreview) && (
-          <ColumnLink
-            transparent
-            to='/public/local'
-            icon='globe'
-            iconComponent={PublicIcon}
-            isActive={isFirehoseActive}
-            text={intl.formatMessage(messages.firehose)}
-          />
+          <>
+            <ColumnLink
+              transparent
+              to='/feeds/local'
+              icon='groups'
+              iconComponent={GroupsIcon}
+              text={intl.formatMessage(messages.local)}
+            />
+            <ColumnLink
+              transparent
+              to='/feeds/neighbors'
+              icon='village'
+              iconComponent={VillageIcon}
+              text={intl.formatMessage(messages.bubble)}
+            />
+            <ColumnLink
+              transparent
+              to='/feeds/federated'
+              icon='globe'
+              iconComponent={PublicIcon}
+              text={intl.formatMessage(messages.remote)}
+            />
+          </>
         )}
 
         {signedIn && (
@@ -308,14 +304,8 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
             <FollowedTagsPanel />
 
-            <ColumnLink
-              transparent
-              to='/favourites'
-              icon='star'
-              iconComponent={StarIcon}
-              activeIconComponent={StarActiveIcon}
-              text={intl.formatMessage(messages.favourites)}
-            />
+            <hr />
+
             <ColumnLink
               transparent
               to='/bookmarks'

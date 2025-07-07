@@ -1,0 +1,397 @@
+.glitch.local-settings {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: var(--background-color);
+  color: var(--ui-font-color);
+  border-radius: 8px;
+  height: 80vh;
+  width: 80vw;
+  max-width: 800px;
+  overflow: hidden;
+
+  fieldset {
+    margin-top: 24px;
+  }
+
+  label,
+  legend {
+    display: block;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  legend span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-bottom: 2px;
+
+    &.hint > span {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+
+  .boolean label,
+  .radio_buttons label {
+    position: relative;
+    padding-inline-start: 28px;
+    padding-top: 3px;
+
+    input {
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+    }
+  }
+
+  span.hint {
+    display: block;
+    color: var(--ui-font-secondary-color);
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+.glitch.local-settings__navigation__item {
+  display: block;
+  padding: 15px 20px;
+  color: inherit;
+  background: var(--ui-body-secondary-color);
+  border: 0;
+  border-bottom: 1px var(--ui-body-color) solid;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: start;
+  font-size: inherit;
+
+  .text-icon-button {
+    color: inherit;
+    transition: unset;
+  }
+
+  &:hover {
+    background: var(--ui-body-color);
+  }
+
+  &.active {
+    background: var(--ui-highlight-color);
+    color: var(--ui-highlight-button-text-color);
+  }
+
+  &.close {
+    color: var(--ui-font-color);
+    border: transparent;
+    position: absolute;
+    right: 0;
+    border-bottom-left-radius: 8px;
+    z-index: 10;
+    width: 60px;
+
+    &:hover {
+      background: var(--ui-highlight-color);
+      color: var(--ui-highlight-button-text-color);
+    }
+  }
+
+  &.local_prefs {
+    position: absolute;
+    bottom: 0;
+    border: transparent;
+    max-width: 212px; /* FIXME: Will break on different layouts */
+  }
+}
+
+.glitch.local-settings__navigation {
+  background: var(--ui-body-secondary-color);
+  width: 212px;
+  font-size: 1rem;
+  line-height: 1.1;
+  overflow-y: auto;
+}
+
+.glitch.local-settings__page {
+  display: block;
+  flex: auto;
+  padding: 15px 20px;
+  width: 360px;
+  overflow-y: auto;
+}
+
+.glitch.local-settings__page__item {
+  margin-bottom: 2px;
+
+  .hint a {
+    color: var(--ui-font-secondary-color);
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:active,
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  #mastodon-settings--collapsed-auto-height {
+    width: calc(4ch + 20px);
+  }
+}
+
+.glitch.local-settings__page__item.string,
+.glitch.local-settings__page__item.radio_buttons {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media screen and (width <= 650px) {
+  .glitch.local-settings__navigation {
+    width: 40px;
+    flex-shrink: 0;
+  }
+
+  .glitch.local-settings__navigation__item {
+    padding: 10px;
+
+    span:last-of-type {
+      display: none;
+    }
+  }
+
+  .local-settings__navigation .local_prefs {
+    width: 40px;
+  }
+}
+
+.deprecated-settings-label {
+  white-space: nowrap;
+}
+
+.deprecated-settings-info {
+  text-align: start;
+
+  ul {
+    padding: 10px;
+    margin-inline-start: 12px;
+    list-style: disc inside;
+  }
+
+  a {
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:active,
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+/* Accent Colors */
+
+.accentSelector fieldset {
+  margin-left: -6px;
+
+  legend {
+    margin-left: 6px;
+  }
+}
+
+[name='mastodon-settings--accent'] {
+  height: 30px;
+  width: 30px;
+  appearance: none;
+  background-color: white;
+  clear: both;
+  position: static !important;
+  border-radius: 4px;
+  border: 2px solid var(--ui-body-color);
+  cursor: pointer;
+  transition:
+    0.2s border-color,
+    0.2s box-shadow;
+
+  &:hover {
+    border-color: var(--ui-font-color);
+  }
+
+  &:focus {
+    border-color: var(--ui-font-color);
+    box-shadow: 0 0 4px var(--ui-font-color);
+  }
+
+  &:checked {
+    outline: 4px solid var(--ui-highlight-color);
+  }
+}
+
+[for='mastodon-settings--accent--default'] input {
+  // Default
+  background-color: var(--site-highlight-color);
+}
+
+[for='mastodon-settings--accent--#589734'] input {
+  // Green
+  background-color: #589734;
+}
+
+[for='mastodon-settings--accent--#377ee4'] input {
+  // Blue
+  background-color: #377ee4;
+}
+
+[for='mastodon-settings--accent--#a539ff'] input {
+  // Purple
+  background-color: #a539ff;
+}
+
+[for='mastodon-settings--accent--#ff8300'] input {
+  // Orange
+  background-color: #ff8300;
+}
+
+[for='mastodon-settings--accent--#ffce00'] input {
+  // Yellow
+  background-color: #ffce00;
+}
+
+[for='mastodon-settings--accent--#f02727'] input {
+  // Red
+  background-color: #f02727;
+}
+
+[for='mastodon-settings--accent--#f027be'] input {
+  // Pink
+  background-color: #f027be;
+}
+
+[for='mastodon-settings--accent--#6364ff'] input {
+  // Mammoth
+  background-color: #6364ff;
+}
+
+[for='mastodon-settings--accent--#b4e900'] input {
+  // Keystone
+  background-color: #b4e900;
+}
+
+[for='mastodon-settings--accent--#d1bcf5'] input {
+  // Goby
+  background-color: #d1bcf5;
+}
+
+[for='mastodon-settings--accent--mono'] input {
+  // Mono
+  background-color: var(--ui-font-color);
+}
+
+[for='mastodon-settings--accent--undefined'] input {
+  // Custom
+  margin-left: 6px;
+  top: -6px !important;
+  position: relative !important;
+}
+
+.accentSelector label {
+  display: inline !important;
+  -webkit-padding-inline-start: 0 !important;
+  padding-inline-start: 0 !important;
+  padding-top: 0 !important;
+}
+
+#mastodon-settings--font-size,
+#mastodon-settings--collapsed-auto-height {
+  width: 100% !important;
+}
+
+.themeSelector {
+  margin-top: 10px;
+
+  span.hint span {
+    font-size: 1rem;
+  }
+
+  fieldset {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  legend {
+    margin-bottom: 10px;
+  }
+
+  label {
+    height: 100px;
+    width: 100px;
+    -webkit-padding-start: 0;
+    padding-inline-start: 0 !important;
+    padding-top: 0 !important;
+    cursor: pointer;
+
+    #mastodon-settings--theme {
+      &--auto {
+        background: url('@/images/settings/auto.png');
+        background-size: cover;
+      }
+
+      &--light {
+        background: url('@/images/settings/light.png');
+        background-size: cover;
+      }
+
+      &--dark {
+        background: url('@/images/settings/dark.png');
+        background-size: cover;
+      }
+
+      &--mixed {
+        background: url('@/images/settings/mixed.png');
+        background-size: cover;
+      }
+    }
+  }
+
+  input {
+    height: 100px;
+    width: 100px;
+    margin: 0;
+    appearance: none;
+    outline: 4px solid transparent;
+    border: 2px solid var(--ui-body-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+      outline-color 0.2s,
+      border-color 0.2s;
+
+    &:hover {
+      border-color: var(--ui-font-color);
+    }
+
+    &:checked {
+      outline-color: var(--ui-highlight-color);
+    }
+  }
+}

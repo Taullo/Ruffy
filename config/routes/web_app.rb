@@ -18,6 +18,11 @@
   /getting-started
   /getting-started-misc
   /home
+  /feeds
+  /feeds/home
+  /feeds/federated
+  /feeds/public
+  /feeds/neighbors
   /keyboard-shortcuts
   /links/(*any)
   /lists/(*any)

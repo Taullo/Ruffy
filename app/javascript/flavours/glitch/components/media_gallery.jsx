@@ -33,7 +33,6 @@ class Item extends PureComponent {
     standalone: PropTypes.bool,
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
-    letterbox: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
@@ -97,7 +96,7 @@ class Item extends PureComponent {
   };
 
   render () {
-    const { attachment, lang, index, size, standalone, letterbox, displayWidth, visible } = this.props;
+    const { attachment, lang, index, size, standalone, displayWidth, visible } = this.props;
 
     let badges = [], thumbnail;
 
@@ -160,13 +159,11 @@ class Item extends PureComponent {
           rel='noopener'
         >
           <img
-            className={letterbox ? 'letterbox' : null}
             src={previewUrl}
             srcSet={srcSet}
             sizes={sizes}
             alt={description}
             lang={lang}
-            style={{ objectPosition: letterbox ? null : `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
             onError={this.handleImageError}
           />
@@ -185,7 +182,7 @@ class Item extends PureComponent {
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
           <video
-            className={`media-gallery__item-gifv-thumbnail${letterbox ? ' letterbox' : ''}`}
+            className={`media-gallery__item-gifv-thumbnail`}
             aria-label={description}
             lang={lang}
             role='application'
@@ -204,7 +201,7 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, letterbox, 'media-gallery__item--error': this.state.error, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--error': this.state.error, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -231,7 +228,6 @@ class MediaGallery extends PureComponent {
   static propTypes = {
     sensitive: PropTypes.bool,
     standalone: PropTypes.bool,
-    letterbox: PropTypes.bool,
     fullwidth: PropTypes.bool,
     hidden: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
@@ -327,7 +323,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, sensitive, letterbox, fullwidth, defaultWidth, autoplay, matchedFilters } = this.props;
+    const { media, lang, sensitive, fullwidth, defaultWidth, autoplay, matchedFilters } = this.props;
     const { visible } = this.state;
     const size     = media.size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
@@ -354,7 +350,7 @@ class MediaGallery extends PureComponent {
     if (this.isStandaloneEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
-      children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} letterbox={letterbox} displayWidth={width} visible={visible || uncached} />);
+      children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     return (

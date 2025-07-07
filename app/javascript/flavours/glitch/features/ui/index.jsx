@@ -105,6 +105,23 @@ const mapStateToProps = state => ({
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
   newAccount: !state.getIn(['accounts', me, 'note']) && !state.getIn(['accounts', me, 'bot']) && state.getIn(['accounts', me, 'following_count'], 0) === 0 && state.getIn(['accounts', me, 'statuses_count'], 0) === 0,
   username: state.getIn(['accounts', me, 'username']),
+
+  layout_local_setting: state.getIn(['local_settings', 'layout']),
+  theme: state.getIn(['local_settings', 'theme']),
+  post_style: state.getIn(['local_settings', 'post_style']),
+  post_smoosh: state.getIn(['local_settings', 'post_smoosh']),
+  lowContrast: state.getIn(['local_settings', 'low_contrast_theme']),
+  accent: state.getIn(['local_settings', 'accent']),
+  isWide: state.getIn(['local_settings', 'stretch']),
+  dropdownMenuIsOpen: state.dropdownMenu.openId !== null,
+  unreadNotifications: state.getIn(['notifications', 'unread']),
+  showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
+  hicolorActionButtons: state.getIn(['local_settings', 'hicolor_action_buttons']),
+  hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
+  moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved'])]),
+  firstLaunch: false, // TODO: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
+  username: state.getIn(['accounts', me, 'username']),
+  site_accent_color: state.getIn(['server', 'server', 'accent_color']),
 });
 
 const keyMap = {
@@ -184,9 +201,9 @@ class SwitchingColumnsArea extends PureComponent {
       if (forceOnboarding) {
         redirect = <Redirect from='/' to='/start' exact />;
       } else if (singleColumn) {
-        redirect = <Redirect from='/' to='/home' exact />;
+        redirect = <Redirect from='/' to='/feeds/home' exact />;
       } else {
-        redirect = <Redirect from='/' to='/deck/getting-started' exact />;
+        redirect = <Redirect from='/' to='/feeds' exact />;
       }
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
       redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
@@ -202,25 +219,23 @@ class SwitchingColumnsArea extends PureComponent {
           <WrappedSwitch>
             {redirect}
 
-            {singleColumn ? <Redirect from='/deck' to='/home' exact /> : null}
-            {singleColumn && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={{...this.props.location, pathname: pathName.slice(5)}} /> : null}
-            {/* Redirect old bookmarks (without /deck) with home-like routes to the advanced interface */}
-            {!singleColumn && pathName === '/home' ? <Redirect from='/home' to='/deck/getting-started' exact /> : null}
-            {pathName === '/getting-started' ? <Redirect from='/getting-started' to={singleColumn ? '/home' : '/deck/getting-started'} exact /> : null}
+            {singleColumn ? <Redirect from='/home' to='/feeds/home' exact /> : null}
+            {singleColumn ? <Redirect from='/feeds' to='/feeds/home' exact /> : null}
 
-            <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+            <Redirect from='/getting-started' to='/' exact />
             <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
             <WrappedRoute path='/about' component={About} content={children} />
             <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
             <WrappedRoute path='/terms-of-service/:date?' component={TermsOfService} content={children} />
 
-            <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
+            <WrappedRoute path='/feeds/home' component={HomeTimeline} content={children} />
+            <WrappedRoute path='/feeds' component={GettingStarted} content={children} exact />
             <Redirect from='/timelines/public' to='/public' exact />
             <Redirect from='/timelines/public/local' to='/public/local' exact />
-            <WrappedRoute path='/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
-            <WrappedRoute path='/public/local' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
-            <WrappedRoute path='/public/bubble' exact component={Firehose} componentParams={{ feedType: 'bubble' }} content={children} />
-            <WrappedRoute path='/public/remote' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
+            <WrappedRoute path='/feeds/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
+            <WrappedRoute path='/feeds/local' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
+            <WrappedRoute path='/feeds/neighbors' exact component={Firehose} componentParams={{ feedType: 'bubble' }} content={children} />
+            <WrappedRoute path='/feeds/federated' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
             <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
             <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
             <WrappedRoute path='/links/:url' component={LinkTimeline} content={children} />
@@ -283,6 +298,14 @@ class UI extends PureComponent {
     identity: identityContextPropShape,
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
+    layout_local_setting: PropTypes.string,
+    font_size: PropTypes.number,
+    theme: PropTypes.string,
+    post_style: PropTypes.string,
+    post_smoosh: PropTypes.bool,
+    lowContrast: PropTypes.bool,
+    accent: PropTypes.string,
+    site_accent_color: PropTypes.string,
     isWide: PropTypes.bool,
     fullWidthColumns: PropTypes.bool,
     systemFontUi: PropTypes.bool,
@@ -409,7 +432,7 @@ class UI extends PureComponent {
   });
 
   handleResize = () => {
-    const layout = layoutFromWindow();
+    const layout = layoutFromWindow(this.props.layout_local_setting);
 
     if (layout !== this.props.layout) {
       this.handleLayoutChange.cancel();
@@ -418,6 +441,90 @@ class UI extends PureComponent {
       this.handleLayoutChange();
     }
   };
+
+  handleAccent() {
+    var accentColor;
+    if (this.props.accent === 'default') {
+      accentColor = this.props.site_accent_color;
+    } else if (this.props.accent === 'mono') {
+      if (this.props.theme === 'light') {
+        accentColor = '#000000';
+      } else if (this.props.theme === 'mixed') {
+        accentColor = '#888888';
+      } else {
+        accentColor = '#ffffff';
+      }
+    } else {
+      accentColor = this.props.accent;
+    }
+    if (!CSS.supports('color', accentColor)) { //fallback if props or cookie isn't a color (e.g. undefined)
+      accentColor = document.documentElement.style.getPropertyValue('--site-highlight-color');
+    }
+    document.documentElement.style.setProperty('--ui-highlight-color', accentColor);
+    var color = (accentColor.charAt(0) === '#') ? accentColor.slice(1, 7) :accentColor;
+    var r = parseInt(color.slice(0, 2), 16); // hexToR
+    var g = parseInt(color.slice(2, 4), 16); // hexToG
+    var b = parseInt(color.slice(4, 6), 16); // hexToB
+    if (((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186) {
+      document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#000');
+    } else {
+      document.documentElement.style.setProperty('--ui-highlight-button-text-color', '#fff');
+    }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", accentColor);
+  }
+
+  handleTheme() {
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (((prefersLight === true) && (this.props.theme === 'auto')) || (this.props.theme === 'light')) {
+      document.body.classList.toggle('light-theme', true);
+      document.body.classList.toggle('dark-theme', false);
+      document.body.classList.toggle('mixed-theme', false);
+    }
+    else if (((prefersLight === false) && (this.props.theme === 'auto')) || (this.props.theme === 'dark')) {
+      document.body.classList.toggle('light-theme', false);
+      document.body.classList.toggle('dark-theme', true);
+      document.body.classList.toggle('mixed-theme', false);
+    }
+    else {
+      document.body.classList.toggle('light-theme', false);
+      document.body.classList.toggle('dark-theme', false);
+      document.body.classList.toggle('mixed-theme', true);
+    }
+    if (this.props.lowContrast === true) {
+      document.body.classList.toggle('low-contrast', true);
+    }
+    else {
+      document.body.classList.toggle('low-contrast', false);
+    }
+  }
+
+  handlePostStyle() {
+    if (this.props.post_style === 'wired') {
+      document.body.classList.toggle('wired', true);
+      document.body.classList.toggle('wireless', false);
+    }
+    else if (this.props.post_style === 'wireless') {
+      document.body.classList.toggle('wired', false);
+      document.body.classList.toggle('wireless', true);
+    }
+    else {
+      document.body.classList.toggle('wired', false);
+      document.body.classList.toggle('wireless', false);
+    }
+  }
+
+  handlePostSmoosh() {
+    if (this.props.post_smoosh === true) {
+      document.body.classList.toggle('smooshed', true);
+    }
+    else {
+      document.body.classList.toggle('smooshed', false);
+    }
+  }
+
+  handleFontSize() {
+    document.documentElement.style.fontSize = this.props.font_size + "px";
+  }
 
   componentDidMount () {
     const { signedIn } = this.props.identity;
@@ -436,6 +543,12 @@ class UI extends PureComponent {
     }
 
     this.favicon = new Favico({ animation:'none' });
+
+    this.handleFontSize();
+    this.handleTheme();
+    this.handlePostStyle();
+    this.handlePostSmoosh();
+    this.handleAccent();
 
     if (signedIn) {
       this.props.dispatch(fetchMarkers());
@@ -464,6 +577,73 @@ class UI extends PureComponent {
     if (this.visibilityChange !== undefined) {
       document.addEventListener(this.visibilityChange, this.handleVisibilityChange, false);
       this.handleVisibilityChange();
+    }
+  }
+
+  UNSAFE_componentWillReceiveProps (nextProps) {
+    if (nextProps.layout_local_setting !== this.props.layout_local_setting) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleResize();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.font_size !== this.props.font_size) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleFontSize();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.theme !== this.props.theme) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleTheme();
+          this.handleAccent();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.lowContrast !== this.props.lowContrast) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleTheme();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.accent !== this.props.accent) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleAccent();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.post_style !== this.props.post_style) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handlePostStyle();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.post_smoosh !== this.props.post_smoosh) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handlePostSmoosh();
+        }
+          .bind(this),
+        100
+      );
     }
   }
 
@@ -621,7 +801,9 @@ class UI extends PureComponent {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, isWide, location, layout, moved, firstLaunch, newAccount } = this.props;
+    const { children, isWide, location, moved, firstLaunch, newAccount } = this.props;
+
+    const layout = layoutFromWindow(this.props.layout_local_setting);
 
     const className = classNames('ui', {
       'wide': isWide,

@@ -10,7 +10,6 @@ import type {
 } from 'history';
 import { createBrowserHistory } from 'history';
 
-import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { isDevelopment } from 'flavours/glitch/utils/environment';
 
 interface MastodonLocationState {
@@ -47,14 +46,6 @@ function normalizePath(
     console.log(
       'You should avoid providing a 2nd state argument to push when the 1st argument is a location-like object that already has state; it is ignored',
     );
-  }
-
-  if (
-    layoutFromWindow() === 'multi-column' &&
-    location.pathname &&
-    !location.pathname.startsWith('/deck')
-  ) {
-    location.pathname = `/deck${location.pathname}`;
   }
 
   return location;

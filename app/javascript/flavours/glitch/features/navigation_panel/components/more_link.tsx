@@ -21,7 +21,8 @@ const messages = defineMessages({
     defaultMessage: 'Blocked domains',
   },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
+  filters: { id: 'navigation_bar.filters', defaultMessage: 'Filters' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   administration: {
     id: 'navigation_bar.administration',
     defaultMessage: 'Administration',
@@ -53,7 +54,7 @@ export const MoreLink: React.FC = () => {
 
   const menu = useMemo(() => {
     const arr: MenuItem[] = [
-      { text: intl.formatMessage(messages.filters), href: '/filters' },
+      { text: intl.formatMessage(messages.favourites), to: '/favourites' },
       { text: intl.formatMessage(messages.mutes), to: '/mutes' },
       { text: intl.formatMessage(messages.blocks), to: '/blocks' },
       {
@@ -64,6 +65,7 @@ export const MoreLink: React.FC = () => {
 
     arr.push(
       null,
+      { text: intl.formatMessage(messages.filters), href: '/filters' },
       {
         href: '/settings/privacy',
         text: intl.formatMessage(messages.privacyAndReach),

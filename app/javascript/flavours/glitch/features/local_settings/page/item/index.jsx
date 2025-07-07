@@ -16,9 +16,11 @@ export default class LocalSettingsPageItem extends PureComponent {
     onChange: PropTypes.func.isRequired,
     inputProps: PropTypes.object,
     options: PropTypes.arrayOf(PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      message: PropTypes.string.isRequired,
+      value: PropTypes.string,
+      message: PropTypes.string,
       hint: PropTypes.string,
+      title: PropTypes.string,
+      type: PropTypes.string,
     })),
     settings: ImmutablePropTypes.map.isRequired,
     placeholder: PropTypes.string,
@@ -56,10 +58,11 @@ export default class LocalSettingsPageItem extends PureComponent {
         return (
           <label key={optionId} htmlFor={optionId}>
             <input
-              type='radio'
+              type={opt.type}
+              title={opt.title}
               name={id}
               id={optionId}
-              value={opt.value}
+              value={opt.value === undefined ? (CSS.supports('color', currentValue) ? currentValue : window.getComputedStyle(document.documentElement).getPropertyValue('--site-highlight-color')) : opt.value}
               onBlur={handleChange}
               onChange={handleChange}
               checked={currentValue === opt.value}

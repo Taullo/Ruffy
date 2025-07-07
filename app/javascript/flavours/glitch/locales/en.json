@@ -40,7 +40,7 @@
   "federation.federated.short": "Federated",
   "federation.local_only.long": "Prevent this post from reaching other servers",
   "federation.local_only.short": "Local-only",
-  "firehose.bubble": "Bubble servers",
+  "firehose.bubble": "Neighbors",
   "firehose.column_settings.allow_local_only": "Show local-only posts in \"All\"",
   "gif_search.error": "Oops! Something went wrong. Please, try again.",
   "gif_search.loading": "Loading...",

@@ -5,20 +5,24 @@ import { PureComponent } from 'react';
 import { injectIntl, defineMessages } from 'react-intl';
 
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import BrushIcon from '@/material-icons/400-24px/brush-fill.svg?react';
+import ComputerIcon from '@/material-icons/400-24px/computer.svg?react';
+import ChatIcon from '@/material-icons/400-24px/chat-fill.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
-import ImageIcon from '@/material-icons/400-24px/image.svg?react';
-import ManufacturingIcon from '@/material-icons/400-24px/manufacturing.svg?react';
+import AccessibilityIcon from '@/material-icons/400-24px/accessibility.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
-import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 
 import LocalSettingsNavigationItem from './item';
 
 const messages = defineMessages({
-  general: {  id: 'settings.general', defaultMessage: 'General' },
+  general: {  id: 'settings.general', defaultMessage: 'Appearance' },
+  layout: {  id: 'settings.layout', defaultMessage: 'Layout' },
   compose: {  id: 'settings.compose_box_opts', defaultMessage: 'Compose box' },
-  content_warnings: { id: 'settings.content_warnings', defaultMessage: 'Content Warnings' },
+  statuses: { id: 'settings.statuses', defaultMessage: 'Posts' },
+  collapsed: { id: 'settings.collapsed_statuses', defaultMessage: 'Collapsed posts' },
   media: { id: 'settings.media', defaultMessage: 'Media' },
+  accessibility: { id: 'settings.accessibility', defaultMessage: 'Accessibility' },
   preferences: { id: 'settings.preferences', defaultMessage: 'Preferences' },
   close: { id: 'settings.close', defaultMessage: 'Close' },
 });
@@ -39,53 +43,57 @@ class LocalSettingsNavigation extends PureComponent {
     return (
       <nav className='glitch local-settings__navigation'>
         <LocalSettingsNavigationItem
+          className='close'
+          onNavigate={onClose}
+          icon='times'
+          iconComponent={CloseIcon}
+        />
+        <LocalSettingsNavigationItem
+          href={preferencesLink}
+          icon='cog'
+          iconComponent={SettingsIcon}
+          title={intl.formatMessage(messages.preferences)}
+          className='local_prefs'
+        />
+        <LocalSettingsNavigationItem
           active={index === 0}
           index={0}
           onNavigate={onNavigate}
-          icon='cogs'
-          iconComponent={ManufacturingIcon}
+          icon='paint-brush'
+          iconComponent={BrushIcon}
           title={intl.formatMessage(messages.general)}
         />
         <LocalSettingsNavigationItem
           active={index === 1}
           index={1}
           onNavigate={onNavigate}
-          icon='pencil'
-          iconComponent={EditIcon}
-          title={intl.formatMessage(messages.compose)}
+          icon='window-restore'
+          iconComponent={ComputerIcon}
+          title={intl.formatMessage(messages.layout)}
         />
         <LocalSettingsNavigationItem
           active={index === 2}
           index={2}
           onNavigate={onNavigate}
-          icon='warning'
-          iconComponent={WarningIcon}
-          title={intl.formatMessage(messages.content_warnings)}
+          icon='pencil'
+          iconComponent={EditIcon}
+          title={intl.formatMessage(messages.compose)}
         />
         <LocalSettingsNavigationItem
           active={index === 3}
           index={3}
           onNavigate={onNavigate}
-          icon='image'
-          iconComponent={ImageIcon}
-          title={intl.formatMessage(messages.media)}
+          icon='comment'
+          iconComponent={ChatIcon}
+          title={intl.formatMessage(messages.statuses)}
         />
         <LocalSettingsNavigationItem
           active={index === 4}
-          href={preferencesLink}
           index={4}
-          icon='cog'
-          iconComponent={SettingsIcon}
-          title={intl.formatMessage(messages.preferences)}
-        />
-        <LocalSettingsNavigationItem
-          active={index === 5}
-          className='close'
-          index={5}
-          onNavigate={onClose}
-          icon='times'
-          iconComponent={CloseIcon}
-          title={intl.formatMessage(messages.close)}
+          onNavigate={onNavigate}
+          icon='universal-access'
+          iconComponent={AccessibilityIcon}
+          title={intl.formatMessage(messages.accessibility)}
         />
       </nav>
     );

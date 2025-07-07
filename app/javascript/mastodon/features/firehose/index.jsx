@@ -203,3 +203,4 @@ Firehose.propTypes = {
 };
 
 export default Firehose;
+

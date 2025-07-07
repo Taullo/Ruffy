@@ -178,7 +178,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           )}
           {!columns.some((column) => column.get('id') === 'COMMUNITY') && (
             <Link
-              to='/public/local'
+              to='/feeds/local'
               className='drawer__tab'
               title={intl.formatMessage(messages.live_feed_local)}
               aria-label={intl.formatMessage(messages.live_feed_local)}
@@ -188,7 +188,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           )}
           {!columns.some((column) => column.get('id') === 'BUBBLE') && (
             <Link
-              to='/public/bubble'
+              to='/feeds/neighbors'
               className='drawer__tab'
               title={intl.formatMessage(messages.live_feed_bubble)}
               aria-label={intl.formatMessage(messages.live_feed_bubble)}
@@ -198,7 +198,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           )}
           {!columns.some((column) => column.get('id') === 'PUBLIC') && (
             <Link
-              to='/public'
+              to='/feeds/public'
               className='drawer__tab'
               title={intl.formatMessage(messages.live_feed_public)}
               aria-label={intl.formatMessage(messages.live_feed_public)}

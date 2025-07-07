@@ -561,7 +561,6 @@ class Status extends ImmutablePureComponent {
                 media={attachments}
                 lang={language}
                 sensitive={status.get('sensitive')}
-                letterbox={settings.getIn(['media', 'letterbox'])}
                 fullwidth={!rootId && settings.getIn(['media', 'fullwidth'])}
                 hidden={!expanded}
                 onOpenMedia={this.handleOpenMedia}
@@ -618,7 +617,6 @@ class Status extends ImmutablePureComponent {
               lang={language}
               inline
               sensitive={status.get('sensitive')}
-              letterbox={settings.getIn(['media', 'letterbox'])}
               fullwidth={!rootId && settings.getIn(['media', 'fullwidth'])}
               preventPlayback={!expanded}
               onOpenVideo={this.handleOpenVideo}

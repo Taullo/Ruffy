@@ -84,10 +84,6 @@ const initialState = element?.textContent && JSON.parse(element.textContent);
 /** @type {string} */
 const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
 /** @type {boolean} */
-export const hasMultiColumnPath = initialPath === '/'
-  || initialPath === '/getting-started'
-  || initialPath === '/home'
-  || initialPath.startsWith('/deck');
 
 // Glitch-soc-specific “local settings”
 if (initialState) {
