@@ -16,6 +16,10 @@ import { useAppDispatch } from 'flavours/glitch/store';
 
 const messages = defineMessages({
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  domainMutes: {
+    id: 'navigation_bar.domain_mutes',
+    defaultMessage: 'Muted domains',
+  },
   domainBlocks: {
     id: 'navigation_bar.domain_blocks',
     defaultMessage: 'Blocked domains',
@@ -57,6 +61,10 @@ export const MoreLink: React.FC = () => {
       { text: intl.formatMessage(messages.favourites), to: '/favourites' },
       { text: intl.formatMessage(messages.mutes), to: '/mutes' },
       { text: intl.formatMessage(messages.blocks), to: '/blocks' },
+      {
+        text: intl.formatMessage(messages.domainMutes),
+        to: '/domain_mutes',
+      },
       {
         text: intl.formatMessage(messages.domainBlocks),
         to: '/domain_blocks',

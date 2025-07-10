@@ -26,6 +26,10 @@ import {
   initDomainBlockModal,
   unblockDomain,
 } from 'flavours/glitch/actions/domain_blocks';
+import {
+  initDomainMuteModal,
+  unmuteDomain,
+} from 'flavours/glitch/actions/domain_mutes';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initReport } from 'flavours/glitch/actions/reports';
@@ -95,6 +99,14 @@ const messages = defineMessages({
   unblockDomain: {
     id: 'account.unblock_domain',
     defaultMessage: 'Unblock domain {domain}',
+  },
+  muteDomain: {
+    id: 'account.block_domain',
+    defaultMessage: 'Mute domain {domain}',
+  },
+  unmuteDomain: {
+    id: 'account.unblock_domain',
+    defaultMessage: 'Unmute domain {domain}',
   },
   hideReblogs: {
     id: 'account.hide_reblogs',
@@ -302,6 +314,28 @@ export const AccountHeader: React.FC<{
     }
 
     dispatch(unblockDomain(domain));
+  }, [dispatch, account]);
+
+  const handleMuteDomain = useCallback(() => {
+    if (!account) {
+      return;
+    }
+
+    dispatch(initDomainMuteModal(account));
+  }, [dispatch, account]);
+
+  const handleUnmuteDomain = useCallback(() => {
+    if (!account) {
+      return;
+    }
+
+    const domain = account.acct.split('@')[1];
+
+    if (!domain) {
+      return;
+    }
+
+    dispatch(unmuteDomain(domain));
   }, [dispatch, account]);
 
   const handleEndorseToggle = useCallback(() => {
@@ -582,6 +616,22 @@ export const AccountHeader: React.FC<{
           dangerous: true,
         });
       }
+      if (relationship?.domain_muting) {
+        arr.push({
+          text: intl.formatMessage(messages.unmuteDomain, {
+            domain: remoteDomain,
+          }),
+          action: handleUnmuteDomain,
+        });
+      } else {
+        arr.push({
+          text: intl.formatMessage(messages.muteDomain, {
+            domain: remoteDomain,
+          }),
+          action: handleMuteDomain,
+          dangerous: true,
+        });
+      }
     }
 
     if (
@@ -627,6 +677,7 @@ export const AccountHeader: React.FC<{
     handleAddToList,
     handleBlock,
     handleBlockDomain,
+    handleMuteDomain,
     handleChangeLanguages,
     handleDirect,
     handleEndorseToggle,
@@ -635,6 +686,7 @@ export const AccountHeader: React.FC<{
     handleReblogToggle,
     handleReport,
     handleUnblockDomain,
+    handleUnmuteDomain,
   ]);
 
   if (!account) {

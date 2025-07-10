@@ -43,6 +43,7 @@ module Account::Interactions
     has_many :muted_by, -> { order(mutes: { id: :desc }) }, through: :muted_by_relationships, source: :account
     has_many :conversation_mutes, dependent: :destroy
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
+    has_many :domain_mutes, class_name: 'AccountDomainMute', dependent: :destroy
     has_many :announcement_mutes, dependent: :destroy
   end
 
@@ -97,6 +98,18 @@ module Account::Interactions
     domain_blocks.find_or_create_by!(domain: other_domain)
   end
 
+  def mute_domain!(other_domain, hide_from_home: nil)
+    hide_from_home = false if hide_from_home.nil?
+
+    domain_mute = domain_mutes.create_with(hide_from_home: hide_from_home).find_or_initialize_by(domain: other_domain)
+    domain_mute.save!
+
+    # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
+    domain_mute.update(hide_from_home: hide_from_home) if domain_mute.hide_from_home? != hide_from_home
+
+    domain_mute.save!
+  end
+
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
     follow&.destroy
@@ -122,6 +135,11 @@ module Account::Interactions
     block&.destroy
   end
 
+  def unmute_domain!(other_domain)
+    mute = domain_mutes.find_by(domain: other_domain)
+    mute&.destroy
+  end
+
   def following?(other_account)
     active_relationships.exists?(target_account: other_account)
   end
@@ -144,6 +162,10 @@ module Account::Interactions
 
   def domain_blocking?(other_domain)
     domain_blocks.exists?(domain: other_domain)
+  end
+
+  def domain_muting?(other_domain)
+    domain_mute.exists?(domain: other_domain)
   end
 
   def muting?(other_account)

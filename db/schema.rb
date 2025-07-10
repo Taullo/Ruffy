@@ -50,6 +50,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_27_132728) do
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
   end
 
+  create_table "account_domain_mutes", force: :cascade do |t|
+    t.string "domain"
+    t.bigint "account_id"
+    t.boolean "hide_from_home", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "domain"], name: "index_account_domain_mutes_on_account_id_and_domain", unique: true
+  end
+
   create_table "account_migrations", force: :cascade do |t|
     t.bigint "account_id"
     t.string "acct", default: "", null: false
@@ -1108,8 +1117,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_27_132728) do
     t.bigint "status_id", null: false
     t.string "name", default: "", null: false
     t.bigint "custom_emoji_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["account_id", "status_id", "name"], name: "index_status_reactions_on_account_id_and_status_id", unique: true
     t.index ["custom_emoji_id"], name: "index_status_reactions_on_custom_emoji_id"
     t.index ["status_id"], name: "index_status_reactions_on_status_id"

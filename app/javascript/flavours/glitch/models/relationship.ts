@@ -10,6 +10,7 @@ const RelationshipFactory = Record<RelationshipShape>({
   blocked_by: false,
   blocking: false,
   domain_blocking: false,
+  domain_muting: false,
   endorsed: false,
   followed_by: false,
   following: false,

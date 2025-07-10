@@ -30,6 +30,10 @@ import {
   blockDomainSuccess,
   unblockDomainSuccess,
 } from '../actions/domain_blocks_typed';
+import {
+  muteDomainSuccess,
+  unmuteDomainSuccess,
+} from '../actions/domain_mutes_typed';
 import { notificationsUpdate } from '../actions/notifications_typed';
 
 const initialState = ImmutableMap<string, Relationship>();
@@ -59,6 +63,18 @@ const setDomainBlocking = (
   return state.withMutations((map) => {
     accounts.forEach((id) => {
       map.setIn([id, 'domain_blocking'], blocking);
+    });
+  });
+};
+
+const setDomainMuting = (
+  state: State,
+  accounts: Account[],
+  blocking: boolean,
+) => {
+  return state.withMutations((map) => {
+    accounts.forEach((id) => {
+      map.setIn([id, 'domain_muting'], blocking);
     });
   });
 };
@@ -120,5 +136,9 @@ export const relationshipsReducer: Reducer<State> = (
     return setDomainBlocking(state, action.payload.accounts, true);
   else if (unblockDomainSuccess.match(action))
     return setDomainBlocking(state, action.payload.accounts, false);
+  else if (muteDomainSuccess.match(action))
+    return setDomainMuting(state, action.payload.accounts, true);
+  else if (unmuteDomainSuccess.match(action))
+    return setDomainMuting(state, action.payload.accounts, false);
   else return state;
 };

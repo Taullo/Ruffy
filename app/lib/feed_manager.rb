@@ -520,6 +520,7 @@ class FeedManager
       should_filter   = crutches[:hiding_reblogs][status.account_id]                                                             # if the reblogger's reblogs are suppressed
       should_filter ||= crutches[:blocked_by][status.reblog.account_id]                                                          # or if the author of the reblogged status is blocking me
       should_filter ||= crutches[:domain_blocking][status.reblog.account.domain]                                                 # or the author's domain is blocked
+      should_filter ||= crutches[:domain_muting_home][status.reblog.account.domain]                                              # or the author's domain is muted from home
     else
       should_filter = false
     end
@@ -705,6 +706,7 @@ class FeedManager
     crutches[:muting]               = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:domain_blocking]      = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
     crutches[:blocked_by]           = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
+    crutches[:domain_muting_home] = AccountDomainMute.where(hide_from_home: true, account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
     crutches[:exclusive_list_users] = crutches_exclusive_list_users(receiver_id, statuses) if list.blank?
 
     crutches

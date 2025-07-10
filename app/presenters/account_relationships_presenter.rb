@@ -2,7 +2,7 @@
 
 class AccountRelationshipsPresenter
   attr_reader :following, :followed_by, :blocking, :blocked_by,
-              :muting, :requested, :requested_by, :domain_blocking,
+              :muting, :requested, :requested_by, :domain_blocking, :domain_muting,
               :endorsed, :account_note
 
   def initialize(accounts, current_account_id, **options)
@@ -19,6 +19,7 @@ class AccountRelationshipsPresenter
     @requested_by    = cached[:requested_by].merge(Account.requested_by_map(@uncached_account_ids, @current_account_id))
     @endorsed        = cached[:endorsed].merge(Account.endorsed_map(@uncached_account_ids, @current_account_id))
     @account_note    = cached[:account_note].merge(Account.account_note_map(@uncached_account_ids, @current_account_id))
+    @domain_muting   = cached[:domain_muting].merge(Account.domain_muting_map(@uncached_account_ids, @current_account_id))
 
     @domain_blocking = domain_blocking_map
 
@@ -32,6 +33,7 @@ class AccountRelationshipsPresenter
     @requested.merge!(options[:requested_map] || {})
     @requested_by.merge!(options[:requested_by_map] || {})
     @domain_blocking.merge!(options[:domain_blocking_map] || {})
+    @domain_muting.merge!(options[:domain_muting_map] || {})
     @endorsed.merge!(options[:endorsed_map] || {})
     @account_note.merge!(options[:account_note_map] || {})
   end
@@ -74,6 +76,7 @@ class AccountRelationshipsPresenter
       muting: {},
       requested: {},
       requested_by: {},
+      domain_muting: {},
       endorsed: {},
       account_note: {},
     }
@@ -99,6 +102,7 @@ class AccountRelationshipsPresenter
         muting: { account_id => muting[account_id] },
         requested: { account_id => requested[account_id] },
         requested_by: { account_id => requested_by[account_id] },
+        domain_muting: { account_id => domain_muting[account_id] },
         endorsed: { account_id => endorsed[account_id] },
         account_note: { account_id => account_note[account_id] },
       }

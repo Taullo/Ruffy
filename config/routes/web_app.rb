@@ -11,6 +11,7 @@
   /deck/(*any)
   /directory
   /domain_blocks
+  /domain_mutes
   /explore/(*any)
   /favourites
   /follow_requests

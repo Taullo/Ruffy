@@ -3,6 +3,7 @@ export interface ApiRelationshipJSON {
   blocked_by: boolean;
   blocking: boolean;
   domain_blocking: boolean;
+  domain_muting: boolean;
   endorsed: boolean;
   followed_by: boolean;
   following: boolean;

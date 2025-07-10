@@ -82,6 +82,16 @@ module Account::Mappings
       )
     end
 
+    def domain_muting_map(target_account_ids, account_id)
+      accounts_map  = Account.where(id: target_account_ids).select('id, domain').each_with_object({}) { |a, h| h[a.id] = a.domain }
+      muted_domains = domain_muting_map_by_domain(accounts_map.values.compact, account_id)
+      accounts_map.reduce({}) { |h, (id, domain)| h.merge(id => muted_domains[domain]) }
+    end
+
+    def domain_muting_map_by_domain(target_domains, account_id)
+      follow_mapping(AccountDomainMute.where(account_id: account_id, domain: target_domains), :domain)
+    end
+
     private
 
     def build_mapping(query, field)
@@ -103,6 +113,7 @@ module Account::Mappings
       blocking: Account.blocking_map(account_ids, id),
       muting: Account.muting_map(account_ids, id),
       domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, id),
+      domain_muting_by_domain: Account.domain_muting_map_by_domain(domains, id),
     })
   end
 end

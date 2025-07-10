@@ -21,7 +21,7 @@ Metrics/BlockNesting:
 
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/CyclomaticComplexity:
-  Max: 25
+  Max: 27
 
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/PerceivedComplexity:

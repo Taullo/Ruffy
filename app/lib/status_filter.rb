@@ -33,6 +33,10 @@ class StatusFilter
     @preloaded_relations[:domain_blocking_by_domain] ? @preloaded_relations[:domain_blocking_by_domain][status.account_domain] : account.domain_blocking?(status.account_domain)
   end
 
+  def muting_domain?
+    @preloaded_relations[:domain_muting_by_domain] ? @preloaded_relations[:domain_muting_by_domain][status.account_domain] : account.domain_muting?(status.account_domain)
+  end
+
   def muting_account?
     @preloaded_relations[:muting] ? @preloaded_relations[:muting][status.account_id] : account.muting?(status.account_id)
   end
