@@ -12,6 +12,7 @@ import { length } from 'stringz';
 
 import { missingAltTextModal } from 'flavours/glitch/initial_state';
 
+import AutosuggestHashtagarea from '../../../components/autosuggest_hashtagarea';
 import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
 import AutosuggestTextarea from 'flavours/glitch/components/autosuggest_textarea';
 import { Button } from 'flavours/glitch/components/button';
@@ -40,6 +41,7 @@ const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u20
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
+  hashtag_placeholder: { id: 'compose_form.hashtag_placeholder', defaultMessage: 'Add #hashtags to your post' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning (optional)' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
@@ -50,6 +52,7 @@ class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired,
+    hashtags: PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
     spoilerAlwaysOn: PropTypes.bool,
@@ -69,6 +72,7 @@ class ComposeForm extends ImmutablePureComponent {
     onClearSuggestions: PropTypes.func.isRequired,
     onFetchSuggestions: PropTypes.func.isRequired,
     onSuggestionSelected: PropTypes.func.isRequired,
+    onChangeHashtags: PropTypes.func,
     onChangeSpoilerText: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
@@ -111,7 +115,11 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   getFulltextForCharacterCounting = () => {
-    return [this.props.spoiler? this.props.spoilerText: '', countableText(this.props.text)].join('');
+    return [
+      this.props.spoiler? this.props.spoilerText: '',
+      countableText(this.props.text),
+      countableText(this.props.hashtags)
+    ].join('');
   };
 
   canSubmit = () => {
@@ -157,8 +165,16 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onSuggestionSelected(tokenStart, token, value, ['text']);
   };
 
+  onHashtagSuggestionSelected = (tokenStart, token, value) => {
+    this.props.onSuggestionSelected(tokenStart, token, value, ['hashtags']);
+  };
+
   onSpoilerSuggestionSelected = (tokenStart, token, value) => {
     this.props.onSuggestionSelected(tokenStart, token, value, ['spoiler_text']);
+  };
+  
+  handleChangeHashtags = (e) => {
+    this.props.onChangeHashtags(e.target.value);
   };
 
   handleChangeSpoilerText = (e) => {
@@ -229,6 +245,10 @@ class ComposeForm extends ImmutablePureComponent {
   setSpoilerText = (c) => {
     this.spoilerText = c;
   };
+  
+  setHashtags = (c) => {
+    this.hashtags = c;
+  };
 
   setRef = c => {
     this.composeForm = c;
@@ -243,7 +263,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, onPaste, autoFocus, withoutNavigation, maxChars, isSubmitting } = this.props;
+    const { intl, onPaste, autoFocus, withoutNavigation, maxChars, isSubmitting, isInReply } = this.props;
     const { highlighted } = this.state;
 
     return (
@@ -298,6 +318,26 @@ class ComposeForm extends ImmutablePureComponent {
               autoFocus={autoFocus}
               lang={this.props.lang}
             />
+            
+        {(!isInReply || (replyingTo === account)) && (
+          <AutosuggestHashtagarea
+            ref={this.setHashtags}
+            placeholder={intl.formatMessage(messages.hashtag_placeholder)}
+            disabled={isSubmitting}
+            value={this.props.hashtags}
+            onChange={this.handleChangeHashtags}
+            onKeyDown={this.handleKeyDown}
+            suggestions={this.props.suggestions}
+            onFocus={this.handleFocus}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onHashtagSuggestionSelected}
+            onPaste={onPaste}
+            autoFocus={false}
+            lang={this.props.lang}
+          />
+        )}
+            
           </div>
 
           <UploadForm />

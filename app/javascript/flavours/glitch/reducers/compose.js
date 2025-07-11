@@ -33,6 +33,7 @@ import {
   COMPOSE_ADVANCED_OPTIONS_CHANGE,
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
+  COMPOSE_HASHTAGS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
@@ -71,6 +72,7 @@ const initialState = ImmutableMap({
   sensitive: false,
   spoiler: false,
   spoiler_text: '',
+  hashtags: '',
   privacy: null,
   id: null,
   content_type: defaultContentType || 'text/plain',
@@ -161,6 +163,7 @@ function clearAll(state) {
   return state.withMutations(map => {
     map.set('id', null);
     map.set('text', '');
+    map.set('hashtags', '');
     if (defaultContentType) map.set('content_type', defaultContentType);
     map.set('spoiler', false);
     map.set('spoiler_text', '');
@@ -452,6 +455,10 @@ export const composeReducer = (state = initialState, action) => {
         map.set('sensitive', !state.get('spoiler'));
       }
     });
+  case COMPOSE_HASHTAGS_CHANGE:
+    return state
+      .set('hashtags', action.text)
+      .set('idempotencyKey', uuid());
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state
       .set('spoiler_text', action.text)
@@ -513,6 +520,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('in_reply_to', null);
       if (defaultContentType) map.set('content_type', defaultContentType);
       map.set('text', '');
+      map.set('hashtags', '');
       map.set('spoiler', false);
       map.set('spoiler_text', '');
       map.set('privacy', state.get('default_privacy'));
@@ -615,7 +623,17 @@ export const composeReducer = (state = initialState, action) => {
     let text = action.raw_text || unescapeHTML(expandMentions(action.status));
     if (do_not_federate) text = text.replace(/ ?👁\ufe0f?\u200b?$/, '');
     return state.withMutations(map => {
-      map.set('text', text);
+      const lastLine = text.trim().split('\n').pop().trim();
+      const hashtagsPresent = lastLine.split(/\s+/).every(word => word.startsWith('#'));
+      if (!hashtagsPresent) {
+        map.set('text', text);
+        map.set('hashtags', '');
+      } else {
+        const postLines = text.trim().split('\n');
+        postLines.pop();
+        map.set('text', postLines.join('\n').trimEnd());
+        map.set('hashtags', lastLine);
+      }
       map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
@@ -655,7 +673,17 @@ export const composeReducer = (state = initialState, action) => {
   case COMPOSE_SET_STATUS:
     return state.withMutations(map => {
       map.set('id', action.status.get('id'));
-      map.set('text', action.text);
+      const lastLine = action.text.trim().split('\n').pop().trim();
+      const hashtagsPresent = lastLine.split(/\s+/).every(word => word.startsWith('#'));
+      if (!hashtagsPresent) {
+        map.set('text', action.text);
+        map.set('hashtags', '');
+      } else {
+        const postLines = action.text.trim().split('\n');
+        postLines.pop();
+        map.set('text', postLines.join('\n').trimEnd());
+        map.set('hashtags', lastLine);
+      }
       map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
