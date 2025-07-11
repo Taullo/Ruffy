@@ -6,7 +6,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
              :max_feed_hashtags, :poll_limits,
-             :languages, :max_reactions
+             :languages, :max_reactions, :features
 
   attribute :critical_updates_pending, if: -> { object&.role&.can?(:view_devops) && SoftwareUpdate.check_enabled? }
 
@@ -105,6 +105,10 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def languages
     LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, value[0], value[1]] }
+  end
+
+  def features
+    Mastodon::Feature.enabled_features
   end
 
   private

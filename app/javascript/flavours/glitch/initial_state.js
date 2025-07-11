@@ -1,6 +1,5 @@
 // @ts-check
 
-
 /**
  * @typedef {[code: string, name: string, localName: string]} InitialStateLanguage
  */
@@ -75,6 +74,7 @@
  * @property {number} max_feed_hashtags
  * @property {number} poll_limits
  * @property {number} max_reactions
+ * @property {string[]} features
  */
 
 const element = document.getElementById('initial-state');
@@ -165,6 +165,14 @@ export const useSystemEmojiFont = getMeta('system_emoji_font');
  */
 export function getAccessToken() {
   return getMeta('access_token');
+}
+
+/**
+ * @param {string} feature
+ * @returns {boolean}
+ */
+export function isFeatureEnabled(feature) {
+  return initialState?.features?.includes(feature) || false;
 }
 
 export default initialState;
