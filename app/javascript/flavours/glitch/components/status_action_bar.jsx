@@ -32,7 +32,6 @@ import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dro
 import { me, maxReactions } from '../initial_state';
 
 import { IconButton } from './icon_button';
-import { RelativeTimestamp } from './relative_timestamp';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -374,11 +373,6 @@ class StatusActionBar extends ImmutablePureComponent {
             ariaLabel={intl.formatMessage(messages.more)}
           />
         </div>
-
-        <div className='status__action-bar-spacer' />
-        <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
-          <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
-        </a>
       </div>
     );
   }

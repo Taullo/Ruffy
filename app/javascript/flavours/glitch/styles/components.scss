@@ -1780,6 +1780,7 @@ body > [data-popper-placement] {
   align-items: center;
   gap: 18px;
   margin-top: 8px;
+  justify-content: space-between;
 
   &-spacer {
     flex-grow: 1;
@@ -8909,7 +8910,6 @@ noscript {
     }
 
     &__relative-time {
-      font-size: 15px;
       color: $darker-text-color;
       padding-inline-start: 15px;
     }

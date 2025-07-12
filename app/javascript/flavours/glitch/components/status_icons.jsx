@@ -1,6 +1,7 @@
 //  Package imports.
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
@@ -11,6 +12,7 @@ import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import { Icon } from 'flavours/glitch/components/icon';
 import { MediaIcon } from 'flavours/glitch/components/media_icon';
 import { languages } from 'flavours/glitch/initial_state';
+import { RelativeTimestamp } from './relative_timestamp';
 
 import { VisibilityIcon } from './visibility_icon';
 
@@ -53,9 +55,11 @@ class StatusIcons extends PureComponent {
       intl,
     } = this.props;
 
+    const intlang = intl.locale.replace(/[_-].*/, '');
+
     return (
       <div className='status__info__icons'>
-        {settings.get('language') && status.get('language') && <LanguageIcon language={status.get('language')} />}
+        {settings.get('language') && status.get('language') && intlang != status.get('language') ? <LanguageIcon language={status.get('language')}/> : ''}
         {settings.get('reply') && status.get('in_reply_to_id', null) !== null ? (
           <Icon
             className='status__reply-icon'
@@ -72,6 +76,9 @@ class StatusIcons extends PureComponent {
           />}
         {settings.get('media') && !!mediaIcons && mediaIcons.map(icon => (<MediaIcon key={`media-icon--${icon}`} className='status__media-icon' icon={icon} />))}
         {settings.get('visibility') && <VisibilityIcon visibility={status.get('visibility')} />}
+        <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} className='status__relative-time'>
+          <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
+        </Link>
       </div>
     );
   }
