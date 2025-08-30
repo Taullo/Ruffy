@@ -123,6 +123,7 @@ const mapStateToProps = state => ({
   firstLaunch: false, // TODO: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
   username: state.getIn(['accounts', me, 'username']),
   site_accent_color: state.getIn(['server', 'server', 'accent_color']),
+  cw_style: state.getIn(['local_settings', 'cw_style']),
 });
 
 const keyMap = {
@@ -308,6 +309,7 @@ class UI extends PureComponent {
     lowContrast: PropTypes.bool,
     accent: PropTypes.string,
     site_accent_color: PropTypes.string,
+    cw_style: PropTypes.string,
     isWide: PropTypes.bool,
     fullWidthColumns: PropTypes.bool,
     systemFontUi: PropTypes.bool,
@@ -527,6 +529,24 @@ class UI extends PureComponent {
   handleFontSize() {
     document.documentElement.style.fontSize = this.props.font_size + "px";
   }
+  
+  handleCWStyle() {
+    if (this.props.cw_style === 'blurred') {
+      document.body.classList.toggle('cw_redacted', false);
+      document.body.classList.toggle('cw_blurred', true);
+      document.body.classList.toggle('cw_hidden', false);
+    }
+    else if (this.props.cw_style === 'hidden') {
+      document.body.classList.toggle('cw_redacted', false);
+      document.body.classList.toggle('cw_blurred', false);
+      document.body.classList.toggle('cw_hidden', true);
+    }
+    else {
+      document.body.classList.toggle('cw_redacted', true);
+      document.body.classList.toggle('cw_blurred', false);
+      document.body.classList.toggle('cw_hidden', false);
+    }
+  }
 
   componentDidMount () {
     const { signedIn } = this.props.identity;
@@ -551,6 +571,7 @@ class UI extends PureComponent {
     this.handlePostStyle();
     this.handlePostSmoosh();
     this.handleAccent();
+    this.handleCWStyle();
 
     if (signedIn) {
       this.props.dispatch(fetchMarkers());
@@ -642,6 +663,15 @@ class UI extends PureComponent {
       setTimeout( // FIXME: Hack to wait for setting to save
         function() {
           this.handlePostSmoosh();
+        }
+          .bind(this),
+        100
+      );
+    }
+    if (nextProps.cw_style !== this.props.cw_style) {
+      setTimeout( // FIXME: Hack to wait for setting to save
+        function() {
+          this.handleCWStyle();
         }
           .bind(this),
         100

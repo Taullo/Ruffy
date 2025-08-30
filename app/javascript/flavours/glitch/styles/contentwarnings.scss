@@ -1,0 +1,29 @@
+.cw_redacted .status__content__hidden {
+  user-select: none;
+
+  .status__content {
+    font-size: 18pt;
+    line-height: 11px;
+  }
+}
+
+.cw_blurred .status__content__hidden {
+  color: transparent;
+  text-shadow: 0 0 10px white;
+}
+
+.cw_blurred .status__content__hidden .status__content {
+  overflow: visible;
+  color: transparent;
+}
+
+.cw_hidden .status__content__hidden {
+  display: none;
+}
+
+@media (prefers-contrast: less) {
+  .cw_redacted .status__content__hidden {
+    opacity: 0.4;
+    text-shadow: 0 0 3px white;
+  }
+}

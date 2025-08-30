@@ -32,6 +32,7 @@ import { MentionsPlaceholder } from './mentions_placeholder';
 import { Permalink } from './permalink';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
+import StatusContentRedacted from './status_content_redacted';
 import StatusIcons from './status_icons';
 import StatusPrepend from './status_prepend';
 import { StatusReactions } from './status_reactions';
@@ -479,6 +480,7 @@ class Status extends ImmutablePureComponent {
 
     const isExpanded = settings.getIn(['content_warnings', 'shared_state']) ? !status.get('hidden') : this.state.isExpanded;
     const expanded = isExpanded || status.get('spoiler_text').length === 0;
+    const spoilered = status.get('spoiler_text').length > 0;
 
     const handlers = {
       reply: this.handleHotkeyReply,
@@ -730,8 +732,8 @@ class Status extends ImmutablePureComponent {
 
             {status.get('spoiler_text').length > 0 && <ContentWarning text={status.getIn(['translation', 'spoilerHtml']) || status.get('spoilerHtml')} expanded={expanded} onClick={this.handleExpandedToggle} icons={mediaIcons} />}
 
-            {expanded && (
-              <>
+            {(expanded || settings.getIn(['cw_style']) === 'blurred') && (
+              <div className={(!expanded && spoilered) ? 'status__content__hidden' : 'status__content__visible'}>
                 <StatusContent
                   status={status}
                   onClick={this.handleClick}
@@ -748,10 +750,25 @@ class Status extends ImmutablePureComponent {
                 {hashtagBar}
 
                 {children}
-              </>
+              </div>
             )}
 
             {/* This is a glitch-soc addition to have a placeholder */}
+            {(!expanded && settings.getIn(['cw_style']) == 'redacted') && (
+              <div className='status__content__hidden' aria-hidden='true'>
+                <StatusContentRedacted
+                  status={status}
+                  onClick={this.handleClick}
+                  onTranslate={this.handleTranslate}
+                  collapsible
+                  media={media}
+                  onCollapsedToggle={this.handleCollapsedToggle}
+                  tagLinks={settings.get('tag_misleading_links')}
+                  rewriteMentions={settings.get('rewrite_mentions')}
+                  {...statusContentProps}
+                />
+              </div>
+            )}
             {!expanded && <MentionsPlaceholder status={status} />}
 
             <StatusReactions
@@ -781,3 +798,4 @@ class Status extends ImmutablePureComponent {
 }
 
 export default withOptionalRouter(injectIntl((withIdentity(Status))));
+
