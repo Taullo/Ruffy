@@ -337,6 +337,7 @@ class ComposeForm extends ImmutablePureComponent {
               </div>
             </div>
           </div>
+        </div>
       </form>
     );
   }
