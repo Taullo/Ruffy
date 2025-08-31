@@ -324,70 +324,6 @@ class ComposeForm extends ImmutablePureComponent {
               </div>
             )}
 
-            <AutosuggestTextarea
-              ref={this.textareaRef}
-              placeholder={intl.formatMessage(messages.placeholder)}
-              disabled={isSubmitting}
-              value={this.props.text}
-              onChange={this.handleChange}
-              suggestions={this.props.suggestions}
-              onFocus={this.handleFocus}
-              onKeyDown={this.handleKeyDown}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              onSuggestionSelected={this.onSuggestionSelected}
-              onPaste={onPaste}
-              autoFocus={autoFocus}
-              lang={this.props.lang}
-            />
-            
-        {(!isInReply || (replyingTo === account)) && (
-          <AutosuggestHashtagarea
-            ref={this.setHashtags}
-            placeholder={intl.formatMessage(messages.hashtag_placeholder)}
-            disabled={isSubmitting}
-            value={this.props.hashtags}
-            onChange={this.handleChangeHashtags}
-            onKeyDown={this.handleKeyDown}
-            suggestions={this.props.suggestions}
-            onFocus={this.handleFocus}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            onSuggestionSelected={this.onHashtagSuggestionSelected}
-            onPaste={onPaste}
-            autoFocus={false}
-            lang={this.props.lang}
-          />
-        )}
-
-          </div>
-
-          {this.props.spoiler && (
-            <div className='spoiler-input'>
-              <div className='spoiler-input__border' />
-
-              <AutosuggestInput
-                placeholder={intl.formatMessage(messages.spoiler_placeholder)}
-                value={this.props.spoilerText}
-                disabled={isSubmitting}
-                onChange={this.handleChangeSpoilerText}
-                onKeyDown={this.handleKeyDownSpoiler}
-                ref={this.setSpoilerText}
-                suggestions={this.props.suggestions}
-                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                onSuggestionSelected={this.onSpoilerSuggestionSelected}
-                searchTokens={[':']}
-                id='cw-spoiler-input'
-                className='spoiler-input__input'
-                lang={this.props.lang}
-                spellCheck
-              />
-
-              <div className='spoiler-input__border' />
-            </div>
-          )}
-
           <AutosuggestTextarea
             ref={this.textareaRef}
             placeholder={intl.formatMessage(messages.placeholder)}
@@ -401,10 +337,29 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             onPaste={onPaste}
-            autoFocus={autoFocus}
+            autoFocus={false}
             lang={this.props.lang}
             className='compose-form__input'
           />
+            
+          {(!isInReply || (replyingTo === account)) && (
+            <AutosuggestHashtagarea
+              ref={this.setHashtags}
+              placeholder={intl.formatMessage(messages.hashtag_placeholder)}
+              disabled={isSubmitting}
+              value={this.props.hashtags}
+              onChange={this.handleChangeHashtags}
+              onKeyDown={this.handleKeyDown}
+              suggestions={this.props.suggestions}
+              onFocus={this.handleFocus}
+              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+              onSuggestionSelected={this.onHashtagSuggestionSelected}
+              onPaste={onPaste}
+              autoFocus={false}
+              lang={this.props.lang}
+            />
+         )}
 
           <UploadForm />
           <PollForm />
