@@ -48,7 +48,11 @@ class FetchLinkCardService < BaseService
     headers = {
       'Accept' => 'text/html',
       'Accept-Language' => "#{I18n.default_locale}, *;q=0.5",
-      'User-Agent' => "#{Mastodon::Version.user_agent} Bot",
+      'User-Agent' => if @url.match?(/\b(youtube\.com|youtu\.be)\b/)
+                        "Mozilla/5.0 (#{HTTP::Request::USER_AGENT}, like Discordbot; +http#{'s' if Rails.configuration.x.use_https}://#{Rails.configuration.x.web_domain}/)"
+                      else
+                        "#{Mastodon::Version.user_agent} Bot"
+                      end,
     }
 
     @html = Request.new(:get, @url).add_headers(headers).perform do |res|

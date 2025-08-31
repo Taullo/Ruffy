@@ -45,16 +45,10 @@ class Status < ApplicationRecord
   include Status::SnapshotConcern
   include Status::ThreadingConcern
   include Status::Visibility
+  include Status::InteractionPolicyConcern
 
   MEDIA_ATTACHMENTS_LIMIT = (ENV['MAX_MEDIA_ATTACHMENTS'] || 20).to_i
   REMOTE_MEDIA_ATTACHMENTS_LIMIT = (ENV['MAX_REMOTE_MEDIA_ATTACHMENTS'] || 20).to_i
-
-  QUOTE_APPROVAL_POLICY_FLAGS = {
-    unknown: (1 << 0),
-    public: (1 << 1),
-    followers: (1 << 2),
-    followed: (1 << 3),
-  }.freeze
 
   rate_limit by: :account, family: :statuses
 
@@ -88,6 +82,7 @@ class Status < ApplicationRecord
   has_many :mentioned_accounts, through: :mentions, source: :account, class_name: 'Account'
   has_many :media_attachments, dependent: :nullify
   has_many :status_reactions, inverse_of: :status, dependent: :destroy
+  has_many :quotes, foreign_key: 'quoted_status_id', inverse_of: :quoted_status, dependent: :nullify
 
   # The `dependent` option is enabled by the initial `mentions` association declaration
   has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status # rubocop:disable Rails/HasManyOrHasOneDependent
@@ -345,6 +340,10 @@ class Status < ApplicationRecord
 
   def reactions_count
     status_stat&.reactions_count || 0
+  end
+
+  def quotes_count
+    status_stat&.quotes_count || 0
   end
 
   # Reblogs count received from an external instance

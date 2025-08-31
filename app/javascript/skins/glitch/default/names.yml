@@ -1,0 +1,8 @@
+en:
+  skins:
+    glitch:
+      system: Automatic (use system theme)
+      system-modern: Mastodon Modern (Automatic, use system theme)
+    vanilla:
+      system: Automatic (use system theme)
+      system-modern: Mastodon Modern (Automatic, use system theme)

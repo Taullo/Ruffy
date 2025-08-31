@@ -66,7 +66,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def url
-    ActivityPub::TagManager.instance.url_for(object)
+    ActivityPub::TagManager.instance.url_for(object) || ActivityPub::TagManager.instance.uri_for(object)
   end
 
   def uri
@@ -172,6 +172,22 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def remote_limit_reason?
-    object.silenced? && object.pretty_acct != object.username
+    object.silenced? && object.pretty_acct != object.username && show_rationale_in_response?
+  end
+
+  def current_user?
+    !current_user.nil?
+  end
+
+  def show_rationale_in_response?
+    always_show_rationale? || show_rationale_for_user?
+  end
+
+  def always_show_rationale?
+    Setting.show_domain_blocks_rationale == 'all'
+  end
+
+  def show_rationale_for_user?
+    Setting.show_domain_blocks_rationale == 'users' && current_user? && current_user.functional_or_moved?
   end
 end

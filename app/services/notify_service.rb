@@ -8,6 +8,7 @@ class NotifyService < BaseService
     admin.report
     admin.sign_up
     update
+    quoted_update
     poll
     status
     moderation_warning
@@ -245,7 +246,7 @@ class NotifyService < BaseService
   end
 
   def update_notification_request!
-    return unless @notification.type == :mention
+    return unless %i(mention quote).include?(@notification.type)
 
     notification_request = NotificationRequest.find_or_initialize_by(account_id: @recipient.id, from_account_id: @notification.from_account_id)
     notification_request.last_status_id = @notification.target_status.id

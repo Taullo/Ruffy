@@ -37,6 +37,8 @@ import Status from 'flavours/glitch/components/status';
 import { deleteModal } from 'flavours/glitch/initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from 'flavours/glitch/selectors';
 
+import { setStatusQuotePolicy } from '../actions/statuses_typed';
+
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
   const getPictureInPicture = makeGetPictureInPicture();
@@ -127,6 +129,20 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     } else {
       dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
     }
+  },
+
+  onRevokeQuote (status) {
+    dispatch(openModal({ modalType: 'CONFIRM_REVOKE_QUOTE', modalProps: { statusId: status.get('id'), quotedStatusId: status.getIn(['quote', 'quoted_status']) }}));
+  },
+
+  onQuotePolicyChange(status) {
+    const statusId = status.get('id');
+    const handleChange = (_, quotePolicy) => {
+      dispatch(
+        setStatusQuotePolicy({ policy: quotePolicy, statusId }),
+      );
+    }
+    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId, onChange: handleChange } }));
   },
 
   onEdit (status) {

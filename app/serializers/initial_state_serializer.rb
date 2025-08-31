@@ -6,7 +6,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
              :max_feed_hashtags, :poll_limits,
-             :languages, :max_reactions, :features
+             :languages, :features, :max_reactions
 
   attribute :critical_updates_pending, if: -> { object&.role&.can?(:view_devops) && SoftwareUpdate.check_enabled? }
 
@@ -30,7 +30,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     }
   end
 
-  def meta # rubocop:disable Metrics/AbcSize
+  def meta
     store = default_meta_store
 
     if object_account
@@ -52,6 +52,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:system_emoji_font] = object_account_user.setting_system_emoji_font
       store[:show_trends]       = Setting.trends && object_account_user.setting_trends
       store[:visible_reactions] = object_account_user.setting_visible_reactions
+      store[:emoji_style]       = object_account_user.settings['web.emoji_style'] if Mastodon::Feature.modern_emojis_enabled?
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
@@ -75,6 +76,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_privacy]   = object.visibility || object_account_user.setting_default_privacy
       store[:default_sensitive] = object_account_user.setting_default_sensitive
       store[:default_language]  = object_account_user.preferred_posting_language
+      store[:default_quote_policy] = object_account_user.setting_default_quote_policy
     end
 
     store[:text] = object.text if object.text

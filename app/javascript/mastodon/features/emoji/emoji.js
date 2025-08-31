@@ -97,9 +97,9 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      const isSystemTheme = !!document.body?.classList.contains('theme-system');
+      const isSystemTheme = !!document.body?.classList.contains('theme-system') || !!document.body?.classList.contains('theme-system-modern');
 
-      const theme = (isSystemTheme || document.body?.classList.contains('theme-mastodon-light')) ? 'light' : 'dark';
+      const theme = (isSystemTheme || (document.body?.classList.contains('theme-mastodon-light') || document.body?.classList.contains('theme-modern-light'))) ? 'light' : 'dark';
 
       const imageFilename = emojiFilename(filename, theme);
 

@@ -10,15 +10,13 @@ import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-import { HotKeys } from 'react-hotkeys';
-
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
 import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
 import { openModal } from 'mastodon/actions/modal';
 import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'mastodon/actions/statuses';
+import { Hotkeys } from 'mastodon/components/hotkeys';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -47,7 +45,7 @@ const getAccounts = createSelector(
 
 const getStatus = makeGetStatus();
 
-export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) => {
+export const Conversation = ({ conversation, scrollKey }) => {
   const id = conversation.get('id');
   const unread = conversation.get('unread');
   const lastStatusId = conversation.get('last_status');
@@ -112,14 +110,6 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
     dispatch(deleteConversation(id));
   }, [dispatch, id]);
 
-  const handleHotkeyMoveUp = useCallback(() => {
-    onMoveUp(id);
-  }, [id, onMoveUp]);
-
-  const handleHotkeyMoveDown = useCallback(() => {
-    onMoveDown(id);
-  }, [id, onMoveDown]);
-
   const handleConversationMute = useCallback(() => {
     if (lastStatus.get('muted')) {
       dispatch(unmuteStatus(lastStatus.get('id')));
@@ -163,13 +153,11 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   const handlers = {
     reply: handleReply,
     open: handleClick,
-    moveUp: handleHotkeyMoveUp,
-    moveDown: handleHotkeyMoveDown,
     toggleHidden: handleShowMore,
   };
 
   return (
-    <HotKeys handlers={handlers}>
+    <Hotkeys handlers={handlers}>
       <div className={classNames('conversation focusable muted', { unread })} tabIndex={0}>
         <div className='conversation__avatar' onClick={handleClick} role='presentation'>
           <AvatarComposite accounts={accounts} size={48} />
@@ -219,13 +207,11 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
           </div>
         </div>
       </div>
-    </HotKeys>
+    </Hotkeys>
   );
 };
 
 Conversation.propTypes = {
   conversation: ImmutablePropTypes.map.isRequired,
   scrollKey: PropTypes.string,
-  onMoveUp: PropTypes.func,
-  onMoveDown: PropTypes.func,
 };
