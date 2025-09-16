@@ -223,6 +223,7 @@ kab:
       title: Imujiten udmawanen
       uncategorized: War-taggayt
       unlist: Kkes seg wumuɣ
+      unlisted: Yettwakkes seg wumuɣ
       update_failed_msg: Ur izmir ara ad-issali umuji-a
       upload: Sali
     dashboard:
@@ -883,10 +884,7 @@ kab:
     edited_at_html: Tettwaẓreg ass n %{date}
     title: '%{name} : "%{quote}"'
     visibilities:
-      private: Imeḍfaṛen kan
-      private_long: Ssken i ymeḍfaṛen kan
       public: Azayez
-      unlisted: War tabdert
   statuses_cleanup:
     enabled: Tukksa n tsuffaɣ tiqburin s wudem awurman
     min_age:

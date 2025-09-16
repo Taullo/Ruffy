@@ -242,11 +242,10 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     });
   },
 
-  onInteractionModal (type, status) {
+  onInteractionModal (status) {
     dispatch(openModal({
       modalType: 'INTERACTION',
       modalProps: {
-        type,
         accountId: status.getIn(['account', 'id']),
         url: status.get('uri'),
       },

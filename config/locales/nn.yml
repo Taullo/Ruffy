@@ -367,7 +367,7 @@ nn:
       title: Eigne kjensleteikn
       uncategorized: Ukategorisert
       unlist: Uoppfør
-      unlisted: Stille offentleg
+      unlisted: Ikkje oppført
       update_failed_msg: Klarte ikkje å oppdatera emojien
       updated_msg: Kjensleteiknet er oppdatert!
       upload: Last opp
@@ -1739,6 +1739,9 @@ nn:
       self_vote: Du kan ikkje stemme i di eiga avstemming
       too_few_options: må ha meir enn eitt element
       too_many_options: kan ikkje ha meir enn %{max} element
+    vote: Røyst
+  posting_defaults:
+    explanation: Desse innstillingane vil bli brukte som standardval når du skriv nye innlegg, men du kan redigera dei for kvart innlegg når du skriv.
   preferences:
     other: Anna
     posting_defaults: Innleggsstandarder
@@ -1916,10 +1919,9 @@ nn:
     visibilities:
       direct: Privat omtale
       private: Berre fylgjarar
-      private_long: Vis berre til fylgjarar
       public: Offentleg
       public_long: Alle på og utanfor Mastodon
-      unlisted: Ikkje oppført
+      unlisted: Stille offentleg
       unlisted_long: Gøymt frå søkjeresultat, populært og offentleg på Mastodon
   statuses_cleanup:
     enabled: Slett gamle innlegg automatisk
