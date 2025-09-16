@@ -202,9 +202,9 @@ class SwitchingColumnsArea extends PureComponent {
             <Redirect from='/timelines/public' to='/public' exact />
             <Redirect from='/timelines/public/local' to='/public/local' exact />
             <WrappedRoute path='/feeds/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
-            <WrappedRoute path='/feeds/local' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
+            <WrappedRoute path='/feeds/community' exact component={Firehose} componentParams={{ feedType: 'community' }} content={children} />
             <WrappedRoute path='/feeds/neighbors' exact component={Firehose} componentParams={{ feedType: 'bubble' }} content={children} />
-            <WrappedRoute path='/feeds/federated' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
+            <WrappedRoute path='/feeds/global' exact component={Firehose} componentParams={{ feedType: 'public:remote' }} content={children} />
             <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
             <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
             <WrappedRoute path='/links/:url' component={LinkTimeline} content={children} />

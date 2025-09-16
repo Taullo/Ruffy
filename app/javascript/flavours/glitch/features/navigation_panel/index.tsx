@@ -64,9 +64,9 @@ const messages = defineMessages({
   },
   explore: { id: 'explore.title', defaultMessage: 'Trending' },
   firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
-  local: { id: 'firehose.local', defaultMessage: 'Local' },
+  local: { id: 'firehose.local', defaultMessage: 'Community' },
   public: { id: 'firehose.public', defaultMessage: 'Public' },
-  remote: { id: 'firehose.remote', defaultMessage: 'Remote' },
+  remote: { id: 'firehose.remote', defaultMessage: 'Global' },
   bubble: { id: 'firehose.bubble', defaultMessage: 'Neighbors' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
@@ -270,7 +270,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
           <>
             <ColumnLink
               transparent
-              to='/feeds/local'
+              to='/feeds/community'
               icon='groups'
               iconComponent={GroupsIcon}
               text={intl.formatMessage(messages.local)}
@@ -284,7 +284,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             />
             <ColumnLink
               transparent
-              to='/feeds/federated'
+              to='/feeds/global'
               icon='globe'
               iconComponent={PublicIcon}
               text={intl.formatMessage(messages.remote)}

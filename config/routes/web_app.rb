@@ -21,7 +21,8 @@
   /home
   /feeds
   /feeds/home
-  /feeds/federated
+  /feeds/community
+  /feeds/global
   /feeds/public
   /feeds/neighbors
   /keyboard-shortcuts
