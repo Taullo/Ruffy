@@ -23,8 +23,8 @@ import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 
 import { Dropdown } from 'flavours/glitch/components/dropdown_menu';
-import EmojiPickerDropdown from '../features/compose/containers/emoji_picker_dropdown_container';
-import { me, maxReactions } from '../initial_state';
+import EmojiPickerDropdown from '../../features/compose/containers/emoji_picker_dropdown_container';
+import { me, maxReactions } from '../../initial_state';
 
 import { IconButton } from '../icon_button';
 import { RelativeTimestamp } from '../relative_timestamp';
