@@ -123,19 +123,14 @@ export default class ColumnsArea extends ImmutablePureComponent {
     if (singleColumn) {
       return (
         <div className='columns-area__panels'>
-          <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
-            <div className='columns-area__panels__pane__inner'>
-              {renderComposePanel && <ComposePanel />}
-              <RedirectToMobileComposeIfNeeded />
-            </div>
-          </div>
+          
+          <CollapsibleNavigationPanel />
 
           <div className='columns-area__panels__main'>
             <div className='tabs-bar__wrapper'><TabsBarPortal /></div>
             <div className='columns-area columns-area--mobile'>{children}</div>
           </div>
 
-          <CollapsibleNavigationPanel />
         </div>
       );
     }

@@ -5,15 +5,12 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
-import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
-import HomeIcon from '@/material-icons/400-24px/home.svg?react';
-import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
+import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
-import { toggleNavigation } from 'flavours/glitch/actions/navigation';
 import { fetchServer } from 'flavours/glitch/actions/server';
 import { Icon } from 'flavours/glitch/components/icon';
 import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
@@ -24,8 +21,9 @@ import { useAppDispatch, useAppSelector } from 'flavours/glitch/store';
 
 export const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
+  feeds: { id: 'tabs_bar.feeds', defaultMessage: 'Feeds' },
   search: { id: 'tabs_bar.search', defaultMessage: 'Search' },
-  publish: { id: 'tabs_bar.publish', defaultMessage: 'New Post' },
+  publish: { id: 'tabs_bar.publish', defaultMessage: 'Compose' },
   notifications: {
     id: 'tabs_bar.notifications',
     defaultMessage: 'Notifications',
@@ -49,6 +47,7 @@ const IconLabelButton: React.FC<{
       aria-label={title}
     >
       {match && activeIcon ? activeIcon : icon}
+      {title}
     </NavLink>
   );
 };
@@ -152,13 +151,7 @@ const LoginOrSignUp: React.FC = () => {
 
 export const NavigationBar: React.FC = () => {
   const { signedIn } = useIdentity();
-  const dispatch = useAppDispatch();
-  const open = useAppSelector((state) => state.navigation.open);
   const intl = useIntl();
-
-  const handleClick = useCallback(() => {
-    dispatch(toggleNavigation());
-  }, [dispatch]);
 
   return (
     <div className='ui__navigation-bar'>
@@ -169,35 +162,29 @@ export const NavigationBar: React.FC = () => {
           active: signedIn,
         })}
       >
+        <IconLabelButton
+          title={intl.formatMessage(messages.feeds)}
+          to='/feeds'
+          icon={<Icon id='' icon={TagIcon} />}
+        />
+
         {signedIn && (
           <>
-            <IconLabelButton
-              title={intl.formatMessage(messages.home)}
-              to='/home'
-              icon={<Icon id='' icon={HomeIcon} />}
-              activeIcon={<Icon id='' icon={HomeActiveIcon} />}
-            />
             <IconLabelButton
               title={intl.formatMessage(messages.search)}
               to='/explore'
               icon={<Icon id='' icon={SearchIcon} />}
             />
+
+            <NotificationsButton />
+
             <IconLabelButton
               title={intl.formatMessage(messages.publish)}
               to='/publish'
-              icon={<Icon id='' icon={AddIcon} />}
+              icon={<Icon id='' icon={EditIcon} />}
             />
-            <NotificationsButton />
           </>
         )}
-
-        <button
-          className={classNames('ui__navigation-bar__item', { active: open })}
-          onClick={handleClick}
-          aria-label={intl.formatMessage(messages.menu)}
-        >
-          <Icon id='' icon={MenuIcon} />
-        </button>
       </div>
     </div>
   );

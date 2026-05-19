@@ -54,6 +54,10 @@ class SiteUpload < ApplicationRecord
       }.freeze,
     }.freeze,
 
+    wordmark: {}.freeze,
+
+    wordmark_dark: {}.freeze,
+
     mascot: {}.freeze,
   }.freeze
 

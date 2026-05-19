@@ -6,8 +6,14 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import GroupsIcon from '@/material-icons/400-24px/groups-fill.svg?react';
+import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
+import VillageIcon from '@/material-icons/400-24px/village.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchLists } from 'flavours/glitch/actions/lists';
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -16,6 +22,7 @@ import { ColumnHeader } from 'flavours/glitch/components/column_header';
 import { Dropdown } from 'flavours/glitch/components/dropdown_menu';
 import { Icon } from 'flavours/glitch/components/icon';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
+import { ColumnLink } from 'flavours/glitch/features/ui/components/column_link';
 import { getOrderedLists } from 'flavours/glitch/selectors/lists';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
@@ -25,6 +32,12 @@ const messages = defineMessages({
   edit: { id: 'lists.edit', defaultMessage: 'Edit list' },
   delete: { id: 'lists.delete', defaultMessage: 'Delete list' },
   more: { id: 'status.more', defaultMessage: 'More' },
+  home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
+  explore: { id: 'explore.title', defaultMessage: 'Trending' },
+  local: { id: 'firehose.local', defaultMessage: 'Community' },
+  public: { id: 'firehose.public', defaultMessage: 'Public' },
+  remote: { id: 'firehose.remote', defaultMessage: 'Global' },
+  bubble: { id: 'firehose.bubble', defaultMessage: 'Neighbors' },
 });
 
 const ListItem: React.FC<{
@@ -47,7 +60,7 @@ const ListItem: React.FC<{
 
   const menu = useMemo(
     () => [
-      { text: intl.formatMessage(messages.edit), to: `/lists/${id}/edit` },
+      { text: intl.formatMessage(messages.edit), to: `/feeds/${id}/edit` },
       { text: intl.formatMessage(messages.delete), action: handleDeleteClick },
     ],
     [intl, id, handleDeleteClick],
@@ -55,7 +68,7 @@ const ListItem: React.FC<{
 
   return (
     <div className='lists__item'>
-      <Link to={`/lists/${id}`} className='lists__item__title'>
+      <Link to={`/feeds/${id}`} className='lists__item__title'>
         <Icon id='list-ul' icon={ListAltIcon} />
         <span>{title}</span>
       </Link>
@@ -87,12 +100,12 @@ const Lists: React.FC<{
       <span>
         <FormattedMessage
           id='lists.no_lists_yet'
-          defaultMessage='No lists yet.'
+          defaultMessage='No custom feeds yet.'
         />
         <br />
         <FormattedMessage
           id='lists.create_a_list_to_organize'
-          defaultMessage='Create a new list to organize your Home feed'
+          defaultMessage='Create a new feed to organize your Home feed'
         />
       </span>
 
@@ -112,7 +125,7 @@ const Lists: React.FC<{
         multiColumn={multiColumn}
         extraButton={
           <Link
-            to='/lists/new'
+            to='/feeds/new'
             className='column-header__button'
             title={intl.formatMessage(messages.create)}
             aria-label={intl.formatMessage(messages.create)}
@@ -127,6 +140,42 @@ const Lists: React.FC<{
         emptyMessage={emptyMessage}
         bindToDocument={!multiColumn}
       >
+        <ColumnLink
+          transparent
+          to='/feeds/home'
+          icon='home'
+          iconComponent={HomeIcon}
+          activeIconComponent={HomeActiveIcon}
+          text={intl.formatMessage(messages.home)}
+        />
+        <ColumnLink
+          transparent
+          to='/feeds/trending'
+          icon='explore'
+          iconComponent={TrendingUpIcon}
+          text={intl.formatMessage(messages.explore)}
+        />
+        <ColumnLink
+          transparent
+          to='/feeds/community'
+          icon='groups'
+          iconComponent={GroupsIcon}
+          text={intl.formatMessage(messages.local)}
+        />
+        <ColumnLink
+          transparent
+          to='/feeds/neighbors'
+          icon='village'
+          iconComponent={VillageIcon}
+          text={intl.formatMessage(messages.bubble)}
+        />
+        <ColumnLink
+          transparent
+          to='/feeds/global'
+          icon='globe'
+          iconComponent={PublicIcon}
+          text={intl.formatMessage(messages.remote)}
+        />
         {lists.map((list) => (
           <ListItem key={list.id} id={list.id} title={list.title} />
         ))}

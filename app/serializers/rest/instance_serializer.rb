@@ -11,7 +11,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :domain, :title, :version, :source_url, :description,
-             :usage, :thumbnail, :icon, :languages, :configuration,
+             :usage, :thumbnail, :wordmark, :wordmark_dark, :icon, :languages, :configuration,
              :registrations, :api_versions
 
   has_one :contact, serializer: ContactSerializer
@@ -30,6 +30,34 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     else
       {
         url: frontend_asset_url('images/preview.png'),
+      }
+    end
+  end
+
+  def wordmark
+    if object.wordmark
+      {
+        url: full_asset_url(object.wordmark.file.url),
+      }
+    else
+      {
+        url: frontend_asset_url('images/wordmark.png'),
+      }
+    end
+  end
+
+  def wordmark_dark
+    if object.wordmark_dark
+      {
+        url: full_asset_url(object.wordmark_dark.file.url),
+      }
+    elsif object.wordmark
+      {
+        url: frontend_asset_url(object.wordmark.file.url),
+      }
+    else
+      {
+        url: frontend_asset_url('images/wordmark_dark.png'),
       }
     end
   end

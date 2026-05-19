@@ -319,7 +319,7 @@ class MediaGallery extends PureComponent {
 
   isStandaloneEligible() {
     const { media, standalone } = this.props;
-    return standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+    return media.size === 1;
   }
 
   render () {
@@ -337,14 +337,14 @@ class MediaGallery extends PureComponent {
     const computedClass = classNames('media-gallery', `media-gallery--layout-${size}`, { 'full-width': fullwidth });
 
     if (this.isStandaloneEligible()) { // TODO: cropImages setting
-      style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
+      style.aspectRatio = `auto`;
     } else {
       const cols = colCount(media.size);
       const rows = rowCount(media.size);
       style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
       style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 
-      style.aspectRatio = '16 / 9';
+      style.aspectRatio = '1';
     }
 
     if (this.isStandaloneEligible()) {

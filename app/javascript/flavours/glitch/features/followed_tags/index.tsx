@@ -110,7 +110,6 @@ const FollowedTags: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         title={intl.formatMessage(messages.heading)}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}
-        showBackButton
       />
 
       <ScrollableList

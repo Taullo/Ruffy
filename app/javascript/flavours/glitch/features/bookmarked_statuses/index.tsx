@@ -94,7 +94,6 @@ const Bookmarks: React.FC<{
         onClick={handleHeaderClick}
         pinned={pinned}
         multiColumn={multiColumn}
-        showBackButton
       />
 
       <StatusList

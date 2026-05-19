@@ -11,7 +11,7 @@ const GettingStarted: React.FC = () => {
   const intl = useIntl();
   return (
     <Column>
-      <NavigationPanel multiColumn />
+      <NavigationPanel />
 
       <LinkFooter multiColumn />
 

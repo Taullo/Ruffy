@@ -33,6 +33,7 @@ import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding
 
 import BundleColumnError from './components/bundle_column_error';
 import { NavigationBar } from './components/navigation_bar';
+import { HeaderBar } from './components/header_bar';
 import { UploadArea } from './components/upload_area';
 import { HashtagMenuController } from './components/hashtag_menu_controller';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -99,10 +100,7 @@ const mapStateToProps = state => ({
   hasComposingContents: state.getIn(['compose', 'text']).trim().length !== 0 || state.getIn(['compose', 'media_attachments']).size > 0 || state.getIn(['compose', 'poll']) !== null || state.getIn(['compose', 'quoted_status_id']) !== null,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
   fullWidthColumns: state.getIn(['local_settings', 'fullwidth_columns']),
-  unreadNotifications: selectUnreadNotificationGroupsCount(state),
-  hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
   newAccount: !state.getIn(['accounts', me, 'note']) && !state.getIn(['accounts', me, 'bot']) && state.getIn(['accounts', me, 'following_count'], 0) === 0 && state.getIn(['accounts', me, 'statuses_count'], 0) === 0,
-  username: state.getIn(['accounts', me, 'username']),
 
   layout_local_setting: state.getIn(['local_settings', 'layout']),
   theme: state.getIn(['local_settings', 'theme']),
@@ -184,7 +182,6 @@ class SwitchingColumnsArea extends PureComponent {
             {redirect}
 
             {singleColumn ? <Redirect from='/home' to='/feeds/home' exact /> : null}
-            {singleColumn ? <Redirect from='/feeds' to='/feeds/home' exact /> : null}
 
             <Redirect from='/getting-started' to='/' exact />
             <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
@@ -193,7 +190,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/terms-of-service/:date?' component={TermsOfService} content={children} />
 
             <WrappedRoute path='/feeds/home' component={HomeTimeline} content={children} />
-            <WrappedRoute path='/feeds' component={GettingStarted} content={children} exact />
+            <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
             <Redirect from='/timelines/public' to='/public' exact />
             <Redirect from='/timelines/public/local' to='/public/local' exact />
             <WrappedRoute path='/feeds/public' exact component={Firehose} componentParams={{ feedType: 'public' }} content={children} />
@@ -203,10 +200,10 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
             <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
             <WrappedRoute path='/links/:url' component={LinkTimeline} content={children} />
-            <WrappedRoute path='/lists/new' component={ListEdit} content={children} />
-            <WrappedRoute path='/lists/:id/edit' component={ListEdit} content={children} />
-            <WrappedRoute path='/lists/:id/members' component={ListMembers} content={children} />
-            <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
+            <WrappedRoute path='/feeds/new' component={ListEdit} content={children} />
+            <WrappedRoute path='/feeds/:id/edit' component={ListEdit} content={children} />
+            <WrappedRoute path='/feeds/:id/members' component={ListMembers} content={children} />
+            <WrappedRoute path='/feeds/:id' component={ListTimeline} content={children} />
             <WrappedRoute path='/notifications' component={Notifications} content={children} exact />
             <WrappedRoute path='/notifications/requests' component={NotificationRequests} content={children} exact />
             <WrappedRoute path='/notifications/requests/:id' component={NotificationRequest} content={children} exact />
@@ -248,7 +245,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/domain_mutes' component={DomainMutes} content={children} />
             <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
-            <WrappedRoute path='/lists' component={Lists} content={children} />
+            <WrappedRoute path='/feeds' component={Lists} content={children} />
 
             <Route component={BundleColumnError} />
           </WrappedSwitch>
@@ -841,6 +838,7 @@ class UI extends PureComponent {
     return (
       <Hotkeys global handlers={handlers}>
         <div className={className} ref={this.setRef}>
+          <HeaderBar />
           {moved && (<div className='flash-message alert'>
             <FormattedMessage
               id='moved_to_warning'

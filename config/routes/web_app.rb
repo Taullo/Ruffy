@@ -26,8 +26,8 @@
   /feeds/public
   /feeds/neighbors
   /keyboard-shortcuts
-  /links/(*any)
-  /lists/(*any)
+  /feeds/(*any)
+  /feeds/(*any)
   /mutes
   /notifications_v2/(*any)
   /notifications/(*any)

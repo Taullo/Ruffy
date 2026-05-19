@@ -26,6 +26,8 @@ class Form::AdminSettings
     hide_followers_count
     flavour_and_skin
     thumbnail
+    wordmark
+    wordmark_dark
     mascot
     show_reblogs_in_public_timelines
     show_replies_in_public_timelines
@@ -82,6 +84,8 @@ class Form::AdminSettings
 
   UPLOAD_KEYS = %i(
     thumbnail
+    wordmark
+    wordmark_dark
     mascot
     app_icon
     favicon

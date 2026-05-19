@@ -3,3 +3,23 @@
 .logo {
   color: $primary-text-color;
 }
+
+.light-theme {
+  .wordmark-image {
+    display: inline;
+  }
+
+  .wordmark-image-dark {
+    display: none;
+  }
+}
+
+.dark-theme {
+  .wordmark-image {
+    display: none;
+  }
+
+  .wordmark_dark-image-dark {
+    display: inline;
+  }
+}

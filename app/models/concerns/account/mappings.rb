@@ -89,7 +89,10 @@ module Account::Mappings
     end
 
     def domain_muting_map_by_domain(target_domains, account_id)
-      follow_mapping(AccountDomainMute.where(account_id: account_id, domain: target_domains), :domain)
+      build_mapping(
+        AccountDomainMute.where(account_id: account_id, domain: target_domains),
+        :domain
+      )
     end
 
     private

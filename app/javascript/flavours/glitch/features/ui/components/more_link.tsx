@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -19,6 +19,10 @@ const messages = defineMessages({
   domainMutes: {
     id: 'navigation_bar.domain_mutes',
     defaultMessage: 'Muted domains',
+  },
+  preferences: {
+    id: 'navigation_bar.preferences',
+    defaultMessage: 'Preferences',
   },
   domainBlocks: {
     id: 'navigation_bar.domain_blocks',
@@ -70,6 +74,10 @@ export const MoreLink: React.FC = () => {
         to: '/domain_blocks',
       },
       null,
+      {
+        text: intl.formatMessage(messages.preferences),
+        href: '/settings/preferences',
+      },
       { text: intl.formatMessage(messages.filters), href: '/filters' },
       {
         href: '/settings/privacy',
@@ -119,8 +127,6 @@ export const MoreLink: React.FC = () => {
     <Dropdown items={menu} placement='bottom-start'>
       <button className='column-link column-link--transparent'>
         <Icon id='' icon={MoreHorizIcon} className='column-link__icon' />
-
-        <FormattedMessage id='navigation_bar.more' defaultMessage='More' />
       </button>
     </Dropdown>
   );

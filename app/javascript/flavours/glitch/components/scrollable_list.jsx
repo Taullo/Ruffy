@@ -12,9 +12,7 @@ import { throttle } from 'lodash';
 
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 
-import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
-import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 
 import { LoadMore } from './load_more';
 import { LoadPending } from './load_pending';
@@ -36,18 +34,18 @@ const mapStateToProps = (state, { scrollKey }) => {
 };
 
 // This component only exists to be able to call useLocation()
-const IOArticleContainerWrapper = ({id, index, listLength, intersectionObserverWrapper, trackScroll, scrollKey, children}) => {
+const IOArticleContainerWrapper = ({id, index, listLength, trackScroll, scrollKey, children}) => {
   const location = useLocation();
 
-  return (<IntersectionObserverArticleContainer
-    id={id}
+  return (<article
+    data-id={id}
     index={index}
-    listLength={listLength}
-    intersectionObserverWrapper={intersectionObserverWrapper}
-    saveHeightKey={trackScroll ? `${location.key}:${scrollKey}` : null}
+    aria-posinset={index + 1}
+    aria-setsize={listLength}
+    tabIndex={-1}
   >
     {children}
-  </IntersectionObserverArticleContainer>);
+  </article>);
 };
 
 IOArticleContainerWrapper.propTypes =  {
@@ -55,7 +53,6 @@ IOArticleContainerWrapper.propTypes =  {
   index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   listLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   scrollKey: PropTypes.string.isRequired,
-  intersectionObserverWrapper: PropTypes.object.isRequired,
   trackScroll: PropTypes.bool.isRequired,
   children: PropTypes.node,
 };
@@ -92,8 +89,6 @@ class ScrollableList extends PureComponent {
     fullscreen: null,
     cachedMediaWidth: 300,
   };
-
-  intersectionObserverWrapper = new IntersectionObserverWrapper();
 
   handleScroll = throttle(() => {
     if (this.node) {
@@ -184,7 +179,6 @@ class ScrollableList extends PureComponent {
 
   componentDidMount () {
     this.attachScrollListener();
-    this.attachIntersectionObserver();
 
     attachFullscreenListener(this.onFullScreenChange);
 
@@ -248,7 +242,6 @@ class ScrollableList extends PureComponent {
   componentWillUnmount () {
     this.clearMouseIdleTimer();
     this.detachScrollListener();
-    this.detachIntersectionObserver();
 
     detachFullscreenListener(this.onFullScreenChange);
   }
@@ -256,20 +249,6 @@ class ScrollableList extends PureComponent {
   onFullScreenChange = () => {
     this.setState({ fullscreen: isFullscreen() });
   };
-
-  attachIntersectionObserver () {
-    let nodeOptions = {
-      root: this.node,
-      rootMargin: '300% 0px',
-    };
-
-    this.intersectionObserverWrapper
-      .connect(this.props.bindToDocument ? {} : nodeOptions);
-  }
-
-  detachIntersectionObserver () {
-    this.intersectionObserverWrapper.disconnect();
-  }
 
   attachScrollListener () {
     if (this.props.bindToDocument) {
@@ -362,7 +341,6 @@ class ScrollableList extends PureComponent {
                 id={child.key}
                 index={index}
                 listLength={childrenCount}
-                intersectionObserverWrapper={this.intersectionObserverWrapper}
                 trackScroll={trackScroll}
                 scrollKey={scrollKey}
               >

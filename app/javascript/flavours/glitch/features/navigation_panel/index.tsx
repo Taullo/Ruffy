@@ -1,12 +1,9 @@
-import type { MouseEventHandler } from 'react';
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
-import { useLocation } from 'react-router-dom';
-
-import type { Map as ImmutableMap } from 'immutable';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
@@ -18,42 +15,23 @@ import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
 import GroupsIcon from '@/material-icons/400-24px/groups-fill.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
-import InfoIcon from '@/material-icons/400-24px/info.svg?react';
-import AdministrationIcon from '@/material-icons/400-24px/manufacturing.svg?react';
-import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
-import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
-import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
-import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
-import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import VillageIcon from '@/material-icons/400-24px/village.svg?react';
-import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
-import { openModal } from 'flavours/glitch/actions/modal';
 import {
   openNavigation,
   closeNavigation,
 } from 'flavours/glitch/actions/navigation';
-import { Account } from 'flavours/glitch/components/account';
-import { IconWithBadge } from 'flavours/glitch/components/icon_with_badge';
-import { Search } from 'flavours/glitch/features/compose/components/search';
+import { Icon } from 'flavours/glitch/components/icon';
 import { ColumnLink } from 'flavours/glitch/features/ui/components/column_link';
 import { useBreakpoint } from 'flavours/glitch/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'flavours/glitch/identity_context';
-import {
-  timelinePreview,
-  trendsEnabled,
-  me,
-} from 'flavours/glitch/initial_state';
+import { timelinePreview, trendsEnabled } from 'flavours/glitch/initial_state';
 // import { transientSingleColumn } from 'flavours/glitch/is_mobile';
-import { selectUnreadNotificationGroupsCount } from 'flavours/glitch/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'flavours/glitch/store';
 
-import { DisabledAccountBanner } from './components/disabled_account_banner';
 import { FollowedTagsPanel } from './components/followed_tags_panel';
 import { ListPanel } from './components/list_panel';
-import { MoreLink } from './components/more_link';
-import { SignInBanner } from './components/sign_in_banner';
 import { Trends } from './components/trends';
 
 const messages = defineMessages({
@@ -70,20 +48,11 @@ const messages = defineMessages({
   bubble: { id: 'firehose.bubble', defaultMessage: 'Neighbors' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
-  preferences: {
-    id: 'navigation_bar.preferences',
-    defaultMessage: 'Preferences',
-  },
   followsAndFollowers: {
     id: 'navigation_bar.follows_and_followers',
     defaultMessage: 'Follows and followers',
   },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
-  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
-  searchTrends: {
-    id: 'navigation_bar.search_trends',
-    defaultMessage: 'Search / Trending',
-  },
   advancedInterface: {
     id: 'navigation_bar.advanced_interface',
     defaultMessage: 'Open in advanced web interface',
@@ -99,161 +68,55 @@ const messages = defineMessages({
   },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   compose: { id: 'tabs_bar.publish', defaultMessage: 'New Post' },
+  feeds: { id: 'column.lists', defaultMessage: 'Feeds' },
+  createFeed: { id: 'column.create_list', defaultMessage: 'Create new custom' },
   app_settings: {
     id: 'navigation_bar.app_settings',
     defaultMessage: 'App settings',
   },
 });
 
-const NotificationsLink = () => {
-  const count = useAppSelector(selectUnreadNotificationGroupsCount);
-  const showCount = useAppSelector(
-    (state) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      state.local_settings.getIn(['notifications', 'tab_badge']) as boolean,
-  );
-  const intl = useIntl();
-
-  return (
-    <ColumnLink
-      key='notifications'
-      transparent
-      to='/notifications'
-      icon={
-        <IconWithBadge
-          id='bell'
-          icon={NotificationsIcon}
-          count={showCount ? count : 0}
-          className='column-link__icon'
-        />
-      }
-      activeIcon={
-        <IconWithBadge
-          id='bell'
-          icon={NotificationsActiveIcon}
-          count={showCount ? count : 0}
-          className='column-link__icon'
-        />
-      }
-      text={intl.formatMessage(messages.notifications)}
-    />
-  );
-};
-
-const FollowRequestsLink: React.FC = () => {
-  const intl = useIntl();
-  const count = useAppSelector(
-    (state) =>
-      (
-        state.user_lists.getIn(['follow_requests', 'items']) as
-          | ImmutableMap<string, unknown>
-          | undefined
-      )?.size ?? 0,
-  );
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchFollowRequests());
-  }, [dispatch]);
-
-  if (count === 0) {
-    return null;
-  }
-
-  return (
-    <ColumnLink
-      transparent
-      to='/follow_requests'
-      icon={
-        <IconWithBadge
-          id='user-plus'
-          icon={PersonAddIcon}
-          count={count}
-          className='column-link__icon'
-        />
-      }
-      activeIcon={
-        <IconWithBadge
-          id='user-plus'
-          icon={PersonAddActiveIcon}
-          count={count}
-          className='column-link__icon'
-        />
-      }
-      text={intl.formatMessage(messages.followRequests)}
-    />
-  );
-};
-
-const ProfileCard: React.FC = () => {
-  if (!me) {
-    return null;
-  }
-
-  return (
-    <div className='navigation-bar'>
-      <Account id={me} minimal size={36} />
-    </div>
-  );
-};
-
 const MENU_WIDTH = 284;
 
-export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
-  multiColumn = false,
-}) => {
+export const NavigationPanel: React.FC = () => {
   const intl = useIntl();
-  const { signedIn, disabledAccountId } = useIdentity();
-  const showSearch = useBreakpoint('full') && !multiColumn;
-  const dispatch = useAppDispatch();
-
-  let banner: React.ReactNode;
-
-  const handleOpenSettings = useCallback<MouseEventHandler>(
-    (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      dispatch(
-        openModal({
-          modalType: 'SETTINGS',
-          modalProps: {},
-        }),
-      );
-    },
-    [dispatch],
-  );
+  const { signedIn } = useIdentity();
 
   return (
     <div className='navigation-panel'>
-      {showSearch && <Search singleColumn />}
-
-      {!multiColumn && <ProfileCard />}
-
-      {banner && <div className='navigation-panel__banner'>{banner}</div>}
-
       <div className='navigation-panel__menu'>
-        {signedIn && (
-          <>
-            {!multiColumn && (
-              <ColumnLink
-                to='/publish'
-                icon='plus'
-                iconComponent={AddIcon}
-                activeIconComponent={AddIcon}
-                text={intl.formatMessage(messages.compose)}
-                className='button navigation-panel__compose-button'
-              />
+        <div className='sidebar-header__wrapper'>
+          <div className='sidebar-header'>
+            <NavLink
+              className='sidebar-header__title'
+              to='/feeds'
+              title={intl.formatMessage(messages.feeds)}
+              href='/feeds'
+            >
+              {intl.formatMessage(messages.feeds)}
+            </NavLink>
+            <hr />
+            {signedIn && (
+              <NavLink
+                className='sidebar-header__button'
+                to='/feeds/new'
+                title={intl.formatMessage(messages.createFeed)}
+                href='/feeds/new'
+              >
+                <Icon id='add' icon={AddIcon} aria-hidden='true' />
+              </NavLink>
             )}
-            <ColumnLink
-              transparent
-              to='/feeds/home'
-              icon='home'
-              iconComponent={HomeIcon}
-              activeIconComponent={HomeActiveIcon}
-              text={intl.formatMessage(messages.home)}
-            />
-          </>
+          </div>
+        </div>
+        {signedIn && (
+          <ColumnLink
+            transparent
+            to='/feeds/home'
+            icon='home'
+            iconComponent={HomeIcon}
+            activeIconComponent={HomeActiveIcon}
+            text={intl.formatMessage(messages.home)}
+          />
         )}
 
         {trendsEnabled && (
@@ -294,17 +157,17 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
         {signedIn && (
           <>
-            <NotificationsLink />
-
-            <FollowRequestsLink />
-
-            <hr />
-
             <ListPanel />
 
             <FollowedTagsPanel />
 
-            <hr />
+            <ColumnLink
+              transparent
+              to='/conversations'
+              icon='at'
+              iconComponent={AlternateEmailIcon}
+              text={intl.formatMessage(messages.direct)}
+            />
 
             <ColumnLink
               transparent
@@ -314,51 +177,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
               activeIconComponent={BookmarksActiveIcon}
               text={intl.formatMessage(messages.bookmarks)}
             />
-            <ColumnLink
-              transparent
-              to='/conversations'
-              icon='at'
-              iconComponent={AlternateEmailIcon}
-              text={intl.formatMessage(messages.direct)}
-            />
-
-            <hr />
-
-            <ColumnLink
-              transparent
-              href='/settings/preferences'
-              icon='cog'
-              iconComponent={SettingsIcon}
-              text={intl.formatMessage(messages.preferences)}
-            />
-            <ColumnLink
-              transparent
-              onClick={handleOpenSettings}
-              icon='cogs'
-              iconComponent={AdministrationIcon}
-              text={intl.formatMessage(messages.app_settings)}
-            />
-
-            <MoreLink />
           </>
-        )}
-
-        <div className='navigation-panel__legal'>
-          <ColumnLink
-            transparent
-            to='/about'
-            icon='ellipsis-h'
-            iconComponent={InfoIcon}
-            text={intl.formatMessage(messages.about)}
-          />
-        </div>
-
-        {!signedIn && (
-          <div className='navigation-panel__sign-in-banner'>
-            <hr />
-
-            {disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner />}
-          </div>
         )}
       </div>
 
@@ -404,7 +223,7 @@ export const CollapsibleNavigationPanel: React.FC = () => {
 
   const isLtrDir = getComputedStyle(document.body).direction !== 'rtl';
 
-  const OPEN_MENU_OFFSET = isLtrDir ? MENU_WIDTH : -MENU_WIDTH;
+  const OPEN_MENU_OFFSET = isLtrDir ? -MENU_WIDTH : MENU_WIDTH;
 
   const [{ x }, spring] = useSpring(
     () => ({

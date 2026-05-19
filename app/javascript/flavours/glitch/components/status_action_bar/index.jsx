@@ -336,7 +336,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     return (
       <div className='status__action-bar'>
-        <div className='status__action-bar__button-wrapper'>
+        <div className='status__action-bar__button-wrapper status__action-bar__reply'>
           <IconButton
             className='status__action-bar-button'
             title={replyTitle}
@@ -345,24 +345,26 @@ class StatusActionBar extends ImmutablePureComponent {
             onClick={this.handleReplyClick}
             counter={showReplyCount ? status.get('replies_count') : undefined}
             obfuscateCount
-          />
+            />
         </div>
-        <div className='status__action-bar__button-wrapper'>
-          <BoostButton status={status} counters={withCounters} />
-        </div>
-        <div className='status__action-bar__button-wrapper'>
-          <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
-        </div>
-        <div className='status__action-bar__button-wrapper'>
-          <EmojiPickerDropdown className='status__action-bar-button react-icon' onPickEmoji={this.handleEmojiPick} title={intl.formatMessage(messages.react)} icon={AddReactionIcon} disabled={!canReact} counter={withCounters ? status.get('reactions_count') : undefined} />
-        </div>
-        <div className='status__action-bar__button-wrapper'>
-          <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />
+        <div className='status__action-bar__pill'>
+          <div className='status__action-bar__button-wrapper'>
+            <BoostButton status={status} counters={withCounters} />
+          </div>
+          <div className='status__action-bar__button-wrapper'>
+            <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+          </div>
+          <div className='status__action-bar__button-wrapper status__action-bar__react'>
+            <EmojiPickerDropdown className='status__action-bar-button react-icon' onPickEmoji={this.handleEmojiPick} title={intl.formatMessage(messages.react)} icon={AddReactionIcon} disabled={!canReact} counter={withCounters ? status.get('reactions_count') : undefined} />
+          </div>
+          <div className='status__action-bar__button-wrapper'>
+            <IconButton className='status__action-bar-button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />
+          </div>
         </div>
 
         {filterButton}
 
-        <RemoveQuoteHint className='status__action-bar__button-wrapper' canShowHint={shouldShowQuoteRemovalHint}>
+        <RemoveQuoteHint className='status__action-bar__button-wrapper status__action-bar__menu' canShowHint={shouldShowQuoteRemovalHint}>
           {(dismissQuoteHint) => (
             <Dropdown
               scrollKey={scrollKey}
@@ -380,11 +382,6 @@ class StatusActionBar extends ImmutablePureComponent {
             />
           )}
         </RemoveQuoteHint>
-
-        <div className='status__action-bar-spacer' />
-        <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
-          <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
-        </a>
       </div>
     );
   }

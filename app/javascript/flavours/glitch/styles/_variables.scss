@@ -113,3 +113,23 @@ $emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
   'end' 'heavy_check_mark' 'heavy_division_sign' 'heavy_dollar_sign'
   'heavy_minus_sign' 'heavy_multiplication_x' 'heavy_plus_sign' 'on'
   'registered' 'soon' 'spider' 'telephone_receiver' 'tm' 'top' 'wavy_dash' !default;
+
+.light_theme {
+  .wordmark {
+    display: inline;
+  }
+
+  .wordmark_dark {
+    display: none;
+  }
+}
+
+.dark_theme {
+  .wordmark {
+    display: none;
+  }
+
+  .wordmark_dark {
+    display: inline;
+  }
+}

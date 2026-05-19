@@ -7,11 +7,17 @@ module BrandingHelper
       _logo_as_symbol_icon
     when :wordmark
       _logo_as_symbol_wordmark
+    when :wordmark_dark
+      _logo_as_symbol_wordmark_dark
     end
   end
 
   def _logo_as_symbol_wordmark
     content_tag(:svg, tag.use(href: '#logo-symbol-wordmark'), viewBox: '0 0 261 66', class: 'logo logo--wordmark')
+  end
+
+  def _logo_as_symbol_wordmark_dark
+    image_tag(wordmark_dark_url, class: 'logo logo--wordmark-dark')
   end
 
   def _logo_as_symbol_icon
