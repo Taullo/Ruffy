@@ -11,6 +11,7 @@ class ActivityPub::LinkedDataSignature
 
   def verify_actor!
     return unless @json['signature'].is_a?(Hash)
+    return if unsupported_jsonld_features?(@json)
 
     type        = @json['signature']['type']
     creator_uri = @json['signature']['creator']

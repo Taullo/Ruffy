@@ -100,8 +100,6 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'private_address_check', '~> 0.5'
-
 group :test do
   # Used to split testing into chunks in CI
   gem 'rspec_chunked', '~> 0.6'
